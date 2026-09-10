@@ -1,6 +1,6 @@
 /* A stand-in map for glass specimens. Glass must be demonstrated over content
    with real high-frequency detail or the material's job is invisible. */
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './tokens-lib.mjs';
 
@@ -48,6 +48,9 @@ function map(c) {
   s += `</svg>`;
   return s;
 }
+// On a clean checkout site/ does not exist yet — it is generated output.
+mkdirSync(join(ROOT, 'site', 'assets'), { recursive: true });
+
 for (const [k, c] of Object.entries(P)) {
   writeFileSync(join(ROOT, 'site', 'assets', `map-${k}.svg`), map(c));
   console.log(`✓ map-${k}.svg`);
