@@ -5,11 +5,11 @@
     "$type": "color",
     "canvas": {
       "$value": "{color.sky.950}",
-      "$description": "Was: Background Bright - Dark"
+      "$description": "قبلاً: Background Bright - Dark"
     },
     "fog": {
       "$value": "{color.sky.925}",
-      "$description": "Was: Background Fog - Dark"
+      "$description": "قبلاً: Background Fog - Dark"
     },
     "sunken": {
       "$value": "{color.sky.900}"
@@ -28,22 +28,22 @@
     "$type": "color",
     "default": {
       "$value": "{color.sky.100}",
-      "$description": "Was: Sky 800 - Dark"
+      "$description": "قبلاً: Sky 800 - Dark"
     },
     "secondary": {
       "$value": "{color.sky.400}",
-      "$description": "Was: Sky 500 - Dark"
+      "$description": "قبلاً: Sky 500 - Dark"
     },
     "disabled": {
       "$value": "{color.sky.700}",
-      "$description": "Was: Sky 300 - Dark"
+      "$description": "قبلاً: Sky 300 - Dark"
     },
     "inverse": {
       "$value": "{color.sky.800}"
     },
     "brand": {
       "$value": "{color.red.350}",
-      "$description": "Brand red lightened for dark ground."
+      "$description": "قرمز برند، روشن‌شده برای زمینهٔ تیره."
     },
     "link": {
       "$value": "{color.blue.300}"
@@ -62,7 +62,7 @@
     },
     "control": {
       "$value": "{color.sky.400}",
-      "$description": "Form-control boundary. Meets WCAG 1.4.11 at 3:1."
+      "$description": "مرز کنترل فرم. معیار ۱.۴.۱۱ را با ۳:۱ برآورده می‌کند."
     },
     "strong": {
       "$value": "{color.sky.400}"
@@ -284,7 +284,7 @@
     },
     "ad": {
       "$value": "{color.red.500}",
-      "$description": "آگهی — same solid pill in every theme. A disclosure should not change appearance with the reader's theme."
+      "$description": "آگهی — همان قرص تخت در هر پوسته. یک افشا نباید با پوستهٔ خواننده ظاهرش عوض شود."
     },
     "oos": {
       "$value": "{color.sky.400}"

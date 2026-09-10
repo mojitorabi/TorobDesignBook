@@ -5,55 +5,55 @@
     "$type": "color",
     "canvas": {
       "$value": "{color.sky.100}",
-      "$description": "Page background. Was: Background Bright - Light"
+      "$description": "پس‌زمینهٔ صفحه. قبلاً: Background Bright - Light"
     },
     "fog": {
       "$value": "{color.white}",
-      "$description": "Raised card / sheet ground. Was: Background Fog - Light"
+      "$description": "زمینهٔ کارت و برگهٔ بالاآمده. قبلاً: Background Fog - Light"
     },
     "sunken": {
       "$value": "{color.sky.50}"
     },
     "subtle": {
       "$value": "{color.sky.100}",
-      "$description": "Zebra rows, spec table even cells"
+      "$description": "ردیف‌های راه‌راه، سلول‌های زوج جدول مشخصات"
     },
     "inverse": {
       "$value": "{color.sky.800}"
     },
     "scrim": {
       "$value": "rgba(30, 41, 59, 0.48)",
-      "$description": "Behind modals and sheets"
+      "$description": "پشت مودال‌ها و برگه‌ها"
     }
   },
   "fg": {
     "$type": "color",
     "default": {
       "$value": "{color.sky.800}",
-      "$description": "Was: Sky 800 - Light / text style 'main'"
+      "$description": "قبلاً: Sky 800 - Light / استایل متنی main"
     },
     "secondary": {
       "$value": "{color.sky.600}",
-      "$description": "Was: 'sec'. Uses Sky 600 rather than Sky 500 — see primitive note."
+      "$description": "قبلاً: sec. به‌جای Sky 500 از Sky 600 استفاده می‌کند؛ یادداشت رنگ پایه را ببینید."
     },
     "disabled": {
       "$value": "{color.sky.300}",
-      "$description": "Was: 'disable'"
+      "$description": "قبلاً: disable"
     },
     "inverse": {
       "$value": "{color.sky.50}",
-      "$description": "Was: 'reverse'"
+      "$description": "قبلاً: reverse"
     },
     "brand": {
       "$value": "{color.red.600}",
-      "$description": "Brand red for text. Fills use {color.brand.red}."
+      "$description": "قرمز برند برای متن. پرکردن‌ها از {color.brand.red} استفاده می‌کنند."
     },
     "link": {
       "$value": "{color.blue.500}"
     },
     "on-solid": {
       "$value": "{color.white}",
-      "$description": "Text on a filled action surface"
+      "$description": "متن روی سطح کنش پرشده"
     }
   },
   "border": {
@@ -66,18 +66,18 @@
     },
     "control": {
       "$value": "{color.sky.500}",
-      "$description": "Form-control boundary. WCAG 1.4.11 requires 3:1 — border.default is decorative only and does not meet it."
+      "$description": "مرز کنترل فرم. معیار ۱.۴.۱۱ نسبت ۳:۱ می‌خواهد؛ border.default فقط تزئینی است و آن را برآورده نمی‌کند."
     },
     "strong": {
       "$value": "{color.sky.500}"
     },
     "selected": {
       "$value": "{color.blue.500}",
-      "$description": "[NEW] Selection ring. Source used Blue 300 in both modes; on light it measures 2.54:1. Blue 500 keeps the blue language and passes at 4.79:1."
+      "$description": "[NEW] حلقهٔ انتخاب. منبع در هر دو حالت Blue 300 داشت که روی روشن ۲٫۵۴:۱ می‌دهد. Blue 500 همان زبان آبی را نگه می‌دارد و با ۴٫۷۹:۱ قبول می‌شود."
     },
     "focus": {
       "$value": "{color.blue.500}",
-      "$description": "Keyboard focus ring"
+      "$description": "حلقهٔ فوکوس صفحه‌کلید"
     }
   },
   "action": {
@@ -282,22 +282,22 @@
     "$description": "Torob-specific meaning. These are load-bearing — do not substitute generic status colours.",
     "price": {
       "$value": "{color.sky.800}",
-      "$description": "The price number itself"
+      "$description": "خود عدد قیمت"
     },
     "price-from": {
       "$value": "{color.sky.500}",
-      "$description": "'از ...' prefix and seller-count line"
+      "$description": "پیشوند «از …» و خط تعداد فروشنده"
     },
     "discount": {
       "$value": "{color.brand.red}"
     },
     "ad": {
       "$value": "{color.red.500}",
-      "$description": "آگهی — solid pill, white label. A disclosure, and it must not be mistakable for a discount."
+      "$description": "آگهی — یک قرص تخت با برچسب سفید. یک افشا که نباید با تخفیف اشتباه گرفته شود."
     },
     "oos": {
       "$value": "{color.sky.500}",
-      "$description": "ناموجود — out of stock. Deliberately grey, not red: unavailability is not an error."
+      "$description": "ناموجود. عمداً خاکستری است نه قرمز؛ نبود کالا خطا نیست."
     },
     "open": {
       "$value": "{color.green.600}",
@@ -316,7 +316,7 @@
   },
   "map": {
     "$type": "color",
-    "$description": "Torob Nearby map layer",
+    "$description": "لایهٔ نقشهٔ «خرید از اطراف»",
     "poi": {
       "$value": "{color.brand.red}"
     },

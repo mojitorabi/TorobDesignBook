@@ -15,9 +15,9 @@ const I = {
 /* A phone frame with a scrollable body. */
 const phone = (inner, note) => `<div class="spec" data-spec>
   <div class="spec__bar">
-    <span class="spec__label">${esc(note ?? '375 × 640')}</span>
+    <span class="spec__label">${esc(note ?? '۳۷۵ × ۶۴۰')}</span>
     <div class="spec__tools">
-      <button class="site-tool" data-spec-locale data-locale="fa" aria-label="Switch this specimen between Persian and English" title="Language and direction">فارسی</button>
+      <button class="site-tool" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه" title="زبان و جهت">فارسی</button>
     </div>
   </div>
   <div class="spec__stage spec__stage--phone" dir="rtl" lang="fa">
@@ -73,12 +73,12 @@ export function patternsPages() {
   };
 
   /* ── Nearby stores ── */
-  page('patterns/nearby-stores', 'Nearby stores', 'The Torob Nearby home screen: map, list, and the switch between them.',
+  page('patterns/nearby-stores', 'فروشگاه‌های اطراف', 'صفحهٔ اصلی «خرید از اطراف»: نقشه، فهرست و کلید تعویض میانشان.',
     [
       [null, null, `<div class="prose">
-        <p>Rebuilt from screens 1 and 1-1 of the Sketch source, using nothing but system components. The whole screen is eight of them: <a href="../components/page-header.html">PageHeader</a>, <a href="../components/search-field.html">SearchField</a>, <a href="../components/switch.html">Switch</a>, <a href="../components/segmented-control.html">SegmentedControl</a>, <a href="../components/filter-chip.html">FilterChip</a>, <a href="../components/store-card.html">StoreCard</a>, <a href="../components/map-pin.html">MapPin</a> and <a href="../components/bottom-nav.html">BottomNav</a>.</p>
+        <p>از صفحه‌های ۱ و ۱-۱ منبع اسکچ بازسازی شده، فقط با کامپوننت‌های همین سیستم. کل صفحه هشت کامپوننت است: <a href="../components/page-header.html">PageHeader</a>، <a href="../components/search-field.html">SearchField</a>، <a href="../components/switch.html">Switch</a>، <a href="../components/segmented-control.html">SegmentedControl</a>، <a href="../components/filter-chip.html">FilterChip</a>، <a href="../components/store-card.html">StoreCard</a>، <a href="../components/map-pin.html">MapPin</a> و <a href="../components/bottom-nav.html">BottomNav</a>.</p>
       </div>`],
-      ['list', 'List view', `${phone(`
+      ['list', 'نمای فهرست', `${phone(`
   <header class="t-page-header">
     <button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button>
     <div class="t-page-header__title">فروشگاه‌های اطراف<div class="t-page-header__sub">تهران، ۷۸ مورد</div></div>
@@ -97,9 +97,9 @@ export function patternsPages() {
     ${storeCard('عطر سرای نیک', '۱٫۴ کیلومتر', 'باز تا ۲۱:۰۰', '<span class="t-badge t-badge--positive"><span class="t-badge__dot"></span>باز الان</span>')}
     ${storeCard('گالری رز', '۵۵۰ متر', 'بسته — باز می‌شود ۹:۰۰', '', false)}
   </div>
-  ${bottomNav('اطراف من')}`, 'Nearby stores — list')}
-        <div class="prose"><p><strong>Micro-interactions here:</strong> filter chips toggle in place; the segmented control moves its selection; store cards lift 2px on hover with elevation-2; the product rail scroll-snaps. All of it is live in the frame above — try it.</p></div>`],
-      ['map', 'Map view', `<div class="prose"><p>The same data, the other mode. Everything that floats over the map is glass, and there are exactly three glass layers: the switch, the pins' container, and the store card. That is the whole budget.</p></div>
+  ${bottomNav('اطراف من')}`, 'فروشگاه‌های اطراف — فهرست')}
+        <div class="prose"><p><strong>ریزتعامل‌های این صفحه:</strong> تراشه‌های فیلتر همان‌جا روشن و خاموش می‌شوند؛ سگمنت انتخابش را جابه‌جا می‌کند؛ کارت فروشگاه هنگام هاور دو پیکسل با ارتفاع ۲ بالا می‌آید؛ ریل محصول چسبان اسکرول می‌شود. همه‌اش در قاب بالا زنده است — امتحان کنید.</p></div>`],
+      ['map', 'نمای نقشه', `<div class="prose"><p>همان داده، حالت دیگر. هرچه روی نقشه شناور است شیشه‌ای است و دقیقاً سه لایهٔ شیشه وجود دارد: کلید تعویض، ظرف پین‌ها و کارت فروشگاه. کل بودجه همین است.</p></div>
         ${phone(`
   <div style="position:relative;flex:1;background-color:#EDF1F5;background-image:url('../assets/map-light.svg');background-size:900px auto;background-position:center">
     <div style="position:absolute;inset-block-start:12px;inset-inline:12px;display:flex;justify-content:center">
@@ -128,26 +128,26 @@ export function patternsPages() {
       </article>
     </div>
   </div>
-  ${bottomNav('اطراف من')}`, 'Nearby stores — map')}
-        <div class="prose"><p><strong>Try it:</strong> tap a pin. Selection moves, the pin scales 1.12 and switches from brand red to accent blue. Red stays the resting state — overloading it would kill the price signal.</p></div>`],
-      ['rules', 'What this pattern fixes', guidance([
-        'Distance leads every card — it is the reason the shopper is on this screen.',
-        'Opening hours are visible before the tap. A closed store is a wasted journey.',
-        'The map and the list carry identical data, so the Switch is a view change, not a filter.',
-        'Applied filters stay visible as chips. Never collapse them into “۳ فیلتر”.',
+  ${bottomNav('اطراف من')}`, 'فروشگاه‌های اطراف — نقشه')}
+        <div class="prose"><p><strong>امتحان کنید:</strong> روی یک پین بزنید. انتخاب جابه‌جا می‌شود، پین ۱٫۱۲ برابر بزرگ می‌شود و از قرمز برند به آبی می‌رود. قرمز حالت آرامش می‌ماند؛ بار اضافه روی آن سیگنال قیمت را می‌کشد.</p></div>`],
+      ['rules', 'این الگو چه چیزی را حل می‌کند', guidance([
+        'فاصله سرِ هر کارت است؛ همان دلیلی که خریدار در این صفحه است.',
+        'ساعت کاری پیش از لمس دیده می‌شود. فروشگاه بسته یعنی یک سفر هدررفته.',
+        'نقشه و فهرست داده‌های یکسانی دارند، پس Switch تغییر نماست نه فیلتر.',
+        'فیلترهای اعمال‌شده به‌صورت تراشه دیده‌شونده می‌مانند. هرگز آنها را در «۳ فیلتر» جمع نکنید.',
       ], [
-        'A map with no list equivalent. A map alone is not accessible.',
-        'Prices on every pin at city zoom — the map becomes unreadable. Use dots, then clusters.',
-        'More than three glass layers over the map.',
-        'Hiding the bottom navigation on scroll. The destination set should be constant.',
+        'نقشه بدون معادل فهرستی. نقشه به‌تنهایی دسترس‌پذیر نیست.',
+        'قیمت روی هر پین در زوم شهر؛ نقشه ناخوانا می‌شود. اول نقطه، بعد خوشه.',
+        'بیش از سه لایهٔ شیشه روی نقشه.',
+        'پنهان‌کردن ناوبری پایین هنگام اسکرول. مجموعهٔ مقصدها باید ثابت باشد.',
       ])],
     ]);
 
   /* ── PDP ── */
-  page('patterns/product-detail', 'Product detail', 'Price, sellers, variants, specs — the screen where the decision happens.',
+  page('patterns/product-detail', 'صفحهٔ محصول', 'قیمت، فروشنده‌ها، گونه‌ها و مشخصات — صفحه‌ای که تصمیم در آن گرفته می‌شود.',
     [
-      [null, null, `<div class="prose"><p>From screens 3, 3-1 and 3-3. The buy box is the load-bearing element: it carries price, seller and action in one target, and the آگهی disclosure where it applies.</p></div>`],
-      ['screen', 'The screen', `${phone(`
+      [null, null, `<div class="prose"><p>از صفحه‌های ۳، ۳-۱ و ۳-۳. باکس خرید عنصر تعیین‌کننده است: قیمت، فروشنده و کنش را در یک هدف لمس جمع می‌کند و هرجا لازم باشد افشای «آگهی» را هم می‌آورد.</p></div>`],
+      ['screen', 'خود صفحه', `${phone(`
   <header class="t-page-header">
     <button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button>
     <div class="t-page-header__title" style="font-size:14px">گوشی اپل iPhone 11 <span class="t-bidi">128 GB</span></div>
@@ -189,9 +189,9 @@ export function patternsPages() {
         <button class="t-list-item"><span class="t-list-item__body"><span class="t-list-item__title">دیجی‌سرا</span><span class="t-list-item__sub">ناموجود</span></span><span class="t-price t-price--sm t-price--unavailable"><span class="t-price__value">ناموجود</span></span></button>
       </div>
     </div>
-  </div>`, 'Product detail')}
-        <div class="prose"><p><strong>Note the price treatment.</strong> Every number in the seller list is tabular, so the column can be scanned in one pass. The out-of-stock row is grey, not red — unavailability is not an error, and using red here would compete with the discount signal.</p></div>`],
-      ['specs', 'Specifications', `<div class="prose"><p>Screen 3-5 in the source is forty attribute rows with no structure. An <a href="../components/accordion.html">Accordion</a> lets the shopper find the two that matter.</p></div>
+  </div>`, 'صفحهٔ محصول')}
+        <div class="prose"><p><strong>به ظاهر قیمت دقت کنید.</strong> هر عدد در فهرست فروشنده‌ها جدولی است، پس ستون در یک نگاه خوانده می‌شود. ردیف ناموجود خاکستری است نه قرمز؛ نبود کالا خطا نیست و قرمز اینجا با سیگنال تخفیف رقابت می‌کرد.</p></div>`],
+      ['specs', 'مشخصات', `<div class="prose"><p>صفحهٔ ۳-۵ منبع چهل ردیف ویژگی بدون هیچ ساختاری است. یک <a href="../components/accordion.html">Accordion</a> به خریدار اجازه می‌دهد آن دو ردیفی را که برایش مهم است پیدا کند.</p></div>
         ${phone(`
   <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بستن">${I.close}</button><div class="t-page-header__title">مشخصات کامل</div></header>
   <div class="phone__scroll" style="padding:12px">
@@ -215,14 +215,14 @@ export function patternsPages() {
         <div class="t-accordion__panel" id="pd3" hidden>گواهینامه IP53 — مقاوم در برابر پاشیده شدن آب و گرد و غبار. پوشش گوریلا گلس ۳.</div>
       </div>
     </div>
-  </div>`, 'Specifications')}`],
+  </div>`, 'مشخصات')}`],
     ]);
 
   /* ── Search & filter ── */
-  page('patterns/search-and-filter', 'Search & filter', 'From an empty field to a filtered result set, and back out again.',
+  page('patterns/search-and-filter', 'جست‌وجو و فیلتر', 'از یک فیلد خالی تا مجموعهٔ نتایج فیلترشده، و راه برگشت.',
     [
-      [null, null, `<div class="prose"><p>Torob starts at search. This flow covers the three SearchField states, recent searches, the filter sheet, and the no-results recovery, which is the state most systems forget.</p></div>`],
-      ['recent', 'Empty field, recent searches', phone(`
+      [null, null, `<div class="prose"><p>ترب از جست‌وجو شروع می‌شود. این جریان سه حالت SearchField، جست‌وجوهای اخیر، برگهٔ فیلتر و راه جبران «نتیجه‌ای نبود» را پوشش می‌دهد؛ همان حالتی که بیشتر سیستم‌ها فراموشش می‌کنند.</p></div>`],
+      ['recent', 'فیلد خالی، جست‌وجوهای اخیر', phone(`
   <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">جستجو</div></header>
   <div style="padding:12px 16px">
     <div class="t-search" data-state="default"><div class="t-input">${I.search}<input class="t-input__el" type="search" placeholder="جستجو در اطراف من">
@@ -238,8 +238,8 @@ export function patternsPages() {
       <button class="t-list-item"><span class="t-list-item__body"><span class="t-list-item__title">گوشی اپل استوک</span></span><span class="t-list-item__trail">${I.close}</span></button>
       <button class="t-list-item"><span class="t-list-item__body"><span class="t-list-item__title">مرکز خرید پالادیوم</span><span class="t-list-item__sub">۲۳ فروشگاه · ۱٫۲ کیلومتر</span></span><span class="t-list-item__trail">${I.backSm}</span></button>
     </div>
-  </div>`, 'Search — empty')],
-      ['results', 'Results with filters', phone(`
+  </div>`, 'جست‌وجو — خالی')],
+      ['results', 'نتایج همراه فیلتر', phone(`
   <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">محصولات اطراف<div class="t-page-header__sub">تهران، ۵۵ مورد</div></div></header>
   <div style="padding:10px 16px 0"><div class="t-search" data-state="searched"><div class="t-input">${I.search}<input class="t-input__el" type="search" value="ادکلن کازاموراتی"><span class="t-search__actions"><button class="t-icon-btn t-icon-btn--sm" aria-label="پاک کردن جستجو">${I.close}</button></span></div></div></div>
   ${filterBar}
@@ -255,8 +255,8 @@ export function patternsPages() {
           <span class="t-price t-price--sm"><span class="t-price__from">از</span><span class="t-price__value">${p}</span><span class="t-price__unit">تومان</span></span>
           <div class="t-product-card__meta">در ${n} فروشگاه</div></a>`).join('')}
     </div>
-  </div>`, 'Search — results')],
-      ['sheet', 'The filter sheet', `<div class="prose"><p>A <a href="../components/bottom-sheet.html">BottomSheet</a> on a phone, a 420px side panel from md — same component, same markup. The footer counts the result set live, so applying is never a leap of faith.</p></div>
+  </div>`, 'جست‌وجو — نتایج')],
+      ['sheet', 'برگهٔ فیلتر', `<div class="prose"><p>روی گوشی یک <a href="../components/bottom-sheet.html">BottomSheet</a> و از نقطهٔ md یک پنل کناری ۴۲۰ پیکسلی — همان کامپوننت، همان مارک‌آپ. فوتر تعداد نتایج را زنده می‌شمارد، پس اعمال‌کردن هرگز یک جهش در تاریکی نیست.</p></div>
         ${phone(`
   <div style="position:relative;flex:1;overflow:hidden">
     <div style="padding:12px 16px;opacity:.5">
@@ -281,8 +281,8 @@ export function patternsPages() {
       </div>
       <div class="t-sheet__foot"><button class="t-btn t-btn--ghost t-btn--md">حذف همه</button><button class="t-btn t-btn--primary t-btn--md">نمایش ۴۳ نتیجه</button></div>
     </div>
-  </div>`, 'Filter sheet')}`],
-      ['empty', 'No results — the recovery', `<div class="prose"><p>The state most systems ship as a shrug. Name the filter to drop, and put it in a button.</p></div>
+  </div>`, 'برگهٔ فیلتر')}`],
+      ['empty', 'نتیجه‌ای نبود — راه جبران', `<div class="prose"><p>حالتی که بیشتر سیستم‌ها به‌صورت یک شانه بالا انداختن منتشرش می‌کنند. فیلتری را که باید حذف شود نام ببرید و آن را در یک دکمه بگذارید.</p></div>
         ${phone(`
   <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">محصولات اطراف<div class="t-page-header__sub">تهران، ۰ مورد</div></div></header>
   <div style="padding:10px 16px 0"><div class="t-search" data-state="searched"><div class="t-input">${I.search}<input class="t-input__el" value="ادکلن کازاموراتی"><span class="t-search__actions"><button class="t-icon-btn t-icon-btn--sm" aria-label="پاک کردن جستجو">${I.close}</button></span></div></div></div>
@@ -294,26 +294,26 @@ export function patternsPages() {
       <div class="t-empty__desc">در شعاع ۲ کیلومتری ۴۳ محصول هست. فیلتر «باز الان» را بردارید تا همه را ببینید.</div>
       <div class="t-empty__actions"><button class="t-btn t-btn--primary t-btn--md">حذف فیلتر «باز الان»</button><button class="t-btn t-btn--ghost t-btn--md">حذف همه فیلترها</button></div>
     </div>
-  </div>`, 'No results')}`],
+  </div>`, 'نتیجه‌ای نبود')}`],
     ]);
 
   /* ── Feedback & errors ── */
-  page('patterns/feedback-and-errors', 'Feedback & errors', 'The layer the source kit was missing entirely.',
+  page('patterns/feedback-and-errors', 'بازخورد و خطا', 'لایه‌ای که کیت اولیه کاملاً نداشت.',
     [
       [null, null, `<div class="prose">
-        <p>Twenty-nine screens in the Sketch source, and not one confirmation, error or loading state as a component. This is the taxonomy, which surface to reach for, and when.</p>
+        <p>بیست‌ونه صفحه در منبع اسکچ، و حتی یک تأیید، خطا یا حالت بارگذاری به‌عنوان کامپوننت وجود نداشت. این رده‌بندی می‌گوید کِی سراغ کدام سطح بروید.</p>
       </div>
-      ${table(['Situation', 'Surface', 'Why'], [
-        ['An action succeeded', '<a href="../components/toast.html">Toast</a>', 'Passing, non-blocking, offers undo.'],
-        ['A condition persists', '<a href="../components/alert.html">Alert</a>', 'Stays until resolved. Carries its own fix.'],
-        ['One field is wrong', 'InlineMessage', 'Sits under the control it describes.'],
-        ['A decision cannot wait', '<a href="../components/modal.html">Modal</a>', 'The most expensive interaction. Use rarely.'],
-        ['Nothing here yet', '<a href="../components/empty-state.html">EmptyState</a>', 'Always names the way out.'],
-        ['The request failed', 'EmptyState, error variant', 'Problem, then recovery, in that order.'],
-        ['Content is loading, shape known', '<a href="../components/skeleton.html">Skeleton</a>', 'Reserves the exact final dimensions.'],
-        ['Content is loading, shape unknown', '<a href="../components/spinner.html">Spinner</a>', 'Only when a skeleton cannot work.'],
+      ${table(['موقعیت', 'سطح', 'چرا'], [
+        ['کنشی موفق شد', '<a href="../components/toast.html">Toast</a>', 'گذرا، بدون مسدودکردن، امکان واگرد.'],
+        ['شرطی برقرار مانده', '<a href="../components/alert.html">Alert</a>', 'تا حل‌شدن می‌ماند و راه‌حلش را با خود دارد.'],
+        ['یک فیلد اشتباه است', 'InlineMessage', 'زیر همان کنترلی می‌نشیند که توصیفش می‌کند.'],
+        ['تصمیمی نمی‌تواند صبر کند', '<a href="../components/modal.html">Modal</a>', 'گران‌ترین تعامل. کم استفاده کنید.'],
+        ['هنوز چیزی اینجا نیست', '<a href="../components/empty-state.html">EmptyState</a>', 'همیشه راه خروج را نام می‌برد.'],
+        ['درخواست شکست خورد', 'EmptyState، گونهٔ خطا', 'اول مشکل، بعد راه جبران، به همین ترتیب.'],
+        ['محتوا در حال بارگذاری، شکل معلوم', '<a href="../components/skeleton.html">Skeleton</a>', 'دقیقاً ابعاد نهایی را رزرو می‌کند.'],
+        ['محتوا در حال بارگذاری، شکل نامعلوم', '<a href="../components/spinner.html">Spinner</a>', 'فقط وقتی اسکلت کار نمی‌کند.'],
       ])}`],
-      ['offline', 'Offline', `<div class="prose"><p>Torob runs on mobile networks that drop. The offline state shows cached results rather than an empty screen, and says so.</p></div>
+      ['offline', 'آفلاین', `<div class="prose"><p>ترب روی شبکه‌های موبایلی اجرا می‌شود که قطع می‌شوند. حالت آفلاین به‌جای صفحهٔ خالی، نتایج ذخیره‌شده را نشان می‌دهد و همین را هم می‌گوید.</p></div>
         ${phone(`
   <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">فروشگاه‌های اطراف<div class="t-page-header__sub">تهران، ۷۸ مورد</div></div></header>
   <div style="padding:12px 16px 0">
@@ -326,8 +326,8 @@ export function patternsPages() {
   <div class="phone__scroll" style="padding:12px 16px">
     ${storeCard('ادکلن شهر', '۱ کیلومتر', 'ساعات کاری نامشخص', '<span class="t-badge">آخرین بروزرسانی ۲ ساعت پیش</span>', false)}
     ${storeCard('عطر سرای نیک', '۱٫۴ کیلومتر', 'ساعات کاری نامشخص', '', false)}
-  </div>`, 'Offline')}`],
-      ['loading', 'Loading', `<div class="prose"><p>Skeletons match the real card's dimensions exactly, so nothing shifts when the data lands. Anything else is worse than a spinner.</p></div>
+  </div>`, 'آفلاین')}`],
+      ['loading', 'در حال بارگذاری', `<div class="prose"><p>اسکلت‌ها دقیقاً ابعاد کارت واقعی را می‌گیرند، پس وقتی داده می‌رسد چیزی جابه‌جا نمی‌شود. هر چیز دیگری بدتر از یک اسپینر است.</p></div>
         ${phone(`
   <header class="t-page-header"><div class="t-page-header__title">فروشگاه‌های اطراف</div></header>
   <div class="phone__scroll" style="padding:12px 16px" aria-busy="true">
@@ -338,26 +338,137 @@ export function patternsPages() {
       </div>
       <div class="t-store-card__rail">${[1, 2, 3, 4].map(() => `<div><div class="t-thumb t-thumb--sm t-skeleton"></div></div>`).join('')}</div>
     </div>`).join('')}
-  </div>`, 'Loading')}`],
-      ['toasts', 'Confirmation', `<div class="prose"><p>Bottom-anchored, because the top of a Torob screen is search and the bottom is where the thumb already is. Fire them from the buttons below — they appear at the bottom of this page.</p></div>
-        <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Live</span></div>
+  </div>`, 'در حال بارگذاری')}`],
+      ['toasts', 'تأیید', `<div class="prose"><p>لنگرانداخته به پایین، چون بالای صفحهٔ ترب جای جست‌وجوست و پایین همان‌جایی است که شست از قبل هست. از دکمه‌های زیر اجرایشان کنید؛ در پایین همین صفحه ظاهر می‌شوند.</p></div>
+        <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">زنده</span></div>
         <div class="spec__stage" dir="rtl" lang="fa">
-          <button class="t-btn t-btn--outline t-btn--md" onclick="torobToast({title:'به علاقه‌مندی‌ها اضافه شد',desc:'کازاموراتی مفیستو ۱۰۰ میل',action:'واگرد'})">Added, with undo</button>
-          <button class="t-btn t-btn--outline t-btn--md" onclick="torobToast({variant:'positive',title:'آدرس ذخیره شد'})">Saved</button>
-          <button class="t-btn t-btn--outline t-btn--md" onclick="torobToast({variant:'critical',title:'اتصال برقرار نشد',desc:'دوباره تلاش کنید.',action:'تلاش مجدد'})">Failed, with retry</button>
+          <button class="t-btn t-btn--outline t-btn--md" onclick="torobToast({title:'به علاقه‌مندی‌ها اضافه شد',desc:'کازاموراتی مفیستو ۱۰۰ میل',action:'واگرد'})">افزوده شد، با واگرد</button>
+          <button class="t-btn t-btn--outline t-btn--md" onclick="torobToast({variant:'positive',title:'آدرس ذخیره شد'})">ذخیره شد</button>
+          <button class="t-btn t-btn--outline t-btn--md" onclick="torobToast({variant:'critical',title:'اتصال برقرار نشد',desc:'دوباره تلاش کنید.',action:'تلاش مجدد'})">شکست خورد، با تلاش مجدد</button>
         </div></div>`],
-      ['rules', 'Rules', guidance([
-        'Every error names the problem, then the recovery.',
-        'Every empty state offers an exit, usually the loosest filter to drop.',
-        'Offer undo whenever the action is reversible. That is what makes a toast better than a dialog.',
-        'Announce a result set that becomes empty with <code>aria-live="polite"</code> — a silently emptied list looks broken.',
+      ['rules', 'قواعد', guidance([
+        'هر خطا اول مشکل را نام می‌برد، بعد راه جبران را.',
+        'هر حالت خالی یک راه خروج می‌دهد؛ معمولاً شل‌ترین فیلتر برای حذف.',
+        'هرجا کنش بازگشت‌پذیر است واگرد بدهید. همین است که توست را از دیالوگ بهتر می‌کند.',
+        'خالی‌شدن مجموعهٔ نتایج را با <code>aria-live="polite"</code> اعلام کنید؛ فهرستی که بی‌صدا خالی شود خراب به نظر می‌رسد.',
       ], [
-        'A toast for an error that needs a decision.',
-        'A toast carrying the only path to an action.',
-        'Auto-dismissing a toast with an action before a keyboard user can reach it.',
-        'The same illustration for empty and error. They mean different things.',
+        'توست برای خطایی که نیاز به تصمیم دارد.',
+        'توستی که تنها راه رسیدن به یک کنش را حمل می‌کند.',
+        'بسته‌شدن خودکار توست دارای کنش، پیش از آنکه کاربر صفحه‌کلید به آن برسد.',
+        'یک تصویر مشترک برای خالی و خطا. این دو معنای متفاوتی دارند.',
       ])],
     ]);
 
   return P;
+}
+
+/* ─────────────────── پنل فروشنده (B2B) ─────────────────── */
+export function sellerPanelPage() {
+  const toc = [], S = (id, t, i) => { toc.push({ id, label: t }); return section(id, t, i); };
+  const chev = `<svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11-5-5 1-1 4 4 4-4 1 1z"/></svg>`;
+
+  let body = `<div class="prose">
+    <p>پنل فروشنده معکوس اپلیکیشن خریدار است و همین آن را ارزش یک الگوی جداگانه می‌کند. خریدار یک‌دستی روی گوشی است و دنبال یک تصمیم می‌گردد. فروشنده پشت میز، روی صفحهٔ بزرگ، در حال مرور صدها ردیف است و دنبال یک <em>استثنا</em> می‌گردد.</p>
+    <p>پس اولویت‌ها جابه‌جا می‌شوند: <strong>تراکم بر آسودگی</strong>، <strong>صفحه‌کلید بر لمس</strong>، <strong>مقایسه‌پذیری بر زیبایی</strong>. اما متریال، توکن‌ها و قواعد راست‌چین همان‌هایی هستند که در سمت خریدار هستند. این یک سیستم دوم نیست؛ همان سیستم است با تنظیمات دیگر.</p>
+    <div class="note"><strong>چه چیزی از سمت خریدار عوض می‌شود:</strong> شیشه تقریباً ناپدید می‌شود (پس‌زمینه‌ای برای دیده‌شدن از پشت وجود ندارد)، تراکم بالا می‌رود، اعداد جدولی اجباری‌اند و تاریخ‌ها شمسی‌اند.</div>
+  </div>`;
+
+  body += S('shell', 'اسکلت', `<div class="prose"><p>نوار کناری، نوار بالا، یک ناحیهٔ اسکرول. نوار کناری روی عرض کم جمع می‌شود اما ناپدید نمی‌شود؛ فروشنده‌ای که در درخت ناوبری است نباید جایش را گم کند.</p></div>
+  <div class="spec" data-spec>
+    <div class="spec__bar"><span class="spec__label">پنل فروشنده — داشبورد</span>
+      <div class="spec__tools"><button class="site-tool" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه">فارسی</button></div></div>
+    <div class="spec__stage" data-canvas="plain" dir="rtl" lang="fa" style="padding:16px;overflow-x:auto">
+      <div class="t-shell-frame" style="inline-size:1100px;flex:none;border:1px solid var(--t-border-default);border-radius:14px;overflow:hidden"><div class="t-shell" style="block-size:520px">
+        <div class="t-shell__brand"><span style="inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-action-red-bg-gradient);border:1px solid var(--t-action-red-border);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px">ت</span><strong style="font-size:14px">پنل فروشنده</strong></div>
+        <div class="t-shell__top">
+          <div class="t-search" style="max-inline-size:240px"><div class="t-input t-input--sm"><svg class="t-input__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg><input class="t-input__el" type="search" placeholder="جست‌وجوی سفارش، محصول یا مشتری"></div></div>
+          <span style="flex:1"></span>
+          <span class="t-kbd">/</span>
+          <button class="t-icon-btn t-icon-btn--sm" aria-label="اعلان‌ها"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a4 4 0 0 0-4 4v3L2.5 11h11L12 8.5v-3a4 4 0 0 0-4-4zM6.5 12a1.5 1.5 0 0 0 3 0z"/></svg></button>
+          <span class="t-avatar t-avatar--sm">ا</span>
+        </div>
+        <nav class="t-shell__nav" aria-label="ناوبری پنل">
+          <div class="t-navgroup__title">فروش</div>
+          <a class="t-navitem" href="#" aria-current="page"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3h12v2H2zm0 4h12v2H2zm0 4h8v2H2z"/></svg>سفارش‌ها<span class="t-navitem__count">۳</span></a>
+          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1 2 4v8l6 3 6-3V4zm0 1.7 4 2v.1L8 6.8 4 4.8v-.1z"/></svg>محصولات<span class="t-navitem__count">۱۴۸</span></a>
+          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M2 12h2V7H2zm4 0h2V3H6zm4 0h2V9h-2z"/></svg>گزارش‌ها</a>
+          <div class="t-navgroup__title">فروشگاه</div>
+          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1z"/></svg>اطلاعات فروشگاه</a>
+          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 5.5A2.5 2.5 0 1 0 8 10.5 2.5 2.5 0 0 0 8 5.5zM7 1h2l.3 1.8 1.5.9 1.7-.7 1 1.7-1.3 1.2v1.8l1.3 1.2-1 1.7-1.7-.7-1.5.9L9 14H7l-.3-1.8-1.5-.9-1.7.7-1-1.7 1.3-1.2V7.3L2.5 6.1l1-1.7 1.7.7 1.5-.9z"/></svg>تنظیمات</a>
+        </nav>
+        <main class="t-shell__main">
+          <h2 style="font-size:19px;font-weight:800;margin-block-end:14px">سفارش‌ها</h2>
+          <div class="t-stats" style="margin-block-end:16px">
+            <div class="t-stat"><div class="t-stat__label">سفارش‌های امروز</div><div class="t-stat__value">۴۸</div><div class="t-stat__delta t-stat__delta--up">▲ ۱۲٪ نسبت به دیروز</div></div>
+            <div class="t-stat"><div class="t-stat__label">درآمد هفته</div><div class="t-stat__value">۸۹٬۴۰۰٬۰۰۰</div><div class="t-stat__delta t-stat__delta--down">▼ ۴٪ نسبت به هفتهٔ گذشته</div></div>
+            <div class="t-stat"><div class="t-stat__label">نرخ لغو</div><div class="t-stat__value">۲٫۱٪</div><div class="t-stat__delta t-stat__delta--flat">بدون تغییر</div></div>
+          </div>
+          <div class="t-toolbar">
+            <button class="t-btn t-btn--black-ghost t-btn--md">وضعیت${chev}</button>
+            <button class="t-btn t-btn--black-ghost t-btn--md"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۳</span> تا <span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۹</span>${chev}</button>
+            <span class="t-toolbar__spacer"></span>
+            <span class="t-body-sm t-tone-secondary">۱ تا ۴ از ۴۸۳</span>
+            <button class="t-btn t-btn--blue t-btn--md">خروجی اکسل</button>
+          </div>
+          <div class="t-table-wrap" tabindex="0" role="region" aria-label="جدول سفارش‌ها">
+            <table class="t-table t-table--freeze">
+              <thead><tr>
+                <th scope="col">شمارهٔ سفارش</th><th scope="col">مشتری</th>
+                <th scope="col">تاریخ</th><th scope="col">وضعیت</th><th scope="col" class="t-num">مبلغ</th>
+              </tr></thead>
+              <tbody>
+                <tr><td><code>۱۰۲۳۴</code></td><td>سارا محمدی</td><td class="t-num-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۹</span></td><td><span class="t-badge t-badge--positive">ارسال شده</span></td><td class="t-num">۲٬۴۵۰٬۰۰۰</td></tr>
+                <tr aria-selected="true"><td><code>۱۰۲۳۳</code></td><td>رضا کریمی</td><td class="t-num-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۹</span></td><td><span class="t-badge t-badge--caution">در انتظار پرداخت</span></td><td class="t-num">۸۹۰٬۰۰۰</td></tr>
+                <tr><td><code>۱۰۲۳۲</code></td><td>مینا رضایی</td><td class="t-num-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۸</span></td><td><span class="t-badge t-badge--info">در حال آماده‌سازی</span></td><td class="t-num">۱۵٬۸۰۰٬۰۰۰</td></tr>
+                <tr><td><code>۱۰۲۳۱</code></td><td>حسین نوری</td><td class="t-num-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۸</span></td><td><span class="t-badge t-badge--critical">لغو شده</span></td><td class="t-num">۳۲۰٬۰۰۰</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
+      </div></div>
+    </div>
+    <div class="spec__note">قاب ۱۱۰۰ پیکسل است تا چیدمان دسکتاپ را نشان دهد؛ اگر پنجره باریک‌تر است، افقی اسکرول کنید. هدر جدول هنگام اسکرول می‌چسبد و ستون شمارهٔ سفارش روی لبهٔ راست ثابت می‌ماند. ستون مبلغ جدولی است.</div>
+  </div>`);
+
+  body += S('density', 'تراکم و صفحه‌کلید', `<div class="prose">
+      <p>دو چیز که پنل را از اپلیکیشن جدا می‌کنند و هر دو معمولاً فراموش می‌شوند.</p>
+      <p><strong>تراکم ویژگی جدول است، نه صفحه.</strong> یک صفحه می‌تواند هم‌زمان یک جدول متراکم و یک جدول راحت داشته باشد؛ فروشنده‌ای که دنبال یک استثناست تراکم می‌خواهد، و همان فروشنده هنگام بازبینی یک سفارش، فضا می‌خواهد.</p>
+      <p><strong>صفحه‌کلید مسیر اصلی است، نه جایگزین.</strong> فروشنده‌ای که روزی سیصد سفارش را می‌بیند از ماوس استفاده نمی‌کند. هر کنشی که در نوار ابزار هست باید یک میان‌بر داشته باشد و هر میان‌بری باید در همان‌جا نمایش داده شود.</p>
+    </div>
+    ${table(['میان‌بر', 'کنش'], [
+      ['<span class="t-kbd">/</span>', 'فوکوس روی جست‌وجو'],
+      ['<span class="t-kbd">j</span> · <span class="t-kbd">k</span>', 'ردیف بعدی و قبلی'],
+      ['<span class="t-kbd">x</span>', 'انتخاب ردیف جاری'],
+      ['<span class="t-kbd">Enter</span>', 'باز کردن ردیف'],
+      ['<span class="t-kbd">Esc</span>', 'لغو انتخاب یا بستن لایه'],
+      ['<span class="t-kbd">?</span>', 'فهرست میان‌برها'],
+    ])}
+    <div class="note note--warn"><strong>میان‌برها باید کشف‌پذیر باشند.</strong> میان‌بری که مستند نیست وجود ندارد. دکمهٔ <span class="t-kbd">?</span> بخشی از کامپوننت است، نه یک صفحهٔ راهنمای جدا (معیار ۳.۲.۶ نسخهٔ ۲.۲ — کمک یکنواخت).</div>`);
+
+  body += S('sizes', 'همهٔ اندازه‌ها', `<div class="prose">
+      <p>پنل دسکتاپ‌محور است، اما فروشنده هم گوشی دارد. رفتار در هر اندازه تعریف‌شده است، نه اینکه به حال خودش رها شود.</p>
+    </div>
+    ${table(['عرض', 'نوار کناری', 'جدول', 'آمار'], [
+      ['۳۲۰ تا ۷۶۷', 'کشو', 'هر ردیف یک کارت', 'تک‌ستونی'],
+      ['۷۶۸ تا ۱۰۲۳', 'کشو', 'اسکرول افقی با ستون ثابت', 'دوستونی'],
+      ['۱۰۲۴ تا ۱۲۷۹', 'جمع‌شده به آیکون', 'جدول کامل', 'سه‌ستونی'],
+      ['۱۲۸۰ و بالاتر', 'باز، ۲۴۸ پیکسل', 'جدول کامل، تراکم قابل انتخاب', 'چهار یا پنج‌ستونی'],
+    ])}
+    <div class="prose"><p><strong>جدول را روی گوشی فشرده نکنید.</strong> پنج ستون در ۳۷۵ پیکسل خوانا نیست، هر کاری با اندازهٔ قلم بکنید. هر ردیف را به یک کارت تبدیل کنید: عنوان، سه فیلد کلیدی و یک منوی سرریز.</p></div>`);
+
+  body += S('rules', 'قواعد', guidance([
+    'اعداد جدولی و تراز به انتهای محور، در هر ستون قابل مقایسه.',
+    'تاریخ‌ها شمسی؛ تبدیل در سمت سرور انجام می‌شود، نه در ذهن کاربر.',
+    'نوار کنش گروهی در جای نوار ابزار ظاهر می‌شود تا جدول نپرد.',
+    'برای هر کنش نوار ابزار یک میان‌بر صفحه‌کلید، و نمایش آن میان‌بر در همان‌جا.',
+    'تعداد کل نتایج همیشه دیده شود؛ در یک پنل، خودش داده است.',
+  ], [
+    'شیشه در پنل. پس‌زمینه‌ای برای دیده‌شدن از پشت وجود ندارد و فقط هزینهٔ فریم می‌دهد.',
+    'اسکرول بی‌نهایت. فروشنده باید بتواند به ردیف ۴۰۰ برگردد.',
+    'کنش‌هایی که فقط هنگام هاور ظاهر می‌شوند؛ با صفحه‌کلید و لمس کشف نمی‌شوند.',
+    'انتخابگر تاریخ میلادی با برچسب فارسی.',
+    'فشرده‌کردن جدول پنج‌ستونی در عرض ۳۷۵ پیکسل.',
+  ]));
+
+  return { body, toc, title: 'پنل فروشنده (B2B)', description: 'همان سیستم، تنظیمات دیگر: تراکم بر آسودگی، صفحه‌کلید بر لمس، مقایسه‌پذیری بر زیبایی.', eyebrow: 'الگوها' };
 }

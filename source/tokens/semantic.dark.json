@@ -277,7 +277,7 @@
     },
     "ad": {
       "$value": "{color.red.500}",
-      "$description": "آگهی — same solid pill in every theme. A disclosure should not change appearance with the reader's theme."
+      "$description": "آگهی — همان قرص تخت در هر پوسته. یک افشا نباید با پوستهٔ خواننده ظاهرش عوض شود."
     },
     "oos": {
       "$value": "{color.night.600}"

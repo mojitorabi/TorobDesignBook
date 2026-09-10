@@ -12,37 +12,38 @@ export function simplePages(m) {
     P[slug] = { title, description, eyebrow, body, toc };
   };
 
-  /* ── Getting started ── */
-  page('start', 'Getting started', 'Install the tokens, copy a component, ship.', 'Overview', [
+  /* ── شروع کار ── */
+  page('start', 'شروع کار', 'توکن‌ها را نصب کنید، کامپوننت را کپی کنید، منتشر کنید.', 'مرور کلی', [
     [null, null, `<div class="prose">
-      <p>The canonical layer is <strong>framework-free CSS custom properties plus CSS classes</strong>. React is a wrapper over that, never a fork of it, which is what lets a mixed stack adopt the system without a rewrite.</p>
+      <p>لایهٔ مرجع، <strong>متغیرهای CSS و کلاس‌های مستقل از فریم‌ورک</strong> است. ری‌اکت یک پوشش نازک روی همان است، نه یک انشعاب از آن. همین چیزی است که به یک پشتهٔ ناهمگون اجازه می‌دهد سیستم را بدون بازنویسی بپذیرد.</p>
     </div>`],
-    ['install', 'Install', `<div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Any project — the CSS layer</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="i1">Copy</button></div></div>
-      <pre class="code" id="i1"><code>&lt;!-- tokens.css defines every custom property; torob.css imports it --&gt;
+    ['install', 'نصب', `<div class="spec" data-spec><div class="spec__bar"><span class="spec__label">هر پروژه‌ای — لایهٔ CSS</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="i1">کپی</button></div></div>
+      <pre class="code" id="i1"><code>&lt;!-- tokens.css همهٔ متغیرها را تعریف می‌کند؛ torob.css آن را ایمپورت می‌کند --&gt;
 &lt;link rel="stylesheet" href="/design-system/packages/css/dist/torob.css"&gt;
 &lt;link rel="stylesheet" href="/design-system/packages/css/dist/fonts.css"&gt;
 
-&lt;html lang="fa" dir="rtl"&gt;   &lt;!-- direction lives here, nowhere else --&gt;</code></pre></div>
-      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Tailwind v4</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="i2">Copy</button></div></div>
-      <pre class="code" id="i2"><code>/* app.css — maps every token onto Tailwind utilities */
+&lt;html lang="fa" dir="rtl"&gt;   &lt;!-- جهت اینجا زندگی می‌کند، هیچ‌جای دیگر --&gt;</code></pre></div>
+      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">تیلویند ۴</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="i2">کپی</button></div></div>
+      <pre class="code" id="i2"><code>/* app.css — هر توکن را به یوتیلیتی‌های تیلویند نگاشت می‌کند */
 @import "tailwindcss";
 @import "/design-system/packages/css/dist/tokens.tailwind.css";
 
-/* bg-fg-default, text-commerce-price, rounded-md, gap-4 … all resolve to tokens */</code></pre></div>
-      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">JS / TS</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="i3">Copy</button></div></div>
+/* bg-fg-default، text-commerce-price، rounded-md، gap-4 … همه به توکن حل می‌شوند */</code></pre></div>
+      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">جاوااسکریپت و تایپ‌اسکریپت</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="i3">کپی</button></div></div>
       <pre class="code" id="i3"><code>import tokens from '@torob/tokens';
 
-tokens.light.fg.default        // '#1E293B'
-tokens.dark.fg.default         // '#F1F5F9'
-tokens.glass.light.surface.fill // 'rgba(255, 255, 255, 0.30)'
-tokens.radius.md               // '12px'</code></pre></div>`],
-    ['first', 'Your first screen', `<div class="prose"><p>Three rules get you 90% of the way:</p>
+tokens.light.fg.default          // '#1E293B'
+tokens.dim.fg.default            // '#F1F5F9'
+tokens.dark.bg.canvas            // '#000000'
+tokens.glass.light.surface.fill  // 'rgba(255, 255, 255, 0.30)'
+tokens.radius.md                 // '12px'</code></pre></div>`],
+    ['first', 'اولین صفحهٔ شما', `<div class="prose"><p>سه قاعده شما را نود درصد راه می‌برد:</p>
       <ol>
-        <li><strong>Set direction once</strong>, on <code>&lt;html dir="rtl" lang="fa"&gt;</code>. Never on a component.</li>
-        <li><strong>Use semantic tokens</strong> — <code>var(--t-fg-default)</code>, not <code>var(--t-color-sky-800)</code> and never <code>#1E293B</code>.</li>
-        <li><strong>Logical properties only.</strong> <code>margin-inline-start</code>, not <code>margin-left</code>.</li>
+        <li><strong>جهت را یک بار تعیین کنید</strong>، روی <code>&lt;html dir="rtl" lang="fa"&gt;</code>. هرگز روی یک کامپوننت.</li>
+        <li><strong>از توکن معنایی استفاده کنید</strong> — <code>var(--t-fg-default)</code>، نه <code>var(--t-color-sky-800)</code> و هرگز <code>#1E293B</code>.</li>
+        <li><strong>فقط ویژگی منطقی.</strong> <code>margin-inline-start</code>، نه <code>margin-left</code>.</li>
       </ol></div>
-      ${specimen({ label: 'A nearby-store screen, from system parts only', canvas: 'plain', stageClass: 'spec__stage--center', html: `<div style="inline-size:100%;max-inline-size:375px;background:var(--t-bg-canvas);border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)">
+      ${specimen({ label: 'یک صفحهٔ فروشگاه‌های اطراف، فقط از اجزای سیستم', canvas: 'plain', stageClass: 'spec__stage--center', html: `<div style="inline-size:100%;max-inline-size:375px;background:var(--t-bg-canvas);border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)">
   <header class="t-page-header" style="position:relative">
     <button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت"><svg class="t-icon t-icon--directional" viewBox="0 0 20 20" fill="currentColor"><path d="M12 5 7 10l5 5V5z"/></svg></button>
     <div class="t-page-header__title">فروشگاه‌های اطراف<div class="t-page-header__sub">تهران، ۷۸ مورد</div></div>
@@ -63,229 +64,252 @@ tokens.radius.md               // '12px'</code></pre></div>`],
       </div>
       <div class="t-store-card__badges"><span class="t-badge t-badge--guarantee">ضمانت ترب</span><span class="t-badge">کالابرگ</span></div>
       <div class="t-store-card__actions">
-        <button class="t-btn t-btn--primary t-btn--md">تماس تلفنی</button>
-        <button class="t-btn t-btn--outline t-btn--md">مسیریابی</button>
+        <button class="t-btn t-btn--red t-btn--md">تماس تلفنی</button>
+        <button class="t-btn t-btn--black-ghost t-btn--md">مسیریابی</button>
       </div>
     </article>
   </div>
   <nav class="t-bottom-nav" style="position:relative" aria-label="ناوبری اصلی">
     <button class="t-bottom-nav__item"><svg class="t-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2 2 9h2v9h5v-6h2v6h5V9h2z"/></svg>خانه</button>
-    <button class="t-bottom-nav__item"><svg class="t-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg>جستجو</button>
+    <button class="t-bottom-nav__item"><svg class="t-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg>جست‌وجو</button>
     <button class="t-bottom-nav__item" aria-current="page"><svg class="t-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 0 0-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 0 0-6-6zm0 8.2A2.2 2.2 0 1 1 10 5.8a2.2 2.2 0 0 1 0 4.4z"/></svg>اطراف من</button>
   </nav>
 </div>` })}`],
-    ['build', 'Build commands', table(['Command', 'Does'], [
-      ['<code>node build/tokens-build.mjs</code>', 'Regenerate all twelve token artefacts from <code>source/tokens/*.json</code>.'],
-      ['<code>node build/icons-build.mjs</code>', 'Rebuild the icon package from the Sketch index + Carbon.'],
-      ['<code>node build/site-build.mjs</code>', 'Rebuild this website.'],
-      ['<code>node build/mcp-build.mjs</code>', 'Regenerate the MCP server\'s data.'],
-      ['<code>node build/contrast-check.mjs</code>', 'Verify every colour pair against WCAG AA. Exits non-zero on failure.'],
-      ['<code>node build/validate-css.mjs</code>', 'Verify every <code>var()</code> reference resolves.'],
-      ['<code>node build/serve.mjs</code>', 'Serve the site on :4321.'],
-      ['<code>node build/all.mjs</code>', 'All of the above, in order.'],
+    ['build', 'دستورهای بیلد', table(['دستور', 'چه می‌کند'], [
+      ['<code>node build/tokens-build.mjs</code>', 'بازتولید هر سیزده خروجی توکن از <code>source/tokens/*.json</code>.'],
+      ['<code>node build/icons-build.mjs</code>', 'بازسازی پکیج آیکون از فهرست اسکچ و کربن.'],
+      ['<code>node build/site-build.mjs</code>', 'بازسازی همین وب‌سایت.'],
+      ['<code>node build/mcp-build.mjs</code>', 'بازتولید دادهٔ سرور MCP.'],
+      ['<code>node build/translate-components.mjs</code>', 'اعمال جدول فارسی روی رجیستری کامپوننت‌ها.'],
+      ['<code>node build/contrast-check.mjs</code>', 'سنجش هر جفت رنگ در برابر WCAG AA. با شکست، خروجی غیرصفر.'],
+      ['<code>node build/validate-css.mjs</code>', 'بررسی اینکه هر ارجاع <code>var()</code> حل می‌شود.'],
+      ['<code>node build/verify.mjs</code>', 'خزیدن در سایت ساخته‌شده: لینک شکسته، شناسهٔ تکراری، دکمهٔ بی‌نام.'],
+      ['<code>node build/serve.mjs</code>', 'سرو سایت روی درگاه ۴۳۲۱.'],
+      ['<code>node build/all.mjs</code>', 'همهٔ موارد بالا، به ترتیب، با دروازه‌ها در میانه.'],
     ])],
-    ['contrib', 'Changing the system', `<div class="prose">
-      <p>Everything flows from <code>source/</code>. Never edit anything in <code>packages/*/dist</code> or <code>site/</code> — those are generated and will be overwritten.</p>
+    ['contrib', 'تغییر دادن سیستم', `<div class="prose">
+      <p>همه‌چیز از <code>source/</code> جاری می‌شود. هرگز چیزی را در <code>packages/*/dist</code> یا <code>site/</code> ویرایش نکنید؛ اینها تولیدشده‌اند و در بیلد بعدی بازنویسی می‌شوند.</p>
       <ul>
-        <li><strong>A colour, size or duration</strong> → <code>source/tokens/*.json</code>, then <code>tokens-build</code>. Run <code>contrast-check</code> before committing.</li>
-        <li><strong>A component's CSS</strong> → <code>packages/css/src/*.css</code>.</li>
-        <li><strong>A component's docs, props or examples</strong> → <code>source/components/*.mjs</code>. This one file feeds the website, the MCP server and <code>llms.txt</code>.</li>
-        <li><strong>Specimen copy in English</strong> → <code>source/i18n.mjs</code>.</li>
+        <li><strong>یک رنگ، اندازه یا مدت</strong> ← <code>source/tokens/*.json</code>، بعد <code>tokens-build</code>. پیش از کامیت <code>contrast-check</code> را اجرا کنید.</li>
+        <li><strong>CSS یک کامپوننت</strong> ← <code>packages/css/src/*.css</code>.</li>
+        <li><strong>مستندات، پراپ‌ها و نمونه‌های یک کامپوننت</strong> ← <code>source/components/*.mjs</code>. همین یک فایل، وب‌سایت، سرور MCP و <code>llms.txt</code> را تغذیه می‌کند.</li>
+        <li><strong>متن فارسی مستندات</strong> ← <code>source/fa/components.json</code>، بعد <code>translate-components</code>.</li>
       </ul>
+      <div class="note"><strong>محلی و گیت‌هاب همیشه یکی‌اند.</strong> ورک‌فلوی گیت‌هاب همان <code>build/all.mjs</code> را روی همان فایل‌های منبع اجرا می‌کند. سایت منتشرشده تولید می‌شود، نه آپلود؛ پس این دو به‌خاطر یک ژنراتور مشترک یکی می‌مانند، نه به‌خاطر اینکه کسی یادش مانده همگام‌سازی کند.</div>
     </div>`],
   ]);
 
-  /* ── Elevation ── */
+  /* ── ارتفاع ── */
   const elev = Object.entries(m.base).filter(([p]) => p.startsWith('elevation.'));
-  page('foundations/elevation', 'Elevation & depth', 'Three steps for opaque surfaces. Glass does not use this ramp.', 'Foundations', [
+  page('foundations/elevation', 'ارتفاع و عمق', 'سه پله برای سطوح مات. شیشه از این نردبان استفاده نمی‌کند.', 'مبانی', [
     [null, null, `<div class="prose">
-      <p>Depth in this system is expressed two different ways, and mixing them is the mistake to avoid.</p>
+      <p>عمق در این سیستم به دو شکل متفاوت بیان می‌شود و قاطی‌کردنشان همان اشتباهی است که باید از آن پرهیز کرد.</p>
       <ul>
-        <li><strong>Opaque surfaces</strong> use the shadow ramp below — three steps, no more.</li>
-        <li><strong>Glass surfaces</strong> use a binary hairline: present or absent. See <a href="./glass.html">Glass</a>.</li>
+        <li><strong>سطوح مات</strong> از نردبان سایهٔ زیر استفاده می‌کنند؛ سه پله، نه بیشتر.</li>
+        <li><strong>سطوح شیشه‌ای</strong> یک خط مویی دوحالته دارند: هست یا نیست. <a href="./glass.html">شیشه</a> را ببینید.</li>
       </ul>
-      <p>The source drew its store-card dividers as two zero-blur shadows at ±0.5px rather than as borders. Both are kept as tokens, because a shadow rule sits <em>outside</em> the box model and does not shift the layout the way a border does.</p>
+      <p>منبع، جداکننده‌های کارت فروشگاه را به‌جای کادر با دو سایهٔ بدون بلور در ±۰٫۵ پیکسل کشیده بود. هر دو به‌عنوان توکن نگه داشته شده‌اند، چون یک قاعدهٔ سایه <em>بیرون</em> جعبهٔ چیدمان می‌نشیند و آن‌طور که کادر جابه‌جا می‌کند، چیدمان را جابه‌جا نمی‌کند.</p>
     </div>
-    ${specimen({ label: 'The ramp', canvas: 'fog', dir: 'ltr', html: elev.filter(([p]) => /elevation\.[0-3]$/.test(p)).map(([p, t]) =>
+    ${specimen({ label: 'نردبان', canvas: 'fog', dir: 'ltr', html: elev.filter(([p]) => /elevation\.[0-3]$/.test(p)).map(([p, t]) =>
       `<div style="text-align:center"><div style="inline-size:104px;block-size:72px;background:var(--t-bg-fog);border-radius:12px;box-shadow:${t.value}"></div><div style="font-size:11px;margin-block-start:10px;color:var(--t-fg-secondary)">elevation-${p.split('.')[1]}</div></div>`).join('') })}
-    ${table(['Token', 'Value', 'Use'], elev.map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, `<code style="font-size:11.5px">${esc(String(t.value))}</code>`, t.description ?? '']))}`],
-    ['z', 'Stacking order', `<div class="prose"><p>Never write a raw <code>z-index</code>. Every layer in the system has a token, and the gaps between them leave room for product-specific layers.</p></div>
-      ${table(['Token', 'Value', 'Layer'], Object.entries(m.base).filter(([p]) => p.startsWith('z.')).map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, String(t.value), p.split('.')[1]]))}`],
-    ['rules', 'Rules', guidance([
-      'Shadows carry an offset and a soft blur: that is what makes them read as light from above.',
-      'One elevation step per interaction. A card that lifts on hover goes 1 → 2, not 1 → 3.',
-      'Use the hairline rule pair for list dividers that must not shift layout.',
+    ${table(['توکن', 'مقدار', 'کاربرد'], elev.map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, `<code style="font-size:11.5px">${esc(String(t.value))}</code>`, t.description ?? '']))}`],
+    ['z', 'ترتیب لایه‌ها', `<div class="prose"><p>هرگز <code>z-index</code> خام ننویسید. هر لایه در سیستم توکن خودش را دارد و فاصلهٔ بین آنها برای لایه‌های مخصوص محصول جا باز می‌گذارد.</p></div>
+      ${table(['توکن', 'مقدار', 'لایه'], Object.entries(m.base).filter(([p]) => p.startsWith('z.')).map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, String(t.value), p.split('.')[1]]))}`],
+    ['rules', 'قواعد', guidance([
+      'سایه‌ها آفست و بلور نرم دارند؛ همین است که مثل نور از بالا خوانده می‌شوند.',
+      'در هر تعامل یک پلهٔ ارتفاع. کارتی که هنگام هاور بالا می‌آید از ۱ به ۲ می‌رود، نه از ۱ به ۳.',
+      'برای جداکنندهٔ فهرست که نباید چیدمان را جابه‌جا کند، از جفت خط مویی استفاده کنید.',
     ], [
-      'A fourth elevation step. If three are not enough, the layering is wrong.',
-      'Zero-offset shadows. A colourless halo is decoration, not depth.',
-      'The shadow ramp on glass.',
-      'Raw z-index values.',
+      'پلهٔ چهارم ارتفاع. اگر سه تا کافی نیست، لایه‌بندی اشتباه است.',
+      'سایه با آفست صفر. هالهٔ بی‌جهت تزئین است، نه عمق.',
+      'نردبان سایه روی شیشه.',
+      'مقدار <code>z-index</code> خام.',
     ])],
   ]);
 
-  /* ── Radius ── */
+  /* ── گردی گوشه ── */
   const radii = Object.entries(m.base).filter(([p]) => p.startsWith('radius.'));
-  page('foundations/radius', 'Radius', '12px is the default — 104 of the 132 radii in the source.', 'Foundations', [
+  page('foundations/radius', 'گردی گوشه', '۱۲ پیکسل پیش‌فرض است — ۱۰۴ مورد از ۱۳۲ گردی در منبع.', 'مبانی', [
     [null, null, `<div class="prose">
-      <p>Six steps. <strong>12px is the default</strong>, and that is not a preference: 104 of the 132 corner radii in the Sketch source are 12px. The other steps exist for things nested <em>inside</em> a 12px container, and for surfaces larger than a card.</p>
-      <div class="note"><strong>Nesting rule:</strong> an inner radius should be the outer radius minus the padding between them. A 12px card with 8px padding wants an 8px inner element — not another 12px, which reads as a bubble inside a bubble.</div>
+      <p>شش پله. <strong>۱۲ پیکسل پیش‌فرض است</strong> و این یک ترجیح نیست: ۱۰۴ مورد از ۱۳۲ گردی گوشه در منبع اسکچ ۱۲ پیکسل است. بقیهٔ پله‌ها برای چیزهایی هستند که <em>درون</em> یک ظرف ۱۲ پیکسلی می‌نشینند، و برای سطوحی بزرگ‌تر از یک کارت.</p>
+      <div class="note"><strong>قاعدهٔ تودرتویی:</strong> گردی داخلی باید برابر گردی بیرونی منهای فاصلهٔ بینشان باشد. یک کارت ۱۲ پیکسلی با فاصلهٔ داخلی ۸، عنصر داخلی ۸ پیکسلی می‌خواهد؛ نه یک ۱۲ دیگر که مثل حباب توی حباب خوانده می‌شود.</div>
     </div>
-    ${specimen({ label: 'The scale', canvas: 'fog', dir: 'ltr', html: radii.map(([p, t]) =>
+    ${specimen({ label: 'مقیاس', canvas: 'fog', dir: 'ltr', html: radii.map(([p, t]) =>
       `<div style="text-align:center"><div style="inline-size:70px;block-size:70px;background:var(--t-bg-subtle);border:1px solid var(--t-border-default);border-radius:${t.value}"></div><div style="font-size:11px;margin-block-start:8px;color:var(--t-fg-secondary)">${p.replace('radius.', '')}<br>${t.value}</div></div>`).join('') })}
-    ${table(['Token', 'Value', 'Use'], radii.map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, t.value, t.description ?? '']))}`],
-    ['rtl', 'Radius and direction', `<div class="prose">
-      <p>The four-corner shorthand is physical and does not mirror. A bottom sheet whose top corners are rounded is symmetric and safe, but anything asymmetric needs logical corner properties:</p></div>
-      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Logical corners</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="rad-src">Copy</button></div></div>
-      <pre class="code" id="rad-src"><code>/* ✗ physical — will not mirror */
+    ${table(['توکن', 'مقدار', 'کاربرد'], radii.map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, t.value, t.description ?? '']))}`],
+    ['rtl', 'گردی و جهت', `<div class="prose">
+      <p>حالت کوتاه چهارگوشه فیزیکی است و قرینه نمی‌شود. برگهٔ پایینی که فقط گوشه‌های بالایش گرد است متقارن و بی‌خطر است، اما هر چیز نامتقارن به ویژگی‌های گوشهٔ منطقی نیاز دارد:</p></div>
+      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">گوشه‌های منطقی</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="rad-src">کپی</button></div></div>
+      <pre class="code" id="rad-src"><code>/* ✗ فیزیکی — قرینه نمی‌شود */
 border-radius: 12px 0 0 12px;
 
-/* ✓ logical — mirrors with the document */
+/* ✓ منطقی — با سند قرینه می‌شود */
 border-start-start-radius: var(--t-radius-md);
 border-end-start-radius: var(--t-radius-md);</code></pre></div>`],
   ]);
 
-  /* ── Iconography ── */
-  page('foundations/iconography', 'Iconography', 'IBM Carbon at 16 and 20px. 2,041 icons, five with RTL mirror twins.', 'Foundations', [
+  /* ── آیکون‌نگاری ── */
+  page('foundations/iconography', 'آیکون‌نگاری', 'IBM Carbon در ۱۶ و ۲۰ پیکسل. ۲٬۰۴۱ آیکون، پنج تا با قرینهٔ راست‌چین.', 'مبانی', [
     [null, null, `<div class="prose">
-      <p>Torob uses <strong>IBM Carbon</strong>, drawn at 16 and 20px. The set is fixed by <code>T IBM Icons (16px, 20px).sketch</code> — the icon package is generated by matching those artboard names against Carbon 11.88, so the two cannot diverge.</p>
-      <p>Browse and search the whole set on the <a href="../icons.html">Icon library</a> page.</p>
+      <p>ترب از <strong>IBM Carbon</strong> استفاده می‌کند، کشیده‌شده در ۱۶ و ۲۰ پیکسل. مجموعه را <code>T IBM Icons (16px, 20px).sketch</code> تعیین می‌کند؛ پکیج آیکون با تطبیق نام آن آرت‌بوردها در برابر Carbon 11.88 تولید می‌شود، پس این دو نمی‌توانند از هم فاصله بگیرند.</p>
+      <p>کل مجموعه را در صفحهٔ <a href="../icons.html">کتابخانهٔ آیکون</a> مرور و جست‌وجو کنید.</p>
     </div>`],
-    ['sizes', 'Sizes', `<div class="prose"><p>Two drawn sizes. 24px exists as a scale of the 20px artwork for large touch targets, but it is not a separate drawing — Carbon's hinting is optimised for 16 and 20.</p></div>
-      ${table(['Class', 'Size', 'Use'], [
-        ['<code>.t-icon--sm</code>', '16px', 'Inline with 12px and 14px text, inside chips and small buttons.'],
-        ['<code>.t-icon</code>', '20px', 'Default. Icon buttons, list leads, nav.'],
-        ['<code>.t-icon--lg</code>', '24px', 'Bottom nav, empty-state art. A scale of the 20px drawing.'],
-      ])}
-      ${specimen({ label: 'Optical weight at each size', canvas: 'fog', html: `<span class="t-icon--sm" style="display:inline-flex"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor"><path d="M18 28h-4a2 2 0 0 1-2-2v-7.6L4.6 11A2 2 0 0 1 4 9.6V6a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v3.6a2 2 0 0 1-.6 1.4L20 18.4V26a2 2 0 0 1-2 2z"/></svg></span>
-<svg class="t-icon" viewBox="0 0 32 32" fill="currentColor"><path d="M18 28h-4a2 2 0 0 1-2-2v-7.6L4.6 11A2 2 0 0 1 4 9.6V6a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v3.6a2 2 0 0 1-.6 1.4L20 18.4V26a2 2 0 0 1-2 2z"/></svg>
-<svg class="t-icon t-icon--lg" viewBox="0 0 32 32" fill="currentColor"><path d="M18 28h-4a2 2 0 0 1-2-2v-7.6L4.6 11A2 2 0 0 1 4 9.6V6a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v3.6a2 2 0 0 1-.6 1.4L20 18.4V26a2 2 0 0 1-2 2z"/></svg>` })}`],
-    ['legacy', 'Two icon systems', `<div class="prose">
-      <p>The example screens mix Carbon names with an older set — <code>Icon / 16px / Bell</code>, <code>Icon / 24px / call</code>, <code>Icon / 16px / Chevron tiny / down</code>, <code>Icon / 16px / Report-Off</code>. Those are the pre-Carbon library.</p>
-      <p>Standardise on Carbon names. They are lowercase, hyphenated, and describe the object rather than a size: <code>notification</code>, <code>phone</code>, <code>chevron--down</code>, <code>flag</code>.</p></div>
-      ${table(['Legacy name', 'Carbon name'], [
+    ['sizes', 'اندازه‌ها', `<div class="prose"><p>دو اندازهٔ کشیده‌شده. ۲۴ پیکسل به‌عنوان مقیاسی از هنر ۲۰ پیکسلی برای هدف‌های لمسی بزرگ وجود دارد، اما یک نقاشی جداگانه نیست؛ هینتینگ کربن برای ۱۶ و ۲۰ بهینه شده.</p></div>
+      ${table(['کلاس', 'اندازه', 'کاربرد'], [
+        ['<code>.t-icon--sm</code>', '۱۶ پیکسل', 'هم‌خط با متن ۱۲ و ۱۴ پیکسلی، داخل تراشه و دکمهٔ کوچک.'],
+        ['<code>.t-icon</code>', '۲۰ پیکسل', 'پیش‌فرض. دکمهٔ آیکونی، ابتدای ردیف فهرست، ناوبری.'],
+        ['<code>.t-icon--lg</code>', '۲۴ پیکسل', 'ناوبری پایین، تصویر حالت خالی. مقیاسی از نقاشی ۲۰ پیکسلی.'],
+      ])}`],
+    ['legacy', 'دو سیستم آیکون', `<div class="prose">
+      <p>صفحه‌های نمونه نام‌های کربن را با یک مجموعهٔ قدیمی‌تر قاطی می‌کنند: <code>Icon / 16px / Bell</code>، <code>Icon / 24px / call</code>، <code>Icon / 16px / Chevron tiny / down</code>، <code>Icon / 16px / Report-Off</code>. اینها کتابخانهٔ پیش از کربن‌اند.</p>
+      <p>روی نام‌های کربن استاندارد شوید. حروف کوچک‌اند، با خط تیره جدا می‌شوند و به‌جای اندازه، خودِ شیء را توصیف می‌کنند: <code>notification</code>، <code>phone</code>، <code>chevron--down</code>، <code>flag</code>.</p></div>
+      ${table(['نام قدیمی', 'نام کربن'], [
         ['<span class="legacy">Icon / 16px / Bell</span>', '<code>notification</code>'],
         ['<span class="legacy">Icon / 16px / Heart</span>', '<code>favorite</code>'],
         ['<span class="legacy">Icon / 24px / call</span>', '<code>phone</code>'],
         ['<span class="legacy">Icon / 24px / Close</span>', '<code>close</code>'],
         ['<span class="legacy">Icon / 16px / Report-Off</span>', '<code>flag</code>'],
         ['<span class="legacy">Icon / 16px / Chevron tiny / down</span>', '<code>chevron--down</code>'],
-        ['<span class="legacy">Social-Icons/Telegram · Whatsapp · Bale</span>', '<code>logo--telegram</code>, <code>logo--whatsapp</code>, custom for Bale'],
+        ['<span class="legacy">Social-Icons/Telegram · Whatsapp · Bale</span>', '<code>logo--telegram</code>، <code>logo--whatsapp</code>، و یک آیکون سفارشی برای بله'],
       ])}`],
-    ['rules', 'Rules', guidance([
-      'One colour per icon, inherited via <code>currentColor</code>.',
-      'Add <code>.t-icon--directional</code> to chevrons and arrows.',
-      'Use Carbon\'s <code>--mirror</code> twin where one exists, rather than a CSS flip.',
-      'Give standalone icons an accessible name; mark decorative ones <code>aria-hidden</code>.',
+    ['rules', 'قواعد', guidance([
+      'هر آیکون یک رنگ، به ارث رسیده از <code>currentColor</code>.',
+      '<code>.t-icon--directional</code> را به شورون‌ها و فلش‌ها اضافه کنید.',
+      'هرجا نسخهٔ <code>--mirror</code> کربن هست از آن استفاده کنید، نه از چرخش CSS.',
+      'به آیکون مستقل نام دسترس‌پذیر بدهید؛ آیکون تزئینی را <code>aria-hidden</code> کنید.',
     ], [
-      'Mixing 16 and 20 in one row — the optical weight differs visibly.',
-      'Recolouring individual paths inside an icon.',
-      'Mirroring non-directional icons in RTL. This is the most common RTL mistake.',
-      'Sizes other than 16, 20 or 24.',
-      'Inventing icon names. Search the library first.',
+      'ترکیب ۱۶ و ۲۰ در یک ردیف؛ تفاوت وزن بصری دیده می‌شود.',
+      'رنگ‌کردن جداگانهٔ مسیرهای داخل یک آیکون.',
+      'قرینه‌کردن آیکون غیرجهت‌دار در راست‌چین. رایج‌ترین اشتباه راست‌چین همین است.',
+      'اندازه‌ای غیر از ۱۶، ۲۰ یا ۲۴.',
+      'ساختن نام آیکون از خودتان. اول کتابخانه را جست‌وجو کنید.',
     ])],
   ]);
 
-  /* ── Accessibility ── */
-  page('foundations/accessibility', 'Accessibility', 'WCAG 2.1 AA, machine-verified on every build.', 'Foundations', [
+  /* ── دسترس‌پذیری (WCAG 2.2) ── */
+  page('foundations/accessibility', 'دسترس‌پذیری', 'هدف WCAG 2.2 سطح AA است، با سنجش ماشینی در هر بیلد.', 'مبانی', [
     [null, null, `<div class="prose">
-      <p>The target is <strong>WCAG 2.1 AA</strong>. The colour half of that is not a review item — <code>build/contrast-check.mjs</code> tests 28 foreground/background pairs across both modes and <strong>exits non-zero</strong> on any failure. It is a build gate.</p>
-      <div class="note note--new">Running it against the palette as extracted from Sketch produced <strong>4 text failures and 4 non-text failures</strong>. Every one is fixed in <a href="./color.html#changes">Colour → what changed</a>.</div>
+      <p>هدف <strong>WCAG 2.2 سطح AA</strong> است؛ تازه‌ترین نسخهٔ توصیه‌شدهٔ W3C. نیمهٔ رنگیِ آن یک آیتم بازبینی نیست: <code>build/contrast-check.mjs</code> سی‌وهفت جفت پیش‌زمینه و پس‌زمینه را در <strong>هر سه پوسته</strong> می‌سنجد و با هر شکست <strong>خروجی غیرصفر</strong> می‌دهد. یک دروازهٔ بیلد است.</p>
+      <div class="note note--new">اجرای همین ابزار روی پالت، همان‌طور که از اسکچ استخراج شد، <strong>چهار شکست متنی و چهار شکست غیرمتنی</strong> داد. هر کدام در <a href="./color.html#changes">رنگ ← چه چیزی تغییر کرد</a> اصلاح شده است.</div>
     </div>`],
-    ['contract', 'The contract', table(['Area', 'Rule'], [
-      ['Text contrast', '≥ 4.5:1. Large text and non-text UI ≥ 3:1.'],
-      ['Control borders', 'Use <code>--t-border-control</code>, which meets 3:1. <code>--t-border-default</code> is decorative and deliberately below it.'],
-      ['Touch targets', '≥ 44px, even where the visual control is 24 or 32px. Buttons carry a transparent <code>::after</code> that expands the target on coarse pointers.'],
-      ['Focus', '2px <code>--t-border-focus</code> at 2px offset. Never removed, only replaced. <code>outline: none</code> is acceptable only inside <code>:focus:not(:focus-visible)</code>.'],
-      ['Icon-only controls', '<code>aria-label</code> is required. There is no unlabelled variant of IconButton.'],
-      ['Colour alone', 'Never the only channel. Status badges pair colour with a word; the current nav item pairs colour with weight.'],
-      ['Overlays', 'Focus trap, focus return to trigger, Escape to close, <code>aria-modal</code>, body scroll locked — not merely covered.'],
-      ['Collapsed content', 'The <code>hidden</code> attribute, not <code>height: 0</code>. It must leave the accessibility tree.'],
-      ['Live regions', '<code>polite</code> for results and toasts. <code>assertive</code> only for critical — it interrupts.'],
-      ['Motion', '<code>prefers-reduced-motion</code> collapses everything to 1ms. The Spinner slows instead of stopping.'],
-      ['Transparency', '<code>prefers-reduced-transparency</code> makes every glass surface opaque with identical geometry.'],
-      ['Maps', 'A map alone is not accessible. Always ship the list equivalent: that is what <a href="../components/switch.html">Switch</a> is for.'],
+    ['new22', 'آنچه نسخهٔ ۲.۲ اضافه کرد', `<div class="prose">
+      <p>نسخهٔ ۲.۲ نُه معیار تازه آورد که شش‌تایشان در سطح A یا AA هستند. این سیستم هر شش مورد را پوشش می‌دهد و برای هر کدام مشخص است کجا اعمال می‌شود.</p></div>
+      ${table(['معیار', 'سطح', 'کجای این سیستم اعمال می‌شود'], [
+        ['<strong>۲.۴.۱۱</strong> فوکوس پوشیده نشود', 'AA', 'هدر چسبان نباید عنصری را که تازه فوکوس گرفته بپوشاند. <code>scroll-padding-block-start</code> برابر ارتفاع نوار به‌علاوهٔ ۲۴ پیکسل روی <code>html</code>.'],
+        ['<strong>۲.۴.۱۲</strong> فوکوس پوشیده نشود (بیشتر)', 'AAA', 'هیچ عنصر فوکوس‌شده‌ای هرگز جزئاً هم پوشیده نمی‌شود، چون تنها عنصر چسبان، هدر است.'],
+        ['<strong>۲.۴.۱۳</strong> ظاهر فوکوس', 'AAA', 'حلقهٔ ۲ پیکسلی با فاصلهٔ ۲ پیکسل، محیط دست‌کم ۲ پیکسل، با نسبت ۳:۱ در برابر هر دو طرف در هر سه پوسته.'],
+        ['<strong>۲.۵.۷</strong> حرکات کشیدنی', 'AA', 'هر کشیدنی جایگزین تک‌اشاره‌ای دارد: برگهٔ پایینی دکمهٔ بستن دارد، اسلایدر بازه با صفحه‌کلید و ورودی عددی کار می‌کند، ریل‌ها دکمهٔ پیمایش دارند.'],
+        ['<strong>۲.۵.۸</strong> اندازهٔ هدف (حداقل)', 'AA', 'حداقل ۲۴×۲۴ پیکسل. این سیستم ۴۴ پیکسل می‌گذارد؛ حتی دکمهٔ ۲۴ پیکسلی <code>xs</code> ناحیهٔ لمس ۴۴ پیکسلی دارد.'],
+        ['<strong>۳.۲.۶</strong> کمک یکنواخت', 'A', 'راه‌های کمک — جست‌وجو و تماس با فروشگاه — در هر صفحه در جای یکسانی می‌نشینند.'],
+        ['<strong>۳.۳.۷</strong> ورود تکراری', 'A', 'اطلاعاتی که کاربر در همان فرآیند وارد کرده دوباره پرسیده نمی‌شود؛ از پیش پر می‌شود یا از فهرست انتخاب می‌شود.'],
+        ['<strong>۳.۳.۸</strong> احراز هویت دسترس‌پذیر', 'AA', 'هیچ آزمون شناختی بدون جایگزین. چسباندن رمز از مدیر رمز هرگز مسدود نمی‌شود.'],
+        ['<strong>۳.۳.۹</strong> احراز هویت دسترس‌پذیر (بیشتر)', 'AAA', 'بدون معما، بدون بازشناسی تصویر.'],
+      ])}`],
+    ['contract', 'قرارداد', table(['حوزه', 'قاعده'], [
+      ['کنتراست متن', 'دست‌کم ۴٫۵:۱. متن بزرگ و عناصر غیرمتنی رابط دست‌کم ۳:۱.'],
+      ['کادر کنترل‌ها', 'از <code>--t-border-control</code> استفاده کنید که ۳:۱ را برآورده می‌کند. <code>--t-border-default</code> تزئینی است و عمداً زیر آن.'],
+      ['هدف لمس', 'دست‌کم ۴۴ پیکسل، حتی جایی که کنترل بصری ۲۴ یا ۳۲ پیکسل است. دکمه‌ها یک <code>::after</code> شفاف دارند که روی اشاره‌گرهای درشت ناحیه را گسترش می‌دهد.'],
+      ['فوکوس', 'حلقهٔ ۲ پیکسلی <code>--t-border-focus</code> با فاصلهٔ ۲ پیکسل. هرگز حذف نمی‌شود، فقط جایگزین. <code>outline: none</code> تنها درون <code>:focus:not(:focus-visible)</code> پذیرفتنی است.'],
+      ['کنترل فقط‌آیکون', '<code>aria-label</code> اجباری است. نسخهٔ بی‌برچسب وجود ندارد.'],
+      ['رنگ به‌تنهایی', 'هرگز تنها کانال نیست. نشان‌های وضعیت رنگ را با واژه جفت می‌کنند و آیتم ناوبری جاری رنگ را با وزن.'],
+      ['لایه‌ها', 'تلهٔ فوکوس، بازگشت فوکوس به دکمهٔ آغازگر، بستن با Escape، <code>aria-modal</code> و قفل اسکرول بدنه — نه فقط پوشاندن آن.'],
+      ['محتوای بسته', 'صفت <code>hidden</code>، نه <code>height: 0</code>. باید از درخت دسترس‌پذیری خارج شود.'],
+      ['نواحی زنده', '<code>polite</code> برای نتایج و توست‌ها. <code>assertive</code> فقط برای بحرانی، چون کار کاربر را قطع می‌کند.'],
+      ['حرکت', '<code>prefers-reduced-motion</code> همه‌چیز را به ۱ میلی‌ثانیه جمع می‌کند. اسپینر به‌جای ایستادن کند می‌شود.'],
+      ['شفافیت', '<code>prefers-reduced-transparency</code> هر سطح شیشه‌ای را با همان هندسه مات می‌کند.'],
+      ['نقشه', 'نقشه به‌تنهایی دسترس‌پذیر نیست. همیشه معادل فهرستی را هم عرضه کنید؛ <a href="../components/switch.html">Switch</a> دقیقاً برای همین است.'],
     ])],
-    ['persian', 'Persian-specific', `<div class="prose"><ul>
-      <li><strong>Never negative letter-spacing.</strong> Persian is cursive; tightening breaks the joins between letters and can make words unreadable to someone with low vision.</li>
-      <li><strong>Never split a number across elements.</strong> A screen reader reads <code>&lt;span&gt;۱۵&lt;/span&gt;&lt;span&gt;٬۸۰۰&lt;/span&gt;</code> as two separate numbers.</li>
-      <li><strong>Set <code>lang</code> correctly.</strong> <code>lang="fa"</code> on Persian content and <code>lang="en"</code> on Latin runs, or the screen reader uses the wrong voice and pronunciation.</li>
-      <li><strong>Keep the leading.</strong> The line heights in this system are sized for Persian descenders and stacked diacritics; tightening them clips glyphs.</li>
+    ['persian', 'مخصوص فارسی', `<div class="prose"><ul>
+      <li><strong>هرگز فاصلهٔ حرفی منفی.</strong> فارسی پیوسته است؛ فشرده‌کردن اتصال حروف را می‌شکند و می‌تواند کلمه را برای کم‌بینا ناخوانا کند.</li>
+      <li><strong>هرگز یک عدد را بین چند عنصر نشکنید.</strong> صفحه‌خوان <code>&lt;span&gt;۱۵&lt;/span&gt;&lt;span&gt;٬۸۰۰&lt;/span&gt;</code> را دو عدد جدا می‌خواند.</li>
+      <li><strong>صفت <code>lang</code> را درست بگذارید.</strong> <code>lang="fa"</code> روی محتوای فارسی و <code>lang="en"</code> روی رشته‌های لاتین، وگرنه صفحه‌خوان با صدا و تلفظ اشتباه می‌خواند.</li>
+      <li><strong>ارتفاع خط را نگه دارید.</strong> ارتفاع خط‌های این سیستم برای دنباله‌ها و اعراب فارسی اندازه‌گذاری شده‌اند؛ فشرده‌کردنشان نشانه‌ها را می‌برد.</li>
     </ul></div>`],
-    ['testing', 'Testing', `<div class="prose"><ol>
-      <li><strong>Keyboard only.</strong> Tab through the whole screen. Every interactive element reachable, focus always visible, order matching the visual order in <em>both</em> directions.</li>
-      <li><strong>Screen reader.</strong> VoiceOver in Persian on iOS, TalkBack on Android. Check that prices and distances read as one unit.</li>
-      <li><strong>200% text zoom.</strong> Nothing clipped, nothing overlapping.</li>
-      <li><strong>Reduced motion and reduced transparency</strong> both on.</li>
-      <li><strong><code>node build/contrast-check.mjs</code></strong> before every commit that touches a colour.</li>
+    ['testing', 'تست', `<div class="prose"><ol>
+      <li><strong>فقط صفحه‌کلید.</strong> با Tab کل صفحه را طی کنید. هر عنصر تعاملی قابل دسترسی، فوکوس همیشه دیده‌شونده، و ترتیب مطابق ترتیب بصری در <em>هر دو</em> جهت.</li>
+      <li><strong>صفحه‌خوان.</strong> VoiceOver فارسی روی iOS و TalkBack روی اندروید. بررسی کنید که قیمت و فاصله به‌صورت یک واحد خوانده شوند.</li>
+      <li><strong>بزرگ‌نمایی متن تا ۲۰۰ درصد.</strong> هیچ‌چیز بریده یا روی‌هم نیفتد.</li>
+      <li><strong>کاهش حرکت و کاهش شفافیت</strong>، هر دو روشن.</li>
+      <li><strong>هدف ۲۴×۲۴.</strong> هر هدف لمس را در برابر معیار ۲.۵.۸ بسنجید. سیستم ۴۴ پیکسل می‌دهد؛ کد محصول نباید آن را کم کند.</li>
+      <li><strong><code>node build/contrast-check.mjs</code></strong> پیش از هر کامیتی که رنگ را لمس می‌کند.</li>
     </ol></div>`],
   ]);
 
-  /* ── Content ── */
-  page('foundations/content', 'Content & voice', 'Persian, direct, no filler. The user is mid-task on a phone.', 'Foundations', [
-    [null, null, `<div class="prose"><p>Every string in the product is Persian and every reader is mid-task, usually one-handed, often on a slow connection. Copy earns its place by moving them forward.</p></div>`],
-    ['principles', 'Principles', guidance([
-      'Controls name their outcome: «مشاهده فروشندگان», not «بیشتر».',
-      'Errors name the problem, then the recovery, in that order.',
-      'Empty states distinguish "no results" from "nothing here yet". Different copy, different action.',
-      'Confirmations name the outcomes: «حذف آدرس» / «انصراف».',
-      'Persian numerals throughout product surfaces.',
+  /* ── محتوا و لحن ── */
+  page('foundations/content', 'محتوا و لحن', 'فارسی، مستقیم، بدون حشو. کاربر وسط کار است، روی گوشی.', 'مبانی', [
+    [null, null, `<div class="prose"><p>هر رشتهٔ متن در محصول فارسی است و هر خواننده وسط کاری است، معمولاً یک‌دستی و اغلب روی اتصالی کند. متن وقتی جایش را می‌گیرد که او را جلو ببرد.</p></div>`],
+    ['principles', 'اصول', guidance([
+      'کنترل‌ها نتیجه را نام می‌برند: «مشاهده فروشندگان»، نه «بیشتر».',
+      'خطاها اول مشکل را می‌گویند و بعد راه جبران را — به همین ترتیب.',
+      'حالت خالی «نتیجه‌ای نبود» را از «هنوز چیزی اینجا نیست» جدا می‌کند. متن و کنش متفاوت.',
+      'تأییدها نتیجه‌ها را نام می‌برند: «حذف آدرس» / «انصراف».',
+      'اعداد فارسی در همهٔ سطوح محصول.',
     ], [
-      '«چیزی یافت نشد» with no next step. An error without a recovery is a dead end.',
-      'Blaming the user for a filter combination the interface allowed.',
-      'OK / Cancel. They describe the dialog, not the outcome.',
-      'Two-line toasts. If it needs two lines, it is an Alert.',
-      'Untranslated English UI terms where a Persian word exists.',
+      '«چیزی یافت نشد» بدون قدم بعدی. خطای بدون راه جبران یک بن‌بست است.',
+      'سرزنش کاربر برای ترکیب فیلتری که خود رابط اجازه‌اش را داد.',
+      '«تأیید / انصراف». اینها دیالوگ را توصیف می‌کنند، نه نتیجه را.',
+      'توست دوخطی. اگر دو خط لازم دارد، یک Alert است.',
+      'واژهٔ انگلیسی رابط، جایی که معادل فارسی وجود دارد.',
     ])],
-    ['patterns', 'Copy patterns', table(['Situation', 'Pattern', 'Example'], [
-      ['No results after filtering', 'Name the filter to drop', '«فروشگاهی با این فیلترها پیدا نشد — فیلتر «باز الان» را بردارید»'],
-      ['Nothing added yet', 'Name who can change it', '«محصولی اضافه نشده — برای اطلاع از محصولات با فروشگاه تماس بگیرید»'],
-      ['Network failure', 'Cause, then action', '«اتصال به اینترنت برقرار نیست — نتایج مربوط به آخرین بازدید شماست»'],
-      ['Action confirmed', 'Past tense, plus undo', '«به علاقه‌مندی‌ها اضافه شد» + «واگرد»'],
-      ['Destructive confirm', 'Name the object and the finality', '«حذف آدرس ذخیره‌شده؟ ... این کار قابل بازگشت نیست.»'],
-      ['Out of stock', 'State it plainly, offer the alternative', '«ناموجود» + «فروشگاه‌های دیگر»'],
-      ['Sponsored', 'The disclosure, always', '«آگهی»'],
+    ['patterns', 'الگوهای متن', table(['موقعیت', 'الگو', 'نمونه'], [
+      ['نتیجه‌ای پس از فیلتر نبود', 'فیلتری را که باید حذف شود نام ببرید', '«فروشگاهی با این فیلترها پیدا نشد — فیلتر «باز الان» را بردارید»'],
+      ['هنوز چیزی اضافه نشده', 'بگویید چه کسی می‌تواند تغییرش دهد', '«محصولی اضافه نشده — برای اطلاع از محصولات با فروشگاه تماس بگیرید»'],
+      ['خطای شبکه', 'اول علت، بعد کنش', '«اتصال به اینترنت برقرار نیست — نتایج مربوط به آخرین بازدید شماست»'],
+      ['کنش تأیید شد', 'زمان گذشته، به‌علاوهٔ واگرد', '«به علاقه‌مندی‌ها اضافه شد» + «واگرد»'],
+      ['تأیید مخرب', 'شیء و قطعی‌بودن را نام ببرید', '«حذف آدرس ذخیره‌شده؟ … این کار قابل بازگشت نیست.»'],
+      ['ناموجود', 'ساده بگویید و جایگزین بدهید', '«ناموجود» + «فروشگاه‌های دیگر»'],
+      ['تبلیغاتی', 'افشا، همیشه', '«آگهی»'],
     ])],
-    ['terms', 'Terminology', `<div class="prose"><p>Fixed vocabulary. Do not paraphrase these — they are product concepts with legal or commercial meaning.</p></div>
-      ${table(['Persian', 'Means', 'Note'], [
-        ['ضمانت ترب', 'Torob Guarantee', 'The trust mark. Indigo. Spelled "Gaurantee" in the Sketch swatches: that is a typo.'],
-        ['آگهی', 'Sponsored / Ad', 'A required disclosure. Always shown, always real text.'],
-        ['نمایندگی رسمی', 'Official dealer', 'Blue.'],
-        ['کالابرگ', 'Kalabarg', 'Government subsidy voucher. Not translated.'],
-        ['ناموجود', 'Out of stock', 'Grey, not red. Unavailability is not an error.'],
-        ['باز الان', 'Open now', 'Green dot plus the word.'],
-        ['از ... تومان', 'From X Toman', 'Used when several sellers offer the product.'],
+    ['terms', 'واژگان', `<div class="prose"><p>واژگان ثابت. اینها را بازنویسی نکنید؛ مفاهیم محصولی با بار قانونی یا تجاری‌اند.</p></div>
+      ${table(['فارسی', 'یعنی', 'یادداشت'], [
+        ['ضمانت ترب', 'Torob Guarantee', 'نشان اعتماد. نیلی. در سوآچ‌های اسکچ «Gaurantee» غلط نوشته شده.'],
+        ['آگهی', 'Sponsored / Ad', 'افشای الزامی. همیشه دیده می‌شود، همیشه متن واقعی.'],
+        ['نمایندگی رسمی', 'Official dealer', 'آبی.'],
+        ['کالابرگ', 'Kalabarg', 'کوپن یارانه‌ای دولتی. ترجمه نمی‌شود.'],
+        ['ناموجود', 'Out of stock', 'خاکستری، نه قرمز. نبود کالا خطا نیست.'],
+        ['باز الان', 'Open now', 'نقطهٔ سبز به‌علاوهٔ واژه.'],
+        ['از … تومان', 'From X Toman', 'وقتی چند فروشنده محصول را دارند.'],
       ])}`],
   ]);
 
-  /* ── Changelog ── */
-  page('changelog', 'Changelog', 'What shipped, and what changed from the Sketch source.', 'Overview', [
+  /* ── تغییرات ── */
+  page('changelog', 'تغییرات', 'چه چیزی منتشر شد و چه چیزی نسبت به منبع اسکچ تغییر کرد.', 'مرور کلی', [
     [null, null, `<div class="prose">
-      <h2 style="font-size:19px;margin-block-start:0">1.0.0</h2>
-      <p class="t-tone-secondary" style="margin-block-start:-8px">Initial system, generated from <code>Torob Tokens.sketch</code> and <code>T IBM Icons (16px, 20px).sketch</code>.</p>
-      <h3>Added</h3>
+      <h2 style="margin-block-start:0">۱.۱.۰</h2>
+      <h3>افزوده شد</h3>
       <ul>
-        <li>Three-tier token architecture in W3C DTCG format — 166 primitives, 80 semantic tokens per mode.</li>
-        <li>Twelve generated token artefacts: CSS, Tailwind v4, SCSS, TS, JS, flat JSON, resolved JSON, SwiftUI, Android XML (day and night), dimens, and a Markdown reference.</li>
-        <li>31 components across six groups, of which 16 are new — the whole feedback layer (Toast, Alert, EmptyState, Skeleton, Spinner) and the whole overlay layer (BottomSheet, Modal, Accordion, Menu) were absent from the kit.</li>
-        <li>2,041 IBM Carbon icons at 16 and 20px, plus sprites and a searchable browser.</li>
-        <li>MCP server with nine tools, including <code>validate_code</code>.</li>
-        <li>IRANYekanX wired at nine weights as woff2 (904 KB → 291 KB).</li>
-        <li>Six breakpoints and the responsive behaviour for each — the source was 375-only.</li>
-        <li>A locale switch on every specimen: direction, copy and numerals together.</li>
+        <li><strong>پوستهٔ سوم.</strong> آنچه محصول «تیره» می‌نامید یک لاجوردی ملایم بود، پس حالا <code>dim</code> نام دارد؛ <code>dark</code> یک نردبان نزدیک‌به‌مشکی واقعی برای OLED است با دستور شیشهٔ خودش.</li>
+        <li><strong>سه خانوادهٔ رنگی دکمه</strong> به‌صورت صریح: قرمز، آبی، مشکی. نام‌های مبتنی بر نیت به‌عنوان نام مستعار می‌مانند.</li>
+        <li><strong>نردبان Ink</strong> که خانوادهٔ مشکی واقعاً روی آن اجرا می‌شود.</li>
+        <li><strong>وب‌سایت کاملاً فارسی و راست‌چین</strong>، از چرم سایت تا هر ۳۲ صفحهٔ کامپوننت.</li>
+        <li><strong>دروازهٔ هم‌سانی کلید پوسته‌ها</strong>: هر سه فایل پوسته باید مجموعه کلید یکسانی تعریف کنند.</li>
+        <li><strong>انتشار روی گیت‌هاب پیجز</strong> از همان ژنراتوری که نسخهٔ محلی را می‌سازد.</li>
       </ul>
-      <h3>Changed from the source</h3>
+      <h3>اصلاح شد</h3>
       <ul>
-        <li><strong>Backdrop blur added at 16px.</strong> The source had no blur anywhere. Set <code>--t-glass-blur: 0px</code> to render exactly as designed.</li>
-        <li><strong>Ten colour corrections</strong>, every one an accessibility failure or a broken ramp. See <a href="foundations/color.html#changes">Colour → what changed</a>.</li>
-        <li><strong>All dark-mode status ramps re-derived.</strong> The source reused light values verbatim.</li>
-        <li><strong>Component naming moved from colour to intent.</strong> <code>Button / Red</code> → <code>variant="primary"</code>.</li>
-        <li><strong>State and theme demoted from components to props and tokens.</strong> 110 Sketch masters → 31 components.</li>
+        <li><strong>باکس خرید</strong> حالا دقیقاً با اسکچ می‌خواند: ۳۴۳×۷۲ با گردی ۱۶ (پیش‌تر ۱۲)، لبهٔ داخلی هم‌خانواده، و آفلاین <em>آبی</em> است نه خط‌دار.</li>
+        <li><strong>جهت هاور دکمه</strong> وارونه بود. پیش‌فرض گرادیان است و هاور به رنگ تخت جمع می‌شود.</li>
+        <li><strong>لبهٔ داخلی ۱ پیکسلی</strong> که کاملاً جا افتاده بود، بازگردانده شد.</li>
+        <li><strong>برچسب غیرفعال</strong>: <code>#737373</code> روی <code>#ECEDEF</code> نسبت ۴٫۰۵:۱ می‌داد. حالا ۴٫۸:۱ است.</li>
+        <li><strong>نشان آگهی</strong> یک قرص تخت <code>#D70040</code> است، نه نشان زرد ملایم.</li>
+        <li><strong>ناوبری موبایل</strong> در راست‌چین به سمت اشتباه می‌لغزید.</li>
+        <li><strong>شست کلید Switch</strong> از <code>offsetLeft</code> فیزیکی در برابر یک ویژگی منطقی استفاده می‌کرد و در راست‌چین زیر گزینهٔ اشتباه می‌نشست.</li>
+        <li><strong>ابعاد داخل متن فارسی</strong> بدون ایزوله‌سازی وارونه خوانده می‌شدند.</li>
       </ul>
-      <h3>Known gaps</h3>
+      <h2>۱.۰.۰</h2>
+      <p class="t-tone-secondary" style="margin-block-start:-8px">سیستم اولیه، تولیدشده از <code>Torob Tokens.sketch</code> و <code>T IBM Icons (16px, 20px).sketch</code>.</p>
       <ul>
-        <li>21 of 2,062 icons in the Sketch library have no match in Carbon 11.88 — 13 are deprecated IBM-internal glyphs (CICS, Cloud Paks, navaids) and 4 are artboards named with two icon names separated by a comma. Listed in <code>packages/icons/unmatched.json</code>.</li>
-        <li>Pattern pages (full example flows) are outlined but not yet built.</li>
-        <li>The React package ships as source-in-docs; it is not yet published to a registry.</li>
+        <li>معماری سه‌لایهٔ توکن با قالب استاندارد W3C DTCG.</li>
+        <li>۳۲ کامپوننت در شش گروه، که ۱۶ تای آنها تازه‌اند؛ کل لایهٔ بازخورد و کل لایهٔ لایه‌ها در کیت غایب بودند.</li>
+        <li>۲٬۰۴۱ آیکون IBM Carbon در ۱۶ و ۲۰ پیکسل.</li>
+        <li>سرور MCP با نُه ابزار، از جمله <code>validate_code</code>.</li>
+        <li>IRANYekanX در نُه وزن به‌صورت woff2 (۹۰۴ کیلوبایت TTF ← ۲۹۱ کیلوبایت).</li>
+        <li>شش نقطهٔ شکست و رفتار واکنش‌گرای هر کدام؛ منبع فقط ۳۷۵ پیکسل بود.</li>
+      </ul>
+      <h3>خلأهای شناخته‌شده</h3>
+      <ul>
+        <li>۲۱ آیکون از ۲٬۰۶۲ آیکون کتابخانهٔ اسکچ در Carbon 11.88 معادلی ندارند؛ ۱۳ مورد نشانه‌های داخلی منسوخ IBM‌اند و ۴ مورد آرت‌بوردهایی که دو نام آیکون را با کاما در یک نام جا داده‌اند. فهرست در <code>packages/icons/unmatched.json</code>.</li>
+        <li>پکیج ری‌اکت فقط سورس است و هنوز روی رجیستری منتشر نشده.</li>
       </ul>
     </div>`],
   ]);

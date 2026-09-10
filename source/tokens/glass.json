@@ -263,23 +263,23 @@
     },
     "1": {
       "$value": "0 2px 2px 0 rgba(51, 51, 51, 0.20)",
-      "$description": "Resting card"
+      "$description": "کارت در حالت آرامش"
     },
     "2": {
       "$value": "0 4px 12px 0 rgba(51, 51, 51, 0.20)",
-      "$description": "Popover, dropdown, raised card"
+      "$description": "پاپ‌اور، فهرست بازشو، کارت بالاآمده"
     },
     "3": {
       "$value": "0 4px 16px 0 rgba(0, 0, 0, 0.24)",
-      "$description": "Modal, bottom sheet"
+      "$description": "مودال، برگهٔ پایینی"
     },
     "hairline-t": {
       "$value": "0 -0.5px 0 0 #CBD5E1",
-      "$description": "Store card top rule"
+      "$description": "خط بالای کارت فروشگاه"
     },
     "hairline-b": {
       "$value": "0 0.5px 0 0 #CBD5E1",
-      "$description": "Store card bottom rule"
+      "$description": "خط پایین کارت فروشگاه"
     }
   }
 }

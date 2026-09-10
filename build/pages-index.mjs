@@ -1,4 +1,8 @@
 import { specimen, section, table, guidance, esc } from './site-lib.mjs';
+import { SITE_NAME, GROUP_FA } from '../source/site.nav.mjs';
+
+const FA_DIGITS = '۰۱۲۳۴۵۶۷۸۹';
+const toFa = n => String(n).replace(/[0-9]/g, d => FA_DIGITS[+d]);
 
 /* ─────────────────────────── HOME ─────────────────────────── */
 export function indexPage({ components, iconCount, tokenCount }) {
@@ -7,28 +11,28 @@ export function indexPage({ components, iconCount, tokenCount }) {
 
   let body = `<div class="prose" style="max-inline-size:none;margin-block-start:-14px">
     <div class="note" style="border-inline-start-color:var(--t-fg-brand)">
-      <strong>Rahnamā</strong> (راهنما — "the guide") is the single source of truth for how Torob and Torob Nearby look, behave and are built. Tokens in, everything else out: this website, the CSS package, the React components, nine platform export formats and the MCP server are all generated from the same files. Nothing downstream is hand-maintained, so nothing downstream can drift.
+      <strong>کتاب دیزاین ترب</strong> تنها مرجع این است که ترب و «خرید از اطراف» چه شکلی‌اند، چطور رفتار می‌کنند و چطور ساخته می‌شوند. توکن وارد می‌شود و بقیه بیرون می‌آید: همین وب‌سایت، پکیج CSS، کامپوننت‌های ری‌اکت، نُه قالب خروجی و سرور MCP همه از یک مجموعه فایل تولید می‌شوند. هیچ‌چیزِ پایین‌دستی دستی نگه‌داری نمی‌شود، پس هیچ‌چیزِ پایین‌دستی نمی‌تواند از منبع فاصله بگیرد.
     </div>
   </div>
 
   <div class="wide" style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));margin-block:26px">
-    ${[[components.length, 'components', 'components/button.html'],
-       [tokenCount, 'design tokens', 'tokens.html'],
-       [iconCount.toLocaleString('en-US'), 'icons', 'icons.html'],
-       ['9', 'export formats', 'tokens.html#exports'],
-       ['9', 'MCP tools', 'ai.html']].map(([n, l, href]) =>
+    ${[[components.length, 'کامپوننت', 'components/button.html'],
+       [tokenCount, 'توکن طراحی', 'tokens.html'],
+       [toFa(iconCount.toLocaleString('en-US')), 'آیکون', 'icons.html'],
+       ['۹', 'قالب خروجی', 'tokens.html#exports'],
+       ['۹', 'ابزار MCP', 'ai.html']].map(([n, l, href]) =>
       `<a href="${href}" style="text-decoration:none;color:inherit;padding:16px 18px;border:1px solid var(--t-border-default);border-radius:12px;background:var(--t-bg-fog);display:block">
         <div style="font-size:27px;font-weight:800;line-height:1.1">${n}</div>
         <div class="t-body-sm t-tone-secondary" style="margin-block-start:3px">${l}</div>
       </a>`).join('')}
   </div>`;
 
-  body += section('start', 'Start here', `<div class="wide" style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(258px,1fr))">
+  body += section('start', 'از اینجا شروع کنید', `<div class="wide" style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(258px,1fr))">
     ${[
-      ['For developers', 'Install the tokens, copy a component, ship. Framework-free CSS with React on top.', 'start.html', 'Getting started'],
-      ['For AI agents', 'Point Claude Code, Cursor or Copilot at the MCP server and they write real Torob code, not plausible-looking code.', 'ai.html', 'AI & MCP setup'],
-      ['For designers', 'Every legacy Sketch symbol name, and what replaced it.', 'migration.html', 'Naming & migration'],
-      ['The material', 'Torob glass — what it is, what it costs, and where the line is.', 'foundations/glass.html', 'Glass'],
+      ['برای توسعه‌دهنده', 'توکن‌ها را نصب کنید، کامپوننت را کپی کنید و منتشر کنید. CSS مستقل از فریم‌ورک، با ری‌اکت روی آن.', 'start.html', 'شروع کار'],
+      ['برای عامل‌های هوش مصنوعی', 'کلاد کد، کرسر یا کوپایلت را به سرور MCP وصل کنید تا کد واقعی ترب بنویسند، نه کدی که فقط شبیه آن است.', 'ai.html', 'اتصال به هوش مصنوعی'],
+      ['برای طراح', 'هر نام قدیمی سیمبل در اسکچ و چیزی که جایش را گرفت.', 'migration.html', 'نام‌گذاری و مهاجرت'],
+      ['متریال', 'شیشهٔ ترب؛ چیست، چه هزینه‌ای دارد و مرزش کجاست.', 'foundations/glass.html', 'شیشه'],
     ].map(([t, d, href, cta]) =>
       `<a href="${href}" style="text-decoration:none;color:inherit;padding:19px 20px;border:1px solid var(--t-border-default);border-radius:12px;background:var(--t-bg-fog);display:flex;flex-direction:column;gap:6px">
         <div style="font-weight:700;font-size:15px">${t}</div>
@@ -37,10 +41,10 @@ export function indexPage({ components, iconCount, tokenCount }) {
       </a>`).join('')}
   </div>`);
 
-  body += section('material', 'The material', `<div class="prose">
-      <p>Apple's glass is thick — 50–80px of blur, a saturation lift, specular highlights. Torob glass is <strong>thin</strong>: a translucent sheet of the surface colour, one hairline edge, and a shadow small enough to read as a lifted edge. It marks a surface that floats above content. It is never decoration.</p>
+  body += section('material', 'متریال', `<div class="prose">
+      <p>شیشهٔ اپل ضخیم است: ۵۰ تا ۸۰ پیکسل بلور، تقویت اشباع و هایلایت‌های براق. شیشهٔ ترب <strong>نازک</strong> است: یک ورق نیمه‌شفاف از رنگ سطح، یک لبهٔ مویی و سایه‌ای آن‌قدر کوچک که مثل یک لبهٔ بلندشده خوانده شود. سطحی را نشان می‌دهد که بالای محتوا شناور است. هرگز تزئین نیست.</p>
     </div>
-    ${specimen({ label: 'Torob glass over the map', canvas: 'map', stageClass: 'spec__stage--center', html: `<div style="display:flex;flex-direction:column;gap:11px;align-items:center;inline-size:100%;max-inline-size:330px">
+    ${specimen({ label: 'شیشهٔ ترب روی نقشه', canvas: 'map', stageClass: 'spec__stage--center', html: `<div style="display:flex;flex-direction:column;gap:11px;align-items:center;inline-size:100%;max-inline-size:330px">
   <div class="t-segmented" role="tablist" aria-label="نمای اطراف" style="align-self:center">
     <button class="t-segmented__item" role="tab" aria-selected="true">فروشگاه‌ها<span class="t-chip__count">۴۳</span></button>
     <button class="t-segmented__item" role="tab" aria-selected="false">محصولات<span class="t-chip__count">۵۵</span></button>
@@ -60,28 +64,28 @@ export function indexPage({ components, iconCount, tokenCount }) {
   </article>
 </div>` })}`);
 
-  body += section('components', 'Components', `<div class="prose"><p>${components.length} components across six groups. Every one carries the legacy Sketch symbol names it replaces, so the old vocabulary still resolves.</p></div>
+  body += section('components', 'کامپوننت‌ها', `<div class="prose"><p>${toFa(components.length)} کامپوننت در شش گروه. هر کدام نام‌های قدیمی سیمبل اسکچ را که جایگزینشان شده با خود دارد، تا واژگان قبلی همچنان کار کند.</p></div>
     <div class="wide">
     ${Object.entries(groups).map(([g, list]) => `
-      <h3 style="font-size:14px;font-weight:700;margin-block:26px 9px;color:var(--t-fg-secondary);text-transform:uppercase;letter-spacing:0.07em">${esc(g)}</h3>
+      <h3 style="font-size:14px;font-weight:700;margin-block:26px 9px;color:var(--t-fg-secondary);text-transform:uppercase;letter-spacing:0.07em">${esc(GROUP_FA[g] ?? g)}</h3>
       <div style="display:grid;gap:7px;grid-template-columns:repeat(auto-fill,minmax(216px,1fr))">
         ${list.map(c => `<a href="components/${c.slug}.html" style="text-decoration:none;color:inherit;padding:11px 13px;border:1px solid var(--t-border-subtle);border-radius:9px;background:var(--t-bg-fog);display:flex;align-items:center;gap:8px">
           <span style="font-weight:600;font-size:13.5px">${esc(c.name)}</span>
-          ${c.status === 'new' ? '<span class="status-pill status-pill--new" style="font-size:9.5px;padding:1px 6px">new</span>' : ''}
-          ${c.status === 'revised' ? '<span class="status-pill status-pill--revised" style="font-size:9.5px;padding:1px 6px">renamed</span>' : ''}
+          ${c.status === 'new' ? '<span class="status-pill status-pill--new" style="font-size:9.5px;padding:1px 6px">تازه</span>' : ''}
+          ${c.status === 'revised' ? '<span class="status-pill status-pill--revised" style="font-size:9.5px;padding:1px 6px">تغییر نام</span>' : ''}
         </a>`).join('')}
       </div>`).join('')}
     </div>`);
 
-  body += section('principles', 'Principles', `<div class="prose">
+  body += section('principles', 'اصول', `<div class="prose">
     <ol style="list-style:none;padding:0">
       ${[
-        ['RTL is the direction, not a mode.', 'Every text style in the source is align:right. Logical properties throughout; LTR is the secondary case, and every specimen on this site can switch to it.'],
-        ['Intent, not colour.', '<code>Button / Red</code> became <code>variant="primary"</code>. When the palette shifts, the code does not.'],
-        ['State is a state.', 'The source shipped <code>Button/Red/Hover</code> as its own symbol. Here it is a pseudo-class. Theme is a token, not a component.'],
-        ['Glass is structural.', 'A material with a budget — three layers per viewport — not a decoration applied where a card looked plain.'],
-        ['Accessibility is a gate.', '28 contrast pairs are machine-checked in both modes on every build. A failure exits non-zero.'],
-        ['Machine-readable by construction.', 'Nine MCP tools, an <code>llms.txt</code>, a Markdown twin of every page. AI agents are first-class consumers, not an afterthought.'],
+        ['راست‌چین جهت است، نه یک حالت.', 'همهٔ استایل‌های متنی در منبع <code>align:right</code> هستند. همه‌جا از ویژگی‌های منطقی استفاده می‌شود؛ چپ‌چین حالت ثانویه است و هر نمونه در این سایت می‌تواند به آن سوئیچ کند.'],
+        ['رنگ معنا دارد، نه فقط تأکید.', 'قرمز خرید اینترنتی است، آبی کنش فروشگاهی و مشکی خنثی. نام‌گذاری بر پایهٔ نیت هم پشتیبانی می‌شود، چون نیت از تغییر پالت جان سالم به در می‌برد.'],
+        ['حالت، حالت است.', 'منبع <code>Button/Red/Hover</code> را به‌عنوان سیمبل مستقل فرستاده بود. اینجا یک سودوکلاس است. پوسته یک توکن است، نه یک کامپوننت.'],
+        ['شیشه ساختاری است.', 'متریالی با بودجهٔ مشخص — سه لایه در هر کادر دید — نه تزئینی که هرجا کارت ساده به نظر می‌رسید اعمال شود.'],
+        ['دسترس‌پذیری یک دروازه است.', '۳۷ جفت رنگ در هر سه پوسته و در هر بیلد ماشینی بررسی می‌شوند. یک شکست، بیلد را متوقف می‌کند.'],
+        ['ماشین‌خوان از پایه.', 'نُه ابزار MCP، یک <code>llms.txt</code> و یک نسخهٔ مارک‌داون برای هر صفحه. عامل‌های هوش مصنوعی مصرف‌کنندهٔ درجه‌یک‌اند، نه فکر بعدی.'],
       ].map(([t, d], i) => `<li style="display:flex;gap:15px;padding-block:13px;border-block-end:1px solid var(--t-border-subtle)">
         <span style="flex:none;inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-bg-subtle);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--t-fg-secondary)">${i + 1}</span>
         <span><strong style="color:var(--t-fg-default)">${t}</strong> <span style="color:var(--t-fg-secondary)">${d}</span></span>
@@ -89,8 +93,8 @@ export function indexPage({ components, iconCount, tokenCount }) {
     </ol></div>`);
 
   return {
-    body, toc: [{ id: 'start', label: 'Start here' }, { id: 'material', label: 'The material' }, { id: 'components', label: 'Components' }, { id: 'principles', label: 'Principles' }],
-    title: 'Rahnamā', description: 'The Torob Design System. Tokens, components, icons and guidelines — for people and for machines.', eyebrow: 'Torob Design System',
+    body, toc: [{ id: 'start', label: 'از اینجا شروع کنید' }, { id: 'material', label: 'متریال' }, { id: 'components', label: 'کامپوننت‌ها' }, { id: 'principles', label: 'اصول' }],
+    title: SITE_NAME, description: 'سیستم طراحی ترب. توکن، کامپوننت، آیکون و راهنما — هم برای آدم‌ها، هم برای ماشین‌ها.', eyebrow: 'سیستم طراحی ترب',
   };
 }
 
@@ -99,31 +103,31 @@ export function aiPage(nComponents, nIcons) {
   const toc = [], S = (id, t, i) => { toc.push({ id, label: t }); return section(id, t, i); };
 
   let body = `<div class="prose">
-    <p>An AI agent that has not been told what your design system is will invent one. It will produce <code>#3B82F6</code> because that is Tailwind's blue, <code>gap: 10px</code> because ten is a round number, and <code>margin-left</code> because that is what most of its training data says, and every one of those is a bug in a Persian, RTL, token-driven product.</p>
-    <p>This system is machine-readable through <strong>four channels</strong>, because coding tools do not agree on a protocol.</p>
+    <p>عاملی که نداند سیستم طراحی شما چیست، یکی از خودش می‌سازد. <code>#3B82F6</code> می‌نویسد چون آبیِ تیلویند است، <code>gap: 10px</code> می‌گذارد چون ده عدد رُندی است و <code>margin-left</code> می‌نویسد چون بیشتر داده‌های آموزشی‌اش همین را می‌گویند. هر سهٔ اینها در یک محصول فارسیِ راست‌چینِ توکن‌محور، باگ هستند.</p>
+    <p>این سیستم از <strong>چهار مسیر</strong> ماشین‌خوان است، چون ابزارهای کدنویسی روی یک پروتکل توافق ندارند.</p>
   </div>
-  ${table(['Channel', 'What it is', 'Who it serves'], [
-    ['<strong>MCP server</strong>', 'Nine tools over stdio — components, tokens, icons, guidelines, migration, and a linter', 'Claude Code, Cursor, Windsurf, Zed'],
-    ['<strong>llms.txt</strong>', 'AI-readable index at the site root, plus a <code>.md</code> twin of every page', 'Any model with web access'],
-    ['<strong>Agent rules</strong>', 'Generated <code>CLAUDE.md</code>, <code>.cursorrules</code>, <code>copilot-instructions.md</code>', 'Repo-level guardrails'],
-    ['<strong>Token exports</strong>', 'Nine formats including a Markdown token reference', 'Anything that can read a file'],
+  ${table(['مسیر', 'چیست', 'برای چه ابزاری'], [
+    ['<strong>سرور MCP</strong>', 'نُه ابزار روی stdio — کامپوننت، توکن، آیکون، راهنما، مهاجرت و یک لینتر', 'Claude Code، Cursor، Windsurf، Zed'],
+    ['<strong>llms.txt</strong>', 'فهرست ماشین‌خوان در ریشهٔ سایت، به‌علاوهٔ نسخهٔ <code>.md</code> هر صفحه', 'هر مدلی با دسترسی به وب'],
+    ['<strong>قواعد عامل</strong>', 'تولید <code>CLAUDE.md</code>، <code>.cursorrules</code> و <code>copilot-instructions.md</code>', 'حفاظ در سطح مخزن'],
+    ['<strong>خروجی توکن</strong>', 'نُه قالب، از جمله یک مرجع مارک‌داون', 'هر چیزی که بتواند فایل بخواند'],
   ])}`;
 
-  body += S('mcp', 'MCP server', `<div class="prose"><p>The primary channel. It reads the same generated artefacts this website does, so it cannot drift from what you are looking at.</p></div>
-    ${table(['Tool', 'What it does'], [
-      ['<code>search_components</code>', 'Find a component by name, purpose, or <strong>legacy Sketch symbol name</strong>. Searching <code>"Button / Red / Default"</code> returns Button.'],
-      ['<code>get_component</code>', 'Full spec: props, anatomy, do/don\'t, a11y contract, responsive behaviour, HTML and React.'],
-      ['<code>get_tokens</code>', 'Resolved token values in css, js, json, scss, swift or android format.'],
-      ['<code>resolve_token</code>', 'Trace one semantic token to its primitive and final value in both modes.'],
-      ['<code>search_icons</code>', `Search all ${nIcons.toLocaleString('en-US')} icons by name, alias or category. Returns exact names and RTL mirror twins.`],
-      ['<code>get_icon</code>', 'SVG markup plus the import snippet and RTL guidance.'],
-      ['<code>get_guidelines</code>', 'The rules for glass, rtl, motion, accessibility, responsive, naming, commerce, content.'],
-      ['<code><strong>validate_code</strong></code>', 'Lint generated code against the system. This is the tool that actually enforces adoption.'],
-      ['<code>get_migration</code>', 'Legacy Sketch name → component name and class.'],
+  body += S('mcp', 'سرور MCP', `<div class="prose"><p>مسیر اصلی. همان خروجی‌هایی را می‌خواند که این وب‌سایت می‌خواند، پس نمی‌تواند از آنچه می‌بینید فاصله بگیرد.</p></div>
+    ${table(['ابزار', 'چه می‌کند'], [
+      ['<code>search_components</code>', 'یافتن کامپوننت با نام، کاربرد یا <strong>نام قدیمی سیمبل در اسکچ</strong>. جست‌وجوی <code>"Button / Red / Default"</code> کامپوننت Button را برمی‌گرداند.'],
+      ['<code>get_component</code>', 'مشخصات کامل: پراپ‌ها، ساختار، درست و نادرست، قرارداد دسترس‌پذیری، رفتار واکنش‌گرا، HTML و ری‌اکت.'],
+      ['<code>get_tokens</code>', 'مقدار نهایی توکن‌ها در قالب css، js، json، scss، swift یا android.'],
+      ['<code>resolve_token</code>', 'ردیابی یک توکن معنایی تا مقدار پایه و نهایی‌اش در هر سه پوسته.'],
+      ['<code>search_icons</code>', `جست‌وجو در تمام ${toFa(nIcons.toLocaleString('en-US'))} آیکون بر پایهٔ نام، نام مستعار یا دسته. نام دقیق و قرینهٔ راست‌چین را برمی‌گرداند.`],
+      ['<code>get_icon</code>', 'مارک‌آپ SVG به‌همراه قطعهٔ import و راهنمای راست‌چین.'],
+      ['<code>get_guidelines</code>', 'قواعد شیشه، راست‌چین، حرکت، دسترس‌پذیری، واکنش‌گرایی، نام‌گذاری، تجارت و محتوا.'],
+      ['<code><strong>validate_code</strong></code>', 'لینت‌کردن کد تولیدشده در برابر سیستم. این همان ابزاری است که واقعاً پذیرش را اجبار می‌کند.'],
+      ['<code>get_migration</code>', 'نام قدیمی اسکچ ← نام کامپوننت و کلاس.'],
     ])}`);
 
-  body += S('install', 'Install', `<div class="prose"><p>Node 18+. No global install needed.</p></div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Claude Code — .mcp.json in your repo root</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="mcp-claude">Copy</button></div></div>
+  body += S('install', 'نصب', `<div class="prose"><p>نودجی‌اس ۱۸ به بالا. نیازی به نصب سراسری نیست.</p></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Claude Code — فایل .mcp.json در ریشهٔ مخزن</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="mcp-claude">کپی</button></div></div>
     <pre class="code" id="mcp-claude"><code>{
   "mcpServers": {
     "torob-design": {
@@ -134,7 +138,7 @@ export function aiPage(nComponents, nIcons) {
   }
 }</code></pre></div>
 
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Cursor — .cursor/mcp.json</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="mcp-cursor">Copy</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Cursor — فایل .cursor/mcp.json</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="mcp-cursor">کپی</button></div></div>
     <pre class="code" id="mcp-cursor"><code>{
   "mcpServers": {
     "torob-design": {
@@ -144,15 +148,15 @@ export function aiPage(nComponents, nIcons) {
   }
 }</code></pre></div>
 
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Verify it works</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="mcp-test">Copy</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">بررسی درست کارکردن</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="mcp-test">کپی</button></div></div>
     <pre class="code" id="mcp-test"><code>cd design-system/packages/mcp
 npm install
 node test-server.mjs      # exercises all nine tools and prints the output</code></pre></div>`);
 
-  body += S('validate', 'The linter is the part that matters', `<div class="prose">
-      <p>Documentation an agent <em>can</em> read is not the same as documentation it <em>did</em> read. <code>validate_code</code> closes that gap: run it on any generated UI and it returns the specific violations, with the token that should have been used.</p>
+  body += S('validate', 'لینتر همان بخشی است که اهمیت دارد', `<div class="prose">
+      <p>مستنداتی که عامل <em>می‌تواند</em> بخواند با مستنداتی که <em>خوانده است</em> یکی نیست. <code>validate_code</code> همین شکاف را می‌بندد: روی هر رابطی که تولید شده اجرایش کنید تا تخلف‌های مشخص را برگرداند، به‌همراه توکنی که باید استفاده می‌شد.</p>
     </div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">In → out</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="lint-demo">Copy</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">ورودی ← خروجی</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="lint-demo">کپی</button></div></div>
     <pre class="code" id="lint-demo"><code>validate_code({ code: \`
 .card {
   background: #FFFFFF;
@@ -176,10 +180,10 @@ ERROR line 9  [focus-removed]        outline: none removes the focus ring.
 WARN  line 4  [off-grid]             14px is off the 4px grid. Nearest: 12px, 16px.
 WARN  line 5  [off-scale-radius]     10px is not on the radius scale (4/8/12/16/24).
 WARN  line 8  [off-scale-duration]   250ms is not a duration token (120/220/320/480).</code></pre></div>
-    <div class="prose"><p>It also catches nested glass, glass-budget violations, unnamed icon buttons, <code>&lt;img&gt;</code> without <code>alt</code>, clickable <code>&lt;div&gt;</code>s, and any legacy Sketch name still present in the code.</p></div>`);
+    <div class="prose"><p>همچنین شیشهٔ تودرتو، تخطی از بودجهٔ شیشه، دکمهٔ آیکونی بدون نام، <code>&lt;img&gt;</code> بدون <code>alt</code>، <code>&lt;div&gt;</code> کلیک‌پذیر و هر نام قدیمی اسکچ را که هنوز در کد مانده پیدا می‌کند.</p></div>`);
 
-  body += S('prompt', 'What to tell the agent', `<div class="prose"><p>Drop this into <code>CLAUDE.md</code> or <code>.cursorrules</code>. The build generates it for you at <code>packages/mcp/AGENT_RULES.md</code>.</p></div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">AGENT_RULES.md</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="agent-rules">Copy</button></div></div>
+  body += S('prompt', 'به عامل چه بگویید', `<div class="prose"><p>این را در <code>CLAUDE.md</code> یا <code>.cursorrules</code> بگذارید. بیلد آن را در <code>packages/mcp/AGENT_RULES.md</code> برایتان تولید می‌کند.</p></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">AGENT_RULES.md</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="agent-rules">کپی</button></div></div>
     <pre class="code" id="agent-rules"><code># Torob Design System — rules for AI agents
 
 This project uses the Torob Design System (Rahnamā). An MCP server named
@@ -204,15 +208,15 @@ This project uses the Torob Design System (Rahnamā). An MCP server named
 ## Before you present code
 Run validate_code() on it and fix everything it reports.</code></pre></div>`);
 
-  body += S('llms', 'llms.txt and Markdown twins', `<div class="prose">
-      <p>For tools without MCP. <a href="llms.txt"><code>/llms.txt</code></a> is a structured index of the whole system; <a href="llms-full.txt"><code>/llms-full.txt</code></a> is the entire thing in one file. Every page also has a Markdown twin — append <code>.md</code> to any URL:</p>
+  body += S('llms', 'llms.txt و نسخه‌های مارک‌داون', `<div class="prose">
+      <p>برای ابزارهایی که MCP ندارند. <a href="llms.txt"><code>/llms.txt</code></a> فهرست ساختاریافتهٔ کل سیستم است و <a href="llms-full.txt"><code>/llms-full.txt</code></a> همه‌چیز در یک فایل. هر صفحه هم یک نسخهٔ مارک‌داون دارد؛ کافی است <code>.md</code> را به انتهای هر نشانی اضافه کنید:</p>
     </div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Markdown twins</span></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">نسخه‌های مارک‌داون</span></div>
     <pre class="code"><code>/components/button.html   →  /components/button.md
 /foundations/glass.html   →  /foundations/glass.md
 /tokens.html              →  /tokens.md</code></pre></div>`);
 
-  return { body, toc, title: 'AI & MCP setup', description: 'Nine MCP tools, an llms.txt, generated agent rules, and a linter that enforces them.', eyebrow: 'Overview' };
+  return { body, toc, title: 'اتصال به هوش مصنوعی', description: 'نُه ابزار MCP، یک llms.txt، قواعد تولیدشده برای عامل‌ها و لینتری که آنها را اجبار می‌کند.', eyebrow: 'مرور کلی' };
 }
 
 /* ─────────────────────────── MIGRATION ─────────────────────────── */
@@ -224,29 +228,29 @@ export function migrationPage(components) {
   const nNew = components.filter(c => c.status === 'new').length;
 
   let body = `<div class="prose">
-    <p><strong>${rows.length} legacy Sketch symbol names</strong> map onto ${components.length - nNew} components. ${nNew} more components are new — they cover gaps the kit never had.</p>
-    <p>Renaming that nobody can execute is renaming that nobody adopts, so every old name stays searchable here, in the MCP server's <code>get_migration</code>, and on each component page.</p>
+    <p><strong>${toFa(rows.length)} نام قدیمی سیمبل اسکچ</strong> روی ${toFa(components.length - nNew)} کامپوننت نگاشت می‌شوند. ${toFa(nNew)} کامپوننت دیگر تازه‌اند و خلأهایی را پر می‌کنند که کیت هرگز نداشت.</p>
+    <p>تغییر نامی که کسی نتواند اجرایش کند، تغییر نامی است که کسی نمی‌پذیردش. پس هر نام قدیمی اینجا، در <code>get_migration</code> سرور MCP و در صفحهٔ هر کامپوننت قابل جست‌وجو می‌ماند.</p>
   </div>`;
 
-  body += S('why', 'Four collapses', `<div class="prose"><p>The 110 Sketch masters reduce to ${components.length - nNew} components through four mechanical rules. None of them is a taste call.</p></div>
-    ${table(['Rule', 'Example', 'Why'], [
-      ['<strong>State is a state</strong>', '<code>Button / Red / Hover</code> · <code>/ Default</code> · <code>/ Disable</code> → one <code>Button</code>', 'A component API cannot have a separate component per pseudo-class.'],
-      ['<strong>Theme is a token</strong>', '<code>Store-Card/VLP/With product/Light</code> + <code>/Dark</code> → one <code>StoreCard</code>', 'Light and dark are the same component under different token values.'],
-      ['<strong>Intent, not colour</strong>', '<code>Button / Red</code> → <code>variant="primary"</code>', 'When the palette shifts, the code should not.'],
-      ['<strong>Position is not a component</strong>', '<code>List / last item</code> → <code>:last-child</code>', 'It existed only because Sketch cannot express a selector.'],
+  body += S('why', 'چهار ادغام', `<div class="prose"><p>۱۱۰ مستر اسکچ با چهار قاعدهٔ مکانیکی به ${toFa(components.length - nNew)} کامپوننت کاهش می‌یابند. هیچ‌کدام تصمیم سلیقه‌ای نیست.</p></div>
+    ${table(['قاعده', 'نمونه', 'چرا'], [
+      ['<strong>حالت، حالت است</strong>', '<code>Button / Red / Hover</code> · <code>/ Default</code> · <code>/ Disable</code> ← یک <code>Button</code>', 'یک API کامپوننت نمی‌تواند برای هر سودوکلاس یک کامپوننت جدا داشته باشد.'],
+      ['<strong>پوسته یک توکن است</strong>', '<code>Store-Card/VLP/With product/Light</code> + <code>/Dark</code> ← یک <code>StoreCard</code>', 'روشن و تیره یک کامپوننت‌اند، زیر مقادیر توکن متفاوت.'],
+      ['<strong>نیت، نه فقط رنگ</strong>', '<code>Button / Red</code> ← <code>variant="primary"</code>', 'وقتی پالت تغییر می‌کند، کد نباید تغییر کند.'],
+      ['<strong>جایگاه، کامپوننت نیست</strong>', '<code>List / last item</code> ← <code>:last-child</code>', 'فقط به این دلیل وجود داشت که اسکچ نمی‌تواند یک سلکتور را بیان کند.'],
     ])}`);
 
-  body += S('map', 'The map', `<div class="wide">
+  body += S('map', 'نقشهٔ نگاشت', `<div class="wide">
     <div class="site-search" style="max-inline-size:none;margin-block-end:12px">
       <svg class="site-search__icon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M7 2a5 5 0 1 0 3.1 8.9l3.2 3.3 1.1-1.1-3.3-3.2A5 5 0 0 0 7 2zm0 1.4a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2z"/></svg>
-      <input id="migSearch" type="search" placeholder="Search ${rows.length} legacy names…" autocomplete="off">
+      <input id="migSearch" type="search" placeholder="جست‌وجو در ${toFa(rows.length)} نام قدیمی…" autocomplete="off">
     </div>
-    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Legacy Sketch name</th><th>Component</th><th>CSS class</th><th>Group</th></tr></thead>
+    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>نام قدیمی در اسکچ</th><th>کامپوننت</th><th>کلاس CSS</th><th>گروه</th></tr></thead>
     <tbody id="migRows">${rows.map(r => `<tr data-k="${esc((r.old + ' ' + r.name + ' ' + r.cls).toLowerCase())}">
       <td><span class="legacy">${esc(r.old)}</span></td>
       <td><a href="components/${r.slug}.html" style="font-weight:600">${esc(r.name)}</a></td>
       <td><code>${esc(r.cls)}</code></td>
-      <td>${esc(r.group)}</td></tr>`).join('')}</tbody></table></div></div>
+      <td>${esc(GROUP_FA[r.group] ?? r.group)}</td></tr>`).join('')}</tbody></table></div></div>
     <script>(function(){
       var i=document.getElementById('migSearch'), rows=[].slice.call(document.querySelectorAll('#migRows tr'));
       var t; i.addEventListener('input', function(){ clearTimeout(t); t=setTimeout(function(){
@@ -255,26 +259,26 @@ export function migrationPage(components) {
       },90); });
     })();</script>`);
 
-  body += S('new', 'New components', `<div class="prose"><p>${nNew} components the kit did not have. The feedback layer is the largest gap — 29 example screens and not one confirmation, error or empty state as a component.</p></div>
+  body += S('new', 'کامپوننت‌های تازه', `<div class="prose"><p>${toFa(nNew)} کامپوننت که کیت نداشت. لایهٔ بازخورد بزرگ‌ترین خلأ است: بیست‌ونه صفحهٔ نمونه، و حتی یک تأیید، خطا یا حالت خالی به‌عنوان کامپوننت وجود نداشت.</p></div>
     <div class="wide" style="display:grid;gap:7px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">
     ${components.filter(c => c.status === 'new').map(c => `<a href="components/${c.slug}.html" style="text-decoration:none;color:inherit;padding:12px 14px;border:1px solid var(--t-border-subtle);border-radius:9px;background:var(--t-bg-fog);display:block">
       <div style="font-weight:650;font-size:13.5px">${esc(c.name)}</div>
       <div class="t-body-sm t-tone-secondary" style="margin-block-start:2px;line-height:1.5">${esc(c.summary)}</div></a>`).join('')}
     </div>`);
 
-  body += S('hygiene', 'Source-file findings', `<div class="prose"><p>Issues found while parsing the Sketch files. Worth fixing at the source so the two stop diverging.</p></div>
-    ${table(['Finding', 'Detail'], [
-      ['<strong>24 duplicate symbol masters</strong>', 'Same name, distinct symbol IDs. <code>Segmented Controls/Selected</code> exists <strong>four</strong> times; <code>Search bar/Default</code>, <code>Product Card/Normal</code>, <code>Header/Profile</code> and 20 others exist twice.'],
-      ['<strong>Two generations of symbols coexist</strong>', 'The examples page uses <code>Button/Normal/Primary/Icon</code> and <code>Store-Card/With product</code>; the components page uses <code>Button / Red / Icon</code> and <code>Store-Card/VLP/With product/Light</code>. The examples had already begun migrating to intent-based naming.'],
-      ['<strong>Undocumented components</strong>', '<code>city filter</code>, <code>official seller</code> and <code>Badge / Ad on Buy Box</code> appear only on the examples page, never in the component library.'],
-      ['<strong>Zero-width non-joiners in symbol names</strong>', '<code>Button/‌Blue/…</code> and <code>Glass - Dark - ‌List Background</code> contain U+200C. Invisible in Sketch, and it silently breaks any code generation keyed on the name.'],
-      ['<strong>Inconsistent separators</strong>', '<code>Button / Red / Hover</code> vs <code>Button/Black ghost/Default</code>; <code>Store-Card</code> vs <code>Product Card</code>; a trailing space in <code>Glass - Dark - selected&nbsp;</code>; <code>Glass -Dark</code> missing a space.'],
-      ['<strong>"Gaurantee" misspelled</strong>', 'Three colour swatches. The Badge symbol spells it correctly, so the two do not match.'],
-      ['<strong>Verb where an adjective belongs</strong>', '<code>Close Pin</code> reads as an instruction. It means <em>closed</em>.'],
-      ['<strong>Off-system values</strong>', '<code>#979797</code> borders and a <code>#D8D8D8</code> gradient stop are Sketch defaults that leaked in — neither is in the palette.'],
-      ['<strong>Two unused font weights</strong>', 'IRANYekanX Regular and DemiBold are loaded but no text style uses them. Trimming them would cut the webfont payload.'],
-      ['<strong>4 icon artboards named with commas</strong>', '<code>"high severity, caution"</code> and three others hold two icon names in one artboard name.'],
+  body += S('hygiene', 'یافته‌های فایل منبع', `<div class="prose"><p>مشکلاتی که هنگام تجزیهٔ فایل‌های اسکچ پیدا شدند. ارزش دارد در خود منبع اصلاح شوند تا این دو از هم فاصله نگیرند.</p></div>
+    ${table(['یافته', 'جزئیات'], [
+      ['<strong>۲۴ مستر تکراری</strong>', 'نام یکسان، شناسهٔ متفاوت. <code>Segmented Controls/Selected</code> <strong>چهار</strong> بار وجود دارد؛ <code>Search bar/Default</code>، <code>Product Card/Normal</code>، <code>Header/Profile</code> و ۲۰ مورد دیگر دو بار.'],
+      ['<strong>دو نسل سیمبل کنار هم زندگی می‌کنند</strong>', 'صفحهٔ نمونه‌ها از <code>Button/Normal/Primary/Icon</code> و <code>Store-Card/With product</code> استفاده می‌کند؛ صفحهٔ کامپوننت‌ها از <code>Button / Red / Icon</code> و <code>Store-Card/VLP/With product/Light</code>. نمونه‌ها از قبل مهاجرت به نام‌گذاری بر پایهٔ نیت را شروع کرده بودند.'],
+      ['<strong>کامپوننت‌های مستندنشده</strong>', '<code>city filter</code>، <code>official seller</code> و <code>Badge / Ad on Buy Box</code> فقط در صفحهٔ نمونه‌ها دیده می‌شوند و هرگز در کتابخانهٔ کامپوننت نبودند.'],
+      ['<strong>نیم‌فاصلهٔ نامرئی در نام سیمبل‌ها</strong>', '<code>Button/‌Blue/…</code> و <code>Glass - Dark - ‌List Background</code> نویسهٔ U+200C دارند. در اسکچ نامرئی است و بی‌صدا هر تولید کدی را که به نام تکیه کند می‌شکند.'],
+      ['<strong>جداکننده‌های ناهماهنگ</strong>', '<code>Button / Red / Hover</code> در برابر <code>Button/Black ghost/Default</code>؛ <code>Store-Card</code> در برابر <code>Product Card</code>؛ فاصلهٔ اضافه در انتهای <code>Glass - Dark - selected&nbsp;</code>؛ و فاصلهٔ جاافتاده در <code>Glass -Dark</code>.'],
+      ['<strong>غلط املایی «Gaurantee»</strong>', 'سه سوآچ رنگ. سیمبل Badge درست نوشته، پس این دو با هم نمی‌خوانند.'],
+      ['<strong>فعل، جایی که صفت لازم است</strong>', '<code>Close Pin</code> مثل یک دستور خوانده می‌شود. منظور <em>بسته</em> است.'],
+      ['<strong>مقادیر خارج از سیستم</strong>', 'کادرهای <code>#979797</code> و توقف گرادیان <code>#D8D8D8</code> پیش‌فرض‌های اسکچ‌اند که نشت کرده‌اند؛ هیچ‌کدام در پالت نیستند.'],
+      ['<strong>دو وزن فونت بلااستفاده</strong>', 'IRANYekanX Regular و DemiBold بارگذاری می‌شوند اما هیچ استایل متنی از آنها استفاده نمی‌کند. حذفشان حجم وب‌فونت را کم می‌کند.'],
+      ['<strong>۴ آرت‌بورد آیکون با نام کاماگذاری‌شده</strong>', '<code>"high severity, caution"</code> و سه مورد دیگر، دو نام آیکون را در یک نام آرت‌بورد جا داده‌اند.'],
     ])}`);
 
-  return { body, toc, title: 'Naming & migration', description: `${rows.length} legacy Sketch names, and what each became.`, eyebrow: 'Overview' };
+  return { body, toc, title: 'نام‌گذاری و مهاجرت', description: `${toFa(rows.length)} نام قدیمی اسکچ و اینکه هر کدام چه شدند.`, eyebrow: 'مرور کلی' };
 }

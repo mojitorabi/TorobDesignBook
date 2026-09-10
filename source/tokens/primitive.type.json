@@ -3,37 +3,98 @@
   "font": {
     "family": {
       "$type": "fontFamily",
-      "sans": { "$value": ["IRANYekanX", "IRANYekan", "Vazirmatn", "system-ui", "-apple-system", "Segoe UI", "sans-serif"] },
-      "mono": { "$value": ["SFMono-Regular", "ui-monospace", "Menlo", "Consolas", "monospace"] }
+      "sans": {
+        "$value": [
+          "IRANYekanX",
+          "IRANYekan",
+          "Vazirmatn",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "sans-serif"
+        ]
+      },
+      "mono": {
+        "$value": [
+          "SFMono-Regular",
+          "ui-monospace",
+          "Menlo",
+          "Consolas",
+          "monospace"
+        ]
+      }
     },
     "weight": {
       "$type": "fontWeight",
-      "medium":    { "$value": 500, "$description": "Body default" },
-      "bold":      { "$value": 700, "$description": "Emphasis, H4, H5" },
-      "extrabold": { "$value": 800, "$description": "H1–H3" }
+      "medium": {
+        "$value": 500,
+        "$description": "Body default"
+      },
+      "bold": {
+        "$value": 700,
+        "$description": "Emphasis, H4, H5"
+      },
+      "extrabold": {
+        "$value": 800,
+        "$description": "H1–H3"
+      }
     },
     "size": {
       "$type": "dimension",
-      "12": { "$value": "12px" },
-      "14": { "$value": "14px" },
-      "16": { "$value": "16px" },
-      "18": { "$value": "18px" },
-      "20": { "$value": "20px" },
-      "24": { "$value": "24px" },
-      "30": { "$value": "30px", "$description": "[NEW] Desktop H1" },
-      "36": { "$value": "36px", "$description": "[NEW] Desktop display" }
+      "12": {
+        "$value": "12px"
+      },
+      "14": {
+        "$value": "14px"
+      },
+      "16": {
+        "$value": "16px"
+      },
+      "18": {
+        "$value": "18px"
+      },
+      "20": {
+        "$value": "20px"
+      },
+      "24": {
+        "$value": "24px"
+      },
+      "30": {
+        "$value": "30px",
+        "$description": "[NEW] Desktop H1"
+      },
+      "36": {
+        "$value": "36px",
+        "$description": "[NEW] Desktop display"
+      }
     },
     "leading": {
       "$type": "dimension",
       "$description": "Persian-generous. Deep descenders and stacked diacritics need the room. Do not tighten.",
-      "12": { "$value": "20px" },
-      "14": { "$value": "24px" },
-      "16": { "$value": "28px" },
-      "18": { "$value": "32px" },
-      "20": { "$value": "36px" },
-      "24": { "$value": "40px" },
-      "30": { "$value": "44px" },
-      "36": { "$value": "52px" }
+      "12": {
+        "$value": "20px"
+      },
+      "14": {
+        "$value": "24px"
+      },
+      "16": {
+        "$value": "28px"
+      },
+      "18": {
+        "$value": "32px"
+      },
+      "20": {
+        "$value": "36px"
+      },
+      "24": {
+        "$value": "40px"
+      },
+      "30": {
+        "$value": "44px"
+      },
+      "36": {
+        "$value": "52px"
+      }
     }
   }
 }

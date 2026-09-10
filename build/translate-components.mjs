@@ -15,8 +15,11 @@ const ser = v => JSON.stringify(v, null, 2);
    sentence the browser reorders it and the reader sees ۷۲×۳۴۳ — the numbers
    are right and the meaning is backwards. Isolate every such run. */
 const DIMENSION = /(?<![>\w])([۰-۹0-9]+(?:٫[۰-۹0-9]+)?\s?[×x:]\s?[۰-۹0-9]+(?:٫[۰-۹0-9]+)?)(?![\w<])/g;
+/* A Jalali date is neutral too, so ۱۴۰۴/۰۶/۱۳ تا ۱۴۰۴/۰۶/۱۹ swaps its ends. */
+const DATE = /(?<![>\w])([۰-۹]{4}\/[۰-۹]{2}\/[۰-۹]{2})(?![\w<])/g;
 const isolate = v => typeof v === 'string'
   ? v.replace(DIMENSION, '<span class="t-bidi" dir="ltr">$1</span>')
+      .replace(DATE, '<span class="t-bidi" dir="ltr">$1</span>')
   : Array.isArray(v) ? v.map(isolate) : v;
 
 let translated = 0, missing = [];

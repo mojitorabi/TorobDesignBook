@@ -2,17 +2,63 @@
   "$description": "Restrained and functional. A shopping tool used one-handed on a bus.",
   "duration": {
     "$type": "duration",
-    "instant": { "$value": "0ms" },
-    "micro":   { "$value": "120ms", "$description": "Hover, press, toggle, focus ring" },
-    "standard":{ "$value": "220ms", "$description": "Popover, tab, tooltip, accordion" },
-    "sheet":   { "$value": "320ms", "$description": "Bottom sheet, drawer, modal" },
-    "slow":    { "$value": "480ms", "$description": "Skeleton shimmer cycle, page transition" }
+    "instant": {
+      "$value": "0ms"
+    },
+    "micro": {
+      "$value": "120ms",
+      "$description": "هاور، فشردن، تعویض، حلقهٔ فوکوس"
+    },
+    "standard": {
+      "$value": "220ms",
+      "$description": "پاپ‌اور، تب، تولتیپ، آکاردئون"
+    },
+    "sheet": {
+      "$value": "320ms",
+      "$description": "برگهٔ پایینی، کشو، مودال"
+    },
+    "slow": {
+      "$value": "480ms",
+      "$description": "چرخهٔ درخشش اسکلت، گذار صفحه"
+    }
   },
   "easing": {
     "$type": "cubicBezier",
-    "out":    { "$value": [0.22, 1, 0.36, 1], "$description": "DEFAULT. Exponential ease-out — arrives fast, settles soft." },
-    "in-out": { "$value": [0.65, 0, 0.35, 1], "$description": "Reversible motion only (a toggle that can undo)" },
-    "in":     { "$value": [0.55, 0, 1, 0.45], "$description": "Exits only" },
-    "spring": { "$value": [0.34, 1.56, 0.64, 1], "$description": "One overshoot. Reserved for the add-to-favourites heart. Do not spread." }
+    "out": {
+      "$value": [
+        0.22,
+        1,
+        0.36,
+        1
+      ],
+      "$description": "پیش‌فرض. کاهش‌شتاب نمایی؛ سریع می‌رسد و نرم می‌نشیند."
+    },
+    "in-out": {
+      "$value": [
+        0.65,
+        0,
+        0.35,
+        1
+      ],
+      "$description": "فقط حرکت بازگشت‌پذیر (کلیدی که می‌تواند واگرد شود)"
+    },
+    "in": {
+      "$value": [
+        0.55,
+        0,
+        1,
+        0.45
+      ],
+      "$description": "فقط خروج"
+    },
+    "spring": {
+      "$value": [
+        0.34,
+        1.56,
+        0.64,
+        1
+      ],
+      "$description": "یک پرش. مخصوص قلب افزودن به علاقه‌مندی. پخشش نکنید."
+    }
   }
 }

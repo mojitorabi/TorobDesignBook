@@ -1,0 +1,159 @@
+/* ============================================================
+   Data & panel — the B2B layer
+   Seller panel (پنل فروشنده) is desktop-first and data-dense, which is the
+   opposite of the shopper app. The components here optimise for scanning
+   hundreds of rows, not for a thumb on a bus.
+
+   Three rules carry the whole layer:
+     1. Tabular figures everywhere a number can be compared.
+     2. Density is a property of the table, not of the page.
+     3. The header is sticky and the first column can be too — in RTL that
+        means inset-inline-start, which is the right edge.
+   ============================================================ */
+
+/* ---- AppShell ----
+   Sidebar + topbar + content. The sidebar collapses to icons rather than
+   disappearing, because a seller navigating between orders and products
+   should never lose their place in the tree. */
+/* The shell's layout follows the width it is GIVEN, not the width of the
+   window. Wrap it in .t-shell-frame and it responds to that frame — which is
+   what a documentation specimen needs, and what a split view needs too.
+   Without the wrapper it falls back to viewport media queries. */
+.t-shell-frame { container-type: inline-size; container-name: shell; inline-size: 100%; }
+.t-shell { display: grid; block-size: 100dvh; grid-template-columns: var(--t-shell-nav, 248px) 1fr; grid-template-rows: 56px 1fr; }
+.t-shell-frame > .t-shell { block-size: 100%; }
+.t-shell[data-nav="collapsed"] { --t-shell-nav: 60px; }
+.t-shell__brand { grid-row: 1; grid-column: 1; display: flex; align-items: center; gap: var(--t-space-2); padding-inline: var(--t-space-4); border-block-end: var(--t-border-thin) solid var(--t-border-subtle); border-inline-end: var(--t-border-thin) solid var(--t-border-subtle); background: var(--t-bg-fog); }
+.t-shell__top { grid-row: 1; grid-column: 2; display: flex; align-items: center; gap: var(--t-space-3); padding-inline: var(--t-space-4); border-block-end: var(--t-border-thin) solid var(--t-border-subtle); background: var(--t-bg-fog); }
+.t-shell__nav { grid-row: 2; grid-column: 1; overflow-y: auto; padding: var(--t-space-3) var(--t-space-2); border-inline-end: var(--t-border-thin) solid var(--t-border-subtle); background: var(--t-bg-fog); }
+.t-shell__main { grid-row: 2; grid-column: 2; overflow-y: auto; background: var(--t-bg-canvas); padding: var(--t-space-6); }
+/* Collapsing the shell.
+   An element cannot respond to its own container query — .t-shell IS the
+   container — so its own grid stays on media queries, which is also the
+   honest rule in production: the shell fills the viewport.
+   `--narrow` forces the collapsed layout for a shell embedded in a split
+   view, or for showing the state in documentation. */
+/* Inside a frame: the frame's width decides. */
+@container shell (max-width: 1023px) {
+  .t-shell { grid-template-columns: 1fr; grid-template-rows: 56px 1fr; }
+  .t-shell__brand, .t-shell__nav { display: none; }
+  .t-shell__top, .t-shell__main { grid-column: 1; }
+  .t-shell__main { padding: var(--t-space-4); }
+}
+/* Unframed: the viewport decides. */
+@media (max-width: 1023px) {
+  .t-shell:not(.t-shell-frame > .t-shell) { grid-template-columns: 1fr; grid-template-rows: 56px 1fr; }
+  .t-shell:not(.t-shell-frame > .t-shell) .t-shell__brand,
+  .t-shell:not(.t-shell-frame > .t-shell) .t-shell__nav { display: none; }
+  .t-shell:not(.t-shell-frame > .t-shell) .t-shell__main { padding: var(--t-space-4); }
+}
+.t-shell--narrow { grid-template-columns: 1fr; grid-template-rows: 56px 1fr; }
+.t-shell--narrow .t-shell__brand, .t-shell--narrow .t-shell__nav { display: none; }
+.t-shell--narrow .t-shell__top, .t-shell--narrow .t-shell__main { grid-column: 1; }
+.t-shell--narrow .t-shell__main { padding: var(--t-space-4); }
+
+.t-navitem {
+  display: flex; align-items: center; gap: var(--t-space-3);
+  min-block-size: 38px; inline-size: 100%;
+  padding-inline: var(--t-space-3); border-radius: var(--t-radius-sm);
+  border: none; background: none; cursor: pointer;
+  color: var(--t-fg-secondary); font: inherit; font-size: var(--t-font-size-14);
+  text-align: start; text-decoration: none;
+  transition: background-color var(--t-duration-micro) var(--t-easing-out), color var(--t-duration-micro) var(--t-easing-out);
+}
+.t-navitem:hover { background: var(--t-bg-subtle); color: var(--t-fg-default); }
+.t-navitem[aria-current="page"] { background: var(--t-action-blue-soft-bg); color: var(--t-action-blue-soft-fg); font-weight: var(--t-font-weight-bold); }
+.t-navitem__count { margin-inline-start: auto; font-variant-numeric: tabular-nums; font-size: var(--t-font-size-12); color: var(--t-fg-secondary); }
+.t-navgroup__title { font-size: var(--t-font-size-12); font-weight: var(--t-font-weight-bold); color: var(--t-fg-secondary); padding: var(--t-space-3) var(--t-space-3) var(--t-space-1); }
+
+/* ---- StatCard ---- */
+.t-stats { display: grid; gap: var(--t-space-3); grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.t-stat { padding: var(--t-space-4); border: var(--t-border-thin) solid var(--t-border-subtle); border-radius: var(--t-radius-md); background: var(--t-bg-fog); }
+.t-stat__label { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
+.t-stat__value { font-size: var(--t-font-size-24); line-height: var(--t-font-leading-24); font-weight: var(--t-font-weight-extrabold); font-variant-numeric: tabular-nums; margin-block-start: 2px; }
+.t-stat__delta { display: inline-flex; align-items: center; gap: 4px; font-size: var(--t-font-size-12); font-variant-numeric: tabular-nums; margin-block-start: var(--t-space-1); }
+.t-stat__delta--up { color: var(--t-status-positive-fg); }
+.t-stat__delta--down { color: var(--t-status-critical-fg); }
+/* A neutral delta is not a failure to report — it is the answer. */
+.t-stat__delta--flat { color: var(--t-fg-secondary); }
+
+/* ---- Toolbar ---- */
+.t-toolbar { display: flex; align-items: center; gap: var(--t-space-2); flex-wrap: wrap; padding-block: var(--t-space-3); }
+.t-toolbar__spacer { flex: 1; }
+/* Bulk-action bar replaces the toolbar in place, so the table never jumps. */
+.t-toolbar[data-selection="true"] { background: var(--t-action-blue-soft-bg); border-radius: var(--t-radius-md); padding-inline: var(--t-space-3); }
+.t-toolbar__count { font-weight: var(--t-font-weight-bold); font-variant-numeric: tabular-nums; color: var(--t-action-blue-soft-fg); }
+
+/* ---- DataTable ---- */
+.t-table-wrap { border: var(--t-border-thin) solid var(--t-border-subtle); border-radius: var(--t-radius-md); background: var(--t-bg-fog); overflow: auto; max-block-size: 70dvh; }
+.t-table { inline-size: 100%; border-collapse: separate; border-spacing: 0; font-size: var(--t-font-size-14); }
+.t-table th {
+  position: sticky; inset-block-start: 0; z-index: 2;
+  text-align: start; white-space: nowrap;
+  font-size: var(--t-font-size-12); font-weight: var(--t-font-weight-bold);
+  color: var(--t-fg-secondary);
+  background: var(--t-bg-subtle);
+  padding: var(--t-space-2) var(--t-space-3);
+  border-block-end: var(--t-border-thin) solid var(--t-border-default);
+}
+.t-table td { padding: var(--t-space-3); border-block-end: var(--t-border-thin) solid var(--t-border-subtle); vertical-align: middle; }
+.t-table tbody tr:last-child td { border-block-end: none; }
+.t-table tbody tr:hover td { background: var(--t-bg-subtle); }
+.t-table tbody tr[aria-selected="true"] td { background: var(--t-action-blue-soft-bg); }
+/* Numbers are for comparing, so they align to the inline end and use
+   tabular figures. A ragged column of prices cannot be scanned. */
+.t-table .t-num { text-align: end; font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* A frozen first column: inline-start, which is the right edge in RTL. */
+.t-table--freeze th:first-child, .t-table--freeze td:first-child {
+  position: sticky; inset-inline-start: 0; z-index: 1;
+  background: var(--t-bg-fog);
+  box-shadow: 1px 0 0 0 var(--t-border-subtle);
+}
+.t-table--freeze th:first-child { z-index: 3; background: var(--t-bg-subtle); }
+/* Density is a property of the table. */
+.t-table--compact td { padding-block: var(--t-space-1); }
+.t-table--compact th { padding-block: var(--t-space-1); }
+.t-table__sort { display: inline-flex; align-items: center; gap: 4px; border: none; background: none; cursor: pointer; font: inherit; color: inherit; padding: 0; }
+.t-table__sort[aria-sort]:not([aria-sort="none"]) { color: var(--t-fg-default); }
+.t-table__sort svg { opacity: 0.4; }
+.t-table__sort[aria-sort]:not([aria-sort="none"]) svg { opacity: 1; }
+.t-table__sort[aria-sort="descending"] svg { rotate: 180deg; }
+
+/* ---- DescriptionList ---- */
+.t-dl { display: grid; grid-template-columns: minmax(120px, max-content) 1fr; gap: var(--t-space-2) var(--t-space-4); font-size: var(--t-font-size-14); }
+.t-dl dt { color: var(--t-fg-secondary); }
+.t-dl dd { margin: 0; color: var(--t-fg-default); }
+@media (max-width: 560px) { .t-dl { grid-template-columns: 1fr; gap: 0; } .t-dl dd { margin-block-end: var(--t-space-3); } }
+
+/* ---- DateField ----
+   Iranian B2B runs on the Jalali calendar. A Gregorian picker in a seller
+   panel is not a localisation gap, it is an unusable control. */
+.t-datefield { display: inline-flex; align-items: center; gap: var(--t-space-2); }
+.t-cal { inline-size: 268px; padding: var(--t-space-3); border: var(--t-border-thin) solid var(--t-border-subtle); border-radius: var(--t-radius-md); background: var(--t-bg-fog); box-shadow: var(--t-elevation-2); }
+.t-cal__head { display: flex; align-items: center; gap: var(--t-space-2); margin-block-end: var(--t-space-2); }
+.t-cal__title { flex: 1; text-align: center; font-weight: var(--t-font-weight-bold); font-size: var(--t-font-size-14); }
+.t-cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.t-cal__dow { text-align: center; font-size: var(--t-font-size-12); color: var(--t-fg-secondary); padding-block: var(--t-space-1); }
+.t-cal__day {
+  aspect-ratio: 1; display: grid; place-items: center;
+  border: none; background: none; cursor: pointer;
+  border-radius: var(--t-radius-sm);
+  font: inherit; font-size: var(--t-font-size-12);
+  font-variant-numeric: tabular-nums;
+  color: var(--t-fg-default);
+}
+.t-cal__day:hover { background: var(--t-bg-subtle); }
+.t-cal__day[aria-selected="true"] { background: var(--t-action-blue-bg); color: var(--t-action-blue-fg); font-weight: var(--t-font-weight-bold); }
+.t-cal__day[data-today="true"] { box-shadow: inset 0 0 0 1px var(--t-border-selected); }
+.t-cal__day[data-outside="true"] { color: var(--t-fg-disabled); }
+/* Friday is the Iranian weekend, not Sunday. */
+.t-cal__day[data-weekend="true"] { color: var(--t-status-critical-fg); }
+.t-cal__dow[data-weekend="true"] { color: var(--t-status-critical-fg); }
+
+/* ---- Tag input ---- */
+.t-taginput { display: flex; flex-wrap: wrap; gap: var(--t-space-1); align-items: center; min-block-size: var(--t-size-control-xl); padding: var(--t-space-1) var(--t-space-2); border: var(--t-border-thin) solid var(--t-border-control); border-radius: var(--t-radius-md); background: var(--t-bg-fog); }
+.t-taginput:focus-within { border-color: var(--t-border-focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-border-focus) 22%, transparent); }
+.t-taginput input { flex: 1; min-inline-size: 80px; border: none; background: none; outline: none; font: inherit; font-size: var(--t-font-size-14); color: inherit; }
+
+/* ---- Kbd / code chip ---- */
+.t-kbd { font-family: var(--t-font-family-mono); font-size: var(--t-font-size-12); padding: 2px 6px; border-radius: var(--t-radius-xs); border: var(--t-border-thin) solid var(--t-border-default); background: var(--t-bg-subtle); color: var(--t-fg-secondary); direction: ltr; unicode-bidi: isolate; }

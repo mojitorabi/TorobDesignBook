@@ -11,7 +11,7 @@ import { spacingPage, motionPage, rtlPage, responsivePage } from './pages-more.m
 import { iconsPage, tokensPage } from './pages-resources.mjs';
 import { indexPage, aiPage, migrationPage } from './pages-index.mjs';
 import { simplePages } from './pages-simple.mjs';
-import { patternsPages } from './pages-patterns.mjs';
+import { patternsPages, sellerPanelPage } from './pages-patterns.mjs';
 import { layout, specimen, section, table, guidance, esc, slugToPath, anchor } from './site-lib.mjs';
 import { loadComponents } from './site-lib.mjs';
 
@@ -147,6 +147,7 @@ const PAGES = {
   'foundations/responsive': responsivePage(model),
   ...simplePages(model),
   ...patternsPages(),
+  'patterns/seller-panel': sellerPanelPage(),
 };
 
 for (const [slug, page] of Object.entries(PAGES)) {

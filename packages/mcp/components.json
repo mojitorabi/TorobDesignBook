@@ -28,7 +28,7 @@
    "ترب <strong>سه خانوادهٔ رنگی</strong> دارد و رنگ اینجا تزئین نیست، معنا دارد: <strong class=\"fam-red\">قرمز</strong> کنش خرید اینترنتی است، <strong class=\"fam-blue\">آبی</strong> کنش حضوری و ارتباط با فروشگاه (مسیریابی، تماس) و <strong class=\"fam-black\">مشکی</strong> خنثی. به همین دلیل است که <code>Button/Offline Buy box</code> آبی است، نه دکمهٔ خط‌دار.",
    "دو جزئیات که هر دو از اسکچ اندازه‌گیری شده و هر دو به‌راحتی از دست می‌روند. <strong>حالت پیش‌فرض گرادیان است و هاور به رنگ تخت جمع می‌شود</strong>؛ یعنی دکمه زیر نشانگر می‌نشیند، نه اینکه بالا بیاید. و هر دکمهٔ پرشده یک <strong>لبهٔ داخلی ۱ پیکسلی هم‌خانواده با خودش</strong> دارد (قرمز از Red 50، آبی از Blue 300). همین لبه است که نمی‌گذارد یک سطح رنگی اشباع، مستطیل تخت دیده شود.",
    "کیت اولیه هر حالت را یک سیمبل جدا مدل کرده بود؛ <code>Button / Red / Hover</code> کنار <code>Button / Red / Default</code> به‌عنوان مستر مستقل. این ساختار هرگز به API کامپوننت تبدیل نمی‌شود. اینجا <strong>حالت، حالت است</strong> (سودوکلاس‌های CSS و صفت‌های <code>data-</code>) و فقط خانواده و اندازه پراپ هستند.",
-   "Variants are named by <strong>intent</strong>, not by colour. <code>Button / Red</code> became <code>variant=\"primary\"</code>: when the brand palette shifts, the code does not. The examples page had already started this migration on its own — <code>Button/Normal/Primary/Icon</code>, so this formalises a direction your team was already moving in."
+   "نام‌گذاری بر پایهٔ <strong>نیت</strong> هم پشتیبانی می‌شود، نه فقط رنگ. <code>primary</code>، <code>accent</code> و <code>neutral</code> نام مستعار قرمز، آبی و مشکی‌اند. در کد محصول همین‌ها را ترجیح دهید: نیت از تغییر پالت جان سالم به در می‌برد، رنگ نه."
   ],
   "use": [
    "در هر صفحه دقیقاً یک دکمهٔ <code>red</code>؛ همان کاری که کاربر برای آن آمده است.",
@@ -101,10 +101,10 @@
   "a11y": [
    "یک <code>&lt;button&gt;</code> واقعی رندر می‌شود. <code>&lt;a class=\"t-btn\"&gt;</code> فقط وقتی که ناوبری می‌کند.",
    "حالت بارگذاری <code>aria-busy=\"true\"</code> می‌گذارد و نام دسترس‌پذیر ثابت می‌ماند تا صفحه‌خوان دوباره اعلام نکند.",
-   "حلقهٔ فوکوس ۲ پیکسل با فاصلهٔ ۲ پیکسل است و در هر سه پوسته نسبت ۳:۱ را نگه می‌دارد (معیار ۲.۴.۱۳ نسخهٔ ۲.۲).",
+   "حلقهٔ فوکوس ۲ پیکسل با فاصلهٔ ۲ پیکسل است و در هر سه پوسته نسبت <span class=\"t-bidi\" dir=\"ltr\">۳:۱</span> را نگه می‌دارد (معیار ۲.۴.۱۳ نسخهٔ ۲.۲).",
    "غیرفعال با صفت <code>disabled</code>، نه با <code>pointer-events: none</code> که برای فناوری کمکی نامرئی است.",
-   "برچسب غیرفعال با نسبت ۴٫۸:۱ خوانا می‌ماند؛ سیگنال غیرفعال‌بودن را سطح خاکستری و نبود لبه می‌رسانند، نه متن ناخوانا.",
-   "در هر اندازه ناحیهٔ لمس دست‌کم ۴۴ پیکسل است — بسیار بالاتر از حداقل ۲۴×۲۴ در معیار ۲.۵.۸."
+   "برچسب غیرفعال با نسبت <span class=\"t-bidi\" dir=\"ltr\">۴٫۸:۱</span> خوانا می‌ماند؛ سیگنال غیرفعال‌بودن را سطح خاکستری و نبود لبه می‌رسانند، نه متن ناخوانا.",
+   "در هر اندازه ناحیهٔ لمس دست‌کم ۴۴ پیکسل است — بسیار بالاتر از حداقل <span class=\"t-bidi\" dir=\"ltr\">۲۴×۲۴</span> در معیار ۲.۵.۸."
   ],
   "responsive": "دکمه با نقطهٔ شکست تغییر اندازه نمی‌دهد. زیر ۳۷۵ پیکسل از <code>block</code> استفاده کنید تا برچسب هرگز بریده نشود. در فوتری با دو کنش، هر دو <code>block</code> می‌شوند و زیر ۳۶۰ پیکسل روی هم می‌نشینند.",
   "specimens": [
@@ -120,7 +120,7 @@
    },
    {
     "label": "حالت‌ها",
-    "note": "همهٔ خانواده‌ها به یک ظاهر غیرفعال جمع می‌شوند. برچسب با نسبت ۴٫۸:۱ خوانا می‌ماند؛ سطح تخت و نبود لبه سیگنال را می‌رسانند، نه متن ناخوانا.",
+    "note": "همهٔ خانواده‌ها به یک ظاهر غیرفعال جمع می‌شوند. برچسب با نسبت <span class=\"t-bidi\" dir=\"ltr\">۴٫۸:۱</span> خوانا می‌ماند؛ سطح تخت و نبود لبه سیگنال را می‌رسانند، نه متن ناخوانا.",
     "html": "<button class=\"t-btn t-btn--red\">خرید اینترنتی</button>\n<button class=\"t-btn t-btn--red\" data-loading=\"true\">در حال ارسال</button>\n<button class=\"t-btn t-btn--red\" disabled>خرید اینترنتی</button>\n<button class=\"t-btn t-btn--blue\" disabled>اطلاعات تماس</button>\n<button class=\"t-btn t-btn--black\" disabled>عنوان</button>"
    },
    {
@@ -253,8 +253,8 @@
   ],
   "summary": "هدف خرید در صفحهٔ محصول. رنگ می‌گوید اینترنتی یا حضوری.",
   "description": [
-   "مخصوص ترب و تعیین‌کننده: همان ردیفی که خریدار واقعاً در صفحهٔ محصول لمس می‌کند. دقیقاً بر پایهٔ هندسهٔ اسکچ بازسازی شده — ۳۴۳×۷۲ با گردی ۱۶، پشتهٔ فروشنده و قیمت در انتهای محور و نشان «آگهی» در ابتدای آن.",
-   "رنگ اینجا معنا است، نه تأکید. <strong class=\"fam-red\">قرمز</strong> فروشندهٔ اینترنتی است که همین حالا از او می‌خرید؛ <strong class=\"fam-blue\">آبی</strong> فروشندهٔ حضوری است که باید به فروشگاهش بروید. نسخهٔ فشردهٔ ۳۴۳×۴۴ با گردی ۱۲ میان‌بر «ارزان‌ترین فروشنده» است و یک برچسب وسط‌چین دارد.",
+   "مخصوص ترب و تعیین‌کننده: همان ردیفی که خریدار واقعاً در صفحهٔ محصول لمس می‌کند. دقیقاً بر پایهٔ هندسهٔ اسکچ بازسازی شده — <span class=\"t-bidi\" dir=\"ltr\">۳۴۳×۷۲</span> با گردی ۱۶، پشتهٔ فروشنده و قیمت در انتهای محور و نشان «آگهی» در ابتدای آن.",
+   "رنگ اینجا معنا است، نه تأکید. <strong class=\"fam-red\">قرمز</strong> فروشندهٔ اینترنتی است که همین حالا از او می‌خرید؛ <strong class=\"fam-blue\">آبی</strong> فروشندهٔ حضوری است که باید به فروشگاهش بروید. نسخهٔ فشردهٔ <span class=\"t-bidi\" dir=\"ltr\">۳۴۳×۴۴</span> با گردی ۱۲ میان‌بر «ارزان‌ترین فروشنده» است و یک برچسب وسط‌چین دارد.",
    "یک اندازه‌گیری ارزش گفتن دارد چون شبیه اشتباه به نظر می‌رسد و نیست: <strong>نام فروشنده Bold ۱۶ است و قیمت Medium ۱۶</strong>. خریدار محدودهٔ قیمت را از فهرست می‌داند؛ در این ردیف دارد انتخاب می‌کند که <em>از چه کسی</em> بخرد، پس وزن به فروشنده می‌رسد."
   ],
   "use": [
@@ -272,11 +272,11 @@
   "anatomy": [
    [
     "ظرف",
-    "۳۴۳×۷۲، گردی ۱۶، گرادیان خانواده، لبهٔ داخلی ۱ پیکسلی هم‌خانواده."
+    "<span class=\"t-bidi\" dir=\"ltr\">۳۴۳×۷۲</span>، گردی ۱۶، گرادیان خانواده، لبهٔ داخلی ۱ پیکسلی هم‌خانواده."
    ],
    [
     "نشان آگهی",
-    "۴۵×۲۴، گردی ۱۲، پرشدهٔ #D70040 با برچسب سفید Medium ۱۲. ابتدای محور."
+    "<span class=\"t-bidi\" dir=\"ltr\">۴۵×۲۴</span>، گردی ۱۲، پرشدهٔ #D70040 با برچسب سفید Medium ۱۲. ابتدای محور."
    ],
    [
     "فروشنده",
@@ -288,7 +288,7 @@
    ],
    [
     "فشرده",
-    "۳۴۳×۴۴، گردی ۱۲، یک برچسب وسط‌چین Bold ۱۶."
+    "<span class=\"t-bidi\" dir=\"ltr\">۳۴۳×۴۴</span>، گردی ۱۲، یک برچسب وسط‌چین Bold ۱۶."
    ]
   ],
   "props": [
@@ -321,7 +321,7 @@
    "نام دسترس‌پذیر باید قیمت، فروشنده و در صورت وجود افشای آگهی را با هم بیاورد: «۱۵٬۸۰۰٬۰۰۰ تومان، خرید از تکنولایف، آگهی».",
    "نشان آگهی متن واقعی است، نه تصویر پس‌زمینه، تا به صفحه‌خوان برسد.",
    "قیمت را بین چند عنصر نشکنید؛ صفحه‌خوان آن را دو عدد جدا می‌خواند.",
-   "با ارتفاع ۷۲ پیکسل، ناحیهٔ لمس بسیار بالاتر از حداقل ۲۴×۲۴ در معیار ۲.۵.۸ است."
+   "با ارتفاع ۷۲ پیکسل، ناحیهٔ لمس بسیار بالاتر از حداقل <span class=\"t-bidi\" dir=\"ltr\">۲۴×۲۴</span> در معیار ۲.۵.۸ است."
   ],
   "responsive": "سقف ۳۴۳ پیکسل، یعنی صفحهٔ ۳۷۵ پیکسلی منهای حاشیه‌های ۱۶ پیکسلی‌اش. زیر آن تمام‌عرض. از نقطهٔ md فروشنده و قیمت در یک خط می‌نشینند و ارتفاع ردیف به ۵۶ پیکسل می‌رسد.",
   "specimens": [
@@ -585,7 +585,7 @@
   "anatomy": [
    [
     "تصویر",
-    "نسبت ۱۵۳:۱۸۶، گردی ۱۲، با جای نشان و جای کنش در دو گوشهٔ بالا."
+    "نسبت <span class=\"t-bidi\" dir=\"ltr\">۱۵۳:۱۸۶</span>، گردی ۱۲، با جای نشان و جای کنش در دو گوشهٔ بالا."
    ],
    [
     "عنوان",
@@ -656,7 +656,7 @@
   "summary": "بلوک تصویر محصول، با جای نشان و جای کنش.",
   "description": [
    "از ProductCard جدا شده چون به‌تنهایی هم استفاده می‌شود: درون ریل کارت فروشگاه، در گالری صفحهٔ محصول و در پیشنهادهای جست‌وجو. دو مستر در منبع که بینشان چهار بار تکرار شده بودند.",
-   "نسبت ابعاد روی <strong>۱۵۳:۱۸۶</strong> ثابت است و هرگز تغییر نمی‌کند. عکس محصول با هر نسبتی می‌رسد؛ یک قاب ثابت با <code>object-fit: cover</code> همان چیزی است که نمی‌گذارد شبکه ناهموار شود."
+   "نسبت ابعاد روی <strong>۱<span class=\"t-bidi\" dir=\"ltr\">۵۳:۱۸</span>۶</strong> ثابت است و هرگز تغییر نمی‌کند. عکس محصول با هر نسبتی می‌رسد؛ یک قاب ثابت با <code>object-fit: cover</code> همان چیزی است که نمی‌گذارد شبکه ناهموار شود."
   ],
   "use": [
    "همیشه <code>alt</code> واقعی بدهید — عنوان محصول.",
@@ -671,7 +671,7 @@
   "anatomy": [
    [
     "قاب",
-    "نسبت ۱۵۳:۱۸۶، گردی ۱۲، سرریز پنهان، زمینهٔ ملایم."
+    "نسبت <span class=\"t-bidi\" dir=\"ltr\">۱۵۳:۱۸۶</span>، گردی ۱۲، سرریز پنهان، زمینهٔ ملایم."
    ],
    [
     "تصویر",
@@ -691,7 +691,7 @@
     "size",
     "'md' | 'sm' | 'square'",
     "'md'",
-    "۱۵۳:۱۸۶ / ۹۶:۱۱۲ / ۱:۱."
+    "<span class=\"t-bidi\" dir=\"ltr\">۱۵۳:۱۸۶</span> / <span class=\"t-bidi\" dir=\"ltr\">۹۶:۱۱۲</span> / <span class=\"t-bidi\" dir=\"ltr\">۱:۱</span>."
    ],
    [
     "src / alt",
@@ -999,6 +999,393 @@
   "react": "export function ListItem({ as: As = 'button', lead, trail, title, subtitle, ...rest }) {\n  return (\n    <As className=\"t-list-item\" {...rest}>\n      {lead && <span className=\"t-list-item__lead\">{lead}</span>}\n      <span className=\"t-list-item__body\">\n        <span className=\"t-list-item__title\">{title}</span>\n        {subtitle && <span className=\"t-list-item__sub\">{subtitle}</span>}\n      </span>\n      {trail && <span className=\"t-list-item__trail\">{trail}</span>}\n    </As>\n  );\n}",
   "classes": [
    "t-list-item"
+  ]
+ },
+ {
+  "name": "DataTable",
+  "slug": "data-table",
+  "group": "Data",
+  "status": "new",
+  "legacy": [],
+  "summary": "ردیف‌های داده برای مرور، مرتب‌سازی و انتخاب گروهی.",
+  "description": [
+   "پنل فروشنده معکوس اپلیکیشن خریدار است: دسکتاپ‌محور، متراکم، و ساخته‌شده برای مرور صدها ردیف نه برای یک شست روی اتوبوس. کیت اولیه هیچ جدولی نداشت چون هیچ‌کدام از بیست‌ونه صفحهٔ نمونه دسکتاپ نبودند.",
+   "سه قاعده کل این کامپوننت را می‌سازند. <strong>ارقام جدولی هرجا عددی قابل مقایسه است</strong>، وگرنه ستون در یک نگاه خوانده نمی‌شود. <strong>تراکم ویژگی جدول است، نه صفحه</strong> — یک صفحه می‌تواند هم‌زمان جدول متراکم و جدول راحت داشته باشد. و <strong>هدر چسبان است</strong>؛ ستون اول هم می‌تواند باشد، که در راست‌چین یعنی لبهٔ راست."
+  ],
+  "use": [
+   "اعداد را با <code>.t-num</code> به انتهای محور تراز کنید و جدولی نگه دارید.",
+   "ستون شناسه یا نام را با <code>--freeze</code> ثابت کنید تا هنگام اسکرول افقی مرجع از دست نرود.",
+   "نوار ابزار را در جای خودش به نوار کنش گروهی تبدیل کنید تا جدول نپرد.",
+   "تعداد نتایج را همیشه نشان دهید؛ در یک پنل، «۱ تا ۲۵ از ۴۸۳» بخشی از خود داده است."
+  ],
+  "avoid": [
+   "ستون کنش که هنگام هاور ظاهر شود؛ با صفحه‌کلید و لمس غیرقابل کشف است.",
+   "اسکرول بی‌نهایت در پنل. فروشنده باید بتواند به ردیف ۴۰۰ برگردد.",
+   "گنجاندن بیش از حدود هفت ستون بدون امکان انتخاب ستون.",
+   "ارقام متناسب در هر ستون عددی."
+  ],
+  "anatomy": [
+   [
+    "ظرف",
+    "کادر مویی، گردی ۱۲، اسکرول در هر دو محور، سقف ارتفاع ۷۰ درصد کادر دید."
+   ],
+   [
+    "هدر",
+    "چسبان بالا، زمینهٔ ملایم، ۱۲ پیکسل Bold، دکمهٔ مرتب‌سازی با <code>aria-sort</code>."
+   ],
+   [
+    "ردیف",
+    "هاور زمینهٔ ملایم؛ انتخاب‌شده زمینهٔ آبی ملایم و <code>aria-selected</code>."
+   ],
+   [
+    "ستون عددی",
+    "<code>.t-num</code> — تراز انتهای محور، ارقام جدولی، بدون شکست خط."
+   ],
+   [
+    "ستون ثابت",
+    "<code>--freeze</code> ستون اول را روی <code>inset-inline-start</code> می‌چسباند."
+   ]
+  ],
+  "props": [
+   [
+    "density",
+    "'comfortable' | 'compact'",
+    "'comfortable'",
+    "روی خود جدول، نه روی صفحه."
+   ],
+   [
+    "freezeFirst",
+    "boolean",
+    "false",
+    "ستون اول را هنگام اسکرول افقی ثابت نگه می‌دارد."
+   ],
+   [
+    "selectable",
+    "boolean",
+    "false",
+    "ستون چک‌باکس و نوار کنش گروهی را فعال می‌کند."
+   ],
+   [
+    "sort",
+    "{ key, direction }",
+    "—",
+    "مرتب‌سازی کنترل‌شده؛ به <code>aria-sort</code> نگاشت می‌شود."
+   ]
+  ],
+  "a11y": [
+   "یک <code>&lt;table&gt;</code> واقعی با <code>&lt;th scope=\"col\"&gt;</code>. شبکهٔ ساخته‌شده از <code>div</code> برای صفحه‌خوان جدول نیست.",
+   "دکمهٔ مرتب‌سازی <code>aria-sort</code> را روی <code>ascending</code>، <code>descending</code> یا <code>none</code> می‌گذارد و تغییر را با ناحیهٔ زنده اعلام می‌کند.",
+   "چک‌باکس انتخاب هر ردیف نام دسترس‌پذیر مخصوص خودش دارد («انتخاب سفارش ۱۰۲۳»)، نه فقط «انتخاب».",
+   "ردیف انتخاب‌شده <code>aria-selected</code> می‌گیرد و نه‌فقط با رنگ، که با چک‌باکس هم مشخص می‌شود.",
+   "ظرف اسکرول‌شونده <code>tabindex=\"0\"</code> و برچسب می‌گیرد تا کاربر صفحه‌کلید بتواند اسکرولش کند (معیار ۲.۱.۱)."
+  ],
+  "responsive": "تا نقطهٔ lg اسکرول افقی با ستون اول ثابت. زیر آن هر ردیف به یک کارت تبدیل می‌شود: عنوان، سه فیلد کلیدی و یک منوی سرریز. جدول را روی گوشی فشرده نکنید؛ به کارت تبدیلش کنید.",
+  "specimens": [
+   {
+    "label": "جدول سفارش‌ها",
+    "canvas": "plain",
+    "stageClass": "spec__stage--stack",
+    "html": "<div class=\"t-toolbar\">\n  <div class=\"t-search\" style=\"max-inline-size:240px\"><div class=\"t-input t-input--md\"><svg class=\"t-input__icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg><input class=\"t-input__el\" type=\"search\" placeholder=\"جست‌وجوی سفارش\"></div></div>\n  <button class=\"t-btn t-btn--black-ghost t-btn--md\">وضعیت<svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n  <button class=\"t-btn t-btn--black-ghost t-btn--md\">بازهٔ زمانی<svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n  <span class=\"t-toolbar__spacer\"></span>\n  <span class=\"t-body-sm t-tone-secondary\">۱ تا ۴ از ۴۸۳</span>\n  <button class=\"t-btn t-btn--blue t-btn--md\">خروجی اکسل</button>\n</div>\n<div class=\"t-table-wrap\">\n  <table class=\"t-table t-table--freeze\">\n    <thead><tr>\n      <th scope=\"col\">شمارهٔ سفارش</th>\n      <th scope=\"col\">مشتری</th>\n      <th scope=\"col\"><button class=\"t-table__sort\" aria-sort=\"descending\">تاریخ<svg width=\"11\" height=\"11\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button></th>\n      <th scope=\"col\">وضعیت</th>\n      <th scope=\"col\" class=\"t-num\"><button class=\"t-table__sort\" aria-sort=\"none\">مبلغ<svg width=\"11\" height=\"11\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button></th>\n    </tr></thead>\n    <tbody>\n      <tr><td><code>۱۰۲۳۴</code></td><td>سارا محمدی</td><td><span class=\"t-bidi\" dir=\"ltr\">۱۴۰۴/۰۶/۱۹</span></td><td><span class=\"t-badge t-badge--positive\">ارسال شده</span></td><td class=\"t-num\">۲٬۴۵۰٬۰۰۰</td></tr>\n      <tr aria-selected=\"true\"><td><code>۱۰۲۳۳</code></td><td>رضا کریمی</td><td><span class=\"t-bidi\" dir=\"ltr\">۱۴۰۴/۰۶/۱۹</span></td><td><span class=\"t-badge t-badge--caution\">در انتظار پرداخت</span></td><td class=\"t-num\">۸۹۰٬۰۰۰</td></tr>\n      <tr><td><code>۱۰۲۳۲</code></td><td>مینا رضایی</td><td><span class=\"t-bidi\" dir=\"ltr\">۱۴۰۴/۰۶/۱۸</span></td><td><span class=\"t-badge t-badge--info\">در حال آماده‌سازی</span></td><td class=\"t-num\">۱۵٬۸۰۰٬۰۰۰</td></tr>\n      <tr><td><code>۱۰۲۳۱</code></td><td>حسین نوری</td><td><span class=\"t-bidi\" dir=\"ltr\">۱۴۰۴/۰۶/۱۸</span></td><td><span class=\"t-badge t-badge--critical\">لغو شده</span></td><td class=\"t-num\">۳۲۰٬۰۰۰</td></tr>\n    </tbody>\n  </table>\n</div>",
+    "note": "ستون مبلغ جدولی و تراز انتهای محور است. ردیف دوم انتخاب‌شده است. هدر هنگام اسکرول می‌چسبد."
+   },
+   {
+    "label": "نوار کنش گروهی",
+    "canvas": "plain",
+    "html": "<div class=\"t-toolbar\" data-selection=\"true\" style=\"inline-size:100%\">\n  <span class=\"t-toolbar__count\">۳ سفارش انتخاب شده</span>\n  <button class=\"t-btn t-btn--blue t-btn--sm\">تغییر وضعیت</button>\n  <button class=\"t-btn t-btn--black-ghost t-btn--sm\">چاپ برچسب</button>\n  <span class=\"t-toolbar__spacer\"></span>\n  <button class=\"t-btn t-btn--ghost t-btn--sm\">لغو انتخاب</button>\n</div>",
+    "note": "نوار ابزار در جای خودش تبدیل می‌شود، نه اینکه نواری تازه اضافه شود؛ پس جدول یک پیکسل هم نمی‌پرد."
+   }
+  ],
+  "react": "export function DataTable({ columns, rows, density = 'comfortable', freezeFirst, sort, onSort }) {\n  return (\n    <div className=\"t-table-wrap\" tabIndex={0} role=\"region\" aria-label=\"جدول داده\">\n      <table className={clsx('t-table', freezeFirst && 't-table--freeze', density === 'compact' && 't-table--compact')}>\n        <thead>\n          <tr>{columns.map(c => (\n            <th key={c.key} scope=\"col\" className={clsx(c.numeric && 't-num')}>\n              {c.sortable\n                ? <button className=\"t-table__sort\" onClick={() => onSort(c.key)}\n                          aria-sort={sort?.key === c.key ? sort.direction : 'none'}>\n                    {c.label}<SortIcon />\n                  </button>\n                : c.label}\n            </th>))}\n          </tr>\n        </thead>\n        <tbody>{rows.map(r => (\n          <tr key={r.id} aria-selected={r.selected || undefined}>\n            {columns.map(c => <td key={c.key} className={clsx(c.numeric && 't-num')}>{c.render(r)}</td>)}\n          </tr>))}\n        </tbody>\n      </table>\n    </div>\n  );\n}",
+  "classes": [
+   "t-btn",
+   "t-btn--black-ghost",
+   "t-btn--md",
+   "t-btn--blue",
+   "t-btn--sm",
+   "t-btn--ghost"
+  ]
+ },
+ {
+  "name": "StatCard",
+  "slug": "stat-card",
+  "group": "Data",
+  "status": "new",
+  "legacy": [],
+  "summary": "یک عدد که فروشنده هر روز نگاهش می‌کند.",
+  "description": [
+   "ردیف بالای هر داشبورد. کارت آمار وقتی مفید است که <strong>عدد را در برابر چیزی قاب بگیرد</strong> — دورهٔ قبل، هدف، میانگین. یک عدد بدون مرجع فقط یک عدد است.",
+   "دلتای خنثی یک شکست در گزارش‌دهی نیست، خودش پاسخ است. «بدون تغییر» را نشان دهید؛ نه اینکه فلش را حذف کنید و خواننده را در حدس بگذارید."
+  ],
+  "use": [
+   "حداکثر پنج کارت در یک ردیف؛ بیشتر از آن دیگر خلاصه نیست، جدول است.",
+   "دلتا را همیشه با دوره‌اش بیاورید: «۱۲٪ نسبت به هفتهٔ گذشته».",
+   "اعداد فارسی و ارقام جدولی، تا ردیف کارت‌ها با هم تراز بماند."
+  ],
+  "avoid": [
+   "کارت آمار بدون مرجع مقایسه.",
+   "سبز و قرمز به‌تنهایی؛ فلش و واژه را هم بیاورید.",
+   "نمودار کوچک تزئینی که داده‌ای نمی‌گوید."
+  ],
+  "anatomy": [
+   [
+    "برچسب",
+    "۱۲ پیکسل ثانویه."
+   ],
+   [
+    "مقدار",
+    "۲۴ پیکسل ExtraBold، جدولی."
+   ],
+   [
+    "دلتا",
+    "۱۲ پیکسل با فلش و دوره؛ سبز، قرمز یا خنثی."
+   ]
+  ],
+  "props": [
+   [
+    "label",
+    "string",
+    "—",
+    ""
+   ],
+   [
+    "value",
+    "string",
+    "—",
+    "از پیش با اعداد فارسی قالب‌بندی شده."
+   ],
+   [
+    "delta",
+    "{ value, direction, period }",
+    "—",
+    "جهت: up | down | flat."
+   ]
+  ],
+  "a11y": [
+   "مقدار و برچسب یک نام دسترس‌پذیر پیوسته می‌سازند.",
+   "جهت دلتا با متن هم بیان می‌شود («افزایش»)، نه فقط با رنگ و فلش.",
+   "اگر داشبورد زنده به‌روز می‌شود، ناحیه را <code>aria-live=\"polite\"</code> کنید نه بیشتر."
+  ],
+  "responsive": "شبکهٔ خودکار با حداقل ۱۸۰ پیکسل. روی گوشی دوتایی می‌شود و بعد تک‌ستونی؛ هرگز افقی اسکرول نمی‌شود.",
+  "specimens": [
+   {
+    "label": "ردیف آمار",
+    "canvas": "plain",
+    "html": "<div class=\"t-stats\" style=\"inline-size:100%\">\n  <div class=\"t-stat\"><div class=\"t-stat__label\">سفارش‌های امروز</div><div class=\"t-stat__value\">۴۸</div><div class=\"t-stat__delta t-stat__delta--up\">▲ ۱۲٪ نسبت به دیروز</div></div>\n  <div class=\"t-stat\"><div class=\"t-stat__label\">درآمد هفته</div><div class=\"t-stat__value\">۸۹٬۴۰۰٬۰۰۰</div><div class=\"t-stat__delta t-stat__delta--down\">▼ ۴٪ نسبت به هفتهٔ گذشته</div></div>\n  <div class=\"t-stat\"><div class=\"t-stat__label\">نرخ لغو</div><div class=\"t-stat__value\">۲٫۱٪</div><div class=\"t-stat__delta t-stat__delta--flat\">بدون تغییر</div></div>\n  <div class=\"t-stat\"><div class=\"t-stat__label\">محصولات ناموجود</div><div class=\"t-stat__value\">۷</div><div class=\"t-stat__delta t-stat__delta--up\">▲ ۲ مورد این هفته</div></div>\n</div>"
+   }
+  ],
+  "react": "export function StatCard({ label, value, delta }) {\n  const DIR = { up: 'افزایش', down: 'کاهش', flat: 'بدون تغییر' };\n  return (\n    <div className=\"t-stat\">\n      <div className=\"t-stat__label\">{label}</div>\n      <div className=\"t-stat__value\">{value}</div>\n      {delta && (\n        <div className={clsx('t-stat__delta', `t-stat__delta--${delta.direction}`)}>\n          <span aria-hidden=\"true\">{delta.direction === 'up' ? '▲' : delta.direction === 'down' ? '▼' : ''}</span>\n          <span className=\"t-visually-hidden\">{DIR[delta.direction]}</span>\n          {delta.value} {delta.period}\n        </div>\n      )}\n    </div>\n  );\n}",
+  "classes": [
+   "t-stat",
+   "t-stats"
+  ]
+ },
+ {
+  "name": "DateField",
+  "slug": "date-field",
+  "group": "Data",
+  "status": "new",
+  "legacy": [],
+  "summary": "تاریخ شمسی. تقویم میلادی در پنل فروشنده قابل استفاده نیست.",
+  "description": [
+   "پنل B2B ایرانی روی تقویم <strong>جلالی</strong> کار می‌کند. یک انتخابگر میلادی اینجا یک خلأ بومی‌سازی نیست؛ یک کنترل غیرقابل‌استفاده است. فروشنده «۱۴۰۴/۰۶/۱۹» می‌شناسد، نه «۲۰۲۵-۰۹-۱۰».",
+   "دو جزئیات که پیاده‌سازی‌های میلادی همیشه اشتباه می‌گیرند: هفته با <strong>شنبه</strong> شروع می‌شود، و آخر هفته <strong>جمعه</strong> است نه یکشنبه. اگر ستون آخر هفته اشتباه باشد، کل تقویم اشتباه خوانده می‌شود."
+  ],
+  "use": [
+   "همیشه تاریخ شمسی نشان دهید و در سمت سرور به میلادی تبدیل کنید.",
+   "در کنار انتخابگر، ورودی متنی هم بگذارید؛ تایپ‌کردن سریع‌تر از کلیک‌کردن است.",
+   "بازه‌های آماده بدهید: امروز، ۷ روز گذشته، این ماه."
+  ],
+  "avoid": [
+   "انتخابگر میلادی با برچسب فارسی. تبدیل ذهنی کار کاربر نیست.",
+   "شروع هفته از یکشنبه.",
+   "انتخابگر بدون امکان تایپ."
+  ],
+  "anatomy": [
+   [
+    "فیلد",
+    "ورودی متنی با قالب ۱۴۰۴/۰۶/۱۹ و ارقام جدولی."
+   ],
+   [
+    "تقویم",
+    "۲۶۸ پیکسل، شبکهٔ هفت‌ستونی از شنبه."
+   ],
+   [
+    "امروز",
+    "حلقهٔ داخلی آبی."
+   ],
+   [
+    "جمعه",
+    "فام بحرانی در سرستون و در ستون."
+   ]
+  ],
+  "props": [
+   [
+    "value",
+    "string",
+    "—",
+    "تاریخ شمسی، قالب <code>YYYY/MM/DD</code>."
+   ],
+   [
+    "range",
+    "boolean",
+    "false",
+    "انتخاب بازه به‌جای یک روز."
+   ],
+   [
+    "presets",
+    "boolean",
+    "true",
+    "میان‌برهای امروز، ۷ روز، این ماه."
+   ]
+  ],
+  "a11y": [
+   "شبکه <code>role=\"grid\"</code> است و هر روز <code>role=\"gridcell\"</code>؛ کلیدهای جهت بین روزها و PageUp/PageDown بین ماه‌ها حرکت می‌کنند.",
+   "نام دسترس‌پذیر هر روز، تاریخ کامل شمسی است: «۱۹ شهریور ۱۴۰۴، پنجشنبه».",
+   "ورودی متنی همیشه در دسترس است، پس هیچ‌چیز فقط با ماوس قابل انجام نیست (معیار ۲.۱.۱ و ۲.۵.۷).",
+   "<code>aria-live</code> تغییر ماه را اعلام می‌کند، نه حرکت روی هر روز."
+  ],
+  "responsive": "روی دسکتاپ پاپ‌اور، روی گوشی برگهٔ پایینی تمام‌عرض. عرض تقویم ثابت می‌ماند؛ سلول‌ها کوچک نمی‌شوند.",
+  "specimens": [
+   {
+    "label": "انتخابگر تاریخ شمسی",
+    "canvas": "plain",
+    "stageClass": "spec__stage--center",
+    "html": "<div style=\"display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap\">\n  <div class=\"t-field\" style=\"inline-size:180px\">\n    <label class=\"t-field__label\" for=\"d1\">از تاریخ</label>\n    <div class=\"t-input t-input--md\"><input class=\"t-input__el t-num-tabular\" id=\"d1\" value=\"۱۴۰۴/۰۶/۱۹\" dir=\"ltr\"></div>\n  </div>\n  <div class=\"t-cal\">\n    <div class=\"t-cal__head\">\n      <button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"ماه قبل\"><svg class=\"t-icon t-icon--sm t-icon--directional\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M10 3 5 8l5 5V3z\"/></svg></button>\n      <span class=\"t-cal__title\">شهریور ۱۴۰۴</span>\n      <button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"ماه بعد\"><svg class=\"t-icon t-icon--sm t-icon--directional\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6 3l5 5-5 5V3z\"/></svg></button>\n    </div>\n    <div class=\"t-cal__grid\" role=\"grid\" aria-label=\"شهریور ۱۴۰۴\">\n      <div class=\"t-cal__dow\">ش</div><div class=\"t-cal__dow\">ی</div><div class=\"t-cal__dow\">د</div><div class=\"t-cal__dow\">س</div><div class=\"t-cal__dow\">چ</div><div class=\"t-cal__dow\" data-weekend=\"true\">پ</div><div class=\"t-cal__dow\" data-weekend=\"true\">ج</div>\n      <button class=\"t-cal__day\" role=\"gridcell\" data-weekend=\"true\">۱</button><button class=\"t-cal__day\" role=\"gridcell\">۲</button><button class=\"t-cal__day\" role=\"gridcell\">۳</button><button class=\"t-cal__day\" role=\"gridcell\">۴</button><button class=\"t-cal__day\" role=\"gridcell\">۵</button><button class=\"t-cal__day\" role=\"gridcell\">۶</button><button class=\"t-cal__day\" role=\"gridcell\">۷</button><button class=\"t-cal__day\" role=\"gridcell\" data-weekend=\"true\">۸</button><button class=\"t-cal__day\" role=\"gridcell\">۹</button><button class=\"t-cal__day\" role=\"gridcell\">۱۰</button><button class=\"t-cal__day\" role=\"gridcell\">۱۱</button><button class=\"t-cal__day\" role=\"gridcell\">۱۲</button><button class=\"t-cal__day\" role=\"gridcell\">۱۳</button><button class=\"t-cal__day\" role=\"gridcell\">۱۴</button><button class=\"t-cal__day\" role=\"gridcell\" data-weekend=\"true\">۱۵</button><button class=\"t-cal__day\" role=\"gridcell\">۱۶</button><button class=\"t-cal__day\" role=\"gridcell\">۱۷</button><button class=\"t-cal__day\" role=\"gridcell\">۱۸</button><button class=\"t-cal__day\" role=\"gridcell\" aria-selected=\"true\">۱۹</button><button class=\"t-cal__day\" role=\"gridcell\" data-today=\"true\">۲۰</button><button class=\"t-cal__day\" role=\"gridcell\">۲۱</button><button class=\"t-cal__day\" role=\"gridcell\" data-weekend=\"true\">۲۲</button><button class=\"t-cal__day\" role=\"gridcell\">۲۳</button><button class=\"t-cal__day\" role=\"gridcell\">۲۴</button><button class=\"t-cal__day\" role=\"gridcell\">۲۵</button><button class=\"t-cal__day\" role=\"gridcell\">۲۶</button><button class=\"t-cal__day\" role=\"gridcell\">۲۷</button><button class=\"t-cal__day\" role=\"gridcell\">۲۸</button><button class=\"t-cal__day\" role=\"gridcell\" data-weekend=\"true\">۲۹</button><button class=\"t-cal__day\" role=\"gridcell\">۳۰</button><button class=\"t-cal__day\" role=\"gridcell\">۳۱</button>\n    </div>\n  </div>\n</div>",
+    "note": "هفته از شنبه شروع می‌شود و جمعه آخر هفته است. روز ۱۹ انتخاب‌شده و ۲۰ امروز است."
+   }
+  ],
+  "react": "/* Jalali conversion belongs in a library, not in the component.\n   The component's job is the interaction and the accessible names. */\nimport { toJalali, jalaliMonthName, jalaliDaysInMonth } from '@torob/date';\n\nexport function DateField({ value, onChange, range, presets = true }) {\n  const [y, mo] = value.split('/').map(Number);\n  const days = jalaliDaysInMonth(y, mo);\n  return (\n    <div className=\"t-cal\" role=\"grid\" aria-label={`${jalaliMonthName(mo)} ${toFa(y)}`}>\n      {/* شنبه first — the Iranian week does not start on Sunday */}\n      {['ش','ی','د','س','چ','پ','ج'].map((d, i) => (\n        <div key={d} className=\"t-cal__dow\" data-weekend={i === 6 || undefined}>{d}</div>\n      ))}\n      {Array.from({ length: days }, (_, i) => {\n        const day = i + 1;\n        return (\n          <button key={day} className=\"t-cal__day\" role=\"gridcell\"\n                  aria-selected={day === Number(value.split('/')[2])}\n                  aria-label={`${toFa(day)} ${jalaliMonthName(mo)} ${toFa(y)}`}\n                  onClick={() => onChange(`${y}/${mo}/${day}`)}>\n            {toFa(day)}\n          </button>\n        );\n      })}\n    </div>\n  );\n}",
+  "classes": [
+   "t-icon-btn",
+   "t-icon-btn--sm"
+  ]
+ },
+ {
+  "name": "AppShell",
+  "slug": "app-shell",
+  "group": "Layout",
+  "status": "new",
+  "legacy": [],
+  "summary": "اسکلت پنل فروشنده: نوار کناری، نوار بالا، محتوا.",
+  "description": [
+   "پنل B2B از بالا به پایین چیده می‌شود، نه از پایین به بالا. نوار کناری روی دسکتاپ همیشه هست چون فروشنده مدام بین سفارش و محصول جابه‌جا می‌شود.",
+   "نوار کناری روی عرض کم <strong>جمع می‌شود، ناپدید نمی‌شود</strong> — به آیکون تبدیل می‌شود. فروشنده‌ای که در درخت ناوبری است نباید جایش را گم کند."
+  ],
+  "use": [
+   "ناوبری را در حداکثر دو سطح نگه دارید؛ سطح سوم یعنی معماری اطلاعات اشتباه است.",
+   "شمارندهٔ کنار آیتم‌ها را زنده نگه دارید؛ «سفارش‌های جدید ۳» خودش یک کنش است.",
+   "محتوای اصلی را در همان ناحیه اسکرول کنید، نه کل صفحه؛ نوار کناری باید ثابت بماند."
+  ],
+  "avoid": [
+   "ناوبری کشویی روی دسکتاپ. جا هست؛ استفاده‌اش کنید.",
+   "نوار کناری بدون حالت جاری مشخص.",
+   "سه ناحیهٔ اسکرول هم‌زمان."
+  ],
+  "anatomy": [
+   [
+    "برند",
+    "گوشهٔ بالای ابتدای محور، هم‌عرض نوار کناری."
+   ],
+   [
+    "نوار بالا",
+    "جست‌وجو، اعلان، حساب کاربری."
+   ],
+   [
+    "نوار کناری",
+    "۲۴۸ پیکسل، جمع‌شونده به ۶۰ پیکسل، اسکرول مستقل."
+   ],
+   [
+    "محتوا",
+    "تنها ناحیهٔ اسکرول‌شوندهٔ اصلی."
+   ]
+  ],
+  "props": [
+   [
+    "collapsed",
+    "boolean",
+    "false",
+    "نوار کناری را به حالت آیکونی می‌برد."
+   ],
+   [
+    "nav",
+    "NavGroup[]",
+    "—",
+    "حداکثر دو سطح."
+   ]
+  ],
+  "a11y": [
+   "نوار کناری یک <code>&lt;nav&gt;</code> با نام دسترس‌پذیر است و آیتم جاری <code>aria-current=\"page\"</code> می‌گیرد.",
+   "پیوند «رفتن به محتوا» اولین عنصر قابل فوکوس صفحه است.",
+   "در حالت جمع‌شده، هر آیتم <code>aria-label</code> کامل نگه می‌دارد؛ آیکون تنها کافی نیست."
+  ],
+  "responsive": "زیر lg نوار کناری به کشو تبدیل می‌شود و نوار بالا دکمهٔ بازکردنش را می‌گیرد. جدول‌های داخل محتوا مستقل از این تغییر، خودشان به کارت تبدیل می‌شوند.",
+  "specimens": [
+   {
+    "label": "اسکلت پنل",
+    "canvas": "plain",
+    "stageClass": "spec__stage--center",
+    "html": "<div class=\"t-shell\" style=\"block-size:420px;inline-size:100%;max-inline-size:720px;border:1px solid var(--t-border-default);border-radius:12px;overflow:hidden\">\n  <div class=\"t-shell__brand\"><span style=\"inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-action-red-bg-gradient);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px\">ت</span><strong style=\"font-size:14px\">پنل فروشنده</strong></div>\n  <div class=\"t-shell__top\">\n    <div class=\"t-search\" style=\"max-inline-size:220px\"><div class=\"t-input t-input--sm\"><input class=\"t-input__el\" type=\"search\" placeholder=\"جست‌وجو\"></div></div>\n    <span style=\"flex:1\"></span>\n    <button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"اعلان‌ها\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1.5a4 4 0 0 0-4 4v3L2.5 11h11L12 8.5v-3a4 4 0 0 0-4-4zM6.5 12a1.5 1.5 0 0 0 3 0z\"/></svg></button>\n    <span class=\"t-avatar t-avatar--sm\">ا</span>\n  </div>\n  <nav class=\"t-shell__nav\" aria-label=\"ناوبری پنل\">\n    <div class=\"t-navgroup__title\">فروش</div>\n    <a class=\"t-navitem\" href=\"#\" aria-current=\"page\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M2 3h12v2H2zm0 4h12v2H2zm0 4h8v2H2z\"/></svg>سفارش‌ها<span class=\"t-navitem__count\">۳</span></a>\n    <a class=\"t-navitem\" href=\"#\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1 2 4v8l6 3 6-3V4zm0 1.7 4 2v.1L8 6.8 4 4.8v-.1z\"/></svg>محصولات<span class=\"t-navitem__count\">۱۴۸</span></a>\n    <a class=\"t-navitem\" href=\"#\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M2 12h2V7H2zm4 0h2V3H6zm4 0h2V9h-2z\"/></svg>گزارش‌ها</a>\n    <div class=\"t-navgroup__title\">فروشگاه</div>\n    <a class=\"t-navitem\" href=\"#\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1z\"/></svg>اطلاعات فروشگاه</a>\n    <a class=\"t-navitem\" href=\"#\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1.5 15 14H1z\"/></svg>تنظیمات</a>\n  </nav>\n  <main class=\"t-shell__main\">\n    <div class=\"t-stats\">\n      <div class=\"t-stat\"><div class=\"t-stat__label\">سفارش‌های امروز</div><div class=\"t-stat__value\">۴۸</div><div class=\"t-stat__delta t-stat__delta--up\">▲ ۱۲٪</div></div>\n      <div class=\"t-stat\"><div class=\"t-stat__label\">درآمد هفته</div><div class=\"t-stat__value\">۸۹٫۴ م‌ت</div><div class=\"t-stat__delta t-stat__delta--down\">▼ ۴٪</div></div>\n    </div>\n  </main>\n</div>"
+   }
+  ],
+  "react": "export function AppShell({ nav, current, collapsed, children, topbar, brand }) {\n  return (\n    <div className=\"t-shell\" data-nav={collapsed ? 'collapsed' : undefined}>\n      <div className=\"t-shell__brand\">{brand}</div>\n      <div className=\"t-shell__top\">{topbar}</div>\n      <nav className=\"t-shell__nav\" aria-label=\"ناوبری پنل\">\n        {nav.map(g => (\n          <Fragment key={g.title}>\n            {g.title && <div className=\"t-navgroup__title\">{g.title}</div>}\n            {g.items.map(i => (\n              <a key={i.href} href={i.href} className=\"t-navitem\"\n                 aria-label={collapsed ? i.label : undefined}\n                 aria-current={i.href === current ? 'page' : undefined}>\n                {i.icon}{!collapsed && i.label}\n                {i.count != null && !collapsed && <span className=\"t-navitem__count\">{toFa(i.count)}</span>}\n              </a>\n            ))}\n          </Fragment>\n        ))}\n      </nav>\n      <main className=\"t-shell__main\" id=\"main\">{children}</main>\n    </div>\n  );\n}",
+  "classes": [
+   "t-icon",
+   "t-icon-btn",
+   "t-icon-btn--sm",
+   "t-icon--sm"
+  ]
+ },
+ {
+  "name": "DescriptionList",
+  "slug": "description-list",
+  "group": "Data",
+  "status": "new",
+  "legacy": [],
+  "summary": "جفت‌های برچسب و مقدار برای صفحهٔ جزئیات.",
+  "description": [
+   "صفحهٔ جزئیات سفارش، پروفایل فروشگاه، مشخصات محصول. یک <code>&lt;dl&gt;</code> واقعی است، نه یک جدول دو‌ستونی؛ صفحه‌خوان جفت را به‌عنوان جفت می‌خواند."
+  ],
+  "use": [
+   "برچسب‌ها را کوتاه و موازی نگه دارید.",
+   "مقادیر عددی را جدولی کنید تا ستون تراز بماند.",
+   "مقدار خالی را «—» بگذارید، نه اینکه ردیف را حذف کنید."
+  ],
+  "avoid": [
+   "جدول برای داده‌ای که ستون ندارد.",
+   "برچسب‌هایی که خودشان جمله‌اند."
+  ],
+  "anatomy": [
+   [
+    "برچسب",
+    "ستون اول، ثانویه، عرض بر پایهٔ بلندترین برچسب."
+   ],
+   [
+    "مقدار",
+    "ستون دوم، فام پیش‌فرض."
+   ]
+  ],
+  "props": [
+   [
+    "items",
+    "{ label, value }[]",
+    "—",
+    ""
+   ]
+  ],
+  "a11y": [
+   "<code>&lt;dl&gt;</code> با <code>&lt;dt&gt;</code> و <code>&lt;dd&gt;</code>؛ صفحه‌خوان رابطه را می‌فهمد."
+  ],
+  "responsive": "زیر ۵۶۰ پیکسل تک‌ستونی می‌شود و برچسب بالای مقدار می‌نشیند.",
+  "specimens": [
+   {
+    "label": "جزئیات سفارش",
+    "canvas": "fog",
+    "html": "<dl class=\"t-dl\" style=\"inline-size:100%;max-inline-size:420px\">\n  <dt>شمارهٔ سفارش</dt><dd class=\"t-num-tabular\">۱۰۲۳۴</dd>\n  <dt>تاریخ ثبت</dt><dd class=\"t-num-tabular\"><span class=\"t-bidi\" dir=\"ltr\">۱۴۰۴/۰۶/۱۹</span> — <span class=\"t-bidi\" dir=\"ltr\">۱۴:۲۲</span></dd>\n  <dt>مشتری</dt><dd>سارا محمدی</dd>\n  <dt>روش پرداخت</dt><dd>پرداخت اینترنتی</dd>\n  <dt>کد رهگیری</dt><dd><span class=\"t-bidi\">TRB-4829-1023</span></dd>\n  <dt>مبلغ کل</dt><dd class=\"t-num-tabular\">۲٬۴۵۰٬۰۰۰ تومان</dd>\n</dl>"
+   }
+  ],
+  "react": "export function DescriptionList({ items }) {\n  return (\n    <dl className=\"t-dl\">\n      {items.map(i => (\n        <Fragment key={i.label}>\n          <dt>{i.label}</dt>\n          <dd className={clsx(i.numeric && 't-num-tabular')}>{i.value ?? '—'}</dd>\n        </Fragment>\n      ))}\n    </dl>\n  );\n}",
+  "classes": [
+   "t-num-tabular"
   ]
  },
  {
@@ -1380,7 +1767,7 @@
   ],
   "summary": "ترب از جست‌وجو شروع می‌شود. سه حالت، یک کامپوننت.",
   "description": [
-   "کیت اولیه <code>Default</code>، <code>Typing</code> و <code>Searched</code> را سه مستر جدای ۲۹۹×۴۸ فرستاده بود. اینها یک کامپوننت با یک <code>state</code> هستند و همان حالت تعیین می‌کند کدام ابزار انتهایی دیده شود.",
+   "کیت اولیه <code>Default</code>، <code>Typing</code> و <code>Searched</code> را سه مستر جدای <span class=\"t-bidi\" dir=\"ltr\">۲۹۹×۴۸</span> فرستاده بود. اینها یک کامپوننت با یک <code>state</code> هستند و همان حالت تعیین می‌کند کدام ابزار انتهایی دیده شود.",
    "جست‌وجوی ترب دو ورودی دارد که بقیهٔ صنعت ندارند: <strong>صوت</strong> و <strong>دوربین</strong>. اینها در حالت خالی انتهای محور می‌نشینند و به‌محض وجود عبارت، جای خود را به دکمهٔ پاک‌کردن می‌دهند."
   ],
   "use": [
@@ -1547,7 +1934,7 @@
   ],
   "summary": "انتخابگر دو‌موضعی. هر دو موضع، مقصدی نام‌دار هستند.",
   "description": [
-   "کیت اولیه <code>Switch/Left</code> و <code>Switch/Right</code> را در ابعاد ۱۳۵×۳۶ فرستاده بود. این <strong>کلید دوحالتهٔ بولی نیست</strong>؛ ترب از آن برای نقشه ⇄ فهرست استفاده می‌کند و هر دو موضع جایی هستند که می‌توانید در آن باشید.",
+   "کیت اولیه <code>Switch/Left</code> و <code>Switch/Right</code> را در ابعاد <span class=\"t-bidi\" dir=\"ltr\">۱۳۵×۳۶</span> فرستاده بود. این <strong>کلید دوحالتهٔ بولی نیست</strong>؛ ترب از آن برای نقشه ⇄ فهرست استفاده می‌کند و هر دو موضع جایی هستند که می‌توانید در آن باشید.",
    "این تمایز برای دسترس‌پذیری مهم است: یک بولی <code>checkbox</code> است، اما یک انتخاب دو‌طرفهٔ نام‌دار <code>radiogroup</code>. اشتباه‌گرفتن این دو کنترل را برای کاربر صفحه‌خوان بی‌استفاده می‌کند. برای روشن/خاموش واقعی از <a href=\"./toggle.html\">Toggle</a> استفاده کنید."
   ],
   "use": [
@@ -1634,7 +2021,7 @@
   "anatomy": [
    [
     "ریل",
-    "۴۴×۲۶، گردی کامل. در حالت روشن رنگ آبی."
+    "<span class=\"t-bidi\" dir=\"ltr\">۴۴×۲۶</span>، گردی کامل. در حالت روشن رنگ آبی."
    ],
    [
     "شست",
@@ -1848,7 +2235,7 @@
   "anatomy": [
    [
     "دکمه‌ها",
-    "۳۶×۳۶، در دو سر محور."
+    "<span class=\"t-bidi\" dir=\"ltr\">۳۶×۳۶</span>، در دو سر محور."
    ],
    [
     "مقدار",
@@ -1907,7 +2294,7 @@
   "summary": "محتوای پایین را بین نماهای متقابلاً ناسازگار جابه‌جا می‌کند.",
   "description": [
    "پنج مستر در کیت اولیه که فقط در حالت انتخاب، وجود آیکون و اندازه فرق داشتند. یک کامپوننت، سه پراپ. توجه کنید که چهار مستر هم‌نام <code>Segmented Controls/Selected</code> با شناسه‌های متفاوت وجود دارد.",
-   "نسخهٔ بزرگ ۳۹۵×۶۴ یک تراکم دیگر است، نه کامپوننت دیگر: <code>size=\"lg\"</code>."
+   "نسخهٔ بزرگ <span class=\"t-bidi\" dir=\"ltr\">۳۹۵×۶۴</span> یک تراکم دیگر است، نه کامپوننت دیگر: <code>size=\"lg\"</code>."
   ],
   "use": [
    "دو تا پنج گزینه که همه بدون اسکرول جا شوند.",
@@ -2026,7 +2413,7 @@
    ],
    [
     "شورون",
-    "فقط وقتی که تراشه برگه‌ای باز می‌کند."
+    "فقط وقتی که تراشه برگه‌ای باز می‌کند. هرگز روی تراشه‌ای که فقط دوحالته است."
    ]
   ],
   "props": [
@@ -2144,7 +2531,7 @@
   ],
   "summary": "هدر چسبان شیشه‌ای: بازگشت، عنوان، کنش‌ها.",
   "description": [
-   "کیت اولیه یک <code>Header/Profile</code> در ابعاد ۳۴۳×۵۶ داشت که دو بار تکرار شده بود. اینجا تعمیم یافته: یک راه بازگشت، یک عنوان با زیرعنوان اختیاری و کنش‌های انتهایی."
+   "کیت اولیه یک <code>Header/Profile</code> در ابعاد <span class=\"t-bidi\" dir=\"ltr\">۳۴۳×۵۶</span> داشت که دو بار تکرار شده بود. اینجا تعمیم یافته: یک راه بازگشت، یک عنوان با زیرعنوان اختیاری و کنش‌های انتهایی."
   ],
   "use": [
    "بالای هر صفحهٔ اسکرول‌شونده بچسبانید.",

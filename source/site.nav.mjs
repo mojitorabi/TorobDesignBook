@@ -69,6 +69,7 @@ export const nav = [
     { slug: 'patterns/product-detail', title: 'صفحهٔ محصول' },
     { slug: 'patterns/search-and-filter', title: 'جست‌وجو و فیلتر' },
     { slug: 'patterns/feedback-and-errors', title: 'بازخورد و خطا' },
+    { slug: 'patterns/seller-panel', title: 'پنل فروشنده (B2B)' },
   ]},
   { title: 'منابع', items: [
     { slug: 'tokens', title: 'مرورگر توکن' },
