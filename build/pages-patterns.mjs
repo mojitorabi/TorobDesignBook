@@ -1,15 +1,16 @@
 import { section, table, guidance, esc } from './site-lib.mjs';
+import { carbon } from './carbonize.mjs';
 
 const I = {
-  back: `<svg class="t-icon t-icon--directional" viewBox="0 0 20 20" fill="currentColor"><path d="M12 5 7 10l5 5V5z"/></svg>`,
-  backSm: `<svg class="t-icon t-icon--sm t-icon--directional" viewBox="0 0 16 16" fill="currentColor"><path d="M10 3 5 8l5 5V3z"/></svg>`,
-  close: `<svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z"/></svg>`,
-  search: `<svg class="t-input__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg>`,
-  pin: `<svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z"/></svg>`,
-  heart: `<svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 14S1.5 9.9 1.5 5.8A3.3 3.3 0 0 1 8 4.3a3.3 3.3 0 0 1 6.5 1.5C14.5 9.9 8 14 8 14z"/></svg>`,
-  filter: `<svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3h12v1.4H2zm2 4h8v1.4H4zm2 4h4v1.4H6z"/></svg>`,
-  phone: `<svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2a1.6 1.6 0 0 0-1.6 1.6C2.4 8.9 6.7 13.2 12 13.2A1.6 1.6 0 0 0 13.6 11.6V9.8a.8.8 0 0 0-.6-.8l-2.2-.4a.8.8 0 0 0-.8.3l-.6.9a7.7 7.7 0 0 1-3.3-3.3l.9-.6a.8.8 0 0 0 .3-.8l-.4-2.2a.8.8 0 0 0-.8-.6H4z"/></svg>`,
-  route: `<svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M14 7 9 2v3H6a4 4 0 0 0 0 8h1v-1.6H6A2.4 2.4 0 0 1 6 6.6h3V9z"/></svg>`,
+  back: `<svg class="t-icon t-icon--directional" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M10 16 20 6 21.4 7.4 12.8 16 21.4 24.6 20 26z"/></svg>`,
+  backSm: `<svg class="t-icon t-icon--sm t-icon--directional" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 8 10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"/></svg>`,
+  close: `<svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"/></svg>`,
+  search: `<svg class="t-input__icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z"/></svg>`,
+  pin: `<svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm0,15a4,4,0,1,1,4-4A4.0045,4.0045,0,0,1,16,17Z"/><circle cx="16" cy="13" r="4" fill="none"/></svg>`,
+  heart: `<svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M22.45,6a5.47,5.47,0,0,1,3.91,1.64,5.7,5.7,0,0,1,0,8L16,26.13,5.64,15.64a5.7,5.7,0,0,1,0-8,5.48,5.48,0,0,1,7.82,0L16,10.24l2.53-2.58A5.44,5.44,0,0,1,22.45,6m0-2a7.47,7.47,0,0,0-5.34,2.24L16,7.36,14.89,6.24a7.49,7.49,0,0,0-10.68,0,7.72,7.72,0,0,0,0,10.82L16,29,27.79,17.06a7.72,7.72,0,0,0,0-10.82A7.49,7.49,0,0,0,22.45,4Z"/></svg>`,
+  filter: `<svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M18,28H14a2,2,0,0,1-2-2V18.41L4.59,11A2,2,0,0,1,4,9.59V6A2,2,0,0,1,6,4H26a2,2,0,0,1,2,2V9.59A2,2,0,0,1,27.41,11L20,18.41V26A2,2,0,0,1,18,28ZM6,6V9.59l8,8V26h4V17.59l8-8V6Z"/></svg>`,
+  phone: `<svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M26,29h-.17C6.18,27.87,3.39,11.29,3,6.23A3,3,0,0,1,5.76,3h5.51a2,2,0,0,1,1.86,1.26L14.65,8a2,2,0,0,1-.44,2.16l-2.13,2.15a9.37,9.37,0,0,0,7.58,7.6l2.17-2.15A2,2,0,0,1,24,17.35l3.77,1.51A2,2,0,0,1,29,20.72V26A3,3,0,0,1,26,29ZM6,5A1,1,0,0,0,5,6v.08C5.46,12,8.41,26,25.94,27A1,1,0,0,0,27,26.06V20.72l-3.77-1.51-2.87,2.85L19.88,22C11.18,20.91,10,12.21,10,12.12l-.06-.48,2.84-2.87L11.28,5Z"/></svg>`,
+  route: `<svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M6 13 6 7.414 15 16.414 15 28 17 28 17 16.414 26 7.414 26 13 28 13 28 4 19 4 19 6 24.586 6 16 14.586 7.414 6 13 6 13 4 4 4 4 13 6 13z"/></svg>`,
 };
 
 /* A phone frame with a scrollable body. */
@@ -56,8 +57,8 @@ const filterBar = `<div class="t-filter-bar">
 </div>`;
 
 const bottomNav = (current) => `<nav class="t-bottom-nav" aria-label="ناوبری اصلی">
-  ${[['خانه', 'M10 2 2 9h2v9h5v-6h2v6h5V9h2z'], ['جستجو', 'M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z'], ['اطراف من', 'M10 2a6 6 0 0 0-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 0 0-6-6zm0 8.2A2.2 2.2 0 1 1 10 5.8a2.2 2.2 0 0 1 0 4.4z'], ['حساب من', 'M10 10.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3.5 17a6.5 6.5 0 0 1 13 0z']]
-    .map(([l, d]) => `<button class="t-bottom-nav__item"${l === current ? ' aria-current="page"' : ''}><svg class="t-icon" viewBox="0 0 20 20" fill="currentColor"><path d="${d}"/></svg>${l}</button>`).join('')}
+  ${[['خانه', 'home'], ['جست‌وجو', 'search'], ['اطراف من', 'location--filled'], ['حساب من', 'user--avatar']]
+    .map(([l, icon]) => `<button class="t-bottom-nav__item"${l === current ? ' aria-current="page"' : ''}>${carbon(icon, { cls: 't-icon', size: 20 })}${l}</button>`).join('')}
 </nav>`;
 
 export function patternsPages() {
@@ -82,7 +83,7 @@ export function patternsPages() {
   <header class="t-page-header">
     <button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button>
     <div class="t-page-header__title">فروشگاه‌های اطراف<div class="t-page-header__sub">تهران، ۷۸ مورد</div></div>
-    <button class="t-icon-btn t-icon-btn--sm" aria-label="موقعیت من"><svg class="t-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 6.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zM10.8 1H9.2v2.1a7 7 0 0 0-6.1 6.1H1v1.6h2.1a7 7 0 0 0 6.1 6.1V19h1.6v-2.1a7 7 0 0 0 6.1-6.1H19V9.2h-2.1a7 7 0 0 0-6.1-6.1V1z"/></svg></button>
+    <button class="t-icon-btn t-icon-btn--sm" aria-label="موقعیت من"><svg class="t-icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M4,12.9835a1,1,0,0,0,.6289.9448l9.6015,3.8409,3.8407,9.6019A1,1,0,0,0,19,28h.0162a1.0009,1.0009,0,0,0,.9238-.6582l8-22.0007A1,1,0,0,0,26.658,4.0594l-22,8A1.0011,1.0011,0,0,0,4,12.9835Z"/></svg></button>
   </header>
   <div style="padding:12px 16px 0"><div class="t-search"><div class="t-input">${I.search}<input class="t-input__el" type="search" placeholder="جستجو در اطراف من"></div></div></div>
   <div style="padding:12px 16px 8px;display:flex;justify-content:center">
@@ -197,7 +198,7 @@ export function patternsPages() {
   <div class="phone__scroll" style="padding:12px">
     <div class="t-accordion">
       <div class="t-accordion__item">
-        <button class="t-accordion__trigger" aria-expanded="true" aria-controls="pd1"><span class="t-accordion__label">مشخصات کلی</span><svg class="t-accordion__chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11-5-5 1-1 4 4 4-4 1 1z"/></svg></button>
+        <button class="t-accordion__trigger" aria-expanded="true" aria-controls="pd1"><span class="t-accordion__label">مشخصات کلی</span><svg class="t-accordion__chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"/></svg></button>
         <div class="t-accordion__panel" id="pd1" style="padding:0 0 8px">
           <div class="t-list t-list--zebra" style="background:transparent">
             <div class="t-list-item"><span class="t-list-item__body t-body-md t-tone-secondary">سیستم عامل</span><span class="t-body-md-strong t-bidi">iOS ۲۶</span></div>
@@ -207,11 +208,11 @@ export function patternsPages() {
         </div>
       </div>
       <div class="t-accordion__item">
-        <button class="t-accordion__trigger" aria-expanded="false" aria-controls="pd2"><span class="t-accordion__label">دوربین</span><svg class="t-accordion__chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11-5-5 1-1 4 4 4-4 1 1z"/></svg></button>
+        <button class="t-accordion__trigger" aria-expanded="false" aria-controls="pd2"><span class="t-accordion__label">دوربین</span><svg class="t-accordion__chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"/></svg></button>
         <div class="t-accordion__panel" id="pd2" hidden>دوربین اصلی ۴۸ مگاپیکسل · دوربین سلفی ۱۲ مگاپیکسل · فیلم‌برداری ۴K</div>
       </div>
       <div class="t-accordion__item">
-        <button class="t-accordion__trigger" aria-expanded="false" aria-controls="pd3"><span class="t-accordion__label">بدنه و مقاومت</span><svg class="t-accordion__chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11-5-5 1-1 4 4 4-4 1 1z"/></svg></button>
+        <button class="t-accordion__trigger" aria-expanded="false" aria-controls="pd3"><span class="t-accordion__label">بدنه و مقاومت</span><svg class="t-accordion__chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"/></svg></button>
         <div class="t-accordion__panel" id="pd3" hidden>گواهینامه IP53 — مقاوم در برابر پاشیده شدن آب و گرد و غبار. پوشش گوریلا گلس ۳.</div>
       </div>
     </div>
@@ -227,8 +228,8 @@ export function patternsPages() {
   <div style="padding:12px 16px">
     <div class="t-search" data-state="default"><div class="t-input">${I.search}<input class="t-input__el" type="search" placeholder="جستجو در اطراف من">
       <span class="t-search__actions">
-        <button class="t-icon-btn t-icon-btn--sm t-search__tool" aria-label="جستجوی صوتی"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 10a2 2 0 0 0 2-2V4a2 2 0 1 0-4 0v4a2 2 0 0 0 2 2zm4-2a4 4 0 0 1-8 0H3a5 5 0 0 0 4.3 4.9V15h1.4v-2.1A5 5 0 0 0 13 8z"/></svg></button>
-        <button class="t-icon-btn t-icon-btn--sm t-search__tool" aria-label="جستجو با تصویر"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M13 4h-2l-1-1.5H6L5 4H3a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zM8 11.2A2.7 2.7 0 1 1 8 5.8a2.7 2.7 0 0 1 0 5.4z"/></svg></button>
+        <button class="t-icon-btn t-icon-btn--sm t-search__tool" aria-label="جستجوی صوتی"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M23,14v3A7,7,0,0,1,9,17V14H7v3a9,9,0,0,0,8,8.94V28H11v2H21V28H17V25.94A9,9,0,0,0,25,17V14Z"/><path d="M16,22a5,5,0,0,0,5-5V7A5,5,0,0,0,11,7V17A5,5,0,0,0,16,22ZM13,7a3,3,0,0,1,6,0V17a3,3,0,0,1-6,0Z"/></svg></button>
+        <button class="t-icon-btn t-icon-btn--sm t-search__tool" aria-label="جستجو با تصویر"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,26H3a1,1,0,0,1-1-1V8A1,1,0,0,1,3,7H9.46l1.71-2.55A1,1,0,0,1,12,4h8a1,1,0,0,1,.83.45L22.54,7H29a1,1,0,0,1,1,1V25A1,1,0,0,1,29,26ZM4,24H28V9H22a1,1,0,0,1-.83-.45L19.46,6H12.54L10.83,8.55A1,1,0,0,1,10,9H4Z"/><path d="M16,22a6,6,0,1,1,6-6A6,6,0,0,1,16,22Zm0-10a4,4,0,1,0,4,4A4,4,0,0,0,16,12Z"/></svg></button>
       </span></div></div>
   </div>
   <div class="phone__scroll" style="padding:0 16px">
@@ -277,7 +278,7 @@ export function patternsPages() {
         <div class="t-divider" style="margin-block:12px"></div>
         <div class="t-body-sm-strong" style="margin-block-end:4px">ویژگی‌ها</div>
         ${[['ضمانت ترب', 1], ['نمایندگی رسمی', 0], ['باز الان', 1], ['ارسال فوری', 0], ['پرداخت قسطی', 0]].map(([l, on]) =>
-          `<label class="t-check"><input type="checkbox"${on ? ' checked' : ''}><span class="t-check__box"><svg class="t-check__mark" width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z"/></svg></span><span class="t-body-md">${l}</span></label>`).join('')}
+          `<label class="t-check"><input type="checkbox"${on ? ' checked' : ''}><span class="t-check__box"><svg class="t-check__mark" width="12" height="12" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z"/></svg></span><span class="t-body-md">${l}</span></label>`).join('')}
       </div>
       <div class="t-sheet__foot"><button class="t-btn t-btn--ghost t-btn--md">حذف همه</button><button class="t-btn t-btn--primary t-btn--md">نمایش ۴۳ نتیجه</button></div>
     </div>
@@ -289,7 +290,7 @@ export function patternsPages() {
   ${filterBar}
   <div class="phone__scroll" aria-live="polite">
     <div class="t-empty">
-      <div class="t-empty__art"><svg width="40" height="40" viewBox="0 0 32 32" fill="currentColor"><path d="M14 3a11 11 0 1 0 6.7 19.7l6.9 7 1.4-1.4-6.9-6.9A11 11 0 0 0 14 3zm0 2.5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17z"/></svg></div>
+      <div class="t-empty__art"><svg class="t-icon" width="40" height="40" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z"/></svg></div>
       <div class="t-empty__title">با این فیلترها چیزی پیدا نشد</div>
       <div class="t-empty__desc">در شعاع ۲ کیلومتری ۴۳ محصول هست. فیلتر «باز الان» را بردارید تا همه را ببینید.</div>
       <div class="t-empty__actions"><button class="t-btn t-btn--primary t-btn--md">حذف فیلتر «باز الان»</button><button class="t-btn t-btn--ghost t-btn--md">حذف همه فیلترها</button></div>
@@ -318,7 +319,7 @@ export function patternsPages() {
   <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">فروشگاه‌های اطراف<div class="t-page-header__sub">تهران، ۷۸ مورد</div></div></header>
   <div style="padding:12px 16px 0">
     <div class="t-alert t-alert--critical" role="alert">
-      <svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5 15 14H1zM7.3 6v4h1.4V6zm0 5v1.4h1.4V11z"/></svg>
+      <svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8,1C4.2,1,1,4.2,1,8s3.2,7,7,7s7-3.1,7-7S11.9,1,8,1z M7.5,4h1v5h-1C7.5,9,7.5,4,7.5,4z M8,12.2	c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8c0.4,0,0.8,0.4,0.8,0.8S8.4,12.2,8,12.2z"/><path d="M7.5,4h1v5h-1C7.5,9,7.5,4,7.5,4z M8,12.2c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8	c0.4,0,0.8,0.4,0.8,0.8S8.4,12.2,8,12.2z" data-icon-path="inner-path" opacity="0"/></svg>
       <div class="t-alert__body"><div class="t-alert__title">اتصال به اینترنت برقرار نیست</div><div>نتایج نمایش‌داده‌شده مربوط به آخرین بازدید شماست.</div>
         <div class="t-alert__actions"><button class="t-btn t-btn--outline t-btn--sm">تلاش مجدد</button></div></div>
     </div>
@@ -365,7 +366,7 @@ export function patternsPages() {
 /* ─────────────────── پنل فروشنده (B2B) ─────────────────── */
 export function sellerPanelPage() {
   const toc = [], S = (id, t, i) => { toc.push({ id, label: t }); return section(id, t, i); };
-  const chev = `<svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11-5-5 1-1 4 4 4-4 1 1z"/></svg>`;
+  const chev = `<svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"/></svg>`;
 
   let body = `<div class="prose">
     <p>پنل فروشنده معکوس اپلیکیشن خریدار است و همین آن را ارزش یک الگوی جداگانه می‌کند. خریدار یک‌دستی روی گوشی است و دنبال یک تصمیم می‌گردد. فروشنده پشت میز، روی صفحهٔ بزرگ، در حال مرور صدها ردیف است و دنبال یک <em>استثنا</em> می‌گردد.</p>
@@ -381,20 +382,20 @@ export function sellerPanelPage() {
       <div class="t-shell-frame" style="inline-size:1100px;flex:none;border:1px solid var(--t-border-default);border-radius:14px;overflow:hidden"><div class="t-shell" style="block-size:520px">
         <div class="t-shell__brand"><span style="inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-action-red-bg-gradient);border:1px solid var(--t-action-red-border);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px">ت</span><strong style="font-size:14px">پنل فروشنده</strong></div>
         <div class="t-shell__top">
-          <div class="t-search" style="max-inline-size:240px"><div class="t-input t-input--sm"><svg class="t-input__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg><input class="t-input__el" type="search" placeholder="جست‌وجوی سفارش، محصول یا مشتری"></div></div>
+          <div class="t-search" style="max-inline-size:240px"><div class="t-input t-input--sm"><svg class="t-input__icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z"/></svg><input class="t-input__el" type="search" placeholder="جست‌وجوی سفارش، محصول یا مشتری"></div></div>
           <span style="flex:1"></span>
           <span class="t-kbd">/</span>
-          <button class="t-icon-btn t-icon-btn--sm" aria-label="اعلان‌ها"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a4 4 0 0 0-4 4v3L2.5 11h11L12 8.5v-3a4 4 0 0 0-4-4zM6.5 12a1.5 1.5 0 0 0 3 0z"/></svg></button>
+          <button class="t-icon-btn t-icon-btn--sm" aria-label="اعلان‌ها"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14.4,10.1L13,8.8V6.5c0-2.6-1.9-4.7-4.5-5v-1h-1v1C5,1.8,3,3.9,3,6.5v2.3l-1.4,1.3c-0.1,0.1-0.2,0.2-0.1,0.4V12	c0,0.3,0.2,0.5,0.4,0.5c0,0,0,0,0.1,0h3.5C5.5,13.9,6.6,15,8,15s2.5-1.1,2.5-2.5H14c0.3,0,0.5-0.2,0.5-0.4c0,0,0,0,0-0.1v-1.5	C14.5,10.4,14.4,10.2,14.4,10.1z M8,14c-0.8,0-1.5-0.7-1.5-1.5h3C9.5,13.3,8.8,14,8,14z M13.5,11.5h-11v-0.8l1.3-1.4	C3.9,9.3,4,9.1,4,9V6.5c0-2.2,1.8-4,4-4s4,1.8,4,4V9c0,0.1,0.1,0.3,0.1,0.4l1.4,1.3V11.5z"/></svg></button>
           <span class="t-avatar t-avatar--sm">ا</span>
         </div>
         <nav class="t-shell__nav" aria-label="ناوبری پنل">
           <div class="t-navgroup__title">فروش</div>
-          <a class="t-navitem" href="#" aria-current="page"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3h12v2H2zm0 4h12v2H2zm0 4h8v2H2z"/></svg>سفارش‌ها<span class="t-navitem__count">۳</span></a>
-          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1 2 4v8l6 3 6-3V4zm0 1.7 4 2v.1L8 6.8 4 4.8v-.1z"/></svg>محصولات<span class="t-navitem__count">۱۴۸</span></a>
-          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M2 12h2V7H2zm4 0h2V3H6zm4 0h2V9h-2z"/></svg>گزارش‌ها</a>
+          <a class="t-navitem" href="#" aria-current="page"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M10 6H28V8H10z"/><path d="M10 24H28V26H10z"/><path d="M10 15H28V17H10z"/><path d="M4 15H6V17H4z"/><path d="M4 6H6V8H4z"/><path d="M4 24H6V26H4z"/></svg>سفارش‌ها<span class="t-navitem__count">۳</span></a>
+          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M20,21H12a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2h8a2,2,0,0,1,2,2v2A2,2,0,0,1,20,21Zm-8-4v2h8V17Z"/><path d="M28,4H4A2,2,0,0,0,2,6v4a2,2,0,0,0,2,2V28a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V12a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4ZM26,28H6V12H26Zm2-18H4V6H28v4Z"/></svg>محصولات<span class="t-navitem__count">۱۴۸</span></a>
+          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M27,28V6H19V28H15V14H7V28H4V2H2V28a2,2,0,0,0,2,2H30V28ZM13,28H9V16h4Zm12,0H21V8h4Z"/></svg>گزارش‌ها</a>
           <div class="t-navgroup__title">فروشگاه</div>
-          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1z"/></svg>اطلاعات فروشگاه</a>
-          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 5.5A2.5 2.5 0 1 0 8 10.5 2.5 2.5 0 0 0 8 5.5zM7 1h2l.3 1.8 1.5.9 1.7-.7 1 1.7-1.3 1.2v1.8l1.3 1.2-1 1.7-1.7-.7-1.5.9L9 14H7l-.3-1.8-1.5-.9-1.7.7-1-1.7 1.3-1.2V7.3L2.5 6.1l1-1.7 1.7.7 1.5-.9z"/></svg>تنظیمات</a>
+          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm0,15a4,4,0,1,1,4-4A4.0045,4.0045,0,0,1,16,17Z"/><circle cx="16" cy="13" r="4" fill="none"/></svg>اطلاعات فروشگاه</a>
+          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.5,8.4c0-0.1,0-0.3,0-0.4c0-0.1,0-0.3,0-0.4l1-0.8c0.4-0.3,0.4-0.9,0.2-1.3l-1.2-2C13.3,3.2,13,3,12.6,3	c-0.1,0-0.2,0-0.3,0.1l-1.2,0.4c-0.2-0.1-0.4-0.3-0.7-0.4l-0.3-1.3C10.1,1.3,9.7,1,9.2,1H6.8c-0.5,0-0.9,0.3-1,0.8L5.6,3.1	C5.3,3.2,5.1,3.3,4.9,3.4L3.7,3C3.6,3,3.5,3,3.4,3C3,3,2.7,3.2,2.5,3.5l-1.2,2C1.1,5.9,1.2,6.4,1.6,6.8l0.9,0.9c0,0.1,0,0.3,0,0.4	c0,0.1,0,0.3,0,0.4L1.6,9.2c-0.4,0.3-0.5,0.9-0.2,1.3l1.2,2C2.7,12.8,3,13,3.4,13c0.1,0,0.2,0,0.3-0.1l1.2-0.4	c0.2,0.1,0.4,0.3,0.7,0.4l0.3,1.3c0.1,0.5,0.5,0.8,1,0.8h2.4c0.5,0,0.9-0.3,1-0.8l0.3-1.3c0.2-0.1,0.4-0.2,0.7-0.4l1.2,0.4	c0.1,0,0.2,0.1,0.3,0.1c0.4,0,0.7-0.2,0.9-0.5l1.1-2c0.2-0.4,0.2-0.9-0.2-1.3L13.5,8.4z M12.6,12l-1.7-0.6c-0.4,0.3-0.9,0.6-1.4,0.8	L9.2,14H6.8l-0.4-1.8c-0.5-0.2-0.9-0.5-1.4-0.8L3.4,12l-1.2-2l1.4-1.2c-0.1-0.5-0.1-1.1,0-1.6L2.2,6l1.2-2l1.7,0.6	C5.5,4.2,6,4,6.5,3.8L6.8,2h2.4l0.4,1.8c0.5,0.2,0.9,0.5,1.4,0.8L12.6,4l1.2,2l-1.4,1.2c0.1,0.5,0.1,1.1,0,1.6l1.4,1.2L12.6,12z"/><path d="M8,11c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3C11,9.6,9.7,11,8,11C8,11,8,11,8,11z M8,6C6.9,6,6,6.8,6,7.9C6,7.9,6,8,6,8	c0,1.1,0.8,2,1.9,2c0,0,0.1,0,0.1,0c1.1,0,2-0.8,2-1.9c0,0,0-0.1,0-0.1C10,6.9,9.2,6,8,6C8.1,6,8,6,8,6z"/></svg>تنظیمات</a>
         </nav>
         <main class="t-shell__main">
           <h2 style="font-size:19px;font-weight:800;margin-block-end:14px">سفارش‌ها</h2>

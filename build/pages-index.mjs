@@ -55,7 +55,7 @@ export function indexPage({ components, iconCount, tokenCount }) {
       <div class="t-store-card__body">
         <h3 class="t-store-card__name">ادکلن شهر</h3>
         <div class="t-store-card__meta">
-          <span class="t-store-card__distance"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z"/></svg>۱ کیلومتر</span>
+          <span class="t-store-card__distance"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm0,15a4,4,0,1,1,4-4A4.0045,4.0045,0,0,1,16,17Z"/><circle cx="16" cy="13" r="4" fill="none"/></svg>۱ کیلومتر</span>
           <span>باز تا ۲۲:۳۰</span>
         </div>
       </div>
@@ -242,7 +242,7 @@ export function migrationPage(components) {
 
   body += S('map', 'نقشهٔ نگاشت', `<div class="wide">
     <div class="site-search" style="max-inline-size:none;margin-block-end:12px">
-      <svg class="site-search__icon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M7 2a5 5 0 1 0 3.1 8.9l3.2 3.3 1.1-1.1-3.3-3.2A5 5 0 0 0 7 2zm0 1.4a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2z"/></svg>
+      <svg class="site-search__icon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M15,14.3L10.7,10c1.9-2.3,1.6-5.8-0.7-7.7S4.2,0.7,2.3,3S0.7,8.8,3,10.7c2,1.7,5,1.7,7,0l4.3,4.3L15,14.3z M2,6.5	C2,4,4,2,6.5,2S11,4,11,6.5S9,11,6.5,11S2,9,2,6.5z"/></svg>
       <input id="migSearch" type="search" placeholder="جست‌وجو در ${toFa(rows.length)} نام قدیمی…" autocomplete="off">
     </div>
     <div class="tbl-wrap"><table class="tbl"><thead><tr><th>نام قدیمی در اسکچ</th><th>کامپوننت</th><th>کلاس CSS</th><th>گروه</th></tr></thead>

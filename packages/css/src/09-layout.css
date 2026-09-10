@@ -70,8 +70,12 @@
 .t-icon { inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); flex: none; fill: currentColor; }
 .t-icon--sm { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); }
 .t-icon--lg { inline-size: var(--t-size-icon-lg); block-size: var(--t-size-icon-lg); }
-/* Directional icons mirror with the document. Carbon ships --mirror variants;
-   where one exists, prefer it over a transform. */
+/* Directional icons mirror with the document.
+   Author them in LTR orientation — a "forward" affordance is drawn pointing
+   RIGHT — and this rule turns it around in RTL. Getting that backwards is the
+   most common source of a chevron pointing the wrong way.
+   Where Carbon ships a purpose-drawn --mirror twin, prefer it over this
+   transform: a transform also mirrors any glyph drawn inside the icon. */
 [dir="rtl"] .t-icon--directional { scale: -1 1; }
 
 /* ---- Motion ----
