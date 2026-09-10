@@ -1,0 +1,94 @@
+{
+  "$description": "Torob Glass. Thin, not thick. Extracted from the 12 unique glass layer styles in Torob Tokens.sketch. The blur value is the one addition — the source had none.",
+  "glass": {
+    "blur": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "[NEW] Apple uses 50–80px. This is a quarter of that: enough to separate figure from ground, not enough to become the subject. Set to 0px to render exactly as designed in Sketch."
+    },
+    "saturate": {
+      "$type": "number",
+      "$value": 1,
+      "$description": "No vibrancy boost. Deliberate — saturation lift is the most Apple-signature part of their glass."
+    },
+    "max-layers": {
+      "$type": "number",
+      "$value": 3,
+      "$description": "Hard budget: at most 3 backdrop-filtered surfaces per viewport. Above this, mid-range Android drops frames on scroll."
+    },
+    "light": {
+      "surface": {
+        "$description": "30% — a floating surface over content. Bars, filter rails, sheets.",
+        "fill":   { "$type": "color", "$value": "rgba(255, 255, 255, 0.30)" },
+        "border": { "$type": "color", "$value": "rgba(255, 255, 255, 1)" },
+        "shadow": { "$type": "shadow", "$value": "-0.5px 0.5px 1px 0 #CBD5E1" }
+      },
+      "list": {
+        "$description": "50% — a sheet that content scrolls inside. No border, no shadow.",
+        "fill":   { "$type": "color", "$value": "rgba(241, 245, 249, 0.50)" },
+        "border": { "$type": "color", "$value": "transparent" },
+        "shadow": { "$type": "shadow", "$value": "none" }
+      },
+      "solid": {
+        "$description": "60% — selected or resting. No elevation.",
+        "fill":   { "$type": "color", "$value": "rgba(241, 245, 249, 0.60)" },
+        "border": { "$type": "color", "$value": "transparent" },
+        "shadow": { "$type": "shadow", "$value": "none" }
+      },
+      "selected": {
+        "$description": "60% + the blue selection ring.",
+        "fill":   { "$type": "color", "$value": "rgba(241, 245, 249, 0.60)" },
+        "border": { "$type": "color", "$value": "#60A5FA" },
+        "shadow": { "$type": "shadow", "$value": "none" }
+      },
+      "filters": {
+        "$description": "The filter rail. Outside border plus a top highlight — it sits above a scrolling list.",
+        "fill":   { "$type": "color", "$value": "rgba(255, 255, 255, 0.30)" },
+        "border": { "$type": "color", "$value": "rgba(255, 255, 255, 1)" },
+        "shadow": { "$type": "shadow", "$value": "0 -2px 2px 0 #F1F5F9, -0.5px 0.5px 0.5px 0 #CBD5E1" }
+      }
+    },
+    "dark": {
+      "surface": {
+        "fill":   { "$type": "color", "$value": "rgba(33, 43, 54, 0.30)" },
+        "border": { "$type": "color", "$value": "rgba(33, 43, 54, 1)" },
+        "shadow": { "$type": "shadow", "$value": "-0.5px 0.5px 1px 0 #475569" }
+      },
+      "list": {
+        "fill":   { "$type": "color", "$value": "rgba(21, 32, 43, 0.50)" },
+        "border": { "$type": "color", "$value": "transparent" },
+        "shadow": { "$type": "shadow", "$value": "none" }
+      },
+      "solid": {
+        "fill":   { "$type": "color", "$value": "rgba(21, 32, 43, 0.60)" },
+        "border": { "$type": "color", "$value": "transparent" },
+        "shadow": { "$type": "shadow", "$value": "none" }
+      },
+      "selected": {
+        "fill":   { "$type": "color", "$value": "rgba(21, 32, 43, 0.60)" },
+        "border": { "$type": "color", "$value": "#60A5FA" },
+        "shadow": { "$type": "shadow", "$value": "none" }
+      },
+      "filters": {
+        "fill":   { "$type": "color", "$value": "rgba(33, 43, 54, 0.30)" },
+        "border": { "$type": "color", "$value": "rgba(33, 43, 54, 1)" },
+        "shadow": { "$type": "shadow", "$value": "-0.5px 0.5px 0.5px 0 #475569" }
+      }
+    },
+    "fallback": {
+      "$description": "When backdrop-filter is unsupported OR prefers-reduced-transparency is set. Opaque, same hue, same geometry.",
+      "light": { "$type": "color", "$value": "#F8FAFC" },
+      "dark":  { "$type": "color", "$value": "#212B36" }
+    }
+  },
+  "elevation": {
+    "$description": "For opaque surfaces only. Glass never uses this ramp — glass elevation is the hairline shadow, present or absent.",
+    "$type": "shadow",
+    "0": { "$value": "none" },
+    "1": { "$value": "0 2px 2px 0 rgba(51, 51, 51, 0.20)", "$description": "Resting card" },
+    "2": { "$value": "0 4px 12px 0 rgba(51, 51, 51, 0.20)", "$description": "Popover, dropdown, raised card" },
+    "3": { "$value": "0 4px 16px 0 rgba(0, 0, 0, 0.24)", "$description": "Modal, bottom sheet" },
+    "hairline-t": { "$value": "0 -0.5px 0 0 #CBD5E1", "$description": "Store card top rule" },
+    "hairline-b": { "$value": "0 0.5px 0 0 #CBD5E1", "$description": "Store card bottom rule" }
+  }
+}

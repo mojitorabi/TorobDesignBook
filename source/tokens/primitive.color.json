@@ -1,0 +1,214 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "$description": "Primitive palette. Extracted verbatim from Torob Tokens.sketch sharedSwatches. NEVER reference these directly in product code — use semantic tokens.",
+  "color": {
+    "$type": "color",
+    "brand": {
+      "red": {
+        "$value": "#D73948",
+        "$description": "Torob brand red. Fixed. Never re-tinted."
+      },
+      "ink": {
+        "$value": "#1C1C5D",
+        "$description": "Torob deep indigo. Guarantee mark base."
+      }
+    },
+    "sky": {
+      "$description": "Neutral spine. Inverts wholesale between light and dark.",
+      "50": {
+        "$value": "#F8FAFC"
+      },
+      "100": {
+        "$value": "#F1F5F9"
+      },
+      "300": {
+        "$value": "#CBD5E1"
+      },
+      "400": {
+        "$value": "#94A3B8",
+        "$description": "Secondary foreground in dark mode"
+      },
+      "500": {
+        "$value": "#64748B"
+      },
+      "600": {
+        "$value": "#5E6D83",
+        "$description": "[NEW] Accessible secondary foreground on light. Sky 500 (#64748B) measures 4.34:1 on the #F1F5F9 canvas and fails WCAG AA."
+      },
+      "700": {
+        "$value": "#475569"
+      },
+      "800": {
+        "$value": "#1E293B"
+      },
+      "900": {
+        "$value": "#0F172B"
+      },
+      "950": {
+        "$value": "#15202B",
+        "$description": "Dark bright background"
+      },
+      "925": {
+        "$value": "#212B36",
+        "$description": "Dark fog background / dark glass tint"
+      }
+    },
+    "blue": {
+      "50": {
+        "$value": "#EFF6FF"
+      },
+      "200": {
+        "$value": "#93C5FD"
+      },
+      "300": {
+        "$value": "#60A5FA",
+        "$description": "Selection ring. Never substitute brand red."
+      },
+      "500": {
+        "$value": "#3468CC"
+      },
+      "600": {
+        "$value": "#3A75E6",
+        "$description": "Blue gradient start"
+      },
+      "800": {
+        "$value": "#1E40AF"
+      }
+    },
+    "red": {
+      "50": {
+        "$value": "#FFF0F2"
+      },
+      "200": {
+        "$value": "#F77A8F",
+        "$description": "[NEW] Critical foreground on dark tinted backgrounds."
+      },
+      "300": {
+        "$value": "#F04151",
+        "$description": "Red gradient start"
+      },
+      "350": {
+        "$value": "#F6647D",
+        "$description": "[NEW] Brand red for TEXT on dark."
+      },
+      "400": {
+        "$value": "#F43F5E",
+        "$description": "Critical on dark"
+      },
+      "500": {
+        "$value": "#D70040",
+        "$description": "Critical on light"
+      },
+      "600": {
+        "$value": "#CD2A39",
+        "$description": "[NEW] Brand red for TEXT on light. #D73948 measures 4.20:1 on canvas. Fills, logo and map pins keep the true brand red."
+      },
+      "800": {
+        "$value": "#9F1239"
+      }
+    },
+    "green": {
+      "50": {
+        "$value": "#EEFCEB"
+      },
+      "100": {
+        "$value": "#DAF2D5"
+      },
+      "200": {
+        "$value": "#CAFDB1"
+      },
+      "400": {
+        "$value": "#6FCF73",
+        "$description": "[NEW] Positive on dark. Source reused #4CAF50 which fails on #15202B."
+      },
+      "500": {
+        "$value": "#4CAF50"
+      },
+      "600": {
+        "$value": "#439A47",
+        "$description": "[NEW] Open-now indicator on light. #4CAF50 measures 2.78:1 on white, below the 3:1 non-text minimum."
+      },
+      "800": {
+        "$value": "#003D01"
+      }
+    },
+    "yellow": {
+      "50": {
+        "$value": "#FFEEBF"
+      },
+      "200": {
+        "$value": "#FFE08A",
+        "$description": "[NEW] Fills gap between 50 and 500."
+      },
+      "400": {
+        "$value": "#FFD75E",
+        "$description": "[NEW] Caution on dark."
+      },
+      "500": {
+        "$value": "#FFCA32"
+      },
+      "800": {
+        "$value": "#854D0F"
+      }
+    },
+    "purple": {
+      "50": {
+        "$value": "#E5D9F6"
+      },
+      "200": {
+        "$value": "#C4A9F0",
+        "$description": "[NEW] Fills gap."
+      },
+      "300": {
+        "$value": "#A855F7",
+        "$description": "[NEW] Corrected. Source had #9333EA which is darker than 500 — an inverted ramp."
+      },
+      "500": {
+        "$value": "#8338ED"
+      },
+      "800": {
+        "$value": "#32175F"
+      }
+    },
+    "orange": {
+      "50": {
+        "$value": "#FDF0E4",
+        "$description": "[NEW] Source shipped only a 500."
+      },
+      "300": {
+        "$value": "#F8B77C",
+        "$description": "[NEW]"
+      },
+      "500": {
+        "$value": "#F49342"
+      },
+      "800": {
+        "$value": "#8A4A11",
+        "$description": "[NEW]"
+      }
+    },
+    "guarantee": {
+      "$description": "ضمانت ترب — the Torob trust mark. Indigo family.",
+      "50": {
+        "$value": "#E4E4FF",
+        "$description": "[NEW] Corrected. Source #D6F1FF was cyan, off-family from the 300/800 indigos."
+      },
+      "300": {
+        "$value": "#BFBFFF"
+      },
+      "500": {
+        "$value": "#4B4BB8",
+        "$description": "[NEW] Missing mid-step."
+      },
+      "800": {
+        "$value": "#1C1C5D"
+      }
+    },
+    "white": {
+      "$value": "#FFFFFF"
+    },
+    "black": {
+      "$value": "#000000"
+    }
+  }
+}

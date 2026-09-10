@@ -1,0 +1,87 @@
+/* ============================================================
+   Layout & Responsive
+   The source is 375-only. This layer defines how it grows.
+   ============================================================ */
+
+.t-container {
+  inline-size: 100%;
+  margin-inline: auto;
+  padding-inline: var(--t-space-4);
+}
+@media (min-width: 768px)  { .t-container { padding-inline: var(--t-space-6); } }
+@media (min-width: 1280px) { .t-container { max-inline-size: 1280px; padding-inline: var(--t-space-8); } }
+@media (min-width: 1600px) { .t-container { max-inline-size: 1440px; } }
+
+.t-stack { display: flex; flex-direction: column; gap: var(--t-space-4); }
+.t-stack--sm { gap: var(--t-space-2); }
+.t-stack--lg { gap: var(--t-space-6); }
+.t-row { display: flex; align-items: center; gap: var(--t-space-2); }
+.t-row--between { justify-content: space-between; }
+.t-row--wrap { flex-wrap: wrap; }
+.t-spacer { flex: 1; }
+
+/* Product grid. 2-up on phones is Torob's density; it widens with the viewport
+   rather than stretching the cards. */
+.t-grid-products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--t-space-2);
+}
+@media (min-width: 480px)  { .t-grid-products { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 768px)  { .t-grid-products { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--t-space-3); } }
+@media (min-width: 1024px) { .t-grid-products { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .t-grid-products { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--t-space-4); } }
+
+/* Horizontal rail. Scroll-snap, RTL-aware, hidden scrollbar.
+   Bleeds to the viewport edge so the last card is visibly cut — the cue that
+   there is more to scroll. */
+.t-rail {
+  display: flex; gap: var(--t-space-2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  margin-inline: calc(var(--t-space-4) * -1);
+  padding-inline: var(--t-space-4);
+  scroll-padding-inline-start: var(--t-space-4);
+}
+.t-rail::-webkit-scrollbar { display: none; }
+.t-rail > * { flex: none; scroll-snap-align: start; }
+
+/* The Nearby split: list over map on phones, side-by-side from xl. */
+.t-split { display: grid; grid-template-rows: 1fr auto; block-size: 100dvh; }
+@media (min-width: 1280px) {
+  .t-split { grid-template-rows: none; grid-template-columns: 420px 1fr; }
+  .t-split__list { overflow-y: auto; }
+}
+
+/* Responsive visibility. Use sparingly — prefer one component that adapts. */
+.t-only-mobile  { display: revert; }
+.t-only-desktop { display: none; }
+@media (min-width: 768px) {
+  .t-only-mobile  { display: none; }
+  .t-only-desktop { display: revert; }
+}
+
+/* Safe areas — Torob is a phone product first. */
+.t-safe-b { padding-block-end: env(safe-area-inset-bottom); }
+.t-safe-t { padding-block-start: env(safe-area-inset-top); }
+
+/* ---- Icons ---- */
+.t-icon { inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); flex: none; fill: currentColor; }
+.t-icon--sm { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); }
+.t-icon--lg { inline-size: var(--t-size-icon-lg); block-size: var(--t-size-icon-lg); }
+/* Directional icons mirror with the document. Carbon ships --mirror variants;
+   where one exists, prefer it over a transform. */
+[dir="rtl"] .t-icon--directional { scale: -1 1; }
+
+/* ---- Motion ----
+   One switch turns the whole system down. Every animation in the system is
+   reachable from here. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

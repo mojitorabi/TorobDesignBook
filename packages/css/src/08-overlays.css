@@ -1,0 +1,134 @@
+/* ============================================================
+   Overlays — [NEW] absent from the source kit
+   Modal · BottomSheet · Drawer · Popover · Menu · Accordion
+   ============================================================ */
+
+.t-scrim {
+  position: fixed; inset: 0;
+  z-index: var(--t-z-modal);
+  background: var(--t-bg-scrim);
+  animation: t-fade-in var(--t-duration-standard) var(--t-easing-out);
+}
+@keyframes t-fade-in { from { opacity: 0; } }
+
+/* ---- Modal ---- */
+.t-modal {
+  position: fixed;
+  inset-block-start: 50%; inset-inline-start: 50%;
+  translate: -50% -50%;
+  z-index: var(--t-z-modal);
+  inline-size: min(calc(100vw - var(--t-space-8)), 440px);
+  max-block-size: calc(100dvh - var(--t-space-16));
+  display: flex; flex-direction: column;
+  border-radius: var(--t-radius-lg);
+  background: var(--t-bg-fog);
+  box-shadow: var(--t-elevation-3);
+  animation: t-modal-in var(--t-duration-sheet) var(--t-easing-out);
+}
+@keyframes t-modal-in { from { opacity: 0; translate: -50% -46%; scale: 0.97; } }
+.t-modal__head { display: flex; align-items: flex-start; gap: var(--t-space-3); padding: var(--t-space-4); }
+.t-modal__title { flex: 1; font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-bold); }
+.t-modal__body { padding-inline: var(--t-space-4); overflow-y: auto; flex: 1; }
+.t-modal__foot { display: flex; gap: var(--t-space-2); padding: var(--t-space-4); }
+.t-modal__foot > * { flex: 1; }
+
+/* ---- BottomSheet ----
+   Torob's dominant overlay: filters, sort, store detail, variant picker.
+   Glass at list level so the map or grid stays legible behind it. */
+.t-sheet {
+  position: fixed;
+  inset-inline: 0; inset-block-end: 0;
+  z-index: var(--t-z-drawer);
+  max-block-size: 90dvh;
+  display: flex; flex-direction: column;
+  border-start-start-radius: var(--t-radius-xl);
+  border-start-end-radius: var(--t-radius-xl);
+  background: var(--t-glass-light-list-fill);
+  border-block-start: var(--t-border-thin) solid var(--t-glass-border);
+  backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
+  box-shadow: var(--t-elevation-3);
+  padding-block-end: env(safe-area-inset-bottom);
+  animation: t-sheet-in var(--t-duration-sheet) var(--t-easing-out);
+}
+:root[data-theme="dark"] .t-sheet { background: var(--t-glass-dark-list-fill); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t-sheet { background: var(--t-glass-dark-list-fill); } }
+@keyframes t-sheet-in { from { transform: translateY(100%); } }
+.t-sheet[data-leaving="true"] { animation: t-sheet-out var(--t-duration-standard) var(--t-easing-in) forwards; }
+@keyframes t-sheet-out { to { transform: translateY(100%); } }
+/* Grab handle. The whole strip is the drag target, not the 36px bar. */
+.t-sheet__grip { display: grid; place-items: center; padding-block: var(--t-space-2); cursor: grab; touch-action: none; }
+.t-sheet__grip::before { content: ""; inline-size: 36px; block-size: 4px; border-radius: var(--t-radius-full); background: var(--t-border-default); }
+.t-sheet__head { display: flex; align-items: center; gap: var(--t-space-3); padding: 0 var(--t-space-4) var(--t-space-3); }
+.t-sheet__title { flex: 1; font-size: var(--t-font-size-16); font-weight: var(--t-font-weight-bold); }
+.t-sheet__body { padding-inline: var(--t-space-4); overflow-y: auto; flex: 1; overscroll-behavior: contain; }
+.t-sheet__foot { padding: var(--t-space-3) var(--t-space-4); display: flex; gap: var(--t-space-2); border-block-start: var(--t-border-thin) solid var(--t-border-subtle); }
+.t-sheet__foot > * { flex: 1; }
+/* Above the md breakpoint a bottom sheet is the wrong shape — it becomes a
+   side panel. Same markup, same component, different surface. */
+@media (min-width: 768px) {
+  .t-sheet--adaptive {
+    inset-block: 0; inset-inline-start: auto;
+    inline-size: 420px; max-block-size: none;
+    border-radius: 0;
+    border-inline-start: var(--t-border-thin) solid var(--t-glass-border);
+    animation: t-panel-in var(--t-duration-sheet) var(--t-easing-out);
+  }
+  @keyframes t-panel-in { from { transform: translateX(calc(100% * var(--t-dir, -1) * -1)); } }
+}
+
+/* ---- Drawer (side) ---- */
+.t-drawer {
+  position: fixed; inset-block: 0; inset-inline-start: 0;
+  z-index: var(--t-z-drawer);
+  inline-size: min(86vw, 320px);
+  display: flex; flex-direction: column;
+  background: var(--t-bg-fog);
+  box-shadow: var(--t-elevation-3);
+  animation: t-drawer-in var(--t-duration-sheet) var(--t-easing-out);
+}
+@keyframes t-drawer-in { from { transform: translateX(calc(-100% * var(--t-dir, -1) * -1)); } }
+
+/* ---- Popover / Menu ---- */
+.t-popover {
+  position: absolute; z-index: var(--t-z-popover);
+  min-inline-size: 180px;
+  padding: var(--t-space-1);
+  border: var(--t-border-thin) solid var(--t-border-subtle);
+  border-radius: var(--t-radius-md);
+  background: var(--t-bg-fog);
+  box-shadow: var(--t-elevation-2);
+  animation: t-pop-in var(--t-duration-standard) var(--t-easing-out);
+}
+@keyframes t-pop-in { from { opacity: 0; transform: translateY(-4px) scale(0.98); } }
+.t-menu-item {
+  display: flex; align-items: center; gap: var(--t-space-2);
+  inline-size: 100%; min-block-size: 40px;
+  padding-inline: var(--t-space-3);
+  border: none; background: none; cursor: pointer;
+  border-radius: var(--t-radius-sm);
+  font-size: var(--t-font-size-14); color: var(--t-fg-default);
+  text-align: start;
+}
+.t-menu-item:hover { background: var(--t-bg-subtle); }
+.t-menu-item[aria-checked="true"] { color: var(--t-fg-link); font-weight: var(--t-font-weight-bold); }
+.t-menu-item--critical { color: var(--t-status-critical-fg); }
+.t-menu-sep { block-size: 1px; background: var(--t-border-subtle); margin-block: var(--t-space-1); }
+
+/* ---- Accordion ---- */
+.t-accordion { border-radius: var(--t-radius-md); background: var(--t-bg-fog); overflow: hidden; }
+.t-accordion__item + .t-accordion__item { border-block-start: var(--t-border-thin) solid var(--t-border-subtle); }
+.t-accordion__trigger {
+  display: flex; align-items: center; gap: var(--t-space-3);
+  inline-size: 100%; min-block-size: 52px;
+  padding-inline: var(--t-space-4);
+  border: none; background: none; cursor: pointer;
+  font-size: var(--t-font-size-14); font-weight: var(--t-font-weight-bold);
+  color: var(--t-fg-default); text-align: start;
+}
+.t-accordion__trigger:hover { background: var(--t-bg-subtle); }
+.t-accordion__label { flex: 1; min-inline-size: 0; }
+.t-accordion__chevron { flex: none; color: var(--t-fg-secondary); transition: rotate var(--t-duration-standard) var(--t-easing-out); }
+.t-accordion__trigger[aria-expanded="true"] .t-accordion__chevron { rotate: 180deg; }
+.t-accordion__panel { padding: 0 var(--t-space-4) var(--t-space-4); font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); color: var(--t-fg-secondary); }
+.t-accordion__panel[hidden] { display: none; }

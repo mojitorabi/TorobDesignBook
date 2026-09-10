@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+/* One command rebuilds the whole system, in dependency order, with the
+   quality gates in the middle rather than at the end. */
+import { spawnSync } from 'node:child_process';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+const steps = [
+  ['tokens-build.mjs',   'Tokens → 12 artefacts'],
+  ['contrast-check.mjs', 'GATE: WCAG AA contrast'],
+  ['validate-css.mjs',   'GATE: every var() resolves'],
+  ['css-bundle.mjs',     'Bundle the CSS layer'],
+  ['make-map.mjs',       'Specimen map backgrounds'],
+  ['mcp-build.mjs',      'MCP server data'],
+  ['react-build.mjs',    'React package'],
+  ['site-build.mjs',     'Website'],
+  ['llms-build.mjs',     'llms.txt + Markdown twins + agent rules'],
+];
+
+let failed = 0;
+for (const [file, label] of steps) {
+  process.stdout.write(`\n▸ ${label}\n`);
+  const r = spawnSync(process.execPath, [join(HERE, file)], { stdio: 'inherit', env: process.env });
+  if (r.status !== 0) { failed++; console.error(`  ✗ ${file} exited ${r.status}`); break; }
+}
+console.log(failed ? `\n✗ build failed` : `\n✓ build complete`);
+process.exit(failed ? 1 : 0);

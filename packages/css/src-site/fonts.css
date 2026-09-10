@@ -1,0 +1,25 @@
+/* ============================================================
+   IRANYekanX — the Torob typeface.
+   Supplied by Torob. Full Latin + Persian + Arabic-Indic numeral coverage,
+   ZWNJ, the ٬ thousands separator and «» guillemets, so it carries the whole
+   site: Persian specimens and English chrome alike.
+
+   Nine numeric weights are wired here. Heavy and ExtraBlack also ship in
+   packages/fonts/ but sit beyond the 100–900 ramp and are not loaded.
+   ============================================================ */
+
+@font-face { font-family: "IRANYekanX"; src: url("./fonts/IRANYekanX-Thin.woff2")       format("woff2"); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANYekanX"; src: url("./fonts/IRANYekanX-UltraLight.woff2") format("woff2"); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANYekanX"; src: url("./fonts/IRANYekanX-Light.woff2")      format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANYekanX"; src: url("./fonts/IRANYekanX-Regular.woff2")    format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANYekanX"; src: url("./fonts/IRANYekanX-Medium.woff2")     format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANYekanX"; src: url("./fonts/IRANYekanX-DemiBold.woff2")   format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANYekanX"; src: url("./fonts/IRANYekanX-Bold.woff2")       format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANYekanX"; src: url("./fonts/IRANYekanX-ExtraBold.woff2")  format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANYekanX"; src: url("./fonts/IRANYekanX-Black.woff2")      format("woff2"); font-weight: 900; font-style: normal; font-display: swap; }
+
+/* Persian and Arabic scripts are cursive: adjacent letters join. Negative
+   letter-spacing breaks those joins and is never correct here. The rule is
+   global rather than scoped to [dir=rtl], because Persian runs appear inside
+   English sentences throughout this documentation. */
+* { letter-spacing: 0; }

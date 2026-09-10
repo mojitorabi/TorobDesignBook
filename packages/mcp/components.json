@@ -1,0 +1,2590 @@
+[
+ {
+  "name": "Button",
+  "slug": "button",
+  "group": "Actions",
+  "status": "revised",
+  "legacy": [
+   "Button / Red / Default",
+   "Button / Red / Hover",
+   "Button / Red / Disable",
+   "Button/‌Blue/Default + Chevron",
+   "Button/‌Blue/Clicked + Chevron",
+   "Button/‌Blue/Hover + Chevron",
+   "Button/Black/Default",
+   "Button/Black/Hover",
+   "Button/Black/Disable",
+   "Button/Black ghost/Default",
+   "Button/Black ghost/Hover",
+   "Button/‌Blue ghost/Icon/Light",
+   "Button/‌Blue ghost/Icon/Dark",
+   "Button/Small/Blue/with-badge",
+   "Button/Xsmall/Secondary/Icon",
+   "Button/Normal/Primary/Icon",
+   "Button/Normal/Border/Icon"
+  ],
+  "summary": "Triggers an action. One primary per screen.",
+  "description": [
+   "The source kit modelled every state as its own symbol. <code>Button / Red / Hover</code> sat beside <code>Button / Red / Default</code> as a separate master. That cannot become a component API. Here, <strong>state is a state</strong> (CSS pseudo-classes and <code>data-</code> attributes) and only intent and size are props.",
+   "Variants are named by <strong>intent</strong>, not by colour. <code>Button / Red</code> became <code>variant=\"primary\"</code>: when the brand palette shifts, the code does not. The examples page had already started this migration on its own — <code>Button/Normal/Primary/Icon</code>, so this formalises a direction your team was already moving in."
+  ],
+  "use": [
+   "Exactly one <code>primary</code> per screen: the thing the user came to do.",
+   "Use <code>accent</code> for the secondary path, <code>ghost</code> for tertiary.",
+   "Label with a verb naming the outcome: «مشاهده فروشندگان», not «بیشتر».",
+   "Set <code>data-loading</code> during async work — the label is hidden but the width is held."
+  ],
+  "avoid": [
+   "Two primary buttons side by side. If both matter, neither is primary.",
+   "Disabling without explanation. Say why, next to the button.",
+   "Colour-only variants (<code>variant=\"red\"</code>). Intent survives a rebrand; colour does not.",
+   "Icon-only buttons without <code>aria-label</code>."
+  ],
+  "anatomy": [
+   [
+    "Container",
+    "Sets height, radius 12, and the touch target. The visual box can be 24px tall; the tap area is never below 44px."
+   ],
+   [
+    "Leading icon",
+    "Optional, 16px. Directional icons mirror in RTL."
+   ],
+   [
+    "Label",
+    "14px Bold. Never wraps — truncate the container instead."
+   ],
+   [
+    "Trailing icon",
+    "Optional. A chevron here means \"opens something\", not \"submits\"."
+   ]
+  ],
+  "props": [
+   [
+    "variant",
+    "'primary' | 'accent' | 'neutral' | 'soft' | 'outline' | 'outline-accent' | 'ghost' | 'ghost-accent'",
+    "'neutral'",
+    "Intent. Never a colour name."
+   ],
+   [
+    "size",
+    "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+    "'lg'",
+    "24 / 28 / 32 / 40 / 48 px. lg is the default, matching the source kit."
+   ],
+   [
+    "block",
+    "boolean",
+    "false",
+    "Fill the inline axis."
+   ],
+   [
+    "loading",
+    "boolean",
+    "false",
+    "Shows a spinner, holds the width, blocks pointer events."
+   ],
+   [
+    "disabled",
+    "boolean",
+    "false",
+    "Collapses every variant to the same disabled treatment."
+   ],
+   [
+    "iconStart / iconEnd",
+    "ReactNode",
+    "—",
+    "Leading / trailing icon in logical order — they swap automatically in LTR."
+   ]
+  ],
+  "a11y": [
+   "Renders a real <code>&lt;button&gt;</code>. Use <code>&lt;a class=\"t-btn\"&gt;</code> only when it navigates.",
+   "Loading sets <code>aria-busy=\"true\"</code>; the accessible name stays stable so screen readers do not re-announce.",
+   "Focus ring is 2px <code>--t-border-focus</code> at 2px offset, visible on both grounds.",
+   "Disabled uses <code>disabled</code>, not <code>pointer-events: none</code>, which is invisible to assistive tech.",
+   "Every size keeps a ≥44px touch target via a transparent <code>::after</code> on coarse pointers."
+  ],
+  "responsive": "Buttons do not resize by breakpoint. Below 375px, use <code>block</code> so the label never truncates. In a footer of two actions, both go <code>block</code> and stack under 360px.",
+  "specimens": [
+   {
+    "label": "Intents",
+    "html": "<button class=\"t-btn t-btn--primary\">افزودن به سبد</button>\n<button class=\"t-btn t-btn--accent\">مشاهده فروشندگان</button>\n<button class=\"t-btn t-btn--neutral\">مقایسه</button>\n<button class=\"t-btn t-btn--soft\">ذخیره</button>\n<button class=\"t-btn t-btn--outline\">انصراف</button>\n<button class=\"t-btn t-btn--ghost\">بیشتر</button>"
+   },
+   {
+    "label": "Sizes",
+    "html": "<button class=\"t-btn t-btn--primary t-btn--xs\">Xsmall</button>\n<button class=\"t-btn t-btn--primary t-btn--sm\">Small</button>\n<button class=\"t-btn t-btn--primary t-btn--md\">Medium</button>\n<button class=\"t-btn t-btn--primary t-btn--lg\">Large</button>\n<button class=\"t-btn t-btn--primary t-btn--xl\">XLarge</button>"
+   },
+   {
+    "label": "States",
+    "note": "Hover and focus are live — interact with them.",
+    "html": "<button class=\"t-btn t-btn--primary\">Default</button>\n<button class=\"t-btn t-btn--primary\" data-loading=\"true\">در حال ارسال</button>\n<button class=\"t-btn t-btn--primary\" disabled>Disabled</button>\n<button class=\"t-btn t-btn--outline\" disabled>Disabled outline</button>"
+   },
+   {
+    "label": "With icons",
+    "html": "<button class=\"t-btn t-btn--accent\">مسیریابی<svg class=\"t-icon t-icon--sm t-icon--directional\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M10 4 6 8l4 4V4z\"/></svg></button>\n<button class=\"t-btn t-btn--outline\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a5 5 0 0 0-5 5c0 3.5 5 9 5 9s5-5.5 5-9a5 5 0 0 0-5-5zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z\"/></svg>نزدیک من</button>\n<button class=\"t-btn t-btn--primary t-btn--block\">تماس با فروشگاه</button>"
+   }
+  ],
+  "react": "import { forwardRef } from 'react';\nimport clsx from 'clsx';\n\nexport const Button = forwardRef(function Button(\n  { variant = 'neutral', size = 'lg', block, loading, disabled,\n    iconStart, iconEnd, children, className, ...rest }, ref) {\n  return (\n    <button\n      ref={ref}\n      className={clsx('t-btn', `t-btn--${variant}`, `t-btn--${size}`, block && 't-btn--block', className)}\n      data-loading={loading || undefined}\n      aria-busy={loading || undefined}\n      disabled={disabled || loading}\n      {...rest}\n    >\n      {iconStart}\n      {children}\n      {iconEnd}\n    </button>\n  );\n});",
+  "classes": [
+   "t-btn",
+   "t-btn--primary",
+   "t-btn--accent",
+   "t-btn--neutral",
+   "t-btn--soft",
+   "t-btn--outline",
+   "t-btn--ghost",
+   "t-btn--xs",
+   "t-btn--sm",
+   "t-btn--md",
+   "t-btn--lg",
+   "t-btn--xl",
+   "t-btn--block"
+  ]
+ },
+ {
+  "name": "IconButton",
+  "slug": "icon-button",
+  "group": "Actions",
+  "status": "revised",
+  "legacy": [
+   "Button/Icon/Icon",
+   "Button/Icon/Blue Icon",
+   "Button/Icon/Ghost Icon",
+   "Button/Icon/Icon Rounded",
+   "Button/Icon"
+  ],
+  "summary": "A single icon as a target. Always carries an accessible name.",
+  "description": [
+   "The kit had four masters (<code>Icon</code>, <code>Blue Icon</code>, <code>Ghost Icon</code>, <code>Icon Rounded</code>) differing only in fill and radius. One component, two props."
+  ],
+  "use": [
+   "Toolbars, card corners, map controls, anywhere a label would not fit.",
+   "Pair with a tooltip on pointer devices.",
+   "Use <code>glass</code> over a map or photograph so the content behind stays readable."
+  ],
+  "avoid": [
+   "Icon-only for an unfamiliar or destructive action. Label it.",
+   "Ambiguous glyphs. If two icons in a row could mean the same thing, use labels."
+  ],
+  "anatomy": [
+   [
+    "Container",
+    "48px default, 32px small. Square with radius 12, or fully round."
+   ],
+   [
+    "Icon",
+    "20px, inherits colour from the container."
+   ]
+  ],
+  "props": [
+   [
+    "variant",
+    "'ghost' | 'accent' | 'glass'",
+    "'ghost'",
+    "glass is for use over a map or image."
+   ],
+   [
+    "size",
+    "'sm' | 'md'",
+    "'md'",
+    "32 / 48 px."
+   ],
+   [
+    "round",
+    "boolean",
+    "false",
+    "Full radius instead of 12px."
+   ],
+   [
+    "label",
+    "string",
+    "— (required)",
+    "Becomes aria-label. There is no unlabelled variant."
+   ]
+  ],
+  "a11y": [
+   "<code>label</code> is required and maps to <code>aria-label</code>. An icon button with no name is unusable by screen reader.",
+   "For a toggle, add <code>aria-pressed</code> and keep the name constant (\"افزودن به علاقه‌مندی\"), changing only the pressed state."
+  ],
+  "responsive": "48px on touch, 32px acceptable on pointer-fine surfaces. Never below 32px visually, never below 44px in target size.",
+  "specimens": [
+   {
+    "label": "Variants",
+    "html": "<button class=\"t-icon-btn\" aria-label=\"جستجو\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--accent\" aria-label=\"تماس\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M5 3a2 2 0 0 0-2 2c0 6.6 5.4 12 12 12a2 2 0 0 0 2-2v-2.3a1 1 0 0 0-.8-1l-2.7-.5a1 1 0 0 0-1 .4l-.8 1.1a9.6 9.6 0 0 1-4.1-4.1l1.1-.8a1 1 0 0 0 .4-1l-.5-2.7a1 1 0 0 0-1-.8H5z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بستن\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--round t-icon-btn--accent\" aria-label=\"افزودن\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10.8 3H9.2v6.2H3v1.6h6.2V17h1.6v-6.2H17V9.2h-6.2V3z\"/></svg></button>"
+   },
+   {
+    "label": "Glass, over content",
+    "note": "The glass variant is what makes a control readable on top of a map or a product photograph.",
+    "canvas": "map",
+    "stageClass": "spec__stage--center",
+    "html": "<button class=\"t-icon-btn t-icon-btn--glass\" aria-label=\"موقعیت من\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 6.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zM10.8 1H9.2v2.1a7 7 0 0 0-6.1 6.1H1v1.6h2.1a7 7 0 0 0 6.1 6.1V19h1.6v-2.1a7 7 0 0 0 6.1-6.1H19V9.2h-2.1a7 7 0 0 0-6.1-6.1V1z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--glass\" aria-label=\"لایه‌های نقشه\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"m10 2 8 4.5-8 4.5-8-4.5L10 2zm5.6 7.2L18 10.5 10 15l-8-4.5 2.4-1.3L10 12l5.6-2.8z\"/></svg></button>"
+   }
+  ],
+  "react": "export function IconButton({ variant = 'ghost', size = 'md', round, label, children, className, ...rest }) {\n  return (\n    <button\n      className={clsx('t-icon-btn', variant !== 'ghost' && `t-icon-btn--${variant}`,\n                      size === 'sm' && 't-icon-btn--sm', round && 't-icon-btn--round', className)}\n      aria-label={label}\n      {...rest}\n    >{children}</button>\n  );\n}",
+  "classes": [
+   "t-icon-btn",
+   "t-icon-btn--accent",
+   "t-icon-btn--sm",
+   "t-icon-btn--round",
+   "t-icon-btn--glass"
+  ]
+ },
+ {
+  "name": "BuyBoxButton",
+  "slug": "buy-box-button",
+  "group": "Actions",
+  "status": "stable",
+  "legacy": [
+   "Button/Buy box/Ad",
+   "Button/Buy box/Cheapest",
+   "Button/Offline Buy box/Ad"
+  ],
+  "summary": "The PDP commerce target: price, seller and action in one tap.",
+  "description": [
+   "Torob-specific and load-bearing. It is the row a shopper actually taps on a product page, so it carries the price as its primary content rather than a verb. The <code>ad</code> flag renders the آگهی marker — required disclosure, and deliberately quiet."
+  ],
+  "use": [
+   "On the product detail page, one per seller row.",
+   "Show the total price the shopper pays, including the currency word.",
+   "Mark sponsored placements with <code>ad</code>. Always. It is a disclosure, not a style."
+  ],
+  "avoid": [
+   "Hiding the ad marker to improve click-through.",
+   "Using it as a generic CTA. It means \"buy from this seller at this price\"."
+  ],
+  "anatomy": [
+   [
+    "Container",
+    "Full-width, min 44px, radius 12, brand gradient."
+   ],
+   [
+    "Price",
+    "16px ExtraBold, tabular figures, Persian numerals."
+   ],
+   [
+    "Meta",
+    "12px at 86% opacity — seller name, shipping, ad marker."
+   ]
+  ],
+  "props": [
+   [
+    "variant",
+    "'primary' | 'accent' | 'offline'",
+    "'primary'",
+    "offline is the un-filled treatment for a store with no online stock."
+   ],
+   [
+    "ad",
+    "boolean",
+    "false",
+    "Renders the آگهی disclosure."
+   ],
+   [
+    "price",
+    "string",
+    "—",
+    "Pre-formatted with Persian numerals."
+   ]
+  ],
+  "a11y": [
+   "The accessible name must include price and seller — \"۱۵٬۸۰۰٬۰۰۰ تومان، خرید از تکنولایف\" — not just \"خرید\".",
+   "The ad marker is real text, never a background image, so it reaches screen readers."
+  ],
+  "responsive": "Always block-level. Above md the meta line moves inline with the price rather than stacking.",
+  "specimens": [
+   {
+    "label": "Buy box",
+    "html": "<button class=\"t-buybox\" style=\"max-inline-size:343px\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__price\">۱۵٬۸۰۰٬۰۰۰ تومان</span>\n    <span class=\"t-buybox__meta\">خرید از تکنولایف · ارسال فوری</span>\n  </span>\n  <svg class=\"t-icon t-icon--directional\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M12 5 7 10l5 5V5z\"/></svg>\n</button>\n<button class=\"t-buybox\" style=\"max-inline-size:343px\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__price\">۱۶٬۱۰۰٬۰۰۰ تومان</span>\n    <span class=\"t-buybox__meta\">خرید از دیجی‌کالا · <span class=\"t-badge t-badge--ad\" style=\"vertical-align:middle\">آگهی</span></span>\n  </span>\n</button>\n<button class=\"t-buybox t-buybox--offline\" style=\"max-inline-size:343px\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__price\">۱۵٬۸۰۰٬۰۰۰ تومان</span>\n    <span class=\"t-buybox__meta\">ادکلن شهر · ۱ کیلومتر · فروش حضوری</span>\n  </span>\n</button>"
+   }
+  ],
+  "react": "export function BuyBoxButton({ variant = 'primary', price, meta, ad, ...rest }) {\n  return (\n    <button className={clsx('t-buybox', variant !== 'primary' && `t-buybox--${variant}`)} {...rest}>\n      <span className=\"t-buybox__body\">\n        <span className=\"t-buybox__price\">{price}</span>\n        <span className=\"t-buybox__meta\">\n          {meta}{ad && <> · <span className=\"t-badge t-badge--ad\">آگهی</span></>}\n        </span>\n      </span>\n    </button>\n  );\n}",
+  "classes": [
+   "t-buybox",
+   "t-buybox--offline"
+  ]
+ },
+ {
+  "name": "PriceDisplay",
+  "slug": "price-display",
+  "group": "Commerce",
+  "status": "new",
+  "legacy": [],
+  "summary": "The most-read element on any Torob surface.",
+  "description": [
+   "Never formalised in the kit, yet the price treatment repeats identically across every product card, store card and buy box in the source. Extracting it is the difference between one price format and forty.",
+   "Three rules make it work: <strong>tabular figures</strong> so a column of prices aligns; <strong>Persian numerals</strong> with the ٬ separator; and the currency word تومان always secondary, never competing with the number."
+  ],
+  "use": [
+   "Tabular figures in any list — a ragged price column is unreadable at a glance.",
+   "Use <code>from</code> when several sellers offer the product: «از ۱۶٬۷۰۰٬۰۰۰ تومان».",
+   "Out of stock is grey, not red. Unavailability is not an error."
+  ],
+  "avoid": [
+   "Proportional figures in lists.",
+   "Making تومان the same size as the number.",
+   "Red for every price — red is discount and brand. Overloading it kills the discount signal."
+  ],
+  "anatomy": [
+   [
+    "Value",
+    "16px ExtraBold, tabular, Persian numerals."
+   ],
+   [
+    "Unit",
+    "12px Medium secondary — تومان."
+   ],
+   [
+    "From",
+    "12px prefix for multi-seller ranges."
+   ],
+   [
+    "Was",
+    "12px struck through, secondary."
+   ]
+  ],
+  "props": [
+   [
+    "value",
+    "number | string",
+    "—",
+    "Formatted by the component."
+   ],
+   [
+    "size",
+    "'sm' | 'md' | 'lg'",
+    "'md'",
+    "14 / 16 / 20 px."
+   ],
+   [
+    "from",
+    "boolean",
+    "false",
+    "Prefixes از."
+   ],
+   [
+    "was",
+    "number",
+    "—",
+    "Struck-through original."
+   ],
+   [
+    "unavailable",
+    "boolean",
+    "false",
+    "Grey ناموجود treatment."
+   ]
+  ],
+  "a11y": [
+   "The accessible name must be spoken-readable: \"پانزده میلیون و هشتصد هزار تومان\" is not required, but \"۱۵٬۸۰۰٬۰۰۰ تومان\" must be one continuous string, not split across elements that a screen reader reads separately.",
+   "Struck-through prices need <code>&lt;s&gt;</code> plus a visually hidden \"قیمت قبلی\"."
+  ],
+  "responsive": "Size steps with context, not breakpoint: sm in a card, md in a list row, lg in a buy box.",
+  "specimens": [
+   {
+    "label": "Price treatments",
+    "canvas": "fog",
+    "stageClass": "spec__stage--stack",
+    "html": "<span class=\"t-price t-price--lg\"><span class=\"t-price__value\">۱۵٬۸۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span>\n<span class=\"t-price\"><span class=\"t-price__from\">از</span><span class=\"t-price__value\">۱۶٬۷۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span>\n<span class=\"t-price\"><span class=\"t-price__value\">۱۲٬۴۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span><s class=\"t-price__was\">۱۵٬۸۰۰٬۰۰۰</s></span>\n<span class=\"t-price t-price--unavailable\"><span class=\"t-price__value\">ناموجود</span></span>"
+   },
+   {
+    "label": "Tabular alignment in a list",
+    "note": "Tabular figures are what make this column scannable. Switch the specimen to English to see the same rule hold for Latin numerals.",
+    "canvas": "fog",
+    "stageClass": "spec__stage--stack",
+    "html": "<div class=\"t-list\" style=\"max-inline-size:320px;background:transparent\">\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md\">تکنولایف</span><span class=\"t-price t-price--sm\"><span class=\"t-price__value\">۱۵٬۸۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span></div>\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md\">دیجی‌کالا</span><span class=\"t-price t-price--sm\"><span class=\"t-price__value\">۱۶٬۱۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span></div>\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md\">ادکلن شهر</span><span class=\"t-price t-price--sm\"><span class=\"t-price__value\">۹٬۹۹۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span></div>\n</div>"
+   }
+  ],
+  "react": "const FA = '۰۱۲۳۴۵۶۷۸۹';\nexport const toFa = n => String(n).replace(/\\d/g, d => FA[+d]);\nexport const formatPrice = n => toFa(n.toLocaleString('en-US')).replace(/,/g, '٬');\n\nexport function PriceDisplay({ value, size = 'md', from, was, unavailable, unit = 'تومان' }) {\n  if (unavailable) return <span className=\"t-price t-price--unavailable\"><span className=\"t-price__value\">ناموجود</span></span>;\n  return (\n    <span className={clsx('t-price', size !== 'md' && `t-price--${size}`)}>\n      {from && <span className=\"t-price__from\">از</span>}\n      <span className=\"t-price__value\">{formatPrice(value)}</span>\n      <span className=\"t-price__unit\">{unit}</span>\n      {was != null && <s className=\"t-price__was\">{formatPrice(was)}</s>}\n    </span>\n  );\n}",
+  "classes": [
+   "t-price",
+   "t-price--lg",
+   "t-price--unavailable",
+   "t-price--sm"
+  ]
+ },
+ {
+  "name": "Badge",
+  "slug": "badge",
+  "group": "Commerce",
+  "status": "revised",
+  "legacy": [
+   "Badge/Card",
+   "Badge/Card-Picture",
+   "Badge/Card/Guarantee",
+   "Badge/Card/Normal",
+   "Badge/Card/Open",
+   "Badge / Ad on Buy Box"
+  ],
+  "summary": "A short status or attribute marker.",
+  "description": [
+   "Six masters differing only in fill and placement. One component with <code>tone</code>, plus an <code>onImage</code> flag that swaps to glass so the badge stays legible over a product photograph, which is exactly what <code>Badge/Card-Picture</code> was.",
+   "Note: the swatch names in the source misspell it \"Gaurantee\". Corrected to <code>guarantee</code> throughout."
+  ],
+  "use": [
+   "One or two words. A badge is not a sentence.",
+   "The آگهی marker is a legal disclosure, always show it, always as real text.",
+   "At most two badges per card."
+  ],
+  "avoid": [
+   "Badges as buttons. If it is tappable, it is a Chip.",
+   "Colour alone to carry meaning — pair it with the word.",
+   "Stacking three or more; the card stops being scannable."
+  ],
+  "anatomy": [
+   [
+    "Container",
+    "20px (24 at lg), radius 4, no border."
+   ],
+   [
+    "Dot",
+    "Optional 6px leading indicator for live status."
+   ],
+   [
+    "Label",
+    "12px Bold, never wraps."
+   ]
+  ],
+  "props": [
+   [
+    "tone",
+    "'neutral' | 'positive' | 'caution' | 'critical' | 'info' | 'guarantee' | 'brand' | 'ad'",
+    "'neutral'",
+    ""
+   ],
+   [
+    "size",
+    "'md' | 'lg'",
+    "'md'",
+    "20 / 24 px."
+   ],
+   [
+    "onImage",
+    "boolean",
+    "false",
+    "Glass treatment for use over photography."
+   ],
+   [
+    "dot",
+    "boolean",
+    "false",
+    "Live status indicator."
+   ]
+  ],
+  "a11y": [
+   "Badges are content, not decoration, never <code>aria-hidden</code>.",
+   "A dot-only badge needs a visually hidden label."
+  ],
+  "responsive": "Never resizes. If the row is tight, drop badges by priority rather than shrinking them.",
+  "specimens": [
+   {
+    "label": "Tones",
+    "canvas": "fog",
+    "html": "<span class=\"t-badge t-badge--guarantee\">ضمانت ترب</span>\n<span class=\"t-badge t-badge--positive\"><span class=\"t-badge__dot\"></span>باز الان</span>\n<span class=\"t-badge t-badge--info\">نمایندگی رسمی</span>\n<span class=\"t-badge t-badge--ad\">آگهی</span>\n<span class=\"t-badge t-badge--brand\">۱۵٪ تخفیف</span>\n<span class=\"t-badge\">کالابرگ</span>\n<span class=\"t-badge t-badge--caution\">موجودی کم</span>\n<span class=\"t-badge t-badge--critical\">ناموجود</span>"
+   },
+   {
+    "label": "Over a photograph",
+    "canvas": "photo",
+    "html": "<span class=\"t-badge t-badge--on-image t-badge--lg\">ارسال فوری</span>\n<span class=\"t-badge t-badge--on-image t-badge--lg\">۳ فروشگاه</span>\n<span class=\"t-badge t-badge--brand t-badge--lg\">۱۵٪</span>"
+   }
+  ],
+  "react": "export function Badge({ tone = 'neutral', size = 'md', onImage, dot, children }) {\n  return (\n    <span className={clsx('t-badge', tone !== 'neutral' && `t-badge--${tone}`,\n                          size === 'lg' && 't-badge--lg', onImage && 't-badge--on-image')}>\n      {dot && <span className=\"t-badge__dot\" />}\n      {children}\n    </span>\n  );\n}",
+  "classes": [
+   "t-badge",
+   "t-badge--guarantee",
+   "t-badge--positive",
+   "t-badge--info",
+   "t-badge--ad",
+   "t-badge--brand",
+   "t-badge--caution",
+   "t-badge--critical",
+   "t-badge--on-image",
+   "t-badge--lg"
+  ]
+ },
+ {
+  "name": "ProductCard",
+  "slug": "product-card",
+  "group": "Commerce",
+  "status": "revised",
+  "legacy": [
+   "Product Card/Normal",
+   "Product Card/Small",
+   "Product Card/Small Empty",
+   "Product Card/More/Light",
+   "Product Card/More/Dark",
+   "Product Card/Empty/Light",
+   "Product Card/Empty/Dark",
+   "Product Card",
+   "Product Pic/Normal",
+   "Product Pic/Small"
+  ],
+  "summary": "A product in a grid or rail.",
+  "description": [
+   "Ten masters collapse to one component with three props. Light and dark were separate symbols — they are now the same component under a theme. <code>More</code> and <code>Empty</code> were separate masters too; they are states, not components.",
+   "<code>Product Pic</code> is split out as <a href=\"./product-thumb.html\">ProductThumb</a>, because the image block is reused on its own inside store cards."
+  ],
+  "use": [
+   "Two-up on phones: that is Torob's density and it is correct.",
+   "Clamp the title to two lines. A third line pushes the price below the fold.",
+   "Show the seller count where it exists: «در ۷۹ فروشگاه»."
+  ],
+  "avoid": [
+   "Truncating the price to fit the title.",
+   "More than two badges over the image.",
+   "Different card heights in one row — clamp so they align."
+  ],
+  "anatomy": [
+   [
+    "Thumb",
+    "153:186 aspect, radius 12, with a badge slot and an action slot at opposite top corners."
+   ],
+   [
+    "Title",
+    "12px, clamped to two lines."
+   ],
+   [
+    "Price",
+    "PriceDisplay, sm."
+   ],
+   [
+    "Meta",
+    "Seller count or attribute tags."
+   ]
+  ],
+  "props": [
+   [
+    "size",
+    "'md' | 'sm'",
+    "'md'",
+    "153px / 96px intrinsic."
+   ],
+   [
+    "state",
+    "'default' | 'empty' | 'more'",
+    "'default'",
+    "empty is a placeholder slot; more is a rail terminator."
+   ],
+   [
+    "badges / action",
+    "ReactNode",
+    "—",
+    "Over the image."
+   ]
+  ],
+  "a11y": [
+   "The whole card is one link with one accessible name — not a link on the image plus another on the title.",
+   "The favourite button sits outside that link, or nesting makes it unreachable.",
+   "Images need real <code>alt</code>; decorative badges over them do not repeat it."
+  ],
+  "responsive": "2-up under 480, 3-up to 768, 4-up to 1024, 5-up to 1280, then 6-up. The card widens; the aspect ratio never changes.",
+  "specimens": [
+   {
+    "label": "Product grid",
+    "canvas": "plain",
+    "html": "<div class=\"t-grid-products\" style=\"inline-size:100%;max-inline-size:520px\">\n  <a class=\"t-product-card\" href=\"#\">\n    <div class=\"t-thumb\"><div class=\"t-thumb__badges\"><span class=\"t-badge t-badge--on-image\">ارسال فوری</span></div><div class=\"t-thumb__action\"><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"افزودن به علاقه‌مندی\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 14S1.5 9.9 1.5 5.8A3.3 3.3 0 0 1 8 4.3a3.3 3.3 0 0 1 6.5 1.5C14.5 9.9 8 14 8 14z\"/></svg></button></div></div>\n    <div class=\"t-product-card__title t-clamp-2\">کازاموراتی مفیستو ادکلن شرکتی ۱۰۰ میل</div>\n    <span class=\"t-price t-price--sm\"><span class=\"t-price__from\">از</span><span class=\"t-price__value\">۱۶٬۷۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span>\n    <div class=\"t-product-card__meta\">در ۷۹ فروشگاه</div>\n  </a>\n  <a class=\"t-product-card\" href=\"#\">\n    <div class=\"t-thumb\"><div class=\"t-thumb__badges\"><span class=\"t-badge t-badge--brand t-badge--on-image\">۱۵٪</span></div></div>\n    <div class=\"t-product-card__title t-clamp-2\">گوشی اپل iPhone 11 حافظه ۱۲۸ گیگابایت</div>\n    <span class=\"t-price t-price--sm\"><span class=\"t-price__value\">۲۳٬۵۵۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span>\n    <div class=\"t-product-card__meta\">در ۱۲ فروشگاه</div>\n  </a>\n</div>"
+   },
+   {
+    "label": "Loading and terminal states",
+    "canvas": "plain",
+    "html": "<div class=\"t-grid-products\" style=\"inline-size:100%;max-inline-size:520px\">\n  <div class=\"t-product-card\"><div class=\"t-thumb t-skeleton\"></div><div class=\"t-skeleton t-skeleton--text\" style=\"inline-size:92%\"></div><div class=\"t-skeleton t-skeleton--text\" style=\"inline-size:64%\"></div><div class=\"t-skeleton t-skeleton--text\" style=\"inline-size:44%;block-size:1.3em\"></div></div>\n  <a class=\"t-product-card t-product-card--more\" href=\"#\">مشاهده همه<svg class=\"t-icon t-icon--sm t-icon--directional\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M10 3 5 8l5 5V3z\"/></svg></a>\n</div>"
+   }
+  ],
+  "react": "export function ProductCard({ product, size = 'md', state = 'default' }) {\n  if (state === 'more') return <a className=\"t-product-card t-product-card--more\" href={product.href}>مشاهده همه<ChevronStart /></a>;\n  if (state === 'empty') return <div className=\"t-product-card t-product-card--empty\" aria-hidden=\"true\" />;\n  return (\n    <a className={clsx('t-product-card', size === 'sm' && 't-product-card--sm')} href={product.href}>\n      <ProductThumb src={product.image} alt={product.title} size={size} badges={product.badges} />\n      <div className=\"t-product-card__title t-clamp-2\">{product.title}</div>\n      <PriceDisplay value={product.priceFrom} from size=\"sm\" />\n      <div className=\"t-product-card__meta\">در {toFa(product.sellerCount)} فروشگاه</div>\n    </a>\n  );\n}",
+  "classes": [
+   "t-product-card",
+   "t-product-card--more"
+  ]
+ },
+ {
+  "name": "ProductThumb",
+  "slug": "product-thumb",
+  "group": "Commerce",
+  "status": "revised",
+  "legacy": [
+   "Product Pic/Normal",
+   "Product Pic/Small"
+  ],
+  "summary": "The product image block, with its badge and action slots.",
+  "description": [
+   "Split out of ProductCard because it is reused on its own — inside store-card rails, in the PDP gallery, and in search suggestions. Two masters in the source, duplicated four times between them.",
+   "The aspect ratio is fixed at <strong>153:186</strong> (the source's Normal size) and never changes. Product photography arrives at every ratio imaginable; a fixed frame with <code>object-fit: cover</code> is what keeps a grid from looking ragged."
+  ],
+  "use": [
+   "Always give a real <code>alt</code> — the product title.",
+   "Badges go at the leading top corner, the favourite action at the trailing top corner. They must never collide.",
+   "Show the subtle ground while the image loads; the frame reserves its own space so nothing shifts."
+  ],
+  "avoid": [
+   "Letting the image dictate the height. That is what makes a grid ragged.",
+   "More than two badges — the photograph disappears under them.",
+   "A favourite button nested inside the card's link. It becomes unreachable."
+  ],
+  "anatomy": [
+   [
+    "Frame",
+    "153:186 aspect, radius 12, overflow hidden, subtle ground."
+   ],
+   [
+    "Image",
+    "<code>object-fit: cover</code>, fills the frame."
+   ],
+   [
+    "Badge slot",
+    "Leading top, stacks downward."
+   ],
+   [
+    "Action slot",
+    "Trailing top, single control."
+   ]
+  ],
+  "props": [
+   [
+    "size",
+    "'md' | 'sm' | 'square'",
+    "'md'",
+    "153:186 / 96:112 / 1:1."
+   ],
+   [
+    "src / alt",
+    "string",
+    "—",
+    "alt is required."
+   ],
+   [
+    "badges / action",
+    "ReactNode",
+    "—",
+    "Corner slots."
+   ]
+  ],
+  "a11y": [
+   "<code>alt</code> carries the product title. A decorative badge over the image does not repeat it.",
+   "The action slot sits outside the card link, or nesting makes it unreachable by keyboard."
+  ],
+  "responsive": "The frame widens with its grid cell; the aspect ratio is constant at every breakpoint.",
+  "specimens": [
+   {
+    "label": "Sizes and slots",
+    "canvas": "fog",
+    "html": "<div style=\"inline-size:153px\"><div class=\"t-thumb\"><div class=\"t-thumb__badges\"><span class=\"t-badge t-badge--on-image\">ارسال فوری</span></div><div class=\"t-thumb__action\"><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"افزودن به علاقه‌مندی\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 14S1.5 9.9 1.5 5.8A3.3 3.3 0 0 1 8 4.3a3.3 3.3 0 0 1 6.5 1.5C14.5 9.9 8 14 8 14z\"/></svg></button></div></div></div>\n<div style=\"inline-size:96px\"><div class=\"t-thumb t-thumb--sm\"></div></div>\n<div style=\"inline-size:96px\"><div class=\"t-thumb t-thumb--square\"></div></div>\n<div style=\"inline-size:153px\"><div class=\"t-thumb t-skeleton\"></div></div>"
+   }
+  ],
+  "react": "export function ProductThumb({ src, alt, size = 'md', badges, action }) {\n  return (\n    <div className={clsx('t-thumb', size !== 'md' && `t-thumb--${size}`)}>\n      {src && <img src={src} alt={alt} loading=\"lazy\" />}\n      {badges && <div className=\"t-thumb__badges\">{badges}</div>}\n      {action && <div className=\"t-thumb__action\">{action}</div>}\n    </div>\n  );\n}",
+  "classes": [
+   "t-thumb",
+   "t-thumb--sm",
+   "t-thumb--square"
+  ]
+ },
+ {
+  "name": "StoreCard",
+  "slug": "store-card",
+  "group": "Commerce",
+  "status": "revised",
+  "legacy": [
+   "Store-Card/VLP/With product/Light",
+   "Store-Card/VLP/With product/Dark",
+   "Store-Card/VLP/Without product/Light",
+   "Store-Card/VLP/Without product/Dark",
+   "Store-Card/PDP/No product/Light",
+   "Store-Card/PDP/No product/Dark",
+   "Store-Card/PDP/Online",
+   "Store-Card/PDP/Offline",
+   "Store-Card/PDP/Online-Offline",
+   "Store-Card/With product",
+   "Store-Card/No product"
+  ],
+  "summary": "A nearby store, with or without its product rail.",
+  "description": [
+   "The most-duplicated component in the source: eleven masters across two contexts (VLP and PDP), two themes and four content shapes. Theme collapses into the token layer, so what remains is one component with a <code>context</code> and an optional rail.",
+   "The hairline rules above and below reproduce <code>Store Card - Light/Dark</code> exactly — two zero-blur shadows at ±0.5px, which is how the source drew a divider without a border."
+  ],
+  "use": [
+   "Lead with distance — it is the reason the shopper is on this screen.",
+   "Show the product rail only when the store has products connected to Torob.",
+   "Keep تماس and مسیریابی as the two primary actions; everything else goes in an overflow."
+  ],
+  "avoid": [
+   "Hiding opening hours. باز / بسته changes whether the card is actionable at all.",
+   "A rail with fewer than three products — use the empty state instead.",
+   "Separate light and dark components. That is what tokens are for."
+  ],
+  "anatomy": [
+   [
+    "Head",
+    "Logo 48px, name, meta row with distance, rating, hours."
+   ],
+   [
+    "Badges",
+    "Trust markers: ضمانت ترب, کالابرگ, پرداخت قسطی."
+   ],
+   [
+    "Rail",
+    "Horizontal product scroll, snap-aligned, 96px cells."
+   ],
+   [
+    "Actions",
+    "Hairline-separated footer, equal-width buttons."
+   ]
+  ],
+  "props": [
+   [
+    "context",
+    "'vlp' | 'pdp'",
+    "'vlp'",
+    "VLP shows the rail; PDP shows the price for this product."
+   ],
+   [
+    "glass",
+    "boolean",
+    "false",
+    "For use over the map."
+   ],
+   [
+    "store",
+    "Store",
+    "—",
+    ""
+   ],
+   [
+    "products",
+    "Product[]",
+    "[]",
+    "Empty renders the no-products state."
+   ]
+  ],
+  "a11y": [
+   "The card is an <code>&lt;article&gt;</code> with an <code>&lt;h3&gt;</code> store name — not a giant link, because it contains its own actions.",
+   "The rail is a labelled scroll region reachable by keyboard.",
+   "Distance and hours are text, never icon-only."
+  ],
+  "responsive": "Full width to md. From lg it caps at 420px inside the split layout. The rail scroll-snaps at every size.",
+  "specimens": [
+   {
+    "label": "With product rail",
+    "canvas": "plain",
+    "html": "<article class=\"t-store-card\" style=\"max-inline-size:375px;border-radius:12px\">\n  <div class=\"t-store-card__head\">\n    <div class=\"t-store-card__logo\"></div>\n    <div class=\"t-store-card__body\">\n      <h3 class=\"t-store-card__name\">ادکلن شهر</h3>\n      <div class=\"t-store-card__meta\">\n        <span class=\"t-store-card__distance\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z\"/></svg>۱ کیلومتر</span>\n        <span class=\"t-rating\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 1.8 1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6z\"/></svg><span class=\"t-rating__value\">۴٫۶</span></span>\n        <span>باز تا ۲۲:۳۰</span>\n      </div>\n    </div>\n  </div>\n  <div class=\"t-store-card__badges\">\n    <span class=\"t-badge t-badge--guarantee\">ضمانت ترب</span>\n    <span class=\"t-badge\">کالابرگ</span>\n    <span class=\"t-badge\">پرداخت قسطی</span>\n  </div>\n  <div class=\"t-store-card__rail\">\n    <div><div class=\"t-thumb t-thumb--sm\"></div><div class=\"t-product-card__meta t-clamp-2\" style=\"margin-block-start:4px\">ادکلن کازاموراتی</div></div>\n    <div><div class=\"t-thumb t-thumb--sm\"></div><div class=\"t-product-card__meta t-clamp-2\" style=\"margin-block-start:4px\">اسپری بدن نویا</div></div>\n    <div><div class=\"t-thumb t-thumb--sm\"></div><div class=\"t-product-card__meta t-clamp-2\" style=\"margin-block-start:4px\">ادکلن دیور ساواج</div></div>\n    <div><div class=\"t-thumb t-thumb--sm\"></div><div class=\"t-product-card__meta t-clamp-2\" style=\"margin-block-start:4px\">عطر جیبی</div></div>\n  </div>\n  <div class=\"t-store-card__actions\">\n    <button class=\"t-btn t-btn--primary t-btn--md\">تماس تلفنی</button>\n    <button class=\"t-btn t-btn--outline t-btn--md\">مسیریابی</button>\n  </div>\n</article>"
+   },
+   {
+    "label": "Glass, over the map",
+    "canvas": "map",
+    "stageClass": "spec__stage--center",
+    "html": "<article class=\"t-store-card t-store-card--glass\" style=\"max-inline-size:340px\">\n  <div class=\"t-store-card__head\">\n    <div class=\"t-store-card__logo\"></div>\n    <div class=\"t-store-card__body\">\n      <h3 class=\"t-store-card__name\">مرکز خرید پالادیوم</h3>\n      <div class=\"t-store-card__meta\"><span class=\"t-store-card__distance\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z\"/></svg>۵۵۰ متر</span><span>۲۳ فروشگاه</span></div>\n    </div>\n  </div>\n</article>"
+   },
+   {
+    "label": "No products connected",
+    "canvas": "plain",
+    "note": "Taken verbatim from screen 4-4 in the source: a real state with a real recovery path, not a shrug.",
+    "html": "<article class=\"t-store-card\" style=\"max-inline-size:375px;border-radius:12px\">\n  <div class=\"t-store-card__head\">\n    <div class=\"t-store-card__logo\"></div>\n    <div class=\"t-store-card__body\">\n      <h3 class=\"t-store-card__name\">گالری رز</h3>\n      <div class=\"t-store-card__meta\"><span class=\"t-store-card__distance\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z\"/></svg>۵۵۰ متر</span><span>بسته — باز می‌شود ۹:۰۰</span></div>\n    </div>\n  </div>\n  <div class=\"t-empty t-empty--inline\">\n    <div class=\"t-empty__art\"><svg width=\"30\" height=\"30\" viewBox=\"0 0 32 32\" fill=\"currentColor\"><path d=\"M26 8h-4V6a4 4 0 0 0-8 0v2h-4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-10-2a2 2 0 0 1 4 0v2h-4zm10 18H10V10h16z\"/></svg></div>\n    <div class=\"t-empty__title\">محصولی اضافه نشده</div>\n    <div class=\"t-empty__desc\">برای اطلاع از محصولات فروشگاه با آن تماس بگیرید.</div>\n    <div class=\"t-empty__actions\"><button class=\"t-btn t-btn--primary t-btn--md\">تماس تلفنی</button></div>\n  </div>\n</article>"
+   }
+  ],
+  "react": "export function StoreCard({ store, products = [], context = 'vlp', glass }) {\n  return (\n    <article className={clsx('t-store-card', glass && 't-store-card--glass')}>\n      <div className=\"t-store-card__head\">\n        <div className=\"t-store-card__logo\"><img src={store.logo} alt=\"\" /></div>\n        <div className=\"t-store-card__body\">\n          <h3 className=\"t-store-card__name\">{store.name}</h3>\n          <div className=\"t-store-card__meta\">\n            <span className=\"t-store-card__distance\"><PinIcon />{formatDistance(store.distance)}</span>\n            {store.rating && <Rating value={store.rating} />}\n            <OpeningHours hours={store.hours} />\n          </div>\n        </div>\n      </div>\n      {store.badges?.length > 0 && (\n        <div className=\"t-store-card__badges\">{store.badges.map(b => <Badge key={b} tone={BADGE_TONE[b]}>{BADGE_LABEL[b]}</Badge>)}</div>\n      )}\n      {context === 'vlp' && (products.length\n        ? <div className=\"t-store-card__rail\" role=\"region\" aria-label={`محصولات ${store.name}`}>\n            {products.map(p => <ProductCard key={p.id} product={p} size=\"sm\" />)}\n          </div>\n        : <EmptyState inline title=\"محصولی اضافه نشده\"\n                      desc=\"برای اطلاع از محصولات فروشگاه با آن تماس بگیرید.\"\n                      action={<Button variant=\"primary\" size=\"md\">تماس تلفنی</Button>} />)}\n      <div className=\"t-store-card__actions\">\n        <Button variant=\"primary\" size=\"md\">تماس تلفنی</Button>\n        <Button variant=\"outline\" size=\"md\">مسیریابی</Button>\n      </div>\n    </article>\n  );\n}",
+  "classes": [
+   "t-store-card",
+   "t-store-card--glass"
+  ]
+ },
+ {
+  "name": "MapPin",
+  "slug": "map-pin",
+  "group": "Commerce",
+  "status": "revised",
+  "legacy": [
+   "POI/Selected + Price",
+   "POI/Selected",
+   "POI/Normal",
+   "POI/Dot",
+   "POI/Cluster",
+   "Pin",
+   "Open Pin/Light",
+   "Close Pin/Light",
+   "Open Pin/Dark",
+   "Close Pin/Dark"
+  ],
+  "summary": "A store on the map. Four densities, one component.",
+  "description": [
+   "Ten masters. <code>POI</code> is an abbreviation nobody outside mapping uses, so it becomes <code>MapPin</code>. <code>Close Pin</code> is renamed <code>Closed</code> — an adjective, not a verb; \"close pin\" reads as an instruction.",
+   "The four densities are a zoom ladder, not four components: <code>dot</code> when the map is zoomed out, <code>cluster</code> when pins would overlap, <code>pin</code> at street level, and <code>pin</code> with a price when the shopper is comparing."
+  ],
+  "use": [
+   "Dots below street zoom; pins with prices only when comparing.",
+   "Cluster whenever pins would overlap — a pile of pins is worse than a number.",
+   "Selection grows the pin and switches it to blue."
+  ],
+  "avoid": [
+   "Prices on every pin at city zoom. The map becomes unreadable.",
+   "Brand red for the selected state — red is the resting pin.",
+   "Pins smaller than 32px. They cannot be tapped."
+  ],
+  "anatomy": [
+   [
+    "Body",
+    "32px pill, brand fill, elevation-2."
+   ],
+   [
+    "Tail",
+    "6px triangle that inherits the body colour."
+   ],
+   [
+    "Dot",
+    "8px, secondary."
+   ],
+   [
+    "Cluster",
+    "48px circle, opaque, hairline border, tabular count."
+   ]
+  ],
+  "props": [
+   [
+    "variant",
+    "'pin' | 'dot' | 'cluster'",
+    "'pin'",
+    ""
+   ],
+   [
+    "selected",
+    "boolean",
+    "false",
+    "Scales 1.12 and switches to accent."
+   ],
+   [
+    "price / count",
+    "string | number",
+    "—",
+    ""
+   ]
+  ],
+  "a11y": [
+   "Each pin is a button with an accessible name that includes the store and price.",
+   "The map needs a list equivalent — a map alone is not accessible. That is what the Switch component is for."
+  ],
+  "responsive": "Identical at every breakpoint. Density is driven by zoom level, never by viewport.",
+  "specimens": [
+   {
+    "label": "Zoom ladder",
+    "canvas": "map",
+    "stageClass": "spec__stage--center",
+    "html": "<div data-pin-group style=\"display:flex;gap:26px;align-items:center\">\n  <button class=\"t-pin\" aria-pressed=\"false\" aria-label=\"ادکلن شهر، ۱۵٬۸۰۰٬۰۰۰ تومان\"><span class=\"t-pin__body\">۱۵٫۸ م‌ت</span><span class=\"t-pin__tail\"></span></button>\n  <button class=\"t-pin\" aria-pressed=\"true\" aria-label=\"عطر سرای نیک، ۶٬۲۰۰٬۰۰۰ تومان\"><span class=\"t-pin__body\">۶٫۲ م‌ت</span><span class=\"t-pin__tail\"></span></button>\n  <button class=\"t-pin\" aria-pressed=\"false\" aria-label=\"گالری رز\"><span class=\"t-pin__body\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z\"/></svg></span><span class=\"t-pin__tail\"></span></button>\n  <span class=\"t-pin--dot\" role=\"img\" aria-label=\"فروشگاه\"></span>\n  <button class=\"t-cluster\" aria-label=\"۲۳ فروشگاه در این ناحیه\">۲۳</button>\n</div>",
+    "note": "Pins are live — click to change selection."
+   }
+  ],
+  "react": "export function MapPin({ variant = 'pin', selected, price, count, label }) {\n  if (variant === 'dot') return <span className=\"t-pin--dot\" role=\"img\" aria-label={label} />;\n  if (variant === 'cluster') return <button className=\"t-cluster\" aria-label={`${toFa(count)} فروشگاه در این ناحیه`}>{toFa(count)}</button>;\n  return (\n    <button className=\"t-pin\" aria-pressed={!!selected} aria-label={label}>\n      <span className=\"t-pin__body\">{price ?? <PinIcon />}</span>\n      <span className=\"t-pin__tail\" />\n    </button>\n  );\n}",
+  "classes": [
+   "t-pin",
+   "t-pin--dot"
+  ]
+ },
+ {
+  "name": "ListItem",
+  "slug": "list-item",
+  "group": "Commerce",
+  "status": "revised",
+  "legacy": [
+   "List / Item",
+   "List / last item"
+  ],
+  "summary": "A row in a list. The last row is not a separate component.",
+  "description": [
+   "<code>List / last item</code> existed only because Sketch cannot express <code>:last-child</code>. In code, the divider is removed by a selector — there is one component."
+  ],
+  "use": [
+   "Recent searches, settings, spec sheets, seller lists.",
+   "Use <code>--zebra</code> for dense spec tables: that is the <code>Spec / Desc / Even cell</code> style from the source."
+  ],
+  "avoid": [
+   "A separate last-row component.",
+   "Rows below 44px.",
+   "Two competing tap targets in one row without separating them visually."
+  ],
+  "anatomy": [
+   [
+    "Row",
+    "56px minimum, 16px inline padding, hairline bottom."
+   ],
+   [
+    "Lead / Trail",
+    "Icon or control slots at the two inline ends."
+   ],
+   [
+    "Body",
+    "Title 14px + optional 12px secondary."
+   ]
+  ],
+  "props": [
+   [
+    "lead / trail",
+    "ReactNode",
+    "—",
+    ""
+   ],
+   [
+    "title / subtitle",
+    "string",
+    "—",
+    ""
+   ],
+   [
+    "as",
+    "'button' | 'a' | 'div'",
+    "'button'",
+    "Non-interactive rows must not be buttons."
+   ]
+  ],
+  "a11y": [
+   "A non-interactive row is a <code>&lt;div&gt;</code> or <code>&lt;li&gt;</code>, never a disabled button.",
+   "When the row and its trailing control both act, they are separate targets with separate names."
+  ],
+  "responsive": "56px throughout. Above lg, dense lists may drop to 48px.",
+  "specimens": [
+   {
+    "label": "Recent searches",
+    "canvas": "plain",
+    "html": "<div class=\"t-list\" style=\"max-inline-size:340px\">\n  <button class=\"t-list-item\"><span class=\"t-list-item__lead\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 2a8 8 0 1 0 8 8h-1.6A6.4 6.4 0 1 1 10 3.6zM9.2 6v4.6l3.6 2.1.8-1.3-3-1.7V6z\"/></svg></span><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">ادکلن کازاموراتی</span></span><span class=\"t-list-item__trail\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></span></button>\n  <button class=\"t-list-item\"><span class=\"t-list-item__lead\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 2a8 8 0 1 0 8 8h-1.6A6.4 6.4 0 1 1 10 3.6zM9.2 6v4.6l3.6 2.1.8-1.3-3-1.7V6z\"/></svg></span><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">گوشی اپل استوک</span></span><span class=\"t-list-item__trail\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></span></button>\n  <button class=\"t-list-item\"><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">مرکز خرید پالادیوم</span><span class=\"t-list-item__sub\">۲۳ فروشگاه · ۱٫۲ کیلومتر</span></span><span class=\"t-list-item__trail\"><svg class=\"t-icon t-icon--sm t-icon--directional\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M10 3 5 8l5 5V3z\"/></svg></span></button>\n</div>"
+   },
+   {
+    "label": "Spec table, zebra",
+    "canvas": "plain",
+    "html": "<div class=\"t-list t-list--zebra\" style=\"max-inline-size:340px\">\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md t-tone-secondary\">سیستم عامل</span><span class=\"t-body-md-strong\">iOS ۲۶</span></div>\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md t-tone-secondary\">ظرفیت باتری</span><span class=\"t-body-md-strong\">۴۸۳۲ میلی‌آمپرساعت</span></div>\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md t-tone-secondary\">کیفیت دوربین اصلی</span><span class=\"t-body-md-strong\">۴۸ مگاپیکسل</span></div>\n</div>"
+   }
+  ],
+  "react": "export function ListItem({ as: As = 'button', lead, trail, title, subtitle, ...rest }) {\n  return (\n    <As className=\"t-list-item\" {...rest}>\n      {lead && <span className=\"t-list-item__lead\">{lead}</span>}\n      <span className=\"t-list-item__body\">\n        <span className=\"t-list-item__title\">{title}</span>\n        {subtitle && <span className=\"t-list-item__sub\">{subtitle}</span>}\n      </span>\n      {trail && <span className=\"t-list-item__trail\">{trail}</span>}\n    </As>\n  );\n}",
+  "classes": [
+   "t-list-item"
+  ]
+ },
+ {
+  "name": "Toast",
+  "slug": "toast",
+  "group": "Feedback",
+  "status": "new",
+  "legacy": [],
+  "summary": "Confirms something happened. Never blocks.",
+  "description": [
+   "The single largest gap in the source kit. Twenty-nine screens, not one confirmation of an action.",
+   "Torob toasts are <strong>bottom-anchored</strong>. The industry default is top-right, but the top of a Torob screen is search and the bottom is where the thumb already is. Bottom-anchored also means a toast never covers the header the user is navigating with."
+  ],
+  "use": [
+   "Confirm an action the user took: «به علاقه‌مندی‌ها اضافه شد».",
+   "Offer undo when the action is reversible: that is what makes a toast better than a dialog.",
+   "4–5 seconds. Longer for anything with an action."
+  ],
+  "avoid": [
+   "Errors that need a decision. Use Alert or a dialog.",
+   "Stacking more than three; collapse to a count.",
+   "A toast for something the UI already shows — if the heart filled in, the toast is noise."
+  ],
+  "anatomy": [
+   [
+    "Region",
+    "Fixed bottom, inline-inset 16, safe-area aware. Above md it caps at 380px and hugs the inline end."
+   ],
+   [
+    "Toast",
+    "Inverse surface, radius 12, elevation-3."
+   ],
+   [
+    "Action",
+    "Optional undo — underlined, inherits the inverse colour."
+   ],
+   [
+    "Close",
+    "Always present when there is an action."
+   ]
+  ],
+  "props": [
+   [
+    "tone",
+    "'default' | 'positive' | 'critical' | 'caution'",
+    "'default'",
+    ""
+   ],
+   [
+    "title / desc",
+    "string",
+    "—",
+    ""
+   ],
+   [
+    "action",
+    "{ label, onClick }",
+    "—",
+    "Usually undo."
+   ],
+   [
+    "duration",
+    "number",
+    "4200",
+    "Milliseconds. Pass 0 to require dismissal."
+   ]
+  ],
+  "a11y": [
+   "The region is <code>role=\"status\"</code> with <code>aria-live=\"polite\"</code> — announced without stealing focus.",
+   "Critical toasts use <code>role=\"alert\"</code> and <code>aria-live=\"assertive\"</code>. Use that sparingly; it interrupts.",
+   "A toast with an action must not auto-dismiss before a keyboard user can reach it — extend to at least 8 seconds, or make it persistent.",
+   "Never put the only path to an action inside a toast."
+  ],
+  "responsive": "Full-width inset on phones; 380px anchored to the inline end from md. Always above the bottom navigation.",
+  "specimens": [
+   {
+    "label": "Live toasts",
+    "note": "These fire real toasts into the page — bottom of the viewport.",
+    "canvas": "fog",
+    "html": "<button class=\"t-btn t-btn--outline t-btn--md\" onclick=\"torobToast({title:'به علاقه‌مندی‌ها اضافه شد',action:'واگرد'})\">Default + undo</button>\n<button class=\"t-btn t-btn--outline t-btn--md\" onclick=\"torobToast({variant:'positive',title:'آدرس ذخیره شد',desc:'می‌توانید از حساب کاربری ویرایش کنید.'})\">Positive</button>\n<button class=\"t-btn t-btn--outline t-btn--md\" onclick=\"torobToast({variant:'critical',title:'اتصال برقرار نشد',desc:'دوباره تلاش کنید.',action:'تلاش مجدد'})\">Critical</button>\n<button class=\"t-btn t-btn--outline t-btn--md\" onclick=\"torobToast({variant:'caution',title:'موجودی این فروشگاه کم است'})\">Caution</button>"
+   },
+   {
+    "label": "Anatomy",
+    "canvas": "plain",
+    "html": "<div class=\"t-toast\" style=\"position:relative;max-inline-size:340px\">\n  <div class=\"t-toast__body\"><div class=\"t-toast__title\">به علاقه‌مندی‌ها اضافه شد</div><div class=\"t-toast__desc\">کازاموراتی مفیستو ۱۰۰ میل</div></div>\n  <button class=\"t-toast__action\">واگرد</button>\n  <button class=\"t-toast__close\" aria-label=\"بستن\">✕</button>\n</div>"
+   }
+  ],
+  "react": "const ToastContext = createContext(null);\nexport const useToast = () => useContext(ToastContext);\n\nexport function ToastProvider({ children }) {\n  const [items, setItems] = useState([]);\n  const show = useCallback(t => {\n    const id = crypto.randomUUID();\n    setItems(x => [...x.slice(-2), { ...t, id }]);          // never more than three\n    const ms = t.duration ?? (t.action ? 8000 : 4200);       // actions need reachable time\n    if (ms) setTimeout(() => setItems(x => x.filter(i => i.id !== id)), ms);\n  }, []);\n  return (\n    <ToastContext.Provider value={{ show }}>\n      {children}\n      <div className=\"t-toast-region\" role=\"status\" aria-live=\"polite\">\n        {items.map(t => (\n          <div key={t.id} className={clsx('t-toast', t.tone && `t-toast--${t.tone}`)}\n               role={t.tone === 'critical' ? 'alert' : undefined}>\n            <div className=\"t-toast__body\">\n              <div className=\"t-toast__title\">{t.title}</div>\n              {t.desc && <div className=\"t-toast__desc\">{t.desc}</div>}\n            </div>\n            {t.action && <button className=\"t-toast__action\" onClick={t.action.onClick}>{t.action.label}</button>}\n            <button className=\"t-toast__close\" aria-label=\"بستن\"\n                    onClick={() => setItems(x => x.filter(i => i.id !== t.id))}>✕</button>\n          </div>\n        ))}\n      </div>\n    </ToastContext.Provider>\n  );\n}",
+  "classes": [
+   "t-toast"
+  ]
+ },
+ {
+  "name": "Alert",
+  "slug": "alert",
+  "group": "Feedback",
+  "status": "new",
+  "legacy": [],
+  "summary": "Page-level status that stays until it is resolved.",
+  "description": [
+   "Where a Toast passes, an Alert persists. Use it for conditions the user must know about while they work — an outage, a missing profile field, a delivery restriction in their city."
+  ],
+  "use": [
+   "State the problem, then the recovery, in that order.",
+   "Put the fix in the alert as a button when there is one.",
+   "One alert per region. Two stacked alerts is a design failure upstream."
+  ],
+  "avoid": [
+   "Alerts for success: that is a Toast.",
+   "A coloured left border thicker than a hairline. The tinted ground already carries the status.",
+   "Dismissible alerts for conditions that are still true after dismissal."
+  ],
+  "anatomy": [
+   [
+    "Container",
+    "Tinted ground, 1px tinted border, radius 12."
+   ],
+   [
+    "Icon",
+    "Matches the tone, 20px, top-aligned."
+   ],
+   [
+    "Body",
+    "Bold title, then description."
+   ],
+   [
+    "Actions",
+    "Optional buttons, below the body."
+   ]
+  ],
+  "props": [
+   [
+    "tone",
+    "'info' | 'positive' | 'caution' | 'critical' | 'guarantee'",
+    "'info'",
+    ""
+   ],
+   [
+    "title / children",
+    "string",
+    "—",
+    ""
+   ],
+   [
+    "actions",
+    "ReactNode",
+    "—",
+    ""
+   ],
+   [
+    "onDismiss",
+    "() => void",
+    "—",
+    "Only when the condition can genuinely be dismissed."
+   ]
+  ],
+  "a11y": [
+   "<code>role=\"status\"</code> for informational tones; <code>role=\"alert\"</code> only for critical.",
+   "The icon is <code>aria-hidden</code> — the tone is already in the text."
+  ],
+  "responsive": "Full width of its container. Actions go block-level below 375px.",
+  "specimens": [
+   {
+    "label": "Tones",
+    "canvas": "fog",
+    "stageClass": "spec__stage--stack",
+    "html": "<div class=\"t-alert t-alert--critical\" role=\"alert\" style=\"max-inline-size:440px\">\n  <svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1.5 15 14H1zM7.3 6v4h1.4V6zm0 5v1.4h1.4V11z\"/></svg>\n  <div class=\"t-alert__body\"><div class=\"t-alert__title\">اتصال به اینترنت برقرار نیست</div><div>نتایج نمایش‌داده‌شده مربوط به آخرین بازدید شماست.</div>\n    <div class=\"t-alert__actions\"><button class=\"t-btn t-btn--outline t-btn--sm\">تلاش مجدد</button></div>\n  </div>\n</div>\n<div class=\"t-alert t-alert--caution\" role=\"status\" style=\"max-inline-size:440px\">\n  <svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1.5 15 14H1zM7.3 6v4h1.4V6zm0 5v1.4h1.4V11z\"/></svg><div class=\"t-alert__body\"><div class=\"t-alert__title\">ارسال به این شهر انجام نمی‌شود</div><div>می‌توانید محصول را حضوری از فروشگاه تهیه کنید.</div></div>\n</div>\n<div class=\"t-alert t-alert--guarantee\" role=\"status\" style=\"max-inline-size:440px\">\n  <svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM7 11 3.9 7.9 5 6.8 7 8.8l4-4 1.1 1.1z\"/></svg><div class=\"t-alert__body\"><div class=\"t-alert__title\">این خرید تحت ضمانت ترب است</div><div>تا ۷ روز امکان بازگشت کالا وجود دارد.</div></div>\n</div>\n<div class=\"t-alert t-alert--info\" role=\"status\" style=\"max-inline-size:440px\">\n  <svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.7 3h1.4v1.4H7.3zm2.2 8H6.5v-1.2h1V7.7h-1V6.5h2.2v4.3h1z\"/></svg><div class=\"t-alert__body\"><div>قیمت‌ها هر ۲۰ دقیقه به‌روزرسانی می‌شوند.</div></div>\n</div>"
+   }
+  ],
+  "react": "export function Alert({ tone = 'info', title, actions, onDismiss, children }) {\n  return (\n    <div className={clsx('t-alert', `t-alert--${tone}`)} role={tone === 'critical' ? 'alert' : 'status'}>\n      <span className=\"t-alert__icon\" aria-hidden=\"true\">{TONE_ICON[tone]}</span>\n      <div className=\"t-alert__body\">\n        {title && <div className=\"t-alert__title\">{title}</div>}\n        <div>{children}</div>\n        {actions && <div className=\"t-alert__actions\">{actions}</div>}\n      </div>\n      {onDismiss && <IconButton size=\"sm\" label=\"بستن\" onClick={onDismiss}><CloseIcon /></IconButton>}\n    </div>\n  );\n}",
+  "classes": [
+   "t-alert",
+   "t-alert--critical",
+   "t-alert--caution",
+   "t-alert--guarantee",
+   "t-alert--info"
+  ]
+ },
+ {
+  "name": "EmptyState",
+  "slug": "empty-state",
+  "group": "Feedback",
+  "status": "new",
+  "legacy": [],
+  "summary": "A valid state with nothing in it. Always names the way out.",
+  "description": [
+   "The source has two of these drawn inline — «محصولی اضافه نشده» and «عدم اتصال محصولات به ترب», but never as a component, so every team would redraw them.",
+   "The contract: <strong>an empty state without an action is a dead end.</strong> If there is genuinely nothing to do, say so explicitly rather than leaving silence."
+  ],
+  "use": [
+   "Distinguish \"no results\" from \"nothing here yet\" — they need different copy and different actions.",
+   "For no results, offer the loosest filter to drop.",
+   "Keep the art quiet. It is a signpost, not a mascot."
+  ],
+  "avoid": [
+   "«چیزی یافت نشد» with no next step.",
+   "Blaming the user for a filter combination the UI allowed.",
+   "The same illustration for empty and error — they mean different things."
+  ],
+  "anatomy": [
+   [
+    "Art",
+    "Optional 30–48px glyph, disabled tone (critical for errors)."
+   ],
+   [
+    "Title",
+    "16px Bold — names the situation."
+   ],
+   [
+    "Description",
+    "14px secondary, max 46ch — explains and points forward."
+   ],
+   [
+    "Actions",
+    "One primary recovery, one secondary at most."
+   ]
+  ],
+  "props": [
+   [
+    "variant",
+    "'empty' | 'error'",
+    "'empty'",
+    "error tints the art critical."
+   ],
+   [
+    "inline",
+    "boolean",
+    "false",
+    "Compact, for use inside a card."
+   ],
+   [
+    "title / desc / action",
+    "—",
+    "—",
+    ""
+   ]
+  ],
+  "a11y": [
+   "The title is a real heading at the right level for its position.",
+   "When results become empty after a filter change, announce it with <code>aria-live=\"polite\"</code> — a silently emptied list looks broken."
+  ],
+  "responsive": "Vertical padding halves below 375px. The description never exceeds 46ch at any size.",
+  "specimens": [
+   {
+    "label": "No results",
+    "canvas": "fog",
+    "html": "<div class=\"t-empty\" style=\"inline-size:100%;max-inline-size:420px\">\n  <div class=\"t-empty__art\"><svg width=\"40\" height=\"40\" viewBox=\"0 0 32 32\" fill=\"currentColor\"><path d=\"M14 3a11 11 0 1 0 6.7 19.7l6.9 7 1.4-1.4-6.9-6.9A11 11 0 0 0 14 3zm0 2.5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17z\"/></svg></div>\n  <div class=\"t-empty__title\">فروشگاهی با این فیلترها پیدا نشد</div>\n  <div class=\"t-empty__desc\">در شعاع ۲ کیلومتری، ۷۸ فروشگاه هست. فیلتر «باز الان» را بردارید تا همه را ببینید.</div>\n  <div class=\"t-empty__actions\">\n    <button class=\"t-btn t-btn--primary t-btn--md\">حذف فیلتر «باز الان»</button>\n    <button class=\"t-btn t-btn--ghost t-btn--md\">همه فیلترها</button>\n  </div>\n</div>"
+   },
+   {
+    "label": "Error",
+    "canvas": "fog",
+    "html": "<div class=\"t-empty t-empty--error\" style=\"inline-size:100%;max-inline-size:420px\">\n  <div class=\"t-empty__art\"><svg width=\"40\" height=\"40\" viewBox=\"0 0 32 32\" fill=\"currentColor\"><path d=\"M16 3 30 28H2zM14.6 12v8h2.8v-8zm0 10v2.8h2.8V22z\"/></svg></div>\n  <div class=\"t-empty__title\">نتوانستیم فروشگاه‌ها را بارگذاری کنیم</div>\n  <div class=\"t-empty__desc\">اتصال اینترنت را بررسی کنید و دوباره تلاش کنید. اگر مشکل ادامه داشت، چند دقیقه بعد سر بزنید.</div>\n  <div class=\"t-empty__actions\"><button class=\"t-btn t-btn--primary t-btn--md\">تلاش مجدد</button></div>\n  <div class=\"t-empty__code\">ERR_NEARBY_TIMEOUT</div>\n</div>"
+   }
+  ],
+  "react": "export function EmptyState({ variant = 'empty', inline, art, title, desc, action, code }) {\n  return (\n    <div className={clsx('t-empty', variant === 'error' && 't-empty--error', inline && 't-empty--inline')}>\n      {art && <div className=\"t-empty__art\" aria-hidden=\"true\">{art}</div>}\n      <div className=\"t-empty__title\">{title}</div>\n      {desc && <div className=\"t-empty__desc\">{desc}</div>}\n      {action && <div className=\"t-empty__actions\">{action}</div>}\n      {code && <div className=\"t-empty__code\">{code}</div>}\n    </div>\n  );\n}",
+  "classes": [
+   "t-btn",
+   "t-btn--primary",
+   "t-btn--md",
+   "t-btn--ghost"
+  ]
+ },
+ {
+  "name": "Skeleton",
+  "slug": "skeleton",
+  "group": "Feedback",
+  "status": "new",
+  "legacy": [],
+  "summary": "Holds the shape of content that has not arrived.",
+  "description": [
+   "A skeleton that does not match the real layout is worse than a spinner — the page jumps when content lands. Build skeletons from the same layout primitives as the real component."
+  ],
+  "use": [
+   "For content whose shape you know in advance: cards, lists, tables.",
+   "Match the real element's dimensions exactly.",
+   "Show it only after ~200ms — faster than that and it flashes."
+  ],
+  "avoid": [
+   "Skeletons for unknown-shape content. Use a spinner.",
+   "Shimmer on more than about a screenful — it becomes visual noise.",
+   "A skeleton that is taller or shorter than what replaces it."
+  ],
+  "anatomy": [
+   [
+    "Block",
+    "Subtle-to-sunken gradient, 1.4s shimmer, radius 8 (4 for text)."
+   ]
+  ],
+  "props": [
+   [
+    "variant",
+    "'block' | 'text' | 'title' | 'circle'",
+    "'block'",
+    ""
+   ]
+  ],
+  "a11y": [
+   "The container is <code>aria-busy=\"true\"</code>; the skeletons themselves are <code>aria-hidden</code>.",
+   "Announce completion once with <code>aria-live=\"polite\"</code>, not per item.",
+   "The shimmer stops entirely under <code>prefers-reduced-motion</code>."
+  ],
+  "responsive": "Inherits the real component's responsive behaviour, because it uses the same layout classes.",
+  "specimens": [
+   {
+    "label": "Store card skeleton",
+    "canvas": "plain",
+    "html": "<div class=\"t-store-card\" aria-busy=\"true\" style=\"max-inline-size:340px;border-radius:12px\">\n  <div class=\"t-store-card__head\">\n    <div class=\"t-store-card__logo t-skeleton\"></div>\n    <div class=\"t-store-card__body\" style=\"gap:6px\">\n      <div class=\"t-skeleton t-skeleton--title\" style=\"inline-size:58%\"></div>\n      <div class=\"t-skeleton t-skeleton--text\" style=\"inline-size:76%\"></div>\n    </div>\n  </div>\n  <div class=\"t-store-card__rail\">\n    <div><div class=\"t-thumb t-thumb--sm t-skeleton\"></div></div>\n    <div><div class=\"t-thumb t-thumb--sm t-skeleton\"></div></div>\n    <div><div class=\"t-thumb t-thumb--sm t-skeleton\"></div></div>\n  </div>\n</div>"
+   }
+  ],
+  "react": "export function Skeleton({ variant = 'block', width, height, className }) {\n  return <div className={clsx('t-skeleton', variant !== 'block' && `t-skeleton--${variant}`, className)}\n              style={{ inlineSize: width, blockSize: height }} aria-hidden=\"true\" />;\n}",
+  "classes": [
+   "t-skeleton",
+   "t-skeleton--title",
+   "t-skeleton--text"
+  ]
+ },
+ {
+  "name": "Spinner",
+  "slug": "spinner",
+  "group": "Feedback",
+  "status": "new",
+  "legacy": [],
+  "summary": "Indeterminate wait for unknown-shape content.",
+  "description": [
+   "Use a spinner only where a skeleton cannot work, because you do not know the shape of what is coming."
+  ],
+  "use": [
+   "Inside buttons during submit (Button handles this itself).",
+   "Full-screen only for a blocking operation the user started."
+  ],
+  "avoid": [
+   "A spinner where the layout is known — use Skeleton.",
+   "A spinner with no ceiling. After ~10 seconds, switch to an error with a retry."
+  ],
+  "anatomy": [
+   [
+    "Ring",
+    "20px default, 2px, accent top on a default-border ring, 620ms linear."
+   ]
+  ],
+  "props": [
+   [
+    "size",
+    "'sm' | 'md' | 'lg'",
+    "'md'",
+    "14 / 20 / 32 px."
+   ]
+  ],
+  "a11y": [
+   "Wrap in <code>role=\"status\"</code> with a visually hidden \"در حال بارگذاری\".",
+   "Under <code>prefers-reduced-motion</code> the spin slows rather than stopping — a frozen spinner reads as a crash."
+  ],
+  "responsive": "Fixed sizes.",
+  "specimens": [
+   {
+    "label": "Sizes",
+    "canvas": "fog",
+    "html": "<span class=\"t-spinner t-spinner--sm\"></span><span class=\"t-spinner\"></span><span class=\"t-spinner t-spinner--lg\"></span>\n<div role=\"status\" style=\"display:flex;align-items:center;gap:8px\"><span class=\"t-spinner\"></span><span class=\"t-body-md t-tone-secondary\">در حال بارگذاری فروشگاه‌ها…</span></div>"
+   }
+  ],
+  "react": "export function Spinner({ size = 'md', label = 'در حال بارگذاری' }) {\n  return (\n    <span role=\"status\">\n      <span className={clsx('t-spinner', size !== 'md' && `t-spinner--${size}`)} />\n      <span className=\"t-visually-hidden\">{label}</span>\n    </span>\n  );\n}",
+  "classes": [
+   "t-spinner",
+   "t-spinner--sm",
+   "t-spinner--lg"
+  ]
+ },
+ {
+  "name": "SearchField",
+  "slug": "search-field",
+  "group": "Inputs",
+  "status": "revised",
+  "legacy": [
+   "Search bar/Default",
+   "Search bar/Typing",
+   "Search bar/Searched",
+   "Search bar"
+  ],
+  "summary": "Torob starts at search. Three states, one component.",
+  "description": [
+   "The kit shipped <code>Default</code>, <code>Typing</code> and <code>Searched</code> as three separate 299×48 masters. They are one component with a <code>state</code>, and the state drives which trailing affordances appear.",
+   "Torob search carries two extra entry points the rest of the industry does not: <strong>voice</strong> and <strong>camera</strong>. They live at the trailing edge in the empty state and yield to the clear button once there is a query."
+  ],
+  "use": [
+   "Persist the query after submit so the user can refine rather than retype.",
+   "Show recent searches (جستجوهای اخیر) on focus when the field is empty.",
+   "Debounce suggestions at ~120ms; never block typing on a request."
+  ],
+  "avoid": [
+   "A magnifier button as the only way to submit — Enter must work.",
+   "Clearing the query on navigation back.",
+   "Placeholder text as the label. It disappears exactly when it is needed."
+  ],
+  "anatomy": [
+   [
+    "Container",
+    "48px, radius 12, 1px control border. Focus adds a 3px accent halo."
+   ],
+   [
+    "Leading magnifier",
+    "20px, secondary."
+   ],
+   [
+    "Input",
+    "14px. <code>text-align: start</code>, never hardcoded right."
+   ],
+   [
+    "Trailing tools",
+    "Voice and camera when empty; clear when there is a query."
+   ]
+  ],
+  "props": [
+   [
+    "state",
+    "'default' | 'typing' | 'searched'",
+    "'default'",
+    "Drives which trailing affordances show."
+   ],
+   [
+    "value",
+    "string",
+    "''",
+    "Controlled query."
+   ],
+   [
+    "onClear",
+    "() => void",
+    "—",
+    "Required when state is not default."
+   ],
+   [
+    "tools",
+    "('voice' | 'camera')[]",
+    "['voice','camera']",
+    "Torob-specific entry points."
+   ]
+  ],
+  "a11y": [
+   "<code>type=\"search\"</code> inside a <code>role=\"search\"</code> landmark.",
+   "Suggestions use the combobox pattern: <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-activedescendant</code>.",
+   "The clear button needs an explicit label (\"پاک کردن جستجو\") — the ✕ glyph alone is not a name.",
+   "Announce result counts with <code>aria-live=\"polite\"</code>, not on every keystroke."
+  ],
+  "responsive": "Full width inside its container at every size. In a sticky header above md it caps at 460px so the line length stays readable.",
+  "specimens": [
+   {
+    "label": "Three states",
+    "stageClass": "spec__stage--stack",
+    "html": "<div class=\"t-search\" data-state=\"default\" style=\"max-inline-size:340px\">\n  <div class=\"t-input\"><svg class=\"t-input__icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg><input class=\"t-input__el\" type=\"search\" placeholder=\"جستجو در اطراف من\">\n    <span class=\"t-search__actions\">\n      <button class=\"t-icon-btn t-icon-btn--sm t-search__tool\" aria-label=\"جستجوی صوتی\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 10a2 2 0 0 0 2-2V4a2 2 0 1 0-4 0v4a2 2 0 0 0 2 2zm4-2a4 4 0 0 1-8 0H3a5 5 0 0 0 4.3 4.9V15h1.4v-2.1A5 5 0 0 0 13 8z\"/></svg></button>\n      <button class=\"t-icon-btn t-icon-btn--sm t-search__tool\" aria-label=\"جستجو با تصویر\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M13 4h-2l-1-1.5H6L5 4H3a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zM8 11.2A2.7 2.7 0 1 1 8 5.8a2.7 2.7 0 0 1 0 5.4z\"/></svg></button>\n    </span>\n  </div>\n</div>\n<div class=\"t-search\" data-state=\"typing\" style=\"max-inline-size:340px\">\n  <div class=\"t-input\"><svg class=\"t-input__icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg><input class=\"t-input__el\" type=\"search\" value=\"ادکلن کازامو\">\n    <span class=\"t-search__actions\"><button class=\"t-icon-btn t-icon-btn--sm t-search__clear\" aria-label=\"پاک کردن جستجو\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></button></span>\n  </div>\n</div>\n<div class=\"t-search\" data-state=\"searched\" style=\"max-inline-size:340px\">\n  <div class=\"t-input\"><svg class=\"t-input__icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg><input class=\"t-input__el\" type=\"search\" value=\"ادکلن کازاموراتی ۱۲۰ میل\">\n    <span class=\"t-search__actions\"><button class=\"t-icon-btn t-icon-btn--sm t-search__clear\" aria-label=\"پاک کردن جستجو\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></button></span>\n  </div>\n</div>"
+   }
+  ],
+  "react": "export function SearchField({ state = 'default', value, onChange, onClear, tools = ['voice','camera'], ...rest }) {\n  return (\n    <div className=\"t-search\" data-state={state} role=\"search\">\n      <div className=\"t-input\">\n        <SearchIcon className=\"t-input__icon\" />\n        <input className=\"t-input__el\" type=\"search\" value={value} onChange={onChange} {...rest} />\n        <span className=\"t-search__actions\">\n          {state === 'default'\n            ? tools.map(t => <IconButton key={t} size=\"sm\" className=\"t-search__tool\" label={TOOL_LABEL[t]}>{TOOL_ICON[t]}</IconButton>)\n            : <IconButton size=\"sm\" className=\"t-search__clear\" label=\"پاک کردن جستجو\" onClick={onClear}><CloseIcon /></IconButton>}\n        </span>\n      </div>\n    </div>\n  );\n}",
+  "classes": [
+   "t-icon-btn",
+   "t-icon-btn--sm"
+  ]
+ },
+ {
+  "name": "TextField",
+  "slug": "text-field",
+  "group": "Inputs",
+  "status": "new",
+  "legacy": [],
+  "summary": "Single-line text entry with label, hint and error.",
+  "description": [
+   "Absent from the source kit — the only text input designed was the search bar. Every form Torob builds needs this, so it is defined here rather than reinvented per team."
+  ],
+  "use": [
+   "Always render a visible label. Placeholder is a hint, never a label.",
+   "Show the error under the field and set <code>aria-describedby</code>.",
+   "Validate on blur, not on every keystroke — mid-typing errors read as nagging."
+  ],
+  "avoid": [
+   "Error styling before the user has finished.",
+   "Clearing what the user typed when validation fails.",
+   "Placeholder-only labels."
+  ],
+  "anatomy": [
+   [
+    "Label",
+    "12px Bold. Required fields carry a brand-red asterisk."
+   ],
+   [
+    "Control",
+    "48px default, 40px md, 32px sm."
+   ],
+   [
+    "Hint / Error",
+    "12px under the control. Error replaces hint, never stacks with it."
+   ]
+  ],
+  "props": [
+   [
+    "size",
+    "'sm' | 'md' | 'lg'",
+    "'lg'",
+    "32 / 40 / 48 px."
+   ],
+   [
+    "invalid",
+    "boolean",
+    "false",
+    "Critical border and halo."
+   ],
+   [
+    "hint / error",
+    "string",
+    "—",
+    "Error takes precedence."
+   ],
+   [
+    "required",
+    "boolean",
+    "false",
+    "Adds the asterisk and <code>aria-required</code>."
+   ]
+  ],
+  "a11y": [
+   "Label is a real <code>&lt;label for&gt;</code>.",
+   "Errors use <code>aria-invalid=\"true\"</code> plus <code>aria-describedby</code> pointing at the message.",
+   "Never rely on the red border alone — colour is not a channel for everyone."
+  ],
+  "responsive": "Full width. Two fields sit side by side only above 768px, and stack again below it.",
+  "specimens": [
+   {
+    "label": "States",
+    "stageClass": "spec__stage--stack",
+    "html": "<div class=\"t-field\" style=\"max-inline-size:320px\">\n  <label class=\"t-field__label\" for=\"f1\">نام فروشگاه</label>\n  <div class=\"t-input\"><input class=\"t-input__el\" id=\"f1\" placeholder=\"مثلاً ادکلن شهر\"></div>\n  <span class=\"t-field__hint\">نامی که مشتریان می‌بینند.</span>\n</div>\n<div class=\"t-field\" style=\"max-inline-size:320px\">\n  <label class=\"t-field__label\" for=\"f2\">شماره تماس<span class=\"t-field__req\">*</span></label>\n  <div class=\"t-input\" data-invalid=\"true\"><input class=\"t-input__el\" id=\"f2\" value=\"۰۹۱۲۳۴\" aria-invalid=\"true\" aria-describedby=\"f2e\"></div>\n  <span class=\"t-field__error\" id=\"f2e\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1.5 15 14H1zM7.3 6v4h1.4V6zm0 5v1.4h1.4V11z\"/></svg>شماره باید ۱۱ رقم باشد.</span>\n</div>\n<div class=\"t-field\" style=\"max-inline-size:320px\">\n  <label class=\"t-field__label\" for=\"f3\">کد فروشنده</label>\n  <div class=\"t-input\" data-disabled=\"true\"><input class=\"t-input__el\" id=\"f3\" value=\"TRB-۴۸۲۹\" disabled></div>\n</div>"
+   }
+  ],
+  "react": "export function TextField({ label, hint, error, required, size = 'lg', id, ...rest }) {\n  const uid = useId(), fid = id ?? uid, msgId = fid + '-msg';\n  return (\n    <div className=\"t-field\">\n      <label className=\"t-field__label\" htmlFor={fid}>{label}{required && <span className=\"t-field__req\">*</span>}</label>\n      <div className={clsx('t-input', size !== 'lg' && `t-input--${size}`)} data-invalid={!!error || undefined}>\n        <input className=\"t-input__el\" id={fid} aria-invalid={!!error || undefined}\n               aria-describedby={(error || hint) ? msgId : undefined} aria-required={required} {...rest} />\n      </div>\n      {error ? <span className=\"t-field__error\" id={msgId}><WarningIcon />{error}</span>\n             : hint && <span className=\"t-field__hint\" id={msgId}>{hint}</span>}\n    </div>\n  );\n}",
+  "classes": [
+   "t-field"
+  ]
+ },
+ {
+  "name": "Switch",
+  "slug": "switch",
+  "group": "Inputs",
+  "status": "revised",
+  "legacy": [
+   "Switch/Left",
+   "Switch/Right"
+  ],
+  "summary": "A two-position selector. Both positions are named destinations.",
+  "description": [
+   "The source shipped <code>Switch/Left</code> and <code>Switch/Right</code> at 135×36. This is <strong>not a boolean toggle</strong> — Torob uses it for map ⇄ list, and both positions are places you can be.",
+   "That distinction matters for accessibility: a boolean is a <code>checkbox</code>, but a named two-way choice is a <code>radiogroup</code>. Getting this wrong makes the control unusable by screen reader. For true on/off, use <a href=\"./toggle.html\">Toggle</a>."
+  ],
+  "use": [
+   "Exactly two options, both nameable in one or two words.",
+   "Glass, so it can float over a map.",
+   "Keep both labels visible, never hide the inactive one."
+  ],
+  "avoid": [
+   "On/off semantics. That is Toggle.",
+   "Three or more options. That is SegmentedControl.",
+   "Icon-only positions without accessible names."
+  ],
+  "anatomy": [
+   [
+    "Track",
+    "Glass, radius 12, 3px inset padding."
+   ],
+   [
+    "Thumb",
+    "Opaque fog surface with elevation-1, animated to the active option."
+   ],
+   [
+    "Options",
+    "30px, 12px Bold. Inactive is secondary; active is default."
+   ]
+  ],
+  "props": [
+   [
+    "options",
+    "{ value, label, icon? }[2]",
+    "—",
+    "Exactly two."
+   ],
+   [
+    "value",
+    "string",
+    "—",
+    "Controlled."
+   ],
+   [
+    "onChange",
+    "(v) => void",
+    "—",
+    "Required."
+   ]
+  ],
+  "a11y": [
+   "<code>role=\"radiogroup\"</code> on the track, <code>role=\"radio\"</code> + <code>aria-checked</code> on each option.",
+   "Arrow keys move between options; the group is a single tab stop."
+  ],
+  "responsive": "Fixed intrinsic width. Below 360px the labels shorten rather than the control shrinking.",
+  "specimens": [
+   {
+    "label": "Map / list",
+    "canvas": "map",
+    "stageClass": "spec__stage--center",
+    "html": "<div class=\"t-switch\" role=\"radiogroup\" aria-label=\"نمای نمایش\">\n  <span class=\"t-switch__thumb\"></span>\n  <button class=\"t-switch__option\" role=\"radio\" aria-checked=\"true\">فهرست</button>\n  <button class=\"t-switch__option\" role=\"radio\" aria-checked=\"false\">نقشه</button>\n</div>"
+   }
+  ],
+  "react": "export function Switch({ options, value, onChange, label }) {\n  const ref = useRef(null);\n  useLayoutEffect(() => {\n    const el = ref.current, active = el?.querySelector('[aria-checked=\"true\"]');\n    if (!el || !active) return;\n    /* inset-inline-start is measured from the RIGHT edge in RTL, but offsetLeft\n       is always from the left. Measure the logical distance, or the thumb lands\n       under the wrong option in RTL. */\n    const cs = getComputedStyle(el);\n    const rtl = cs.direction === 'rtl';\n    const p = el.getBoundingClientRect(), a = active.getBoundingClientRect();\n    const border = parseFloat(rtl ? cs.borderInlineEndWidth : cs.borderInlineStartWidth) || 0;\n    const thumb = el.querySelector('.t-switch__thumb');\n    thumb.style.insetInlineStart = ((rtl ? p.right - a.right : a.left - p.left) - border) + 'px';\n    thumb.style.inlineSize = active.offsetWidth + 'px';\n  }, [value]);\n  return (\n    <div className=\"t-switch\" role=\"radiogroup\" aria-label={label} ref={ref}>\n      <span className=\"t-switch__thumb\" />\n      {options.map(o => (\n        <button key={o.value} className=\"t-switch__option\" role=\"radio\"\n                aria-checked={o.value === value} onClick={() => onChange(o.value)}>\n          {o.icon}{o.label}\n        </button>\n      ))}\n    </div>\n  );\n}",
+  "classes": [
+   "t-switch"
+  ]
+ },
+ {
+  "name": "Toggle",
+  "slug": "toggle",
+  "group": "Inputs",
+  "status": "new",
+  "legacy": [],
+  "summary": "A boolean. Takes effect immediately — no Save.",
+  "description": [
+   "The kit had no boolean control. A toggle means the change applies the moment it moves; if the setting needs confirming, use a Checkbox inside a form instead."
+  ],
+  "use": [
+   "Settings that apply instantly — \"فقط فروشگاه‌های باز\".",
+   "Label the thing being controlled, not the state. \"اعلان‌ها\", not \"اعلان‌ها روشن\"."
+  ],
+  "avoid": [
+   "Inside a form with a Save button — use a Checkbox.",
+   "For a destructive change without a confirmation."
+  ],
+  "anatomy": [
+   [
+    "Track",
+    "44×26, full radius. Accent when on."
+   ],
+   [
+    "Thumb",
+    "20px, elevation-1, travels toward the inline end."
+   ]
+  ],
+  "props": [
+   [
+    "checked",
+    "boolean",
+    "false",
+    "Controlled."
+   ],
+   [
+    "onChange",
+    "(v) => void",
+    "—",
+    "Required."
+   ],
+   [
+    "label",
+    "string",
+    "—",
+    "Visible text label."
+   ]
+  ],
+  "a11y": [
+   "A real <code>&lt;input type=\"checkbox\"&gt;</code> visually hidden behind the track — free keyboard and screen-reader behaviour.",
+   "The label is clickable and wraps the control."
+  ],
+  "responsive": "Fixed size at every breakpoint. The row it sits in stretches, not the toggle.",
+  "specimens": [
+   {
+    "label": "Toggle",
+    "stageClass": "spec__stage--stack",
+    "html": "<label class=\"t-toggle\"><input type=\"checkbox\" checked><span class=\"t-toggle__track\"><span class=\"t-toggle__thumb\"></span></span><span class=\"t-body-md\">فقط فروشگاه‌های باز</span></label>\n<label class=\"t-toggle\"><input type=\"checkbox\"><span class=\"t-toggle__track\"><span class=\"t-toggle__thumb\"></span></span><span class=\"t-body-md\">ارسال فوری</span></label>\n<label class=\"t-toggle\"><input type=\"checkbox\" disabled><span class=\"t-toggle__track\"><span class=\"t-toggle__thumb\"></span></span><span class=\"t-body-md t-tone-disabled\">پرداخت قسطی (در دسترس نیست)</span></label>"
+   }
+  ],
+  "react": "export function Toggle({ checked, onChange, label, disabled }) {\n  return (\n    <label className=\"t-toggle\">\n      <input type=\"checkbox\" checked={checked} disabled={disabled}\n             onChange={e => onChange(e.target.checked)} />\n      <span className=\"t-toggle__track\"><span className=\"t-toggle__thumb\" /></span>\n      <span className=\"t-body-md\">{label}</span>\n    </label>\n  );\n}",
+  "classes": [
+   "t-toggle"
+  ]
+ },
+ {
+  "name": "RangeSlider",
+  "slug": "range-slider",
+  "group": "Inputs",
+  "status": "new",
+  "legacy": [],
+  "summary": "Two-handle range. Torob's most-used filter had no control.",
+  "description": [
+   "Price range is the filter shoppers reach for most, and the kit had nothing for it. Prices are formatted with Persian numerals and tabular figures so the two ends stay readable as the handles move."
+  ],
+  "use": [
+   "Always pair with numeric inputs — a slider alone cannot hit an exact price.",
+   "Snap to meaningful steps (۱۰۰٬۰۰۰ تومان), not to raw pixels.",
+   "Show the live values above the track while dragging."
+  ],
+  "avoid": [
+   "A slider as the only way to set a value.",
+   "Ranges wider than two orders of magnitude on a linear scale — use a log scale."
+  ],
+  "anatomy": [
+   [
+    "Track",
+    "4px, full radius, subtle ground."
+   ],
+   [
+    "Fill",
+    "Accent, spans the selected range."
+   ],
+   [
+    "Handles",
+    "22px, 2px accent ring, elevation-1, grab cursor."
+   ],
+   [
+    "Values",
+    "12px tabular, at the two ends."
+   ]
+  ],
+  "props": [
+   [
+    "min / max",
+    "number",
+    "—",
+    "Bounds."
+   ],
+   [
+    "value",
+    "[number, number]",
+    "—",
+    "Controlled."
+   ],
+   [
+    "step",
+    "number",
+    "1",
+    "Snap increment."
+   ],
+   [
+    "format",
+    "(n) => string",
+    "—",
+    "Persian numeral formatter."
+   ]
+  ],
+  "a11y": [
+   "Two <code>role=\"slider\"</code> handles, each with <code>aria-valuemin/max/now</code> and <code>aria-valuetext</code> carrying the formatted price.",
+   "Arrow keys step; Home/End jump to the bounds.",
+   "Handles cannot cross; the lower one clamps at the upper."
+  ],
+  "responsive": "Full width. Below 375px the value labels move under the track rather than flanking it.",
+  "specimens": [
+   {
+    "label": "Price range",
+    "canvas": "fog",
+    "stageClass": "spec__stage--stack",
+    "html": "<div class=\"t-range\" style=\"max-inline-size:320px\">\n  <div class=\"t-range__values\"><span>۱٬۲۰۰٬۰۰۰ تومان</span><span>۱۸٬۵۰۰٬۰۰۰ تومان</span></div>\n  <div class=\"t-range__track\">\n    <div class=\"t-range__fill\" style=\"inset-inline-start:14%;inline-size:58%\"></div>\n    <div class=\"t-range__thumb\" style=\"inset-inline-start:14%\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"30000000\" aria-valuenow=\"1200000\" aria-valuetext=\"۱٬۲۰۰٬۰۰۰ تومان\" tabindex=\"0\"></div>\n    <div class=\"t-range__thumb\" style=\"inset-inline-start:72%\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"30000000\" aria-valuenow=\"18500000\" aria-valuetext=\"۱۸٬۵۰۰٬۰۰۰ تومان\" tabindex=\"0\"></div>\n  </div>\n</div>"
+   }
+  ],
+  "react": "export function RangeSlider({ min, max, value, onChange, step = 1, format = String }) {\n  const pct = v => ((v - min) / (max - min)) * 100;\n  return (\n    <div className=\"t-range\">\n      <div className=\"t-range__values\"><span>{format(value[0])}</span><span>{format(value[1])}</span></div>\n      <div className=\"t-range__track\">\n        <div className=\"t-range__fill\" style={{ insetInlineStart: pct(value[0]) + '%', inlineSize: (pct(value[1]) - pct(value[0])) + '%' }} />\n        {value.map((v, i) => (\n          <div key={i} className=\"t-range__thumb\" role=\"slider\" tabIndex={0}\n               style={{ insetInlineStart: pct(v) + '%' }}\n               aria-valuemin={min} aria-valuemax={max} aria-valuenow={v} aria-valuetext={format(v)}\n               onKeyDown={e => handleKey(e, i, v, { min, max, step, value, onChange })} />\n        ))}\n      </div>\n    </div>\n  );\n}",
+  "classes": [
+   "t-range"
+  ]
+ },
+ {
+  "name": "Checkbox",
+  "slug": "checkbox",
+  "group": "Inputs",
+  "status": "new",
+  "legacy": [],
+  "summary": "Multi-select within a form. Confirmed by a Save.",
+  "description": [
+   "Distinct from Toggle: a checkbox is part of a form and takes effect when the form is submitted. Radio is the same component with <code>--radio</code>."
+  ],
+  "use": [
+   "Filter sheets with an Apply button.",
+   "Terms acceptance and any multi-select list."
+  ],
+  "avoid": [
+   "Instant-apply settings: that is Toggle.",
+   "A single checkbox where a Toggle would be clearer."
+  ],
+  "anatomy": [
+   [
+    "Box",
+    "20px, radius 4 (full for radio). Accent fill when checked."
+   ],
+   [
+    "Label",
+    "Clickable, 14px, minimum 44px row height."
+   ]
+  ],
+  "props": [
+   [
+    "checked",
+    "boolean",
+    "false",
+    "Controlled."
+   ],
+   [
+    "indeterminate",
+    "boolean",
+    "false",
+    "Partial selection in a tree."
+   ],
+   [
+    "variant",
+    "'checkbox' | 'radio'",
+    "'checkbox'",
+    ""
+   ]
+  ],
+  "a11y": [
+   "Real <code>&lt;input&gt;</code>, visually hidden, wrapped by its <code>&lt;label&gt;</code>.",
+   "Radio groups share a <code>name</code> and sit inside a <code>&lt;fieldset&gt;</code> with a <code>&lt;legend&gt;</code>."
+  ],
+  "responsive": "Row height never drops below 44px, at any breakpoint.",
+  "specimens": [
+   {
+    "label": "Checkbox and radio",
+    "stageClass": "spec__stage--stack",
+    "html": "<label class=\"t-check\"><input type=\"checkbox\" checked><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">ضمانت ترب</span></label>\n<label class=\"t-check\"><input type=\"checkbox\"><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">نمایندگی رسمی</span></label>\n<label class=\"t-check t-check--radio\"><input type=\"radio\" name=\"sort\" checked><span class=\"t-check__box\"></span><span class=\"t-body-md\">ارزان‌ترین</span></label>\n<label class=\"t-check t-check--radio\"><input type=\"radio\" name=\"sort\"><span class=\"t-check__box\"></span><span class=\"t-body-md\">نزدیک‌ترین</span></label>"
+   }
+  ],
+  "react": "export function Checkbox({ variant = 'checkbox', checked, onChange, label, ...rest }) {\n  return (\n    <label className={clsx('t-check', variant === 'radio' && 't-check--radio')}>\n      <input type={variant} checked={checked} onChange={e => onChange(e.target.checked)} {...rest} />\n      <span className=\"t-check__box\">{variant === 'checkbox' && <CheckMark className=\"t-check__mark\" />}</span>\n      <span className=\"t-body-md\">{label}</span>\n    </label>\n  );\n}",
+  "classes": [
+   "t-check",
+   "t-check--radio"
+  ]
+ },
+ {
+  "name": "QuantityStepper",
+  "slug": "quantity-stepper",
+  "group": "Inputs",
+  "status": "new",
+  "legacy": [],
+  "summary": "Increment and decrement a small integer.",
+  "description": [
+   "For cart quantities and any bounded count. Below about 10, a stepper beats a number input: no keyboard, no validation, no typos."
+  ],
+  "use": [
+   "Cart quantity, guest counts, anything under ~10.",
+   "Disable the minus at the lower bound rather than hiding it — a disappearing control moves the layout."
+  ],
+  "avoid": [
+   "Unbounded numbers. Use a TextField.",
+   "Hiding the value while it updates."
+  ],
+  "anatomy": [
+   [
+    "Buttons",
+    "36×36, at the two inline ends."
+   ],
+   [
+    "Value",
+    "44px minimum, tabular, centred."
+   ]
+  ],
+  "props": [
+   [
+    "value",
+    "number",
+    "—",
+    "Controlled."
+   ],
+   [
+    "min / max",
+    "number",
+    "1 / 99",
+    "Bounds; buttons disable at each."
+   ],
+   [
+    "onChange",
+    "(n) => void",
+    "—",
+    "Required."
+   ]
+  ],
+  "a11y": [
+   "Buttons carry explicit labels (\"افزایش تعداد\" / \"کاهش تعداد\").",
+   "The value is <code>aria-live=\"polite\"</code> so the new count is announced once, not on each render."
+  ],
+  "responsive": "Fixed size. Never shrinks below the 36px button.",
+  "specimens": [
+   {
+    "label": "Stepper",
+    "html": "<div class=\"t-stepper\">\n  <button class=\"t-stepper__btn\" aria-label=\"کاهش تعداد\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M3 7.3h10v1.4H3z\"/></svg></button>\n  <span class=\"t-stepper__value\" aria-live=\"polite\">۲</span>\n  <button class=\"t-stepper__btn\" aria-label=\"افزایش تعداد\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8.7 3H7.3v4.3H3v1.4h4.3V13h1.4V8.7H13V7.3H8.7z\"/></svg></button>\n</div>\n<div class=\"t-stepper\">\n  <button class=\"t-stepper__btn\" aria-label=\"کاهش تعداد\" disabled><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M3 7.3h10v1.4H3z\"/></svg></button>\n  <span class=\"t-stepper__value\" aria-live=\"polite\">۱</span>\n  <button class=\"t-stepper__btn\" aria-label=\"افزایش تعداد\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8.7 3H7.3v4.3H3v1.4h4.3V13h1.4V8.7H13V7.3H8.7z\"/></svg></button>\n</div>"
+   }
+  ],
+  "react": "export function QuantityStepper({ value, onChange, min = 1, max = 99 }) {\n  return (\n    <div className=\"t-stepper\">\n      <button className=\"t-stepper__btn\" aria-label=\"کاهش تعداد\"\n              disabled={value <= min} onClick={() => onChange(value - 1)}><MinusIcon /></button>\n      <span className=\"t-stepper__value\" aria-live=\"polite\">{toFa(value)}</span>\n      <button className=\"t-stepper__btn\" aria-label=\"افزایش تعداد\"\n              disabled={value >= max} onClick={() => onChange(value + 1)}><PlusIcon /></button>\n    </div>\n  );\n}",
+  "classes": [
+   "t-icon",
+   "t-icon--sm"
+  ]
+ },
+ {
+  "name": "SegmentedControl",
+  "slug": "segmented-control",
+  "group": "Navigation",
+  "status": "revised",
+  "legacy": [
+   "Segmented Controls/Selected",
+   "Segmented Controls/Not-selected",
+   "Segmented Controls/Icon Selected",
+   "Segmented Controls/Icon Not-selected",
+   "Segmented Controls/Light/Large/Selected"
+  ],
+  "summary": "Switches the content below between mutually exclusive views.",
+  "description": [
+   "Five masters in the source, differing only by selection state, icon presence and size. One component, three props. Note the four duplicate <code>Segmented Controls/Selected</code> masters — same name, four distinct symbol IDs.",
+   "The large 395×64 variant is a different density, not a different component: <code>size=\"lg\"</code>."
+  ],
+  "use": [
+   "Two to five options that all fit without scrolling.",
+   "Switching a view — فروشگاه‌ها ⇄ محصولات — not filtering it.",
+   "Glass, so it can float over a map or a scrolling list."
+  ],
+  "avoid": [
+   "More than five options. Use Tabs.",
+   "Options whose labels truncate.",
+   "As a filter. Filters accumulate; segments are exclusive."
+  ],
+  "anatomy": [
+   [
+    "Track",
+    "Glass, radius 12, 3px padding, horizontally scrollable as a last resort."
+   ],
+   [
+    "Item",
+    "26px (44px at lg), 12px Bold, radius 8."
+   ],
+   [
+    "Selected",
+    "Glass at 60% with the 0.5px blue ring."
+   ]
+  ],
+  "props": [
+   [
+    "options",
+    "{ value, label, icon?, count? }[]",
+    "—",
+    "2–5."
+   ],
+   [
+    "value",
+    "string",
+    "—",
+    "Controlled."
+   ],
+   [
+    "size",
+    "'md' | 'lg'",
+    "'md'",
+    "32 / 64 px track."
+   ],
+   [
+    "block",
+    "boolean",
+    "false",
+    "Options share the width equally."
+   ]
+  ],
+  "a11y": [
+   "<code>role=\"tablist\"</code> with <code>role=\"tab\"</code> and <code>aria-selected</code>, wired to the panel via <code>aria-controls</code>.",
+   "Arrow keys move; the group is one tab stop."
+  ],
+  "responsive": "Intrinsic width up to md; <code>block</code> below it so the options fill the row. Never wraps — it scrolls.",
+  "specimens": [
+   {
+    "label": "Stores / products",
+    "canvas": "map",
+    "stageClass": "spec__stage--center",
+    "html": "<div class=\"t-segmented\" role=\"tablist\" aria-label=\"نمای اطراف\">\n  <button class=\"t-segmented__item\" role=\"tab\" aria-selected=\"true\">فروشگاه‌ها<span class=\"t-chip__count\">۴۳</span></button>\n  <button class=\"t-segmented__item\" role=\"tab\" aria-selected=\"false\">محصولات<span class=\"t-chip__count\">۵۵</span></button>\n</div>"
+   },
+   {
+    "label": "Large, block",
+    "canvas": "fog",
+    "html": "<div class=\"t-segmented t-segmented--lg t-segmented--block\" role=\"tablist\" aria-label=\"مرتب‌سازی\" style=\"max-inline-size:360px\">\n  <button class=\"t-segmented__item\" role=\"tab\" aria-selected=\"true\">نزدیک‌ترین</button>\n  <button class=\"t-segmented__item\" role=\"tab\" aria-selected=\"false\">ارزان‌ترین</button>\n  <button class=\"t-segmented__item\" role=\"tab\" aria-selected=\"false\">محبوب‌ترین</button>\n</div>"
+   }
+  ],
+  "react": "export function SegmentedControl({ options, value, onChange, size = 'md', block, label }) {\n  return (\n    <div className={clsx('t-segmented', size === 'lg' && 't-segmented--lg', block && 't-segmented--block')}\n         role=\"tablist\" aria-label={label}>\n      {options.map(o => (\n        <button key={o.value} className=\"t-segmented__item\" role=\"tab\"\n                aria-selected={o.value === value} onClick={() => onChange(o.value)}>\n          {o.icon}{o.label}{o.count != null && <span className=\"t-chip__count\">{toFa(o.count)}</span>}\n        </button>\n      ))}\n    </div>\n  );\n}",
+  "classes": [
+   "t-segmented",
+   "t-segmented--lg",
+   "t-segmented--block"
+  ]
+ },
+ {
+  "name": "FilterChip",
+  "slug": "filter-chip",
+  "group": "Navigation",
+  "status": "revised",
+  "legacy": [
+   "Filter/Cell/Cell",
+   "Filter/Cell/Icon",
+   "Filter/Cell/Icon+Chevron",
+   "city filter",
+   "official seller"
+  ],
+  "summary": "One filter facet. Toggles on, or opens a sheet for its options.",
+  "description": [
+   "Three cell masters in the kit plus two undocumented one-offs found only on the examples page — <code>city filter</code> and <code>official seller</code>. Those two were never in the component library at all, which is exactly the drift this system exists to close.",
+   "Two behaviours share one shape: a <strong>toggle</strong> chip flips on and off in place; a <strong>disclosure</strong> chip carries a chevron and opens a sheet. The chevron is the contract, never show one on a chip that does not open something."
+  ],
+  "use": [
+   "Show the active count on multi-value facets: «برند ۳».",
+   "Keep applied filters visible; never collapse them into \"۳ فیلتر\".",
+   "Order by how often the facet is used, not alphabetically."
+  ],
+  "avoid": [
+   "A chevron on a chip that only toggles.",
+   "More than about eight chips before a \"همه فیلترها\" entry point.",
+   "Removing a chip from the rail because it is inactive — the rail must be stable."
+  ],
+  "anatomy": [
+   [
+    "Container",
+    "32px, radius 12, glass. Selected swaps to 60% with the blue ring."
+   ],
+   [
+    "Leading icon",
+    "Optional 16px."
+   ],
+   [
+    "Label + count",
+    "12px Bold; the count is secondary."
+   ],
+   [
+    "Chevron",
+    "Present only when the chip opens a sheet."
+   ]
+  ],
+  "props": [
+   [
+    "active",
+    "boolean",
+    "false",
+    "Selected state."
+   ],
+   [
+    "count",
+    "number",
+    "—",
+    "Applied values on a multi-select facet."
+   ],
+   [
+    "opens",
+    "boolean",
+    "false",
+    "Renders the chevron and sets <code>aria-haspopup</code>."
+   ]
+  ],
+  "a11y": [
+   "Toggle chips use <code>aria-pressed</code>. Disclosure chips use <code>aria-expanded</code> + <code>aria-haspopup=\"dialog\"</code>. Never both.",
+   "The accessible name includes the count: \"برند، ۳ مورد انتخاب شده\"."
+  ],
+  "responsive": "Horizontal scroll on every size — chips never wrap. The rail bleeds to the viewport edge so a partially visible chip signals more.",
+  "specimens": [
+   {
+    "label": "Filter rail",
+    "canvas": "plain",
+    "html": "<div class=\"t-filter-bar\" style=\"border-radius:12px\">\n  <button class=\"t-icon-btn t-icon-btn--sm t-filter-bar__lead\" aria-label=\"همه فیلترها\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M2 3h12v1.4H2zm2 4h8v1.4H4zm2 4h4v1.4H6z\"/></svg></button>\n  <button class=\"t-chip\" aria-pressed=\"true\">تهران</button>\n  <button class=\"t-chip\" aria-expanded=\"false\" aria-haspopup=\"dialog\">برند<span class=\"t-chip__count\">۳</span><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n  <button class=\"t-chip\" aria-expanded=\"false\" aria-haspopup=\"dialog\">قیمت<svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n  <button class=\"t-chip\" aria-pressed=\"true\">ضمانت ترب</button>\n  <button class=\"t-chip\" aria-pressed=\"false\">نمایندگی رسمی</button>\n  <button class=\"t-chip\" aria-pressed=\"false\">باز الان</button>\n</div>",
+    "note": "Chips are live — click to toggle. Scroll the rail horizontally."
+   }
+  ],
+  "react": "export function FilterChip({ active, count, opens, icon, children, ...rest }) {\n  return (\n    <button className=\"t-chip\"\n            {...(opens ? { 'aria-expanded': !!active, 'aria-haspopup': 'dialog' } : { 'aria-pressed': !!active })}\n            {...rest}>\n      {icon}{children}\n      {count != null && <span className=\"t-chip__count\">{toFa(count)}</span>}\n      {opens && <ChevronDown className=\"t-icon t-icon--sm\" />}\n    </button>\n  );\n}",
+  "classes": [
+   "t-chip"
+  ]
+ },
+ {
+  "name": "Tabs",
+  "slug": "tabs",
+  "group": "Navigation",
+  "status": "revised",
+  "legacy": [
+   "Tab/Selected"
+  ],
+  "summary": "Switches sections within a page. Scales past five options.",
+  "description": [
+   "Where SegmentedControl is a compact exclusive switch, Tabs is the page-level one: it scrolls, it carries counts, and it holds an underline rather than a filled pill."
+  ],
+  "use": [
+   "Product detail sections: فروشنده‌ها · مشخصات · نظرات.",
+   "Show counts where the number helps the choice.",
+   "Keep the selected tab in view when the strip scrolls."
+  ],
+  "avoid": [
+   "Tabs that change the page rather than the section: that is navigation.",
+   "Nested tab strips.",
+   "More than about seven."
+  ],
+  "anatomy": [
+   [
+    "Strip",
+    "Bottom hairline, horizontal scroll, hidden scrollbar."
+   ],
+   [
+    "Tab",
+    "14px Bold, 12px vertical padding."
+   ],
+   [
+    "Indicator",
+    "2px brand underline, scaled in from 0 over 220ms."
+   ]
+  ],
+  "props": [
+   [
+    "options",
+    "{ value, label, count? }[]",
+    "—",
+    ""
+   ],
+   [
+    "value",
+    "string",
+    "—",
+    "Controlled."
+   ]
+  ],
+  "a11y": [
+   "Full tablist pattern with <code>aria-controls</code> on each tab and <code>aria-labelledby</code> on each panel.",
+   "Arrow keys move, Home/End jump. Panels are <code>tabindex=\"0\"</code> so their content is reachable."
+  ],
+  "responsive": "Scrolls horizontally at every size. Above lg, if all tabs fit, the strip left-aligns rather than stretching.",
+  "specimens": [
+   {
+    "label": "PDP sections",
+    "canvas": "fog",
+    "html": "<div class=\"t-tabs\" role=\"tablist\" aria-label=\"بخش‌های محصول\" style=\"inline-size:100%\">\n  <button class=\"t-tab\" role=\"tab\" aria-selected=\"true\">فروشنده‌ها<span class=\"t-tab__count\">۷۹</span></button>\n  <button class=\"t-tab\" role=\"tab\" aria-selected=\"false\">مشخصات</button>\n  <button class=\"t-tab\" role=\"tab\" aria-selected=\"false\">نمودار قیمت</button>\n  <button class=\"t-tab\" role=\"tab\" aria-selected=\"false\">نظرات<span class=\"t-tab__count\">۱۲</span></button>\n</div>"
+   }
+  ],
+  "react": "export function Tabs({ options, value, onChange, label }) {\n  return (\n    <div className=\"t-tabs\" role=\"tablist\" aria-label={label}>\n      {options.map(o => (\n        <button key={o.value} className=\"t-tab\" role=\"tab\" id={`tab-${o.value}`}\n                aria-selected={o.value === value} aria-controls={`panel-${o.value}`}\n                tabIndex={o.value === value ? 0 : -1} onClick={() => onChange(o.value)}>\n          {o.label}{o.count != null && <span className=\"t-tab__count\">{toFa(o.count)}</span>}\n        </button>\n      ))}\n    </div>\n  );\n}",
+  "classes": [
+   "t-tabs"
+  ]
+ },
+ {
+  "name": "PageHeader",
+  "slug": "page-header",
+  "group": "Navigation",
+  "status": "revised",
+  "legacy": [
+   "Header/Profile"
+  ],
+  "summary": "Sticky glass header: back, title, actions.",
+  "description": [
+   "The source shipped a single 343×56 <code>Header/Profile</code>, duplicated twice. Generalised here: a back affordance, a title with optional subtitle, and trailing actions."
+  ],
+  "use": [
+   "Sticky at the top of any scrolling screen.",
+   "Put the location and result count in the subtitle: «تهران، ۷۸ مورد».",
+   "Cap trailing actions at two; overflow into a menu."
+  ],
+  "avoid": [
+   "A back button on a root screen.",
+   "Titles that truncate — shorten the copy instead."
+  ],
+  "anatomy": [
+   [
+    "Container",
+    "56px, glass surface, sticky, hairline bottom."
+   ],
+   [
+    "Leading",
+    "Back or close. The back chevron mirrors in RTL."
+   ],
+   [
+    "Title block",
+    "16px Bold + optional 12px secondary."
+   ],
+   [
+    "Trailing",
+    "Up to two icon buttons."
+   ]
+  ],
+  "props": [
+   [
+    "title / subtitle",
+    "string",
+    "—",
+    ""
+   ],
+   [
+    "onBack",
+    "() => void",
+    "—",
+    "Omit on root screens."
+   ],
+   [
+    "actions",
+    "ReactNode",
+    "—",
+    "Max two."
+   ]
+  ],
+  "a11y": [
+   "A real <code>&lt;header&gt;</code> with the title as <code>&lt;h1&gt;</code> on the screen it heads.",
+   "Back is a button with <code>aria-label=\"بازگشت\"</code>, not a bare glyph."
+  ],
+  "responsive": "56px throughout. Above lg the title moves inline with a breadcrumb and the header un-sticks if the page is short.",
+  "specimens": [
+   {
+    "label": "Header",
+    "canvas": "map",
+    "stageClass": "spec__stage--stack",
+    "html": "<header class=\"t-page-header\" style=\"border-radius:12px;position:relative;inline-size:100%\">\n  <button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بازگشت\"><svg class=\"t-icon t-icon--directional\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M12 5 7 10l5 5V5z\"/></svg></button>\n  <div class=\"t-page-header__title\">فروشگاه‌های اطراف<div class=\"t-page-header__sub\">تهران، ۷۸ مورد</div></div>\n  <button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"اشتراک‌گذاری\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M14 13a2.5 2.5 0 0 0-1.8.8l-4.3-2.5a2.5 2.5 0 0 0 0-2.6l4.3-2.5a2.5 2.5 0 1 0-.7-1.3L7.2 7.4a2.5 2.5 0 1 0 0 5.2l4.3 2.5A2.5 2.5 0 1 0 14 13z\"/></svg></button>\n</header>"
+   }
+  ],
+  "react": "export function PageHeader({ title, subtitle, onBack, actions }) {\n  return (\n    <header className=\"t-page-header\">\n      {onBack && <IconButton size=\"sm\" label=\"بازگشت\" onClick={onBack}><ChevronStart className=\"t-icon--directional\" /></IconButton>}\n      <div className=\"t-page-header__title\">\n        {title}\n        {subtitle && <div className=\"t-page-header__sub\">{subtitle}</div>}\n      </div>\n      {actions}\n    </header>\n  );\n}",
+  "classes": [
+   "t-page-header"
+  ]
+ },
+ {
+  "name": "BottomNav",
+  "slug": "bottom-nav",
+  "group": "Navigation",
+  "status": "new",
+  "legacy": [],
+  "summary": "Root-level navigation, anchored where the thumb is.",
+  "description": [
+   "Absent from the kit despite every example screen being a phone. Glass, safe-area aware, three to five destinations."
+  ],
+  "use": [
+   "Three to five top-level destinations that never change.",
+   "Label every item — icons alone are guesswork.",
+   "Mark the current destination with <code>aria-current=\"page\"</code>."
+  ],
+  "avoid": [
+   "More than five items.",
+   "Actions rather than destinations. A \"+\" that opens a sheet belongs elsewhere.",
+   "Hiding it on scroll — the destination set should be constant."
+  ],
+  "anatomy": [
+   [
+    "Container",
+    "Glass, sticky bottom, hairline top, padded for the home indicator."
+   ],
+   [
+    "Item",
+    "Icon over 12px label, minimum 44px, equal widths."
+   ],
+   [
+    "Current",
+    "Brand colour and Bold weight — two channels, not just colour."
+   ]
+  ],
+  "props": [
+   [
+    "items",
+    "{ href, label, icon }[]",
+    "—",
+    "3–5."
+   ],
+   [
+    "current",
+    "string",
+    "—",
+    "Matching href."
+   ]
+  ],
+  "a11y": [
+   "A <code>&lt;nav&gt;</code> landmark with an accessible name.",
+   "Current uses <code>aria-current=\"page\"</code>, plus weight and colour so it does not rely on hue alone."
+  ],
+  "responsive": "Phone only. From md it is replaced by the sidebar or top navigation — do not render both.",
+  "specimens": [
+   {
+    "label": "Bottom navigation",
+    "canvas": "fog",
+    "html": "<nav class=\"t-bottom-nav\" aria-label=\"ناوبری اصلی\" style=\"border-radius:12px;position:relative;inline-size:100%;max-inline-size:375px\">\n  <button class=\"t-bottom-nav__item\" aria-current=\"page\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 2 2 9h2v9h5v-6h2v6h5V9h2z\"/></svg>خانه</button>\n  <button class=\"t-bottom-nav__item\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg>جستجو</button>\n  <button class=\"t-bottom-nav__item\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 2a6 6 0 0 0-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 0 0-6-6zm0 8.2A2.2 2.2 0 1 1 10 5.8a2.2 2.2 0 0 1 0 4.4z\"/></svg>اطراف من</button>\n  <button class=\"t-bottom-nav__item\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 10.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3.5 17a6.5 6.5 0 0 1 13 0z\"/></svg>حساب من</button>\n</nav>"
+   }
+  ],
+  "react": "export function BottomNav({ items, current, label = 'ناوبری اصلی' }) {\n  return (\n    <nav className=\"t-bottom-nav\" aria-label={label}>\n      {items.map(i => (\n        <a key={i.href} href={i.href} className=\"t-bottom-nav__item\"\n           aria-current={i.href === current ? 'page' : undefined}>\n          {i.icon}{i.label}\n        </a>\n      ))}\n    </nav>\n  );\n}",
+  "classes": [
+   "t-bottom-nav"
+  ]
+ },
+ {
+  "name": "Breadcrumb",
+  "slug": "breadcrumb",
+  "group": "Navigation",
+  "status": "new",
+  "legacy": [],
+  "summary": "Where this page sits in the catalogue.",
+  "description": [
+   "Torob's category tree is deep, and above md there is room to show it. The separator must point along the reading direction — in RTL it points left."
+  ],
+  "use": [
+   "Category pages and product detail, from md upward.",
+   "Truncate the middle, never the ends: first … last two."
+  ],
+  "avoid": [
+   "Breadcrumbs as the only way back on a phone. Give a back button.",
+   "Making the current page a link."
+  ],
+  "anatomy": [
+   [
+    "Item",
+    "12px, secondary; the current page is default weight Bold."
+   ],
+   [
+    "Separator",
+    "A logical chevron that mirrors with direction."
+   ]
+  ],
+  "props": [
+   [
+    "items",
+    "{ href, label }[]",
+    "—",
+    "Last item is the current page."
+   ]
+  ],
+  "a11y": [
+   "<code>&lt;nav aria-label=\"مسیر\"&gt;</code> wrapping an <code>&lt;ol&gt;</code>.",
+   "The final item carries <code>aria-current=\"page\"</code> and is not a link."
+  ],
+  "responsive": "Hidden below md, where PageHeader's back button does the job.",
+  "specimens": [
+   {
+    "label": "Breadcrumb",
+    "canvas": "fog",
+    "html": "<nav class=\"t-breadcrumb\" aria-label=\"مسیر\">\n  <a class=\"t-breadcrumb__item\" href=\"#\">خانه</a><span class=\"t-breadcrumb__sep\">›</span>\n  <a class=\"t-breadcrumb__item\" href=\"#\">آرایشی و بهداشتی</a><span class=\"t-breadcrumb__sep\">›</span>\n  <a class=\"t-breadcrumb__item\" href=\"#\">عطر و ادکلن</a><span class=\"t-breadcrumb__sep\">›</span>\n  <span class=\"t-breadcrumb__item\" aria-current=\"page\">کازاموراتی مفیستو</span>\n</nav>"
+   }
+  ],
+  "react": "export function Breadcrumb({ items }) {\n  return (\n    <nav className=\"t-breadcrumb\" aria-label=\"مسیر\">\n      <ol style={{ display: 'contents' }}>\n        {items.map((it, i) => {\n          const last = i === items.length - 1;\n          return (\n            <li key={it.href} style={{ display: 'contents' }}>\n              {last ? <span className=\"t-breadcrumb__item\" aria-current=\"page\">{it.label}</span>\n                    : <><a className=\"t-breadcrumb__item\" href={it.href}>{it.label}</a>\n                        <span className=\"t-breadcrumb__sep\" aria-hidden=\"true\">›</span></>}\n            </li>\n          );\n        })}\n      </ol>\n    </nav>\n  );\n}",
+  "classes": [
+   "t-breadcrumb"
+  ]
+ },
+ {
+  "name": "BottomSheet",
+  "slug": "bottom-sheet",
+  "group": "Overlays",
+  "status": "new",
+  "legacy": [],
+  "summary": "Torob's dominant overlay. Filters, sort, store detail, variant picker.",
+  "description": [
+   "The examples are full of bottom sheets — the filter panel, the sort list, the store detail card, the spec sheet, and not one existed as a component. Every one was drawn by hand.",
+   "Above 768px a bottom sheet is the wrong shape: there is horizontal room and no thumb constraint. <code>adaptive</code> turns the same component into a side panel at md, with the same markup, the same props and the same focus behaviour. One component, two surfaces."
+  ],
+  "use": [
+   "Anything the user opens to make a choice and then closes.",
+   "Snap points for tall content: peek, half, full.",
+   "Keep the primary action pinned in the footer, above the safe area."
+  ],
+  "avoid": [
+   "A sheet for content that deserves its own screen.",
+   "Sheets stacked on sheets.",
+   "Dismiss-on-outside-tap for a sheet with unsaved input — confirm instead."
+  ],
+  "anatomy": [
+   [
+    "Scrim",
+    "48% ink (64% dark), fades in over 220ms."
+   ],
+   [
+    "Grip",
+    "The whole 36px strip is the drag target, not the 4px bar."
+   ],
+   [
+    "Head",
+    "Title and close."
+   ],
+   [
+    "Body",
+    "Scrolls with <code>overscroll-behavior: contain</code> so the page behind stays put."
+   ],
+   [
+    "Foot",
+    "Hairline-separated, equal-width actions."
+   ]
+  ],
+  "props": [
+   [
+    "open",
+    "boolean",
+    "—",
+    "Controlled."
+   ],
+   [
+    "adaptive",
+    "boolean",
+    "true",
+    "Becomes a side panel from md."
+   ],
+   [
+    "snapPoints",
+    "number[]",
+    "[0.9]",
+    "Fractions of viewport height."
+   ],
+   [
+    "dismissible",
+    "boolean",
+    "true",
+    "Outside tap and Escape."
+   ]
+  ],
+  "a11y": [
+   "<code>role=\"dialog\" aria-modal=\"true\"</code> with <code>aria-labelledby</code> pointing at the title.",
+   "Focus moves in on open and returns to the trigger on close. Focus is trapped while open.",
+   "Escape closes. The grip is keyboard-operable, or the sheet has a visible close button — a drag-only sheet is not accessible.",
+   "Body scroll is locked behind the sheet, not just visually covered."
+  ],
+  "responsive": "Bottom sheet to 767px, 420px inline-end panel from 768px. The animation swaps with it: slide-up becomes slide-in-from-inline-end, which mirrors correctly in RTL.",
+  "specimens": [
+   {
+    "label": "Filter sheet",
+    "canvas": "plain",
+    "stageClass": "spec__stage--center",
+    "html": "<div style=\"position:relative;inline-size:375px;max-inline-size:100%;block-size:420px;border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)\">\n  <div style=\"position:absolute;inset:0;background:var(--t-bg-scrim)\"></div>\n  <div class=\"t-sheet\" style=\"position:absolute;animation:none\">\n    <div class=\"t-sheet__grip\"></div>\n    <div class=\"t-sheet__head\"><span class=\"t-sheet__title\">فیلترها</span><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بستن\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></button></div>\n    <div class=\"t-sheet__body\">\n      <label class=\"t-check\"><input type=\"checkbox\" checked><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">ضمانت ترب</span></label>\n      <label class=\"t-check\"><input type=\"checkbox\"><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">نمایندگی رسمی</span></label>\n      <label class=\"t-check\"><input type=\"checkbox\" checked><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">باز الان</span></label>\n      <label class=\"t-check\"><input type=\"checkbox\"><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">ارسال فوری</span></label>\n    </div>\n    <div class=\"t-sheet__foot\"><button class=\"t-btn t-btn--ghost t-btn--md\">حذف همه</button><button class=\"t-btn t-btn--primary t-btn--md\">نمایش ۴۳ نتیجه</button></div>\n  </div>\n</div>"
+   }
+  ],
+  "react": "export function BottomSheet({ open, onClose, title, adaptive = true, children, footer }) {\n  const ref = useRef(null);\n  useFocusTrap(ref, open);\n  useLockBodyScroll(open);\n  useEffect(() => {\n    if (!open) return;\n    const onKey = e => e.key === 'Escape' && onClose();\n    document.addEventListener('keydown', onKey);\n    return () => document.removeEventListener('keydown', onKey);\n  }, [open, onClose]);\n  if (!open) return null;\n  return createPortal(\n    <>\n      <div className=\"t-scrim\" onClick={onClose} />\n      <div className={clsx('t-sheet', adaptive && 't-sheet--adaptive')} ref={ref}\n           role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"sheet-title\">\n        <div className=\"t-sheet__grip\" />\n        <div className=\"t-sheet__head\">\n          <span className=\"t-sheet__title\" id=\"sheet-title\">{title}</span>\n          <IconButton size=\"sm\" label=\"بستن\" onClick={onClose}><CloseIcon /></IconButton>\n        </div>\n        <div className=\"t-sheet__body\">{children}</div>\n        {footer && <div className=\"t-sheet__foot\">{footer}</div>}\n      </div>\n    </>, document.body);\n}",
+  "classes": [
+   "t-check"
+  ]
+ },
+ {
+  "name": "Modal",
+  "slug": "modal",
+  "group": "Overlays",
+  "status": "new",
+  "legacy": [],
+  "summary": "Interrupts to get a decision. Use rarely.",
+  "description": [
+   "A modal is the most expensive interaction in the system: it stops everything. Reserve it for a decision that genuinely cannot wait — a destructive confirmation, a required choice. Everything else is a BottomSheet or an inline change."
+  ],
+  "use": [
+   "Confirm something irreversible: deleting a saved address.",
+   "Title states the decision; buttons name the outcomes.",
+   "Put the destructive action in the outline variant and the safe action as primary."
+  ],
+  "avoid": [
+   "Modals for information. That is an Alert.",
+   "Buttons labelled OK/Cancel. Name the action: «حذف آدرس» / «انصراف».",
+   "Nesting modals."
+  ],
+  "anatomy": [
+   [
+    "Scrim",
+    "Same as BottomSheet."
+   ],
+   [
+    "Container",
+    "max 440px, radius 16, elevation-3, scale-in from 0.97."
+   ],
+   [
+    "Foot",
+    "Equal-width buttons; primary at the inline end."
+   ]
+  ],
+  "props": [
+   [
+    "open / onClose",
+    "—",
+    "—",
+    "Controlled."
+   ],
+   [
+    "title",
+    "string",
+    "—",
+    ""
+   ],
+   [
+    "tone",
+    "'default' | 'critical'",
+    "'default'",
+    ""
+   ]
+  ],
+  "a11y": [
+   "Focus trap, focus return, Escape to close, <code>aria-modal</code>, <code>aria-labelledby</code> and <code>aria-describedby</code>.",
+   "Initial focus goes to the least destructive action, never to Delete."
+  ],
+  "responsive": "Below 375px it becomes a BottomSheet — a full-width centred box on a small phone is a worse shape than a sheet.",
+  "specimens": [
+   {
+    "label": "Destructive confirmation",
+    "canvas": "plain",
+    "stageClass": "spec__stage--center",
+    "html": "<div style=\"position:relative;inline-size:100%;max-inline-size:440px;padding:26px 0\">\n  <div class=\"t-modal\" style=\"position:relative;inset:auto;translate:none;animation:none;margin-inline:auto\">\n    <div class=\"t-modal__head\"><span class=\"t-modal__title\">حذف آدرس ذخیره‌شده؟</span></div>\n    <div class=\"t-modal__body t-body-md t-tone-secondary\">«خانه — ولیعصر، حافظ» حذف می‌شود. این کار قابل بازگشت نیست.</div>\n    <div class=\"t-modal__foot\"><button class=\"t-btn t-btn--outline\">انصراف</button><button class=\"t-btn t-btn--primary\">حذف آدرس</button></div>\n  </div>\n</div>"
+   }
+  ],
+  "react": "export function Modal({ open, onClose, title, children, footer }) {\n  const ref = useRef(null);\n  useFocusTrap(ref, open);\n  useLockBodyScroll(open);\n  if (!open) return null;\n  return createPortal(\n    <>\n      <div className=\"t-scrim\" onClick={onClose} />\n      <div className=\"t-modal\" ref={ref} role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\">\n        <div className=\"t-modal__head\">\n          <span className=\"t-modal__title\" id=\"modal-title\">{title}</span>\n        </div>\n        <div className=\"t-modal__body\">{children}</div>\n        {footer && <div className=\"t-modal__foot\">{footer}</div>}\n      </div>\n    </>, document.body);\n}",
+  "classes": [
+   "t-modal"
+  ]
+ },
+ {
+  "name": "Accordion",
+  "slug": "accordion",
+  "group": "Overlays",
+  "status": "new",
+  "legacy": [],
+  "summary": "Progressive disclosure for long, scannable content.",
+  "description": [
+   "The spec sheet on screen 3-5 is a wall of forty attribute rows. An accordion lets the shopper find the two that matter without scrolling past thirty-eight that do not."
+  ],
+  "use": [
+   "Product specs grouped by theme.",
+   "FAQ and policy content.",
+   "Open the first section by default when there is an obvious starting point."
+  ],
+  "avoid": [
+   "Hiding the primary content of a page behind a click.",
+   "Accordions inside accordions.",
+   "Single-item accordions: that is a Collapsible."
+  ],
+  "anatomy": [
+   [
+    "Item",
+    "Hairline-separated, no outer border."
+   ],
+   [
+    "Trigger",
+    "52px, 14px Bold, full-row target."
+   ],
+   [
+    "Chevron",
+    "Rotates 180° over 220ms."
+   ],
+   [
+    "Panel",
+    "14px secondary, indented to the trigger text."
+   ]
+  ],
+  "props": [
+   [
+    "items",
+    "{ id, label, content }[]",
+    "—",
+    ""
+   ],
+   [
+    "multiple",
+    "boolean",
+    "false",
+    "Allow several open at once."
+   ],
+   [
+    "defaultOpen",
+    "string[]",
+    "[]",
+    ""
+   ]
+  ],
+  "a11y": [
+   "Trigger is a <code>&lt;button&gt;</code> with <code>aria-expanded</code> and <code>aria-controls</code>; the panel has <code>aria-labelledby</code>.",
+   "Panels use the <code>hidden</code> attribute, not <code>height: 0</code> — collapsed content must leave the accessibility tree.",
+   "The whole trigger row is the target, not just the chevron."
+  ],
+  "responsive": "Identical at every size. Above lg, consider showing all panels open instead.",
+  "specimens": [
+   {
+    "label": "Product specifications",
+    "canvas": "plain",
+    "note": "Live — click a row to expand.",
+    "html": "<div class=\"t-accordion\" style=\"max-inline-size:375px\">\n  <div class=\"t-accordion__item\">\n    <button class=\"t-accordion__trigger\" aria-expanded=\"true\" aria-controls=\"ac1\"><span class=\"t-accordion__label\">مشخصات کلی</span><svg class=\"t-accordion__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n    <div class=\"t-accordion__panel\" id=\"ac1\">سیستم عامل: iOS ۲۶ · حافظه داخلی: ۱۲۸ گیگابایت · سال تولید: ۲۰۲۵</div>\n  </div>\n  <div class=\"t-accordion__item\">\n    <button class=\"t-accordion__trigger\" aria-expanded=\"false\" aria-controls=\"ac2\"><span class=\"t-accordion__label\">دوربین</span><svg class=\"t-accordion__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n    <div class=\"t-accordion__panel\" id=\"ac2\" hidden>دوربین اصلی: ۴۸ مگاپیکسل · دوربین سلفی: ۱۲ مگاپیکسل · فیلم‌برداری ۴K</div>\n  </div>\n  <div class=\"t-accordion__item\">\n    <button class=\"t-accordion__trigger\" aria-expanded=\"false\" aria-controls=\"ac3\"><span class=\"t-accordion__label\">بدنه و مقاومت</span><svg class=\"t-accordion__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n    <div class=\"t-accordion__panel\" id=\"ac3\" hidden>گواهینامه IP53 — مقاوم در برابر پاشیده شدن آب و گرد و غبار. پوشش گوریلا گلس ۳.</div>\n  </div>\n</div>"
+   }
+  ],
+  "react": "export function Accordion({ items, multiple, defaultOpen = [] }) {\n  const [open, setOpen] = useState(new Set(defaultOpen));\n  const toggle = id => setOpen(prev => {\n    const next = new Set(multiple ? prev : []);\n    prev.has(id) ? next.delete(id) : next.add(id);\n    return next;\n  });\n  return (\n    <div className=\"t-accordion\">\n      {items.map(it => (\n        <div className=\"t-accordion__item\" key={it.id}>\n          <button className=\"t-accordion__trigger\" aria-expanded={open.has(it.id)}\n                  aria-controls={`panel-${it.id}`} id={`trigger-${it.id}`}\n                  onClick={() => toggle(it.id)}>\n            <span className=\"t-accordion__label\">{it.label}</span>\n            <ChevronDown className=\"t-accordion__chevron\" />\n          </button>\n          <div className=\"t-accordion__panel\" id={`panel-${it.id}`}\n               aria-labelledby={`trigger-${it.id}`} hidden={!open.has(it.id)}>\n            {it.content}\n          </div>\n        </div>\n      ))}\n    </div>\n  );\n}",
+  "classes": [
+   "t-accordion"
+  ]
+ },
+ {
+  "name": "Menu",
+  "slug": "menu",
+  "group": "Overlays",
+  "status": "new",
+  "legacy": [],
+  "summary": "A short list of actions or options anchored to a trigger.",
+  "description": [
+   "For overflow actions and single-select options that do not warrant a sheet. Above about seven items, a sheet is easier to reach on a phone."
+  ],
+  "use": [
+   "Overflow on a card or header: اشتراک‌گذاری, گزارش, ذخیره.",
+   "Single-select where the current value is visible on the trigger.",
+   "Mark destructive items with <code>--critical</code>."
+  ],
+  "avoid": [
+   "Menus as primary navigation.",
+   "Right-click as the only way in.",
+   "More than seven items on a phone."
+  ],
+  "anatomy": [
+   [
+    "Container",
+    "Opaque fog, radius 12, elevation-2, 4px padding."
+   ],
+   [
+    "Item",
+    "40px, radius 8, 14px."
+   ],
+   [
+    "Separator",
+    "1px, 4px vertical margin."
+   ]
+  ],
+  "props": [
+   [
+    "items",
+    "{ label, icon?, onSelect, tone? }[]",
+    "—",
+    ""
+   ],
+   [
+    "trigger",
+    "ReactNode",
+    "—",
+    ""
+   ],
+   [
+    "align",
+    "'start' | 'end'",
+    "'start'",
+    "Logical — mirrors in RTL."
+   ]
+  ],
+  "a11y": [
+   "<code>role=\"menu\"</code> with <code>role=\"menuitem\"</code> children; arrow keys move, Escape closes, focus returns to the trigger.",
+   "For single-select use <code>role=\"menuitemradio\"</code> with <code>aria-checked</code>.",
+   "The popover flips to stay in the viewport, and flips along the logical axis, so it behaves correctly in RTL."
+  ],
+  "responsive": "From md it is a popover; below it, a BottomSheet. Reaching the top of a phone screen one-handed is the problem it avoids.",
+  "specimens": [
+   {
+    "label": "Overflow menu",
+    "canvas": "plain",
+    "stageClass": "spec__stage--center",
+    "html": "<div class=\"t-popover\" style=\"position:relative;inset:auto;animation:none;inline-size:220px\">\n  <button class=\"t-menu-item\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M11 10.4a2 2 0 0 0-1.4.6L6.2 9a2 2 0 0 0 0-2l3.4-2a2 2 0 1 0-.6-1L5.6 6A2 2 0 1 0 5.6 10l3.4 2a2 2 0 1 0 2-1.6z\"/></svg>اشتراک‌گذاری</button>\n  <button class=\"t-menu-item\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M12 2H4a1 1 0 0 0-1 1v11l5-2.6 5 2.6V3a1 1 0 0 0-1-1z\"/></svg>ذخیره</button>\n  <button class=\"t-menu-item\" aria-checked=\"true\" role=\"menuitemradio\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg>اعلان تغییر قیمت</button>\n  <div class=\"t-menu-sep\"></div>\n  <button class=\"t-menu-item t-menu-item--critical\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1.5 15 14H1zM7.3 6v4h1.4V6zm0 5v1.4h1.4V11z\"/></svg>گزارش تخلف</button>\n</div>"
+   }
+  ],
+  "react": "export function Menu({ trigger, items, align = 'start' }) {\n  const [open, setOpen] = useState(false);\n  const isPhone = useMediaQuery('(max-width: 767px)');\n  if (isPhone) return <><span onClick={() => setOpen(true)}>{trigger}</span>\n    <BottomSheet open={open} onClose={() => setOpen(false)} title=\"عملیات\">\n      {items.map(i => <ListItem key={i.label} title={i.label} lead={i.icon} onClick={i.onSelect} />)}\n    </BottomSheet></>;\n  return (\n    <Popover open={open} onOpenChange={setOpen} trigger={trigger} align={align}>\n      <div className=\"t-popover\" role=\"menu\">\n        {items.map(i => i.separator\n          ? <div key={i.key} className=\"t-menu-sep\" role=\"separator\" />\n          : <button key={i.label} role=\"menuitem\" onClick={i.onSelect}\n                    className={clsx('t-menu-item', i.tone === 'critical' && 't-menu-item--critical')}>\n              {i.icon}{i.label}\n            </button>)}\n      </div>\n    </Popover>\n  );\n}",
+  "classes": [
+   "t-menu-item",
+   "t-menu-item--critical"
+  ]
+ }
+]

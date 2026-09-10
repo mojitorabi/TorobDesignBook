@@ -1,0 +1,9 @@
+{
+  "name": "@torob/design-mcp",
+  "version": "1.0.0",
+  "description": "MCP server exposing the Torob Design System — tokens, components, icons, guidelines — to AI coding agents.",
+  "type": "module",
+  "bin": { "torob-design-mcp": "./server.mjs" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "@modelcontextprotocol/sdk": "^1.0.0" }
+}

@@ -1,0 +1,136 @@
+/* ============================================================
+   Feedback  — [NEW] The entire layer was missing from the source kit.
+   Toast · Alert · InlineMessage · EmptyState · ErrorState
+   Skeleton · Spinner · Progress · Tooltip
+   ============================================================ */
+
+/* ---- Toast ----
+   Bottom-anchored on mobile because the thumb is there and because the top of
+   a Torob screen is occupied by search. Never blocks the primary action. */
+.t-toast-region {
+  position: fixed;
+  inset-inline: var(--t-space-4);
+  inset-block-end: max(var(--t-space-4), env(safe-area-inset-bottom));
+  z-index: var(--t-z-toast);
+  display: flex; flex-direction: column-reverse; gap: var(--t-space-2);
+  pointer-events: none;
+}
+@media (min-width: 768px) { .t-toast-region { inset-inline-start: auto; max-inline-size: 380px; } }
+
+.t-toast {
+  pointer-events: auto;
+  display: flex; align-items: flex-start; gap: var(--t-space-3);
+  padding: var(--t-space-3) var(--t-space-4);
+  border-radius: var(--t-radius-md);
+  background: var(--t-bg-inverse);
+  color: var(--t-fg-inverse);
+  box-shadow: var(--t-elevation-3);
+  font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14);
+  animation: t-toast-in var(--t-duration-sheet) var(--t-easing-out);
+}
+@keyframes t-toast-in { from { opacity: 0; transform: translateY(12px) scale(0.98); } }
+.t-toast[data-leaving="true"] { animation: t-toast-out var(--t-duration-standard) var(--t-easing-in) forwards; }
+@keyframes t-toast-out { to { opacity: 0; transform: translateY(8px) scale(0.98); } }
+.t-toast__icon { flex: none; margin-block-start: 2px; }
+.t-toast__body { flex: 1; min-inline-size: 0; }
+.t-toast__title { font-weight: var(--t-font-weight-bold); }
+.t-toast__desc { opacity: 0.82; font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); }
+.t-toast__action { flex: none; border: none; background: none; cursor: pointer; color: var(--t-fg-inverse); font-weight: var(--t-font-weight-bold); text-decoration: underline; padding: 0; font-size: var(--t-font-size-12); }
+.t-toast__close { flex: none; border: none; background: none; cursor: pointer; color: currentColor; opacity: 0.7; padding: 0; }
+.t-toast__close:hover { opacity: 1; }
+.t-toast--positive { background: var(--t-status-positive-solid); color: #FFF; }
+.t-toast--critical { background: var(--t-status-critical-solid); color: #FFF; }
+.t-toast--caution  { background: var(--t-status-caution-solid); color: var(--t-status-caution-fg); }
+
+/* ---- Alert / Banner ----
+   Page-level. Persistent until resolved or dismissed.
+   No coloured left border — the tinted ground already carries the status. */
+.t-alert {
+  display: flex; align-items: flex-start; gap: var(--t-space-3);
+  padding: var(--t-space-3) var(--t-space-4);
+  border: var(--t-border-thin) solid var(--t-status-neutral-border);
+  border-radius: var(--t-radius-md);
+  background: var(--t-status-neutral-bg);
+  color: var(--t-status-neutral-fg);
+  font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14);
+}
+.t-alert__icon { flex: none; margin-block-start: 2px; }
+.t-alert__body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: 2px; }
+.t-alert__title { font-weight: var(--t-font-weight-bold); }
+.t-alert__actions { display: flex; gap: var(--t-space-2); margin-block-start: var(--t-space-2); }
+.t-alert--positive { background: var(--t-status-positive-bg); border-color: var(--t-status-positive-border); color: var(--t-status-positive-fg); }
+.t-alert--caution  { background: var(--t-status-caution-bg);  border-color: var(--t-status-caution-border);  color: var(--t-status-caution-fg); }
+.t-alert--critical { background: var(--t-status-critical-bg); border-color: var(--t-status-critical-border); color: var(--t-status-critical-fg); }
+.t-alert--info     { background: var(--t-status-info-bg);     border-color: var(--t-status-info-border);     color: var(--t-status-info-fg); }
+.t-alert--guarantee{ background: var(--t-status-guarantee-bg);border-color: var(--t-status-guarantee-border);color: var(--t-status-guarantee-fg); }
+
+/* ---- InlineMessage ---- field-level, sits under the control it describes. */
+.t-inline-msg { display: flex; align-items: center; gap: var(--t-space-1); font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
+.t-inline-msg--critical { color: var(--t-status-critical-fg); }
+.t-inline-msg--positive { color: var(--t-status-positive-fg); }
+
+/* ---- EmptyState ----
+   For a valid state with nothing in it. Always names the next action —
+   an empty state without an exit is a dead end. */
+.t-empty {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: var(--t-space-3);
+  padding: var(--t-space-12) var(--t-space-6);
+}
+.t-empty__art { color: var(--t-fg-disabled); }
+.t-empty__title { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-bold); color: var(--t-fg-default); }
+.t-empty__desc { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); color: var(--t-fg-secondary); max-inline-size: 46ch; }
+.t-empty__actions { display: flex; gap: var(--t-space-2); margin-block-start: var(--t-space-2); flex-wrap: wrap; justify-content: center; }
+/* Compact variant for an empty rail inside a card. */
+.t-empty--inline { padding: var(--t-space-6) var(--t-space-4); }
+
+/* ---- ErrorState ----
+   Same skeleton as EmptyState, different contract: an error names what went
+   wrong AND how to recover. Recovery action is required, not optional. */
+.t-empty--error .t-empty__art { color: var(--t-status-critical-solid); }
+.t-empty__code { font-family: var(--t-font-family-mono); font-size: var(--t-font-size-12); color: var(--t-fg-disabled); }
+
+/* ---- Skeleton ----
+   Matches the shape of the content it replaces, so nothing jumps on load. */
+.t-skeleton {
+  background: linear-gradient(90deg, var(--t-bg-subtle) 25%, var(--t-bg-sunken) 37%, var(--t-bg-subtle) 63%);
+  background-size: 400% 100%;
+  border-radius: var(--t-radius-sm);
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+.t-skeleton--text { block-size: 1em; margin-block: 0.25em; border-radius: var(--t-radius-xs); }
+.t-skeleton--title { block-size: 1.4em; inline-size: 60%; }
+.t-skeleton--circle { border-radius: var(--t-radius-full); }
+
+/* ---- Spinner ---- */
+.t-spinner {
+  display: inline-block;
+  inline-size: 20px; block-size: 20px;
+  border: 2px solid var(--t-border-default);
+  border-block-start-color: var(--t-action-accent-bg);
+  border-radius: var(--t-radius-full);
+  animation: t-spin 620ms linear infinite;
+}
+.t-spinner--sm { inline-size: 14px; block-size: 14px; border-width: 1.5px; }
+.t-spinner--lg { inline-size: 32px; block-size: 32px; border-width: 3px; }
+
+/* ---- Progress ---- */
+.t-progress { block-size: 4px; border-radius: var(--t-radius-full); background: var(--t-bg-subtle); overflow: hidden; }
+.t-progress__bar { block-size: 100%; border-radius: var(--t-radius-full); background: var(--t-action-accent-bg); transition: inline-size var(--t-duration-standard) var(--t-easing-out); }
+.t-progress--indeterminate .t-progress__bar { inline-size: 40%; animation: t-indeterminate 1.2s var(--t-easing-in-out) infinite; }
+@keyframes t-indeterminate { 0% { margin-inline-start: -40%; } 100% { margin-inline-start: 100%; } }
+
+/* ---- Tooltip ---- */
+.t-tooltip {
+  position: absolute; z-index: var(--t-z-tooltip);
+  padding: var(--t-space-1) var(--t-space-2);
+  border-radius: var(--t-radius-xs);
+  background: var(--t-bg-inverse); color: var(--t-fg-inverse);
+  font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12);
+  white-space: nowrap;
+  box-shadow: var(--t-elevation-2);
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--t-duration-micro) var(--t-easing-out);
+}
+.t-tooltip[data-open="true"] { opacity: 1; }

@@ -1,0 +1,68 @@
+{
+  "$description": "Dimensional primitives. 4px grid throughout.",
+  "space": {
+    "$type": "dimension",
+    "0":  { "$value": "0px" },
+    "1":  { "$value": "4px" },
+    "2":  { "$value": "8px" },
+    "3":  { "$value": "12px" },
+    "4":  { "$value": "16px" },
+    "5":  { "$value": "20px" },
+    "6":  { "$value": "24px" },
+    "8":  { "$value": "32px" },
+    "10": { "$value": "40px" },
+    "12": { "$value": "48px" },
+    "16": { "$value": "64px" },
+    "20": { "$value": "80px" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "none": { "$value": "0px" },
+    "xs":   { "$value": "4px",  "$description": "Chips, inline marks, nested badges" },
+    "sm":   { "$value": "8px",  "$description": "Nested elements inside a card" },
+    "md":   { "$value": "12px", "$description": "DEFAULT. 104 of 132 radii in the source." },
+    "lg":   { "$value": "16px", "$description": "Sheets, large surfaces" },
+    "xl":   { "$value": "24px", "$description": "[NEW] Modal / bottom-sheet top corners" },
+    "full": { "$value": "9999px", "$description": "Pills, avatars, dots" }
+  },
+  "size": {
+    "$type": "dimension",
+    "icon-sm":  { "$value": "16px" },
+    "icon-md":  { "$value": "20px" },
+    "icon-lg":  { "$value": "24px" },
+    "control-xs": { "$value": "24px", "$description": "Xsmall button height" },
+    "control-sm": { "$value": "28px" },
+    "control-md": { "$value": "32px", "$description": "Segmented control, filter cell" },
+    "control-lg": { "$value": "40px", "$description": "DEFAULT button height" },
+    "control-xl": { "$value": "48px", "$description": "Search bar, icon button" },
+    "touch-min":  { "$value": "44px", "$description": "Minimum touch target. Non-negotiable, even when the visual control is smaller." }
+  },
+  "border": {
+    "$type": "dimension",
+    "hairline": { "$value": "0.5px", "$description": "Selection ring" },
+    "thin":     { "$value": "1px",  "$description": "DEFAULT" },
+    "thick":    { "$value": "2px" }
+  },
+  "breakpoint": {
+    "$type": "dimension",
+    "$description": "[NEW] The source is 375-only. These define how it grows.",
+    "xs": { "$value": "360px", "$description": "Small Android. Lower bound — must not break." },
+    "sm": { "$value": "375px", "$description": "Design origin. Every source screen is this." },
+    "md": { "$value": "768px", "$description": "Tablet portrait. Grid goes 2-up, sheets become side panels." },
+    "lg": { "$value": "1024px", "$description": "Tablet landscape / small laptop. Persistent filter rail." },
+    "xl": { "$value": "1280px", "$description": "Desktop. Map and list side by side." },
+    "2xl": { "$value": "1600px", "$description": "Wide desktop. Content capped, gutters grow." }
+  },
+  "z": {
+    "$type": "number",
+    "base": { "$value": 0 },
+    "raised": { "$value": 10 },
+    "sticky": { "$value": 100 },
+    "header": { "$value": 200 },
+    "drawer": { "$value": 300 },
+    "modal": { "$value": 400 },
+    "popover": { "$value": 500 },
+    "toast": { "$value": 600 },
+    "tooltip": { "$value": 700 }
+  }
+}

@@ -1,0 +1,121 @@
+/* ============================================================
+   Torob Glass
+   Thin, not thick. Tint + hairline + micro-shadow.
+   Blur is a quarter of Apple's and carries a hard layer budget.
+   ============================================================ */
+
+/* Mode-resolved glass channel. Every .t-glass reads these four vars, so the
+   light/dark switch happens once here rather than in every component. */
+:root {
+  --t-glass-fill:   var(--t-glass-light-surface-fill);
+  --t-glass-border: var(--t-glass-light-surface-border);
+  --t-glass-shadow: var(--t-glass-light-surface-shadow);
+  --t-glass-fallback: var(--t-glass-fallback-light);
+}
+:root[data-theme="dark"] {
+  --t-glass-fill:   var(--t-glass-dark-surface-fill);
+  --t-glass-border: var(--t-glass-dark-surface-border);
+  --t-glass-shadow: var(--t-glass-dark-surface-shadow);
+  --t-glass-fallback: var(--t-glass-fallback-dark);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --t-glass-fill:   var(--t-glass-dark-surface-fill);
+    --t-glass-border: var(--t-glass-dark-surface-border);
+    --t-glass-shadow: var(--t-glass-dark-surface-shadow);
+    --t-glass-fallback: var(--t-glass-fallback-dark);
+  }
+}
+
+.t-glass {
+  position: relative;
+  background-color: var(--t-glass-fill);
+  border: var(--t-border-thin) solid var(--t-glass-border);
+  box-shadow: var(--t-glass-shadow);
+  border-radius: var(--t-radius-md);
+  backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
+}
+
+/* ---- Levels. The opacity ladder is the only lever that changes. ---- */
+
+/* 50% — a sheet content scrolls inside. No edge, no lift. */
+.t-glass--list {
+  background-color: var(--t-glass-light-list-fill);
+  border-color: transparent;
+  box-shadow: none;
+}
+/* 60% — selected or resting. No elevation. */
+.t-glass--solid {
+  background-color: var(--t-glass-light-solid-fill);
+  border-color: transparent;
+  box-shadow: none;
+}
+/* 60% + the blue ring. Selection is never brand red. */
+.t-glass--selected {
+  background-color: var(--t-glass-light-selected-fill);
+  border-color: var(--t-border-selected);
+  border-width: var(--t-border-hairline);
+  box-shadow: none;
+}
+/* The filter rail: sits above a scrolling list, so it gets a top highlight. */
+.t-glass--filters {
+  background-color: var(--t-glass-light-filters-fill);
+  border-color: var(--t-glass-light-filters-border);
+  box-shadow: var(--t-glass-light-filters-shadow);
+}
+
+/* Dark overrides. Flat selectors — CSS nesting is not assumed. */
+:root[data-theme="dark"] .t-glass--list     { background-color: var(--t-glass-dark-list-fill); }
+:root[data-theme="dark"] .t-glass--solid    { background-color: var(--t-glass-dark-solid-fill); }
+:root[data-theme="dark"] .t-glass--selected { background-color: var(--t-glass-dark-selected-fill); }
+:root[data-theme="dark"] .t-glass--filters  {
+  background-color: var(--t-glass-dark-filters-fill);
+  border-color: var(--t-glass-dark-filters-border);
+  box-shadow: var(--t-glass-dark-filters-shadow);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .t-glass--list     { background-color: var(--t-glass-dark-list-fill); }
+  :root:not([data-theme="light"]) .t-glass--solid    { background-color: var(--t-glass-dark-solid-fill); }
+  :root:not([data-theme="light"]) .t-glass--selected { background-color: var(--t-glass-dark-selected-fill); }
+  :root:not([data-theme="light"]) .t-glass--filters  {
+    background-color: var(--t-glass-dark-filters-fill);
+    border-color: var(--t-glass-dark-filters-border);
+    box-shadow: var(--t-glass-dark-filters-shadow);
+  }
+}
+
+/* ---- Degradation ----
+   Two independent reasons to go opaque. Same hue, same geometry, so layout
+   never shifts: only the translucency is removed. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .t-glass { background-color: var(--t-glass-fallback); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .t-glass,
+  .t-glass--list,
+  .t-glass--solid,
+  .t-glass--selected,
+  .t-glass--filters {
+    background-color: var(--t-glass-fallback);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* ---- Opaque surfaces. Glass never uses this ramp. ---- */
+.t-surface   { background: var(--t-bg-fog); border-radius: var(--t-radius-md); }
+.t-elevation-0 { box-shadow: var(--t-elevation-0); }
+.t-elevation-1 { box-shadow: var(--t-elevation-1); }
+.t-elevation-2 { box-shadow: var(--t-elevation-2); }
+.t-elevation-3 { box-shadow: var(--t-elevation-3); }
+
+/* The store-card rule pair: hairline top and bottom, no sides.
+   Reproduces "Store Card - Light/Dark" from the source. */
+.t-rules-y { box-shadow: var(--t-elevation-hairline-t), var(--t-elevation-hairline-b); }
+
+/* Fog scrim — fades content out under a floating bar. From "Fog sky". */
+.t-fog {
+  background: linear-gradient(to bottom, var(--t-bg-canvas) 0%, var(--t-bg-canvas) 50%, transparent 100%);
+  pointer-events: none;
+}

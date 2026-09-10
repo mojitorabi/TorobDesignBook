@@ -1,0 +1,23 @@
+[
+  "bottle--container",
+  "change-catalog",
+  "cics--region",
+  "cics--region--routing",
+  "cics--region--target",
+  "draft",
+  "failure",
+  "file-storage",
+  "generate-pdf",
+  "high severity, caution",
+  "ibm--bluepay",
+  "ibm--content-services",
+  "ibm--tenet",
+  "ibm-cloud-pak--systems",
+  "letter--Aa--large",
+  "low-severity, information",
+  "medium-severity, diamond-fill",
+  "navaid--vordme",
+  "navaid--vortac",
+  "software-resource--resource",
+  "stable, new"
+]

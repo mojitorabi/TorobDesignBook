@@ -1,0 +1,288 @@
+{
+  "$description": "Semantic tokens, dark mode. Same keys as light — only values differ. Status ramps are re-derived, not reused: the source shipped identical light values, which put #003D01 green on a #15202B ground.",
+  "$mode": "dark",
+  "bg": {
+    "$type": "color",
+    "canvas": {
+      "$value": "{color.sky.950}",
+      "$description": "Was: Background Bright - Dark"
+    },
+    "fog": {
+      "$value": "{color.sky.925}",
+      "$description": "Was: Background Fog - Dark"
+    },
+    "sunken": {
+      "$value": "{color.sky.900}"
+    },
+    "subtle": {
+      "$value": "{color.sky.800}"
+    },
+    "inverse": {
+      "$value": "{color.sky.100}"
+    },
+    "scrim": {
+      "$value": "rgba(15, 23, 43, 0.64)"
+    }
+  },
+  "fg": {
+    "$type": "color",
+    "default": {
+      "$value": "{color.sky.100}",
+      "$description": "Was: Sky 800 - Dark"
+    },
+    "secondary": {
+      "$value": "{color.sky.400}",
+      "$description": "Was: Sky 500 - Dark"
+    },
+    "disabled": {
+      "$value": "{color.sky.700}",
+      "$description": "Was: Sky 300 - Dark"
+    },
+    "inverse": {
+      "$value": "{color.sky.800}"
+    },
+    "brand": {
+      "$value": "{color.red.350}",
+      "$description": "Brand red lightened for dark ground."
+    },
+    "link": {
+      "$value": "{color.blue.300}"
+    },
+    "on-solid": {
+      "$value": "{color.white}"
+    }
+  },
+  "border": {
+    "$type": "color",
+    "subtle": {
+      "$value": "{color.sky.800}"
+    },
+    "default": {
+      "$value": "{color.sky.700}"
+    },
+    "control": {
+      "$value": "{color.sky.400}",
+      "$description": "Form-control boundary. Meets WCAG 1.4.11 at 3:1."
+    },
+    "strong": {
+      "$value": "{color.sky.400}"
+    },
+    "selected": {
+      "$value": "{color.blue.300}"
+    },
+    "focus": {
+      "$value": "{color.blue.300}"
+    }
+  },
+  "action": {
+    "$type": "color",
+    "primary": {
+      "bg": {
+        "$value": "{color.brand.red}"
+      },
+      "bg-gradient": {
+        "$value": "linear-gradient(180deg, {color.red.300} 0%, {color.brand.red} 100%)"
+      },
+      "bg-hover": {
+        "$value": "{color.red.300}"
+      },
+      "bg-active": {
+        "$value": "{color.red.800}"
+      },
+      "bg-disabled": {
+        "$value": "{color.sky.700}"
+      },
+      "fg": {
+        "$value": "{color.white}"
+      },
+      "fg-disabled": {
+        "$value": "{color.sky.400}"
+      }
+    },
+    "accent": {
+      "bg": {
+        "$value": "{color.blue.500}"
+      },
+      "bg-gradient": {
+        "$value": "linear-gradient(180deg, {color.blue.600} 0%, {color.blue.500} 100%)"
+      },
+      "bg-hover": {
+        "$value": "{color.blue.600}"
+      },
+      "bg-active": {
+        "$value": "{color.blue.800}"
+      },
+      "bg-disabled": {
+        "$value": "{color.sky.700}"
+      },
+      "fg": {
+        "$value": "{color.white}"
+      },
+      "soft-bg": {
+        "$value": "rgba(52, 104, 204, 0.18)"
+      },
+      "soft-fg": {
+        "$value": "{color.blue.200}"
+      }
+    },
+    "neutral": {
+      "bg": {
+        "$value": "{color.sky.100}"
+      },
+      "bg-hover": {
+        "$value": "{color.white}"
+      },
+      "bg-active": {
+        "$value": "{color.sky.300}"
+      },
+      "bg-disabled": {
+        "$value": "{color.sky.700}"
+      },
+      "fg": {
+        "$value": "{color.sky.800}"
+      },
+      "ghost-fg": {
+        "$value": "{color.sky.100}"
+      },
+      "ghost-bg-hover": {
+        "$value": "{color.sky.800}"
+      }
+    }
+  },
+  "status": {
+    "$type": "color",
+    "$description": "[NEW] Every ramp re-derived for dark. Foreground and background swap roles; solids lighten.",
+    "positive": {
+      "fg": {
+        "$value": "{color.green.200}"
+      },
+      "bg": {
+        "$value": "rgba(76, 175, 80, 0.16)"
+      },
+      "border": {
+        "$value": "rgba(76, 175, 80, 0.40)"
+      },
+      "solid": {
+        "$value": "{color.green.400}"
+      }
+    },
+    "caution": {
+      "fg": {
+        "$value": "{color.yellow.200}"
+      },
+      "bg": {
+        "$value": "rgba(255, 202, 50, 0.16)"
+      },
+      "border": {
+        "$value": "rgba(255, 202, 50, 0.40)"
+      },
+      "solid": {
+        "$value": "{color.yellow.400}"
+      }
+    },
+    "critical": {
+      "fg": {
+        "$value": "{color.red.200}"
+      },
+      "bg": {
+        "$value": "rgba(244, 63, 94, 0.16)"
+      },
+      "border": {
+        "$value": "rgba(244, 63, 94, 0.40)"
+      },
+      "solid": {
+        "$value": "{color.red.400}"
+      }
+    },
+    "info": {
+      "fg": {
+        "$value": "{color.blue.200}"
+      },
+      "bg": {
+        "$value": "rgba(96, 165, 250, 0.16)"
+      },
+      "border": {
+        "$value": "rgba(96, 165, 250, 0.40)"
+      },
+      "solid": {
+        "$value": "{color.blue.300}"
+      }
+    },
+    "guarantee": {
+      "fg": {
+        "$value": "{color.guarantee.300}"
+      },
+      "bg": {
+        "$value": "rgba(191, 191, 255, 0.14)"
+      },
+      "border": {
+        "$value": "rgba(191, 191, 255, 0.36)"
+      },
+      "solid": {
+        "$value": "{color.guarantee.300}"
+      }
+    },
+    "neutral": {
+      "fg": {
+        "$value": "{color.sky.100}"
+      },
+      "bg": {
+        "$value": "{color.sky.800}"
+      },
+      "border": {
+        "$value": "{color.sky.700}"
+      },
+      "solid": {
+        "$value": "{color.sky.400}"
+      }
+    }
+  },
+  "commerce": {
+    "$type": "color",
+    "price": {
+      "$value": "{color.sky.100}"
+    },
+    "price-from": {
+      "$value": "{color.sky.400}"
+    },
+    "discount": {
+      "$value": "{color.red.400}"
+    },
+    "ad": {
+      "$value": "{color.yellow.400}"
+    },
+    "oos": {
+      "$value": "{color.sky.400}"
+    },
+    "open": {
+      "$value": "{color.green.400}"
+    },
+    "closed": {
+      "$value": "{color.sky.400}"
+    },
+    "official": {
+      "$value": "{color.blue.300}"
+    },
+    "distance": {
+      "$value": "{color.sky.400}"
+    }
+  },
+  "map": {
+    "$type": "color",
+    "poi": {
+      "$value": "{color.red.400}"
+    },
+    "poi-selected": {
+      "$value": "{color.blue.300}"
+    },
+    "poi-dot": {
+      "$value": "{color.sky.400}"
+    },
+    "cluster-bg": {
+      "$value": "{color.sky.925}"
+    },
+    "cluster-fg": {
+      "$value": "{color.sky.100}"
+    }
+  }
+}

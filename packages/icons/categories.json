@@ -1,0 +1,44 @@
+{
+  "Enterprise": {
+    "Health": 121,
+    "Commerce": 67,
+    "App catalogue": 56,
+    "Research": 26,
+    "Catalog": 37
+  },
+  "Organization": {
+    "File": 173,
+    "Data": 225,
+    "Systems": 153,
+    "Alphanumeric": 57,
+    "Status": 46
+  },
+  "Person": {
+    "User": 67,
+    "Senses": 14
+  },
+  "Planning": {
+    "Weather": 130,
+    "Travel": 161,
+    "Time": 16
+  },
+  "Actions": {
+    "Navigation": 43,
+    "Operations": 149,
+    "Formatting": 148,
+    "Toggle": 72,
+    "Controls": 78
+  },
+  "Tools": {
+    "Technology": 120,
+    "Instruments": 23
+  },
+  "Brand": {
+    "IBM": 11,
+    "Design and Development": 18,
+    "Social": 21
+  },
+  "Status": {
+    "Indicator": 9
+  }
+}

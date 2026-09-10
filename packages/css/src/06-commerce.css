@@ -1,0 +1,186 @@
+/* ============================================================
+   Commerce & Display
+   ProductCard  ← Product Card/Normal · Small · Small Empty · More · Empty
+   ProductThumb ← Product Pic/Normal · Small
+   StoreCard    ← Store-Card/VLP/* · Store-Card/PDP/*
+   Badge        ← Badge/Card · Card-Picture · Card/Guarantee · Card/Normal · Card/Open
+   ListItem     ← List / Item · List / last item
+   PriceDisplay ← [NEW] extracted from the price treatment repeated across the source
+   ============================================================ */
+
+/* ---- Badge ---- */
+.t-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  block-size: 20px;
+  padding-inline: var(--t-space-2);
+  border-radius: var(--t-radius-xs);
+  font-size: var(--t-font-size-12); line-height: 1;
+  font-weight: var(--t-font-weight-bold);
+  white-space: nowrap;
+  background: var(--t-status-neutral-bg);
+  color: var(--t-status-neutral-fg);
+}
+.t-badge--lg { block-size: 24px; padding-inline: var(--t-space-3); }
+.t-badge--positive  { background: var(--t-status-positive-bg); color: var(--t-status-positive-fg); }
+.t-badge--caution   { background: var(--t-status-caution-bg);  color: var(--t-status-caution-fg); }
+.t-badge--critical  { background: var(--t-status-critical-bg); color: var(--t-status-critical-fg); }
+.t-badge--info      { background: var(--t-status-info-bg);     color: var(--t-status-info-fg); }
+.t-badge--guarantee { background: var(--t-status-guarantee-bg); color: var(--t-status-guarantee-fg); }
+.t-badge--brand     { background: var(--t-action-primary-bg);  color: var(--t-action-primary-fg); }
+/* آگهی — sponsored. Deliberately quiet: an ad marker that shouts is an ad. */
+.t-badge--ad        { background: var(--t-status-caution-bg);  color: var(--t-status-caution-fg); }
+/* Over a product image. Glass, so the photo still reads through. */
+.t-badge--on-image {
+  background: var(--t-glass-fill);
+  border: var(--t-border-thin) solid var(--t-glass-border);
+  color: var(--t-fg-default);
+  backdrop-filter: blur(var(--t-glass-blur));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur));
+}
+.t-badge__dot { inline-size: 6px; block-size: 6px; border-radius: var(--t-radius-full); background: currentColor; flex: none; }
+
+/* ---- Tag (removable) — [NEW] ---- */
+.t-tag { display: inline-flex; align-items: center; gap: var(--t-space-1); block-size: 24px; padding-inline: var(--t-space-2); border-radius: var(--t-radius-xs); background: var(--t-bg-subtle); color: var(--t-fg-default); font-size: var(--t-font-size-12); }
+.t-tag__remove { border: none; background: none; padding: 0; cursor: pointer; color: var(--t-fg-secondary); display: grid; place-items: center; }
+.t-tag__remove:hover { color: var(--t-fg-default); }
+
+/* ---- PriceDisplay ----
+   Price is the most-read element in the product. Tabular figures so that
+   columns of prices align, Persian numerals, and the currency word never
+   competes with the number. */
+.t-price { display: inline-flex; align-items: baseline; gap: 4px; font-variant-numeric: tabular-nums; }
+.t-price__value { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-extrabold); color: var(--t-commerce-price); }
+.t-price__unit  { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-medium); color: var(--t-fg-secondary); }
+.t-price__from  { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-commerce-price-from); }
+.t-price__was   { font-size: var(--t-font-size-12); color: var(--t-fg-secondary); text-decoration: line-through; }
+.t-price--lg .t-price__value { font-size: var(--t-font-size-20); line-height: var(--t-font-leading-20); }
+.t-price--sm .t-price__value { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); }
+.t-price--unavailable .t-price__value { color: var(--t-commerce-oos); font-weight: var(--t-font-weight-bold); }
+
+/* ---- ProductThumb ---- */
+.t-thumb {
+  position: relative;
+  aspect-ratio: 153 / 186;
+  border-radius: var(--t-radius-md);
+  overflow: hidden;
+  background: var(--t-bg-subtle);
+  flex: none;
+}
+.t-thumb img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.t-thumb--sm { aspect-ratio: 96 / 112; }
+.t-thumb--square { aspect-ratio: 1; }
+.t-thumb__badges { position: absolute; inset-block-start: var(--t-space-2); inset-inline-start: var(--t-space-2); display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.t-thumb__action { position: absolute; inset-block-start: var(--t-space-2); inset-inline-end: var(--t-space-2); }
+
+/* ---- ProductCard ---- */
+.t-product-card {
+  display: flex; flex-direction: column; gap: var(--t-space-2);
+  inline-size: 100%;
+  padding: var(--t-space-2);
+  border-radius: var(--t-radius-md);
+  background: var(--t-bg-fog);
+  text-decoration: none; color: inherit;
+  transition: box-shadow var(--t-duration-standard) var(--t-easing-out), transform var(--t-duration-standard) var(--t-easing-out);
+}
+.t-product-card:hover { box-shadow: var(--t-elevation-2); transform: translateY(-2px); }
+.t-product-card:active { transform: translateY(0); }
+.t-product-card__title { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-default); }
+.t-product-card__meta { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
+.t-product-card__tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.t-product-card--sm .t-product-card__title { -webkit-line-clamp: 2; }
+/* "More" card — the terminal cell of a horizontal rail. */
+.t-product-card--more { align-items: center; justify-content: center; gap: var(--t-space-2); min-block-size: 196px; border: var(--t-border-thin) dashed var(--t-border-default); background: transparent; color: var(--t-fg-link); font-weight: var(--t-font-weight-bold); font-size: var(--t-font-size-12); }
+/* Empty card — a placeholder while the rail loads or when a slot has no product. */
+.t-product-card--empty { background: var(--t-bg-subtle); min-block-size: 196px; }
+
+/* ---- StoreCard ----
+   The hairline rule pair top and bottom reproduces "Store Card - Light/Dark". */
+.t-store-card {
+  display: flex; flex-direction: column;
+  inline-size: 100%;
+  background: var(--t-bg-fog);
+  box-shadow: var(--t-elevation-hairline-t), var(--t-elevation-hairline-b);
+}
+.t-store-card--glass {
+  background: var(--t-glass-fill);
+  border: var(--t-border-thin) solid var(--t-glass-border);
+  box-shadow: var(--t-glass-shadow);
+  border-radius: var(--t-radius-lg);
+  backdrop-filter: blur(var(--t-glass-blur));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur));
+}
+.t-store-card__head { display: flex; align-items: flex-start; gap: var(--t-space-3); padding: var(--t-space-3) var(--t-space-4); }
+.t-store-card__logo { inline-size: 48px; block-size: 48px; border-radius: var(--t-radius-sm); background: var(--t-bg-subtle); flex: none; overflow: hidden; }
+.t-store-card__body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: 2px; }
+.t-store-card__name { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); font-weight: var(--t-font-weight-bold); }
+.t-store-card__meta { display: flex; align-items: center; gap: var(--t-space-2); flex-wrap: wrap; font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
+.t-store-card__badges { display: flex; gap: 4px; flex-wrap: wrap; padding-inline: var(--t-space-4); padding-block-end: var(--t-space-2); }
+/* Horizontal product rail inside a store card. Scroll-snaps, RTL-aware. */
+.t-store-card__rail { display: flex; gap: var(--t-space-2); padding-inline: var(--t-space-4); padding-block-end: var(--t-space-3); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.t-store-card__rail::-webkit-scrollbar { display: none; }
+.t-store-card__rail > * { flex: none; inline-size: 96px; scroll-snap-align: start; }
+.t-store-card__actions { display: flex; gap: var(--t-space-2); padding: var(--t-space-3) var(--t-space-4); border-block-start: var(--t-border-thin) solid var(--t-border-subtle); }
+.t-store-card__actions > * { flex: 1; }
+/* Distance — always leading, always secondary. */
+.t-store-card__distance { display: inline-flex; align-items: center; gap: 4px; color: var(--t-commerce-distance); font-variant-numeric: tabular-nums; }
+
+/* ---- ListItem ---- */
+.t-list { display: flex; flex-direction: column; background: var(--t-bg-fog); border-radius: var(--t-radius-md); overflow: hidden; }
+.t-list-item {
+  display: flex; align-items: center; gap: var(--t-space-3);
+  min-block-size: 56px;
+  padding-inline: var(--t-space-4);
+  padding-block: var(--t-space-2);
+  border-block-end: var(--t-border-thin) solid var(--t-border-subtle);
+  background: none; color: inherit; text-decoration: none;
+  cursor: pointer; text-align: start;
+  transition: background-color var(--t-duration-micro) var(--t-easing-out);
+}
+.t-list-item:hover { background: var(--t-bg-subtle); }
+/* "List / last item" is not a separate component — it is the last child. */
+.t-list-item:last-child { border-block-end: none; }
+.t-list-item__body { flex: 1; min-inline-size: 0; }
+.t-list-item__title { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); }
+.t-list-item__sub { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
+.t-list-item__lead, .t-list-item__trail { flex: none; color: var(--t-fg-secondary); display: flex; align-items: center; gap: var(--t-space-2); }
+/* Zebra rows ← "Spec / Desc / Even cell Style" */
+.t-list--zebra .t-list-item:nth-child(even) { background: var(--t-bg-subtle); }
+
+/* ---- Avatar — [NEW] ---- */
+.t-avatar { inline-size: 40px; block-size: 40px; border-radius: var(--t-radius-full); overflow: hidden; background: var(--t-bg-subtle); display: grid; place-items: center; font-weight: var(--t-font-weight-bold); color: var(--t-fg-secondary); flex: none; }
+.t-avatar--sm { inline-size: 32px; block-size: 32px; font-size: var(--t-font-size-12); }
+.t-avatar--lg { inline-size: 56px; block-size: 56px; }
+.t-avatar--square { border-radius: var(--t-radius-sm); }
+
+/* ---- Rating — [NEW] ---- */
+.t-rating { display: inline-flex; align-items: center; gap: 2px; color: var(--t-status-caution-solid); }
+.t-rating__value { color: var(--t-fg-default); font-weight: var(--t-font-weight-bold); font-variant-numeric: tabular-nums; margin-inline-start: var(--t-space-1); }
+.t-rating__count { color: var(--t-fg-secondary); font-size: var(--t-font-size-12); }
+
+/* ---- Divider ---- */
+.t-divider { block-size: var(--t-border-thin); background: var(--t-border-subtle); border: none; margin: 0; }
+.t-divider--vertical { inline-size: var(--t-border-thin); block-size: auto; align-self: stretch; }
+
+/* ---- Map: Pin & Cluster  ← POI/* · Pin ---- */
+.t-pin { position: relative; display: inline-grid; place-items: center; cursor: pointer; }
+.t-pin__body {
+  display: inline-flex; align-items: center; gap: var(--t-space-1);
+  block-size: 32px; padding-inline: var(--t-space-2);
+  border-radius: var(--t-radius-full);
+  background: var(--t-map-poi); color: var(--t-fg-inverse);
+  font-size: var(--t-font-size-12); font-weight: var(--t-font-weight-bold);
+  box-shadow: var(--t-elevation-2);
+  transition: transform var(--t-duration-standard) var(--t-easing-out), background-color var(--t-duration-standard) var(--t-easing-out);
+}
+.t-pin[aria-pressed="true"] .t-pin__body { background: var(--t-map-poi-selected); transform: scale(1.12); }
+.t-pin__tail { inline-size: 0; block-size: 0; border-inline: 5px solid transparent; border-block-start: 6px solid var(--t-map-poi); margin-block-start: -1px; }
+.t-pin[aria-pressed="true"] .t-pin__tail { border-block-start-color: var(--t-map-poi-selected); }
+.t-pin--dot { inline-size: 8px; block-size: 8px; border-radius: var(--t-radius-full); background: var(--t-map-poi-dot); }
+.t-cluster {
+  inline-size: 48px; block-size: 48px; border-radius: var(--t-radius-full);
+  display: grid; place-items: center;
+  background: var(--t-map-cluster-bg); color: var(--t-map-cluster-fg);
+  font-weight: var(--t-font-weight-extrabold); font-variant-numeric: tabular-nums;
+  box-shadow: var(--t-elevation-2);
+  border: var(--t-border-thin) solid var(--t-glass-border);
+}

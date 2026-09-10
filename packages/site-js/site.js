@@ -1,0 +1,312 @@
+/* Rahnamā docs site behaviour. No dependencies. */
+(function () {
+  'use strict';
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+
+  // Where assets live, derived from the stylesheet link so every page depth works.
+  const assetRoot = ((document.querySelector('link[href$="assets/site.css"]') || {}).href || '')
+    .replace(/site\.css$/, '');
+
+  /* ---------- Theme ---------- */
+  const root = document.documentElement;
+  const themeBtn = $('#themeToggle'), themeLabel = $('#themeLabel');
+  function currentTheme() {
+    return root.getAttribute('data-theme') ||
+      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  }
+  function paintTheme() { if (themeLabel) themeLabel.textContent = currentTheme() === 'dark' ? 'Dark' : 'Light'; }
+  paintTheme();
+  themeBtn && themeBtn.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('torob-theme', next); } catch (e) {}
+    paintTheme();
+  });
+
+  /* ---------- Locale: direction + copy + numerals ----------
+     Flipping direction alone leaves Persian copy sitting left-aligned, which
+     tells you nothing. A locale switch swaps all three, so an English reader
+     can judge hierarchy, density and truncation on the same components. */
+  let dict = null, dictPromise = null;
+  const FA_DIGITS = '۰۱۲۳۴۵۶۷۸۹';
+  const originals = new WeakMap();
+
+  function loadDict() {
+    if (dict) return Promise.resolve(dict);
+    if (!dictPromise) {
+      dictPromise = fetch(assetRoot + 'i18n.json')
+        .then(r => r.json())
+        .then(d => (dict = d))
+        .catch(() => (dict = {}));
+    }
+    return dictPromise;
+  }
+
+  const toLatinDigits = s => s
+    .replace(/[۰-۹]/g, d => FA_DIGITS.indexOf(d))
+    .replace(/٬/g, ',').replace(/٫/g, '.').replace(/٪/g, '%');
+
+  function translate(text) {
+    const key = text.trim();
+    if (!key) return text;
+    const hit = dict[key];
+    // Fall back to numeral conversion so an untranslated string is still
+    // readable rather than silently staying Persian.
+    const out = hit !== undefined ? hit : toLatinDigits(key);
+    return text.replace(key, out);
+  }
+
+  const ATTRS = ['aria-label', 'placeholder', 'title', 'aria-valuetext'];
+
+  function localiseStage(stage, locale) {
+    if (locale === 'fa') {
+      const saved = originals.get(stage);
+      if (saved) { stage.innerHTML = saved; originals.delete(stage); }
+      stage.setAttribute('dir', 'rtl');
+      stage.setAttribute('lang', 'fa');
+      return;
+    }
+    if (!originals.has(stage)) originals.set(stage, stage.innerHTML);
+    const walker = document.createTreeWalker(stage, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => { if (n.nodeValue.trim()) n.nodeValue = translate(n.nodeValue); });
+    stage.querySelectorAll('*').forEach(el => {
+      ATTRS.forEach(a => { if (el.hasAttribute(a)) el.setAttribute(a, translate(el.getAttribute(a))); });
+      if (el.tagName === 'INPUT' && el.value) el.value = translate(el.value);
+    });
+    stage.setAttribute('dir', 'ltr');
+    stage.setAttribute('lang', 'en');
+  }
+
+  async function setLocale(scope, locale) {
+    await loadDict();
+    const stages = scope === document
+      ? $$('.spec__stage')
+      : [$('.spec__stage', scope)].filter(Boolean);
+    stages.forEach(s => localiseStage(s, locale));
+  }
+
+  const localeBtn = $('#localeToggle'), localeLabel = $('#localeLabel');
+  localeBtn && localeBtn.addEventListener('click', async () => {
+    const next = localeBtn.dataset.locale === 'fa' ? 'en' : 'fa';
+    localeBtn.dataset.locale = next;
+    localeLabel.textContent = next === 'fa' ? 'فارسی' : 'English';
+    await setLocale(document, next);
+    $$('[data-spec-locale]').forEach(b => {
+      b.dataset.locale = next;
+      b.textContent = next === 'fa' ? 'فارسی' : 'English';
+    });
+  });
+
+  $$('[data-spec-locale]').forEach(btn => btn.addEventListener('click', async () => {
+    const next = btn.dataset.locale === 'fa' ? 'en' : 'fa';
+    btn.dataset.locale = next;
+    btn.textContent = next === 'fa' ? 'فارسی' : 'English';
+    await setLocale(btn.closest('[data-spec]'), next);
+  }));
+
+  /* ---------- Code drawers ---------- */
+  $$('[data-spec-code]').forEach(btn => btn.addEventListener('click', () => {
+    const drawer = $('.spec__code', btn.closest('[data-spec]'));
+    const open = drawer.hasAttribute('hidden');
+    drawer.toggleAttribute('hidden', !open);
+    btn.setAttribute('aria-expanded', String(open));
+  }));
+  $$('.spec__tab').forEach(tab => tab.addEventListener('click', () => {
+    const wrap = tab.closest('.spec__code');
+    $$('.spec__tab', wrap).forEach(t => t.setAttribute('aria-selected', String(t === tab)));
+    $$('pre.code', wrap).forEach(p => p.toggleAttribute('hidden', p.dataset.panel !== tab.dataset.tab));
+  }));
+
+  /* ---------- Copy ---------- */
+  function flash(btn, text) {
+    const was = btn.textContent;
+    btn.textContent = text; btn.dataset.copied = 'true';
+    setTimeout(() => { btn.textContent = was; delete btn.dataset.copied; }, 1400);
+  }
+  async function writeClipboard(text, btn) {
+    try {
+      await navigator.clipboard.writeText(text);
+      flash(btn, 'Copied');
+    } catch (e) {
+      // Clipboard API needs a secure context; file:// pages fall back.
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); flash(btn, 'Copied'); }
+      catch (e2) { flash(btn, 'Press ⌘C'); }
+      ta.remove();
+    }
+  }
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-copy]');
+    if (!btn) return;
+    const src = document.getElementById(btn.dataset.copy);
+    if (src) writeClipboard(src.textContent, btn);
+  });
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-copy-text]');
+    if (btn) writeClipboard(btn.dataset.copyText, btn);
+  });
+
+  /* ---------- Mobile nav ---------- */
+  const navToggle = $('#navToggle'), siteNav = $('#siteNav');
+  navToggle && navToggle.addEventListener('click', () => {
+    const open = siteNav.dataset.open !== 'true';
+    siteNav.dataset.open = String(open);
+    navToggle.setAttribute('aria-expanded', String(open));
+  });
+
+  /* ---------- Table of contents scroll-spy ---------- */
+  const tocLinks = $$('.site-toc a');
+  if (tocLinks.length && 'IntersectionObserver' in window) {
+    const map = new Map(tocLinks.map(a => [a.getAttribute('href').slice(1), a]));
+    const seen = new Set();
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => en.isIntersecting ? seen.add(en.target.id) : seen.delete(en.target.id));
+      let active = null;
+      for (const [id, a] of map) if (seen.has(id)) { active = a; break; }
+      tocLinks.forEach(a => a.toggleAttribute('data-active', a === active));
+    }, { rootMargin: '-72px 0px -70% 0px' });
+    map.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+  }
+
+  /* ---------- Search ---------- */
+  const input = $('#siteSearch'), results = $('#siteResults');
+  let index = null, activeIdx = -1;
+
+  async function ensureIndex() {
+    if (index) return index;
+    try {
+      const r = await fetch(assetRoot + 'search.json');
+      index = await r.json();
+    } catch (e) { index = []; }
+    return index;
+  }
+  function render(items, q) {
+    if (!items.length) { results.innerHTML = `<div class="site-results__empty">No match for “${q}”.</div>`; return; }
+    results.innerHTML = items.map((it, i) =>
+      `<a href="${assetRoot}../${it.u}" role="option" ${i === 0 ? 'data-active="true"' : ''}>
+         <span>${it.t}</span><span class="site-results__group">${it.g}</span>
+       </a>`).join('');
+    activeIdx = 0;
+  }
+  async function run(q) {
+    const idx = await ensureIndex();
+    const needle = q.toLowerCase().trim();
+    if (!needle) { results.hidden = true; input.setAttribute('aria-expanded', 'false'); return; }
+    const scored = [];
+    for (const it of idx) {
+      const hay = (it.t + ' ' + it.g + ' ' + (it.k || '')).toLowerCase();
+      const pos = hay.indexOf(needle);
+      if (pos >= 0) scored.push([pos + (it.t.toLowerCase().startsWith(needle) ? -50 : 0), it]);
+    }
+    scored.sort((a, b) => a[0] - b[0]);
+    render(scored.slice(0, 24).map(s => s[1]), q);
+    results.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+  }
+  if (input) {
+    let t;
+    input.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => run(input.value), 90); });
+    input.addEventListener('keydown', e => {
+      const links = $$('a', results);
+      if (e.key === 'Escape') { results.hidden = true; input.blur(); return; }
+      if (!links.length) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIdx = (activeIdx + (e.key === 'ArrowDown' ? 1 : -1) + links.length) % links.length;
+        links.forEach((a, i) => a.toggleAttribute('data-active', i === activeIdx));
+        links[activeIdx].scrollIntoView({ block: 'nearest' });
+      }
+      if (e.key === 'Enter' && links[activeIdx]) { e.preventDefault(); links[activeIdx].click(); }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === '/' && document.activeElement !== input && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) {
+        e.preventDefault(); input.focus();
+      }
+    });
+    document.addEventListener('click', e => { if (!e.target.closest('.site-search')) results.hidden = true; });
+  }
+
+  /* ---------- Live demo behaviours used across specimens ---------- */
+  document.addEventListener('click', e => {
+    // Segmented / switch / chip / tab selection
+    const seg = e.target.closest('.t-segmented__item, .t-switch__option, .t-tab');
+    if (seg) {
+      const group = seg.parentElement;
+      const attr = seg.hasAttribute('aria-checked') ? 'aria-checked' : 'aria-selected';
+      $$(seg.className.split(' ')[0].replace(/^/, '.'), group).forEach(x => x.setAttribute(attr, 'false'));
+      seg.setAttribute(attr, 'true');
+      if (seg.classList.contains('t-switch__option')) moveThumb(group);
+    }
+    const chip = e.target.closest('.t-chip[aria-pressed]');
+    if (chip) chip.setAttribute('aria-pressed', chip.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+
+    const acc = e.target.closest('.t-accordion__trigger');
+    if (acc) {
+      const open = acc.getAttribute('aria-expanded') !== 'true';
+      acc.setAttribute('aria-expanded', String(open));
+      const panel = document.getElementById(acc.getAttribute('aria-controls'));
+      if (panel) panel.toggleAttribute('hidden', !open);
+    }
+    const pin = e.target.closest('.t-pin');
+    if (pin) {
+      $$('.t-pin', pin.closest('[data-pin-group]') || document).forEach(p => p.setAttribute('aria-pressed', 'false'));
+      pin.setAttribute('aria-pressed', 'true');
+    }
+  });
+
+  /* The thumb is positioned with inset-inline-start, which is measured from the
+     RIGHT edge in RTL — but offsetLeft is always measured from the left. Using
+     one for the other puts the thumb under the wrong option in RTL. Measure the
+     logical distance instead. */
+  function logicalInlineStart(el, parent) {
+    const cs = getComputedStyle(parent);
+    const rtl = cs.direction === 'rtl';
+    const p = parent.getBoundingClientRect();
+    const e = el.getBoundingClientRect();
+    const border = parseFloat(rtl ? cs.borderInlineEndWidth : cs.borderInlineStartWidth) || 0;
+    return (rtl ? p.right - e.right : e.left - p.left) - border;
+  }
+
+  function moveThumb(group) {
+    const thumb = $('.t-switch__thumb', group);
+    const active = $('.t-switch__option[aria-checked="true"]', group);
+    if (!thumb || !active) return;
+    thumb.style.insetInlineStart = logicalInlineStart(active, group) + 'px';
+    thumb.style.inlineSize = active.offsetWidth + 'px';
+  }
+  /* Measure synchronously — requestAnimationFrame never fires in a background
+     tab, which would leave the thumb unpositioned. Then re-measure whenever
+     something that changes label width or direction settles. */
+  const layoutSwitches = () => $$('.t-switch').forEach(moveThumb);
+  layoutSwitches();
+  addEventListener('load', layoutSwitches);
+  addEventListener('resize', layoutSwitches);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutSwitches);
+  new MutationObserver(layoutSwitches)
+    .observe(document.body, { attributes: true, attributeFilter: ['dir', 'aria-checked'], subtree: true });
+
+  /* Toast demo */
+  window.torobToast = function (opts) {
+    let region = $('.t-toast-region');
+    if (!region) {
+      region = document.createElement('div');
+      region.className = 't-toast-region';
+      region.setAttribute('role', 'status');
+      region.setAttribute('aria-live', 'polite');
+      document.body.appendChild(region);
+    }
+    const el = document.createElement('div');
+    el.className = 't-toast' + (opts.variant ? ' t-toast--' + opts.variant : '');
+    el.setAttribute('dir', 'rtl');
+    el.innerHTML = `<div class="t-toast__body"><div class="t-toast__title">${opts.title}</div>${opts.desc ? `<div class="t-toast__desc">${opts.desc}</div>` : ''}</div>${opts.action ? `<button class="t-toast__action">${opts.action}</button>` : ''}<button class="t-toast__close" aria-label="بستن">✕</button>`;
+    region.appendChild(el);
+    const kill = () => { el.dataset.leaving = 'true'; setTimeout(() => el.remove(), 240); };
+    $('.t-toast__close', el).addEventListener('click', kill);
+    setTimeout(kill, opts.duration || 4200);
+  };
+})();

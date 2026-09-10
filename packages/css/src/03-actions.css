@@ -1,0 +1,184 @@
+/* ============================================================
+   Actions
+   Button          ← Button / Red · Blue · Black · *ghost
+   IconButton      ← Button/Icon/*
+   SplitButton     ← Button / Red /split · Button / Blue /split
+   BuyBoxButton    ← Button/Buy box/* · Button/Offline Buy box/Ad
+   ============================================================ */
+
+.t-btn {
+  --_h: var(--t-size-control-lg);
+  --_px: var(--t-space-4);
+  --_fs: var(--t-font-size-14);
+  --_lh: var(--t-font-leading-14);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--t-space-2);
+  block-size: var(--_h);
+  padding-inline: var(--_px);
+  border: var(--t-border-thin) solid transparent;
+  border-radius: var(--t-radius-md);
+  font-size: var(--_fs);
+  line-height: var(--_lh);
+  font-weight: var(--t-font-weight-bold);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition:
+    background-color var(--t-duration-micro) var(--t-easing-out),
+    border-color     var(--t-duration-micro) var(--t-easing-out),
+    color            var(--t-duration-micro) var(--t-easing-out),
+    transform        var(--t-duration-micro) var(--t-easing-out);
+}
+
+/* Touch target. The visual control can be 24px; the tappable area never is. */
+.t-btn::after {
+  content: "";
+  position: absolute;
+  inset-block: calc((var(--t-size-touch-min) - var(--_h)) / -2);
+  inset-inline: 0;
+  min-block-size: var(--t-size-touch-min);
+}
+@media (pointer: fine) { .t-btn::after { content: none; } }
+
+.t-btn:active:not(:disabled) { transform: scale(0.97); }
+.t-btn:disabled, .t-btn[aria-disabled="true"] { cursor: not-allowed; transform: none; }
+
+/* ---- Sizes ---- */
+.t-btn--xs { --_h: var(--t-size-control-xs); --_px: var(--t-space-2); --_fs: var(--t-font-size-12); --_lh: var(--t-font-leading-12); border-radius: var(--t-radius-sm); }
+.t-btn--sm { --_h: var(--t-size-control-sm); --_px: var(--t-space-3); --_fs: var(--t-font-size-12); --_lh: var(--t-font-leading-12); border-radius: var(--t-radius-sm); }
+.t-btn--md { --_h: var(--t-size-control-md); --_px: var(--t-space-3); }
+.t-btn--lg { --_h: var(--t-size-control-lg); }
+.t-btn--xl { --_h: var(--t-size-control-xl); --_px: var(--t-space-5); --_fs: var(--t-font-size-16); --_lh: var(--t-font-leading-16); }
+.t-btn--block { display: flex; inline-size: 100%; }
+
+/* ---- Variants ----
+   primary = brand red. One per screen. The thing you came to do.
+   accent  = blue. Secondary path, informational CTA.
+   neutral = sky. Tertiary.
+   outline / ghost = low emphasis. */
+.t-btn--primary {
+  background-image: var(--t-action-primary-bg-gradient);
+  background-color: var(--t-action-primary-bg);
+  color: var(--t-action-primary-fg);
+}
+.t-btn--primary:hover:not(:disabled) { background-image: none; background-color: var(--t-action-primary-bg-hover); }
+.t-btn--primary:active:not(:disabled) { background-image: none; background-color: var(--t-action-primary-bg-active); }
+
+.t-btn--accent {
+  background-image: var(--t-action-accent-bg-gradient);
+  background-color: var(--t-action-accent-bg);
+  color: var(--t-action-accent-fg);
+}
+.t-btn--accent:hover:not(:disabled) { background-image: none; background-color: var(--t-action-accent-bg-hover); }
+.t-btn--accent:active:not(:disabled) { background-image: none; background-color: var(--t-action-accent-bg-active); }
+
+.t-btn--neutral { background-color: var(--t-action-neutral-bg); color: var(--t-action-neutral-fg); }
+.t-btn--neutral:hover:not(:disabled) { background-color: var(--t-action-neutral-bg-hover); }
+.t-btn--neutral:active:not(:disabled) { background-color: var(--t-action-neutral-bg-active); }
+
+.t-btn--soft { background-color: var(--t-action-accent-soft-bg); color: var(--t-action-accent-soft-fg); }
+.t-btn--soft:hover:not(:disabled) { background-color: var(--t-action-accent-soft-bg); filter: brightness(0.96); }
+
+.t-btn--outline { background: transparent; border-color: var(--t-border-control); color: var(--t-fg-default); }
+.t-btn--outline:hover:not(:disabled) { background-color: var(--t-action-neutral-ghost-bg-hover); }
+
+.t-btn--outline-accent { background: transparent; border-color: var(--t-action-accent-bg); color: var(--t-fg-link); }
+.t-btn--outline-accent:hover:not(:disabled) { background-color: var(--t-action-accent-soft-bg); }
+
+.t-btn--ghost { background: transparent; color: var(--t-action-neutral-ghost-fg); }
+.t-btn--ghost:hover:not(:disabled) { background-color: var(--t-action-neutral-ghost-bg-hover); }
+
+.t-btn--ghost-accent { background: transparent; color: var(--t-fg-link); }
+.t-btn--ghost-accent:hover:not(:disabled) { background-color: var(--t-action-accent-soft-bg); }
+
+/* One disabled treatment. Every variant collapses to it — a disabled control
+   must not still read as primary. */
+.t-btn:disabled, .t-btn[aria-disabled="true"] {
+  background-image: none !important;
+  background-color: var(--t-action-primary-bg-disabled) !important;
+  border-color: transparent !important;
+  color: var(--t-action-primary-fg-disabled) !important;
+}
+.t-btn--ghost:disabled, .t-btn--outline:disabled,
+.t-btn--ghost[aria-disabled="true"], .t-btn--outline[aria-disabled="true"] {
+  background-color: transparent !important;
+  color: var(--t-fg-disabled) !important;
+  border-color: var(--t-border-default) !important;
+}
+
+/* ---- Loading ----
+   The label stays in place so the button does not resize mid-action. */
+.t-btn[data-loading="true"] { color: transparent !important; pointer-events: none; }
+.t-btn[data-loading="true"]::before {
+  content: "";
+  position: absolute;
+  inline-size: 1em; block-size: 1em;
+  border: 2px solid currentColor;
+  border-block-start-color: transparent;
+  border-radius: var(--t-radius-full);
+  color: var(--t-action-primary-fg);
+  animation: t-spin 620ms linear infinite;
+}
+@keyframes t-spin { to { transform: rotate(360deg); } }
+
+/* Icons inside buttons. Directional icons flip with the document. */
+.t-btn .t-icon { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); flex: none; }
+.t-btn--xl .t-icon { inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); }
+
+/* ---- IconButton ---- */
+.t-icon-btn {
+  --_s: var(--t-size-control-xl);
+  display: inline-flex; align-items: center; justify-content: center;
+  inline-size: var(--_s); block-size: var(--_s);
+  padding: 0;
+  border: var(--t-border-thin) solid transparent;
+  border-radius: var(--t-radius-md);
+  background: transparent;
+  color: var(--t-fg-default);
+  cursor: pointer;
+  transition: background-color var(--t-duration-micro) var(--t-easing-out), transform var(--t-duration-micro) var(--t-easing-out);
+}
+.t-icon-btn:hover:not(:disabled) { background-color: var(--t-action-neutral-ghost-bg-hover); }
+.t-icon-btn:active:not(:disabled) { transform: scale(0.94); }
+.t-icon-btn:disabled { color: var(--t-fg-disabled); cursor: not-allowed; }
+.t-icon-btn--sm { --_s: var(--t-size-control-md); border-radius: var(--t-radius-sm); }
+.t-icon-btn--round { border-radius: var(--t-radius-full); }
+.t-icon-btn--accent { background-color: var(--t-action-accent-bg); color: var(--t-action-accent-fg); }
+.t-icon-btn--accent:hover:not(:disabled) { background-color: var(--t-action-accent-bg-hover); }
+.t-icon-btn--glass { background-color: var(--t-glass-fill); border-color: var(--t-glass-border); box-shadow: var(--t-glass-shadow); backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur)); }
+
+/* ---- SplitButton ---- */
+.t-btn-split { display: inline-flex; border-radius: var(--t-radius-md); overflow: hidden; }
+.t-btn-split > .t-btn { border-radius: 0; }
+.t-btn-split > .t-btn:first-child { border-start-start-radius: var(--t-radius-md); border-end-start-radius: var(--t-radius-md); }
+.t-btn-split > .t-btn:last-child  { border-start-end-radius: var(--t-radius-md); border-end-end-radius: var(--t-radius-md); padding-inline: var(--t-space-3); }
+.t-btn-split > .t-btn + .t-btn { border-inline-start: var(--t-border-thin) solid rgb(255 255 255 / 0.24); }
+
+/* ---- BuyBoxButton ----
+   The PDP's primary commerce surface: price, seller, and CTA in one target.
+   Ad variant carries the آگهی marker. */
+.t-buybox {
+  display: flex; align-items: center; gap: var(--t-space-3);
+  inline-size: 100%;
+  min-block-size: 44px;
+  padding: var(--t-space-2) var(--t-space-3);
+  border: none;
+  border-radius: var(--t-radius-md);
+  background-image: var(--t-action-primary-bg-gradient);
+  color: var(--t-action-primary-fg);
+  text-align: start;
+  cursor: pointer;
+  transition: filter var(--t-duration-micro) var(--t-easing-out), transform var(--t-duration-micro) var(--t-easing-out);
+}
+.t-buybox:hover { filter: brightness(1.06); }
+.t-buybox:active { transform: scale(0.99); }
+.t-buybox__body { flex: 1; min-inline-size: 0; }
+.t-buybox__price { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-extrabold); font-variant-numeric: tabular-nums; }
+.t-buybox__meta  { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); opacity: 0.86; }
+.t-buybox--accent { background-image: var(--t-action-accent-bg-gradient); }
+.t-buybox--offline { background-image: none; background-color: var(--t-bg-fog); color: var(--t-fg-default); border: var(--t-border-thin) solid var(--t-border-default); }

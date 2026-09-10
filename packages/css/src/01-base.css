@@ -1,0 +1,88 @@
+/* ============================================================
+   Torob Design System — Base
+   RTL-first. Logical properties only. No physical direction.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--t-font-family-sans);
+  font-weight: var(--t-font-weight-medium);
+  font-size: var(--t-font-size-16);
+  line-height: var(--t-font-leading-16);
+  color: var(--t-fg-default);
+  background: var(--t-bg-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: proportional-nums;
+}
+
+/* Direction scalar. Used by the few animations that must travel toward the
+   inline end (toggle thumb, drawer, side panel) where a logical property
+   cannot express the motion. Direction itself is set on <html dir>, never
+   hardcoded. Specificity is deliberate: :root[dir] must beat the :root default. */
+:root { --t-dir: -1; }
+:root[dir="rtl"], [dir="rtl"] { --t-dir: 1; }
+:root[dir="ltr"], [dir="ltr"] { --t-dir: -1; }
+
+h1, h2, h3, h4, h5, h6, p, figure, blockquote { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+img, svg, video, canvas { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: var(--t-fg-link); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+/* One focus treatment for the whole system. Never removed, only replaced. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--t-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--t-radius-xs);
+}
+:where(a, button, input, select, textarea, summary, [tabindex]):focus:not(:focus-visible) { outline: none; }
+
+/* ---------- Typography scale ----------
+   Old name → new name is documented on each rule. */
+.t-h1 { font-size: var(--t-font-size-24); line-height: var(--t-font-leading-24); font-weight: var(--t-font-weight-extrabold); color: var(--t-fg-default); }
+.t-h2 { font-size: var(--t-font-size-20); line-height: var(--t-font-leading-20); font-weight: var(--t-font-weight-extrabold); color: var(--t-fg-default); }
+.t-h3 { font-size: var(--t-font-size-18); line-height: var(--t-font-leading-18); font-weight: var(--t-font-weight-extrabold); color: var(--t-fg-default); }
+.t-h4 { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-bold); color: var(--t-fg-default); }
+.t-h5 { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); font-weight: var(--t-font-weight-bold); color: var(--t-fg-default); }
+
+/* body-lg  ← Normal/NR main   ← ui / large / regular 80  */
+.t-body-lg   { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-medium); }
+.t-body-lg-strong { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-bold); }
+/* body-md  ← Small/SR main    ← ui / normal / regular 80 */
+.t-body-md   { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); font-weight: var(--t-font-weight-medium); }
+.t-body-md-strong { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); font-weight: var(--t-font-weight-bold); }
+/* body-sm  ← Tiny/TR main     ← ui / small / regular 80  */
+.t-body-sm   { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-medium); }
+.t-body-sm-strong { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-bold); }
+
+/* Tone modifiers. Compose with any size: class="t-body-md t-tone-secondary" */
+.t-tone-default   { color: var(--t-fg-default); }
+.t-tone-secondary { color: var(--t-fg-secondary); }
+.t-tone-disabled  { color: var(--t-fg-disabled); }
+.t-tone-inverse   { color: var(--t-fg-inverse); }
+.t-tone-brand     { color: var(--t-fg-brand); }
+
+/* Persian numerals. Apply to any element containing product numbers. */
+.t-num-fa { font-feature-settings: "ss01"; }
+.t-num-tabular { font-variant-numeric: tabular-nums; }
+
+/* Bidirectional isolation. Wrap Latin runs inside Persian strings, and any
+   user-generated string whose direction you cannot predict. */
+.t-bidi { unicode-bidi: isolate; }
+
+.t-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.t-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.t-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+.t-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}

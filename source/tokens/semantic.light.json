@@ -1,0 +1,305 @@
+{
+  "$description": "Semantic tokens, light mode. THIS is the layer product code consumes.",
+  "$mode": "light",
+  "bg": {
+    "$type": "color",
+    "canvas": {
+      "$value": "{color.sky.100}",
+      "$description": "Page background. Was: Background Bright - Light"
+    },
+    "fog": {
+      "$value": "{color.white}",
+      "$description": "Raised card / sheet ground. Was: Background Fog - Light"
+    },
+    "sunken": {
+      "$value": "{color.sky.50}"
+    },
+    "subtle": {
+      "$value": "{color.sky.100}",
+      "$description": "Zebra rows, spec table even cells"
+    },
+    "inverse": {
+      "$value": "{color.sky.800}"
+    },
+    "scrim": {
+      "$value": "rgba(30, 41, 59, 0.48)",
+      "$description": "Behind modals and sheets"
+    }
+  },
+  "fg": {
+    "$type": "color",
+    "default": {
+      "$value": "{color.sky.800}",
+      "$description": "Was: Sky 800 - Light / text style 'main'"
+    },
+    "secondary": {
+      "$value": "{color.sky.600}",
+      "$description": "Was: 'sec'. Uses Sky 600 rather than Sky 500 — see primitive note."
+    },
+    "disabled": {
+      "$value": "{color.sky.300}",
+      "$description": "Was: 'disable'"
+    },
+    "inverse": {
+      "$value": "{color.sky.50}",
+      "$description": "Was: 'reverse'"
+    },
+    "brand": {
+      "$value": "{color.red.600}",
+      "$description": "Brand red for text. Fills use {color.brand.red}."
+    },
+    "link": {
+      "$value": "{color.blue.500}"
+    },
+    "on-solid": {
+      "$value": "{color.white}",
+      "$description": "Text on a filled action surface"
+    }
+  },
+  "border": {
+    "$type": "color",
+    "subtle": {
+      "$value": "{color.sky.100}"
+    },
+    "default": {
+      "$value": "{color.sky.300}"
+    },
+    "control": {
+      "$value": "{color.sky.500}",
+      "$description": "Form-control boundary. WCAG 1.4.11 requires 3:1 — border.default is decorative only and does not meet it."
+    },
+    "strong": {
+      "$value": "{color.sky.500}"
+    },
+    "selected": {
+      "$value": "{color.blue.500}",
+      "$description": "[NEW] Selection ring. Source used Blue 300 in both modes; on light it measures 2.54:1. Blue 500 keeps the blue language and passes at 4.79:1."
+    },
+    "focus": {
+      "$value": "{color.blue.500}",
+      "$description": "Keyboard focus ring"
+    }
+  },
+  "action": {
+    "$type": "color",
+    "primary": {
+      "$description": "Brand red. The single most important action on a screen.",
+      "bg": {
+        "$value": "{color.brand.red}"
+      },
+      "bg-gradient": {
+        "$value": "linear-gradient(180deg, {color.red.300} 0%, {color.brand.red} 100%)"
+      },
+      "bg-hover": {
+        "$value": "{color.red.300}"
+      },
+      "bg-active": {
+        "$value": "{color.red.800}"
+      },
+      "bg-disabled": {
+        "$value": "{color.sky.300}"
+      },
+      "fg": {
+        "$value": "{color.white}"
+      },
+      "fg-disabled": {
+        "$value": "{color.sky.50}"
+      }
+    },
+    "accent": {
+      "$description": "Blue. Secondary actions, informational CTAs, navigation.",
+      "bg": {
+        "$value": "{color.blue.500}"
+      },
+      "bg-gradient": {
+        "$value": "linear-gradient(180deg, {color.blue.600} 0%, {color.blue.500} 100%)"
+      },
+      "bg-hover": {
+        "$value": "{color.blue.600}"
+      },
+      "bg-active": {
+        "$value": "{color.blue.800}"
+      },
+      "bg-disabled": {
+        "$value": "{color.sky.300}"
+      },
+      "fg": {
+        "$value": "{color.white}"
+      },
+      "soft-bg": {
+        "$value": "{color.blue.50}"
+      },
+      "soft-fg": {
+        "$value": "{color.blue.800}"
+      }
+    },
+    "neutral": {
+      "$description": "Sky. Tertiary actions and ghost buttons.",
+      "bg": {
+        "$value": "{color.sky.800}"
+      },
+      "bg-hover": {
+        "$value": "{color.sky.700}"
+      },
+      "bg-active": {
+        "$value": "{color.sky.900}"
+      },
+      "bg-disabled": {
+        "$value": "{color.sky.300}"
+      },
+      "fg": {
+        "$value": "{color.white}"
+      },
+      "ghost-fg": {
+        "$value": "{color.sky.800}"
+      },
+      "ghost-bg-hover": {
+        "$value": "{color.sky.100}"
+      }
+    }
+  },
+  "status": {
+    "$type": "color",
+    "positive": {
+      "fg": {
+        "$value": "{color.green.800}"
+      },
+      "bg": {
+        "$value": "{color.green.50}"
+      },
+      "border": {
+        "$value": "{color.green.200}"
+      },
+      "solid": {
+        "$value": "{color.green.500}"
+      }
+    },
+    "caution": {
+      "fg": {
+        "$value": "{color.yellow.800}"
+      },
+      "bg": {
+        "$value": "{color.yellow.50}"
+      },
+      "border": {
+        "$value": "{color.yellow.200}"
+      },
+      "solid": {
+        "$value": "{color.yellow.500}"
+      }
+    },
+    "critical": {
+      "fg": {
+        "$value": "{color.red.800}"
+      },
+      "bg": {
+        "$value": "{color.red.50}"
+      },
+      "border": {
+        "$value": "{color.red.300}"
+      },
+      "solid": {
+        "$value": "{color.red.500}"
+      }
+    },
+    "info": {
+      "fg": {
+        "$value": "{color.blue.800}"
+      },
+      "bg": {
+        "$value": "{color.blue.50}"
+      },
+      "border": {
+        "$value": "{color.blue.200}"
+      },
+      "solid": {
+        "$value": "{color.blue.500}"
+      }
+    },
+    "guarantee": {
+      "fg": {
+        "$value": "{color.guarantee.800}"
+      },
+      "bg": {
+        "$value": "{color.guarantee.50}"
+      },
+      "border": {
+        "$value": "{color.guarantee.300}"
+      },
+      "solid": {
+        "$value": "{color.guarantee.800}"
+      },
+      "$description": "ضمانت ترب"
+    },
+    "neutral": {
+      "fg": {
+        "$value": "{color.sky.800}"
+      },
+      "bg": {
+        "$value": "{color.sky.100}"
+      },
+      "border": {
+        "$value": "{color.sky.300}"
+      },
+      "solid": {
+        "$value": "{color.sky.500}"
+      }
+    }
+  },
+  "commerce": {
+    "$type": "color",
+    "$description": "Torob-specific meaning. These are load-bearing — do not substitute generic status colours.",
+    "price": {
+      "$value": "{color.sky.800}",
+      "$description": "The price number itself"
+    },
+    "price-from": {
+      "$value": "{color.sky.500}",
+      "$description": "'از ...' prefix and seller-count line"
+    },
+    "discount": {
+      "$value": "{color.brand.red}"
+    },
+    "ad": {
+      "$value": "{color.yellow.500}",
+      "$description": "آگهی — sponsored marker"
+    },
+    "oos": {
+      "$value": "{color.sky.500}",
+      "$description": "ناموجود — out of stock. Deliberately grey, not red: unavailability is not an error."
+    },
+    "open": {
+      "$value": "{color.green.600}",
+      "$description": "باز الان"
+    },
+    "closed": {
+      "$value": "{color.sky.500}"
+    },
+    "official": {
+      "$value": "{color.blue.500}",
+      "$description": "نمایندگی رسمی"
+    },
+    "distance": {
+      "$value": "{color.sky.500}"
+    }
+  },
+  "map": {
+    "$type": "color",
+    "$description": "Torob Nearby map layer",
+    "poi": {
+      "$value": "{color.brand.red}"
+    },
+    "poi-selected": {
+      "$value": "{color.blue.500}"
+    },
+    "poi-dot": {
+      "$value": "{color.sky.500}"
+    },
+    "cluster-bg": {
+      "$value": "{color.white}"
+    },
+    "cluster-fg": {
+      "$value": "{color.sky.800}"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+/* ============================================================
+   Inputs
+   SearchField  ← Search bar/Default · Typing · Searched
+   Switch       ← Switch/Left · Switch/Right   (a 2-position selector, not a boolean)
+   Toggle       ← [NEW] the boolean switch the kit was missing
+   ============================================================ */
+
+.t-field { display: flex; flex-direction: column; gap: var(--t-space-1); inline-size: 100%; }
+.t-field__label { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-bold); color: var(--t-fg-default); }
+.t-field__hint  { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
+.t-field__error { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-status-critical-fg); display: flex; align-items: center; gap: var(--t-space-1); }
+.t-field__req { color: var(--t-fg-brand); margin-inline-start: 2px; }
+
+.t-input {
+  display: flex; align-items: center; gap: var(--t-space-2);
+  block-size: var(--t-size-control-xl);
+  padding-inline: var(--t-space-3);
+  border: var(--t-border-thin) solid var(--t-border-control);
+  border-radius: var(--t-radius-md);
+  background: var(--t-bg-fog);
+  color: var(--t-fg-default);
+  inline-size: 100%;
+  transition: border-color var(--t-duration-micro) var(--t-easing-out), box-shadow var(--t-duration-micro) var(--t-easing-out);
+}
+.t-input:focus-within { border-color: var(--t-border-focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-border-focus) 22%, transparent); outline: none; }
+.t-input__el {
+  flex: 1; min-inline-size: 0;
+  border: none; background: none; outline: none; padding: 0;
+  font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14);
+  color: inherit; text-align: start;
+}
+.t-input__el::placeholder { color: var(--t-fg-secondary); }
+.t-input__icon { flex: none; color: var(--t-fg-secondary); inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); }
+.t-input--md { block-size: var(--t-size-control-lg); }
+.t-input--sm { block-size: var(--t-size-control-md); padding-inline: var(--t-space-2); }
+.t-input[data-invalid="true"] { border-color: var(--t-status-critical-solid); }
+.t-input[data-invalid="true"]:focus-within { box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-status-critical-solid) 22%, transparent); }
+.t-input[data-disabled="true"] { background: var(--t-bg-subtle); color: var(--t-fg-disabled); cursor: not-allowed; }
+
+textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var(--t-space-2); }
+.t-input--textarea { block-size: auto; align-items: flex-start; padding-block: var(--t-space-2); }
+
+/* ---- SearchField ---- */
+.t-search { position: relative; inline-size: 100%; }
+.t-search .t-input { border-radius: var(--t-radius-md); }
+.t-search__clear { flex: none; display: none; }
+.t-search[data-state="typing"] .t-search__clear,
+.t-search[data-state="searched"] .t-search__clear { display: inline-flex; }
+.t-search__actions { display: flex; align-items: center; gap: var(--t-space-1); flex: none; }
+/* Voice and camera search — Torob's own search affordances. */
+.t-search__tool { color: var(--t-fg-secondary); }
+.t-search[data-state="searched"] .t-search__tool { display: none; }
+
+/* ---- Select ---- */
+.t-select { position: relative; }
+.t-select select.t-input__el { appearance: none; cursor: pointer; padding-inline-end: var(--t-space-6); }
+.t-select__chevron { position: absolute; inset-inline-end: var(--t-space-3); inset-block-start: 50%; translate: 0 -50%; pointer-events: none; color: var(--t-fg-secondary); }
+
+/* ---- Checkbox & Radio ---- */
+.t-check { display: inline-flex; align-items: center; gap: var(--t-space-2); cursor: pointer; min-block-size: var(--t-size-touch-min); }
+.t-check__box {
+  flex: none;
+  inline-size: 20px; block-size: 20px;
+  border: var(--t-border-thin) solid var(--t-border-control);
+  border-radius: var(--t-radius-xs);
+  background: var(--t-bg-fog);
+  display: grid; place-items: center;
+  transition: background-color var(--t-duration-micro) var(--t-easing-out), border-color var(--t-duration-micro) var(--t-easing-out);
+}
+.t-check input { position: absolute; opacity: 0; inline-size: 0; block-size: 0; }
+.t-check input:checked + .t-check__box { background: var(--t-action-accent-bg); border-color: var(--t-action-accent-bg); color: var(--t-action-accent-fg); }
+.t-check input:focus-visible + .t-check__box { outline: 2px solid var(--t-border-focus); outline-offset: 2px; }
+.t-check input:disabled ~ * { color: var(--t-fg-disabled); cursor: not-allowed; }
+.t-check__mark { opacity: 0; transition: opacity var(--t-duration-micro) var(--t-easing-out); }
+.t-check input:checked + .t-check__box .t-check__mark { opacity: 1; }
+.t-check--radio .t-check__box { border-radius: var(--t-radius-full); }
+.t-check--radio input:checked + .t-check__box { background: var(--t-bg-fog); border-color: var(--t-action-accent-bg); border-width: 6px; }
+
+/* ---- Toggle (boolean switch) — [NEW], absent from the source kit ---- */
+.t-toggle { display: inline-flex; align-items: center; gap: var(--t-space-2); cursor: pointer; min-block-size: var(--t-size-touch-min); }
+.t-toggle input { position: absolute; opacity: 0; inline-size: 0; block-size: 0; }
+.t-toggle__track {
+  flex: none;
+  inline-size: 44px; block-size: 26px;
+  border-radius: var(--t-radius-full);
+  background: var(--t-bg-subtle);
+  border: var(--t-border-thin) solid var(--t-border-default);
+  position: relative;
+  transition: background-color var(--t-duration-standard) var(--t-easing-out), border-color var(--t-duration-standard) var(--t-easing-out);
+}
+.t-toggle__thumb {
+  position: absolute;
+  inset-block-start: 2px;
+  inset-inline-start: 2px;
+  inline-size: 20px; block-size: 20px;
+  border-radius: var(--t-radius-full);
+  background: var(--t-bg-fog);
+  box-shadow: var(--t-elevation-1);
+  transition: translate var(--t-duration-standard) var(--t-easing-out);
+}
+.t-toggle input:checked + .t-toggle__track { background: var(--t-action-accent-bg); border-color: var(--t-action-accent-bg); }
+/* Logical translate: --t-dir is 1 in RTL, -1 in LTR, so the thumb always
+   travels toward the inline end. */
+.t-toggle input:checked + .t-toggle__track .t-toggle__thumb { translate: calc(18px * var(--t-dir, -1) * -1) 0; }
+.t-toggle input:focus-visible + .t-toggle__track { outline: 2px solid var(--t-border-focus); outline-offset: 2px; }
+.t-toggle input:disabled + .t-toggle__track { opacity: 0.5; cursor: not-allowed; }
+
+/* ---- Switch (two-position selector) ← Switch/Left · Switch/Right ----
+   Torob uses this for map ⇄ list. It is NOT a boolean — both positions are
+   named destinations, so it is a radiogroup, not a checkbox. */
+.t-switch {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: var(--t-radius-md);
+  background: var(--t-glass-fill);
+  border: var(--t-border-thin) solid var(--t-glass-border);
+  backdrop-filter: blur(var(--t-glass-blur));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur));
+  position: relative;
+}
+.t-switch__option {
+  position: relative; z-index: 1;
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--t-space-1);
+  min-inline-size: 64px; block-size: 30px;
+  padding-inline: var(--t-space-3);
+  border: none; background: none; cursor: pointer;
+  border-radius: var(--t-radius-sm);
+  font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12);
+  font-weight: var(--t-font-weight-bold);
+  color: var(--t-fg-secondary);
+  transition: color var(--t-duration-micro) var(--t-easing-out);
+}
+.t-switch__option[aria-checked="true"] { color: var(--t-fg-default); }
+.t-switch__thumb {
+  position: absolute; z-index: 0;
+  inset-block: 3px;
+  /* Pre-JS default: under the first option. JS refines it to the selected one. */
+  inset-inline-start: 3px;
+  inline-size: 64px;
+  border-radius: var(--t-radius-sm);
+  background: var(--t-bg-fog);
+  box-shadow: var(--t-elevation-1);
+  transition: inset-inline-start var(--t-duration-standard) var(--t-easing-out), inline-size var(--t-duration-standard) var(--t-easing-out);
+}
+
+/* ---- RangeSlider — [NEW]. Price range is Torob's most-used filter and the
+   kit had no control for it. ---- */
+.t-range { inline-size: 100%; }
+.t-range__track { position: relative; block-size: 4px; border-radius: var(--t-radius-full); background: var(--t-bg-subtle); margin-block: var(--t-space-4); }
+.t-range__fill  { position: absolute; block-size: 100%; border-radius: var(--t-radius-full); background: var(--t-action-accent-bg); }
+.t-range__thumb {
+  position: absolute; inset-block-start: 50%;
+  inline-size: 22px; block-size: 22px; translate: 50% -50%;
+  border-radius: var(--t-radius-full);
+  background: var(--t-bg-fog);
+  border: 2px solid var(--t-action-accent-bg);
+  box-shadow: var(--t-elevation-1);
+  cursor: grab;
+}
+.t-range__thumb:active { cursor: grabbing; scale: 1.1; }
+.t-range__values { display: flex; justify-content: space-between; font-size: var(--t-font-size-12); color: var(--t-fg-secondary); font-variant-numeric: tabular-nums; }
+
+/* ---- QuantityStepper — [NEW] ---- */
+.t-stepper { display: inline-flex; align-items: center; border: var(--t-border-thin) solid var(--t-border-control); border-radius: var(--t-radius-md); overflow: hidden; }
+.t-stepper__btn { inline-size: 36px; block-size: 36px; border: none; background: var(--t-bg-fog); color: var(--t-fg-default); cursor: pointer; display: grid; place-items: center; }
+.t-stepper__btn:hover:not(:disabled) { background: var(--t-bg-subtle); }
+.t-stepper__btn:disabled { color: var(--t-fg-disabled); cursor: not-allowed; }
+.t-stepper__value { min-inline-size: 44px; text-align: center; font-weight: var(--t-font-weight-bold); font-variant-numeric: tabular-nums; }
