@@ -1,5 +1,5 @@
 /* QuantityStepper — Torob Design System
- * Increment and decrement a small integer.
+ * افزایش و کاهش یک عدد صحیح کوچک.
  * Docs: /components/quantity-stepper.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

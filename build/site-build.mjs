@@ -2,7 +2,7 @@
 import { writeFileSync, mkdirSync, copyFileSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './tokens-lib.mjs';
-import { nav } from '../source/site.nav.mjs';
+import { nav, GROUP_FA, UI_FA } from '../source/site.nav.mjs';
 import { fa2en } from '../source/i18n.mjs';
 import { buildModel } from './tokens-lib.mjs';
 import { colorPage, typographyPage } from './pages-foundations.mjs';
@@ -54,7 +54,7 @@ function legacyBlock(legacy) {
   const chips = `<div class="legacy-list">${legacy.map(l => `<span class="legacy">${esc(l)}</span>`).join('')}</div>`;
   if (legacy.length <= 5) return chips;
   return `<details class="legacy-fold">
-    <summary><svg class="legacy-fold__chev" width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11-5-5 1-1 4 4 4-4 1 1z"/></svg>${legacy.length} legacy Sketch names map to this component</summary>
+    <summary><svg class="legacy-fold__chev" width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11-5-5 1-1 4 4 4-4 1 1z"/></svg>${legacy.length} ${UI_FA.legacyFold}</summary>
     ${chips}
   </details>`;
 }
@@ -70,9 +70,9 @@ function componentPage(c) {
   /* Header meta: status + legacy names */
   body += `<div class="prose" style="max-inline-size:none;margin-block-end:6px">
     <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-block-end:14px">
-      <span class="status-pill status-pill--${c.status}">${c.status === 'revised' ? 'Renamed & restructured' : c.status === 'new' ? 'New in this system' : 'Stable'}</span>
+      <span class="status-pill status-pill--${c.status}">${c.status === 'revised' ? UI_FA.statusRevised : c.status === 'new' ? UI_FA.statusNew : UI_FA.statusStable}</span>
       <code style="font-size:12px">&lt;${c.name} /&gt;</code>
-      <button class="site-tool copy-btn" data-copy-text="${esc(c.classes ? c.classes[0] : 't-' + c.slug)}">Copy class</button>
+      <button class="site-tool copy-btn" data-copy-text="${esc(c.classes ? c.classes[0] : 't-' + c.slug)}">${UI_FA.copyClass}</button>
     </div>
     ${legacyBlock(c.legacy)}
   </div>`;
@@ -80,26 +80,26 @@ function componentPage(c) {
   if (c.description?.length) body += `<div class="prose">${c.description.map(p => `<p>${p}</p>`).join('')}</div>`;
 
   if (c.specimens?.length) {
-    body += S('examples', 'Examples',
+    body += S('examples', UI_FA.examples,
       c.specimens.map(s => specimen({ ...s, react: undefined })).join(''));
   }
-  if (c.use || c.avoid) body += S('usage', 'Usage', guidance(c.use ?? [], c.avoid ?? []));
-  if (c.anatomy?.length) body += S('anatomy', 'Anatomy', table(['Part', 'Description'], c.anatomy.map(([a, b]) => [`<strong>${esc(a)}</strong>`, b])));
-  if (c.props?.length) body += S('props', 'Props', table(['Prop', 'Type', 'Default', 'Description'],
+  if (c.use || c.avoid) body += S('usage', UI_FA.usage, guidance(c.use ?? [], c.avoid ?? []));
+  if (c.anatomy?.length) body += S('anatomy', UI_FA.anatomy, table(['بخش', 'توضیح'], c.anatomy.map(([a, b]) => [`<strong>${esc(a)}</strong>`, b])));
+  if (c.props?.length) body += S('props', UI_FA.props, table(['پراپ', 'نوع', 'پیش‌فرض', 'توضیح'],
     c.props.map(([n, t, d, desc]) => [`<code>${esc(n)}</code>`, `<code style="color:var(--t-fg-link)">${esc(t)}</code>`, `<code>${esc(d)}</code>`, desc])));
   if (c.react) body += S('react', 'React', `<div class="spec" data-spec>
       <div class="spec__bar"><span class="spec__label">${esc(c.name)}.tsx</span>
-        <div class="spec__tools"><button class="site-tool copy-btn" data-copy="react-${c.slug}">Copy</button></div>
+        <div class="spec__tools"><button class="site-tool copy-btn" data-copy="react-${c.slug}">${UI_FA.copy}</button></div>
       </div>
       <pre class="code" id="react-${c.slug}"><code>${c.react.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
     </div>`);
-  if (c.a11y?.length) body += S('a11y', 'Accessibility', `<ul class="prose" style="max-inline-size:74ch">${c.a11y.map(a => `<li>${a}</li>`).join('')}</ul>`);
-  if (c.responsive) body += S('responsive', 'Responsive behaviour', `<div class="prose"><p>${c.responsive}</p></div>`);
+  if (c.a11y?.length) body += S('a11y', UI_FA.a11y, `<ul class="prose" style="max-inline-size:74ch">${c.a11y.map(a => `<li>${a}</li>`).join('')}</ul>`);
+  if (c.responsive) body += S('responsive', UI_FA.responsive, `<div class="prose"><p>${c.responsive}</p></div>`);
 
   const { prev, next } = around(`components/${c.slug}`);
   return layout({
     slug: `components/${c.slug}`, title: c.name, description: c.summary,
-    eyebrow: c.group, nav, components, body, toc, prev, next,
+    eyebrow: GROUP_FA[c.group] ?? c.group, nav, components, body, toc, prev, next,
   });
 }
 

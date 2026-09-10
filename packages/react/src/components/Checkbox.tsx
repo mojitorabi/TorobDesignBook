@@ -1,5 +1,5 @@
 /* Checkbox — Torob Design System
- * Multi-select within a form. Confirmed by a Save.
+ * چندانتخابی درون یک فرم. با دکمهٔ ذخیره تأیید می‌شود.
  * Docs: /components/checkbox.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

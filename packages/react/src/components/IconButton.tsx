@@ -1,5 +1,5 @@
 /* IconButton — Torob Design System
- * A single icon as a target. Always carries an accessible name.
+ * یک آیکون به‌عنوان هدف لمس. همیشه نام دسترس‌پذیر دارد.
  * Docs: /components/icon-button.html
  * Replaces: Button/Icon/Icon, Button/Icon/Blue Icon, Button/Icon/Ghost Icon, Button/Icon/Icon Rounded, Button/Icon
  */

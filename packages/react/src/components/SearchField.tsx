@@ -1,5 +1,5 @@
 /* SearchField — Torob Design System
- * Torob starts at search. Three states, one component.
+ * ترب از جست‌وجو شروع می‌شود. سه حالت، یک کامپوننت.
  * Docs: /components/search-field.html
  * Replaces: Search bar/Default, Search bar/Typing, Search bar/Searched, Search bar
  */

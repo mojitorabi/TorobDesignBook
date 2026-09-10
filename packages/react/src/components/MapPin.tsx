@@ -1,5 +1,5 @@
 /* MapPin — Torob Design System
- * A store on the map. Four densities, one component.
+ * یک فروشگاه روی نقشه. چهار تراکم، یک کامپوننت.
  * Docs: /components/map-pin.html
  * Replaces: POI/Selected + Price, POI/Selected, POI/Normal, POI/Dot, POI/Cluster, Pin, Open Pin/Light, Close Pin/Light, Open Pin/Dark, Close Pin/Dark
  */

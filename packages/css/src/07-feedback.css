@@ -108,7 +108,7 @@
   display: inline-block;
   inline-size: 20px; block-size: 20px;
   border: 2px solid var(--t-border-default);
-  border-block-start-color: var(--t-action-accent-bg);
+  border-block-start-color: var(--t-action-blue-bg);
   border-radius: var(--t-radius-full);
   animation: t-spin 620ms linear infinite;
 }
@@ -117,7 +117,7 @@
 
 /* ---- Progress ---- */
 .t-progress { block-size: 4px; border-radius: var(--t-radius-full); background: var(--t-bg-subtle); overflow: hidden; }
-.t-progress__bar { block-size: 100%; border-radius: var(--t-radius-full); background: var(--t-action-accent-bg); transition: inline-size var(--t-duration-standard) var(--t-easing-out); }
+.t-progress__bar { block-size: 100%; border-radius: var(--t-radius-full); background: var(--t-action-blue-bg); transition: inline-size var(--t-duration-standard) var(--t-easing-out); }
 .t-progress--indeterminate .t-progress__bar { inline-size: 40%; animation: t-indeterminate 1.2s var(--t-easing-in-out) infinite; }
 @keyframes t-indeterminate { 0% { margin-inline-start: -40%; } 100% { margin-inline-start: 100%; } }
 

@@ -1,43 +1,49 @@
 {
-  "$description": "Semantic tokens, TRUE DARK. Near-black ground for OLED and for readers who want maximum contrast. Distinct from 'dim', which is a soft navy-slate.",
-  "$mode": "dark",
+  "$description": "Semantic tokens, dark mode. Same keys as light — only values differ. Status ramps are re-derived, not reused: the source shipped identical light values, which put #003D01 green on a #15202B ground.",
+  "$mode": "dim",
   "bg": {
     "$type": "color",
     "canvas": {
-      "$value": "{color.night.0}"
+      "$value": "{color.sky.950}",
+      "$description": "Was: Background Bright - Dark"
     },
     "fog": {
-      "$value": "{color.night.100}"
+      "$value": "{color.sky.925}",
+      "$description": "Was: Background Fog - Dark"
     },
     "sunken": {
-      "$value": "{color.night.50}"
+      "$value": "{color.sky.900}"
     },
     "subtle": {
-      "$value": "{color.night.200}"
+      "$value": "{color.sky.800}"
     },
     "inverse": {
-      "$value": "{color.night.900}"
+      "$value": "{color.sky.100}"
     },
     "scrim": {
-      "$value": "rgba(0, 0, 0, 0.72)"
+      "$value": "rgba(15, 23, 43, 0.64)"
     }
   },
   "fg": {
     "$type": "color",
     "default": {
-      "$value": "{color.night.900}"
+      "$value": "{color.sky.100}",
+      "$description": "Was: Sky 800 - Dark"
     },
     "secondary": {
-      "$value": "{color.night.600}"
+      "$value": "{color.sky.400}",
+      "$description": "Was: Sky 500 - Dark"
     },
     "disabled": {
-      "$value": "{color.night.700}"
+      "$value": "{color.sky.700}",
+      "$description": "Was: Sky 300 - Dark"
     },
     "inverse": {
-      "$value": "{color.night.100}"
+      "$value": "{color.sky.800}"
     },
     "brand": {
-      "$value": "{color.red.350}"
+      "$value": "{color.red.350}",
+      "$description": "Brand red lightened for dark ground."
     },
     "link": {
       "$value": "{color.blue.300}"
@@ -49,16 +55,17 @@
   "border": {
     "$type": "color",
     "subtle": {
-      "$value": "{color.night.300}"
+      "$value": "{color.sky.800}"
     },
     "default": {
-      "$value": "{color.night.400}"
+      "$value": "{color.sky.700}"
     },
     "control": {
-      "$value": "{color.night.500}"
+      "$value": "{color.sky.400}",
+      "$description": "Form-control boundary. Meets WCAG 1.4.11 at 3:1."
     },
     "strong": {
-      "$value": "{color.night.600}"
+      "$value": "{color.sky.400}"
     },
     "selected": {
       "$value": "{color.blue.300}"
@@ -172,7 +179,7 @@
         "$value": "{color.sky.800}"
       },
       "fg": {
-        "$value": "{color.night.600}"
+        "$value": "{color.sky.400}"
       }
     }
   },
@@ -251,26 +258,26 @@
     },
     "neutral": {
       "fg": {
-        "$value": "{color.night.900}"
+        "$value": "{color.sky.100}"
       },
       "bg": {
-        "$value": "{color.night.200}"
+        "$value": "{color.sky.800}"
       },
       "border": {
-        "$value": "{color.night.400}"
+        "$value": "{color.sky.700}"
       },
       "solid": {
-        "$value": "{color.night.600}"
+        "$value": "{color.sky.400}"
       }
     }
   },
   "commerce": {
     "$type": "color",
     "price": {
-      "$value": "{color.night.900}"
+      "$value": "{color.sky.100}"
     },
     "price-from": {
-      "$value": "{color.night.600}"
+      "$value": "{color.sky.400}"
     },
     "discount": {
       "$value": "{color.red.400}"
@@ -280,19 +287,19 @@
       "$description": "آگهی — same solid pill in every theme. A disclosure should not change appearance with the reader's theme."
     },
     "oos": {
-      "$value": "{color.night.600}"
+      "$value": "{color.sky.400}"
     },
     "open": {
       "$value": "{color.green.400}"
     },
     "closed": {
-      "$value": "{color.night.600}"
+      "$value": "{color.sky.400}"
     },
     "official": {
       "$value": "{color.blue.300}"
     },
     "distance": {
-      "$value": "{color.night.600}"
+      "$value": "{color.sky.400}"
     }
   },
   "map": {
@@ -307,10 +314,10 @@
       "$value": "{color.sky.400}"
     },
     "cluster-bg": {
-      "$value": "{color.night.100}"
+      "$value": "{color.sky.925}"
     },
     "cluster-fg": {
-      "$value": "{color.night.900}"
+      "$value": "{color.sky.100}"
     }
   }
 }

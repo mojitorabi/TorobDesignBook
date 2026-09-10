@@ -1,5 +1,5 @@
 /* StoreCard — Torob Design System
- * A nearby store, with or without its product rail.
+ * یک فروشگاه نزدیک، با ریل محصول یا بدون آن.
  * Docs: /components/store-card.html
  * Replaces: Store-Card/VLP/With product/Light, Store-Card/VLP/With product/Dark, Store-Card/VLP/Without product/Light, Store-Card/VLP/Without product/Dark, Store-Card/PDP/No product/Light, Store-Card/PDP/No product/Dark, Store-Card/PDP/Online, Store-Card/PDP/Offline, Store-Card/PDP/Online-Offline, Store-Card/With product, Store-Card/No product
  */

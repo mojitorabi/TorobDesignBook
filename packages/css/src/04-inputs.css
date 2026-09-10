@@ -68,13 +68,13 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
   transition: background-color var(--t-duration-micro) var(--t-easing-out), border-color var(--t-duration-micro) var(--t-easing-out);
 }
 .t-check input { position: absolute; opacity: 0; inline-size: 0; block-size: 0; }
-.t-check input:checked + .t-check__box { background: var(--t-action-accent-bg); border-color: var(--t-action-accent-bg); color: var(--t-action-accent-fg); }
+.t-check input:checked + .t-check__box { background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); color: var(--t-action-blue-fg); }
 .t-check input:focus-visible + .t-check__box { outline: 2px solid var(--t-border-focus); outline-offset: 2px; }
 .t-check input:disabled ~ * { color: var(--t-fg-disabled); cursor: not-allowed; }
 .t-check__mark { opacity: 0; transition: opacity var(--t-duration-micro) var(--t-easing-out); }
 .t-check input:checked + .t-check__box .t-check__mark { opacity: 1; }
 .t-check--radio .t-check__box { border-radius: var(--t-radius-full); }
-.t-check--radio input:checked + .t-check__box { background: var(--t-bg-fog); border-color: var(--t-action-accent-bg); border-width: 6px; }
+.t-check--radio input:checked + .t-check__box { background: var(--t-bg-fog); border-color: var(--t-action-blue-bg); border-width: 6px; }
 
 /* ---- Toggle (boolean switch) — [NEW], absent from the source kit ---- */
 .t-toggle { display: inline-flex; align-items: center; gap: var(--t-space-2); cursor: pointer; min-block-size: var(--t-size-touch-min); }
@@ -98,7 +98,7 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
   box-shadow: var(--t-elevation-1);
   transition: translate var(--t-duration-standard) var(--t-easing-out);
 }
-.t-toggle input:checked + .t-toggle__track { background: var(--t-action-accent-bg); border-color: var(--t-action-accent-bg); }
+.t-toggle input:checked + .t-toggle__track { background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); }
 /* Logical translate: --t-dir is 1 in RTL, -1 in LTR, so the thumb always
    travels toward the inline end. */
 .t-toggle input:checked + .t-toggle__track .t-toggle__thumb { translate: calc(18px * var(--t-dir, -1) * -1) 0; }
@@ -147,13 +147,13 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
    kit had no control for it. ---- */
 .t-range { inline-size: 100%; }
 .t-range__track { position: relative; block-size: 4px; border-radius: var(--t-radius-full); background: var(--t-bg-subtle); margin-block: var(--t-space-4); }
-.t-range__fill  { position: absolute; block-size: 100%; border-radius: var(--t-radius-full); background: var(--t-action-accent-bg); }
+.t-range__fill  { position: absolute; block-size: 100%; border-radius: var(--t-radius-full); background: var(--t-action-blue-bg); }
 .t-range__thumb {
   position: absolute; inset-block-start: 50%;
   inline-size: 22px; block-size: 22px; translate: 50% -50%;
   border-radius: var(--t-radius-full);
   background: var(--t-bg-fog);
-  border: 2px solid var(--t-action-accent-bg);
+  border: 2px solid var(--t-action-blue-bg);
   box-shadow: var(--t-elevation-1);
   cursor: grab;
 }

@@ -82,49 +82,68 @@
   },
   "action": {
     "$type": "color",
-    "primary": {
-      "$description": "Brand red. The single most important action on a screen.",
-      "bg": {
-        "$value": "{color.brand.red}"
-      },
+    "$description": "Three colour families. RED is an online commerce action, BLUE an offline or store action, BLACK a neutral one. Intent aliases (primary/accent/neutral) point at the same values.",
+    "red": {
+      "$description": "خرید اینترنتی — online commerce. One per screen.",
       "bg-gradient": {
         "$value": "linear-gradient(180deg, {color.red.300} 0%, {color.brand.red} 100%)"
       },
+      "bg": {
+        "$value": "{color.brand.red}"
+      },
       "bg-hover": {
-        "$value": "{color.red.300}"
+        "$value": "{color.brand.red}",
+        "$description": "Hover drops the gradient for the flat brand red."
       },
       "bg-active": {
         "$value": "{color.red.800}"
       },
-      "bg-disabled": {
-        "$value": "{color.sky.300}"
+      "border": {
+        "$value": "{color.red.50}",
+        "$description": "1px inside rim. The signature edge on every filled Torob button."
       },
       "fg": {
         "$value": "{color.white}"
       },
-      "fg-disabled": {
-        "$value": "{color.sky.50}"
+      "outline-fg": {
+        "$value": "{color.red.600}"
+      },
+      "outline-border": {
+        "$value": "{color.brand.red}"
+      },
+      "ghost-fg": {
+        "$value": "{color.red.600}"
       }
     },
-    "accent": {
-      "$description": "Blue. Secondary actions, informational CTAs, navigation.",
-      "bg": {
-        "$value": "{color.blue.500}"
-      },
+    "blue": {
+      "$description": "مسیریابی · تماس — offline, store and contact actions.",
       "bg-gradient": {
         "$value": "linear-gradient(180deg, {color.blue.600} 0%, {color.blue.500} 100%)"
       },
+      "bg": {
+        "$value": "{color.blue.500}"
+      },
       "bg-hover": {
-        "$value": "{color.blue.600}"
+        "$value": "{color.blue.500}"
       },
       "bg-active": {
         "$value": "{color.blue.800}"
       },
-      "bg-disabled": {
-        "$value": "{color.sky.300}"
+      "border": {
+        "$value": "{color.blue.300}",
+        "$description": "1px inside rim."
       },
       "fg": {
         "$value": "{color.white}"
+      },
+      "outline-fg": {
+        "$value": "{color.blue.500}"
+      },
+      "outline-border": {
+        "$value": "{color.blue.500}"
+      },
+      "ghost-fg": {
+        "$value": "{color.blue.500}"
       },
       "soft-bg": {
         "$value": "{color.blue.50}"
@@ -133,28 +152,40 @@
         "$value": "{color.blue.800}"
       }
     },
-    "neutral": {
-      "$description": "Sky. Tertiary actions and ghost buttons.",
+    "black": {
+      "$description": "Neutral. Runs on the legacy Ink ramp, not on Sky.",
       "bg": {
-        "$value": "{color.sky.800}"
+        "$value": "{color.ink.80}"
       },
       "bg-hover": {
-        "$value": "{color.sky.700}"
+        "$value": "{color.ink.60}"
       },
       "bg-active": {
         "$value": "{color.sky.900}"
-      },
-      "bg-disabled": {
-        "$value": "{color.sky.300}"
       },
       "fg": {
         "$value": "{color.white}"
       },
       "ghost-fg": {
-        "$value": "{color.sky.800}"
+        "$value": "{color.ink.80}"
+      },
+      "ghost-border": {
+        "$value": "{color.ink.80}"
+      },
+      "ghost-border-hover": {
+        "$value": "{color.ink.40}"
       },
       "ghost-bg-hover": {
         "$value": "{color.sky.100}"
+      }
+    },
+    "disabled": {
+      "$description": "One disabled treatment. Every family collapses to it — a disabled control must not still read as primary.",
+      "bg": {
+        "$value": "{color.grey.disabled}"
+      },
+      "fg": {
+        "$value": "{color.ink.55}"
       }
     }
   },
@@ -261,8 +292,8 @@
       "$value": "{color.brand.red}"
     },
     "ad": {
-      "$value": "{color.yellow.500}",
-      "$description": "آگهی — sponsored marker"
+      "$value": "{color.red.500}",
+      "$description": "آگهی — solid pill, white label. A disclosure, and it must not be mistakable for a discount."
     },
     "oos": {
       "$value": "{color.sky.500}",

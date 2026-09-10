@@ -1,5 +1,5 @@
 /* EmptyState — Torob Design System
- * A valid state with nothing in it. Always names the way out.
+ * یک حالت معتبر که چیزی در آن نیست. همیشه راه خروج را نام می‌برد.
  * Docs: /components/empty-state.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

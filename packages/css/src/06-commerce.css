@@ -26,7 +26,7 @@
 .t-badge--critical  { background: var(--t-status-critical-bg); color: var(--t-status-critical-fg); }
 .t-badge--info      { background: var(--t-status-info-bg);     color: var(--t-status-info-fg); }
 .t-badge--guarantee { background: var(--t-status-guarantee-bg); color: var(--t-status-guarantee-fg); }
-.t-badge--brand     { background: var(--t-action-primary-bg);  color: var(--t-action-primary-fg); }
+.t-badge--brand     { background: var(--t-action-red-bg);  color: var(--t-action-red-fg); }
 /* آگهی — sponsored. Deliberately quiet: an ad marker that shouts is an ad. */
 .t-badge--ad        { background: var(--t-status-caution-bg);  color: var(--t-status-caution-fg); }
 /* Over a product image. Glass, so the photo still reads through. */

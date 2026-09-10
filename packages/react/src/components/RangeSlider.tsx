@@ -1,5 +1,5 @@
 /* RangeSlider — Torob Design System
- * Two-handle range. Torob's most-used filter had no control.
+ * بازهٔ دو‌دسته. پرکاربردترین فیلتر ترب هیچ کنترلی نداشت.
  * Docs: /components/range-slider.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

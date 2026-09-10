@@ -1,5 +1,5 @@
 /* Badge — Torob Design System
- * A short status or attribute marker.
+ * نشانگر کوتاه وضعیت یا ویژگی.
  * Docs: /components/badge.html
  * Replaces: Badge/Card, Badge/Card-Picture, Badge/Card/Guarantee, Badge/Card/Normal, Badge/Card/Open, Badge / Ad on Buy Box
  */

@@ -209,6 +209,79 @@
     },
     "black": {
       "$value": "#000000"
+    },
+    "ink": {
+      "$description": "Legacy neutral ramp used by the Black button family and disabled states. Distinct from Sky, which is the surface/text spine.",
+      "40": {
+        "$value": "#B2B2B2",
+        "$description": "Black-ghost hover border"
+      },
+      "50": {
+        "$value": "#737373",
+        "$description": "Disabled label"
+      },
+      "60": {
+        "$value": "#4C4C4C",
+        "$description": "Black button hover"
+      },
+      "80": {
+        "$value": "#333333",
+        "$description": "Black button default. Swatch '7. ink 80'."
+      },
+      "55": {
+        "$value": "#676767",
+        "$description": "[NEW] Disabled label. Sketch's #737373 measures 4.05:1 on #ECEDEF — readable enough to look disabled, not readable enough to be read."
+      }
+    },
+    "grey": {
+      "$description": "Disabled surface. The one grey that is neither Sky nor Ink.",
+      "disabled": {
+        "$value": "#ECEDEF",
+        "$description": "Disabled button background, all families"
+      }
+    },
+    "night": {
+      "$description": "True-dark surface ramp. Near-black, low chroma. Used only by the dark theme.",
+      "0": {
+        "$value": "#000000",
+        "$description": "Canvas. Pure black — on OLED the pixels are off."
+      },
+      "50": {
+        "$value": "#07090B",
+        "$description": "Sunken"
+      },
+      "100": {
+        "$value": "#101418",
+        "$description": "Raised surface / card"
+      },
+      "200": {
+        "$value": "#1A1F25",
+        "$description": "Subtle fill, zebra rows"
+      },
+      "300": {
+        "$value": "#242A31",
+        "$description": "Subtle border"
+      },
+      "400": {
+        "$value": "#333B44",
+        "$description": "Default border"
+      },
+      "500": {
+        "$value": "#78838F",
+        "$description": "Control border — meets 3:1 on black"
+      },
+      "600": {
+        "$value": "#9BA6B2",
+        "$description": "Secondary text"
+      },
+      "700": {
+        "$value": "#565F6A",
+        "$description": "Disabled text"
+      },
+      "900": {
+        "$value": "#F5F7FA",
+        "$description": "Primary text"
+      }
     }
   }
 }

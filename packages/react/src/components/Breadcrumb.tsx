@@ -1,5 +1,5 @@
 /* Breadcrumb — Torob Design System
- * Where this page sits in the catalogue.
+ * این صفحه کجای درخت دسته‌بندی است.
  * Docs: /components/breadcrumb.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

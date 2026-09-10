@@ -1,5 +1,5 @@
 /* Menu — Torob Design System
- * A short list of actions or options anchored to a trigger.
+ * فهرست کوتاهی از کنش‌ها یا گزینه‌ها، لنگرانداخته به یک دکمه.
  * Docs: /components/menu.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

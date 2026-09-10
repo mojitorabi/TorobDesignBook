@@ -1,5 +1,5 @@
 /* SegmentedControl — Torob Design System
- * Switches the content below between mutually exclusive views.
+ * محتوای پایین را بین نماهای متقابلاً ناسازگار جابه‌جا می‌کند.
  * Docs: /components/segmented-control.html
  * Replaces: Segmented Controls/Selected, Segmented Controls/Not-selected, Segmented Controls/Icon Selected, Segmented Controls/Icon Not-selected, Segmented Controls/Light/Large/Selected
  */

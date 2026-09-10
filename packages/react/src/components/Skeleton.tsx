@@ -1,5 +1,5 @@
 /* Skeleton — Torob Design System
- * Holds the shape of content that has not arrived.
+ * شکل محتوایی را نگه می‌دارد که هنوز نرسیده.
  * Docs: /components/skeleton.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

@@ -1,5 +1,5 @@
 /* Modal — Torob Design System
- * Interrupts to get a decision. Use rarely.
+ * برای گرفتن یک تصمیم کار را قطع می‌کند. کم استفاده کنید.
  * Docs: /components/modal.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

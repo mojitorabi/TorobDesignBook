@@ -6,42 +6,66 @@ import { buildModel, cssVar, fmtCssValue, ROOT } from './tokens-lib.mjs';
 const OUT = join(ROOT, 'packages', 'css', 'dist');
 mkdirSync(OUT, { recursive: true });
 const m = buildModel();
+
+/* GATE: every theme must define the same keys. A theme that silently inherits
+   another theme's value is how #003D01 green ended up on a #15202B ground. */
+{
+  const keys = Object.fromEntries(Object.entries(m.modes).map(([k, v]) => [k, new Set(Object.keys(v))]));
+  const names = Object.keys(keys);
+  const union = new Set(names.flatMap(n => [...keys[n]]));
+  const gaps = [];
+  for (const k of union) for (const n of names) if (!keys[n].has(k)) gaps.push(`${n} is missing ${k}`);
+  if (gaps.length) {
+    console.error(`✗ theme key mismatch (${gaps.length}):`);
+    for (const g of gaps.slice(0, 20)) console.error('   ' + g);
+    process.exit(1);
+  }
+}
 const written = [];
 const w = (name, body) => { writeFileSync(join(OUT, name), body); written.push(name); };
 
 const HEAD = `/* Torob Design System — generated from source/tokens/*.json. Do not edit by hand. */\n`;
 const decl = (path, t) => `  ${cssVar(path)}: ${fmtCssValue(t)};`;
 
-/* ---------- 1. CSS custom properties ---------- */
+/* ---------- 1. CSS custom properties ----------
+   Three themes. Light is the default. `dim` is the soft navy-slate extracted
+   from Sketch; `dark` is true black for OLED. prefers-color-scheme: dark maps
+   to `dim`, because that is the gentler default — a reader who wants true
+   black opts into it. */
 {
   const base = Object.entries(m.base).map(([p, t]) => decl(p, t)).join('\n');
-  const light = Object.entries(m.modes.light).map(([p, t]) => decl(p, t)).join('\n');
-  const dark = Object.entries(m.modes.dark).map(([p, t]) => decl(p, t)).join('\n');
+  const modeBlock = mode => Object.entries(m.modes[mode]).map(([p, t]) => decl(p, t)).join('\n');
+  const indent = txt => txt.split('\n').map(l => '  ' + l).join('\n');
+
   w('tokens.css', `${HEAD}
 :root {
   color-scheme: light dark;
 
-  /* ---- primitives + material + scale (mode-independent) ---- */
+  /* ---- primitives, material and scale (theme-independent) ---- */
 ${base}
 
-  /* ---- semantic: light ---- */
-${light}
+  /* ---- semantic: light (default) ---- */
+${modeBlock('light')}
 }
 
-/* Explicit dark choice wins in both directions. */
+/* Explicit choice wins in both directions. */
+:root[data-theme="dim"] {
+${modeBlock('dim')}
+}
+
 :root[data-theme="dark"] {
-${dark}
+${modeBlock('dark')}
 }
 
-/* System preference, unless the user pinned light. */
+/* System preference maps to dim, unless the reader pinned a theme. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-${dark.split('\n').map(l => '  ' + l).join('\n')}
+  :root:not([data-theme]) {
+${indent(indent(modeBlock('dim')))}
   }
 }
 
 /* Glass degrades to an opaque surface where backdrop-filter is unavailable
-   or the user has asked for less transparency. Same hue, same geometry. */
+   or the reader has asked for less transparency. */
 @media (prefers-reduced-transparency: reduce) {
   :root { --t-glass-blur: 0px; }
 }
@@ -92,6 +116,7 @@ ${dark.split('\n').map(l => '  ' + l).join('\n')}
   const body = {
     ...nest(m.base),
     light: nest(m.modes.light),
+    dim: nest(m.modes.dim),
     dark: nest(m.modes.dark),
   };
   w('tokens.ts', `// Torob Design System — generated. Do not edit.\nexport const tokens = ${JSON.stringify(body, null, 2)} as const;\nexport type TorobTokens = typeof tokens;\nexport default tokens;\n`);
@@ -102,8 +127,8 @@ ${dark.split('\n').map(l => '  ' + l).join('\n')}
 {
   const flat = {};
   for (const [p, t] of Object.entries(m.base)) flat[cssVar(p)] = fmtCssValue(t);
-  const withMode = { base: flat, light: {}, dark: {} };
-  for (const mode of ['light', 'dark'])
+  const withMode = { base: flat, light: {}, dim: {}, dark: {} };
+  for (const mode of ['light', 'dim', 'dark'])
     for (const [p, t] of Object.entries(m.modes[mode])) withMode[mode][cssVar(p)] = fmtCssValue(t);
   w('tokens.flat.json', JSON.stringify(withMode, null, 2));
 }
@@ -122,7 +147,7 @@ ${dark.split('\n').map(l => '  ' + l).join('\n')}
   };
   const camel = p => p.split(/[.\-]/).map((s, i) => i ? s[0].toUpperCase() + s.slice(1) : s).join('').replace(/^(\d)/, '_$1');
   const colors = Object.entries(m.modes.light).filter(([, t]) => hex(String(t.value)));
-  const darks = Object.fromEntries(Object.entries(m.modes.dark).filter(([, t]) => hex(String(t.value))));
+  const darks = Object.fromEntries(Object.entries(m.modes.dim).filter(([, t]) => hex(String(t.value))));
   const dims = Object.entries(m.base).filter(([, t]) => t.type === 'dimension' && /^[\d.]+px$/.test(String(t.value)));
   w('TorobTokens.swift', `// Torob Design System — generated. Do not edit.\nimport SwiftUI\n\npublic enum TorobColor {\n${colors.map(([p, t]) => `    public static func ${camel(p)}(_ dark: Bool = false) -> Color { dark ? ${darks[p] ? swiftColor(darks[p].value) : swiftColor(t.value)} : ${swiftColor(t.value)} }`).join('\n')}\n}\n\npublic enum TorobSpace {\n${dims.map(([p, t]) => `    public static let ${camel(p)}: CGFloat = ${parseFloat(t.value)}`).join('\n')}\n}\n`);
 }
@@ -133,7 +158,8 @@ ${dark.split('\n').map(l => '  ' + l).join('\n')}
   const snake = p => p.replace(/[.\-]/g, '_');
   const row = (obj) => Object.entries(obj).filter(([, t]) => hex(t.value)).map(([p, t]) => `    <color name="t_${snake(p)}">${t.value}</color>`).join('\n');
   w('colors.xml', `<?xml version="1.0" encoding="utf-8"?>\n<!-- Torob Design System — generated. Do not edit. -->\n<resources>\n${row(m.base)}\n${row(m.modes.light)}\n</resources>\n`);
-  w('colors-night.xml', `<?xml version="1.0" encoding="utf-8"?>\n<!-- values-night/colors.xml — generated. Do not edit. -->\n<resources>\n${row(m.modes.dark)}\n</resources>\n`);
+  w('colors-night.xml', `<?xml version="1.0" encoding="utf-8"?>\n<!-- values-night/colors.xml — generated. Do not edit. -->\n<resources>\n${row(m.modes.dim)}\n</resources>\n`);
+  w('colors-night-true.xml', `<?xml version="1.0" encoding="utf-8"?>\n<!-- values-night-true/colors.xml (true dark) — generated. Do not edit. -->\n<resources>\n${row(m.modes.dark)}\n</resources>\n`);
   const dims = Object.entries(m.base).filter(([, t]) => t.type === 'dimension' && /^[\d.]+px$/.test(String(t.value)));
   w('dimens.xml', `<?xml version="1.0" encoding="utf-8"?>\n<resources>\n${dims.map(([p, t]) => `    <dimen name="t_${snake(p)}">${parseFloat(t.value)}dp</dimen>`).join('\n')}\n</resources>\n`);
 }
@@ -142,7 +168,7 @@ ${dark.split('\n').map(l => '  ' + l).join('\n')}
 {
   const lines = ['# Torob Design System — tokens', '', '## Semantic tokens (use these)'];
   for (const [p, t] of Object.entries(m.modes.light))
-    lines.push(`- \`var(${cssVar(p)})\` — light \`${fmtCssValue(t)}\` / dark \`${fmtCssValue(m.modes.dark[p] ?? t)}\`${t.description ? ` — ${t.description}` : ''}`);
+    lines.push(`- \`var(${cssVar(p)})\` — light \`${fmtCssValue(t)}\` / dim \`${fmtCssValue(m.modes.dim[p] ?? t)}\` / dark \`${fmtCssValue(m.modes.dark[p] ?? t)}\`${t.description ? ` — ${t.description}` : ''}`);
   lines.push('', '## Primitives (do not use directly)');
   for (const [p, t] of Object.entries(m.base)) lines.push(`- \`var(${cssVar(p)})\` = \`${fmtCssValue(t)}\``);
   w('tokens.llms.md', lines.join('\n') + '\n');

@@ -1,5 +1,5 @@
 /* Spinner — Torob Design System
- * Indeterminate wait for unknown-shape content.
+ * انتظار نامعین برای محتوای با شکل نامعلوم.
  * Docs: /components/spinner.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

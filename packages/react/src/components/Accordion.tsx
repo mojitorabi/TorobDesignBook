@@ -1,5 +1,5 @@
 /* Accordion — Torob Design System
- * Progressive disclosure for long, scannable content.
+ * افشای تدریجی برای محتوای بلند و قابل مرور.
  * Docs: /components/accordion.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

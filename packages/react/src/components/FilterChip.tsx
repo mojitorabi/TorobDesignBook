@@ -1,5 +1,5 @@
 /* FilterChip — Torob Design System
- * One filter facet. Toggles on, or opens a sheet for its options.
+ * یک وجه از فیلتر. یا روشن می‌شود یا برگه‌ای از گزینه‌ها باز می‌کند.
  * Docs: /components/filter-chip.html
  * Replaces: Filter/Cell/Cell, Filter/Cell/Icon, Filter/Cell/Icon+Chevron, city filter, official seller
  */

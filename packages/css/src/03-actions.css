@@ -56,59 +56,122 @@
 .t-btn--xl { --_h: var(--t-size-control-xl); --_px: var(--t-space-5); --_fs: var(--t-font-size-16); --_lh: var(--t-font-leading-16); }
 .t-btn--block { display: flex; inline-size: 100%; }
 
-/* ---- Variants ----
-   primary = brand red. One per screen. The thing you came to do.
-   accent  = blue. Secondary path, informational CTA.
-   neutral = sky. Tertiary.
-   outline / ghost = low emphasis. */
-.t-btn--primary {
-  background-image: var(--t-action-primary-bg-gradient);
-  background-color: var(--t-action-primary-bg);
-  color: var(--t-action-primary-fg);
+/* ---- Colour families ----
+   Three, exactly as drawn in Sketch.
+
+     RED    خرید اینترنتی — an online commerce action. One per screen.
+     BLUE   مسیریابی · تماس — an offline, store or contact action.
+     BLACK  neutral. Runs on the legacy Ink ramp, not on Sky.
+
+   Two details carry the look and both are easy to lose:
+   1. DEFAULT is the gradient; HOVER collapses to the flat solid. Not the
+      other way round — the button settles under the cursor, it does not lift.
+   2. Every filled button has a 1px INSIDE rim tinted to its own family
+      (red → Red 50, blue → Blue 300). It is what stops a saturated fill from
+      looking like a flat rectangle.
+
+   Intent aliases (--primary / --accent / --neutral) point at the same rules.
+   Prefer them in product code: intent survives a rebrand, colour does not. */
+
+.t-btn--red, .t-btn--primary {
+  background-image: var(--t-action-red-bg-gradient);
+  background-color: var(--t-action-red-bg);
+  border-color: var(--t-action-red-border);
+  color: var(--t-action-red-fg);
 }
-.t-btn--primary:hover:not(:disabled) { background-image: none; background-color: var(--t-action-primary-bg-hover); }
-.t-btn--primary:active:not(:disabled) { background-image: none; background-color: var(--t-action-primary-bg-active); }
-
-.t-btn--accent {
-  background-image: var(--t-action-accent-bg-gradient);
-  background-color: var(--t-action-accent-bg);
-  color: var(--t-action-accent-fg);
+.t-btn--red:hover:not(:disabled), .t-btn--primary:hover:not(:disabled) {
+  background-image: none;
+  background-color: var(--t-action-red-bg-hover);
 }
-.t-btn--accent:hover:not(:disabled) { background-image: none; background-color: var(--t-action-accent-bg-hover); }
-.t-btn--accent:active:not(:disabled) { background-image: none; background-color: var(--t-action-accent-bg-active); }
+.t-btn--red:active:not(:disabled), .t-btn--primary:active:not(:disabled) {
+  background-image: none;
+  background-color: var(--t-action-red-bg-active);
+}
 
-.t-btn--neutral { background-color: var(--t-action-neutral-bg); color: var(--t-action-neutral-fg); }
-.t-btn--neutral:hover:not(:disabled) { background-color: var(--t-action-neutral-bg-hover); }
-.t-btn--neutral:active:not(:disabled) { background-color: var(--t-action-neutral-bg-active); }
+.t-btn--blue, .t-btn--accent {
+  background-image: var(--t-action-blue-bg-gradient);
+  background-color: var(--t-action-blue-bg);
+  border-color: var(--t-action-blue-border);
+  color: var(--t-action-blue-fg);
+}
+.t-btn--blue:hover:not(:disabled), .t-btn--accent:hover:not(:disabled) {
+  background-image: none;
+  background-color: var(--t-action-blue-bg-hover);
+}
+.t-btn--blue:active:not(:disabled), .t-btn--accent:active:not(:disabled) {
+  background-image: none;
+  background-color: var(--t-action-blue-bg-active);
+}
 
-.t-btn--soft { background-color: var(--t-action-accent-soft-bg); color: var(--t-action-accent-soft-fg); }
-.t-btn--soft:hover:not(:disabled) { background-color: var(--t-action-accent-soft-bg); filter: brightness(0.96); }
+/* Black is flat by design — no gradient, no rim. It is the quiet one. */
+.t-btn--black, .t-btn--neutral {
+  background-color: var(--t-action-black-bg);
+  color: var(--t-action-black-fg);
+}
+.t-btn--black:hover:not(:disabled), .t-btn--neutral:hover:not(:disabled) { background-color: var(--t-action-black-bg-hover); }
+.t-btn--black:active:not(:disabled), .t-btn--neutral:active:not(:disabled) { background-color: var(--t-action-black-bg-active); }
 
-.t-btn--outline { background: transparent; border-color: var(--t-border-control); color: var(--t-fg-default); }
-.t-btn--outline:hover:not(:disabled) { background-color: var(--t-action-neutral-ghost-bg-hover); }
+/* ---- Outline ----
+   Sketch calls this "Clicked" on the blue family: the fill drops away and the
+   label takes the family colour. */
+.t-btn--black-ghost, .t-btn--outline {
+  background: var(--t-bg-fog);
+  border-color: var(--t-action-black-ghost-border);
+  color: var(--t-action-black-ghost-fg);
+}
+.t-btn--black-ghost:hover:not(:disabled), .t-btn--outline:hover:not(:disabled) {
+  border-color: var(--t-action-black-ghost-border-hover);
+}
+.t-btn--blue-outline, .t-btn--outline-accent {
+  background: var(--t-bg-fog);
+  border-color: var(--t-action-blue-outline-border);
+  color: var(--t-action-blue-outline-fg);
+}
+.t-btn--blue-outline:hover:not(:disabled), .t-btn--outline-accent:hover:not(:disabled) {
+  background-color: var(--t-action-blue-soft-bg);
+}
+.t-btn--red-outline {
+  background: var(--t-bg-fog);
+  border-color: var(--t-action-red-outline-border);
+  color: var(--t-action-red-outline-fg);
+}
 
-.t-btn--outline-accent { background: transparent; border-color: var(--t-action-accent-bg); color: var(--t-fg-link); }
-.t-btn--outline-accent:hover:not(:disabled) { background-color: var(--t-action-accent-soft-bg); }
+/* ---- Soft & ghost ---- */
+.t-btn--soft { background-color: var(--t-action-blue-soft-bg); color: var(--t-action-blue-soft-fg); }
+.t-btn--soft:hover:not(:disabled) { filter: brightness(0.96); }
 
-.t-btn--ghost { background: transparent; color: var(--t-action-neutral-ghost-fg); }
-.t-btn--ghost:hover:not(:disabled) { background-color: var(--t-action-neutral-ghost-bg-hover); }
+.t-btn--ghost { background: transparent; color: var(--t-action-black-ghost-fg); }
+.t-btn--ghost:hover:not(:disabled) { background-color: var(--t-action-black-ghost-bg-hover); }
+.t-btn--ghost-accent, .t-btn--blue-ghost { background: transparent; color: var(--t-action-blue-ghost-fg); }
+.t-btn--ghost-accent:hover:not(:disabled), .t-btn--blue-ghost:hover:not(:disabled) { background-color: var(--t-action-blue-soft-bg); }
 
-.t-btn--ghost-accent { background: transparent; color: var(--t-fg-link); }
-.t-btn--ghost-accent:hover:not(:disabled) { background-color: var(--t-action-accent-soft-bg); }
+/* ---- Glass ghost  ← Button/‌Blue ghost/Icon · Button/Black ghost/Icon ----
+   Glass at the "solid" level with a 0.5px family-tinted ring. For controls
+   that sit over the map or a photograph. */
+.t-btn--glass {
+  background-color: var(--t-glass-solid-fill);
+  border-width: var(--t-border-hairline);
+  border-color: var(--t-action-black-ghost-border);
+  color: var(--t-action-black-ghost-fg);
+  backdrop-filter: blur(var(--t-glass-blur));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur));
+}
+.t-btn--glass.t-btn--blue-ghost { border-color: var(--t-border-selected); color: var(--t-action-blue-ghost-fg); background-color: var(--t-glass-solid-fill); }
 
-/* One disabled treatment. Every variant collapses to it — a disabled control
-   must not still read as primary. */
+/* ---- Disabled ----
+   One treatment. Every family collapses to it, because a disabled control
+   that still reads as primary is worse than no affordance at all.
+   The label stays legible (4.8:1); the flat grey fill and the missing rim
+   carry the "disabled" signal instead. */
 .t-btn:disabled, .t-btn[aria-disabled="true"] {
   background-image: none !important;
-  background-color: var(--t-action-primary-bg-disabled) !important;
+  background-color: var(--t-action-disabled-bg) !important;
   border-color: transparent !important;
-  color: var(--t-action-primary-fg-disabled) !important;
+  color: var(--t-action-disabled-fg) !important;
 }
-.t-btn--ghost:disabled, .t-btn--outline:disabled,
-.t-btn--ghost[aria-disabled="true"], .t-btn--outline[aria-disabled="true"] {
+.t-btn--ghost:disabled, .t-btn--ghost[aria-disabled="true"] {
   background-color: transparent !important;
   color: var(--t-fg-disabled) !important;
-  border-color: var(--t-border-default) !important;
 }
 
 /* ---- Loading ----
@@ -121,7 +184,7 @@
   border: 2px solid currentColor;
   border-block-start-color: transparent;
   border-radius: var(--t-radius-full);
-  color: var(--t-action-primary-fg);
+  color: var(--t-action-red-fg);
   animation: t-spin 620ms linear infinite;
 }
 @keyframes t-spin { to { transform: rotate(360deg); } }
@@ -143,13 +206,13 @@
   cursor: pointer;
   transition: background-color var(--t-duration-micro) var(--t-easing-out), transform var(--t-duration-micro) var(--t-easing-out);
 }
-.t-icon-btn:hover:not(:disabled) { background-color: var(--t-action-neutral-ghost-bg-hover); }
+.t-icon-btn:hover:not(:disabled) { background-color: var(--t-action-black-ghost-bg-hover); }
 .t-icon-btn:active:not(:disabled) { transform: scale(0.94); }
 .t-icon-btn:disabled { color: var(--t-fg-disabled); cursor: not-allowed; }
 .t-icon-btn--sm { --_s: var(--t-size-control-md); border-radius: var(--t-radius-sm); }
 .t-icon-btn--round { border-radius: var(--t-radius-full); }
-.t-icon-btn--accent { background-color: var(--t-action-accent-bg); color: var(--t-action-accent-fg); }
-.t-icon-btn--accent:hover:not(:disabled) { background-color: var(--t-action-accent-bg-hover); }
+.t-icon-btn--accent { background-color: var(--t-action-blue-bg); color: var(--t-action-blue-fg); }
+.t-icon-btn--accent:hover:not(:disabled) { background-color: var(--t-action-blue-bg-hover); }
 .t-icon-btn--glass { background-color: var(--t-glass-fill); border-color: var(--t-glass-border); box-shadow: var(--t-glass-shadow); backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur)); }
 
 /* ---- SplitButton ---- */
@@ -159,26 +222,96 @@
 .t-btn-split > .t-btn:last-child  { border-start-end-radius: var(--t-radius-md); border-end-end-radius: var(--t-radius-md); padding-inline: var(--t-space-3); }
 .t-btn-split > .t-btn + .t-btn { border-inline-start: var(--t-border-thin) solid rgb(255 255 255 / 0.24); }
 
-/* ---- BuyBoxButton ----
-   The PDP's primary commerce surface: price, seller, and CTA in one target.
-   Ad variant carries the آگهی marker. */
+/* ---- BuyBoxButton  ← Button/Buy box/Ad · /Cheapest · Button/Offline Buy box/Ad ----
+
+   The PDP's commerce target, and the one component where the colour carries
+   meaning rather than emphasis:
+
+     RED  (343×72, radius 16)  an ONLINE seller — خرید اینترنتی
+     BLUE (343×72, radius 16)  an OFFLINE seller — buy in the shop
+     RED  (343×44, radius 12)  the "cheapest seller" shortcut, label only
+
+   Measured from Sketch, and worth stating because it is counter-intuitive:
+   the SELLER name is Bold 16 and the PRICE is Medium 16. The price is not
+   shouted here — the shopper already knows the price band from the listing;
+   on this row they are choosing *who* to buy from. */
+
 .t-buybox {
-  display: flex; align-items: center; gap: var(--t-space-3);
+  --_pad: var(--t-space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--t-space-3);
   inline-size: 100%;
-  min-block-size: 44px;
-  padding: var(--t-space-2) var(--t-space-3);
-  border: none;
-  border-radius: var(--t-radius-md);
-  background-image: var(--t-action-primary-bg-gradient);
-  color: var(--t-action-primary-fg);
+  max-inline-size: 343px;
+  block-size: 72px;                              /* exact, border included */
+  padding-inline: var(--_pad);
+  border: var(--t-border-thin) solid var(--t-action-red-border);
+  border-radius: var(--t-radius-lg);            /* 16 */
+  background-image: var(--t-action-red-bg-gradient);
+  background-color: var(--t-action-red-bg);
+  color: var(--t-action-red-fg);
   text-align: start;
   cursor: pointer;
-  transition: filter var(--t-duration-micro) var(--t-easing-out), transform var(--t-duration-micro) var(--t-easing-out);
+  transition:
+    background-color var(--t-duration-micro) var(--t-easing-out),
+    transform        var(--t-duration-micro) var(--t-easing-out);
 }
-.t-buybox:hover { filter: brightness(1.06); }
-.t-buybox:active { transform: scale(0.99); }
-.t-buybox__body { flex: 1; min-inline-size: 0; }
-.t-buybox__price { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-extrabold); font-variant-numeric: tabular-nums; }
-.t-buybox__meta  { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); opacity: 0.86; }
-.t-buybox--accent { background-image: var(--t-action-accent-bg-gradient); }
-.t-buybox--offline { background-image: none; background-color: var(--t-bg-fog); color: var(--t-fg-default); border: var(--t-border-thin) solid var(--t-border-default); }
+.t-buybox:hover { background-image: none; background-color: var(--t-action-red-bg-hover); }
+.t-buybox:active { transform: scale(0.995); }
+
+/* The seller/price stack sits at the inline END; the ad marker at the START. */
+.t-buybox__body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; align-items: flex-end; }
+.t-buybox__seller {
+  font-size: var(--t-font-size-16);
+  line-height: var(--t-font-leading-16);
+  font-weight: var(--t-font-weight-bold);
+}
+.t-buybox__price {
+  font-size: var(--t-font-size-16);
+  line-height: var(--t-font-leading-16);
+  font-weight: var(--t-font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+.t-buybox__meta {
+  font-size: var(--t-font-size-12);
+  line-height: var(--t-font-leading-12);
+  opacity: 0.86;
+}
+
+/* Offline seller. Same geometry, blue family. */
+.t-buybox--offline, .t-buybox--blue {
+  background-image: var(--t-action-blue-bg-gradient);
+  background-color: var(--t-action-blue-bg);
+  border-color: var(--t-action-blue-border);
+  color: var(--t-action-blue-fg);
+}
+.t-buybox--offline:hover, .t-buybox--blue:hover { background-image: none; background-color: var(--t-action-blue-bg-hover); }
+
+/* The cheapest-seller shortcut: one centred label, shorter, tighter radius. */
+.t-buybox--compact {
+  block-size: 44px;
+  border-radius: var(--t-radius-md);            /* 12 */
+  justify-content: center;
+  border-color: transparent;
+}
+.t-buybox--compact .t-buybox__body { align-items: center; }
+.t-buybox--compact .t-buybox__seller { font-size: var(--t-font-size-16); }
+
+/* آگهی — a solid pill, 45×24, radius 12. A legal disclosure: always present,
+   always real text, and deliberately not styled like a discount. */
+.t-buybox__ad {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 45px;
+  block-size: 24px;
+  padding-inline: var(--t-space-2);
+  border-radius: var(--t-radius-md);
+  background: var(--t-commerce-ad);
+  color: var(--t-fg-on-solid);
+  font-size: var(--t-font-size-12);
+  line-height: 1;
+  font-weight: var(--t-font-weight-medium);
+  white-space: nowrap;
+}

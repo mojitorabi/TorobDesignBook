@@ -1,5 +1,5 @@
 /* PriceDisplay — Torob Design System
- * The most-read element on any Torob surface.
+ * پرخوانده‌ترین عنصر در هر سطح ترب.
  * Docs: /components/price-display.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

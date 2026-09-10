@@ -1,5 +1,5 @@
 /* PageHeader — Torob Design System
- * Sticky glass header: back, title, actions.
+ * هدر چسبان شیشه‌ای: بازگشت، عنوان، کنش‌ها.
  * Docs: /components/page-header.html
  * Replaces: Header/Profile
  */

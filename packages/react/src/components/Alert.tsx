@@ -1,5 +1,5 @@
 /* Alert — Torob Design System
- * Page-level status that stays until it is resolved.
+ * وضعیت سطح‌صفحه که تا حل‌نشدن می‌ماند.
  * Docs: /components/alert.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

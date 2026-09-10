@@ -1,5 +1,5 @@
 /* BottomSheet — Torob Design System
- * Torob's dominant overlay. Filters, sort, store detail, variant picker.
+ * پرکاربردترین لایهٔ ترب. فیلتر، مرتب‌سازی، جزئیات فروشگاه، انتخاب گونه.
  * Docs: /components/bottom-sheet.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

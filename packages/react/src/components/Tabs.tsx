@@ -1,5 +1,5 @@
 /* Tabs — Torob Design System
- * Switches sections within a page. Scales past five options.
+ * بین بخش‌های یک صفحه جابه‌جا می‌شود. از پنج گزینه فراتر می‌رود.
  * Docs: /components/tabs.html
  * Replaces: Tab/Selected
  */

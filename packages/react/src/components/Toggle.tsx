@@ -1,5 +1,5 @@
 /* Toggle — Torob Design System
- * A boolean. Takes effect immediately — no Save.
+ * یک بولی. بلافاصله اثر می‌گذارد — بدون دکمهٔ ذخیره.
  * Docs: /components/toggle.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

@@ -8,17 +8,35 @@
   const assetRoot = ((document.querySelector('link[href$="assets/site.css"]') || {}).href || '')
     .replace(/site\.css$/, '');
 
-  /* ---------- Theme ---------- */
+  /* ---------- Theme ----------
+     Three, not two. `light` and `dim` are the two the product already had;
+     `dark` is true black for OLED and for readers who want maximum contrast.
+     The system preference maps to `dim`, which is the gentler default. */
   const root = document.documentElement;
-  const themeBtn = $('#themeToggle'), themeLabel = $('#themeLabel');
+  const THEMES = ['light', 'dim', 'dark'];
+  const THEME_FA = { light: 'روشن', dim: 'ملایم', dark: 'تیره' };
+  const THEME_ICON = {
+    light: 'M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 0h.01V3H8zm0 13h.01V16H8zM0 7.99h3V8H0zm13 0h3V8h-3zM2.3 3.3l2.1 2.1-1 1-2.1-2.1zm8.3 8.3 2.1 2.1-1 1-2.1-2.1zm3.1-9.3 1 1-2.1 2.1-1-1zM4.4 10.6l1 1-2.1 2.1-1-1z',
+    dim:   'M8 1.5A6.5 6.5 0 1 0 14.5 8 5 5 0 0 1 8 1.5z',
+    dark:  'M13.6 10.4A6 6 0 0 1 5.6 2.4 6.5 6.5 0 1 0 13.6 10.4z',
+  };
+  const themeBtn = $('#themeToggle');
+  const themeLabel = $('#themeLabel');
+  const themeIcon = $('#themeIcon');
+
   function currentTheme() {
     return root.getAttribute('data-theme') ||
-      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dim' : 'light');
   }
-  function paintTheme() { if (themeLabel) themeLabel.textContent = currentTheme() === 'dark' ? 'Dark' : 'Light'; }
+  function paintTheme() {
+    const t = currentTheme();
+    if (themeLabel) themeLabel.textContent = THEME_FA[t];
+    if (themeIcon) themeIcon.setAttribute('d', THEME_ICON[t]);
+    if (themeBtn) themeBtn.setAttribute('aria-label', `پوسته: ${THEME_FA[t]} — برای تغییر کلیک کنید`);
+  }
   paintTheme();
   themeBtn && themeBtn.addEventListener('click', () => {
-    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    const next = THEMES[(THEMES.indexOf(currentTheme()) + 1) % THEMES.length];
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('torob-theme', next); } catch (e) {}
     paintTheme();
@@ -129,14 +147,14 @@
   async function writeClipboard(text, btn) {
     try {
       await navigator.clipboard.writeText(text);
-      flash(btn, 'Copied');
+      flash(btn, 'کپی شد');
     } catch (e) {
       // Clipboard API needs a secure context; file:// pages fall back.
       const ta = document.createElement('textarea');
       ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
       document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); flash(btn, 'Copied'); }
-      catch (e2) { flash(btn, 'Press ⌘C'); }
+      try { document.execCommand('copy'); flash(btn, 'کپی شد'); }
+      catch (e2) { flash(btn, '⌘C را بزنید'); }
       ta.remove();
     }
   }
@@ -186,7 +204,7 @@
     return index;
   }
   function render(items, q) {
-    if (!items.length) { results.innerHTML = `<div class="site-results__empty">No match for “${q}”.</div>`; return; }
+    if (!items.length) { results.innerHTML = `<div class="site-results__empty">نتیجه‌ای برای «${q}» پیدا نشد.</div>`; return; }
     results.innerHTML = items.map((it, i) =>
       `<a href="${assetRoot}../${it.u}" role="option" ${i === 0 ? 'data-active="true"' : ''}>
          <span>${it.t}</span><span class="site-results__group">${it.g}</span>

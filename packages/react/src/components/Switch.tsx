@@ -1,5 +1,5 @@
 /* Switch — Torob Design System
- * A two-position selector. Both positions are named destinations.
+ * انتخابگر دو‌موضعی. هر دو موضع، مقصدی نام‌دار هستند.
  * Docs: /components/switch.html
  * Replaces: Switch/Left, Switch/Right
  */

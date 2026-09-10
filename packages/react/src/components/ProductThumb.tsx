@@ -1,5 +1,5 @@
 /* ProductThumb — Torob Design System
- * The product image block, with its badge and action slots.
+ * بلوک تصویر محصول، با جای نشان و جای کنش.
  * Docs: /components/product-thumb.html
  * Replaces: Product Pic/Normal, Product Pic/Small
  */

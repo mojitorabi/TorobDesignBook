@@ -1,5 +1,5 @@
 /* ProductCard — Torob Design System
- * A product in a grid or rail.
+ * یک محصول در شبکه یا ریل.
  * Docs: /components/product-card.html
  * Replaces: Product Card/Normal, Product Card/Small, Product Card/Small Empty, Product Card/More/Light, Product Card/More/Dark, Product Card/Empty/Light, Product Card/Empty/Dark, Product Card, Product Pic/Normal, Product Pic/Small
  */

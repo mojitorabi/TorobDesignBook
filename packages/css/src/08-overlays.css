@@ -43,7 +43,7 @@
   display: flex; flex-direction: column;
   border-start-start-radius: var(--t-radius-xl);
   border-start-end-radius: var(--t-radius-xl);
-  background: var(--t-glass-light-list-fill);
+  background: var(--t-glass-list-fill);
   border-block-start: var(--t-border-thin) solid var(--t-glass-border);
   backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
   -webkit-backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
@@ -51,8 +51,7 @@
   padding-block-end: env(safe-area-inset-bottom);
   animation: t-sheet-in var(--t-duration-sheet) var(--t-easing-out);
 }
-:root[data-theme="dark"] .t-sheet { background: var(--t-glass-dark-list-fill); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t-sheet { background: var(--t-glass-dark-list-fill); } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t-sheet { background: var(--t-glass-list-fill); } }
 @keyframes t-sheet-in { from { transform: translateY(100%); } }
 .t-sheet[data-leaving="true"] { animation: t-sheet-out var(--t-duration-standard) var(--t-easing-in) forwards; }
 @keyframes t-sheet-out { to { transform: translateY(100%); } }

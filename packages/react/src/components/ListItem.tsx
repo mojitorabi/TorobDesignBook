@@ -1,5 +1,5 @@
 /* ListItem — Torob Design System
- * A row in a list. The last row is not a separate component.
+ * یک ردیف در فهرست. ردیف آخر کامپوننت جدا نیست.
  * Docs: /components/list-item.html
  * Replaces: List / Item, List / last item
  */

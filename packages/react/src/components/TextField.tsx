@@ -1,5 +1,5 @@
 /* TextField — Torob Design System
- * Single-line text entry with label, hint and error.
+ * ورودی تک‌خطی با برچسب، راهنما و خطا.
  * Docs: /components/text-field.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

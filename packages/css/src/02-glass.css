@@ -6,24 +6,56 @@
 
 /* Mode-resolved glass channel. Every .t-glass reads these four vars, so the
    light/dark switch happens once here rather than in every component. */
+/* Mode-resolved glass channel. Every .t-glass reads these four variables, so
+   the theme switch happens once, here, instead of in every component. */
 :root {
-  --t-glass-fill:   var(--t-glass-light-surface-fill);
-  --t-glass-border: var(--t-glass-light-surface-border);
-  --t-glass-shadow: var(--t-glass-light-surface-shadow);
+  --t-glass-fill:     var(--t-glass-light-surface-fill);
+  --t-glass-border:   var(--t-glass-light-surface-border);
+  --t-glass-shadow:   var(--t-glass-light-surface-shadow);
+  --t-glass-list-fill:     var(--t-glass-list-fill);
+  --t-glass-solid-fill:    var(--t-glass-solid-fill);
+  --t-glass-selected-fill: var(--t-glass-selected-fill);
+  --t-glass-filters-fill:   var(--t-glass-filters-fill);
+  --t-glass-filters-border: var(--t-glass-filters-border);
+  --t-glass-filters-shadow: var(--t-glass-filters-shadow);
   --t-glass-fallback: var(--t-glass-fallback-light);
 }
+:root[data-theme="dim"] {
+  --t-glass-fill:     var(--t-glass-dim-surface-fill);
+  --t-glass-border:   var(--t-glass-dim-surface-border);
+  --t-glass-shadow:   var(--t-glass-dim-surface-shadow);
+  --t-glass-list-fill:     var(--t-glass-dim-list-fill);
+  --t-glass-solid-fill:    var(--t-glass-dim-solid-fill);
+  --t-glass-selected-fill: var(--t-glass-dim-selected-fill);
+  --t-glass-filters-fill:   var(--t-glass-dim-filters-fill);
+  --t-glass-filters-border: var(--t-glass-dim-filters-border);
+  --t-glass-filters-shadow: var(--t-glass-dim-filters-shadow);
+  --t-glass-fallback: var(--t-glass-fallback-dim);
+}
 :root[data-theme="dark"] {
-  --t-glass-fill:   var(--t-glass-dark-surface-fill);
-  --t-glass-border: var(--t-glass-dark-surface-border);
-  --t-glass-shadow: var(--t-glass-dark-surface-shadow);
+  --t-glass-fill:     var(--t-glass-dark-surface-fill);
+  --t-glass-border:   var(--t-glass-dark-surface-border);
+  --t-glass-shadow:   var(--t-glass-dark-surface-shadow);
+  --t-glass-list-fill:     var(--t-glass-list-fill);
+  --t-glass-solid-fill:    var(--t-glass-solid-fill);
+  --t-glass-selected-fill: var(--t-glass-selected-fill);
+  --t-glass-filters-fill:   var(--t-glass-filters-fill);
+  --t-glass-filters-border: var(--t-glass-filters-border);
+  --t-glass-filters-shadow: var(--t-glass-filters-shadow);
   --t-glass-fallback: var(--t-glass-fallback-dark);
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --t-glass-fill:   var(--t-glass-dark-surface-fill);
-    --t-glass-border: var(--t-glass-dark-surface-border);
-    --t-glass-shadow: var(--t-glass-dark-surface-shadow);
-    --t-glass-fallback: var(--t-glass-fallback-dark);
+  :root:not([data-theme]) {
+    --t-glass-fill:     var(--t-glass-dim-surface-fill);
+    --t-glass-border:   var(--t-glass-dim-surface-border);
+    --t-glass-shadow:   var(--t-glass-dim-surface-shadow);
+    --t-glass-list-fill:     var(--t-glass-dim-list-fill);
+    --t-glass-solid-fill:    var(--t-glass-dim-solid-fill);
+    --t-glass-selected-fill: var(--t-glass-dim-selected-fill);
+    --t-glass-filters-fill:   var(--t-glass-dim-filters-fill);
+    --t-glass-filters-border: var(--t-glass-dim-filters-border);
+    --t-glass-filters-shadow: var(--t-glass-dim-filters-shadow);
+    --t-glass-fallback: var(--t-glass-fallback-dim);
   }
 }
 
@@ -40,50 +72,13 @@
 /* ---- Levels. The opacity ladder is the only lever that changes. ---- */
 
 /* 50% — a sheet content scrolls inside. No edge, no lift. */
-.t-glass--list {
-  background-color: var(--t-glass-light-list-fill);
-  border-color: transparent;
-  box-shadow: none;
-}
+.t-glass--list     { background-color: var(--t-glass-list-fill); border-color: transparent; box-shadow: none; }
 /* 60% — selected or resting. No elevation. */
-.t-glass--solid {
-  background-color: var(--t-glass-light-solid-fill);
-  border-color: transparent;
-  box-shadow: none;
-}
+.t-glass--solid    { background-color: var(--t-glass-solid-fill); border-color: transparent; box-shadow: none; }
 /* 60% + the blue ring. Selection is never brand red. */
-.t-glass--selected {
-  background-color: var(--t-glass-light-selected-fill);
-  border-color: var(--t-border-selected);
-  border-width: var(--t-border-hairline);
-  box-shadow: none;
-}
+.t-glass--selected { background-color: var(--t-glass-selected-fill); border-color: var(--t-border-selected); border-width: var(--t-border-hairline); box-shadow: none; }
 /* The filter rail: sits above a scrolling list, so it gets a top highlight. */
-.t-glass--filters {
-  background-color: var(--t-glass-light-filters-fill);
-  border-color: var(--t-glass-light-filters-border);
-  box-shadow: var(--t-glass-light-filters-shadow);
-}
-
-/* Dark overrides. Flat selectors — CSS nesting is not assumed. */
-:root[data-theme="dark"] .t-glass--list     { background-color: var(--t-glass-dark-list-fill); }
-:root[data-theme="dark"] .t-glass--solid    { background-color: var(--t-glass-dark-solid-fill); }
-:root[data-theme="dark"] .t-glass--selected { background-color: var(--t-glass-dark-selected-fill); }
-:root[data-theme="dark"] .t-glass--filters  {
-  background-color: var(--t-glass-dark-filters-fill);
-  border-color: var(--t-glass-dark-filters-border);
-  box-shadow: var(--t-glass-dark-filters-shadow);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .t-glass--list     { background-color: var(--t-glass-dark-list-fill); }
-  :root:not([data-theme="light"]) .t-glass--solid    { background-color: var(--t-glass-dark-solid-fill); }
-  :root:not([data-theme="light"]) .t-glass--selected { background-color: var(--t-glass-dark-selected-fill); }
-  :root:not([data-theme="light"]) .t-glass--filters  {
-    background-color: var(--t-glass-dark-filters-fill);
-    border-color: var(--t-glass-dark-filters-border);
-    box-shadow: var(--t-glass-dark-filters-shadow);
-  }
-}
+.t-glass--filters  { background-color: var(--t-glass-filters-fill); border-color: var(--t-glass-filters-border); box-shadow: var(--t-glass-filters-shadow); }
 
 /* ---- Degradation ----
    Two independent reasons to go opaque. Same hue, same geometry, so layout

@@ -28,33 +28,49 @@ const pairs = [
   ['fg.secondary', 'bg.canvas', 4.5, 'secondary on canvas'],
   ['fg.secondary', 'bg.fog', 4.5, 'secondary on card'],
   ['fg.brand', 'bg.canvas', 4.5, 'brand text on canvas'],
+  ['fg.brand', 'bg.fog', 4.5, 'brand text on card'],
   ['fg.link', 'bg.fog', 4.5, 'link on card'],
-  ['action.primary.fg', 'action.primary.bg', 4.5, 'primary button label'],
-  ['action.accent.fg', 'action.accent.bg', 4.5, 'accent button label'],
-  ['action.neutral.fg', 'action.neutral.bg', 4.5, 'neutral button label'],
-  ['action.accent.soft-fg', 'action.accent.soft-bg', 4.5, 'soft accent button'],
-  ['action.neutral.ghost-fg', 'bg.canvas', 4.5, 'ghost button label'],
+  ['fg.link', 'bg.canvas', 4.5, 'link on canvas'],
+
+  // Three button families
+  ['action.red.fg', 'action.red.bg', 4.5, 'red button label'],
+  ['action.blue.fg', 'action.blue.bg', 4.5, 'blue button label'],
+  ['action.black.fg', 'action.black.bg', 4.5, 'black button label'],
+  ['action.blue.soft-fg', 'action.blue.soft-bg', 4.5, 'soft blue button'],
+  ['action.black.ghost-fg', 'bg.canvas', 4.5, 'black ghost label'],
+  ['action.red.outline-fg', 'bg.canvas', 4.5, 'red outline label'],
+  ['action.blue.outline-fg', 'bg.canvas', 4.5, 'blue outline label'],
+  ['action.disabled.fg', 'action.disabled.bg', 4.5, 'disabled label'],
+  // The tinted rim is ornament on a filled surface. The fill identifies the
+  // control, so 1.4.11 does not govern the rim. Reported, not gated.
+  ['action.red.border', 'action.red.bg', 0, 'red button rim (ornament)'],
+  ['action.blue.border', 'action.blue.bg', 0, 'blue button rim (ornament)'],
+
   ['status.positive.fg', 'status.positive.bg', 4.5, 'positive alert'],
   ['status.caution.fg', 'status.caution.bg', 4.5, 'caution alert'],
   ['status.critical.fg', 'status.critical.bg', 4.5, 'critical alert'],
   ['status.info.fg', 'status.info.bg', 4.5, 'info alert'],
   ['status.guarantee.fg', 'status.guarantee.bg', 4.5, 'guarantee badge'],
   ['status.neutral.fg', 'status.neutral.bg', 4.5, 'neutral badge'],
+
   ['commerce.price', 'bg.fog', 4.5, 'price on card'],
   ['commerce.price-from', 'bg.fog', 4.5, '"from" price line'],
   ['commerce.oos', 'bg.fog', 4.5, 'out of stock'],
   ['commerce.open', 'bg.fog', 3.0, 'open-now dot (non-text)'],
   ['commerce.official', 'bg.fog', 4.5, 'official dealer'],
+  ['fg.on-solid', 'commerce.ad', 4.5, 'ad marker label'],
+
   ['border.control', 'bg.canvas', 3.0, 'form-control border'],
   ['border.control', 'bg.fog', 3.0, 'form-control border on card'],
-  ['border.default', 'bg.canvas', 0, 'decorative divider (informational)'],
   ['border.selected', 'bg.fog', 3.0, 'selection ring (non-text)'],
-  ['border.focus', 'bg.canvas', 3.0, 'focus ring (non-text)'],
+  ['border.focus', 'bg.canvas', 3.0, 'focus ring on canvas'],
+  ['border.focus', 'bg.fog', 3.0, 'focus ring on card'],
   ['map.poi', 'bg.fog', 3.0, 'map pin (non-text)'],
+  ['border.default', 'bg.canvas', 0, 'decorative divider (informational)'],
 ];
 
 let fails = 0, warns = 0;
-for (const mode of ['light', 'dark']) {
+for (const mode of Object.keys(m.modes)) {
   const t = { ...m.base, ...m.modes[mode] };
   const canvas = t['bg.canvas'].value;
   console.log(`\n${'═'.repeat(74)}\n  ${mode.toUpperCase()}\n${'═'.repeat(74)}`);

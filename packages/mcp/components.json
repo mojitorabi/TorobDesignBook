@@ -23,120 +23,131 @@
    "Button/Normal/Primary/Icon",
    "Button/Normal/Border/Icon"
   ],
-  "summary": "Triggers an action. One primary per screen.",
+  "summary": "یک کنش را اجرا می‌کند. در هر صفحه فقط یک دکمهٔ اصلی.",
   "description": [
-   "The source kit modelled every state as its own symbol. <code>Button / Red / Hover</code> sat beside <code>Button / Red / Default</code> as a separate master. That cannot become a component API. Here, <strong>state is a state</strong> (CSS pseudo-classes and <code>data-</code> attributes) and only intent and size are props.",
+   "ترب <strong>سه خانوادهٔ رنگی</strong> دارد و رنگ اینجا تزئین نیست، معنا دارد: <strong class=\"fam-red\">قرمز</strong> کنش خرید اینترنتی است، <strong class=\"fam-blue\">آبی</strong> کنش حضوری و ارتباط با فروشگاه (مسیریابی، تماس) و <strong class=\"fam-black\">مشکی</strong> خنثی. به همین دلیل است که <code>Button/Offline Buy box</code> آبی است، نه دکمهٔ خط‌دار.",
+   "دو جزئیات که هر دو از اسکچ اندازه‌گیری شده و هر دو به‌راحتی از دست می‌روند. <strong>حالت پیش‌فرض گرادیان است و هاور به رنگ تخت جمع می‌شود</strong>؛ یعنی دکمه زیر نشانگر می‌نشیند، نه اینکه بالا بیاید. و هر دکمهٔ پرشده یک <strong>لبهٔ داخلی ۱ پیکسلی هم‌خانواده با خودش</strong> دارد (قرمز از Red 50، آبی از Blue 300). همین لبه است که نمی‌گذارد یک سطح رنگی اشباع، مستطیل تخت دیده شود.",
+   "کیت اولیه هر حالت را یک سیمبل جدا مدل کرده بود؛ <code>Button / Red / Hover</code> کنار <code>Button / Red / Default</code> به‌عنوان مستر مستقل. این ساختار هرگز به API کامپوننت تبدیل نمی‌شود. اینجا <strong>حالت، حالت است</strong> (سودوکلاس‌های CSS و صفت‌های <code>data-</code>) و فقط خانواده و اندازه پراپ هستند.",
    "Variants are named by <strong>intent</strong>, not by colour. <code>Button / Red</code> became <code>variant=\"primary\"</code>: when the brand palette shifts, the code does not. The examples page had already started this migration on its own — <code>Button/Normal/Primary/Icon</code>, so this formalises a direction your team was already moving in."
   ],
   "use": [
-   "Exactly one <code>primary</code> per screen: the thing the user came to do.",
-   "Use <code>accent</code> for the secondary path, <code>ghost</code> for tertiary.",
-   "Label with a verb naming the outcome: «مشاهده فروشندگان», not «بیشتر».",
-   "Set <code>data-loading</code> during async work — the label is hidden but the width is held."
+   "در هر صفحه دقیقاً یک دکمهٔ <code>red</code>؛ همان کاری که کاربر برای آن آمده است.",
+   "<code>blue</code> برای کنش حضوری و ارتباط با فروشگاه، <code>ghost</code> برای کنش درجه‌سه.",
+   "برچسب را با فعلی بنویسید که نتیجه را نام ببرد: «مشاهده فروشندگان»، نه «بیشتر».",
+   "هنگام کار ناهمگام <code>data-loading</code> بگذارید؛ برچسب پنهان می‌شود اما عرض دکمه ثابت می‌ماند."
   ],
   "avoid": [
-   "Two primary buttons side by side. If both matter, neither is primary.",
-   "Disabling without explanation. Say why, next to the button.",
-   "Colour-only variants (<code>variant=\"red\"</code>). Intent survives a rebrand; colour does not.",
-   "Icon-only buttons without <code>aria-label</code>."
+   "دو دکمهٔ اصلی کنار هم. اگر هر دو مهم‌اند، هیچ‌کدام اصلی نیست.",
+   "غیرفعال‌کردن بدون توضیح. دلیلش را کنار دکمه بنویسید.",
+   "قرمز برای کنش حضوری. رنگ اینجا یک قول است، نه یک سلیقه.",
+   "دکمهٔ فقط آیکون بدون <code>aria-label</code>."
   ],
   "anatomy": [
    [
-    "Container",
-    "Sets height, radius 12, and the touch target. The visual box can be 24px tall; the tap area is never below 44px."
+    "ظرف",
+    "ارتفاع، گردی ۱۲ و ناحیهٔ لمس را تعیین می‌کند. کادر بصری می‌تواند ۲۴ پیکسل باشد؛ ناحیهٔ لمس هرگز زیر ۴۴ پیکسل نمی‌رود."
    ],
    [
-    "Leading icon",
-    "Optional, 16px. Directional icons mirror in RTL."
+    "آیکون آغازین",
+    "اختیاری، ۱۶ پیکسل. آیکون‌های جهت‌دار در راست‌چین قرینه می‌شوند."
    ],
    [
-    "Label",
-    "14px Bold. Never wraps — truncate the container instead."
+    "برچسب",
+    "۱۴ پیکسل Bold. هرگز به خط بعد نمی‌رود؛ به‌جایش ظرف را کوتاه کنید."
    ],
    [
-    "Trailing icon",
-    "Optional. A chevron here means \"opens something\", not \"submits\"."
+    "آیکون پایانی",
+    "اختیاری. شورون اینجا یعنی «چیزی باز می‌شود»، نه «ثبت می‌شود»."
    ]
   ],
   "props": [
    [
     "variant",
-    "'primary' | 'accent' | 'neutral' | 'soft' | 'outline' | 'outline-accent' | 'ghost' | 'ghost-accent'",
-    "'neutral'",
-    "Intent. Never a colour name."
+    "'red' | 'blue' | 'black' | 'black-ghost' | 'blue-outline' | 'red-outline' | 'soft' | 'ghost' | 'blue-ghost' | 'glass'",
+    "'black'",
+    "خانوادهٔ رنگی. <code>primary</code>، <code>accent</code> و <code>neutral</code> نام مستعار قرمز، آبی و مشکی‌اند و در کد محصول ترجیح دارند."
    ],
    [
     "size",
     "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
     "'lg'",
-    "24 / 28 / 32 / 40 / 48 px. lg is the default, matching the source kit."
+    "۲۴ / ۲۸ / ۳۲ / ۴۰ / ۴۸ پیکسل. <code>lg</code> پیش‌فرض است و با کیت اسکچ می‌خواند."
    ],
    [
     "block",
     "boolean",
     "false",
-    "Fill the inline axis."
+    "پرکردن کل محور درون‌خطی."
    ],
    [
     "loading",
     "boolean",
     "false",
-    "Shows a spinner, holds the width, blocks pointer events."
+    "اسپینر نشان می‌دهد، عرض را نگه می‌دارد و رویداد اشاره‌گر را می‌بندد."
    ],
    [
     "disabled",
     "boolean",
     "false",
-    "Collapses every variant to the same disabled treatment."
+    "همهٔ خانواده‌ها به یک ظاهر غیرفعال جمع می‌شوند."
    ],
    [
     "iconStart / iconEnd",
     "ReactNode",
     "—",
-    "Leading / trailing icon in logical order — they swap automatically in LTR."
+    "آیکون آغازین و پایانی به ترتیب منطقی؛ در چپ‌چین خودشان جا عوض می‌کنند."
    ]
   ],
   "a11y": [
-   "Renders a real <code>&lt;button&gt;</code>. Use <code>&lt;a class=\"t-btn\"&gt;</code> only when it navigates.",
-   "Loading sets <code>aria-busy=\"true\"</code>; the accessible name stays stable so screen readers do not re-announce.",
-   "Focus ring is 2px <code>--t-border-focus</code> at 2px offset, visible on both grounds.",
-   "Disabled uses <code>disabled</code>, not <code>pointer-events: none</code>, which is invisible to assistive tech.",
-   "Every size keeps a ≥44px touch target via a transparent <code>::after</code> on coarse pointers."
+   "یک <code>&lt;button&gt;</code> واقعی رندر می‌شود. <code>&lt;a class=\"t-btn\"&gt;</code> فقط وقتی که ناوبری می‌کند.",
+   "حالت بارگذاری <code>aria-busy=\"true\"</code> می‌گذارد و نام دسترس‌پذیر ثابت می‌ماند تا صفحه‌خوان دوباره اعلام نکند.",
+   "حلقهٔ فوکوس ۲ پیکسل با فاصلهٔ ۲ پیکسل است و در هر سه پوسته نسبت ۳:۱ را نگه می‌دارد (معیار ۲.۴.۱۳ نسخهٔ ۲.۲).",
+   "غیرفعال با صفت <code>disabled</code>، نه با <code>pointer-events: none</code> که برای فناوری کمکی نامرئی است.",
+   "برچسب غیرفعال با نسبت ۴٫۸:۱ خوانا می‌ماند؛ سیگنال غیرفعال‌بودن را سطح خاکستری و نبود لبه می‌رسانند، نه متن ناخوانا.",
+   "در هر اندازه ناحیهٔ لمس دست‌کم ۴۴ پیکسل است — بسیار بالاتر از حداقل ۲۴×۲۴ در معیار ۲.۵.۸."
   ],
-  "responsive": "Buttons do not resize by breakpoint. Below 375px, use <code>block</code> so the label never truncates. In a footer of two actions, both go <code>block</code> and stack under 360px.",
+  "responsive": "دکمه با نقطهٔ شکست تغییر اندازه نمی‌دهد. زیر ۳۷۵ پیکسل از <code>block</code> استفاده کنید تا برچسب هرگز بریده نشود. در فوتری با دو کنش، هر دو <code>block</code> می‌شوند و زیر ۳۶۰ پیکسل روی هم می‌نشینند.",
   "specimens": [
    {
-    "label": "Intents",
-    "html": "<button class=\"t-btn t-btn--primary\">افزودن به سبد</button>\n<button class=\"t-btn t-btn--accent\">مشاهده فروشندگان</button>\n<button class=\"t-btn t-btn--neutral\">مقایسه</button>\n<button class=\"t-btn t-btn--soft\">ذخیره</button>\n<button class=\"t-btn t-btn--outline\">انصراف</button>\n<button class=\"t-btn t-btn--ghost\">بیشتر</button>"
+    "label": "سه خانوادهٔ رنگی",
+    "note": "قرمز خرید اینترنتی است، آبی کنش فروشگاهی و مشکی خنثی. روی هر کدام هاور کنید: گرادیان به رنگ تخت جمع می‌شود.",
+    "stageClass": "spec__stage--stack",
+    "html": "<div style=\"display:flex;gap:12px;flex-wrap:wrap;align-items:center\">\n  <button class=\"t-btn t-btn--red\">خرید اینترنتی</button>\n  <button class=\"t-btn t-btn--blue\">اطلاعات تماس</button>\n  <button class=\"t-btn t-btn--black\">عنوان</button>\n</div>\n<div style=\"display:flex;gap:12px;flex-wrap:wrap;align-items:center\">\n  <button class=\"t-btn t-btn--red-outline\">خرید اینترنتی</button>\n  <button class=\"t-btn t-btn--blue-outline\">اطلاعات تماس</button>\n  <button class=\"t-btn t-btn--black-ghost\">عنوان</button>\n</div>\n<div style=\"display:flex;gap:12px;flex-wrap:wrap;align-items:center\">\n  <button class=\"t-btn t-btn--soft\">ذخیره</button>\n  <button class=\"t-btn t-btn--blue-ghost\">بیشتر</button>\n  <button class=\"t-btn t-btn--ghost\">انصراف</button>\n</div>"
    },
    {
-    "label": "Sizes",
-    "html": "<button class=\"t-btn t-btn--primary t-btn--xs\">Xsmall</button>\n<button class=\"t-btn t-btn--primary t-btn--sm\">Small</button>\n<button class=\"t-btn t-btn--primary t-btn--md\">Medium</button>\n<button class=\"t-btn t-btn--primary t-btn--lg\">Large</button>\n<button class=\"t-btn t-btn--primary t-btn--xl\">XLarge</button>"
+    "label": "اندازه‌ها",
+    "html": "<button class=\"t-btn t-btn--red t-btn--xs\">Xsmall</button>\n<button class=\"t-btn t-btn--red t-btn--sm\">Small</button>\n<button class=\"t-btn t-btn--red t-btn--md\">Medium</button>\n<button class=\"t-btn t-btn--red t-btn--lg\">Large</button>\n<button class=\"t-btn t-btn--red t-btn--xl\">XLarge</button>"
    },
    {
-    "label": "States",
-    "note": "Hover and focus are live — interact with them.",
-    "html": "<button class=\"t-btn t-btn--primary\">Default</button>\n<button class=\"t-btn t-btn--primary\" data-loading=\"true\">در حال ارسال</button>\n<button class=\"t-btn t-btn--primary\" disabled>Disabled</button>\n<button class=\"t-btn t-btn--outline\" disabled>Disabled outline</button>"
+    "label": "حالت‌ها",
+    "note": "همهٔ خانواده‌ها به یک ظاهر غیرفعال جمع می‌شوند. برچسب با نسبت ۴٫۸:۱ خوانا می‌ماند؛ سطح تخت و نبود لبه سیگنال را می‌رسانند، نه متن ناخوانا.",
+    "html": "<button class=\"t-btn t-btn--red\">خرید اینترنتی</button>\n<button class=\"t-btn t-btn--red\" data-loading=\"true\">در حال ارسال</button>\n<button class=\"t-btn t-btn--red\" disabled>خرید اینترنتی</button>\n<button class=\"t-btn t-btn--blue\" disabled>اطلاعات تماس</button>\n<button class=\"t-btn t-btn--black\" disabled>عنوان</button>"
    },
    {
-    "label": "With icons",
+    "label": "همراه آیکون",
     "html": "<button class=\"t-btn t-btn--accent\">مسیریابی<svg class=\"t-icon t-icon--sm t-icon--directional\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M10 4 6 8l4 4V4z\"/></svg></button>\n<button class=\"t-btn t-btn--outline\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a5 5 0 0 0-5 5c0 3.5 5 9 5 9s5-5.5 5-9a5 5 0 0 0-5-5zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z\"/></svg>نزدیک من</button>\n<button class=\"t-btn t-btn--primary t-btn--block\">تماس با فروشگاه</button>"
    }
   ],
   "react": "import { forwardRef } from 'react';\nimport clsx from 'clsx';\n\nexport const Button = forwardRef(function Button(\n  { variant = 'neutral', size = 'lg', block, loading, disabled,\n    iconStart, iconEnd, children, className, ...rest }, ref) {\n  return (\n    <button\n      ref={ref}\n      className={clsx('t-btn', `t-btn--${variant}`, `t-btn--${size}`, block && 't-btn--block', className)}\n      data-loading={loading || undefined}\n      aria-busy={loading || undefined}\n      disabled={disabled || loading}\n      {...rest}\n    >\n      {iconStart}\n      {children}\n      {iconEnd}\n    </button>\n  );\n});",
   "classes": [
    "t-btn",
-   "t-btn--primary",
-   "t-btn--accent",
-   "t-btn--neutral",
+   "t-btn--red",
+   "t-btn--blue",
+   "t-btn--black",
+   "t-btn--red-outline",
+   "t-btn--blue-outline",
+   "t-btn--black-ghost",
    "t-btn--soft",
-   "t-btn--outline",
+   "t-btn--blue-ghost",
    "t-btn--ghost",
    "t-btn--xs",
    "t-btn--sm",
    "t-btn--md",
    "t-btn--lg",
    "t-btn--xl",
+   "t-btn--accent",
+   "t-btn--outline",
+   "t-btn--primary",
    "t-btn--block"
   ]
  },
@@ -152,27 +163,28 @@
    "Button/Icon/Icon Rounded",
    "Button/Icon"
   ],
-  "summary": "A single icon as a target. Always carries an accessible name.",
+  "summary": "یک آیکون به‌عنوان هدف لمس. همیشه نام دسترس‌پذیر دارد.",
   "description": [
-   "The kit had four masters (<code>Icon</code>, <code>Blue Icon</code>, <code>Ghost Icon</code>, <code>Icon Rounded</code>) differing only in fill and radius. One component, two props."
+   "کیت اولیه چهار مستر داشت — <code>Icon</code>، <code>Blue Icon</code>، <code>Ghost Icon</code> و <code>Icon Rounded</code> — که فقط در پرکردن و گردی گوشه فرق داشتند. اینجا یک کامپوننت با دو پراپ.",
+   "نسخهٔ شیشه‌ای همان چیزی است که یک کنترل را روی نقشه یا عکس محصول خوانا نگه می‌دارد."
   ],
   "use": [
-   "Toolbars, card corners, map controls, anywhere a label would not fit.",
-   "Pair with a tooltip on pointer devices.",
-   "Use <code>glass</code> over a map or photograph so the content behind stays readable."
+   "نوار ابزار، گوشهٔ کارت، کنترل‌های نقشه؛ هرجا که برچسب جا نمی‌شود.",
+   "روی دستگاه‌های اشاره‌گردار با تولتیپ جفت کنید.",
+   "روی نقشه یا عکس از <code>glass</code> استفاده کنید تا محتوای پشت خوانا بماند."
   ],
   "avoid": [
-   "Icon-only for an unfamiliar or destructive action. Label it.",
-   "Ambiguous glyphs. If two icons in a row could mean the same thing, use labels."
+   "آیکون تنها برای کنش ناآشنا یا مخرب. برچسب بگذارید.",
+   "نشانه‌های مبهم. اگر دو آیکون کنار هم می‌توانند یک معنی بدهند، از برچسب استفاده کنید."
   ],
   "anatomy": [
    [
-    "Container",
-    "48px default, 32px small. Square with radius 12, or fully round."
+    "ظرف",
+    "۴۸ پیکسل پیش‌فرض، ۳۲ پیکسل کوچک. مربع با گردی ۱۲ یا کاملاً گرد."
    ],
    [
-    "Icon",
-    "20px, inherits colour from the container."
+    "آیکون",
+    "۲۰ پیکسل، رنگ را از ظرف به ارث می‌برد."
    ]
   ],
   "props": [
@@ -180,40 +192,40 @@
     "variant",
     "'ghost' | 'accent' | 'glass'",
     "'ghost'",
-    "glass is for use over a map or image."
+    "<code>glass</code> برای استفاده روی نقشه یا تصویر."
    ],
    [
     "size",
     "'sm' | 'md'",
     "'md'",
-    "32 / 48 px."
+    "۳۲ / ۴۸ پیکسل."
    ],
    [
     "round",
     "boolean",
     "false",
-    "Full radius instead of 12px."
+    "گردی کامل به‌جای ۱۲."
    ],
    [
     "label",
     "string",
     "— (required)",
-    "Becomes aria-label. There is no unlabelled variant."
+    "به <code>aria-label</code> تبدیل می‌شود. نسخهٔ بدون برچسب وجود ندارد."
    ]
   ],
   "a11y": [
-   "<code>label</code> is required and maps to <code>aria-label</code>. An icon button with no name is unusable by screen reader.",
-   "For a toggle, add <code>aria-pressed</code> and keep the name constant (\"افزودن به علاقه‌مندی\"), changing only the pressed state."
+   "<code>label</code> اجباری است و به <code>aria-label</code> نگاشت می‌شود؛ دکمهٔ آیکونی بدون نام برای کاربر صفحه‌خوان بی‌استفاده است.",
+   "برای دکمهٔ دوحالته <code>aria-pressed</code> بگذارید و نام را ثابت نگه دارید («افزودن به علاقه‌مندی»)؛ فقط حالت فشرده تغییر کند."
   ],
-  "responsive": "48px on touch, 32px acceptable on pointer-fine surfaces. Never below 32px visually, never below 44px in target size.",
+  "responsive": "۴۸ پیکسل روی لمس، ۳۲ پیکسل روی اشاره‌گر قابل قبول است. هرگز از ۳۲ پیکسل بصری و ۴۴ پیکسل ناحیهٔ لمس پایین‌تر نروید.",
   "specimens": [
    {
-    "label": "Variants",
+    "label": "گونه‌ها",
     "html": "<button class=\"t-icon-btn\" aria-label=\"جستجو\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--accent\" aria-label=\"تماس\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M5 3a2 2 0 0 0-2 2c0 6.6 5.4 12 12 12a2 2 0 0 0 2-2v-2.3a1 1 0 0 0-.8-1l-2.7-.5a1 1 0 0 0-1 .4l-.8 1.1a9.6 9.6 0 0 1-4.1-4.1l1.1-.8a1 1 0 0 0 .4-1l-.5-2.7a1 1 0 0 0-1-.8H5z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بستن\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--round t-icon-btn--accent\" aria-label=\"افزودن\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10.8 3H9.2v6.2H3v1.6h6.2V17h1.6v-6.2H17V9.2h-6.2V3z\"/></svg></button>"
    },
    {
-    "label": "Glass, over content",
-    "note": "The glass variant is what makes a control readable on top of a map or a product photograph.",
+    "label": "شیشه، روی محتوا",
+    "note": "نسخهٔ شیشه‌ای همان چیزی است که کنترل را روی نقشه یا عکس محصول خوانا نگه می‌دارد.",
     "canvas": "map",
     "stageClass": "spec__stage--center",
     "html": "<button class=\"t-icon-btn t-icon-btn--glass\" aria-label=\"موقعیت من\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 6.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zM10.8 1H9.2v2.1a7 7 0 0 0-6.1 6.1H1v1.6h2.1a7 7 0 0 0 6.1 6.1V19h1.6v-2.1a7 7 0 0 0 6.1-6.1H19V9.2h-2.1a7 7 0 0 0-6.1-6.1V1z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--glass\" aria-label=\"لایه‌های نقشه\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"m10 2 8 4.5-8 4.5-8-4.5L10 2zm5.6 7.2L18 10.5 10 15l-8-4.5 2.4-1.3L10 12l5.6-2.8z\"/></svg></button>"
@@ -232,74 +244,112 @@
   "name": "BuyBoxButton",
   "slug": "buy-box-button",
   "group": "Actions",
-  "status": "stable",
+  "status": "revised",
   "legacy": [
    "Button/Buy box/Ad",
    "Button/Buy box/Cheapest",
-   "Button/Offline Buy box/Ad"
+   "Button/Offline Buy box/Ad",
+   "Badge / Ad on Buy Box"
   ],
-  "summary": "The PDP commerce target: price, seller and action in one tap.",
+  "summary": "هدف خرید در صفحهٔ محصول. رنگ می‌گوید اینترنتی یا حضوری.",
   "description": [
-   "Torob-specific and load-bearing. It is the row a shopper actually taps on a product page, so it carries the price as its primary content rather than a verb. The <code>ad</code> flag renders the آگهی marker — required disclosure, and deliberately quiet."
+   "مخصوص ترب و تعیین‌کننده: همان ردیفی که خریدار واقعاً در صفحهٔ محصول لمس می‌کند. دقیقاً بر پایهٔ هندسهٔ اسکچ بازسازی شده — ۳۴۳×۷۲ با گردی ۱۶، پشتهٔ فروشنده و قیمت در انتهای محور و نشان «آگهی» در ابتدای آن.",
+   "رنگ اینجا معنا است، نه تأکید. <strong class=\"fam-red\">قرمز</strong> فروشندهٔ اینترنتی است که همین حالا از او می‌خرید؛ <strong class=\"fam-blue\">آبی</strong> فروشندهٔ حضوری است که باید به فروشگاهش بروید. نسخهٔ فشردهٔ ۳۴۳×۴۴ با گردی ۱۲ میان‌بر «ارزان‌ترین فروشنده» است و یک برچسب وسط‌چین دارد.",
+   "یک اندازه‌گیری ارزش گفتن دارد چون شبیه اشتباه به نظر می‌رسد و نیست: <strong>نام فروشنده Bold ۱۶ است و قیمت Medium ۱۶</strong>. خریدار محدودهٔ قیمت را از فهرست می‌داند؛ در این ردیف دارد انتخاب می‌کند که <em>از چه کسی</em> بخرد، پس وزن به فروشنده می‌رسد."
   ],
   "use": [
-   "On the product detail page, one per seller row.",
-   "Show the total price the shopper pays, including the currency word.",
-   "Mark sponsored placements with <code>ad</code>. Always. It is a disclosure, not a style."
+   "در صفحهٔ محصول، برای هر فروشنده یک ردیف.",
+   "مبلغی را نشان دهید که خریدار می‌پردازد، همراه با واحد پول.",
+   "جایگاه‌های تبلیغاتی را همیشه با نشان «آگهی» مشخص کنید؛ این یک افشای قانونی است، نه یک انتخاب سلیقه‌ای.",
+   "برای فروشندهٔ حضوری آبی بگذارید تا خریدار پیش از لمس بداند این یک سفر است، نه یک پرداخت."
   ],
   "avoid": [
-   "Hiding the ad marker to improve click-through.",
-   "Using it as a generic CTA. It means \"buy from this seller at this price\"."
+   "پنهان‌کردن یا تغییر ظاهر نشان آگهی برای بالابردن نرخ کلیک.",
+   "استفاده به‌عنوان دکمهٔ عمومی. معنایش این است: «این را، از این فروشنده، به این قیمت بخر».",
+   "بلندتر کردن قیمت از فروشنده. این تصمیمی را که در حال گرفتن است وارونه می‌کند.",
+   "قرمز برای فروشندهٔ حضوری. رنگ اینجا یک قول است."
   ],
   "anatomy": [
    [
-    "Container",
-    "Full-width, min 44px, radius 12, brand gradient."
+    "ظرف",
+    "۳۴۳×۷۲، گردی ۱۶، گرادیان خانواده، لبهٔ داخلی ۱ پیکسلی هم‌خانواده."
    ],
    [
-    "Price",
-    "16px ExtraBold, tabular figures, Persian numerals."
+    "نشان آگهی",
+    "۴۵×۲۴، گردی ۱۲، پرشدهٔ #D70040 با برچسب سفید Medium ۱۲. ابتدای محور."
    ],
    [
-    "Meta",
-    "12px at 86% opacity — seller name, shipping, ad marker."
+    "فروشنده",
+    "Bold ۱۶. خط اصلی."
+   ],
+   [
+    "قیمت",
+    "Medium ۱۶، ارقام جدولی، اعداد فارسی."
+   ],
+   [
+    "فشرده",
+    "۳۴۳×۴۴، گردی ۱۲، یک برچسب وسط‌چین Bold ۱۶."
    ]
   ],
   "props": [
    [
     "variant",
-    "'primary' | 'accent' | 'offline'",
-    "'primary'",
-    "offline is the un-filled treatment for a store with no online stock."
+    "'red' | 'blue'",
+    "'red'",
+    "قرمز فروشندهٔ اینترنتی، آبی فروشندهٔ حضوری. <code>offline</code> نام مستعار آبی است."
+   ],
+   [
+    "compact",
+    "boolean",
+    "false",
+    "میان‌بر ۴۴ پیکسلی ارزان‌ترین فروشنده."
    ],
    [
     "ad",
     "boolean",
     "false",
-    "Renders the آگهی disclosure."
+    "نشان افشای «آگهی» را رندر می‌کند."
    ],
    [
-    "price",
+    "seller / price",
     "string",
     "—",
-    "Pre-formatted with Persian numerals."
+    "قیمت از پیش با اعداد فارسی قالب‌بندی شده است."
    ]
   ],
   "a11y": [
-   "The accessible name must include price and seller — \"۱۵٬۸۰۰٬۰۰۰ تومان، خرید از تکنولایف\" — not just \"خرید\".",
-   "The ad marker is real text, never a background image, so it reaches screen readers."
+   "نام دسترس‌پذیر باید قیمت، فروشنده و در صورت وجود افشای آگهی را با هم بیاورد: «۱۵٬۸۰۰٬۰۰۰ تومان، خرید از تکنولایف، آگهی».",
+   "نشان آگهی متن واقعی است، نه تصویر پس‌زمینه، تا به صفحه‌خوان برسد.",
+   "قیمت را بین چند عنصر نشکنید؛ صفحه‌خوان آن را دو عدد جدا می‌خواند.",
+   "با ارتفاع ۷۲ پیکسل، ناحیهٔ لمس بسیار بالاتر از حداقل ۲۴×۲۴ در معیار ۲.۵.۸ است."
   ],
-  "responsive": "Always block-level. Above md the meta line moves inline with the price rather than stacking.",
+  "responsive": "سقف ۳۴۳ پیکسل، یعنی صفحهٔ ۳۷۵ پیکسلی منهای حاشیه‌های ۱۶ پیکسلی‌اش. زیر آن تمام‌عرض. از نقطهٔ md فروشنده و قیمت در یک خط می‌نشینند و ارتفاع ردیف به ۵۶ پیکسل می‌رسد.",
   "specimens": [
    {
-    "label": "Buy box",
-    "html": "<button class=\"t-buybox\" style=\"max-inline-size:343px\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__price\">۱۵٬۸۰۰٬۰۰۰ تومان</span>\n    <span class=\"t-buybox__meta\">خرید از تکنولایف · ارسال فوری</span>\n  </span>\n  <svg class=\"t-icon t-icon--directional\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M12 5 7 10l5 5V5z\"/></svg>\n</button>\n<button class=\"t-buybox\" style=\"max-inline-size:343px\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__price\">۱۶٬۱۰۰٬۰۰۰ تومان</span>\n    <span class=\"t-buybox__meta\">خرید از دیجی‌کالا · <span class=\"t-badge t-badge--ad\" style=\"vertical-align:middle\">آگهی</span></span>\n  </span>\n</button>\n<button class=\"t-buybox t-buybox--offline\" style=\"max-inline-size:343px\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__price\">۱۵٬۸۰۰٬۰۰۰ تومان</span>\n    <span class=\"t-buybox__meta\">ادکلن شهر · ۱ کیلومتر · فروش حضوری</span>\n  </span>\n</button>"
+    "label": "فروشندهٔ اینترنتی، تبلیغاتی",
+    "canvas": "fog",
+    "stageClass": "spec__stage--stack spec__stage--center",
+    "html": "<button class=\"t-buybox\">\n  <span class=\"t-buybox__ad\">آگهی</span>\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__seller\">خرید از تکنولایف</span>\n    <span class=\"t-buybox__price\">۱۶٫۱۰۰٫۰۰۰ تومان</span>\n  </span>\n</button>\n<button class=\"t-buybox\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__seller\">خرید از دیجی‌کالا</span>\n    <span class=\"t-buybox__price\">۱۵٫۸۰۰٫۰۰۰ تومان</span>\n  </span>\n</button>"
+   },
+   {
+    "label": "فروشندهٔ حضوری",
+    "note": "آبی اینجا دکمهٔ درجه‌دو نیست. پیش از لمس به خریدار می‌گوید این خرید در فروشگاه اتفاق می‌افتد.",
+    "canvas": "fog",
+    "stageClass": "spec__stage--stack spec__stage--center",
+    "html": "<button class=\"t-buybox t-buybox--offline\">\n  <span class=\"t-buybox__ad\">آگهی</span>\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__seller\">خرید از ادکلن شهر</span>\n    <span class=\"t-buybox__price\">۱۶٫۱۰۰٫۰۰۰ تومان</span>\n  </span>\n</button>\n<button class=\"t-buybox t-buybox--offline\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__seller\">خرید از موبایل ولیعصر</span>\n    <span class=\"t-buybox__price\">۱۵٫۸۰۰٫۰۰۰ تومان</span>\n  </span>\n</button>"
+   },
+   {
+    "label": "میان‌بر ارزان‌ترین فروشنده",
+    "canvas": "fog",
+    "stageClass": "spec__stage--center",
+    "html": "<button class=\"t-buybox t-buybox--compact\">\n  <span class=\"t-buybox__body\"><span class=\"t-buybox__seller\">خرید از ارزان‌ترین فروشنده</span></span>\n</button>"
    }
   ],
-  "react": "export function BuyBoxButton({ variant = 'primary', price, meta, ad, ...rest }) {\n  return (\n    <button className={clsx('t-buybox', variant !== 'primary' && `t-buybox--${variant}`)} {...rest}>\n      <span className=\"t-buybox__body\">\n        <span className=\"t-buybox__price\">{price}</span>\n        <span className=\"t-buybox__meta\">\n          {meta}{ad && <> · <span className=\"t-badge t-badge--ad\">آگهی</span></>}\n        </span>\n      </span>\n    </button>\n  );\n}",
+  "react": "export function BuyBoxButton({ variant = 'red', compact, ad, seller, price, ...rest }) {\n  const label = [price, seller, ad && 'آگهی'].filter(Boolean).join('، ');\n  return (\n    <button\n      className={clsx('t-buybox', variant === 'blue' && 't-buybox--offline', compact && 't-buybox--compact')}\n      aria-label={label}\n      {...rest}\n    >\n      {ad && <span className=\"t-buybox__ad\">آگهی</span>}\n      <span className=\"t-buybox__body\">\n        <span className=\"t-buybox__seller\">{seller}</span>\n        {!compact && <span className=\"t-buybox__price\">{price}</span>}\n      </span>\n    </button>\n  );\n}",
   "classes": [
    "t-buybox",
-   "t-buybox--offline"
+   "t-buybox--offline",
+   "t-buybox--compact"
   ]
  },
  {
@@ -308,37 +358,37 @@
   "group": "Commerce",
   "status": "new",
   "legacy": [],
-  "summary": "The most-read element on any Torob surface.",
+  "summary": "پرخوانده‌ترین عنصر در هر سطح ترب.",
   "description": [
-   "Never formalised in the kit, yet the price treatment repeats identically across every product card, store card and buy box in the source. Extracting it is the difference between one price format and forty.",
-   "Three rules make it work: <strong>tabular figures</strong> so a column of prices aligns; <strong>Persian numerals</strong> with the ٬ separator; and the currency word تومان always secondary, never competing with the number."
+   "در کیت هرگز رسمی نشد، اما ظاهر قیمت در هر کارت محصول، کارت فروشگاه و باکس خرید در منبع عیناً تکرار می‌شود. بیرون‌کشیدنش تفاوت میان یک قالب قیمت و چهل قالب است.",
+   "سه قاعده کار را درست می‌کند: <strong>ارقام جدولی</strong> تا ستون قیمت‌ها تراز شود؛ <strong>اعداد فارسی</strong> با جداکنندهٔ ٬؛ و واژهٔ تومان همیشه ثانویه، هرگز هم‌وزن عدد."
   ],
   "use": [
-   "Tabular figures in any list — a ragged price column is unreadable at a glance.",
-   "Use <code>from</code> when several sellers offer the product: «از ۱۶٬۷۰۰٬۰۰۰ تومان».",
-   "Out of stock is grey, not red. Unavailability is not an error."
+   "در هر فهرست ارقام جدولی بگذارید؛ ستون قیمت ناهموار در یک نگاه خوانده نمی‌شود.",
+   "وقتی چند فروشنده محصول را دارند از «از» استفاده کنید: «از ۱۶٬۷۰۰٬۰۰۰ تومان».",
+   "ناموجود خاکستری است، نه قرمز. نبود کالا خطا نیست."
   ],
   "avoid": [
-   "Proportional figures in lists.",
-   "Making تومان the same size as the number.",
-   "Red for every price — red is discount and brand. Overloading it kills the discount signal."
+   "ارقام متناسب در فهرست‌ها.",
+   "هم‌اندازه‌کردن تومان با عدد.",
+   "قرمز برای هر قیمت؛ قرمز یعنی تخفیف و برند. بار اضافه روی آن سیگنال تخفیف را می‌کشد."
   ],
   "anatomy": [
    [
-    "Value",
-    "16px ExtraBold, tabular, Persian numerals."
+    "مقدار",
+    "۱۶ پیکسل ExtraBold، جدولی، اعداد فارسی."
    ],
    [
-    "Unit",
-    "12px Medium secondary — تومان."
+    "واحد",
+    "۱۲ پیکسل Medium ثانویه — تومان."
    ],
    [
-    "From",
-    "12px prefix for multi-seller ranges."
+    "از",
+    "پیشوند ۱۲ پیکسلی برای بازهٔ چندفروشنده."
    ],
    [
-    "Was",
-    "12px struck through, secondary."
+    "قیمت قبلی",
+    "۱۲ پیکسل خط‌خورده، ثانویه."
    ]
   ],
   "props": [
@@ -346,48 +396,48 @@
     "value",
     "number | string",
     "—",
-    "Formatted by the component."
+    "توسط خود کامپوننت قالب‌بندی می‌شود."
    ],
    [
     "size",
     "'sm' | 'md' | 'lg'",
     "'md'",
-    "14 / 16 / 20 px."
+    "۱۴ / ۱۶ / ۲۰ پیکسل."
    ],
    [
     "from",
     "boolean",
     "false",
-    "Prefixes از."
+    "پیشوند «از» می‌گذارد."
    ],
    [
     "was",
     "number",
     "—",
-    "Struck-through original."
+    "قیمت اصلی خط‌خورده."
    ],
    [
     "unavailable",
     "boolean",
     "false",
-    "Grey ناموجود treatment."
+    "ظاهر خاکستری ناموجود."
    ]
   ],
   "a11y": [
-   "The accessible name must be spoken-readable: \"پانزده میلیون و هشتصد هزار تومان\" is not required, but \"۱۵٬۸۰۰٬۰۰۰ تومان\" must be one continuous string, not split across elements that a screen reader reads separately.",
-   "Struck-through prices need <code>&lt;s&gt;</code> plus a visually hidden \"قیمت قبلی\"."
+   "نام دسترس‌پذیر باید یک رشتهٔ پیوسته باشد؛ «۱۵٬۸۰۰٬۰۰۰ تومان» نباید بین عناصری تقسیم شود که صفحه‌خوان جدا می‌خواند.",
+   "قیمت خط‌خورده به <code>&lt;s&gt;</code> به‌همراه یک «قیمت قبلی» بصری‌پنهان نیاز دارد."
   ],
-  "responsive": "Size steps with context, not breakpoint: sm in a card, md in a list row, lg in a buy box.",
+  "responsive": "اندازه با بافت تغییر می‌کند، نه با نقطهٔ شکست: sm در کارت، md در ردیف فهرست، lg در باکس خرید.",
   "specimens": [
    {
-    "label": "Price treatments",
+    "label": "ظاهرهای قیمت",
     "canvas": "fog",
     "stageClass": "spec__stage--stack",
     "html": "<span class=\"t-price t-price--lg\"><span class=\"t-price__value\">۱۵٬۸۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span>\n<span class=\"t-price\"><span class=\"t-price__from\">از</span><span class=\"t-price__value\">۱۶٬۷۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span>\n<span class=\"t-price\"><span class=\"t-price__value\">۱۲٬۴۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span><s class=\"t-price__was\">۱۵٬۸۰۰٬۰۰۰</s></span>\n<span class=\"t-price t-price--unavailable\"><span class=\"t-price__value\">ناموجود</span></span>"
    },
    {
-    "label": "Tabular alignment in a list",
-    "note": "Tabular figures are what make this column scannable. Switch the specimen to English to see the same rule hold for Latin numerals.",
+    "label": "تراز جدولی در یک فهرست",
+    "note": "ارقام جدولی همان چیزی است که این ستون را قابل مرور می‌کند. نمونه را به انگلیسی ببرید تا ببینید همین قاعده برای ارقام لاتین هم برقرار است.",
     "canvas": "fog",
     "stageClass": "spec__stage--stack",
     "html": "<div class=\"t-list\" style=\"max-inline-size:320px;background:transparent\">\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md\">تکنولایف</span><span class=\"t-price t-price--sm\"><span class=\"t-price__value\">۱۵٬۸۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span></div>\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md\">دیجی‌کالا</span><span class=\"t-price t-price--sm\"><span class=\"t-price__value\">۱۶٬۱۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span></div>\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md\">ادکلن شهر</span><span class=\"t-price t-price--sm\"><span class=\"t-price__value\">۹٬۹۹۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span></div>\n</div>"
@@ -414,33 +464,33 @@
    "Badge/Card/Open",
    "Badge / Ad on Buy Box"
   ],
-  "summary": "A short status or attribute marker.",
+  "summary": "نشانگر کوتاه وضعیت یا ویژگی.",
   "description": [
-   "Six masters differing only in fill and placement. One component with <code>tone</code>, plus an <code>onImage</code> flag that swaps to glass so the badge stays legible over a product photograph, which is exactly what <code>Badge/Card-Picture</code> was.",
-   "Note: the swatch names in the source misspell it \"Gaurantee\". Corrected to <code>guarantee</code> throughout."
+   "شش مستر که فقط در پرکردن و جایگاه فرق داشتند. یک کامپوننت با <code>tone</code>، به‌علاوهٔ پرچم <code>onImage</code> که به شیشه سوئیچ می‌کند تا نشان روی عکس محصول خوانا بماند — دقیقاً کاری که <code>Badge/Card-Picture</code> می‌کرد.",
+   "توجه: نام سوآچ‌ها در منبع «Gaurantee» غلط املایی دارد. اینجا همه‌جا <code>guarantee</code> اصلاح شده است."
   ],
   "use": [
-   "One or two words. A badge is not a sentence.",
-   "The آگهی marker is a legal disclosure, always show it, always as real text.",
-   "At most two badges per card."
+   "یکی دو کلمه. نشان یک جمله نیست.",
+   "نشان «آگهی» یک افشای قانونی است؛ همیشه نشانش دهید، همیشه به‌صورت متن واقعی.",
+   "حداکثر دو نشان در هر کارت."
   ],
   "avoid": [
-   "Badges as buttons. If it is tappable, it is a Chip.",
-   "Colour alone to carry meaning — pair it with the word.",
-   "Stacking three or more; the card stops being scannable."
+   "نشان به‌عنوان دکمه. اگر لمس‌پذیر است، Chip است.",
+   "رنگ تنها برای رساندن معنا؛ آن را با واژه جفت کنید.",
+   "سه نشان یا بیشتر روی هم؛ کارت دیگر قابل مرور نیست."
   ],
   "anatomy": [
    [
-    "Container",
-    "20px (24 at lg), radius 4, no border."
+    "ظرف",
+    "۲۰ پیکسل (۲۴ در lg)، گردی ۴، بدون کادر."
    ],
    [
-    "Dot",
-    "Optional 6px leading indicator for live status."
+    "نقطه",
+    "نشانگر ۶ پیکسلی اختیاری برای وضعیت زنده."
    ],
    [
-    "Label",
-    "12px Bold, never wraps."
+    "برچسب",
+    "۱۲ پیکسل Bold، هرگز به خط بعد نمی‌رود."
    ]
   ],
   "props": [
@@ -454,34 +504,34 @@
     "size",
     "'md' | 'lg'",
     "'md'",
-    "20 / 24 px."
+    "۲۰ / ۲۴ پیکسل."
    ],
    [
     "onImage",
     "boolean",
     "false",
-    "Glass treatment for use over photography."
+    "ظاهر شیشه‌ای برای استفاده روی عکس."
    ],
    [
     "dot",
     "boolean",
     "false",
-    "Live status indicator."
+    "نشانگر وضعیت زنده."
    ]
   ],
   "a11y": [
-   "Badges are content, not decoration, never <code>aria-hidden</code>.",
-   "A dot-only badge needs a visually hidden label."
+   "نشان‌ها محتوا هستند، نه تزئین — هرگز <code>aria-hidden</code> نگذارید.",
+   "نشانی که فقط نقطه دارد به برچسب بصری‌پنهان نیاز دارد."
   ],
-  "responsive": "Never resizes. If the row is tight, drop badges by priority rather than shrinking them.",
+  "responsive": "هرگز تغییر اندازه نمی‌دهد. اگر ردیف تنگ است، نشان‌ها را به‌ترتیب اولویت حذف کنید، نه کوچک.",
   "specimens": [
    {
-    "label": "Tones",
+    "label": "فام‌ها",
     "canvas": "fog",
     "html": "<span class=\"t-badge t-badge--guarantee\">ضمانت ترب</span>\n<span class=\"t-badge t-badge--positive\"><span class=\"t-badge__dot\"></span>باز الان</span>\n<span class=\"t-badge t-badge--info\">نمایندگی رسمی</span>\n<span class=\"t-badge t-badge--ad\">آگهی</span>\n<span class=\"t-badge t-badge--brand\">۱۵٪ تخفیف</span>\n<span class=\"t-badge\">کالابرگ</span>\n<span class=\"t-badge t-badge--caution\">موجودی کم</span>\n<span class=\"t-badge t-badge--critical\">ناموجود</span>"
    },
    {
-    "label": "Over a photograph",
+    "label": "روی عکس",
     "canvas": "photo",
     "html": "<span class=\"t-badge t-badge--on-image t-badge--lg\">ارسال فوری</span>\n<span class=\"t-badge t-badge--on-image t-badge--lg\">۳ فروشگاه</span>\n<span class=\"t-badge t-badge--brand t-badge--lg\">۱۵٪</span>"
    }
@@ -517,37 +567,37 @@
    "Product Pic/Normal",
    "Product Pic/Small"
   ],
-  "summary": "A product in a grid or rail.",
+  "summary": "یک محصول در شبکه یا ریل.",
   "description": [
-   "Ten masters collapse to one component with three props. Light and dark were separate symbols — they are now the same component under a theme. <code>More</code> and <code>Empty</code> were separate masters too; they are states, not components.",
-   "<code>Product Pic</code> is split out as <a href=\"./product-thumb.html\">ProductThumb</a>, because the image block is reused on its own inside store cards."
+   "ده مستر به یک کامپوننت با سه پراپ جمع می‌شوند. روشن و تیره سیمبل‌های جدا بودند؛ حالا همان کامپوننت زیر یک پوسته‌اند. <code>More</code> و <code>Empty</code> هم مستر جدا بودند؛ اینها حالت‌اند، نه کامپوننت.",
+   "<code>Product Pic</code> به‌عنوان <a href=\"./product-thumb.html\">ProductThumb</a> جدا شده، چون بلوک تصویر به‌تنهایی درون کارت فروشگاه هم استفاده می‌شود."
   ],
   "use": [
-   "Two-up on phones: that is Torob's density and it is correct.",
-   "Clamp the title to two lines. A third line pushes the price below the fold.",
-   "Show the seller count where it exists: «در ۷۹ فروشگاه»."
+   "دوتایی روی موبایل — این تراکم ترب است و درست است.",
+   "عنوان را به دو خط محدود کنید؛ خط سوم قیمت را زیر تا می‌برد.",
+   "هرجا هست تعداد فروشنده را نشان دهید: «در ۷۹ فروشگاه»."
   ],
   "avoid": [
-   "Truncating the price to fit the title.",
-   "More than two badges over the image.",
-   "Different card heights in one row — clamp so they align."
+   "بریدن قیمت برای جاکردن عنوان.",
+   "بیش از دو نشان روی تصویر.",
+   "ارتفاع‌های متفاوت در یک ردیف؛ محدود کنید تا تراز شوند."
   ],
   "anatomy": [
    [
-    "Thumb",
-    "153:186 aspect, radius 12, with a badge slot and an action slot at opposite top corners."
+    "تصویر",
+    "نسبت ۱۵۳:۱۸۶، گردی ۱۲، با جای نشان و جای کنش در دو گوشهٔ بالا."
    ],
    [
-    "Title",
-    "12px, clamped to two lines."
+    "عنوان",
+    "۱۲ پیکسل، محدود به دو خط."
    ],
    [
-    "Price",
-    "PriceDisplay, sm."
+    "قیمت",
+    "PriceDisplay اندازهٔ sm."
    ],
    [
-    "Meta",
-    "Seller count or attribute tags."
+    "فراداده",
+    "تعداد فروشنده یا برچسب ویژگی."
    ]
   ],
   "props": [
@@ -555,35 +605,35 @@
     "size",
     "'md' | 'sm'",
     "'md'",
-    "153px / 96px intrinsic."
+    "ذاتی ۱۵۳ / ۹۶ پیکسل."
    ],
    [
     "state",
     "'default' | 'empty' | 'more'",
     "'default'",
-    "empty is a placeholder slot; more is a rail terminator."
+    "empty جای خالی است و more پایان‌بخش ریل."
    ],
    [
     "badges / action",
     "ReactNode",
     "—",
-    "Over the image."
+    "روی تصویر."
    ]
   ],
   "a11y": [
-   "The whole card is one link with one accessible name — not a link on the image plus another on the title.",
-   "The favourite button sits outside that link, or nesting makes it unreachable.",
-   "Images need real <code>alt</code>; decorative badges over them do not repeat it."
+   "کل کارت یک لینک با یک نام دسترس‌پذیر است — نه یک لینک روی تصویر به‌علاوهٔ یکی روی عنوان.",
+   "دکمهٔ علاقه‌مندی بیرون آن لینک می‌نشیند، وگرنه تودرتویی دسترسی به آن را می‌بندد.",
+   "تصاویر به <code>alt</code> واقعی نیاز دارند؛ نشان‌های تزئینی روی آنها آن را تکرار نمی‌کنند."
   ],
-  "responsive": "2-up under 480, 3-up to 768, 4-up to 1024, 5-up to 1280, then 6-up. The card widens; the aspect ratio never changes.",
+  "responsive": "دوتایی زیر ۴۸۰، سه‌تایی تا ۷۶۸، چهارتایی تا ۱۰۲۴، پنج‌تایی تا ۱۲۸۰ و بعد شش‌تایی. کارت پهن‌تر می‌شود؛ نسبت ابعاد هرگز تغییر نمی‌کند.",
   "specimens": [
    {
-    "label": "Product grid",
+    "label": "شبکهٔ محصول",
     "canvas": "plain",
     "html": "<div class=\"t-grid-products\" style=\"inline-size:100%;max-inline-size:520px\">\n  <a class=\"t-product-card\" href=\"#\">\n    <div class=\"t-thumb\"><div class=\"t-thumb__badges\"><span class=\"t-badge t-badge--on-image\">ارسال فوری</span></div><div class=\"t-thumb__action\"><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"افزودن به علاقه‌مندی\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 14S1.5 9.9 1.5 5.8A3.3 3.3 0 0 1 8 4.3a3.3 3.3 0 0 1 6.5 1.5C14.5 9.9 8 14 8 14z\"/></svg></button></div></div>\n    <div class=\"t-product-card__title t-clamp-2\">کازاموراتی مفیستو ادکلن شرکتی ۱۰۰ میل</div>\n    <span class=\"t-price t-price--sm\"><span class=\"t-price__from\">از</span><span class=\"t-price__value\">۱۶٬۷۰۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span>\n    <div class=\"t-product-card__meta\">در ۷۹ فروشگاه</div>\n  </a>\n  <a class=\"t-product-card\" href=\"#\">\n    <div class=\"t-thumb\"><div class=\"t-thumb__badges\"><span class=\"t-badge t-badge--brand t-badge--on-image\">۱۵٪</span></div></div>\n    <div class=\"t-product-card__title t-clamp-2\">گوشی اپل iPhone 11 حافظه ۱۲۸ گیگابایت</div>\n    <span class=\"t-price t-price--sm\"><span class=\"t-price__value\">۲۳٬۵۵۰٬۰۰۰</span><span class=\"t-price__unit\">تومان</span></span>\n    <div class=\"t-product-card__meta\">در ۱۲ فروشگاه</div>\n  </a>\n</div>"
    },
    {
-    "label": "Loading and terminal states",
+    "label": "حالت بارگذاری و پایان ریل",
     "canvas": "plain",
     "html": "<div class=\"t-grid-products\" style=\"inline-size:100%;max-inline-size:520px\">\n  <div class=\"t-product-card\"><div class=\"t-thumb t-skeleton\"></div><div class=\"t-skeleton t-skeleton--text\" style=\"inline-size:92%\"></div><div class=\"t-skeleton t-skeleton--text\" style=\"inline-size:64%\"></div><div class=\"t-skeleton t-skeleton--text\" style=\"inline-size:44%;block-size:1.3em\"></div></div>\n  <a class=\"t-product-card t-product-card--more\" href=\"#\">مشاهده همه<svg class=\"t-icon t-icon--sm t-icon--directional\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M10 3 5 8l5 5V3z\"/></svg></a>\n</div>"
    }
@@ -603,37 +653,37 @@
    "Product Pic/Normal",
    "Product Pic/Small"
   ],
-  "summary": "The product image block, with its badge and action slots.",
+  "summary": "بلوک تصویر محصول، با جای نشان و جای کنش.",
   "description": [
-   "Split out of ProductCard because it is reused on its own — inside store-card rails, in the PDP gallery, and in search suggestions. Two masters in the source, duplicated four times between them.",
-   "The aspect ratio is fixed at <strong>153:186</strong> (the source's Normal size) and never changes. Product photography arrives at every ratio imaginable; a fixed frame with <code>object-fit: cover</code> is what keeps a grid from looking ragged."
+   "از ProductCard جدا شده چون به‌تنهایی هم استفاده می‌شود: درون ریل کارت فروشگاه، در گالری صفحهٔ محصول و در پیشنهادهای جست‌وجو. دو مستر در منبع که بینشان چهار بار تکرار شده بودند.",
+   "نسبت ابعاد روی <strong>۱۵۳:۱۸۶</strong> ثابت است و هرگز تغییر نمی‌کند. عکس محصول با هر نسبتی می‌رسد؛ یک قاب ثابت با <code>object-fit: cover</code> همان چیزی است که نمی‌گذارد شبکه ناهموار شود."
   ],
   "use": [
-   "Always give a real <code>alt</code> — the product title.",
-   "Badges go at the leading top corner, the favourite action at the trailing top corner. They must never collide.",
-   "Show the subtle ground while the image loads; the frame reserves its own space so nothing shifts."
+   "همیشه <code>alt</code> واقعی بدهید — عنوان محصول.",
+   "نشان‌ها در گوشهٔ بالای ابتدای محور، کنش علاقه‌مندی در گوشهٔ بالای انتهای محور. این دو نباید به هم برخورد کنند.",
+   "هنگام بارگذاری زمینهٔ ملایم را نشان دهید؛ قاب جای خودش را رزرو کرده و چیزی جابه‌جا نمی‌شود."
   ],
   "avoid": [
-   "Letting the image dictate the height. That is what makes a grid ragged.",
-   "More than two badges — the photograph disappears under them.",
-   "A favourite button nested inside the card's link. It becomes unreachable."
+   "گذاشتن ارتفاع به‌عهدهٔ تصویر. همین چیزی است که شبکه را ناهموار می‌کند.",
+   "بیش از دو نشان؛ عکس زیرشان گم می‌شود.",
+   "دکمهٔ علاقه‌مندی تودرتو درون لینک کارت. دسترسی‌اش بسته می‌شود."
   ],
   "anatomy": [
    [
-    "Frame",
-    "153:186 aspect, radius 12, overflow hidden, subtle ground."
+    "قاب",
+    "نسبت ۱۵۳:۱۸۶، گردی ۱۲، سرریز پنهان، زمینهٔ ملایم."
    ],
    [
-    "Image",
-    "<code>object-fit: cover</code>, fills the frame."
+    "تصویر",
+    "<code>object-fit: cover</code>، قاب را پر می‌کند."
    ],
    [
-    "Badge slot",
-    "Leading top, stacks downward."
+    "جای نشان",
+    "بالای ابتدای محور، رو به پایین انباشته می‌شود."
    ],
    [
-    "Action slot",
-    "Trailing top, single control."
+    "جای کنش",
+    "بالای انتهای محور، یک کنترل."
    ]
   ],
   "props": [
@@ -641,29 +691,29 @@
     "size",
     "'md' | 'sm' | 'square'",
     "'md'",
-    "153:186 / 96:112 / 1:1."
+    "۱۵۳:۱۸۶ / ۹۶:۱۱۲ / ۱:۱."
    ],
    [
     "src / alt",
     "string",
     "—",
-    "alt is required."
+    "<code>alt</code> اجباری است."
    ],
    [
     "badges / action",
     "ReactNode",
     "—",
-    "Corner slots."
+    "جای گوشه‌ها."
    ]
   ],
   "a11y": [
-   "<code>alt</code> carries the product title. A decorative badge over the image does not repeat it.",
-   "The action slot sits outside the card link, or nesting makes it unreachable by keyboard."
+   "<code>alt</code> عنوان محصول را حمل می‌کند. نشان تزئینی روی تصویر آن را تکرار نمی‌کند.",
+   "جای کنش بیرون لینک کارت می‌نشیند، وگرنه با صفحه‌کلید غیرقابل دسترسی می‌شود."
   ],
-  "responsive": "The frame widens with its grid cell; the aspect ratio is constant at every breakpoint.",
+  "responsive": "قاب با سلول شبکه‌اش پهن می‌شود؛ نسبت ابعاد در هر نقطهٔ شکست ثابت است.",
   "specimens": [
    {
-    "label": "Sizes and slots",
+    "label": "اندازه‌ها و جای‌ها",
     "canvas": "fog",
     "html": "<div style=\"inline-size:153px\"><div class=\"t-thumb\"><div class=\"t-thumb__badges\"><span class=\"t-badge t-badge--on-image\">ارسال فوری</span></div><div class=\"t-thumb__action\"><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"افزودن به علاقه‌مندی\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 14S1.5 9.9 1.5 5.8A3.3 3.3 0 0 1 8 4.3a3.3 3.3 0 0 1 6.5 1.5C14.5 9.9 8 14 8 14z\"/></svg></button></div></div></div>\n<div style=\"inline-size:96px\"><div class=\"t-thumb t-thumb--sm\"></div></div>\n<div style=\"inline-size:96px\"><div class=\"t-thumb t-thumb--square\"></div></div>\n<div style=\"inline-size:153px\"><div class=\"t-thumb t-skeleton\"></div></div>"
    }
@@ -693,37 +743,37 @@
    "Store-Card/With product",
    "Store-Card/No product"
   ],
-  "summary": "A nearby store, with or without its product rail.",
+  "summary": "یک فروشگاه نزدیک، با ریل محصول یا بدون آن.",
   "description": [
-   "The most-duplicated component in the source: eleven masters across two contexts (VLP and PDP), two themes and four content shapes. Theme collapses into the token layer, so what remains is one component with a <code>context</code> and an optional rail.",
-   "The hairline rules above and below reproduce <code>Store Card - Light/Dark</code> exactly — two zero-blur shadows at ±0.5px, which is how the source drew a divider without a border."
+   "پرتکرارترین کامپوننت در منبع: یازده مستر در دو بافت (VLP و PDP)، دو پوسته و چهار شکل محتوا. پوسته در لایهٔ توکن جمع می‌شود، پس آنچه می‌ماند یک کامپوننت با یک <code>context</code> و یک ریل اختیاری است.",
+   "خطوط مویی بالا و پایین دقیقاً <code>Store Card - Light/Dark</code> را بازتولید می‌کنند: دو سایهٔ بدون بلور در ±۰٫۵ پیکسل، که روش منبع برای کشیدن جداکننده بدون کادر بود."
   ],
   "use": [
-   "Lead with distance — it is the reason the shopper is on this screen.",
-   "Show the product rail only when the store has products connected to Torob.",
-   "Keep تماس and مسیریابی as the two primary actions; everything else goes in an overflow."
+   "با فاصله شروع کنید؛ همان دلیلی است که خریدار در این صفحه است.",
+   "ریل محصول را فقط وقتی نشان دهید که فروشگاه محصول متصل به ترب دارد.",
+   "تماس و مسیریابی را دو کنش اصلی نگه دارید؛ بقیه به منوی سرریز بروند."
   ],
   "avoid": [
-   "Hiding opening hours. باز / بسته changes whether the card is actionable at all.",
-   "A rail with fewer than three products — use the empty state instead.",
-   "Separate light and dark components. That is what tokens are for."
+   "پنهان‌کردن ساعت کاری. باز یا بسته بودن تعیین می‌کند که کارت اصلاً قابل استفاده هست یا نه.",
+   "ریل با کمتر از سه محصول؛ به‌جایش از حالت خالی استفاده کنید.",
+   "کامپوننت جدا برای روشن و تیره. توکن‌ها دقیقاً برای همین‌اند."
   ],
   "anatomy": [
    [
-    "Head",
-    "Logo 48px, name, meta row with distance, rating, hours."
+    "سر",
+    "لوگو ۴۸ پیکسل، نام، ردیف فراداده با فاصله، امتیاز و ساعت کاری."
    ],
    [
-    "Badges",
-    "Trust markers: ضمانت ترب, کالابرگ, پرداخت قسطی."
+    "نشان‌ها",
+    "نشانگرهای اعتماد: ضمانت ترب، کالابرگ، پرداخت قسطی."
    ],
    [
-    "Rail",
-    "Horizontal product scroll, snap-aligned, 96px cells."
+    "ریل",
+    "اسکرول افقی محصول، چسبان، سلول‌های ۹۶ پیکسلی."
    ],
    [
-    "Actions",
-    "Hairline-separated footer, equal-width buttons."
+    "کنش‌ها",
+    "فوتر جداشده با خط مویی، دکمه‌های هم‌عرض."
    ]
   ],
   "props": [
@@ -731,13 +781,13 @@
     "context",
     "'vlp' | 'pdp'",
     "'vlp'",
-    "VLP shows the rail; PDP shows the price for this product."
+    "VLP ریل را نشان می‌دهد؛ PDP قیمت این محصول را."
    ],
    [
     "glass",
     "boolean",
     "false",
-    "For use over the map."
+    "برای استفاده روی نقشه."
    ],
    [
     "store",
@@ -749,31 +799,31 @@
     "products",
     "Product[]",
     "[]",
-    "Empty renders the no-products state."
+    "خالی، حالت بدون محصول را رندر می‌کند."
    ]
   ],
   "a11y": [
-   "The card is an <code>&lt;article&gt;</code> with an <code>&lt;h3&gt;</code> store name — not a giant link, because it contains its own actions.",
-   "The rail is a labelled scroll region reachable by keyboard.",
-   "Distance and hours are text, never icon-only."
+   "کارت یک <code>&lt;article&gt;</code> با نام فروشگاه به‌عنوان <code>&lt;h3&gt;</code> است — نه یک لینک غول‌پیکر، چون خودش کنش دارد.",
+   "ریل یک ناحیهٔ اسکرول برچسب‌دار و قابل دسترسی با صفحه‌کلید است.",
+   "فاصله و ساعت کاری متن‌اند، هرگز فقط آیکون."
   ],
-  "responsive": "Full width to md. From lg it caps at 420px inside the split layout. The rail scroll-snaps at every size.",
+  "responsive": "تا md تمام‌عرض. از lg درون چیدمان دوستونی سقف ۴۲۰ پیکسل می‌گیرد. ریل در هر اندازه چسبان اسکرول می‌شود.",
   "specimens": [
    {
-    "label": "With product rail",
+    "label": "با ریل محصول",
     "canvas": "plain",
     "html": "<article class=\"t-store-card\" style=\"max-inline-size:375px;border-radius:12px\">\n  <div class=\"t-store-card__head\">\n    <div class=\"t-store-card__logo\"></div>\n    <div class=\"t-store-card__body\">\n      <h3 class=\"t-store-card__name\">ادکلن شهر</h3>\n      <div class=\"t-store-card__meta\">\n        <span class=\"t-store-card__distance\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z\"/></svg>۱ کیلومتر</span>\n        <span class=\"t-rating\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 1.8 1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6z\"/></svg><span class=\"t-rating__value\">۴٫۶</span></span>\n        <span>باز تا ۲۲:۳۰</span>\n      </div>\n    </div>\n  </div>\n  <div class=\"t-store-card__badges\">\n    <span class=\"t-badge t-badge--guarantee\">ضمانت ترب</span>\n    <span class=\"t-badge\">کالابرگ</span>\n    <span class=\"t-badge\">پرداخت قسطی</span>\n  </div>\n  <div class=\"t-store-card__rail\">\n    <div><div class=\"t-thumb t-thumb--sm\"></div><div class=\"t-product-card__meta t-clamp-2\" style=\"margin-block-start:4px\">ادکلن کازاموراتی</div></div>\n    <div><div class=\"t-thumb t-thumb--sm\"></div><div class=\"t-product-card__meta t-clamp-2\" style=\"margin-block-start:4px\">اسپری بدن نویا</div></div>\n    <div><div class=\"t-thumb t-thumb--sm\"></div><div class=\"t-product-card__meta t-clamp-2\" style=\"margin-block-start:4px\">ادکلن دیور ساواج</div></div>\n    <div><div class=\"t-thumb t-thumb--sm\"></div><div class=\"t-product-card__meta t-clamp-2\" style=\"margin-block-start:4px\">عطر جیبی</div></div>\n  </div>\n  <div class=\"t-store-card__actions\">\n    <button class=\"t-btn t-btn--primary t-btn--md\">تماس تلفنی</button>\n    <button class=\"t-btn t-btn--outline t-btn--md\">مسیریابی</button>\n  </div>\n</article>"
    },
    {
-    "label": "Glass, over the map",
+    "label": "شیشه، روی نقشه",
     "canvas": "map",
     "stageClass": "spec__stage--center",
     "html": "<article class=\"t-store-card t-store-card--glass\" style=\"max-inline-size:340px\">\n  <div class=\"t-store-card__head\">\n    <div class=\"t-store-card__logo\"></div>\n    <div class=\"t-store-card__body\">\n      <h3 class=\"t-store-card__name\">مرکز خرید پالادیوم</h3>\n      <div class=\"t-store-card__meta\"><span class=\"t-store-card__distance\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z\"/></svg>۵۵۰ متر</span><span>۲۳ فروشگاه</span></div>\n    </div>\n  </div>\n</article>"
    },
    {
-    "label": "No products connected",
+    "label": "بدون محصول متصل",
     "canvas": "plain",
-    "note": "Taken verbatim from screen 4-4 in the source: a real state with a real recovery path, not a shrug.",
+    "note": "عیناً از صفحهٔ ۴-۴ منبع: یک حالت واقعی با راه خروج واقعی، نه یک شانه بالا انداختن.",
     "html": "<article class=\"t-store-card\" style=\"max-inline-size:375px;border-radius:12px\">\n  <div class=\"t-store-card__head\">\n    <div class=\"t-store-card__logo\"></div>\n    <div class=\"t-store-card__body\">\n      <h3 class=\"t-store-card__name\">گالری رز</h3>\n      <div class=\"t-store-card__meta\"><span class=\"t-store-card__distance\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z\"/></svg>۵۵۰ متر</span><span>بسته — باز می‌شود ۹:۰۰</span></div>\n    </div>\n  </div>\n  <div class=\"t-empty t-empty--inline\">\n    <div class=\"t-empty__art\"><svg width=\"30\" height=\"30\" viewBox=\"0 0 32 32\" fill=\"currentColor\"><path d=\"M26 8h-4V6a4 4 0 0 0-8 0v2h-4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-10-2a2 2 0 0 1 4 0v2h-4zm10 18H10V10h16z\"/></svg></div>\n    <div class=\"t-empty__title\">محصولی اضافه نشده</div>\n    <div class=\"t-empty__desc\">برای اطلاع از محصولات فروشگاه با آن تماس بگیرید.</div>\n    <div class=\"t-empty__actions\"><button class=\"t-btn t-btn--primary t-btn--md\">تماس تلفنی</button></div>\n  </div>\n</article>"
    }
   ],
@@ -800,37 +850,37 @@
    "Open Pin/Dark",
    "Close Pin/Dark"
   ],
-  "summary": "A store on the map. Four densities, one component.",
+  "summary": "یک فروشگاه روی نقشه. چهار تراکم، یک کامپوننت.",
   "description": [
-   "Ten masters. <code>POI</code> is an abbreviation nobody outside mapping uses, so it becomes <code>MapPin</code>. <code>Close Pin</code> is renamed <code>Closed</code> — an adjective, not a verb; \"close pin\" reads as an instruction.",
-   "The four densities are a zoom ladder, not four components: <code>dot</code> when the map is zoomed out, <code>cluster</code> when pins would overlap, <code>pin</code> at street level, and <code>pin</code> with a price when the shopper is comparing."
+   "ده مستر. <code>POI</code> سرواژه‌ای است که بیرون دنیای نقشه کسی به کار نمی‌برد، پس <code>MapPin</code> شد. <code>Close Pin</code> به <code>Closed</code> تغییر نام داد — یک صفت، نه یک فعل؛ «پین را ببند» مثل یک دستور خوانده می‌شود.",
+   "چهار تراکم یک نردبان زوم‌اند، نه چهار کامپوننت: <code>dot</code> وقتی نقشه دور است، <code>cluster</code> وقتی پین‌ها روی هم می‌افتند، <code>pin</code> در زوم خیابان و <code>pin</code> با قیمت وقتی خریدار در حال مقایسه است."
   ],
   "use": [
-   "Dots below street zoom; pins with prices only when comparing.",
-   "Cluster whenever pins would overlap — a pile of pins is worse than a number.",
-   "Selection grows the pin and switches it to blue."
+   "زیر زوم خیابان نقطه؛ پین با قیمت فقط هنگام مقایسه.",
+   "هرجا پین‌ها روی هم می‌افتند خوشه کنید؛ یک تودهٔ پین بدتر از یک عدد است.",
+   "انتخاب، پین را بزرگ می‌کند و به آبی می‌برد."
   ],
   "avoid": [
-   "Prices on every pin at city zoom. The map becomes unreadable.",
-   "Brand red for the selected state — red is the resting pin.",
-   "Pins smaller than 32px. They cannot be tapped."
+   "قیمت روی هر پین در زوم شهر. نقشه ناخوانا می‌شود.",
+   "قرمز برند برای حالت انتخاب؛ قرمز حالت آرامش است.",
+   "پین کوچک‌تر از ۳۲ پیکسل. لمس‌پذیر نیست."
   ],
   "anatomy": [
    [
-    "Body",
-    "32px pill, brand fill, elevation-2."
+    "بدنه",
+    "قرص ۳۲ پیکسلی، پرکردن برند، ارتفاع ۲."
    ],
    [
-    "Tail",
-    "6px triangle that inherits the body colour."
+    "دم",
+    "مثلث ۶ پیکسلی که رنگ بدنه را به ارث می‌برد."
    ],
    [
-    "Dot",
-    "8px, secondary."
+    "نقطه",
+    "۸ پیکسل، ثانویه."
    ],
    [
-    "Cluster",
-    "48px circle, opaque, hairline border, tabular count."
+    "خوشه",
+    "دایرهٔ ۴۸ پیکسلی، مات، کادر مویی، شمارش جدولی."
    ]
   ],
   "props": [
@@ -844,7 +894,7 @@
     "selected",
     "boolean",
     "false",
-    "Scales 1.12 and switches to accent."
+    "۱٫۱۲ برابر بزرگ و به رنگ آبی می‌رود."
    ],
    [
     "price / count",
@@ -854,17 +904,17 @@
    ]
   ],
   "a11y": [
-   "Each pin is a button with an accessible name that includes the store and price.",
-   "The map needs a list equivalent — a map alone is not accessible. That is what the Switch component is for."
+   "هر پین یک دکمه با نام دسترس‌پذیر شامل فروشگاه و قیمت است.",
+   "نقشه به‌تنهایی دسترس‌پذیر نیست. همیشه معادل فهرستی را هم ارائه دهید؛ کامپوننت Switch دقیقاً برای همین است."
   ],
-  "responsive": "Identical at every breakpoint. Density is driven by zoom level, never by viewport.",
+  "responsive": "در هر نقطهٔ شکست یکسان. تراکم را سطح زوم تعیین می‌کند، نه اندازهٔ نمایشگر.",
   "specimens": [
    {
-    "label": "Zoom ladder",
+    "label": "نردبان زوم",
     "canvas": "map",
     "stageClass": "spec__stage--center",
     "html": "<div data-pin-group style=\"display:flex;gap:26px;align-items:center\">\n  <button class=\"t-pin\" aria-pressed=\"false\" aria-label=\"ادکلن شهر، ۱۵٬۸۰۰٬۰۰۰ تومان\"><span class=\"t-pin__body\">۱۵٫۸ م‌ت</span><span class=\"t-pin__tail\"></span></button>\n  <button class=\"t-pin\" aria-pressed=\"true\" aria-label=\"عطر سرای نیک، ۶٬۲۰۰٬۰۰۰ تومان\"><span class=\"t-pin__body\">۶٫۲ م‌ت</span><span class=\"t-pin__tail\"></span></button>\n  <button class=\"t-pin\" aria-pressed=\"false\" aria-label=\"گالری رز\"><span class=\"t-pin__body\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a4.5 4.5 0 0 0-4.5 4.5C3.5 9 8 15 8 15s4.5-6 4.5-9.5A4.5 4.5 0 0 0 8 1zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z\"/></svg></span><span class=\"t-pin__tail\"></span></button>\n  <span class=\"t-pin--dot\" role=\"img\" aria-label=\"فروشگاه\"></span>\n  <button class=\"t-cluster\" aria-label=\"۲۳ فروشگاه در این ناحیه\">۲۳</button>\n</div>",
-    "note": "Pins are live — click to change selection."
+    "note": "پین‌ها زنده‌اند — برای تغییر انتخاب کلیک کنید."
    }
   ],
   "react": "export function MapPin({ variant = 'pin', selected, price, count, label }) {\n  if (variant === 'dot') return <span className=\"t-pin--dot\" role=\"img\" aria-label={label} />;\n  if (variant === 'cluster') return <button className=\"t-cluster\" aria-label={`${toFa(count)} فروشگاه در این ناحیه`}>{toFa(count)}</button>;\n  return (\n    <button className=\"t-pin\" aria-pressed={!!selected} aria-label={label}>\n      <span className=\"t-pin__body\">{price ?? <PinIcon />}</span>\n      <span className=\"t-pin__tail\" />\n    </button>\n  );\n}",
@@ -882,31 +932,31 @@
    "List / Item",
    "List / last item"
   ],
-  "summary": "A row in a list. The last row is not a separate component.",
+  "summary": "یک ردیف در فهرست. ردیف آخر کامپوننت جدا نیست.",
   "description": [
-   "<code>List / last item</code> existed only because Sketch cannot express <code>:last-child</code>. In code, the divider is removed by a selector — there is one component."
+   "<code>List / last item</code> فقط به این دلیل وجود داشت که اسکچ نمی‌تواند <code>:last-child</code> را بیان کند. در کد، جداکننده با یک سلکتور حذف می‌شود — یک کامپوننت."
   ],
   "use": [
-   "Recent searches, settings, spec sheets, seller lists.",
-   "Use <code>--zebra</code> for dense spec tables: that is the <code>Spec / Desc / Even cell</code> style from the source."
+   "جست‌وجوهای اخیر، تنظیمات، جدول مشخصات، فهرست فروشنده‌ها.",
+   "برای جدول مشخصات متراکم از <code>--zebra</code> استفاده کنید؛ همان استایل <code>Spec / Desc / Even cell</code> در منبع."
   ],
   "avoid": [
-   "A separate last-row component.",
-   "Rows below 44px.",
-   "Two competing tap targets in one row without separating them visually."
+   "کامپوننت جدا برای ردیف آخر.",
+   "ردیف زیر ۴۴ پیکسل.",
+   "دو هدف لمس رقیب در یک ردیف بدون جداسازی بصری."
   ],
   "anatomy": [
    [
-    "Row",
-    "56px minimum, 16px inline padding, hairline bottom."
+    "ردیف",
+    "حداقل ۵۶ پیکسل، فاصلهٔ ۱۶ پیکسلی، خط مویی پایین."
    ],
    [
-    "Lead / Trail",
-    "Icon or control slots at the two inline ends."
+    "آغاز و انتها",
+    "جای آیکون یا کنترل در دو سر محور."
    ],
    [
-    "Body",
-    "Title 14px + optional 12px secondary."
+    "بدنه",
+    "عنوان ۱۴ پیکسل به‌علاوهٔ ۱۲ پیکسل ثانویهٔ اختیاری."
    ]
   ],
   "props": [
@@ -926,22 +976,22 @@
     "as",
     "'button' | 'a' | 'div'",
     "'button'",
-    "Non-interactive rows must not be buttons."
+    "ردیف غیرتعاملی نباید دکمه باشد."
    ]
   ],
   "a11y": [
-   "A non-interactive row is a <code>&lt;div&gt;</code> or <code>&lt;li&gt;</code>, never a disabled button.",
-   "When the row and its trailing control both act, they are separate targets with separate names."
+   "ردیف غیرتعاملی یک <code>&lt;div&gt;</code> یا <code>&lt;li&gt;</code> است، هرگز دکمهٔ غیرفعال.",
+   "وقتی ردیف و کنترل انتهایی‌اش هر دو کاری می‌کنند، دو هدف جدا با دو نام جدا هستند."
   ],
-  "responsive": "56px throughout. Above lg, dense lists may drop to 48px.",
+  "responsive": "در همه‌جا ۵۶ پیکسل. بالای lg فهرست‌های متراکم می‌توانند به ۴۸ پیکسل برسند.",
   "specimens": [
    {
-    "label": "Recent searches",
+    "label": "جست‌وجوهای اخیر",
     "canvas": "plain",
     "html": "<div class=\"t-list\" style=\"max-inline-size:340px\">\n  <button class=\"t-list-item\"><span class=\"t-list-item__lead\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 2a8 8 0 1 0 8 8h-1.6A6.4 6.4 0 1 1 10 3.6zM9.2 6v4.6l3.6 2.1.8-1.3-3-1.7V6z\"/></svg></span><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">ادکلن کازاموراتی</span></span><span class=\"t-list-item__trail\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></span></button>\n  <button class=\"t-list-item\"><span class=\"t-list-item__lead\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 2a8 8 0 1 0 8 8h-1.6A6.4 6.4 0 1 1 10 3.6zM9.2 6v4.6l3.6 2.1.8-1.3-3-1.7V6z\"/></svg></span><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">گوشی اپل استوک</span></span><span class=\"t-list-item__trail\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></span></button>\n  <button class=\"t-list-item\"><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">مرکز خرید پالادیوم</span><span class=\"t-list-item__sub\">۲۳ فروشگاه · ۱٫۲ کیلومتر</span></span><span class=\"t-list-item__trail\"><svg class=\"t-icon t-icon--sm t-icon--directional\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M10 3 5 8l5 5V3z\"/></svg></span></button>\n</div>"
    },
    {
-    "label": "Spec table, zebra",
+    "label": "جدول مشخصات، راه‌راه",
     "canvas": "plain",
     "html": "<div class=\"t-list t-list--zebra\" style=\"max-inline-size:340px\">\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md t-tone-secondary\">سیستم عامل</span><span class=\"t-body-md-strong\">iOS ۲۶</span></div>\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md t-tone-secondary\">ظرفیت باتری</span><span class=\"t-body-md-strong\">۴۸۳۲ میلی‌آمپرساعت</span></div>\n  <div class=\"t-list-item\"><span class=\"t-list-item__body t-body-md t-tone-secondary\">کیفیت دوربین اصلی</span><span class=\"t-body-md-strong\">۴۸ مگاپیکسل</span></div>\n</div>"
    }
@@ -957,37 +1007,37 @@
   "group": "Feedback",
   "status": "new",
   "legacy": [],
-  "summary": "Confirms something happened. Never blocks.",
+  "summary": "تأیید می‌کند که چیزی اتفاق افتاد. هرگز مسدود نمی‌کند.",
   "description": [
-   "The single largest gap in the source kit. Twenty-nine screens, not one confirmation of an action.",
-   "Torob toasts are <strong>bottom-anchored</strong>. The industry default is top-right, but the top of a Torob screen is search and the bottom is where the thumb already is. Bottom-anchored also means a toast never covers the header the user is navigating with."
+   "بزرگ‌ترین خلأ کیت اولیه. بیست‌ونه صفحه، و حتی یک تأیید برای کنش کاربر وجود نداشت.",
+   "توست‌های ترب <strong>به پایین لنگر می‌اندازند</strong>. پیش‌فرض صنعت بالا-راست است، اما بالای صفحهٔ ترب جای جست‌وجوست و پایین همان‌جایی است که شست از قبل هست. لنگر پایین یعنی توست هرگز هدری را که کاربر با آن ناوبری می‌کند نمی‌پوشاند."
   ],
   "use": [
-   "Confirm an action the user took: «به علاقه‌مندی‌ها اضافه شد».",
-   "Offer undo when the action is reversible: that is what makes a toast better than a dialog.",
-   "4–5 seconds. Longer for anything with an action."
+   "کنشی را که کاربر انجام داد تأیید کنید: «به علاقه‌مندی‌ها اضافه شد».",
+   "وقتی کنش بازگشت‌پذیر است «واگرد» بدهید؛ همین است که توست را از دیالوگ بهتر می‌کند.",
+   "چهار تا پنج ثانیه. برای هر چیزی که کنش دارد، بیشتر."
   ],
   "avoid": [
-   "Errors that need a decision. Use Alert or a dialog.",
-   "Stacking more than three; collapse to a count.",
-   "A toast for something the UI already shows — if the heart filled in, the toast is noise."
+   "خطاهایی که نیاز به تصمیم دارند. آنجا Alert یا دیالوگ درست است.",
+   "انباشتن بیش از سه تا؛ به یک شمارنده جمع کنید.",
+   "توست برای چیزی که رابط از قبل نشان می‌دهد؛ اگر قلب پر شد، توست فقط نویز است."
   ],
   "anatomy": [
    [
-    "Region",
-    "Fixed bottom, inline-inset 16, safe-area aware. Above md it caps at 380px and hugs the inline end."
+    "ناحیه",
+    "ثابت در پایین، فاصلهٔ ۱۶ پیکسلی، آگاه به ناحیهٔ امن. بالای md سقف ۳۸۰ پیکسل می‌گیرد و به انتهای محور می‌چسبد."
    ],
    [
-    "Toast",
-    "Inverse surface, radius 12, elevation-3."
+    "توست",
+    "سطح معکوس، گردی ۱۲، ارتفاع ۳."
    ],
    [
-    "Action",
-    "Optional undo — underlined, inherits the inverse colour."
+    "کنش",
+    "واگرد اختیاری — زیرخط‌دار، هم‌رنگ معکوس."
    ],
    [
-    "Close",
-    "Always present when there is an action."
+    "بستن",
+    "هرجا کنش هست، همیشه حاضر."
    ]
   ],
   "props": [
@@ -1007,31 +1057,31 @@
     "action",
     "{ label, onClick }",
     "—",
-    "Usually undo."
+    "معمولاً واگرد."
    ],
    [
     "duration",
     "number",
     "4200",
-    "Milliseconds. Pass 0 to require dismissal."
+    "میلی‌ثانیه. صفر یعنی نیازمند بستن دستی."
    ]
   ],
   "a11y": [
-   "The region is <code>role=\"status\"</code> with <code>aria-live=\"polite\"</code> — announced without stealing focus.",
-   "Critical toasts use <code>role=\"alert\"</code> and <code>aria-live=\"assertive\"</code>. Use that sparingly; it interrupts.",
-   "A toast with an action must not auto-dismiss before a keyboard user can reach it — extend to at least 8 seconds, or make it persistent.",
-   "Never put the only path to an action inside a toast."
+   "ناحیه <code>role=\"status\"</code> با <code>aria-live=\"polite\"</code> است — اعلام می‌شود بدون آنکه فوکوس را بدزدد.",
+   "توست بحرانی <code>role=\"alert\"</code> و <code>aria-live=\"assertive\"</code> می‌گیرد. کم استفاده کنید؛ کار کاربر را قطع می‌کند.",
+   "توستی که کنش دارد نباید پیش از آنکه کاربر صفحه‌کلید به آن برسد خودبه‌خود بسته شود — دست‌کم هشت ثانیه، یا ماندگار.",
+   "هرگز تنها راه رسیدن به یک کنش را داخل توست نگذارید."
   ],
-  "responsive": "Full-width inset on phones; 380px anchored to the inline end from md. Always above the bottom navigation.",
+  "responsive": "روی موبایل تمام‌عرض با فاصله؛ از md عرض ۳۸۰ پیکسل چسبیده به انتهای محور. همیشه بالای ناوبری پایین.",
   "specimens": [
    {
-    "label": "Live toasts",
-    "note": "These fire real toasts into the page — bottom of the viewport.",
+    "label": "توست‌های زنده",
+    "note": "این‌ها توست واقعی در صفحه ایجاد می‌کنند — پایین نمایشگر.",
     "canvas": "fog",
     "html": "<button class=\"t-btn t-btn--outline t-btn--md\" onclick=\"torobToast({title:'به علاقه‌مندی‌ها اضافه شد',action:'واگرد'})\">Default + undo</button>\n<button class=\"t-btn t-btn--outline t-btn--md\" onclick=\"torobToast({variant:'positive',title:'آدرس ذخیره شد',desc:'می‌توانید از حساب کاربری ویرایش کنید.'})\">Positive</button>\n<button class=\"t-btn t-btn--outline t-btn--md\" onclick=\"torobToast({variant:'critical',title:'اتصال برقرار نشد',desc:'دوباره تلاش کنید.',action:'تلاش مجدد'})\">Critical</button>\n<button class=\"t-btn t-btn--outline t-btn--md\" onclick=\"torobToast({variant:'caution',title:'موجودی این فروشگاه کم است'})\">Caution</button>"
    },
    {
-    "label": "Anatomy",
+    "label": "ساختار",
     "canvas": "plain",
     "html": "<div class=\"t-toast\" style=\"position:relative;max-inline-size:340px\">\n  <div class=\"t-toast__body\"><div class=\"t-toast__title\">به علاقه‌مندی‌ها اضافه شد</div><div class=\"t-toast__desc\">کازاموراتی مفیستو ۱۰۰ میل</div></div>\n  <button class=\"t-toast__action\">واگرد</button>\n  <button class=\"t-toast__close\" aria-label=\"بستن\">✕</button>\n</div>"
    }
@@ -1047,36 +1097,36 @@
   "group": "Feedback",
   "status": "new",
   "legacy": [],
-  "summary": "Page-level status that stays until it is resolved.",
+  "summary": "وضعیت سطح‌صفحه که تا حل‌نشدن می‌ماند.",
   "description": [
-   "Where a Toast passes, an Alert persists. Use it for conditions the user must know about while they work — an outage, a missing profile field, a delivery restriction in their city."
+   "جایی که Toast می‌گذرد، Alert می‌ماند. برای شرایطی که کاربر باید هنگام کار از آنها خبر داشته باشد: قطعی سرویس، فیلد ناقص پروفایل، محدودیت ارسال در شهرش."
   ],
   "use": [
-   "State the problem, then the recovery, in that order.",
-   "Put the fix in the alert as a button when there is one.",
-   "One alert per region. Two stacked alerts is a design failure upstream."
+   "اول مشکل را بگویید، بعد راه جبران را — به همین ترتیب.",
+   "وقتی راه‌حلی هست، آن را به‌صورت دکمه داخل هشدار بگذارید.",
+   "در هر ناحیه یک هشدار. دو هشدار روی هم یعنی جای دیگری در طراحی اشتباه شده."
   ],
   "avoid": [
-   "Alerts for success: that is a Toast.",
-   "A coloured left border thicker than a hairline. The tinted ground already carries the status.",
-   "Dismissible alerts for conditions that are still true after dismissal."
+   "هشدار برای موفقیت — آن کار Toast است.",
+   "کادر رنگی کناری ضخیم‌تر از یک خط مویی؛ زمینهٔ رنگی از قبل وضعیت را می‌رساند.",
+   "هشدار قابل‌بستن برای شرایطی که پس از بستن هنوز برقرارند."
   ],
   "anatomy": [
    [
-    "Container",
-    "Tinted ground, 1px tinted border, radius 12."
+    "ظرف",
+    "زمینهٔ رنگی، کادر ۱ پیکسلی هم‌رنگ، گردی ۱۲."
    ],
    [
-    "Icon",
-    "Matches the tone, 20px, top-aligned."
+    "آیکون",
+    "هم‌فام، ۲۰ پیکسل، تراز بالا."
    ],
    [
-    "Body",
-    "Bold title, then description."
+    "بدنه",
+    "عنوان Bold، سپس توضیح."
    ],
    [
-    "Actions",
-    "Optional buttons, below the body."
+    "کنش‌ها",
+    "دکمه‌های اختیاری، زیر بدنه."
    ]
   ],
   "props": [
@@ -1102,17 +1152,18 @@
     "onDismiss",
     "() => void",
     "—",
-    "Only when the condition can genuinely be dismissed."
+    "فقط وقتی که شرط واقعاً قابل بستن است."
    ]
   ],
   "a11y": [
-   "<code>role=\"status\"</code> for informational tones; <code>role=\"alert\"</code> only for critical.",
-   "The icon is <code>aria-hidden</code> — the tone is already in the text."
+   "<code>role=\"status\"</code> برای فام‌های اطلاعی؛ <code>role=\"alert\"</code> فقط برای بحرانی.",
+   "آیکون <code>aria-hidden</code> است — فام از قبل در متن آمده.",
+   "معیار ۳.۲.۶ نسخهٔ ۲.۲: اگر هشدار راه کمک می‌دهد، آن راه باید در همهٔ صفحه‌ها در جای یکسانی باشد."
   ],
-  "responsive": "Full width of its container. Actions go block-level below 375px.",
+  "responsive": "تمام‌عرض ظرف خودش. زیر ۳۷۵ پیکسل کنش‌ها تمام‌عرض می‌شوند.",
   "specimens": [
    {
-    "label": "Tones",
+    "label": "فام‌ها",
     "canvas": "fog",
     "stageClass": "spec__stage--stack",
     "html": "<div class=\"t-alert t-alert--critical\" role=\"alert\" style=\"max-inline-size:440px\">\n  <svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1.5 15 14H1zM7.3 6v4h1.4V6zm0 5v1.4h1.4V11z\"/></svg>\n  <div class=\"t-alert__body\"><div class=\"t-alert__title\">اتصال به اینترنت برقرار نیست</div><div>نتایج نمایش‌داده‌شده مربوط به آخرین بازدید شماست.</div>\n    <div class=\"t-alert__actions\"><button class=\"t-btn t-btn--outline t-btn--sm\">تلاش مجدد</button></div>\n  </div>\n</div>\n<div class=\"t-alert t-alert--caution\" role=\"status\" style=\"max-inline-size:440px\">\n  <svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1.5 15 14H1zM7.3 6v4h1.4V6zm0 5v1.4h1.4V11z\"/></svg><div class=\"t-alert__body\"><div class=\"t-alert__title\">ارسال به این شهر انجام نمی‌شود</div><div>می‌توانید محصول را حضوری از فروشگاه تهیه کنید.</div></div>\n</div>\n<div class=\"t-alert t-alert--guarantee\" role=\"status\" style=\"max-inline-size:440px\">\n  <svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM7 11 3.9 7.9 5 6.8 7 8.8l4-4 1.1 1.1z\"/></svg><div class=\"t-alert__body\"><div class=\"t-alert__title\">این خرید تحت ضمانت ترب است</div><div>تا ۷ روز امکان بازگشت کالا وجود دارد.</div></div>\n</div>\n<div class=\"t-alert t-alert--info\" role=\"status\" style=\"max-inline-size:440px\">\n  <svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.7 3h1.4v1.4H7.3zm2.2 8H6.5v-1.2h1V7.7h-1V6.5h2.2v4.3h1z\"/></svg><div class=\"t-alert__body\"><div>قیمت‌ها هر ۲۰ دقیقه به‌روزرسانی می‌شوند.</div></div>\n</div>"
@@ -1133,37 +1184,37 @@
   "group": "Feedback",
   "status": "new",
   "legacy": [],
-  "summary": "A valid state with nothing in it. Always names the way out.",
+  "summary": "یک حالت معتبر که چیزی در آن نیست. همیشه راه خروج را نام می‌برد.",
   "description": [
-   "The source has two of these drawn inline — «محصولی اضافه نشده» and «عدم اتصال محصولات به ترب», but never as a component, so every team would redraw them.",
-   "The contract: <strong>an empty state without an action is a dead end.</strong> If there is genuinely nothing to do, say so explicitly rather than leaving silence."
+   "منبع دو تا از اینها را درجا کشیده — «محصولی اضافه نشده» و «عدم اتصال محصولات به ترب» — اما هرگز به‌عنوان کامپوننت، پس هر تیمی دوباره می‌کشیدشان.",
+   "قرارداد این است: <strong>حالت خالی بدون کنش یک بن‌بست است.</strong> اگر واقعاً کاری برای انجام‌دادن نیست، همین را صریح بگویید، نه اینکه سکوت کنید."
   ],
   "use": [
-   "Distinguish \"no results\" from \"nothing here yet\" — they need different copy and different actions.",
-   "For no results, offer the loosest filter to drop.",
-   "Keep the art quiet. It is a signpost, not a mascot."
+   "«نتیجه‌ای نبود» را از «هنوز چیزی اینجا نیست» جدا کنید؛ این دو متن و کنش متفاوت می‌خواهند.",
+   "برای نبود نتیجه، شل‌ترین فیلتر را برای حذف پیشنهاد دهید.",
+   "تصویر را آرام نگه دارید. یک تابلوی راهنماست، نه یک شخصیت."
   ],
   "avoid": [
-   "«چیزی یافت نشد» with no next step.",
-   "Blaming the user for a filter combination the UI allowed.",
-   "The same illustration for empty and error — they mean different things."
+   "«چیزی یافت نشد» بدون قدم بعدی.",
+   "سرزنش کاربر برای ترکیب فیلتری که خود رابط اجازه‌اش را داد.",
+   "یک تصویر مشترک برای خالی و خطا؛ این دو معنای متفاوتی دارند."
   ],
   "anatomy": [
    [
-    "Art",
-    "Optional 30–48px glyph, disabled tone (critical for errors)."
+    "تصویر",
+    "نشانهٔ اختیاری ۳۰ تا ۴۸ پیکسلی، فام غیرفعال (بحرانی برای خطا)."
    ],
    [
-    "Title",
-    "16px Bold — names the situation."
+    "عنوان",
+    "۱۶ پیکسل Bold — وضعیت را نام می‌برد."
    ],
    [
-    "Description",
-    "14px secondary, max 46ch — explains and points forward."
+    "توضیح",
+    "۱۴ پیکسل ثانویه، حداکثر ۴۶ نویسه — توضیح می‌دهد و به جلو اشاره می‌کند."
    ],
    [
-    "Actions",
-    "One primary recovery, one secondary at most."
+    "کنش‌ها",
+    "یک جبران اصلی، حداکثر یک ثانویه."
    ]
   ],
   "props": [
@@ -1171,13 +1222,13 @@
     "variant",
     "'empty' | 'error'",
     "'empty'",
-    "error tints the art critical."
+    "error تصویر را بحرانی می‌کند."
    ],
    [
     "inline",
     "boolean",
     "false",
-    "Compact, for use inside a card."
+    "فشرده، برای استفاده درون کارت."
    ],
    [
     "title / desc / action",
@@ -1187,18 +1238,18 @@
    ]
   ],
   "a11y": [
-   "The title is a real heading at the right level for its position.",
-   "When results become empty after a filter change, announce it with <code>aria-live=\"polite\"</code> — a silently emptied list looks broken."
+   "عنوان یک هدینگ واقعی در سطح درست جایگاهش است.",
+   "وقتی نتایج پس از تغییر فیلتر خالی می‌شوند، با <code>aria-live=\"polite\"</code> اعلام کنید؛ فهرستی که بی‌صدا خالی شود خراب به نظر می‌رسد."
   ],
-  "responsive": "Vertical padding halves below 375px. The description never exceeds 46ch at any size.",
+  "responsive": "فاصلهٔ عمودی زیر ۳۷۵ پیکسل نصف می‌شود. توضیح در هیچ اندازه‌ای از ۴۶ نویسه فراتر نمی‌رود.",
   "specimens": [
    {
-    "label": "No results",
+    "label": "نتیجه‌ای نبود",
     "canvas": "fog",
     "html": "<div class=\"t-empty\" style=\"inline-size:100%;max-inline-size:420px\">\n  <div class=\"t-empty__art\"><svg width=\"40\" height=\"40\" viewBox=\"0 0 32 32\" fill=\"currentColor\"><path d=\"M14 3a11 11 0 1 0 6.7 19.7l6.9 7 1.4-1.4-6.9-6.9A11 11 0 0 0 14 3zm0 2.5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17z\"/></svg></div>\n  <div class=\"t-empty__title\">فروشگاهی با این فیلترها پیدا نشد</div>\n  <div class=\"t-empty__desc\">در شعاع ۲ کیلومتری، ۷۸ فروشگاه هست. فیلتر «باز الان» را بردارید تا همه را ببینید.</div>\n  <div class=\"t-empty__actions\">\n    <button class=\"t-btn t-btn--primary t-btn--md\">حذف فیلتر «باز الان»</button>\n    <button class=\"t-btn t-btn--ghost t-btn--md\">همه فیلترها</button>\n  </div>\n</div>"
    },
    {
-    "label": "Error",
+    "label": "خطا",
     "canvas": "fog",
     "html": "<div class=\"t-empty t-empty--error\" style=\"inline-size:100%;max-inline-size:420px\">\n  <div class=\"t-empty__art\"><svg width=\"40\" height=\"40\" viewBox=\"0 0 32 32\" fill=\"currentColor\"><path d=\"M16 3 30 28H2zM14.6 12v8h2.8v-8zm0 10v2.8h2.8V22z\"/></svg></div>\n  <div class=\"t-empty__title\">نتوانستیم فروشگاه‌ها را بارگذاری کنیم</div>\n  <div class=\"t-empty__desc\">اتصال اینترنت را بررسی کنید و دوباره تلاش کنید. اگر مشکل ادامه داشت، چند دقیقه بعد سر بزنید.</div>\n  <div class=\"t-empty__actions\"><button class=\"t-btn t-btn--primary t-btn--md\">تلاش مجدد</button></div>\n  <div class=\"t-empty__code\">ERR_NEARBY_TIMEOUT</div>\n</div>"
    }
@@ -1217,24 +1268,24 @@
   "group": "Feedback",
   "status": "new",
   "legacy": [],
-  "summary": "Holds the shape of content that has not arrived.",
+  "summary": "شکل محتوایی را نگه می‌دارد که هنوز نرسیده.",
   "description": [
-   "A skeleton that does not match the real layout is worse than a spinner — the page jumps when content lands. Build skeletons from the same layout primitives as the real component."
+   "اسکلتی که با چیدمان واقعی نخواند بدتر از اسپینر است؛ وقتی محتوا می‌رسد صفحه می‌پرد. اسکلت‌ها را از همان ابزارهای چیدمان کامپوننت واقعی بسازید."
   ],
   "use": [
-   "For content whose shape you know in advance: cards, lists, tables.",
-   "Match the real element's dimensions exactly.",
-   "Show it only after ~200ms — faster than that and it flashes."
+   "برای محتوایی که شکلش را از پیش می‌دانید: کارت، فهرست، جدول.",
+   "ابعاد را دقیقاً با عنصر واقعی یکی کنید.",
+   "فقط بعد از حدود ۲۰۰ میلی‌ثانیه نشان دهید؛ سریع‌تر از آن چشمک می‌زند."
   ],
   "avoid": [
-   "Skeletons for unknown-shape content. Use a spinner.",
-   "Shimmer on more than about a screenful — it becomes visual noise.",
-   "A skeleton that is taller or shorter than what replaces it."
+   "اسکلت برای محتوای با شکل نامعلوم. آنجا اسپینر درست است.",
+   "درخشش روی بیش از حدود یک صفحه؛ به نویز بصری تبدیل می‌شود.",
+   "اسکلتی که از چیزی که جایش را می‌گیرد بلندتر یا کوتاه‌تر است."
   ],
   "anatomy": [
    [
-    "Block",
-    "Subtle-to-sunken gradient, 1.4s shimmer, radius 8 (4 for text)."
+    "بلوک",
+    "گرادیان ملایم تا فرورفته، درخشش ۱٫۴ ثانیه‌ای، گردی ۸ (۴ برای متن)."
    ]
   ],
   "props": [
@@ -1246,14 +1297,14 @@
    ]
   ],
   "a11y": [
-   "The container is <code>aria-busy=\"true\"</code>; the skeletons themselves are <code>aria-hidden</code>.",
-   "Announce completion once with <code>aria-live=\"polite\"</code>, not per item.",
-   "The shimmer stops entirely under <code>prefers-reduced-motion</code>."
+   "ظرف <code>aria-busy=\"true\"</code> می‌گیرد؛ خود اسکلت‌ها <code>aria-hidden</code> هستند.",
+   "پایان بارگذاری را یک بار با <code>aria-live=\"polite\"</code> اعلام کنید، نه به‌ازای هر آیتم.",
+   "درخشش زیر <code>prefers-reduced-motion</code> کاملاً متوقف می‌شود."
   ],
-  "responsive": "Inherits the real component's responsive behaviour, because it uses the same layout classes.",
+  "responsive": "رفتار واکنش‌گرای کامپوننت واقعی را به ارث می‌برد، چون از همان کلاس‌های چیدمان استفاده می‌کند.",
   "specimens": [
    {
-    "label": "Store card skeleton",
+    "label": "اسکلت کارت فروشگاه",
     "canvas": "plain",
     "html": "<div class=\"t-store-card\" aria-busy=\"true\" style=\"max-inline-size:340px;border-radius:12px\">\n  <div class=\"t-store-card__head\">\n    <div class=\"t-store-card__logo t-skeleton\"></div>\n    <div class=\"t-store-card__body\" style=\"gap:6px\">\n      <div class=\"t-skeleton t-skeleton--title\" style=\"inline-size:58%\"></div>\n      <div class=\"t-skeleton t-skeleton--text\" style=\"inline-size:76%\"></div>\n    </div>\n  </div>\n  <div class=\"t-store-card__rail\">\n    <div><div class=\"t-thumb t-thumb--sm t-skeleton\"></div></div>\n    <div><div class=\"t-thumb t-thumb--sm t-skeleton\"></div></div>\n    <div><div class=\"t-thumb t-thumb--sm t-skeleton\"></div></div>\n  </div>\n</div>"
    }
@@ -1271,22 +1322,22 @@
   "group": "Feedback",
   "status": "new",
   "legacy": [],
-  "summary": "Indeterminate wait for unknown-shape content.",
+  "summary": "انتظار نامعین برای محتوای با شکل نامعلوم.",
   "description": [
-   "Use a spinner only where a skeleton cannot work, because you do not know the shape of what is coming."
+   "اسپینر را فقط جایی به کار ببرید که اسکلت کار نمی‌کند، چون شکل آنچه در راه است را نمی‌دانید."
   ],
   "use": [
-   "Inside buttons during submit (Button handles this itself).",
-   "Full-screen only for a blocking operation the user started."
+   "داخل دکمه هنگام ثبت (خود Button این را مدیریت می‌کند).",
+   "تمام‌صفحه فقط برای عملیات مسدودکننده‌ای که کاربر شروع کرده."
   ],
   "avoid": [
-   "A spinner where the layout is known — use Skeleton.",
-   "A spinner with no ceiling. After ~10 seconds, switch to an error with a retry."
+   "اسپینر جایی که چیدمان معلوم است — آنجا Skeleton درست است.",
+   "اسپینر بی‌سقف. پس از حدود ده ثانیه به خطا با دکمهٔ تلاش مجدد سوئیچ کنید."
   ],
   "anatomy": [
    [
-    "Ring",
-    "20px default, 2px, accent top on a default-border ring, 620ms linear."
+    "حلقه",
+    "۲۰ پیکسل پیش‌فرض، ۲ پیکسل ضخامت، بالای آبی روی حلقهٔ کادر پیش‌فرض، ۶۲۰ میلی‌ثانیه خطی."
    ]
   ],
   "props": [
@@ -1294,17 +1345,17 @@
     "size",
     "'sm' | 'md' | 'lg'",
     "'md'",
-    "14 / 20 / 32 px."
+    "۱۴ / ۲۰ / ۳۲ پیکسل."
    ]
   ],
   "a11y": [
-   "Wrap in <code>role=\"status\"</code> with a visually hidden \"در حال بارگذاری\".",
-   "Under <code>prefers-reduced-motion</code> the spin slows rather than stopping — a frozen spinner reads as a crash."
+   "درون <code>role=\"status\"</code> با یک «در حال بارگذاری» بصری‌پنهان بپیچید.",
+   "زیر <code>prefers-reduced-motion</code> چرخش کند می‌شود، نه اینکه بایستد؛ اسپینر یخ‌زده مثل صفحهٔ کرش‌کرده خوانده می‌شود."
   ],
-  "responsive": "Fixed sizes.",
+  "responsive": "اندازه‌های ثابت.",
   "specimens": [
    {
-    "label": "Sizes",
+    "label": "اندازه‌ها",
     "canvas": "fog",
     "html": "<span class=\"t-spinner t-spinner--sm\"></span><span class=\"t-spinner\"></span><span class=\"t-spinner t-spinner--lg\"></span>\n<div role=\"status\" style=\"display:flex;align-items:center;gap:8px\"><span class=\"t-spinner\"></span><span class=\"t-body-md t-tone-secondary\">در حال بارگذاری فروشگاه‌ها…</span></div>"
    }
@@ -1327,37 +1378,37 @@
    "Search bar/Searched",
    "Search bar"
   ],
-  "summary": "Torob starts at search. Three states, one component.",
+  "summary": "ترب از جست‌وجو شروع می‌شود. سه حالت، یک کامپوننت.",
   "description": [
-   "The kit shipped <code>Default</code>, <code>Typing</code> and <code>Searched</code> as three separate 299×48 masters. They are one component with a <code>state</code>, and the state drives which trailing affordances appear.",
-   "Torob search carries two extra entry points the rest of the industry does not: <strong>voice</strong> and <strong>camera</strong>. They live at the trailing edge in the empty state and yield to the clear button once there is a query."
+   "کیت اولیه <code>Default</code>، <code>Typing</code> و <code>Searched</code> را سه مستر جدای ۲۹۹×۴۸ فرستاده بود. اینها یک کامپوننت با یک <code>state</code> هستند و همان حالت تعیین می‌کند کدام ابزار انتهایی دیده شود.",
+   "جست‌وجوی ترب دو ورودی دارد که بقیهٔ صنعت ندارند: <strong>صوت</strong> و <strong>دوربین</strong>. اینها در حالت خالی انتهای محور می‌نشینند و به‌محض وجود عبارت، جای خود را به دکمهٔ پاک‌کردن می‌دهند."
   ],
   "use": [
-   "Persist the query after submit so the user can refine rather than retype.",
-   "Show recent searches (جستجوهای اخیر) on focus when the field is empty.",
-   "Debounce suggestions at ~120ms; never block typing on a request."
+   "عبارت را پس از جست‌وجو نگه دارید تا کاربر بتواند اصلاح کند، نه اینکه دوباره تایپ کند.",
+   "وقتی فیلد خالی است و فوکوس می‌گیرد، جست‌وجوهای اخیر را نشان دهید.",
+   "پیشنهادها را حدود ۱۲۰ میلی‌ثانیه تعویق دهید؛ هرگز تایپ را پشت یک درخواست شبکه متوقف نکنید."
   ],
   "avoid": [
-   "A magnifier button as the only way to submit — Enter must work.",
-   "Clearing the query on navigation back.",
-   "Placeholder text as the label. It disappears exactly when it is needed."
+   "دکمهٔ ذره‌بین به‌عنوان تنها راه ثبت. کلید Enter باید کار کند.",
+   "پاک‌کردن عبارت هنگام بازگشت به صفحهٔ قبل.",
+   "متن راهنما به‌جای برچسب. دقیقاً وقتی ناپدید می‌شود که به آن نیاز است."
   ],
   "anatomy": [
    [
-    "Container",
-    "48px, radius 12, 1px control border. Focus adds a 3px accent halo."
+    "ظرف",
+    "۴۸ پیکسل، گردی ۱۲، کادر ۱ پیکسلی کنترل. فوکوس یک هالهٔ ۳ پیکسلی اضافه می‌کند."
    ],
    [
-    "Leading magnifier",
-    "20px, secondary."
+    "ذره‌بین آغازین",
+    "۲۰ پیکسل، رنگ ثانویه."
    ],
    [
-    "Input",
-    "14px. <code>text-align: start</code>, never hardcoded right."
+    "ورودی",
+    "۱۴ پیکسل. <code>text-align: start</code> — هرگز راست‌چین ثابت."
    ],
    [
-    "Trailing tools",
-    "Voice and camera when empty; clear when there is a query."
+    "ابزار انتهایی",
+    "صوت و دوربین در حالت خالی؛ پاک‌کردن وقتی عبارتی هست."
    ]
   ],
   "props": [
@@ -1365,37 +1416,37 @@
     "state",
     "'default' | 'typing' | 'searched'",
     "'default'",
-    "Drives which trailing affordances show."
+    "تعیین می‌کند کدام ابزار انتهایی دیده شود."
    ],
    [
     "value",
     "string",
     "''",
-    "Controlled query."
+    "عبارت کنترل‌شده."
    ],
    [
     "onClear",
     "() => void",
     "—",
-    "Required when state is not default."
+    "وقتی حالت پیش‌فرض نیست اجباری است."
    ],
    [
     "tools",
     "('voice' | 'camera')[]",
     "['voice','camera']",
-    "Torob-specific entry points."
+    "ورودی‌های مخصوص ترب."
    ]
   ],
   "a11y": [
-   "<code>type=\"search\"</code> inside a <code>role=\"search\"</code> landmark.",
-   "Suggestions use the combobox pattern: <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-activedescendant</code>.",
-   "The clear button needs an explicit label (\"پاک کردن جستجو\") — the ✕ glyph alone is not a name.",
-   "Announce result counts with <code>aria-live=\"polite\"</code>, not on every keystroke."
+   "<code>type=\"search\"</code> درون یک ناحیهٔ <code>role=\"search\"</code>.",
+   "پیشنهادها از الگوی combobox پیروی می‌کنند: <code>aria-expanded</code>، <code>aria-controls</code>، <code>aria-activedescendant</code>.",
+   "دکمهٔ پاک‌کردن برچسب صریح می‌خواهد («پاک کردن جست‌وجو»)؛ نشانهٔ ✕ به‌تنهایی نام نیست.",
+   "تعداد نتایج را با <code>aria-live=\"polite\"</code> اعلام کنید، نه با هر ضربهٔ کلید."
   ],
-  "responsive": "Full width inside its container at every size. In a sticky header above md it caps at 460px so the line length stays readable.",
+  "responsive": "در هر اندازه تمام‌عرض ظرف خودش. در هدر چسبان، از نقطهٔ md سقف ۴۶۰ پیکسل می‌گیرد تا طول خط خوانا بماند.",
   "specimens": [
    {
-    "label": "Three states",
+    "label": "سه حالت",
     "stageClass": "spec__stage--stack",
     "html": "<div class=\"t-search\" data-state=\"default\" style=\"max-inline-size:340px\">\n  <div class=\"t-input\"><svg class=\"t-input__icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg><input class=\"t-input__el\" type=\"search\" placeholder=\"جستجو در اطراف من\">\n    <span class=\"t-search__actions\">\n      <button class=\"t-icon-btn t-icon-btn--sm t-search__tool\" aria-label=\"جستجوی صوتی\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 10a2 2 0 0 0 2-2V4a2 2 0 1 0-4 0v4a2 2 0 0 0 2 2zm4-2a4 4 0 0 1-8 0H3a5 5 0 0 0 4.3 4.9V15h1.4v-2.1A5 5 0 0 0 13 8z\"/></svg></button>\n      <button class=\"t-icon-btn t-icon-btn--sm t-search__tool\" aria-label=\"جستجو با تصویر\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M13 4h-2l-1-1.5H6L5 4H3a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zM8 11.2A2.7 2.7 0 1 1 8 5.8a2.7 2.7 0 0 1 0 5.4z\"/></svg></button>\n    </span>\n  </div>\n</div>\n<div class=\"t-search\" data-state=\"typing\" style=\"max-inline-size:340px\">\n  <div class=\"t-input\"><svg class=\"t-input__icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg><input class=\"t-input__el\" type=\"search\" value=\"ادکلن کازامو\">\n    <span class=\"t-search__actions\"><button class=\"t-icon-btn t-icon-btn--sm t-search__clear\" aria-label=\"پاک کردن جستجو\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></button></span>\n  </div>\n</div>\n<div class=\"t-search\" data-state=\"searched\" style=\"max-inline-size:340px\">\n  <div class=\"t-input\"><svg class=\"t-input__icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg><input class=\"t-input__el\" type=\"search\" value=\"ادکلن کازاموراتی ۱۲۰ میل\">\n    <span class=\"t-search__actions\"><button class=\"t-icon-btn t-icon-btn--sm t-search__clear\" aria-label=\"پاک کردن جستجو\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></button></span>\n  </div>\n</div>"
    }
@@ -1412,32 +1463,32 @@
   "group": "Inputs",
   "status": "new",
   "legacy": [],
-  "summary": "Single-line text entry with label, hint and error.",
+  "summary": "ورودی تک‌خطی با برچسب، راهنما و خطا.",
   "description": [
-   "Absent from the source kit — the only text input designed was the search bar. Every form Torob builds needs this, so it is defined here rather than reinvented per team."
+   "در کیت اولیه نبود؛ تنها ورودی متنی طراحی‌شده نوار جست‌وجو بود. هر فرمی که ترب می‌سازد به این نیاز دارد، پس اینجا تعریف می‌شود تا هر تیم دوباره اختراعش نکند."
   ],
   "use": [
-   "Always render a visible label. Placeholder is a hint, never a label.",
-   "Show the error under the field and set <code>aria-describedby</code>.",
-   "Validate on blur, not on every keystroke — mid-typing errors read as nagging."
+   "همیشه برچسب دیده‌شونده رندر کنید. متن راهنما یک اشاره است، نه برچسب.",
+   "خطا را زیر فیلد نشان دهید و <code>aria-describedby</code> بگذارید.",
+   "اعتبارسنجی را روی blur انجام دهید، نه با هر ضربهٔ کلید؛ خطای وسط تایپ حس غر زدن دارد."
   ],
   "avoid": [
-   "Error styling before the user has finished.",
-   "Clearing what the user typed when validation fails.",
-   "Placeholder-only labels."
+   "ظاهر خطا پیش از آنکه کاربر تمام کند.",
+   "پاک‌کردن آنچه کاربر نوشته وقتی اعتبارسنجی شکست می‌خورد.",
+   "برچسب فقط در متن راهنما."
   ],
   "anatomy": [
    [
-    "Label",
-    "12px Bold. Required fields carry a brand-red asterisk."
+    "برچسب",
+    "۱۲ پیکسل Bold. فیلدهای اجباری ستارهٔ قرمز برند می‌گیرند."
    ],
    [
-    "Control",
-    "48px default, 40px md, 32px sm."
+    "کنترل",
+    "۴۸ پیکسل پیش‌فرض، ۴۰ در md، ۳۲ در sm."
    ],
    [
-    "Hint / Error",
-    "12px under the control. Error replaces hint, never stacks with it."
+    "راهنما / خطا",
+    "۱۲ پیکسل زیر کنترل. خطا جای راهنما را می‌گیرد و هرگز با آن روی هم انباشته نمی‌شود."
    ]
   ],
   "props": [
@@ -1445,36 +1496,37 @@
     "size",
     "'sm' | 'md' | 'lg'",
     "'lg'",
-    "32 / 40 / 48 px."
+    "۳۲ / ۴۰ / ۴۸ پیکسل."
    ],
    [
     "invalid",
     "boolean",
     "false",
-    "Critical border and halo."
+    "کادر و هالهٔ بحرانی."
    ],
    [
     "hint / error",
     "string",
     "—",
-    "Error takes precedence."
+    "خطا اولویت دارد."
    ],
    [
     "required",
     "boolean",
     "false",
-    "Adds the asterisk and <code>aria-required</code>."
+    "ستاره و <code>aria-required</code> اضافه می‌کند."
    ]
   ],
   "a11y": [
-   "Label is a real <code>&lt;label for&gt;</code>.",
-   "Errors use <code>aria-invalid=\"true\"</code> plus <code>aria-describedby</code> pointing at the message.",
-   "Never rely on the red border alone — colour is not a channel for everyone."
+   "برچسب یک <code>&lt;label for&gt;</code> واقعی است.",
+   "خطاها <code>aria-invalid=\"true\"</code> به‌همراه <code>aria-describedby</code> می‌گیرند.",
+   "هرگز فقط به کادر قرمز تکیه نکنید؛ رنگ برای همه یک کانال نیست.",
+   "معیار ۳.۳.۷ نسخهٔ ۲.۲: اطلاعاتی را که کاربر در همان فرآیند وارد کرده دوباره نپرسید؛ آن را از پیش پر کنید یا امکان انتخاب بدهید."
   ],
-  "responsive": "Full width. Two fields sit side by side only above 768px, and stack again below it.",
+  "responsive": "تمام‌عرض. دو فیلد فقط بالای ۷۶۸ پیکسل کنار هم می‌نشینند و زیر آن دوباره روی هم می‌روند.",
   "specimens": [
    {
-    "label": "States",
+    "label": "حالت‌ها",
     "stageClass": "spec__stage--stack",
     "html": "<div class=\"t-field\" style=\"max-inline-size:320px\">\n  <label class=\"t-field__label\" for=\"f1\">نام فروشگاه</label>\n  <div class=\"t-input\"><input class=\"t-input__el\" id=\"f1\" placeholder=\"مثلاً ادکلن شهر\"></div>\n  <span class=\"t-field__hint\">نامی که مشتریان می‌بینند.</span>\n</div>\n<div class=\"t-field\" style=\"max-inline-size:320px\">\n  <label class=\"t-field__label\" for=\"f2\">شماره تماس<span class=\"t-field__req\">*</span></label>\n  <div class=\"t-input\" data-invalid=\"true\"><input class=\"t-input__el\" id=\"f2\" value=\"۰۹۱۲۳۴\" aria-invalid=\"true\" aria-describedby=\"f2e\"></div>\n  <span class=\"t-field__error\" id=\"f2e\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1.5 15 14H1zM7.3 6v4h1.4V6zm0 5v1.4h1.4V11z\"/></svg>شماره باید ۱۱ رقم باشد.</span>\n</div>\n<div class=\"t-field\" style=\"max-inline-size:320px\">\n  <label class=\"t-field__label\" for=\"f3\">کد فروشنده</label>\n  <div class=\"t-input\" data-disabled=\"true\"><input class=\"t-input__el\" id=\"f3\" value=\"TRB-۴۸۲۹\" disabled></div>\n</div>"
    }
@@ -1493,33 +1545,33 @@
    "Switch/Left",
    "Switch/Right"
   ],
-  "summary": "A two-position selector. Both positions are named destinations.",
+  "summary": "انتخابگر دو‌موضعی. هر دو موضع، مقصدی نام‌دار هستند.",
   "description": [
-   "The source shipped <code>Switch/Left</code> and <code>Switch/Right</code> at 135×36. This is <strong>not a boolean toggle</strong> — Torob uses it for map ⇄ list, and both positions are places you can be.",
-   "That distinction matters for accessibility: a boolean is a <code>checkbox</code>, but a named two-way choice is a <code>radiogroup</code>. Getting this wrong makes the control unusable by screen reader. For true on/off, use <a href=\"./toggle.html\">Toggle</a>."
+   "کیت اولیه <code>Switch/Left</code> و <code>Switch/Right</code> را در ابعاد ۱۳۵×۳۶ فرستاده بود. این <strong>کلید دوحالتهٔ بولی نیست</strong>؛ ترب از آن برای نقشه ⇄ فهرست استفاده می‌کند و هر دو موضع جایی هستند که می‌توانید در آن باشید.",
+   "این تمایز برای دسترس‌پذیری مهم است: یک بولی <code>checkbox</code> است، اما یک انتخاب دو‌طرفهٔ نام‌دار <code>radiogroup</code>. اشتباه‌گرفتن این دو کنترل را برای کاربر صفحه‌خوان بی‌استفاده می‌کند. برای روشن/خاموش واقعی از <a href=\"./toggle.html\">Toggle</a> استفاده کنید."
   ],
   "use": [
-   "Exactly two options, both nameable in one or two words.",
-   "Glass, so it can float over a map.",
-   "Keep both labels visible, never hide the inactive one."
+   "دقیقاً دو گزینه که هر دو با یکی دو کلمه نام‌بردنی باشند.",
+   "شیشه‌ای، تا بتواند روی نقشه شناور بماند.",
+   "هر دو برچسب را دیده‌شونده نگه دارید؛ هرگز گزینهٔ غیرفعال را پنهان نکنید."
   ],
   "avoid": [
-   "On/off semantics. That is Toggle.",
-   "Three or more options. That is SegmentedControl.",
-   "Icon-only positions without accessible names."
+   "معنای روشن/خاموش. آن کار Toggle است.",
+   "سه گزینه یا بیشتر. آن کار SegmentedControl است.",
+   "موضع‌های فقط‌آیکون بدون نام دسترس‌پذیر."
   ],
   "anatomy": [
    [
-    "Track",
-    "Glass, radius 12, 3px inset padding."
+    "ریل",
+    "شیشه، گردی ۱۲، فاصلهٔ داخلی ۳ پیکسل."
    ],
    [
-    "Thumb",
-    "Opaque fog surface with elevation-1, animated to the active option."
+    "شست",
+    "سطح مات با ارتفاع ۱، متحرک به سمت گزینهٔ فعال."
    ],
    [
-    "Options",
-    "30px, 12px Bold. Inactive is secondary; active is default."
+    "گزینه‌ها",
+    "۳۰ پیکسل، ۱۲ پیکسل Bold. غیرفعال ثانویه، فعال پیش‌فرض."
    ]
   ],
   "props": [
@@ -1527,29 +1579,30 @@
     "options",
     "{ value, label, icon? }[2]",
     "—",
-    "Exactly two."
+    "دقیقاً دو تا."
    ],
    [
     "value",
     "string",
     "—",
-    "Controlled."
+    "کنترل‌شده."
    ],
    [
     "onChange",
     "(v) => void",
     "—",
-    "Required."
+    "اجباری."
    ]
   ],
   "a11y": [
-   "<code>role=\"radiogroup\"</code> on the track, <code>role=\"radio\"</code> + <code>aria-checked</code> on each option.",
-   "Arrow keys move between options; the group is a single tab stop."
+   "<code>role=\"radiogroup\"</code> روی ریل و <code>role=\"radio\"</code> به‌همراه <code>aria-checked</code> روی هر گزینه.",
+   "کلیدهای جهت بین گزینه‌ها حرکت می‌کنند و کل گروه یک توقف‌گاه Tab است.",
+   "معیار ۲.۵.۷ نسخهٔ ۲.۲: هیچ حرکت کشیدنی لازم نیست؛ کلیک و صفحه‌کلید هر دو کافی‌اند."
   ],
-  "responsive": "Fixed intrinsic width. Below 360px the labels shorten rather than the control shrinking.",
+  "responsive": "عرض ذاتی ثابت. زیر ۳۶۰ پیکسل برچسب‌ها کوتاه می‌شوند، نه خود کنترل.",
   "specimens": [
    {
-    "label": "Map / list",
+    "label": "نقشه / فهرست",
     "canvas": "map",
     "stageClass": "spec__stage--center",
     "html": "<div class=\"t-switch\" role=\"radiogroup\" aria-label=\"نمای نمایش\">\n  <span class=\"t-switch__thumb\"></span>\n  <button class=\"t-switch__option\" role=\"radio\" aria-checked=\"true\">فهرست</button>\n  <button class=\"t-switch__option\" role=\"radio\" aria-checked=\"false\">نقشه</button>\n</div>"
@@ -1566,26 +1619,26 @@
   "group": "Inputs",
   "status": "new",
   "legacy": [],
-  "summary": "A boolean. Takes effect immediately — no Save.",
+  "summary": "یک بولی. بلافاصله اثر می‌گذارد — بدون دکمهٔ ذخیره.",
   "description": [
-   "The kit had no boolean control. A toggle means the change applies the moment it moves; if the setting needs confirming, use a Checkbox inside a form instead."
+   "کیت اولیه هیچ کنترل بولی نداشت. Toggle یعنی تغییر همان لحظه اعمال می‌شود؛ اگر تنظیم نیاز به تأیید دارد، به‌جایش از Checkbox درون یک فرم استفاده کنید."
   ],
   "use": [
-   "Settings that apply instantly — \"فقط فروشگاه‌های باز\".",
-   "Label the thing being controlled, not the state. \"اعلان‌ها\", not \"اعلان‌ها روشن\"."
+   "تنظیماتی که فوراً اعمال می‌شوند — «فقط فروشگاه‌های باز».",
+   "چیزی را که کنترل می‌شود برچسب بزنید، نه حالتش را. «اعلان‌ها»، نه «اعلان‌ها روشن»."
   ],
   "avoid": [
-   "Inside a form with a Save button — use a Checkbox.",
-   "For a destructive change without a confirmation."
+   "درون فرمی با دکمهٔ ذخیره — آنجا Checkbox درست است.",
+   "برای تغییر مخرب بدون تأیید."
   ],
   "anatomy": [
    [
-    "Track",
-    "44×26, full radius. Accent when on."
+    "ریل",
+    "۴۴×۲۶، گردی کامل. در حالت روشن رنگ آبی."
    ],
    [
-    "Thumb",
-    "20px, elevation-1, travels toward the inline end."
+    "شست",
+    "۲۰ پیکسل، ارتفاع ۱، به سمت انتهای محور حرکت می‌کند."
    ]
   ],
   "props": [
@@ -1593,29 +1646,29 @@
     "checked",
     "boolean",
     "false",
-    "Controlled."
+    "کنترل‌شده."
    ],
    [
     "onChange",
     "(v) => void",
     "—",
-    "Required."
+    "اجباری."
    ],
    [
     "label",
     "string",
     "—",
-    "Visible text label."
+    "برچسب متنی دیده‌شونده."
    ]
   ],
   "a11y": [
-   "A real <code>&lt;input type=\"checkbox\"&gt;</code> visually hidden behind the track — free keyboard and screen-reader behaviour.",
-   "The label is clickable and wraps the control."
+   "یک <code>&lt;input type=\"checkbox\"&gt;</code> واقعی که پشت ریل پنهان شده؛ رفتار صفحه‌کلید و صفحه‌خوان رایگان به‌دست می‌آید.",
+   "برچسب کلیک‌پذیر است و کنترل را در بر می‌گیرد."
   ],
-  "responsive": "Fixed size at every breakpoint. The row it sits in stretches, not the toggle.",
+  "responsive": "اندازهٔ ثابت در هر نقطهٔ شکست. ردیفی که در آن می‌نشیند کش می‌آید، نه خود کلید.",
   "specimens": [
    {
-    "label": "Toggle",
+    "label": "کلید دوحالته",
     "stageClass": "spec__stage--stack",
     "html": "<label class=\"t-toggle\"><input type=\"checkbox\" checked><span class=\"t-toggle__track\"><span class=\"t-toggle__thumb\"></span></span><span class=\"t-body-md\">فقط فروشگاه‌های باز</span></label>\n<label class=\"t-toggle\"><input type=\"checkbox\"><span class=\"t-toggle__track\"><span class=\"t-toggle__thumb\"></span></span><span class=\"t-body-md\">ارسال فوری</span></label>\n<label class=\"t-toggle\"><input type=\"checkbox\" disabled><span class=\"t-toggle__track\"><span class=\"t-toggle__thumb\"></span></span><span class=\"t-body-md t-tone-disabled\">پرداخت قسطی (در دسترس نیست)</span></label>"
    }
@@ -1631,35 +1684,35 @@
   "group": "Inputs",
   "status": "new",
   "legacy": [],
-  "summary": "Two-handle range. Torob's most-used filter had no control.",
+  "summary": "بازهٔ دو‌دسته. پرکاربردترین فیلتر ترب هیچ کنترلی نداشت.",
   "description": [
-   "Price range is the filter shoppers reach for most, and the kit had nothing for it. Prices are formatted with Persian numerals and tabular figures so the two ends stay readable as the handles move."
+   "بازهٔ قیمت فیلتری است که خریدارها بیش از همه سراغش می‌روند و کیت هیچ چیزی برایش نداشت. قیمت‌ها با اعداد فارسی و ارقام جدولی قالب‌بندی می‌شوند تا دو سر بازه هنگام کشیدن خوانا بمانند."
   ],
   "use": [
-   "Always pair with numeric inputs — a slider alone cannot hit an exact price.",
-   "Snap to meaningful steps (۱۰۰٬۰۰۰ تومان), not to raw pixels.",
-   "Show the live values above the track while dragging."
+   "همیشه با ورودی عددی جفت کنید؛ اسلایدر به‌تنهایی نمی‌تواند به قیمت دقیق برسد.",
+   "به گام‌های معنادار بچسبید (۱۰۰٬۰۰۰ تومان)، نه به پیکسل خام.",
+   "هنگام کشیدن، مقادیر زنده را بالای ریل نشان دهید."
   ],
   "avoid": [
-   "A slider as the only way to set a value.",
-   "Ranges wider than two orders of magnitude on a linear scale — use a log scale."
+   "اسلایدر به‌عنوان تنها راه تعیین مقدار.",
+   "بازه‌های بیش از دو مرتبهٔ بزرگی روی مقیاس خطی؛ از مقیاس لگاریتمی استفاده کنید."
   ],
   "anatomy": [
    [
-    "Track",
-    "4px, full radius, subtle ground."
+    "ریل",
+    "۴ پیکسل، گردی کامل، زمینهٔ ملایم."
    ],
    [
-    "Fill",
-    "Accent, spans the selected range."
+    "پرشده",
+    "آبی، بازهٔ انتخابی را می‌پوشاند."
    ],
    [
-    "Handles",
-    "22px, 2px accent ring, elevation-1, grab cursor."
+    "دسته‌ها",
+    "۲۲ پیکسل، حلقهٔ آبی ۲ پیکسلی، ارتفاع ۱."
    ],
    [
-    "Values",
-    "12px tabular, at the two ends."
+    "مقادیر",
+    "۱۲ پیکسل جدولی، در دو سر بازه."
    ]
   ],
   "props": [
@@ -1667,36 +1720,37 @@
     "min / max",
     "number",
     "—",
-    "Bounds."
+    "کران‌ها."
    ],
    [
     "value",
     "[number, number]",
     "—",
-    "Controlled."
+    "کنترل‌شده."
    ],
    [
     "step",
     "number",
     "1",
-    "Snap increment."
+    "گام چسبیدن."
    ],
    [
     "format",
     "(n) => string",
     "—",
-    "Persian numeral formatter."
+    "قالب‌بند اعداد فارسی."
    ]
   ],
   "a11y": [
-   "Two <code>role=\"slider\"</code> handles, each with <code>aria-valuemin/max/now</code> and <code>aria-valuetext</code> carrying the formatted price.",
-   "Arrow keys step; Home/End jump to the bounds.",
-   "Handles cannot cross; the lower one clamps at the upper."
+   "دو دستهٔ <code>role=\"slider\"</code>، هر کدام با <code>aria-valuemin/max/now</code> و <code>aria-valuetext</code> حاوی قیمت قالب‌بندی‌شده.",
+   "کلیدهای جهت گام می‌زنند؛ Home و End به کران‌ها می‌پرند.",
+   "دسته‌ها از هم رد نمی‌شوند؛ دستهٔ پایین روی دستهٔ بالا متوقف می‌شود.",
+   "معیار ۲.۵.۷ نسخهٔ ۲.۲: کل بازه فقط با صفحه‌کلید یا با ورودی عددی جفت‌شده قابل تنظیم است؛ کشیدن هرگز تنها راه نیست."
   ],
-  "responsive": "Full width. Below 375px the value labels move under the track rather than flanking it.",
+  "responsive": "تمام‌عرض. زیر ۳۷۵ پیکسل برچسب مقادیر به زیر ریل می‌رود به‌جای دو طرف آن.",
   "specimens": [
    {
-    "label": "Price range",
+    "label": "بازهٔ قیمت",
     "canvas": "fog",
     "stageClass": "spec__stage--stack",
     "html": "<div class=\"t-range\" style=\"max-inline-size:320px\">\n  <div class=\"t-range__values\"><span>۱٬۲۰۰٬۰۰۰ تومان</span><span>۱۸٬۵۰۰٬۰۰۰ تومان</span></div>\n  <div class=\"t-range__track\">\n    <div class=\"t-range__fill\" style=\"inset-inline-start:14%;inline-size:58%\"></div>\n    <div class=\"t-range__thumb\" style=\"inset-inline-start:14%\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"30000000\" aria-valuenow=\"1200000\" aria-valuetext=\"۱٬۲۰۰٬۰۰۰ تومان\" tabindex=\"0\"></div>\n    <div class=\"t-range__thumb\" style=\"inset-inline-start:72%\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"30000000\" aria-valuenow=\"18500000\" aria-valuetext=\"۱۸٬۵۰۰٬۰۰۰ تومان\" tabindex=\"0\"></div>\n  </div>\n</div>"
@@ -1713,26 +1767,26 @@
   "group": "Inputs",
   "status": "new",
   "legacy": [],
-  "summary": "Multi-select within a form. Confirmed by a Save.",
+  "summary": "چندانتخابی درون یک فرم. با دکمهٔ ذخیره تأیید می‌شود.",
   "description": [
-   "Distinct from Toggle: a checkbox is part of a form and takes effect when the form is submitted. Radio is the same component with <code>--radio</code>."
+   "متمایز از Toggle: چک‌باکس بخشی از یک فرم است و وقتی فرم ثبت می‌شود اثر می‌گذارد. رادیو همان کامپوننت با <code>--radio</code> است."
   ],
   "use": [
-   "Filter sheets with an Apply button.",
-   "Terms acceptance and any multi-select list."
+   "برگهٔ فیلتر با دکمهٔ اعمال.",
+   "پذیرش شرایط و هر فهرست چندانتخابی."
   ],
   "avoid": [
-   "Instant-apply settings: that is Toggle.",
-   "A single checkbox where a Toggle would be clearer."
+   "تنظیمات با اعمال فوری — آن کار Toggle است.",
+   "یک چک‌باکس تنها، جایی که Toggle روشن‌تر است."
   ],
   "anatomy": [
    [
-    "Box",
-    "20px, radius 4 (full for radio). Accent fill when checked."
+    "کادر",
+    "۲۰ پیکسل، گردی ۴ (کامل برای رادیو). در حالت انتخاب پرشدهٔ آبی."
    ],
    [
-    "Label",
-    "Clickable, 14px, minimum 44px row height."
+    "برچسب",
+    "کلیک‌پذیر، ۱۴ پیکسل، ارتفاع ردیف حداقل ۴۴ پیکسل."
    ]
   ],
   "props": [
@@ -1740,13 +1794,13 @@
     "checked",
     "boolean",
     "false",
-    "Controlled."
+    "کنترل‌شده."
    ],
    [
     "indeterminate",
     "boolean",
     "false",
-    "Partial selection in a tree."
+    "انتخاب جزئی در یک درخت."
    ],
    [
     "variant",
@@ -1756,13 +1810,13 @@
    ]
   ],
   "a11y": [
-   "Real <code>&lt;input&gt;</code>, visually hidden, wrapped by its <code>&lt;label&gt;</code>.",
-   "Radio groups share a <code>name</code> and sit inside a <code>&lt;fieldset&gt;</code> with a <code>&lt;legend&gt;</code>."
+   "<code>&lt;input&gt;</code> واقعی، بصری پنهان، درون <code>&lt;label&gt;</code> خودش.",
+   "گروه‌های رادیو یک <code>name</code> مشترک دارند و درون <code>&lt;fieldset&gt;</code> با <code>&lt;legend&gt;</code> می‌نشینند."
   ],
-  "responsive": "Row height never drops below 44px, at any breakpoint.",
+  "responsive": "ارتفاع ردیف در هیچ نقطهٔ شکستی زیر ۴۴ پیکسل نمی‌رود.",
   "specimens": [
    {
-    "label": "Checkbox and radio",
+    "label": "چک‌باکس و رادیو",
     "stageClass": "spec__stage--stack",
     "html": "<label class=\"t-check\"><input type=\"checkbox\" checked><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">ضمانت ترب</span></label>\n<label class=\"t-check\"><input type=\"checkbox\"><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">نمایندگی رسمی</span></label>\n<label class=\"t-check t-check--radio\"><input type=\"radio\" name=\"sort\" checked><span class=\"t-check__box\"></span><span class=\"t-body-md\">ارزان‌ترین</span></label>\n<label class=\"t-check t-check--radio\"><input type=\"radio\" name=\"sort\"><span class=\"t-check__box\"></span><span class=\"t-body-md\">نزدیک‌ترین</span></label>"
    }
@@ -1779,26 +1833,26 @@
   "group": "Inputs",
   "status": "new",
   "legacy": [],
-  "summary": "Increment and decrement a small integer.",
+  "summary": "افزایش و کاهش یک عدد صحیح کوچک.",
   "description": [
-   "For cart quantities and any bounded count. Below about 10, a stepper beats a number input: no keyboard, no validation, no typos."
+   "برای تعداد در سبد و هر شمارش کران‌دار. زیر حدود ۱۰، گام‌شمار از ورودی عددی بهتر است: بدون صفحه‌کلید، بدون اعتبارسنجی، بدون غلط تایپی."
   ],
   "use": [
-   "Cart quantity, guest counts, anything under ~10.",
-   "Disable the minus at the lower bound rather than hiding it — a disappearing control moves the layout."
+   "تعداد سبد، تعداد مهمان، هر چیزی زیر حدود ۱۰.",
+   "در کران پایین دکمهٔ منها را غیرفعال کنید، نه پنهان؛ کنترلی که ناپدید می‌شود چیدمان را جابه‌جا می‌کند."
   ],
   "avoid": [
-   "Unbounded numbers. Use a TextField.",
-   "Hiding the value while it updates."
+   "اعداد بی‌کران. آنجا TextField درست است.",
+   "پنهان‌کردن مقدار هنگام به‌روزرسانی."
   ],
   "anatomy": [
    [
-    "Buttons",
-    "36×36, at the two inline ends."
+    "دکمه‌ها",
+    "۳۶×۳۶، در دو سر محور."
    ],
    [
-    "Value",
-    "44px minimum, tabular, centred."
+    "مقدار",
+    "حداقل ۴۴ پیکسل، جدولی، وسط‌چین."
    ]
   ],
   "props": [
@@ -1806,29 +1860,29 @@
     "value",
     "number",
     "—",
-    "Controlled."
+    "کنترل‌شده."
    ],
    [
     "min / max",
     "number",
     "1 / 99",
-    "Bounds; buttons disable at each."
+    "کران‌ها؛ دکمه‌ها در هر کران غیرفعال می‌شوند."
    ],
    [
     "onChange",
     "(n) => void",
     "—",
-    "Required."
+    "اجباری."
    ]
   ],
   "a11y": [
-   "Buttons carry explicit labels (\"افزایش تعداد\" / \"کاهش تعداد\").",
-   "The value is <code>aria-live=\"polite\"</code> so the new count is announced once, not on each render."
+   "دکمه‌ها برچسب صریح دارند («افزایش تعداد» / «کاهش تعداد»).",
+   "مقدار <code>aria-live=\"polite\"</code> است تا عدد جدید یک بار اعلام شود، نه در هر رندر."
   ],
-  "responsive": "Fixed size. Never shrinks below the 36px button.",
+  "responsive": "اندازهٔ ثابت. هرگز زیر دکمهٔ ۳۶ پیکسلی کوچک نمی‌شود.",
   "specimens": [
    {
-    "label": "Stepper",
+    "label": "گام‌شمار",
     "html": "<div class=\"t-stepper\">\n  <button class=\"t-stepper__btn\" aria-label=\"کاهش تعداد\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M3 7.3h10v1.4H3z\"/></svg></button>\n  <span class=\"t-stepper__value\" aria-live=\"polite\">۲</span>\n  <button class=\"t-stepper__btn\" aria-label=\"افزایش تعداد\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8.7 3H7.3v4.3H3v1.4h4.3V13h1.4V8.7H13V7.3H8.7z\"/></svg></button>\n</div>\n<div class=\"t-stepper\">\n  <button class=\"t-stepper__btn\" aria-label=\"کاهش تعداد\" disabled><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M3 7.3h10v1.4H3z\"/></svg></button>\n  <span class=\"t-stepper__value\" aria-live=\"polite\">۱</span>\n  <button class=\"t-stepper__btn\" aria-label=\"افزایش تعداد\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8.7 3H7.3v4.3H3v1.4h4.3V13h1.4V8.7H13V7.3H8.7z\"/></svg></button>\n</div>"
    }
   ],
@@ -1850,33 +1904,33 @@
    "Segmented Controls/Icon Not-selected",
    "Segmented Controls/Light/Large/Selected"
   ],
-  "summary": "Switches the content below between mutually exclusive views.",
+  "summary": "محتوای پایین را بین نماهای متقابلاً ناسازگار جابه‌جا می‌کند.",
   "description": [
-   "Five masters in the source, differing only by selection state, icon presence and size. One component, three props. Note the four duplicate <code>Segmented Controls/Selected</code> masters — same name, four distinct symbol IDs.",
-   "The large 395×64 variant is a different density, not a different component: <code>size=\"lg\"</code>."
+   "پنج مستر در کیت اولیه که فقط در حالت انتخاب، وجود آیکون و اندازه فرق داشتند. یک کامپوننت، سه پراپ. توجه کنید که چهار مستر هم‌نام <code>Segmented Controls/Selected</code> با شناسه‌های متفاوت وجود دارد.",
+   "نسخهٔ بزرگ ۳۹۵×۶۴ یک تراکم دیگر است، نه کامپوننت دیگر: <code>size=\"lg\"</code>."
   ],
   "use": [
-   "Two to five options that all fit without scrolling.",
-   "Switching a view — فروشگاه‌ها ⇄ محصولات — not filtering it.",
-   "Glass, so it can float over a map or a scrolling list."
+   "دو تا پنج گزینه که همه بدون اسکرول جا شوند.",
+   "تعویض نما — فروشگاه‌ها ⇄ محصولات — نه فیلترکردن آن.",
+   "شیشه‌ای، تا بتواند روی نقشه یا فهرست در حال اسکرول شناور بماند."
   ],
   "avoid": [
-   "More than five options. Use Tabs.",
-   "Options whose labels truncate.",
-   "As a filter. Filters accumulate; segments are exclusive."
+   "بیش از پنج گزینه. آنجا Tabs درست است.",
+   "گزینه‌هایی که برچسبشان بریده می‌شود.",
+   "به‌عنوان فیلتر. فیلترها روی هم جمع می‌شوند، سگمنت‌ها ناسازگارند."
   ],
   "anatomy": [
    [
-    "Track",
-    "Glass, radius 12, 3px padding, horizontally scrollable as a last resort."
+    "ریل",
+    "شیشه، گردی ۱۲، فاصلهٔ ۳ پیکسلی، در نهایت اسکرول افقی."
    ],
    [
-    "Item",
-    "26px (44px at lg), 12px Bold, radius 8."
+    "آیتم",
+    "۲۶ پیکسل (۴۴ در lg)، ۱۲ پیکسل Bold، گردی ۸."
    ],
    [
-    "Selected",
-    "Glass at 60% with the 0.5px blue ring."
+    "انتخاب‌شده",
+    "شیشه در سطح ۶۰٪ با حلقهٔ آبی ۰٫۵ پیکسلی."
    ]
   ],
   "props": [
@@ -1884,41 +1938,41 @@
     "options",
     "{ value, label, icon?, count? }[]",
     "—",
-    "2–5."
+    "دو تا پنج."
    ],
    [
     "value",
     "string",
     "—",
-    "Controlled."
+    "کنترل‌شده."
    ],
    [
     "size",
     "'md' | 'lg'",
     "'md'",
-    "32 / 64 px track."
+    "ریل ۳۲ / ۶۴ پیکسل."
    ],
    [
     "block",
     "boolean",
     "false",
-    "Options share the width equally."
+    "گزینه‌ها عرض را به‌طور مساوی تقسیم می‌کنند."
    ]
   ],
   "a11y": [
-   "<code>role=\"tablist\"</code> with <code>role=\"tab\"</code> and <code>aria-selected</code>, wired to the panel via <code>aria-controls</code>.",
-   "Arrow keys move; the group is one tab stop."
+   "<code>role=\"tablist\"</code> با <code>role=\"tab\"</code> و <code>aria-selected</code>، متصل به پنل با <code>aria-controls</code>.",
+   "کلیدهای جهت حرکت می‌کنند و کل گروه یک توقف‌گاه Tab است."
   ],
-  "responsive": "Intrinsic width up to md; <code>block</code> below it so the options fill the row. Never wraps — it scrolls.",
+  "responsive": "تا md عرض ذاتی؛ زیر آن <code>block</code> تا گزینه‌ها ردیف را پر کنند. هرگز به خط بعد نمی‌رود، اسکرول می‌شود.",
   "specimens": [
    {
-    "label": "Stores / products",
+    "label": "فروشگاه‌ها / محصولات",
     "canvas": "map",
     "stageClass": "spec__stage--center",
     "html": "<div class=\"t-segmented\" role=\"tablist\" aria-label=\"نمای اطراف\">\n  <button class=\"t-segmented__item\" role=\"tab\" aria-selected=\"true\">فروشگاه‌ها<span class=\"t-chip__count\">۴۳</span></button>\n  <button class=\"t-segmented__item\" role=\"tab\" aria-selected=\"false\">محصولات<span class=\"t-chip__count\">۵۵</span></button>\n</div>"
    },
    {
-    "label": "Large, block",
+    "label": "بزرگ، تمام‌عرض",
     "canvas": "fog",
     "html": "<div class=\"t-segmented t-segmented--lg t-segmented--block\" role=\"tablist\" aria-label=\"مرتب‌سازی\" style=\"max-inline-size:360px\">\n  <button class=\"t-segmented__item\" role=\"tab\" aria-selected=\"true\">نزدیک‌ترین</button>\n  <button class=\"t-segmented__item\" role=\"tab\" aria-selected=\"false\">ارزان‌ترین</button>\n  <button class=\"t-segmented__item\" role=\"tab\" aria-selected=\"false\">محبوب‌ترین</button>\n</div>"
    }
@@ -1942,37 +1996,37 @@
    "city filter",
    "official seller"
   ],
-  "summary": "One filter facet. Toggles on, or opens a sheet for its options.",
+  "summary": "یک وجه از فیلتر. یا روشن می‌شود یا برگه‌ای از گزینه‌ها باز می‌کند.",
   "description": [
-   "Three cell masters in the kit plus two undocumented one-offs found only on the examples page — <code>city filter</code> and <code>official seller</code>. Those two were never in the component library at all, which is exactly the drift this system exists to close.",
-   "Two behaviours share one shape: a <strong>toggle</strong> chip flips on and off in place; a <strong>disclosure</strong> chip carries a chevron and opens a sheet. The chevron is the contract, never show one on a chip that does not open something."
+   "سه مستر سلول در کیت، به‌علاوهٔ دو مورد مستندنشده که فقط در صفحهٔ نمونه‌ها پیدا می‌شوند — <code>city filter</code> و <code>official seller</code>. این دو هرگز در کتابخانهٔ کامپوننت نبودند و دقیقاً همان فاصله‌ای است که این سیستم برای بستنش وجود دارد.",
+   "دو رفتار یک شکل مشترک دارند: تراشهٔ <strong>دوحالته</strong> همان‌جا روشن و خاموش می‌شود؛ تراشهٔ <strong>بازکننده</strong> شورون دارد و یک برگه باز می‌کند. شورون یک قرارداد است — هرگز روی تراشه‌ای که چیزی باز نمی‌کند شورون نگذارید."
   ],
   "use": [
-   "Show the active count on multi-value facets: «برند ۳».",
-   "Keep applied filters visible; never collapse them into \"۳ فیلتر\".",
-   "Order by how often the facet is used, not alphabetically."
+   "روی وجه‌های چندمقداری تعداد فعال را نشان دهید: «برند ۳».",
+   "فیلترهای اعمال‌شده را دیده‌شونده نگه دارید؛ هرگز آنها را در «۳ فیلتر» جمع نکنید.",
+   "به ترتیب میزان استفاده مرتب کنید، نه الفبایی."
   ],
   "avoid": [
-   "A chevron on a chip that only toggles.",
-   "More than about eight chips before a \"همه فیلترها\" entry point.",
-   "Removing a chip from the rail because it is inactive — the rail must be stable."
+   "شورون روی تراشه‌ای که فقط دوحالته است.",
+   "بیش از حدود هشت تراشه پیش از ورودی «همهٔ فیلترها».",
+   "حذف تراشه از ریل چون غیرفعال است؛ ریل باید پایدار بماند."
   ],
   "anatomy": [
    [
-    "Container",
-    "32px, radius 12, glass. Selected swaps to 60% with the blue ring."
+    "ظرف",
+    "۳۲ پیکسل، گردی ۱۲، شیشه. حالت انتخاب به ۶۰٪ با حلقهٔ آبی می‌رود."
    ],
    [
-    "Leading icon",
-    "Optional 16px."
+    "آیکون آغازین",
+    "اختیاری ۱۶ پیکسل."
    ],
    [
-    "Label + count",
-    "12px Bold; the count is secondary."
+    "برچسب و تعداد",
+    "۱۲ پیکسل Bold؛ تعداد ثانویه است."
    ],
    [
-    "Chevron",
-    "Present only when the chip opens a sheet."
+    "شورون",
+    "فقط وقتی که تراشه برگه‌ای باز می‌کند."
    ]
   ],
   "props": [
@@ -1980,32 +2034,32 @@
     "active",
     "boolean",
     "false",
-    "Selected state."
+    "حالت انتخاب."
    ],
    [
     "count",
     "number",
     "—",
-    "Applied values on a multi-select facet."
+    "مقادیر اعمال‌شده روی وجه چندانتخابی."
    ],
    [
     "opens",
     "boolean",
     "false",
-    "Renders the chevron and sets <code>aria-haspopup</code>."
+    "شورون را رندر و <code>aria-haspopup</code> را تنظیم می‌کند."
    ]
   ],
   "a11y": [
-   "Toggle chips use <code>aria-pressed</code>. Disclosure chips use <code>aria-expanded</code> + <code>aria-haspopup=\"dialog\"</code>. Never both.",
-   "The accessible name includes the count: \"برند، ۳ مورد انتخاب شده\"."
+   "تراشهٔ دوحالته <code>aria-pressed</code> می‌گیرد. تراشهٔ بازکننده <code>aria-expanded</code> و <code>aria-haspopup=\"dialog\"</code>. هرگز هر دو با هم.",
+   "نام دسترس‌پذیر شامل تعداد است: «برند، ۳ مورد انتخاب شده»."
   ],
-  "responsive": "Horizontal scroll on every size — chips never wrap. The rail bleeds to the viewport edge so a partially visible chip signals more.",
+  "responsive": "در هر اندازه اسکرول افقی؛ تراشه‌ها هرگز به خط بعد نمی‌روند. ریل تا لبهٔ نمایشگر ادامه می‌یابد تا تراشهٔ نیمه‌دیده نشان دهد ادامه دارد.",
   "specimens": [
    {
-    "label": "Filter rail",
+    "label": "ریل فیلتر",
     "canvas": "plain",
     "html": "<div class=\"t-filter-bar\" style=\"border-radius:12px\">\n  <button class=\"t-icon-btn t-icon-btn--sm t-filter-bar__lead\" aria-label=\"همه فیلترها\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M2 3h12v1.4H2zm2 4h8v1.4H4zm2 4h4v1.4H6z\"/></svg></button>\n  <button class=\"t-chip\" aria-pressed=\"true\">تهران</button>\n  <button class=\"t-chip\" aria-expanded=\"false\" aria-haspopup=\"dialog\">برند<span class=\"t-chip__count\">۳</span><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n  <button class=\"t-chip\" aria-expanded=\"false\" aria-haspopup=\"dialog\">قیمت<svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n  <button class=\"t-chip\" aria-pressed=\"true\">ضمانت ترب</button>\n  <button class=\"t-chip\" aria-pressed=\"false\">نمایندگی رسمی</button>\n  <button class=\"t-chip\" aria-pressed=\"false\">باز الان</button>\n</div>",
-    "note": "Chips are live — click to toggle. Scroll the rail horizontally."
+    "note": "تراشه‌ها زنده‌اند — برای تغییر وضعیت کلیک کنید. ریل را افقی اسکرول کنید."
    }
   ],
   "react": "export function FilterChip({ active, count, opens, icon, children, ...rest }) {\n  return (\n    <button className=\"t-chip\"\n            {...(opens ? { 'aria-expanded': !!active, 'aria-haspopup': 'dialog' } : { 'aria-pressed': !!active })}\n            {...rest}>\n      {icon}{children}\n      {count != null && <span className=\"t-chip__count\">{toFa(count)}</span>}\n      {opens && <ChevronDown className=\"t-icon t-icon--sm\" />}\n    </button>\n  );\n}",
@@ -2021,32 +2075,32 @@
   "legacy": [
    "Tab/Selected"
   ],
-  "summary": "Switches sections within a page. Scales past five options.",
+  "summary": "بین بخش‌های یک صفحه جابه‌جا می‌شود. از پنج گزینه فراتر می‌رود.",
   "description": [
-   "Where SegmentedControl is a compact exclusive switch, Tabs is the page-level one: it scrolls, it carries counts, and it holds an underline rather than a filled pill."
+   "جایی که SegmentedControl یک کلید فشردهٔ ناسازگار است، Tabs همان کار را در سطح صفحه انجام می‌دهد: اسکرول می‌شود، تعداد نشان می‌دهد و به‌جای قرص پرشده یک زیرخط دارد."
   ],
   "use": [
-   "Product detail sections: فروشنده‌ها · مشخصات · نظرات.",
-   "Show counts where the number helps the choice.",
-   "Keep the selected tab in view when the strip scrolls."
+   "بخش‌های صفحهٔ محصول: فروشنده‌ها · مشخصات · نظرات.",
+   "جایی که عدد به تصمیم کمک می‌کند تعداد را نشان دهید.",
+   "وقتی نوار اسکرول می‌شود، تب انتخاب‌شده را در دید نگه دارید."
   ],
   "avoid": [
-   "Tabs that change the page rather than the section: that is navigation.",
-   "Nested tab strips.",
-   "More than about seven."
+   "تب‌هایی که صفحه را عوض می‌کنند نه بخش را؛ آن ناوبری است.",
+   "نوار تب تودرتو.",
+   "بیش از حدود هفت تب."
   ],
   "anatomy": [
    [
-    "Strip",
-    "Bottom hairline, horizontal scroll, hidden scrollbar."
+    "نوار",
+    "خط مویی پایین، اسکرول افقی، اسکرول‌بار پنهان."
    ],
    [
-    "Tab",
-    "14px Bold, 12px vertical padding."
+    "تب",
+    "۱۴ پیکسل Bold، فاصلهٔ عمودی ۱۲ پیکسل."
    ],
    [
-    "Indicator",
-    "2px brand underline, scaled in from 0 over 220ms."
+    "نشانگر",
+    "زیرخط ۲ پیکسلی برند که در ۲۲۰ میلی‌ثانیه از صفر باز می‌شود."
    ]
   ],
   "props": [
@@ -2060,17 +2114,17 @@
     "value",
     "string",
     "—",
-    "Controlled."
+    "کنترل‌شده."
    ]
   ],
   "a11y": [
-   "Full tablist pattern with <code>aria-controls</code> on each tab and <code>aria-labelledby</code> on each panel.",
-   "Arrow keys move, Home/End jump. Panels are <code>tabindex=\"0\"</code> so their content is reachable."
+   "الگوی کامل tablist با <code>aria-controls</code> روی هر تب و <code>aria-labelledby</code> روی هر پنل.",
+   "کلیدهای جهت حرکت می‌کنند، Home و End می‌پرند. پنل‌ها <code>tabindex=\"0\"</code> دارند تا محتوایشان قابل دسترسی باشد."
   ],
-  "responsive": "Scrolls horizontally at every size. Above lg, if all tabs fit, the strip left-aligns rather than stretching.",
+  "responsive": "در هر اندازه اسکرول افقی. بالای lg اگر همهٔ تب‌ها جا شوند، نوار به ابتدای محور می‌چسبد به‌جای کش‌آمدن.",
   "specimens": [
    {
-    "label": "PDP sections",
+    "label": "بخش‌های صفحهٔ محصول",
     "canvas": "fog",
     "html": "<div class=\"t-tabs\" role=\"tablist\" aria-label=\"بخش‌های محصول\" style=\"inline-size:100%\">\n  <button class=\"t-tab\" role=\"tab\" aria-selected=\"true\">فروشنده‌ها<span class=\"t-tab__count\">۷۹</span></button>\n  <button class=\"t-tab\" role=\"tab\" aria-selected=\"false\">مشخصات</button>\n  <button class=\"t-tab\" role=\"tab\" aria-selected=\"false\">نمودار قیمت</button>\n  <button class=\"t-tab\" role=\"tab\" aria-selected=\"false\">نظرات<span class=\"t-tab__count\">۱۲</span></button>\n</div>"
    }
@@ -2088,35 +2142,35 @@
   "legacy": [
    "Header/Profile"
   ],
-  "summary": "Sticky glass header: back, title, actions.",
+  "summary": "هدر چسبان شیشه‌ای: بازگشت، عنوان، کنش‌ها.",
   "description": [
-   "The source shipped a single 343×56 <code>Header/Profile</code>, duplicated twice. Generalised here: a back affordance, a title with optional subtitle, and trailing actions."
+   "کیت اولیه یک <code>Header/Profile</code> در ابعاد ۳۴۳×۵۶ داشت که دو بار تکرار شده بود. اینجا تعمیم یافته: یک راه بازگشت، یک عنوان با زیرعنوان اختیاری و کنش‌های انتهایی."
   ],
   "use": [
-   "Sticky at the top of any scrolling screen.",
-   "Put the location and result count in the subtitle: «تهران، ۷۸ مورد».",
-   "Cap trailing actions at two; overflow into a menu."
+   "بالای هر صفحهٔ اسکرول‌شونده بچسبانید.",
+   "موقعیت و تعداد نتیجه را در زیرعنوان بگذارید: «تهران، ۷۸ مورد».",
+   "کنش‌های انتهایی را به دو تا محدود کنید؛ بقیه به منو بروند."
   ],
   "avoid": [
-   "A back button on a root screen.",
-   "Titles that truncate — shorten the copy instead."
+   "دکمهٔ بازگشت در صفحهٔ ریشه.",
+   "عنوان‌هایی که بریده می‌شوند؛ به‌جایش متن را کوتاه کنید."
   ],
   "anatomy": [
    [
-    "Container",
-    "56px, glass surface, sticky, hairline bottom."
+    "ظرف",
+    "۵۶ پیکسل، سطح شیشه، چسبان، خط مویی پایین."
    ],
    [
-    "Leading",
-    "Back or close. The back chevron mirrors in RTL."
+    "آغاز",
+    "بازگشت یا بستن. شورون بازگشت در راست‌چین قرینه می‌شود."
    ],
    [
-    "Title block",
-    "16px Bold + optional 12px secondary."
+    "بلوک عنوان",
+    "۱۶ پیکسل Bold به‌علاوهٔ ۱۲ پیکسل ثانویهٔ اختیاری."
    ],
    [
-    "Trailing",
-    "Up to two icon buttons."
+    "انتها",
+    "حداکثر دو دکمهٔ آیکونی."
    ]
   ],
   "props": [
@@ -2130,23 +2184,24 @@
     "onBack",
     "() => void",
     "—",
-    "Omit on root screens."
+    "در صفحهٔ ریشه حذفش کنید."
    ],
    [
     "actions",
     "ReactNode",
     "—",
-    "Max two."
+    "حداکثر دو تا."
    ]
   ],
   "a11y": [
-   "A real <code>&lt;header&gt;</code> with the title as <code>&lt;h1&gt;</code> on the screen it heads.",
-   "Back is a button with <code>aria-label=\"بازگشت\"</code>, not a bare glyph."
+   "یک <code>&lt;header&gt;</code> واقعی با عنوان به‌عنوان <code>&lt;h1&gt;</code> صفحه‌ای که سرش را می‌گیرد.",
+   "بازگشت یک دکمه با <code>aria-label=\"بازگشت\"</code> است، نه یک نشانهٔ برهنه.",
+   "معیار ۲.۴.۱۱ نسخهٔ ۲.۲: هدر چسبان نباید عنصری را که تازه فوکوس گرفته بپوشاند؛ <code>scroll-padding-block-start</code> این را تضمین می‌کند."
   ],
-  "responsive": "56px throughout. Above lg the title moves inline with a breadcrumb and the header un-sticks if the page is short.",
+  "responsive": "در همه‌جا ۵۶ پیکسل. بالای lg عنوان کنار مسیر راهنما می‌نشیند و اگر صفحه کوتاه باشد هدر از حالت چسبان خارج می‌شود.",
   "specimens": [
    {
-    "label": "Header",
+    "label": "هدر",
     "canvas": "map",
     "stageClass": "spec__stage--stack",
     "html": "<header class=\"t-page-header\" style=\"border-radius:12px;position:relative;inline-size:100%\">\n  <button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بازگشت\"><svg class=\"t-icon t-icon--directional\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M12 5 7 10l5 5V5z\"/></svg></button>\n  <div class=\"t-page-header__title\">فروشگاه‌های اطراف<div class=\"t-page-header__sub\">تهران، ۷۸ مورد</div></div>\n  <button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"اشتراک‌گذاری\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M14 13a2.5 2.5 0 0 0-1.8.8l-4.3-2.5a2.5 2.5 0 0 0 0-2.6l4.3-2.5a2.5 2.5 0 1 0-.7-1.3L7.2 7.4a2.5 2.5 0 1 0 0 5.2l4.3 2.5A2.5 2.5 0 1 0 14 13z\"/></svg></button>\n</header>"
@@ -2163,32 +2218,32 @@
   "group": "Navigation",
   "status": "new",
   "legacy": [],
-  "summary": "Root-level navigation, anchored where the thumb is.",
+  "summary": "ناوبری سطح ریشه، لنگرانداخته جایی که شست هست.",
   "description": [
-   "Absent from the kit despite every example screen being a phone. Glass, safe-area aware, three to five destinations."
+   "با اینکه همهٔ صفحه‌های نمونه موبایل بودند، در کیت وجود نداشت. شیشه‌ای، آگاه به ناحیهٔ امن، سه تا پنج مقصد."
   ],
   "use": [
-   "Three to five top-level destinations that never change.",
-   "Label every item — icons alone are guesswork.",
-   "Mark the current destination with <code>aria-current=\"page\"</code>."
+   "سه تا پنج مقصد سطح‌بالا که هرگز تغییر نمی‌کنند.",
+   "همهٔ آیتم‌ها را برچسب بزنید؛ آیکون تنها حدس زدن است.",
+   "مقصد جاری را با <code>aria-current=\"page\"</code> مشخص کنید."
   ],
   "avoid": [
-   "More than five items.",
-   "Actions rather than destinations. A \"+\" that opens a sheet belongs elsewhere.",
-   "Hiding it on scroll — the destination set should be constant."
+   "بیش از پنج آیتم.",
+   "کنش به‌جای مقصد. دکمهٔ «+» که برگه باز می‌کند جای دیگری دارد.",
+   "پنهان‌کردنش هنگام اسکرول؛ مجموعهٔ مقصدها باید ثابت باشد."
   ],
   "anatomy": [
    [
-    "Container",
-    "Glass, sticky bottom, hairline top, padded for the home indicator."
+    "ظرف",
+    "شیشه، چسبان به پایین، خط مویی بالا، فاصله‌دار برای نشانگر خانه."
    ],
    [
-    "Item",
-    "Icon over 12px label, minimum 44px, equal widths."
+    "آیتم",
+    "آیکون روی برچسب ۱۲ پیکسلی، حداقل ۴۴ پیکسل، عرض برابر."
    ],
    [
-    "Current",
-    "Brand colour and Bold weight — two channels, not just colour."
+    "جاری",
+    "رنگ برند و وزن Bold — دو کانال، نه فقط رنگ."
    ]
   ],
   "props": [
@@ -2196,23 +2251,23 @@
     "items",
     "{ href, label, icon }[]",
     "—",
-    "3–5."
+    "سه تا پنج."
    ],
    [
     "current",
     "string",
     "—",
-    "Matching href."
+    "برابر با href مقصد."
    ]
   ],
   "a11y": [
-   "A <code>&lt;nav&gt;</code> landmark with an accessible name.",
-   "Current uses <code>aria-current=\"page\"</code>, plus weight and colour so it does not rely on hue alone."
+   "یک ناحیهٔ <code>&lt;nav&gt;</code> با نام دسترس‌پذیر.",
+   "مقصد جاری <code>aria-current=\"page\"</code> می‌گیرد، به‌علاوهٔ وزن و رنگ تا فقط به فام تکیه نکند."
   ],
-  "responsive": "Phone only. From md it is replaced by the sidebar or top navigation — do not render both.",
+  "responsive": "فقط موبایل. از md جایش را به نوار کناری یا ناوبری بالا می‌دهد؛ هرگز هر دو را با هم رندر نکنید.",
   "specimens": [
    {
-    "label": "Bottom navigation",
+    "label": "ناوبری پایین",
     "canvas": "fog",
     "html": "<nav class=\"t-bottom-nav\" aria-label=\"ناوبری اصلی\" style=\"border-radius:12px;position:relative;inline-size:100%;max-inline-size:375px\">\n  <button class=\"t-bottom-nav__item\" aria-current=\"page\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 2 2 9h2v9h5v-6h2v6h5V9h2z\"/></svg>خانه</button>\n  <button class=\"t-bottom-nav__item\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M8.5 3a5.5 5.5 0 1 0 3.4 9.8l3.6 3.7 1.1-1.1-3.7-3.6A5.5 5.5 0 0 0 8.5 3zm0 1.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z\"/></svg>جستجو</button>\n  <button class=\"t-bottom-nav__item\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 2a6 6 0 0 0-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 0 0-6-6zm0 8.2A2.2 2.2 0 1 1 10 5.8a2.2 2.2 0 0 1 0 4.4z\"/></svg>اطراف من</button>\n  <button class=\"t-bottom-nav__item\"><svg class=\"t-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10 10.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3.5 17a6.5 6.5 0 0 1 13 0z\"/></svg>حساب من</button>\n</nav>"
    }
@@ -2228,26 +2283,26 @@
   "group": "Navigation",
   "status": "new",
   "legacy": [],
-  "summary": "Where this page sits in the catalogue.",
+  "summary": "این صفحه کجای درخت دسته‌بندی است.",
   "description": [
-   "Torob's category tree is deep, and above md there is room to show it. The separator must point along the reading direction — in RTL it points left."
+   "درخت دسته‌بندی ترب عمیق است و بالای md برای نشان‌دادنش جا هست. جداکننده باید در جهت خواندن اشاره کند؛ در راست‌چین به چپ."
   ],
   "use": [
-   "Category pages and product detail, from md upward.",
-   "Truncate the middle, never the ends: first … last two."
+   "صفحه‌های دسته‌بندی و صفحهٔ محصول، از md به بالا.",
+   "وسط را کوتاه کنید، نه دو سر را: اولی … دو تای آخر."
   ],
   "avoid": [
-   "Breadcrumbs as the only way back on a phone. Give a back button.",
-   "Making the current page a link."
+   "مسیر راهنما به‌عنوان تنها راه بازگشت روی موبایل. دکمهٔ بازگشت بگذارید.",
+   "لینک‌کردن صفحهٔ جاری."
   ],
   "anatomy": [
    [
-    "Item",
-    "12px, secondary; the current page is default weight Bold."
+    "آیتم",
+    "۱۲ پیکسل ثانویه؛ صفحهٔ جاری با وزن پیش‌فرض Bold."
    ],
    [
-    "Separator",
-    "A logical chevron that mirrors with direction."
+    "جداکننده",
+    "یک شورون منطقی که با جهت قرینه می‌شود."
    ]
   ],
   "props": [
@@ -2255,17 +2310,17 @@
     "items",
     "{ href, label }[]",
     "—",
-    "Last item is the current page."
+    "آخرین آیتم صفحهٔ جاری است."
    ]
   ],
   "a11y": [
-   "<code>&lt;nav aria-label=\"مسیر\"&gt;</code> wrapping an <code>&lt;ol&gt;</code>.",
-   "The final item carries <code>aria-current=\"page\"</code> and is not a link."
+   "<code>&lt;nav aria-label=\"مسیر\"&gt;</code> که یک <code>&lt;ol&gt;</code> را در بر می‌گیرد.",
+   "آخرین آیتم <code>aria-current=\"page\"</code> می‌گیرد و لینک نیست."
   ],
-  "responsive": "Hidden below md, where PageHeader's back button does the job.",
+  "responsive": "زیر md پنهان است، جایی که دکمهٔ بازگشت PageHeader کار را انجام می‌دهد.",
   "specimens": [
    {
-    "label": "Breadcrumb",
+    "label": "مسیر راهنما",
     "canvas": "fog",
     "html": "<nav class=\"t-breadcrumb\" aria-label=\"مسیر\">\n  <a class=\"t-breadcrumb__item\" href=\"#\">خانه</a><span class=\"t-breadcrumb__sep\">›</span>\n  <a class=\"t-breadcrumb__item\" href=\"#\">آرایشی و بهداشتی</a><span class=\"t-breadcrumb__sep\">›</span>\n  <a class=\"t-breadcrumb__item\" href=\"#\">عطر و ادکلن</a><span class=\"t-breadcrumb__sep\">›</span>\n  <span class=\"t-breadcrumb__item\" aria-current=\"page\">کازاموراتی مفیستو</span>\n</nav>"
    }
@@ -2281,41 +2336,41 @@
   "group": "Overlays",
   "status": "new",
   "legacy": [],
-  "summary": "Torob's dominant overlay. Filters, sort, store detail, variant picker.",
+  "summary": "پرکاربردترین لایهٔ ترب. فیلتر، مرتب‌سازی، جزئیات فروشگاه، انتخاب گونه.",
   "description": [
-   "The examples are full of bottom sheets — the filter panel, the sort list, the store detail card, the spec sheet, and not one existed as a component. Every one was drawn by hand.",
-   "Above 768px a bottom sheet is the wrong shape: there is horizontal room and no thumb constraint. <code>adaptive</code> turns the same component into a side panel at md, with the same markup, the same props and the same focus behaviour. One component, two surfaces."
+   "صفحه‌های نمونه پر از برگهٔ پایینی‌اند — پنل فیلتر، فهرست مرتب‌سازی، کارت جزئیات فروشگاه، برگهٔ مشخصات — و حتی یکی به‌عنوان کامپوننت وجود نداشت. همه دستی کشیده شده بودند.",
+   "بالای ۷۶۸ پیکسل برگهٔ پایینی شکل درستی نیست: جای افقی هست و محدودیت شست نیست. <code>adaptive</code> همان کامپوننت را در md به یک پنل کناری تبدیل می‌کند، با همان مارک‌آپ، همان پراپ‌ها و همان رفتار فوکوس. یک کامپوننت، دو سطح."
   ],
   "use": [
-   "Anything the user opens to make a choice and then closes.",
-   "Snap points for tall content: peek, half, full.",
-   "Keep the primary action pinned in the footer, above the safe area."
+   "هر چیزی که کاربر باز می‌کند تا انتخابی بکند و بعد می‌بندد.",
+   "برای محتوای بلند نقاط توقف بگذارید: سرک، نیمه، کامل.",
+   "کنش اصلی را در فوتر و بالای ناحیهٔ امن سنجاق کنید."
   ],
   "avoid": [
-   "A sheet for content that deserves its own screen.",
-   "Sheets stacked on sheets.",
-   "Dismiss-on-outside-tap for a sheet with unsaved input — confirm instead."
+   "برگه برای محتوایی که سزاوار صفحهٔ خودش است.",
+   "برگه روی برگه.",
+   "بستن با لمس بیرون، برای برگه‌ای که ورودی ذخیره‌نشده دارد؛ به‌جایش تأیید بگیرید."
   ],
   "anatomy": [
    [
-    "Scrim",
-    "48% ink (64% dark), fades in over 220ms."
+    "پردهٔ پشت",
+    "۴۸٪ جوهر (۶۴٪ در تیره)، در ۲۲۰ میلی‌ثانیه محو می‌شود."
    ],
    [
-    "Grip",
-    "The whole 36px strip is the drag target, not the 4px bar."
+    "دستگیره",
+    "کل نوار ۳۶ پیکسلی هدف کشیدن است، نه میلهٔ ۴ پیکسلی."
    ],
    [
-    "Head",
-    "Title and close."
+    "سر",
+    "عنوان و بستن."
    ],
    [
-    "Body",
-    "Scrolls with <code>overscroll-behavior: contain</code> so the page behind stays put."
+    "بدنه",
+    "با <code>overscroll-behavior: contain</code> اسکرول می‌شود تا صفحهٔ پشت سر جایش بماند."
    ],
    [
-    "Foot",
-    "Hairline-separated, equal-width actions."
+    "فوتر",
+    "جداشده با خط مویی، کنش‌های هم‌عرض."
    ]
   ],
   "props": [
@@ -2323,37 +2378,37 @@
     "open",
     "boolean",
     "—",
-    "Controlled."
+    "کنترل‌شده."
    ],
    [
     "adaptive",
     "boolean",
     "true",
-    "Becomes a side panel from md."
+    "از md به پنل کناری تبدیل می‌شود."
    ],
    [
     "snapPoints",
     "number[]",
     "[0.9]",
-    "Fractions of viewport height."
+    "کسری از ارتفاع نمایشگر."
    ],
    [
     "dismissible",
     "boolean",
     "true",
-    "Outside tap and Escape."
+    "لمس بیرون و کلید Escape."
    ]
   ],
   "a11y": [
-   "<code>role=\"dialog\" aria-modal=\"true\"</code> with <code>aria-labelledby</code> pointing at the title.",
-   "Focus moves in on open and returns to the trigger on close. Focus is trapped while open.",
-   "Escape closes. The grip is keyboard-operable, or the sheet has a visible close button — a drag-only sheet is not accessible.",
-   "Body scroll is locked behind the sheet, not just visually covered."
+   "<code>role=\"dialog\" aria-modal=\"true\"</code> با <code>aria-labelledby</code> که به عنوان اشاره می‌کند.",
+   "فوکوس هنگام باز شدن وارد می‌شود و هنگام بستن به دکمهٔ آغازگر برمی‌گردد. تا وقتی باز است فوکوس در تله می‌ماند.",
+   "کلید Escape می‌بندد. دستگیره با صفحه‌کلید کار می‌کند یا برگه دکمهٔ بستن دیده‌شونده دارد؛ برگه‌ای که فقط با کشیدن بسته می‌شود دسترس‌پذیر نیست (معیار ۲.۵.۷ نسخهٔ ۲.۲).",
+   "اسکرول بدنهٔ صفحه پشت برگه قفل می‌شود، نه اینکه فقط پوشانده شود."
   ],
-  "responsive": "Bottom sheet to 767px, 420px inline-end panel from 768px. The animation swaps with it: slide-up becomes slide-in-from-inline-end, which mirrors correctly in RTL.",
+  "responsive": "تا ۷۶۷ پیکسل برگهٔ پایینی، از ۷۶۸ پیکسل پنل ۴۲۰ پیکسلی در انتهای محور. انیمیشن هم با آن عوض می‌شود: بالا‌آمدن به ورود از انتهای محور تبدیل می‌شود که در راست‌چین درست قرینه می‌شود.",
   "specimens": [
    {
-    "label": "Filter sheet",
+    "label": "برگهٔ فیلتر",
     "canvas": "plain",
     "stageClass": "spec__stage--center",
     "html": "<div style=\"position:relative;inline-size:375px;max-inline-size:100%;block-size:420px;border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)\">\n  <div style=\"position:absolute;inset:0;background:var(--t-bg-scrim)\"></div>\n  <div class=\"t-sheet\" style=\"position:absolute;animation:none\">\n    <div class=\"t-sheet__grip\"></div>\n    <div class=\"t-sheet__head\"><span class=\"t-sheet__title\">فیلترها</span><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بستن\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m12.7 4.3-1-1L8 7 4.3 3.3l-1 1L7 8l-3.7 3.7 1 1L8 9l3.7 3.7 1-1L9 8z\"/></svg></button></div>\n    <div class=\"t-sheet__body\">\n      <label class=\"t-check\"><input type=\"checkbox\" checked><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">ضمانت ترب</span></label>\n      <label class=\"t-check\"><input type=\"checkbox\"><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">نمایندگی رسمی</span></label>\n      <label class=\"t-check\"><input type=\"checkbox\" checked><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">باز الان</span></label>\n      <label class=\"t-check\"><input type=\"checkbox\"><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg></span><span class=\"t-body-md\">ارسال فوری</span></label>\n    </div>\n    <div class=\"t-sheet__foot\"><button class=\"t-btn t-btn--ghost t-btn--md\">حذف همه</button><button class=\"t-btn t-btn--primary t-btn--md\">نمایش ۴۳ نتیجه</button></div>\n  </div>\n</div>"
@@ -2370,32 +2425,32 @@
   "group": "Overlays",
   "status": "new",
   "legacy": [],
-  "summary": "Interrupts to get a decision. Use rarely.",
+  "summary": "برای گرفتن یک تصمیم کار را قطع می‌کند. کم استفاده کنید.",
   "description": [
-   "A modal is the most expensive interaction in the system: it stops everything. Reserve it for a decision that genuinely cannot wait — a destructive confirmation, a required choice. Everything else is a BottomSheet or an inline change."
+   "مودال گران‌ترین تعامل سیستم است: همه‌چیز را متوقف می‌کند. آن را برای تصمیمی نگه دارید که واقعاً نمی‌تواند صبر کند — یک تأیید غیرقابل‌بازگشت، یک انتخاب اجباری. بقیه یا BottomSheet هستند یا تغییر درجا."
   ],
   "use": [
-   "Confirm something irreversible: deleting a saved address.",
-   "Title states the decision; buttons name the outcomes.",
-   "Put the destructive action in the outline variant and the safe action as primary."
+   "تأیید چیزی غیرقابل‌بازگشت: حذف آدرس ذخیره‌شده.",
+   "عنوان تصمیم را بگوید و دکمه‌ها نتیجه‌ها را نام ببرند.",
+   "کنش مخرب را در گونهٔ خط‌دار و کنش امن را به‌عنوان اصلی بگذارید."
   ],
   "avoid": [
-   "Modals for information. That is an Alert.",
-   "Buttons labelled OK/Cancel. Name the action: «حذف آدرس» / «انصراف».",
-   "Nesting modals."
+   "مودال برای اطلاع‌رسانی. آن کار Alert است.",
+   "دکمه‌های «تأیید / انصراف». کنش را نام ببرید: «حذف آدرس» / «انصراف».",
+   "مودال تودرتو."
   ],
   "anatomy": [
    [
-    "Scrim",
-    "Same as BottomSheet."
+    "پردهٔ پشت",
+    "مثل BottomSheet."
    ],
    [
-    "Container",
-    "max 440px, radius 16, elevation-3, scale-in from 0.97."
+    "ظرف",
+    "حداکثر ۴۴۰ پیکسل، گردی ۱۶، ارتفاع ۳، ورود با مقیاس ۰٫۹۷."
    ],
    [
-    "Foot",
-    "Equal-width buttons; primary at the inline end."
+    "فوتر",
+    "دکمه‌های هم‌عرض؛ اصلی در انتهای محور."
    ]
   ],
   "props": [
@@ -2403,7 +2458,7 @@
     "open / onClose",
     "—",
     "—",
-    "Controlled."
+    "کنترل‌شده."
    ],
    [
     "title",
@@ -2419,13 +2474,13 @@
    ]
   ],
   "a11y": [
-   "Focus trap, focus return, Escape to close, <code>aria-modal</code>, <code>aria-labelledby</code> and <code>aria-describedby</code>.",
-   "Initial focus goes to the least destructive action, never to Delete."
+   "تلهٔ فوکوس، بازگشت فوکوس، بستن با Escape، <code>aria-modal</code>، <code>aria-labelledby</code> و <code>aria-describedby</code>.",
+   "فوکوس اولیه روی کم‌مخرب‌ترین کنش می‌نشیند، هرگز روی «حذف»."
   ],
-  "responsive": "Below 375px it becomes a BottomSheet — a full-width centred box on a small phone is a worse shape than a sheet.",
+  "responsive": "زیر ۳۷۵ پیکسل به BottomSheet تبدیل می‌شود؛ یک جعبهٔ وسط‌چین تمام‌عرض روی موبایل کوچک شکل بدتری است.",
   "specimens": [
    {
-    "label": "Destructive confirmation",
+    "label": "تأیید مخرب",
     "canvas": "plain",
     "stageClass": "spec__stage--center",
     "html": "<div style=\"position:relative;inline-size:100%;max-inline-size:440px;padding:26px 0\">\n  <div class=\"t-modal\" style=\"position:relative;inset:auto;translate:none;animation:none;margin-inline:auto\">\n    <div class=\"t-modal__head\"><span class=\"t-modal__title\">حذف آدرس ذخیره‌شده؟</span></div>\n    <div class=\"t-modal__body t-body-md t-tone-secondary\">«خانه — ولیعصر، حافظ» حذف می‌شود. این کار قابل بازگشت نیست.</div>\n    <div class=\"t-modal__foot\"><button class=\"t-btn t-btn--outline\">انصراف</button><button class=\"t-btn t-btn--primary\">حذف آدرس</button></div>\n  </div>\n</div>"
@@ -2442,36 +2497,36 @@
   "group": "Overlays",
   "status": "new",
   "legacy": [],
-  "summary": "Progressive disclosure for long, scannable content.",
+  "summary": "افشای تدریجی برای محتوای بلند و قابل مرور.",
   "description": [
-   "The spec sheet on screen 3-5 is a wall of forty attribute rows. An accordion lets the shopper find the two that matter without scrolling past thirty-eight that do not."
+   "برگهٔ مشخصات در صفحهٔ ۳-۵ منبع دیواری از چهل ردیف ویژگی است. آکاردئون به خریدار اجازه می‌دهد آن دو ردیفی را که برایش مهم است پیدا کند، بدون اینکه از سی‌وهشت ردیف بی‌ربط رد شود."
   ],
   "use": [
-   "Product specs grouped by theme.",
-   "FAQ and policy content.",
-   "Open the first section by default when there is an obvious starting point."
+   "مشخصات محصول، گروه‌بندی‌شده بر اساس موضوع.",
+   "پرسش‌های متداول و متن قوانین.",
+   "وقتی نقطهٔ شروع بدیهی هست، بخش اول را از ابتدا باز بگذارید."
   ],
   "avoid": [
-   "Hiding the primary content of a page behind a click.",
-   "Accordions inside accordions.",
-   "Single-item accordions: that is a Collapsible."
+   "پنهان‌کردن محتوای اصلی صفحه پشت یک کلیک.",
+   "آکاردئون درون آکاردئون.",
+   "آکاردئون تک‌آیتمی — آن Collapsible است."
   ],
   "anatomy": [
    [
-    "Item",
-    "Hairline-separated, no outer border."
+    "آیتم",
+    "جداشده با خط مویی، بدون کادر بیرونی."
    ],
    [
-    "Trigger",
-    "52px, 14px Bold, full-row target."
+    "دکمه",
+    "۵۲ پیکسل، ۱۴ پیکسل Bold، کل ردیف هدف لمس است."
    ],
    [
-    "Chevron",
-    "Rotates 180° over 220ms."
+    "شورون",
+    "در ۲۲۰ میلی‌ثانیه ۱۸۰ درجه می‌چرخد."
    ],
    [
-    "Panel",
-    "14px secondary, indented to the trigger text."
+    "پنل",
+    "۱۴ پیکسل ثانویه، هم‌تراز با متن دکمه."
    ]
   ],
   "props": [
@@ -2485,7 +2540,7 @@
     "multiple",
     "boolean",
     "false",
-    "Allow several open at once."
+    "اجازهٔ باز بودن چند بخش هم‌زمان."
    ],
    [
     "defaultOpen",
@@ -2495,16 +2550,16 @@
    ]
   ],
   "a11y": [
-   "Trigger is a <code>&lt;button&gt;</code> with <code>aria-expanded</code> and <code>aria-controls</code>; the panel has <code>aria-labelledby</code>.",
-   "Panels use the <code>hidden</code> attribute, not <code>height: 0</code> — collapsed content must leave the accessibility tree.",
-   "The whole trigger row is the target, not just the chevron."
+   "دکمه یک <code>&lt;button&gt;</code> با <code>aria-expanded</code> و <code>aria-controls</code> است؛ پنل <code>aria-labelledby</code> دارد.",
+   "پنل‌ها از صفت <code>hidden</code> استفاده می‌کنند، نه <code>height: 0</code> — محتوای بسته باید از درخت دسترس‌پذیری خارج شود.",
+   "کل ردیف دکمه هدف است، نه فقط شورون."
   ],
-  "responsive": "Identical at every size. Above lg, consider showing all panels open instead.",
+  "responsive": "در هر اندازه یکسان. بالای lg می‌توانید همهٔ پنل‌ها را باز نشان دهید.",
   "specimens": [
    {
-    "label": "Product specifications",
+    "label": "مشخصات محصول",
     "canvas": "plain",
-    "note": "Live — click a row to expand.",
+    "note": "زنده — برای باز کردن روی یک ردیف کلیک کنید.",
     "html": "<div class=\"t-accordion\" style=\"max-inline-size:375px\">\n  <div class=\"t-accordion__item\">\n    <button class=\"t-accordion__trigger\" aria-expanded=\"true\" aria-controls=\"ac1\"><span class=\"t-accordion__label\">مشخصات کلی</span><svg class=\"t-accordion__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n    <div class=\"t-accordion__panel\" id=\"ac1\">سیستم عامل: iOS ۲۶ · حافظه داخلی: ۱۲۸ گیگابایت · سال تولید: ۲۰۲۵</div>\n  </div>\n  <div class=\"t-accordion__item\">\n    <button class=\"t-accordion__trigger\" aria-expanded=\"false\" aria-controls=\"ac2\"><span class=\"t-accordion__label\">دوربین</span><svg class=\"t-accordion__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n    <div class=\"t-accordion__panel\" id=\"ac2\" hidden>دوربین اصلی: ۴۸ مگاپیکسل · دوربین سلفی: ۱۲ مگاپیکسل · فیلم‌برداری ۴K</div>\n  </div>\n  <div class=\"t-accordion__item\">\n    <button class=\"t-accordion__trigger\" aria-expanded=\"false\" aria-controls=\"ac3\"><span class=\"t-accordion__label\">بدنه و مقاومت</span><svg class=\"t-accordion__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"m8 11-5-5 1-1 4 4 4-4 1 1z\"/></svg></button>\n    <div class=\"t-accordion__panel\" id=\"ac3\" hidden>گواهینامه IP53 — مقاوم در برابر پاشیده شدن آب و گرد و غبار. پوشش گوریلا گلس ۳.</div>\n  </div>\n</div>"
    }
   ],
@@ -2519,32 +2574,32 @@
   "group": "Overlays",
   "status": "new",
   "legacy": [],
-  "summary": "A short list of actions or options anchored to a trigger.",
+  "summary": "فهرست کوتاهی از کنش‌ها یا گزینه‌ها، لنگرانداخته به یک دکمه.",
   "description": [
-   "For overflow actions and single-select options that do not warrant a sheet. Above about seven items, a sheet is easier to reach on a phone."
+   "برای کنش‌های سرریز و انتخاب تکی که ارزش یک برگهٔ کامل را ندارند. بالای حدود هفت آیتم، برگه روی موبایل راحت‌تر در دسترس است."
   ],
   "use": [
-   "Overflow on a card or header: اشتراک‌گذاری, گزارش, ذخیره.",
-   "Single-select where the current value is visible on the trigger.",
-   "Mark destructive items with <code>--critical</code>."
+   "سرریز روی کارت یا هدر: اشتراک‌گذاری، گزارش، ذخیره.",
+   "انتخاب تکی، وقتی مقدار جاری روی دکمه دیده می‌شود.",
+   "آیتم‌های مخرب را با <code>--critical</code> مشخص کنید."
   ],
   "avoid": [
-   "Menus as primary navigation.",
-   "Right-click as the only way in.",
-   "More than seven items on a phone."
+   "منو به‌عنوان ناوبری اصلی.",
+   "کلیک راست به‌عنوان تنها راه ورود.",
+   "بیش از هفت آیتم روی موبایل."
   ],
   "anatomy": [
    [
-    "Container",
-    "Opaque fog, radius 12, elevation-2, 4px padding."
+    "ظرف",
+    "سطح مات، گردی ۱۲، ارتفاع ۲، فاصلهٔ داخلی ۴ پیکسل."
    ],
    [
-    "Item",
-    "40px, radius 8, 14px."
+    "آیتم",
+    "۴۰ پیکسل، گردی ۸، ۱۴ پیکسل."
    ],
    [
-    "Separator",
-    "1px, 4px vertical margin."
+    "جداکننده",
+    "۱ پیکسل، حاشیهٔ عمودی ۴ پیکسل."
    ]
   ],
   "props": [
@@ -2564,18 +2619,18 @@
     "align",
     "'start' | 'end'",
     "'start'",
-    "Logical — mirrors in RTL."
+    "منطقی — در راست‌چین قرینه می‌شود."
    ]
   ],
   "a11y": [
-   "<code>role=\"menu\"</code> with <code>role=\"menuitem\"</code> children; arrow keys move, Escape closes, focus returns to the trigger.",
-   "For single-select use <code>role=\"menuitemradio\"</code> with <code>aria-checked</code>.",
-   "The popover flips to stay in the viewport, and flips along the logical axis, so it behaves correctly in RTL."
+   "<code>role=\"menu\"</code> با فرزندان <code>role=\"menuitem\"</code>؛ کلیدهای جهت حرکت می‌کنند، Escape می‌بندد و فوکوس به دکمهٔ آغازگر برمی‌گردد.",
+   "برای انتخاب تکی از <code>role=\"menuitemradio\"</code> به‌همراه <code>aria-checked</code> استفاده کنید.",
+   "پاپ‌اور برای ماندن در کادر دید می‌چرخد و روی محور منطقی می‌چرخد، پس در راست‌چین درست رفتار می‌کند."
   ],
-  "responsive": "From md it is a popover; below it, a BottomSheet. Reaching the top of a phone screen one-handed is the problem it avoids.",
+  "responsive": "از md پاپ‌اور است؛ زیر آن BottomSheet. مشکلی که حل می‌کند رسیدن یک‌دستی به بالای صفحهٔ موبایل است.",
   "specimens": [
    {
-    "label": "Overflow menu",
+    "label": "منوی سرریز",
     "canvas": "plain",
     "stageClass": "spec__stage--center",
     "html": "<div class=\"t-popover\" style=\"position:relative;inset:auto;animation:none;inline-size:220px\">\n  <button class=\"t-menu-item\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M11 10.4a2 2 0 0 0-1.4.6L6.2 9a2 2 0 0 0 0-2l3.4-2a2 2 0 1 0-.6-1L5.6 6A2 2 0 1 0 5.6 10l3.4 2a2 2 0 1 0 2-1.6z\"/></svg>اشتراک‌گذاری</button>\n  <button class=\"t-menu-item\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M12 2H4a1 1 0 0 0-1 1v11l5-2.6 5 2.6V3a1 1 0 0 0-1-1z\"/></svg>ذخیره</button>\n  <button class=\"t-menu-item\" aria-checked=\"true\" role=\"menuitemradio\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M6.3 11.6 3 8.3l1.1-1.1 2.2 2.2 5.6-5.6L13 4.9z\"/></svg>اعلان تغییر قیمت</button>\n  <div class=\"t-menu-sep\"></div>\n  <button class=\"t-menu-item t-menu-item--critical\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M8 1.5 15 14H1zM7.3 6v4h1.4V6zm0 5v1.4h1.4V11z\"/></svg>گزارش تخلف</button>\n</div>"

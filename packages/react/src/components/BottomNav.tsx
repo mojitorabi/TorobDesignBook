@@ -1,5 +1,5 @@
 /* BottomNav — Torob Design System
- * Root-level navigation, anchored where the thumb is.
+ * ناوبری سطح ریشه، لنگرانداخته جایی که شست هست.
  * Docs: /components/bottom-nav.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';

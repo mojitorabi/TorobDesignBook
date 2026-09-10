@@ -1,5 +1,5 @@
 /* Toast — Torob Design System
- * Confirms something happened. Never blocks.
+ * تأیید می‌کند که چیزی اتفاق افتاد. هرگز مسدود نمی‌کند.
  * Docs: /components/toast.html
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';
