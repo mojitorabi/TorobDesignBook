@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { writeFileSync, mkdirSync, copyFileSync, readFileSync } from 'node:fs';
+import { writeFileSync, mkdirSync, copyFileSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './tokens-lib.mjs';
 import { nav, GROUP_FA, UI_FA } from '../source/site.nav.mjs';
@@ -35,6 +35,16 @@ for (const [from, to] of [
   ['packages/css/dist/tokens.flat.json', 'assets/tokens.flat.json'],
 ]) copyFileSync(join(ROOT, from), join(OUT, to));
 // torob.css is bundled with an @import for tokens.css — the copy keeps that relative path valid.
+
+/* The typeface is part of the site, not a local convenience — copy it from
+   the package so a clean checkout produces the same pages. */
+{
+  const fontsSrc = join(ROOT, 'packages', 'fonts');
+  const fontsOut = join(OUT, 'assets', 'fonts');
+  mkdirSync(fontsOut, { recursive: true });
+  for (const f of readdirSync(fontsSrc).filter(f => f.endsWith('.woff2')))
+    copyFileSync(join(fontsSrc, f), join(fontsOut, f));
+}
 
 const components = await loadComponents();
 const flatNav = nav.flatMap(g => g.items).concat(components.map(c => ({ slug: `components/${c.slug}`, title: c.name })));
