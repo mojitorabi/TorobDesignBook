@@ -24,7 +24,10 @@ export default [
       "Button/Small/Blue/with-badge",
       "Button/Xsmall/Secondary/Icon",
       "Button/Normal/Primary/Icon",
-      "Button/Normal/Border/Icon"
+      "Button/Normal/Border/Icon",
+      "Button / Red / Icon",
+      "Button/‌Blue/Icon",
+      "Button/Black ghost/Icon"
     ],
     "summary": "یک کنش را اجرا می‌کند. در هر صفحه فقط یک دکمهٔ اصلی.",
     "description": [

@@ -215,12 +215,39 @@
 .t-icon-btn--accent:hover:not(:disabled) { background-color: var(--t-action-blue-bg-hover); }
 .t-icon-btn--glass { background-color: var(--t-glass-fill); border-color: var(--t-glass-border); box-shadow: var(--t-glass-shadow); backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur)); }
 
-/* ---- SplitButton ---- */
-.t-btn-split { display: inline-flex; border-radius: var(--t-radius-md); overflow: hidden; }
+/* ---- SplitButton  ← Button / Red /split · Button / Blue /split ----
+
+   157×40 at radius 12. One control, two targets: the label runs the primary
+   action and the 44px trailing segment opens something else. Sketch draws a
+   chevron there, never a second verb — a split button whose second half is
+   also a verb is two buttons that happen to be touching.
+
+   The divider is the trailing segment's own family rim, not a separate line.
+   That keeps it in the family tint automatically and means it survives a
+   palette change. No overflow:hidden — it would clip the focus ring. */
+.t-btn-split {
+  display: inline-flex;
+  border-radius: var(--t-radius-md);
+  isolation: isolate;
+}
 .t-btn-split > .t-btn { border-radius: 0; }
-.t-btn-split > .t-btn:first-child { border-start-start-radius: var(--t-radius-md); border-end-start-radius: var(--t-radius-md); }
-.t-btn-split > .t-btn:last-child  { border-start-end-radius: var(--t-radius-md); border-end-end-radius: var(--t-radius-md); padding-inline: var(--t-space-3); }
-.t-btn-split > .t-btn + .t-btn { border-inline-start: var(--t-border-thin) solid rgb(255 255 255 / 0.24); }
+.t-btn-split > .t-btn:first-child {
+  border-start-start-radius: var(--t-radius-md);
+  border-end-start-radius: var(--t-radius-md);
+  border-inline-end: 0;
+}
+.t-btn-split > .t-btn:last-child {
+  border-start-end-radius: var(--t-radius-md);
+  border-end-end-radius: var(--t-radius-md);
+}
+/* The trailing half is icon-only at a fixed 44px — wide enough to be its own
+   touch target without stealing width from the label. */
+.t-btn-split__more {
+  inline-size: 44px;
+  flex: none;
+  padding-inline: 0;
+}
+.t-btn-split:focus-within { border-radius: var(--t-radius-md); }
 
 /* ---- BuyBoxButton  ← Button/Buy box/Ad · /Cheapest · Button/Offline Buy box/Ad ----
 

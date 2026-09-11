@@ -10,6 +10,7 @@ import { glassPage } from './pages-glass.mjs';
 import { spacingPage, motionPage, rtlPage, responsivePage } from './pages-more.mjs';
 import { iconsPage, tokensPage } from './pages-resources.mjs';
 import { indexPage, aiPage, migrationPage } from './pages-index.mjs';
+import { symbolsPage } from './pages-symbols.mjs';
 import { simplePages } from './pages-simple.mjs';
 import { patternsPages, sellerPanelPage } from './pages-patterns.mjs';
 import { layout, specimen, section, table, guidance, esc, slugToPath, anchor } from './site-lib.mjs';
@@ -28,6 +29,7 @@ for (const [from, to] of [
   ['packages/css/src-site/fonts.css', 'assets/fonts.css'],
   ['packages/site-js/site.js', 'assets/site.js'],
   ['packages/icons/sprite-16.svg', 'assets/sprite-16.svg'],
+  ['packages/brand/sprite.svg', 'assets/brand.svg'],
   ['packages/icons/sprite-20.svg', 'assets/sprite-20.svg'],
   ['packages/icons/index.json', 'assets/icons-index.json'],
   ['packages/icons/icons.json', 'assets/icons.json'],
@@ -135,6 +137,7 @@ for (const c of components) {
 const PAGES = {
   'index': indexPage({ components, iconCount: iconIndex.length, tokenCount }),
   'ai': aiPage(components.length, iconIndex.length),
+  'symbols': symbolsPage(components),
   'migration': migrationPage(components),
   'tokens': tokensPage(model),
   'icons': iconsPage(iconCats, iconIndex.length),

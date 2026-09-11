@@ -15,7 +15,10 @@ for (const c of components) {
   const found = new Map();
   for (const s of c.specimens ?? []) for (const m of (s.html ?? '').matchAll(BLOCK)) found.set(m[0], (found.get(m[0]) ?? 0) + 1);
   // The component's own root block first, then its modifiers, then the rest.
-  const root = [...found.keys()].find(k => k === `t-${c.slug}`) ??
+  /* A component whose root block is not simply t-<slug> declares it: the
+     frequency heuristic picks t-btn for SplitButton, which is a child. */
+  const root = c.rootClass ??
+               [...found.keys()].find(k => k === `t-${c.slug}`) ??
                [...found.keys()].sort((a, b) => found.get(b) - found.get(a))[0];
   c.classes = [root, ...[...found.keys()].filter(k => k !== root && k.startsWith(root ?? '~'))].filter(Boolean);
 }

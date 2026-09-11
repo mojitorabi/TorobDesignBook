@@ -1,0 +1,5287 @@
+{
+  "$generatedBy": "build/sketch-extract.mjs",
+  "$source": "Torob Tokens.sketch · page \"Components\"",
+  "masters": 108,
+  "unique": 82,
+  "duplicateNames": [
+    "Badge/Card",
+    "Badge/Card-Picture",
+    "Button/Icon/Ghost Icon",
+    "Button/Icon/Icon",
+    "Button/Icon/Icon Rounded",
+    "Button/Xsmall/Secondary/Icon",
+    "Button/‌Blue ghost/Icon/Dark",
+    "Button/‌Blue ghost/Icon/Light",
+    "Button/‌Blue/Icon",
+    "Filter/Filter",
+    "Header/Profile",
+    "Product Card/Normal",
+    "Product Card/Small",
+    "Product Pic/Normal",
+    "Product Pic/Small",
+    "Search bar/Default",
+    "Search bar/Searched",
+    "Search bar/Typing",
+    "Segmented Controls/Not-selected",
+    "Segmented Controls/Selected",
+    "Store-Card/PDP/No product/Light",
+    "Store-Card/VLP/With product/Dark",
+    "Store-Card/VLP/With product/Light",
+    "Store-Card/VLP/Without product/Light"
+  ],
+  "symbols": [
+    {
+      "name": "Badge/Card",
+      "width": 71,
+      "height": 24,
+      "radius": 16,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 2,
+        "end": 8,
+        "bottom": 2,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFEEBF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "کالابرگ",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Badge/Card-Picture",
+      "width": 53,
+      "height": 24,
+      "radius": 16,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 2,
+        "end": 4,
+        "bottom": 2,
+        "start": 4
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFCA32"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "آگهی",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Badge/Card/Guarantee",
+      "width": 92,
+      "height": 24,
+      "radius": 16,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 2,
+        "end": 8,
+        "bottom": 2,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#1C1C5D"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "ضمانت ترب",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#FFFFFF",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Icon / 16px / Chevron tiny / down",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Icon / 16px / Chevron tiny / down",
+          "radius": 14,
+          "w": 16,
+          "h": 16
+        }
+      ]
+    },
+    {
+      "name": "Badge/Card/Normal",
+      "width": 78,
+      "height": 20,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [
+        {
+          "text": "ارسال فوری",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [
+        {
+          "name": "Enterprise / Commerce / delivery / 20",
+          "size": 20
+        }
+      ],
+      "inner": []
+    },
+    {
+      "name": "Brand / Logo",
+      "width": 32,
+      "height": 32,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Button / Blue /split",
+      "width": 157,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 0,
+        "bottom": 4,
+        "start": 12
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "gradient",
+            "from": [
+              0.5,
+              0
+            ],
+            "to": [
+              0.5,
+              1
+            ],
+            "stops": [
+              {
+                "color": "#3A75E6",
+                "at": 0
+              },
+              {
+                "color": "#3468CC",
+                "at": 1
+              }
+            ]
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "برو به سایت",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#F8FAFC",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        }
+      ],
+      "icons": [
+        {
+          "name": "Icon / 24px / call",
+          "size": 20
+        },
+        {
+          "name": "Icon / 24px / call",
+          "size": 20
+        }
+      ],
+      "inner": [
+        {
+          "name": "Icon / 24px / call",
+          "radius": 12,
+          "w": 20,
+          "h": 20
+        },
+        {
+          "name": "Button / Red / Icon Copy 2",
+          "radius": [
+            12,
+            0
+          ],
+          "w": 44,
+          "h": 40
+        },
+        {
+          "name": "Icon / 24px / call",
+          "radius": 8,
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "name": "Button / Red / Default",
+      "width": 111,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "خرید اینترنتی",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#FFFFFF",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "bg",
+          "radius": 12,
+          "w": 111,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button / Red / Disable",
+      "width": 111,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "خرید اینترنتی",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#737373",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "bg",
+          "radius": 12,
+          "w": 111,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button / Red / Hover",
+      "width": 111,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "خرید اینترنتی",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#FFFFFF",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "bg",
+          "radius": 12,
+          "w": 111,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button / Red / Icon",
+      "width": 162.5,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 12,
+        "bottom": 4,
+        "start": 12
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "gradient",
+            "from": [
+              0.5,
+              0
+            ],
+            "to": [
+              0.5,
+              1
+            ],
+            "stops": [
+              {
+                "color": "#F04151",
+                "at": 0
+              },
+              {
+                "color": "#D73948",
+                "at": 1
+              }
+            ]
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFF0F2",
+            "width": 1,
+            "position": "inside"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "برو به سایت",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#F8FAFC",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Icon / 24px / call",
+          "size": 20
+        }
+      ],
+      "inner": [
+        {
+          "name": "Icon / 24px / call",
+          "radius": 8,
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "name": "Button / Red /split",
+      "width": 157,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 0,
+        "bottom": 4,
+        "start": 12
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "gradient",
+            "from": [
+              0.5,
+              0
+            ],
+            "to": [
+              0.5,
+              1
+            ],
+            "stops": [
+              {
+                "color": "#F04151",
+                "at": 0
+              },
+              {
+                "color": "#D73948",
+                "at": 1
+              }
+            ]
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFF0F2",
+            "width": 1,
+            "position": "outside"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "برو به سایت",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#F8FAFC",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        }
+      ],
+      "icons": [
+        {
+          "name": "Icon / 24px / call",
+          "size": 20
+        },
+        {
+          "name": "Icon / 24px / call",
+          "size": 20
+        }
+      ],
+      "inner": [
+        {
+          "name": "Icon / 24px / call",
+          "radius": 12,
+          "w": 20,
+          "h": 20
+        },
+        {
+          "name": "Button / Red / Icon Copy 2",
+          "radius": [
+            12,
+            0
+          ],
+          "w": 44,
+          "h": 40
+        },
+        {
+          "name": "Icon / 24px / call",
+          "radius": 8,
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "name": "Button/Black ghost/Default",
+      "width": 66,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "عنوان",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#333333",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "bg",
+          "radius": 12,
+          "w": 66,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button/Black ghost/Hover",
+      "width": 66,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "عنوان",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#333333",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "bg",
+          "radius": 12,
+          "w": 66,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button/Black ghost/Icon",
+      "width": 162.5,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 15,
+        "bottom": 4,
+        "start": 15
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(241,245,249,0.6)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#1E293B",
+            "width": 0.5,
+            "position": "center"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "مسیریابی",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "left",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Planning / Travel / location--filled / 20",
+          "size": 20
+        }
+      ],
+      "inner": [
+        {
+          "name": "Planning / Travel / location--filled / 20",
+          "radius": 8,
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "name": "Button/Black/Default",
+      "width": 66,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "عنوان",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#FFFFFF",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Rectangle Copy",
+          "radius": 12,
+          "w": 66,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button/Black/Disable",
+      "width": 66,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "عنوان",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#737373",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "bg",
+          "radius": 12,
+          "w": 66,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button/Black/Hover",
+      "width": 66,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "عنوان",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#FFFFFF",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Rectangle Copy",
+          "radius": 12,
+          "w": 66,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button/‌Blue ghost/Icon/Dark",
+      "width": 162.5,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 15,
+        "bottom": 4,
+        "start": 15
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(21,32,43,0.6)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#60A5FA",
+            "width": 0.5,
+            "position": "center"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "مسیریابی",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#3468CC",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "left",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Planning / Travel / location--filled / 20",
+          "size": 20
+        }
+      ],
+      "inner": [
+        {
+          "name": "Planning / Travel / location--filled / 20",
+          "radius": 8,
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "name": "Button/‌Blue ghost/Icon/Light",
+      "width": 162.5,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 15,
+        "bottom": 4,
+        "start": 15
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(241,245,249,0.6)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#60A5FA",
+            "width": 0.5,
+            "position": "center"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "مسیریابی",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#3468CC",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "left",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Planning / Travel / location--filled / 20",
+          "size": 20
+        }
+      ],
+      "inner": [
+        {
+          "name": "Planning / Travel / location--filled / 20",
+          "radius": 8,
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "name": "Button/‌Blue/Clicked + Chevron",
+      "width": 132,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "اطلاعات تماس",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#3468CC",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "left",
+          "depth": 2
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "bg",
+          "radius": 12,
+          "w": 132,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button/‌Blue/Default + Chevron",
+      "width": 132,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "اطلاعات تماس",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#FFFFFF",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "left",
+          "depth": 2
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "bg",
+          "radius": 12,
+          "w": 132,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button/‌Blue/Hover + Chevron",
+      "width": 132,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "اطلاعات تماس",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#FFFFFF",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "left",
+          "depth": 2
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "bg",
+          "radius": 12,
+          "w": 132,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "name": "Button/‌Blue/Icon",
+      "width": 162.5,
+      "height": 40,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 15,
+        "bottom": 4,
+        "start": 15
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "gradient",
+            "from": [
+              0.5,
+              0
+            ],
+            "to": [
+              0.5,
+              1
+            ],
+            "stops": [
+              {
+                "color": "#3A75E6",
+                "at": 0
+              },
+              {
+                "color": "#3468CC",
+                "at": 1
+              }
+            ]
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "ارتباط با فروشگاه",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#F8FAFC",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Icon / 24px / call",
+          "size": 20
+        }
+      ],
+      "inner": [
+        {
+          "name": "Icon / 24px / call",
+          "radius": 8,
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "name": "Button/Buy box/Ad",
+      "width": 343,
+      "height": 72,
+      "radius": 16,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [
+        {
+          "text": "خرید از تکنولایف",
+          "font": "IRANYekanX-Bold",
+          "size": 16,
+          "color": "#FFFFFF",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        },
+        {
+          "text": "۱۶٫۱۰۰٫۰۰۰ تومان",
+          "font": "IRANYekanX-Medium",
+          "size": 16,
+          "color": "#FFFFFF",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        },
+        {
+          "text": "آگهی",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#FFFFFF",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "center",
+          "depth": 2
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Rectangle Copy 9",
+          "radius": 16,
+          "w": 343,
+          "h": 72
+        },
+        {
+          "name": "Rectangle",
+          "radius": 12,
+          "w": 45,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Button/Buy box/Cheapest",
+      "width": 343,
+      "height": 44,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "خرید از ارزان‌ترین فروشنده",
+          "font": "IRANYekan-Bold",
+          "size": 16,
+          "color": "#FFFFFF",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "center",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Rectangle",
+          "radius": 12,
+          "w": 343,
+          "h": 44
+        }
+      ]
+    },
+    {
+      "name": "Button/Icon/Blue Icon",
+      "width": 48,
+      "height": 48,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 8,
+        "end": 8,
+        "bottom": 8,
+        "start": 8
+      },
+      "style": {},
+      "text": [],
+      "icons": [
+        {
+          "name": "Torob_Logo",
+          "size": 32
+        }
+      ],
+      "inner": [
+        {
+          "name": "rect copy 20",
+          "radius": 12,
+          "w": 48,
+          "h": 48
+        }
+      ]
+    },
+    {
+      "name": "Button/Icon/Ghost Icon",
+      "width": 48,
+      "height": 48,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 8,
+        "end": 8,
+        "bottom": 8,
+        "start": 8
+      },
+      "style": {},
+      "text": [],
+      "icons": [
+        {
+          "name": "Torob_Logo",
+          "size": 32
+        }
+      ],
+      "inner": [
+        {
+          "name": "rect copy 20",
+          "radius": 12,
+          "w": 48,
+          "h": 48
+        }
+      ]
+    },
+    {
+      "name": "Button/Icon/Icon",
+      "width": 48,
+      "height": 48,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 8,
+        "end": 8,
+        "bottom": 8,
+        "start": 8
+      },
+      "style": {},
+      "text": [],
+      "icons": [
+        {
+          "name": "Torob_Logo",
+          "size": 32
+        }
+      ],
+      "inner": [
+        {
+          "name": "rect copy 20",
+          "radius": 12,
+          "w": 48,
+          "h": 48
+        }
+      ]
+    },
+    {
+      "name": "Button/Icon/Icon Rounded",
+      "width": 32,
+      "height": 32,
+      "radius": 16,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 4,
+        "bottom": 4,
+        "start": 4
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(255,255,255,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 0.952380952380952,
+            "position": "outside"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#F1F5F9",
+            "x": 0,
+            "y": -2,
+            "blur": 2,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": -1,
+            "y": 1,
+            "blur": 1,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [],
+      "icons": [
+        {
+          "name": "Icon / Bell",
+          "size": 24
+        }
+      ],
+      "inner": [
+        {
+          "name": "Icon / Bell",
+          "radius": 12,
+          "w": 24,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Button/Offline Buy box/Ad",
+      "width": 343,
+      "height": 72,
+      "radius": 16,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 8,
+        "end": 16,
+        "bottom": 8,
+        "start": 16
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "gradient",
+            "from": [
+              0.5,
+              0
+            ],
+            "to": [
+              0.5,
+              1
+            ],
+            "stops": [
+              {
+                "color": "#3A75E6",
+                "at": 0
+              },
+              {
+                "color": "#3468CC",
+                "at": 1
+              }
+            ]
+          }
+        ],
+        "borders": [
+          {
+            "color": "#60A5FA",
+            "width": 1,
+            "position": "inside"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "۱۶٫۱۰۰٫۰۰۰ تومان",
+          "font": "IRANYekanX-Medium",
+          "size": 16,
+          "color": "#FFFFFF",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "خرید از تکنولایف",
+          "font": "IRANYekanX-Bold",
+          "size": 16,
+          "color": "#FFFFFF",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        }
+      ],
+      "icons": [
+        {
+          "name": "Badge / Ad on Buy Box",
+          "size": 45
+        }
+      ],
+      "inner": [
+        {
+          "name": "Badge / Ad on Buy Box",
+          "radius": 8,
+          "w": 45,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Button/Small/Blue/with-badge",
+      "width": 70,
+      "height": 28,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 8,
+        "bottom": 4,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "gradient",
+            "from": [
+              0.5,
+              0
+            ],
+            "to": [
+              0.5,
+              1
+            ],
+            "stops": [
+              {
+                "color": "#3A75E6",
+                "at": 0
+              },
+              {
+                "color": "#3468CC",
+                "at": 1
+              }
+            ]
+          }
+        ],
+        "borders": [
+          {
+            "color": "#60A5FA",
+            "width": 1,
+            "position": "inside"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "فروشگاه‌ها",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F8FAFC",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        },
+        {
+          "text": "۵۵",
+          "font": "IRANYekan-Bold",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 16,
+          "kerning": 0,
+          "align": "center",
+          "depth": 2
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Rectangle",
+          "radius": 8,
+          "w": 24,
+          "h": 16
+        }
+      ]
+    },
+    {
+      "name": "Button/Xsmall/Secondary/Icon",
+      "width": 67,
+      "height": 24,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 2,
+        "end": 8,
+        "bottom": 2,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(255,255,255,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "outside"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#F1F5F9",
+            "x": 0,
+            "y": -2,
+            "blur": 2,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": -0.5,
+            "y": 0.5,
+            "blur": 0.5,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "گزارش",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [
+        {
+          "name": "Icon / 16px / Report-Off",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Icon / 16px / Report-Off",
+          "radius": 10,
+          "w": 16,
+          "h": 16
+        }
+      ]
+    },
+    {
+      "name": "Close Pin/Dark",
+      "width": 16,
+      "height": 16,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Close Pin/Light",
+      "width": 16,
+      "height": 16,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Filter/Cell/Cell",
+      "width": 59,
+      "height": 32,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 8,
+        "bottom": 4,
+        "start": 12
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(255,255,255,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "outside"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#F1F5F9",
+            "x": 0,
+            "y": -2,
+            "blur": 2,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": -0.5,
+            "y": 0.5,
+            "blur": 0.5,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "باز الان",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Filter/Cell/Icon",
+      "width": 108,
+      "height": 32,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 8,
+        "bottom": 4,
+        "start": 12
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(255,255,255,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "outside"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#F1F5F9",
+            "x": 0,
+            "y": -2,
+            "blur": 2,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": -0.5,
+            "y": 0.5,
+            "blur": 0.5,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "ضمانت ترب",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Torob star hologram",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Torob star hologram",
+          "radius": 8,
+          "w": 16,
+          "h": 16
+        }
+      ]
+    },
+    {
+      "name": "Filter/Cell/Icon+Chevron",
+      "width": 89,
+      "height": 32,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 8,
+        "bottom": 4,
+        "start": 12
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(255,255,255,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "outside"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#F1F5F9",
+            "x": 0,
+            "y": -2,
+            "blur": 2,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": -0.5,
+            "y": 0.5,
+            "blur": 0.5,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "تهران",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "city filter",
+          "size": 16
+        },
+        {
+          "name": "Actions / Navigation / chevron--up / 16",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "city filter",
+          "radius": 8,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Actions / Navigation / chevron--up / 16",
+          "radius": 8,
+          "w": 16,
+          "h": 16
+        }
+      ]
+    },
+    {
+      "name": "Filter/Filter",
+      "width": 774,
+      "height": 32,
+      "radius": 0,
+      "cornerSmoothing": 0.6,
+      "padding": null,
+      "style": {},
+      "text": [
+        {
+          "text": "مرتب‌سازی",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        },
+        {
+          "text": "فیلترها",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        },
+        {
+          "text": "تهران",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "ضمانت ترب",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "برند",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        },
+        {
+          "text": "قیمت",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        },
+        {
+          "text": "نمایندگی رسمی",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "باز الان",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Actions / Operations / filter / 16",
+          "size": 20
+        },
+        {
+          "name": "Actions / Operations / filter / 16",
+          "size": 20
+        },
+        {
+          "name": "city filter",
+          "size": 16
+        },
+        {
+          "name": "Actions / Navigation / chevron--up / 16",
+          "size": 16
+        },
+        {
+          "name": "Actions / Navigation / chevron--up / 16",
+          "size": 16
+        },
+        {
+          "name": "Actions / Navigation / chevron--up / 16",
+          "size": 16
+        },
+        {
+          "name": "official seller",
+          "size": 16
+        },
+        {
+          "name": "Actions / Navigation / chevron--up / 16",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Stack",
+          "radius": 12,
+          "w": 101,
+          "h": 32
+        },
+        {
+          "name": "Actions / Operations / filter / 16",
+          "radius": 8,
+          "w": 20,
+          "h": 20
+        },
+        {
+          "name": "Stack 2",
+          "radius": 12,
+          "w": 82,
+          "h": 32
+        },
+        {
+          "name": "Actions / Operations / filter / 16",
+          "radius": 8,
+          "w": 20,
+          "h": 20
+        },
+        {
+          "name": "Stack 8",
+          "radius": 12,
+          "w": 89,
+          "h": 32
+        },
+        {
+          "name": "city filter",
+          "radius": 8,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Actions / Navigation / chevron--up / 16",
+          "radius": 8,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Stack 6",
+          "radius": 12,
+          "w": 108,
+          "h": 32
+        },
+        {
+          "name": "Stack 3",
+          "radius": 12,
+          "w": 58,
+          "h": 32
+        },
+        {
+          "name": "Actions / Navigation / chevron--up / 16",
+          "radius": 8,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Stack 4",
+          "radius": 12,
+          "w": 70,
+          "h": 32
+        },
+        {
+          "name": "Actions / Navigation / chevron--up / 16",
+          "radius": 8,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Stack 7",
+          "radius": 12,
+          "w": 142,
+          "h": 32
+        },
+        {
+          "name": "official seller",
+          "radius": 8,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Actions / Navigation / chevron--up / 16",
+          "radius": 8,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Stack 5",
+          "radius": 12,
+          "w": 59,
+          "h": 32
+        }
+      ]
+    },
+    {
+      "name": "Header/Profile",
+      "width": 343,
+      "height": 56,
+      "radius": 0,
+      "cornerSmoothing": 0.3,
+      "padding": null,
+      "style": {},
+      "text": [
+        {
+          "text": "باز",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#4CAF50",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "تا",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۲۲:۳۰",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#333333",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        }
+      ],
+      "icons": [
+        {
+          "name": "Actions / Navigation / close / 20",
+          "size": 24
+        },
+        {
+          "name": "Open Pin/Light",
+          "size": 16
+        },
+        {
+          "name": "Enterprise / Health / image-availability--local / 20",
+          "size": 16
+        },
+        {
+          "name": "Button/Icon/Icon Rounded",
+          "size": 32
+        }
+      ],
+      "inner": []
+    },
+    {
+      "name": "List / Item",
+      "width": 327,
+      "height": 56,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "پشتیبانی",
+          "font": "IRANYekanX-Medium",
+          "size": 16,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [
+        {
+          "name": "Enterprise / Commerce / receipt / 16",
+          "size": 24
+        },
+        {
+          "name": "Enterprise / Commerce / receipt / 16",
+          "size": 24
+        }
+      ],
+      "inner": []
+    },
+    {
+      "name": "List / last item",
+      "width": 327,
+      "height": 56,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "درباره ترب‌پی",
+          "font": "IRANYekanX-Medium",
+          "size": 16,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [
+        {
+          "name": "Enterprise / Commerce / receipt / 16",
+          "size": 24
+        },
+        {
+          "name": "Enterprise / Commerce / receipt / 16",
+          "size": 24
+        }
+      ],
+      "inner": []
+    },
+    {
+      "name": "Open Pin/Dark",
+      "width": 16,
+      "height": 16,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Open Pin/Light",
+      "width": 16,
+      "height": 16,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Pin",
+      "width": 86,
+      "height": 88,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "POI/Cluster",
+      "width": 48,
+      "height": 48,
+      "radius": 32,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 2,
+        "bottom": 4,
+        "start": 2
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#3468CC"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 2,
+            "position": "inside"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "۵۵",
+          "font": "IRANYekanX-Bold",
+          "size": 16,
+          "color": "#F8FAFC",
+          "lineHeight": 16,
+          "kerning": 0,
+          "align": "center",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "POI/Dot",
+      "width": 8,
+      "height": 8,
+      "radius": 16,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 2,
+        "bottom": 4,
+        "start": 2
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#D70040"
+          }
+        ]
+      },
+      "text": [],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "POI/Normal",
+      "width": 32,
+      "height": 32,
+      "radius": 16,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 2,
+        "bottom": 4,
+        "start": 2
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#3468CC"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 2,
+            "position": "inside"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "􀸩",
+          "font": "SFPro-Semibold",
+          "size": 14,
+          "color": "#F7F7F6",
+          "lineHeight": null,
+          "kerning": 0,
+          "align": "center",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "POI/Selected",
+      "width": 74,
+      "height": 100,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#3468CC",
+          "lineHeight": null,
+          "kerning": 0,
+          "align": "center",
+          "depth": 2
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Union",
+          "radius": 248.6399993896484,
+          "w": 67.2,
+          "h": 72.536
+        },
+        {
+          "name": "Vector 10",
+          "radius": [
+            1.120000004768372,
+            0
+          ],
+          "w": 13.44,
+          "h": 7.84
+        },
+        {
+          "name": "IconFrame",
+          "radius": 32,
+          "w": 64,
+          "h": 64
+        }
+      ]
+    },
+    {
+      "name": "POI/Selected + Price",
+      "width": 95,
+      "height": 67.72,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#3468CC",
+          "lineHeight": null,
+          "kerning": 0,
+          "align": "center",
+          "depth": 2
+        },
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 12,
+          "color": "#F8FAFC",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Vector 10",
+          "radius": [
+            1.120000004768372,
+            0
+          ],
+          "w": 13,
+          "h": 8
+        },
+        {
+          "name": "Stack 6",
+          "radius": 16,
+          "w": 95,
+          "h": 28
+        }
+      ]
+    },
+    {
+      "name": "Product Card/Empty/Dark",
+      "width": 96,
+      "height": 196,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 8,
+        "end": 8,
+        "bottom": 8,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(33,43,54,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#212B36",
+            "width": 1,
+            "position": "center"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#475569",
+            "x": -0.5,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [],
+      "icons": [
+        {
+          "name": "Actions / Formatting / image--copy / 16",
+          "size": 24
+        }
+      ],
+      "inner": [
+        {
+          "name": "Product Pic/Small Copy 3",
+          "radius": 12,
+          "w": 45,
+          "h": 53
+        },
+        {
+          "name": "Actions / Formatting / image--copy / 16",
+          "radius": 1.5,
+          "w": 24,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Product Card/Empty/Light",
+      "width": 96,
+      "height": 196,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 8,
+        "end": 8,
+        "bottom": 8,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(255,255,255,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "center"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": -0.5,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [],
+      "icons": [
+        {
+          "name": "Actions / Formatting / image--copy / 16",
+          "size": 24
+        }
+      ],
+      "inner": [
+        {
+          "name": "Product Pic/Small Copy 3",
+          "radius": 8,
+          "w": 45,
+          "h": 53
+        }
+      ]
+    },
+    {
+      "name": "Product Card/More/Dark",
+      "width": 114,
+      "height": 196,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 8,
+        "end": 8,
+        "bottom": 8,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(33,43,54,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#212B36",
+            "width": 1,
+            "position": "center"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#475569",
+            "x": -0.5,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "+۴۳۵",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Product Pic/Small Copy 2",
+          "radius": 8,
+          "w": 45,
+          "h": 86
+        },
+        {
+          "name": "Product Pic/Small Copy 3",
+          "radius": 8,
+          "w": 45,
+          "h": 86
+        },
+        {
+          "name": "Product Pic/Small",
+          "radius": 8,
+          "w": 45,
+          "h": 86
+        },
+        {
+          "name": "Product Pic/Small Copy",
+          "radius": 8,
+          "w": 45,
+          "h": 86
+        }
+      ]
+    },
+    {
+      "name": "Product Card/More/Light",
+      "width": 114,
+      "height": 196,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 8,
+        "end": 8,
+        "bottom": 8,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(255,255,255,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "center"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": -0.5,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "+۴۳۵",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Product Pic/Small Copy 2",
+          "radius": 8,
+          "w": 45,
+          "h": 86
+        },
+        {
+          "name": "Product Pic/Small Copy 3",
+          "radius": 8,
+          "w": 45,
+          "h": 86
+        },
+        {
+          "name": "Product Pic/Small",
+          "radius": 8,
+          "w": 45,
+          "h": 86
+        },
+        {
+          "name": "Product Pic/Small Copy",
+          "radius": 8,
+          "w": 45,
+          "h": 86
+        }
+      ]
+    },
+    {
+      "name": "Product Card/Normal",
+      "width": 153,
+      "height": 386,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [
+        {
+          "text": "در ۷۹ فروشگاه",
+          "font": "IRANYekan",
+          "size": 12,
+          "color": "#64748B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "از ۱۶٫۷۰۰٫۰۰۰",
+          "font": "IRANYekan-Bold",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Medium",
+          "size": 10,
+          "color": "#64748B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        },
+        {
+          "text": "خنک",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "عصاره چوب",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ماندگاری بالا",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "گرم و تلخ",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "کازاموراتی | مفیستو\nادکلن شرکتی | ۱۰۰ میل",
+          "font": "IRANYekan-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [
+        {
+          "name": "Actions / Toggle / notification / 20",
+          "size": 16
+        },
+        {
+          "name": "Icon / 16px / Heart",
+          "size": 16
+        },
+        {
+          "name": "Product Pic/Normal",
+          "size": 153
+        }
+      ],
+      "inner": [
+        {
+          "name": "Rectangle Copy 7",
+          "radius": 4,
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Rectangle",
+          "radius": 4,
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Stack",
+          "radius": 16,
+          "w": 36,
+          "h": 24
+        },
+        {
+          "name": "Stack 36",
+          "radius": 16,
+          "w": 69,
+          "h": 24
+        },
+        {
+          "name": "Stack 36",
+          "radius": 16,
+          "w": 72,
+          "h": 24
+        },
+        {
+          "name": "Stack",
+          "radius": 16,
+          "w": 58,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Product Card/Small",
+      "width": 96,
+      "height": 196,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Medium",
+          "size": 10,
+          "color": "#64748B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "کازاموراتی | مفیستو\nادکلن شرکتی | ۱۰۰ م…",
+          "font": "IRANYekanX-Medium",
+          "size": 10,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Product Pic/Small",
+          "size": 96
+        }
+      ],
+      "inner": []
+    },
+    {
+      "name": "Product Card/Small Empty",
+      "width": 96,
+      "height": 220,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Medium",
+          "size": 10,
+          "color": "#64748B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "کازاموراتی | مفیستو\nادکلن شرکتی | ۱۰۰ میلی\nخوشبو و زیبا",
+          "font": "IRANYekanX-Medium",
+          "size": 10,
+          "color": "#1E293B",
+          "lineHeight": 24,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Actions / Formatting / image--copy / 16",
+          "size": 24
+        }
+      ],
+      "inner": [
+        {
+          "name": "Product Pic/Small Copy 3",
+          "radius": 8,
+          "w": 96,
+          "h": 112
+        }
+      ]
+    },
+    {
+      "name": "Product Pic/Normal",
+      "width": 153,
+      "height": 186,
+      "radius": 16,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 4,
+        "bottom": 4,
+        "start": 4
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#D8D8D8"
+          }
+        ]
+      },
+      "text": [],
+      "icons": [
+        {
+          "name": "Badge/Card-Picture",
+          "size": 59
+        }
+      ],
+      "inner": [
+        {
+          "name": "Badge/Card",
+          "radius": 12,
+          "w": 59,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Product Pic/Small",
+      "width": 96,
+      "height": 112,
+      "radius": 16,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 4,
+        "bottom": 4,
+        "start": 4
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#D8D8D8"
+          }
+        ]
+      },
+      "text": [],
+      "icons": [
+        {
+          "name": "Badge/Card-Picture",
+          "size": 59
+        }
+      ],
+      "inner": [
+        {
+          "name": "Badge/Card-Picture",
+          "radius": 12,
+          "w": 59,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Search bar/Default",
+      "width": 299,
+      "height": 48,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 10,
+        "end": 12,
+        "bottom": 10,
+        "start": 12
+      },
+      "style": {},
+      "text": [
+        {
+          "text": "جستجو در اطراف من",
+          "font": "IRANYekanX-Medium",
+          "size": 16,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        }
+      ],
+      "icons": [
+        {
+          "name": "Actions / Operations / search / 16",
+          "size": 20
+        },
+        {
+          "name": "Actions / Toggle / microphone / 16",
+          "size": 24
+        },
+        {
+          "name": "Tools / Technology / camera / 16",
+          "size": 24
+        }
+      ],
+      "inner": [
+        {
+          "name": "rect copy 20",
+          "radius": 12,
+          "w": 299,
+          "h": 48
+        }
+      ]
+    },
+    {
+      "name": "Search bar/Searched",
+      "width": 299,
+      "height": 48,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 10,
+        "end": 12,
+        "bottom": 10,
+        "start": 12
+      },
+      "style": {},
+      "text": [
+        {
+          "text": "ادکلن کازاموراتی ۱۲۰ میل",
+          "font": "IRANYekanX-Medium",
+          "size": 16,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "Actions / Navigation / close / 20",
+          "size": 24
+        }
+      ],
+      "inner": [
+        {
+          "name": "rect copy 20",
+          "radius": 12,
+          "w": 299,
+          "h": 48
+        }
+      ]
+    },
+    {
+      "name": "Search bar/Typing",
+      "width": 299,
+      "height": 48,
+      "radius": 12,
+      "cornerSmoothing": 0.3,
+      "padding": {
+        "top": 10,
+        "end": 12,
+        "bottom": 10,
+        "start": 12
+      },
+      "style": {},
+      "text": [
+        {
+          "text": "ادکلن کازاموراتی ۱۲۰ ",
+          "font": "IRANYekanX-Medium",
+          "size": 16,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        }
+      ],
+      "icons": [
+        {
+          "name": "Actions / Navigation / close / 20",
+          "size": 24
+        }
+      ],
+      "inner": [
+        {
+          "name": "rect copy 20",
+          "radius": 12,
+          "w": 299,
+          "h": 48
+        }
+      ]
+    },
+    {
+      "name": "Segmented Controls/Icon Not-selected",
+      "width": 67,
+      "height": 32,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 6,
+        "end": 8,
+        "bottom": 6,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(255,255,255,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "center"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": -0.5,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "تهران",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "city filter",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "city filter",
+          "radius": 6,
+          "w": 16,
+          "h": 16
+        }
+      ]
+    },
+    {
+      "name": "Segmented Controls/Icon Selected",
+      "width": 87,
+      "height": 32,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 6,
+        "end": 8,
+        "bottom": 6,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "gradient",
+            "from": [
+              0.5,
+              0
+            ],
+            "to": [
+              0.5,
+              1
+            ],
+            "stops": [
+              {
+                "color": "#3A75E6",
+                "at": 0
+              },
+              {
+                "color": "#3468CC",
+                "at": 1
+              }
+            ]
+          }
+        ],
+        "borders": [
+          {
+            "color": "#60A5FA",
+            "width": 1,
+            "position": "inside"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "rgba(51,51,51,0.2)",
+            "x": 0,
+            "y": 2,
+            "blur": 2,
+            "spread": 0
+          },
+          {
+            "color": "rgba(51,51,51,0.2)",
+            "x": 0,
+            "y": 4,
+            "blur": 12,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "تهران",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#F8FAFC",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        }
+      ],
+      "icons": [
+        {
+          "name": "city filter",
+          "size": 16
+        },
+        {
+          "name": "city filter copy",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "city filter",
+          "radius": 6,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "city filter copy",
+          "radius": 6,
+          "w": 16,
+          "h": 16
+        }
+      ]
+    },
+    {
+      "name": "Segmented Controls/Not-selected",
+      "width": 76,
+      "height": 32,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 6,
+        "end": 8,
+        "bottom": 6,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(255,255,255,0.3)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "center"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": -0.5,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "همه‌ی نتایج",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Segmented Controls/Selected",
+      "width": 38,
+      "height": 32,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 6,
+        "end": 8,
+        "bottom": 6,
+        "start": 8
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "gradient",
+            "from": [
+              0.5,
+              0
+            ],
+            "to": [
+              0.5,
+              1
+            ],
+            "stops": [
+              {
+                "color": "#3A75E6",
+                "at": 0
+              },
+              {
+                "color": "#3468CC",
+                "at": 1
+              }
+            ]
+          }
+        ],
+        "borders": [
+          {
+            "color": "#60A5FA",
+            "width": 1,
+            "position": "inside"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "rgba(51,51,51,0.2)",
+            "x": 0,
+            "y": 2,
+            "blur": 2,
+            "spread": 0
+          },
+          {
+            "color": "rgba(51,51,51,0.2)",
+            "x": 0,
+            "y": 4,
+            "blur": 12,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "کافه",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F8FAFC",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 1
+        }
+      ],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Social-Icons/Bale",
+      "width": 24,
+      "height": 24,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Social-Icons/Telegram",
+      "width": 24,
+      "height": 24,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Bg",
+          "radius": 12,
+          "w": 24,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Social-Icons/Whatsapp",
+      "width": 24,
+      "height": 24,
+      "radius": 12,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [],
+      "icons": [],
+      "inner": [
+        {
+          "name": "Bg",
+          "radius": 12,
+          "w": 24,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Store-Card/PDP/No product/Dark",
+      "width": 375,
+      "height": 208,
+      "radius": 0,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 16,
+        "end": 16,
+        "bottom": 16,
+        "start": 16
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(33,43,54,0.3)"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": -0.5,
+            "blur": 0,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 0,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "بسته تا ۲۲:۳۰",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "توضیحات",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "گزارش",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ولیعصر، حافظ . ",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱ کیلومتر",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        }
+      ],
+      "icons": [
+        {
+          "name": "Button/‌Blue/Icon",
+          "size": 162.5
+        },
+        {
+          "name": "Button/‌Blue ghost/Icon/Dark",
+          "size": 162.5
+        },
+        {
+          "name": "Close Pin/Dark",
+          "size": 16
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "size": 16
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "size": 16
+        },
+        {
+          "name": "Badge/Card",
+          "size": 72
+        },
+        {
+          "name": "Actions / Navigation / chevron--left / 20",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Button/Xsmall/Secondary/Icon Copy 3",
+          "radius": 12,
+          "w": 105,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "radius": 10,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon Copy",
+          "radius": 12,
+          "w": 84,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "radius": 10,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "radius": 12,
+          "w": 67,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "radius": 10,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Bitmap Copy",
+          "radius": 8,
+          "w": 84,
+          "h": 84
+        }
+      ]
+    },
+    {
+      "name": "Store-Card/PDP/No product/Light",
+      "width": 375,
+      "height": 208,
+      "radius": 0,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 16,
+        "end": 16,
+        "bottom": 16,
+        "start": 16
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#F8FAFC"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": -0.5,
+            "blur": 0,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 0,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "ولیعصر، حافظ . ",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱ کیلومتر",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#4CAF50",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        }
+      ],
+      "icons": [
+        {
+          "name": "Button/‌Blue/Icon",
+          "size": 162.5
+        },
+        {
+          "name": "Button/‌Blue ghost/Icon/Light",
+          "size": 162.5
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 91
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 84
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 67
+        },
+        {
+          "name": "Badge/Card",
+          "size": 72
+        },
+        {
+          "name": "Actions / Navigation / chevron--left / 20",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Bitmap Copy",
+          "radius": 8,
+          "w": 84,
+          "h": 84
+        }
+      ]
+    },
+    {
+      "name": "Store-Card/PDP/Offline",
+      "width": 380,
+      "height": 244,
+      "radius": 8,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 24,
+        "end": 16,
+        "bottom": 24,
+        "start": 16
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "center"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "۵",
+          "font": "IRANYekan-Bold",
+          "size": 12,
+          "color": "#003D01",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 6
+        },
+        {
+          "text": "(۸ ماه در ترب)",
+          "font": "IRANYekan-Bold",
+          "size": 12,
+          "color": "#003D01",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 6
+        },
+        {
+          "text": "ارسال رایگان",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#333333",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 7
+        },
+        {
+          "text": "ارسال فوری",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#333333",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 7
+        },
+        {
+          "text": "+۲",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#333333",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 7
+        },
+        {
+          "text": "ولیعصر، حافظ . ",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "۱ کیلومتر",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "رجیستر شده | ۱۲ ماه گارانتی داریا همراه پایتخت + تضمین رجیستری",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#737373",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        },
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Bold",
+          "size": 16,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        },
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 16,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#64748B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        }
+      ],
+      "icons": [
+        {
+          "name": "Button / Blue /split",
+          "size": 184
+        },
+        {
+          "name": "Icon / 16px / Chevron small / down",
+          "size": 16
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 67
+        },
+        {
+          "name": "Torob star hologram",
+          "size": 24
+        },
+        {
+          "name": "Actions / Navigation / chevron--left / 20",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Rectangle Copy 14",
+          "radius": 8,
+          "w": 380,
+          "h": 244
+        },
+        {
+          "name": "Stack 5",
+          "radius": 16,
+          "w": 115,
+          "h": 24
+        },
+        {
+          "name": "Stack 9",
+          "radius": 16,
+          "w": 203,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Chevron small / down",
+          "radius": 14,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Stack 9",
+          "radius": 16,
+          "w": 29,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Store-Card/PDP/Online",
+      "width": 380,
+      "height": 204,
+      "radius": 8,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 24,
+        "end": 16,
+        "bottom": 24,
+        "start": 16
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "center"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "۵",
+          "font": "IRANYekan-Bold",
+          "size": 12,
+          "color": "#003D01",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 6
+        },
+        {
+          "text": "(۸ ماه در ترب)",
+          "font": "IRANYekan-Bold",
+          "size": 12,
+          "color": "#003D01",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 6
+        },
+        {
+          "text": "ارسال رایگان",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#333333",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 7
+        },
+        {
+          "text": "ارسال فوری",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#333333",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 7
+        },
+        {
+          "text": "+۲",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#333333",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 7
+        },
+        {
+          "text": "رجیستر شده | ۱۲ ماه گارانتی داریا همراه پایتخت + تضمین رجیستری",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#737373",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        },
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Bold",
+          "size": 16,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        },
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 16,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#64748B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        }
+      ],
+      "icons": [
+        {
+          "name": "Button / Red / Icon",
+          "size": 117
+        },
+        {
+          "name": "Icon / 16px / Chevron small / down",
+          "size": 16
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 67
+        },
+        {
+          "name": "Torob star hologram",
+          "size": 24
+        },
+        {
+          "name": "Actions / Navigation / chevron--left / 20",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Stack 5",
+          "radius": 16,
+          "w": 115,
+          "h": 24
+        },
+        {
+          "name": "Stack 9",
+          "radius": 16,
+          "w": 203,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Chevron small / down",
+          "radius": 14,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Stack 9",
+          "radius": 16,
+          "w": 29,
+          "h": 24
+        },
+        {
+          "name": "Rectangle Copy 14",
+          "radius": 8,
+          "w": 380,
+          "h": 204
+        }
+      ]
+    },
+    {
+      "name": "Store-Card/PDP/Online-Offline",
+      "width": 380,
+      "height": 244,
+      "radius": 8,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 24,
+        "end": 16,
+        "bottom": 24,
+        "start": 16
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#FFFFFF"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#FFFFFF",
+            "width": 1,
+            "position": "center"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 1,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 20,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#64748B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "ارسال رایگان",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#333333",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 7
+        },
+        {
+          "text": "+۲",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#333333",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 7
+        },
+        {
+          "text": "ولیعصر، حافظ . ",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "۱ کیلومتر",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "رجیستر شده | ۱۲ ماه گارانتی داریا همراه پایتخت + تضمین رجیستری",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#737373",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 2
+        },
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Bold",
+          "size": 16,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 4
+        },
+        {
+          "text": "۵",
+          "font": "IRANYekan-Bold",
+          "size": 12,
+          "color": "#003D01",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 7
+        },
+        {
+          "text": "(۸ ماه در ترب)",
+          "font": "IRANYekan-Bold",
+          "size": 12,
+          "color": "#003D01",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 7
+        }
+      ],
+      "icons": [
+        {
+          "name": "Button / Red /split",
+          "size": 135
+        },
+        {
+          "name": "Icon / 16px / Chevron small / down",
+          "size": 16
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 67
+        },
+        {
+          "name": "Torob star hologram",
+          "size": 24
+        },
+        {
+          "name": "Actions / Navigation / chevron--left / 20",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Rectangle Copy 14",
+          "radius": 8,
+          "w": 380,
+          "h": 244
+        },
+        {
+          "name": "Stack 9",
+          "radius": 16,
+          "w": 120,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Chevron small / down",
+          "radius": 14,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Stack 9",
+          "radius": 16,
+          "w": 29,
+          "h": 24
+        },
+        {
+          "name": "Stack 5",
+          "radius": 16,
+          "w": 115,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "name": "Store-Card/VLP/With product/Dark",
+      "width": 375,
+      "height": 392,
+      "radius": 0,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 16,
+        "end": 16,
+        "bottom": 16,
+        "start": 16
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(33,43,54,0.3)"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": -0.5,
+            "blur": 0,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 0,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "بسته تا ۲۲:۳۰",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "توضیحات",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "گزارش",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ولیعصر، حافظ . ",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱ کیلومتر",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "از",
+          "font": "IRANYekanX-Regular",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        }
+      ],
+      "icons": [
+        {
+          "name": "Button/‌Blue/Icon",
+          "size": 162.5
+        },
+        {
+          "name": "Button/‌Blue ghost/Icon/Dark",
+          "size": 162.5
+        },
+        {
+          "name": "Product Card/Small",
+          "size": 96
+        },
+        {
+          "name": "Product Card/Small",
+          "size": 96
+        },
+        {
+          "name": "Product Card/More/Dark",
+          "size": 96
+        },
+        {
+          "name": "Close Pin/Dark",
+          "size": 16
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "size": 16
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "size": 16
+        },
+        {
+          "name": "Badge/Card",
+          "size": 72
+        },
+        {
+          "name": "Actions / Navigation / chevron--left / 20",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Button/Xsmall/Secondary/Icon Copy 3",
+          "radius": 12,
+          "w": 105,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "radius": 10,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon Copy",
+          "radius": 12,
+          "w": 84,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "radius": 10,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "radius": 12,
+          "w": 67,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "radius": 10,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Bitmap Copy",
+          "radius": 8,
+          "w": 56,
+          "h": 56
+        }
+      ]
+    },
+    {
+      "name": "Store-Card/VLP/With product/Light",
+      "width": 375,
+      "height": 392,
+      "radius": 0,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 16,
+        "end": 16,
+        "bottom": 16,
+        "start": 16
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#F8FAFC"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": -0.5,
+            "blur": 0,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 0,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "ولیعصر، حافظ .",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱ کیلومتر",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#4CAF50",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "از",
+          "font": "IRANYekanX-Regular",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        }
+      ],
+      "icons": [
+        {
+          "name": "Button/‌Blue/Icon",
+          "size": 162.5
+        },
+        {
+          "name": "Button/‌Blue ghost/Icon/Light",
+          "size": 162.5
+        },
+        {
+          "name": "Product Card/Small",
+          "size": 96
+        },
+        {
+          "name": "Product Card/Small",
+          "size": 96
+        },
+        {
+          "name": "Product Card/More/Light",
+          "size": 114
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 105
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 84
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 67
+        },
+        {
+          "name": "Actions / Navigation / chevron--left / 20",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Bitmap Copy",
+          "radius": 8,
+          "w": 56,
+          "h": 56
+        }
+      ]
+    },
+    {
+      "name": "Store-Card/VLP/Without product/Dark",
+      "width": 375,
+      "height": 180,
+      "radius": 0,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 16,
+        "end": 16,
+        "bottom": 16,
+        "start": 16
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(33,43,54,0.3)"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": -0.5,
+            "blur": 0,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 0,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "باز تا ۲۲:۳۰",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "توضیحات",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "گزارش",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ولیعصر، حافظ . ",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱ کیلومتر",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "از",
+          "font": "IRANYekanX-Regular",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#F1F5F9",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        }
+      ],
+      "icons": [
+        {
+          "name": "Button/‌Blue/Icon",
+          "size": 162.5
+        },
+        {
+          "name": "Button/‌Blue ghost/Icon/Dark",
+          "size": 162.5
+        },
+        {
+          "name": "Open Pin/Dark",
+          "size": 16
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "size": 16
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "size": 16
+        },
+        {
+          "name": "Badge/Card",
+          "size": 72
+        },
+        {
+          "name": "Actions / Navigation / chevron--left / 20",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Button/Xsmall/Secondary/Icon Copy",
+          "radius": 12,
+          "w": 90,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "radius": 10,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon Copy 3",
+          "radius": 12,
+          "w": 83,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "radius": 10,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "radius": 12,
+          "w": 67,
+          "h": 24
+        },
+        {
+          "name": "Icon / 16px / Report-Off",
+          "radius": 10,
+          "w": 16,
+          "h": 16
+        },
+        {
+          "name": "Bitmap Copy",
+          "radius": 8,
+          "w": 56,
+          "h": 56
+        }
+      ]
+    },
+    {
+      "name": "Store-Card/VLP/Without product/Light",
+      "width": 375,
+      "height": 180,
+      "radius": 0,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 16,
+        "end": 16,
+        "bottom": 16,
+        "start": 16
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "#F8FAFC"
+          }
+        ],
+        "shadows": [
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": -0.5,
+            "blur": 0,
+            "spread": 0
+          },
+          {
+            "color": "#CBD5E1",
+            "x": 0,
+            "y": 0.5,
+            "blur": 0,
+            "spread": 0
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "ولیعصر، حافظ . ",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱ کیلومتر",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#4CAF50",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "از",
+          "font": "IRANYekanX-Regular",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "۱۵٫۸۰۰٫۰۰۰",
+          "font": "IRANYekanX-Bold",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "تومان",
+          "font": "IRANYekanX-Regular",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        },
+        {
+          "text": "ادکلن شهر",
+          "font": "IRANYekanX-Medium",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": 28,
+          "kerning": 0,
+          "align": "right",
+          "depth": 5
+        }
+      ],
+      "icons": [
+        {
+          "name": "Button/‌Blue/Icon",
+          "size": 162.5
+        },
+        {
+          "name": "Button/‌Blue ghost/Icon/Light",
+          "size": 162.5
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 91
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 84
+        },
+        {
+          "name": "Button/Xsmall/Secondary/Icon",
+          "size": 67
+        },
+        {
+          "name": "Badge/Card",
+          "size": 72
+        },
+        {
+          "name": "Actions / Navigation / chevron--left / 20",
+          "size": 16
+        }
+      ],
+      "inner": [
+        {
+          "name": "Bitmap Copy",
+          "radius": 8,
+          "w": 56,
+          "h": 56
+        }
+      ]
+    },
+    {
+      "name": "Switch/Left",
+      "width": 135,
+      "height": 36,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 4,
+        "bottom": 4,
+        "start": 4
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(241,245,249,0.6)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#60A5FA",
+            "width": 0.5,
+            "position": "center"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "فروشگاه‌ها",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "۴۳",
+          "font": "IRANYekanX-Regular",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": null,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "محصولات",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#F8FAFC",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "۵۵",
+          "font": "IRANYekan-Bold",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 16,
+          "kerning": 0,
+          "align": "center",
+          "depth": 4
+        }
+      ],
+      "icons": [],
+      "inner": [
+        {
+          "name": "button copy 4",
+          "radius": 24,
+          "w": 62,
+          "h": 28
+        },
+        {
+          "name": "button copy 5",
+          "radius": 12,
+          "w": 65,
+          "h": 28
+        },
+        {
+          "name": "Rectangle",
+          "radius": 8,
+          "w": 24,
+          "h": 16
+        }
+      ]
+    },
+    {
+      "name": "Switch/Right",
+      "width": 135,
+      "height": 36,
+      "radius": 12,
+      "cornerSmoothing": 0.6,
+      "padding": {
+        "top": 4,
+        "end": 4,
+        "bottom": 4,
+        "start": 4
+      },
+      "style": {
+        "fills": [
+          {
+            "type": "solid",
+            "color": "rgba(241,245,249,0.6)"
+          }
+        ],
+        "borders": [
+          {
+            "color": "#60A5FA",
+            "width": 0.5,
+            "position": "center"
+          }
+        ]
+      },
+      "text": [
+        {
+          "text": "محصولات",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        },
+        {
+          "text": "۴۳",
+          "font": "IRANYekanX-Regular",
+          "size": 14,
+          "color": "#1E293B",
+          "lineHeight": null,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        }
+      ],
+      "icons": [
+        {
+          "name": "Button/Small/Blue/with-badge",
+          "size": 70
+        }
+      ],
+      "inner": [
+        {
+          "name": "Button/Small/Blue/with-badge",
+          "radius": 8,
+          "w": 70,
+          "h": 28
+        },
+        {
+          "name": "button copy 4",
+          "radius": 24,
+          "w": 57,
+          "h": 28
+        }
+      ]
+    },
+    {
+      "name": "Tab/Selected",
+      "width": 444,
+      "height": 64,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": {
+        "top": 16,
+        "end": 12,
+        "bottom": 16,
+        "start": 0
+      },
+      "style": {},
+      "text": [
+        {
+          "text": "داروخانه",
+          "font": "IRANYekanX-Medium",
+          "size": 12,
+          "color": "#1E293B",
+          "lineHeight": 20,
+          "kerning": 0,
+          "align": "right",
+          "depth": 3
+        }
+      ],
+      "icons": [
+        {
+          "name": "Segmented Controls/Not-selected",
+          "size": 76
+        },
+        {
+          "name": "Segmented Controls/Icon Selected",
+          "size": 87
+        },
+        {
+          "name": "Segmented Controls/Not-selected",
+          "size": 49
+        },
+        {
+          "name": "Segmented Controls/Not-selected",
+          "size": 55
+        },
+        {
+          "name": "Segmented Controls/Not-selected",
+          "size": 67
+        }
+      ],
+      "inner": [
+        {
+          "name": "button",
+          "radius": 12,
+          "w": 58,
+          "h": 32
+        }
+      ]
+    },
+    {
+      "name": "Torob star hologram",
+      "width": 200,
+      "height": 200,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [],
+      "icons": [],
+      "inner": []
+    },
+    {
+      "name": "Torob_Logo",
+      "width": 32,
+      "height": 32,
+      "radius": 0,
+      "cornerSmoothing": null,
+      "padding": null,
+      "style": {},
+      "text": [],
+      "icons": [],
+      "inner": []
+    }
+  ]
+}

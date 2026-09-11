@@ -1,0 +1,106 @@
+
+/* ============================================================
+   Brand  ← Torob_Logo · Brand / Logo · Torob star hologram · Social-Icons/*
+
+   The one part of the system that is deliberately outside the token pipeline.
+   A logo that re-tints with the theme is not a logo, so these marks carry
+   their own fixed colour in every theme and on every surface — including the
+   fact that the logo's red (#E91E33) is NOT the brand red (#D73948). Two
+   different reds is a source inconsistency, but the mark is the mark; it gets
+   corrected in the logo file, not in CSS.
+   ============================================================ */
+
+.t-brand {
+  --_s: 32px;
+  inline-size: var(--_s);
+  block-size: var(--_s);
+  display: inline-block;
+  flex: none;
+  /* A logo is never mirrored, whatever the direction of the page around it. */
+  transform: none;
+}
+.t-brand > svg, .t-brand > img { inline-size: 100%; block-size: 100%; display: block; }
+.t-brand--sm { --_s: 24px; }
+.t-brand--lg { --_s: 48px; }
+
+/* The lockup: mark plus wordmark, aligned on the optical centre rather than
+   the box centre — the leaf sits above the ring, so a box-centred mark reads
+   as sitting low next to text. */
+.t-brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--t-space-2);
+  text-decoration: none;
+  color: var(--t-fg-default);
+  font-weight: var(--t-font-weight-extrabold);
+  font-size: var(--t-font-size-16);
+  line-height: var(--t-font-leading-16);
+}
+
+/* ---- Guarantee mark  ← Torob star hologram ----
+
+   An indigo star, a wave field clipped to it, and the logo in a holographic
+   ramp. Three layers of detail in a 200×200 master that the product uses at
+   16px, which is the whole risk: below 16 the ramp and the waves stop
+   resolving and it reads as a navy blob. There is no simplified variant in
+   the source, so the floor is enforced here instead. */
+.t-guarantee {
+  --_s: 24px;
+  inline-size: var(--_s);
+  block-size: var(--_s);
+  min-inline-size: 16px;
+  min-block-size: 16px;
+  display: inline-block;
+  flex: none;
+}
+.t-guarantee > svg, .t-guarantee > img { inline-size: 100%; block-size: 100%; display: block; }
+
+/* The mark beside its claim. The claim is the accessible name; the mark is
+   decorative, because "ضمانت ترب" already says it. */
+.t-guarantee-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--t-space-1);
+  block-size: 24px;
+  padding-inline-start: var(--t-space-1);
+  padding-inline-end: var(--t-space-2);
+  border-radius: var(--t-radius-full);
+  background: var(--t-status-guarantee-bg);
+  color: var(--t-status-guarantee-fg);
+  font-size: var(--t-font-size-12);
+  line-height: 1;
+  font-weight: var(--t-font-weight-bold);
+  white-space: nowrap;
+}
+
+/* ---- Social  ← Social-Icons/Bale · /Telegram · /Whatsapp ----
+
+   Three 24px discs. Telegram and WhatsApp carry the vendor's own gradient and
+   Bale a single solid; none of them may be re-tinted, greyed or outlined —
+   a recoloured third-party mark is a trademark problem, not a design choice.
+   Which is also why they are not in the Carbon set: Carbon icons take
+   currentColor, and these must not. */
+.t-social {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--t-space-2);
+  min-block-size: var(--t-size-touch-min);
+  padding-inline: var(--t-space-2);
+  border-radius: var(--t-radius-md);
+  text-decoration: none;
+  color: var(--t-fg-default);
+  font-size: var(--t-font-size-14);
+  line-height: var(--t-font-leading-14);
+  font-weight: var(--t-font-weight-medium);
+  transition: background-color var(--t-duration-micro) var(--t-easing-out);
+}
+.t-social:hover { background-color: var(--t-action-black-ghost-bg-hover); }
+.t-social__mark {
+  inline-size: 24px;
+  block-size: 24px;
+  flex: none;
+  display: block;
+}
+/* Icon-only row — still 44px of touch, still a real accessible name. */
+.t-social-row { display: flex; align-items: center; gap: var(--t-space-2); }
+.t-social-row .t-social { padding-inline: 0; inline-size: var(--t-size-touch-min); justify-content: center; }

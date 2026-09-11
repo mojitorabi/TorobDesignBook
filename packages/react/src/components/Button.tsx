@@ -1,7 +1,7 @@
 /* Button — Torob Design System
  * یک کنش را اجرا می‌کند. در هر صفحه فقط یک دکمهٔ اصلی.
  * Docs: /components/button.html
- * Replaces: Button / Red / Default, Button / Red / Hover, Button / Red / Disable, Button/‌Blue/Default + Chevron, Button/‌Blue/Clicked + Chevron, Button/‌Blue/Hover + Chevron, Button/Black/Default, Button/Black/Hover, Button/Black/Disable, Button/Black ghost/Default, Button/Black ghost/Hover, Button/‌Blue ghost/Icon/Light, Button/‌Blue ghost/Icon/Dark, Button/Small/Blue/with-badge, Button/Xsmall/Secondary/Icon, Button/Normal/Primary/Icon, Button/Normal/Border/Icon
+ * Replaces: Button / Red / Default, Button / Red / Hover, Button / Red / Disable, Button/‌Blue/Default + Chevron, Button/‌Blue/Clicked + Chevron, Button/‌Blue/Hover + Chevron, Button/Black/Default, Button/Black/Hover, Button/Black/Disable, Button/Black ghost/Default, Button/Black ghost/Hover, Button/‌Blue ghost/Icon/Light, Button/‌Blue ghost/Icon/Dark, Button/Small/Blue/with-badge, Button/Xsmall/Secondary/Icon, Button/Normal/Primary/Icon, Button/Normal/Border/Icon, Button / Red / Icon, Button/‌Blue/Icon, Button/Black ghost/Icon
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';
 

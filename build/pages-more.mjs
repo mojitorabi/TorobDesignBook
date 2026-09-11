@@ -26,7 +26,7 @@ export function spacingPage(m) {
   </div>`);
 
   const radii = Object.entries(m.base).filter(([p]) => p.startsWith('radius.'));
-  body += S('radius', 'گردی گوشه', `<div class="prose"><p><strong>۱۲ پیکسل پیش‌فرض است.</strong> این سلیقه نیست: ۱۰۴ مورد از ۱۳۲ گردی گوشه در منبع اسکچ ۱۲ پیکسل است. بقیهٔ پله‌ها برای چیزهایی‌اند که <em>درون</em> یک ظرف ۱۲ پیکسلی می‌نشینند، یا برای سطوحی بزرگ‌تر از یک کارت.</p></div>
+  body += S('radius', 'گردی گوشه', `<div class="prose"><p><strong>۱۲ پیکسل پیش‌فرض است.</strong> این سلیقه نیست، شمارش است: از ۴۴۳ گردی <em>واقعی</em> در فایل اسکچ، ۲۶۳ مورد (۵۹٪) دوازده‌اند و ۱۳۲ مورد (۳۰٪) شانزده. شانزده تقریباً همیشه روی تصویر محصول و سطوح بزرگ می‌نشیند.</p><p>«واقعی» دو قید دارد و هر دو لازم‌اند. اول، فقط لایه‌هایی شمرده می‌شوند که <strong>واقعاً رنگ می‌گیرند</strong>؛ گردی روی یک گروه بی‌پرکننده دیده نمی‌شود. دوم، ۴۹۶ شکل دیگر گردی‌شان از نصف ارتفاعشان بیشتر است — آنها گوشهٔ ۱۶ پیکسلی ندارند، <strong>قرص‌اند</strong>، و ۲۹۷تایشان نشان‌های ۲۴ پیکسلی‌اند. ریختن آنها در همان سطل، شانزده را به پرتکرارترین گردی تبدیل می‌کند و نتیجه‌گیری را وارونه.</p></div>
     ${specimen({ label: 'مقیاس گردی', canvas: 'fog', dir: 'ltr', html: radii.map(([p, t]) =>
       `<div style="text-align:center"><div style="inline-size:70px;block-size:70px;background:var(--t-bg-subtle);border:1px solid var(--t-border-default);border-radius:${t.value}"></div><div style="font-size:11px;margin-block-start:8px;color:var(--t-fg-secondary)">${p.replace('radius.', '')}<br>${t.value}</div></div>`).join('') })}
     ${table(['توکن', 'مقدار', 'کاربرد'], radii.map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, t.value, t.description ?? '']))}`);

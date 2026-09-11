@@ -13,7 +13,9 @@
   display: inline-flex; align-items: center; gap: 4px;
   block-size: 20px;
   padding-inline: var(--t-space-2);
-  border-radius: var(--t-radius-xs);
+  /* Badge/Card is 71×24 at radius 16 — a pill. Measured, not guessed: the
+     radius Sketch draws lives in style.corners, not in fixedRadius. */
+  border-radius: var(--t-radius-full);
   font-size: var(--t-font-size-12); line-height: 1;
   font-weight: var(--t-font-weight-bold);
   white-space: nowrap;
@@ -61,7 +63,7 @@
 .t-thumb {
   position: relative;
   aspect-ratio: 153 / 186;
-  border-radius: var(--t-radius-md);
+  border-radius: var(--t-radius-lg);            /* 16 — Product Pic/* */
   overflow: hidden;
   background: var(--t-bg-subtle);
   flex: none;
@@ -105,7 +107,7 @@
   background: var(--t-glass-fill);
   border: var(--t-border-thin) solid var(--t-glass-border);
   box-shadow: var(--t-glass-shadow);
-  border-radius: var(--t-radius-lg);
+  border-radius: var(--t-radius-sm);            /* 8 — Store-Card/PDP/* */
   backdrop-filter: blur(var(--t-glass-blur));
   -webkit-backdrop-filter: blur(var(--t-glass-blur));
 }

@@ -11,6 +11,7 @@ export const GROUP_FA = {
   Overlays: 'لایه‌ها',
   Data: 'داده',
   Layout: 'چیدمان',
+  Brand: 'برند',
 };
 
 export const UI_FA = {
@@ -47,6 +48,7 @@ export const nav = [
     { slug: 'index', title: 'مقدمه' },
     { slug: 'start', title: 'شروع کار' },
     { slug: 'ai', title: 'اتصال به هوش مصنوعی' },
+    { slug: 'symbols', title: 'فهرست سیمبل‌ها' },
     { slug: 'migration', title: 'نام‌گذاری و مهاجرت' },
     { slug: 'changelog', title: 'تغییرات' },
   ]},

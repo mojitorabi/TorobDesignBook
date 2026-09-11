@@ -447,3 +447,28 @@ pre.code code { background: none; padding: 0; font-size: inherit; }
 
 /* Code inside RTL prose stays LTR and never reorders the sentence around it. */
 [dir="rtl"] .prose code, [dir="rtl"] .tbl code { direction: ltr; unicode-bidi: isolate; }
+
+/* ---- Symbol index ---- */
+.sym-kind {
+  display: inline-block;
+  padding-inline: 6px;
+  border-radius: var(--t-radius-xs);
+  font-size: 11px;
+  line-height: 17px;
+  font-weight: 600;
+  vertical-align: 2px;
+  white-space: nowrap;
+  background: var(--t-bg-subtle);
+  color: var(--t-fg-secondary);
+}
+.sym-kind[data-kind="variant"] { background: var(--t-status-positive-bg); color: var(--t-status-positive-fg); }
+.sym-kind[data-kind="state"]   { background: var(--t-status-info-bg);     color: var(--t-status-info-fg); }
+.sym-kind[data-kind="asset"]   { background: var(--t-status-guarantee-bg); color: var(--t-status-guarantee-fg); }
+#symTable td code { white-space: normal; word-break: break-word; }
+#symTable .sym-group th {
+  padding-block: 14px 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t-fg-default);
+  border-block-end: var(--t-border-thin) solid var(--t-border-subtle);
+}

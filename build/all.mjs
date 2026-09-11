@@ -10,6 +10,7 @@ const steps = [
   ['tokens-build.mjs',   'Tokens → 12 artefacts'],
   ['contrast-check.mjs', 'GATE: WCAG AA contrast'],
   ['validate-css.mjs',   'GATE: every var() resolves'],
+  ['sketch-coverage.mjs','GATE: every Sketch symbol has code'],
   ['css-bundle.mjs',     'Bundle the CSS layer'],
   ['make-map.mjs',       'Specimen map backgrounds'],
   ['mcp-build.mjs',      'MCP server data'],

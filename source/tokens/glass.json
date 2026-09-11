@@ -1,10 +1,10 @@
 {
-  "$description": "Torob Glass. Thin, not thick. Extracted from the 12 unique glass layer styles in Torob Tokens.sketch. The blur value is the one addition — the source had none.",
+  "$description": "Torob Glass. Thin, not thick. Extracted from the 12 unique glass layer styles in Torob Tokens.sketch, background blur included.",
   "glass": {
     "blur": {
       "$type": "dimension",
-      "$value": "16px",
-      "$description": "[NEW] Apple uses 50–80px. This is a quarter of that: enough to separate figure from ground, not enough to become the subject. Set to 0px to render exactly as designed in Sketch."
+      "$value": "15px",
+      "$description": "Measured: every glass layer style in the source carries a background blur of 15. Apple uses 50–80px, so this is a quarter of that — enough to separate figure from ground, not enough to become the subject. Sketch's blur radius and CSS backdrop-filter are not the same unit, but at this size the difference is below perception."
     },
     "saturate": {
       "$type": "number",

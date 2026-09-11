@@ -75,18 +75,28 @@
 .t-tab[aria-selected="true"]::after { scale: 1 1; }
 .t-tab__count { margin-inline-start: var(--t-space-1); font-variant-numeric: tabular-nums; color: var(--t-fg-secondary); font-weight: var(--t-font-weight-medium); }
 
-/* ---- FilterChip ---- */
+/* ---- FilterChip  ← Filter/Cell/Cell · /Icon · /Icon+Chevron ----
+
+   The layer style "Glass - Light - Filters" belongs to the CHIP, not to the
+   bar behind it: 30% white, a 1px white rim and two micro-shadows — one
+   lifting from above, one settling below. The bar itself is transparent.
+
+   Padding is asymmetric and deliberately so: 12 at the inline start, 8 at the
+   end. A trailing chevron already carries its own optical margin, so an even
+   12/12 reads as a gap on the closing side. */
 .t-chip {
   display: inline-flex; align-items: center; gap: var(--t-space-1);
   block-size: var(--t-size-control-md);
-  padding-inline: var(--t-space-3);
-  border: var(--t-border-thin) solid var(--t-glass-border);
+  padding-inline-start: var(--t-space-3);
+  padding-inline-end: var(--t-space-2);
+  border: var(--t-border-thin) solid var(--t-glass-filters-border);
   border-radius: var(--t-radius-md);
-  background: var(--t-glass-fill);
+  background: var(--t-glass-filters-fill);
+  box-shadow: var(--t-glass-filters-shadow);
   backdrop-filter: blur(var(--t-glass-blur));
   -webkit-backdrop-filter: blur(var(--t-glass-blur));
-  font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12);
-  font-weight: var(--t-font-weight-bold);
+  font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14);
+  font-weight: var(--t-font-weight-medium);
   color: var(--t-fg-default);
   white-space: nowrap; cursor: pointer;
   transition: background-color var(--t-duration-micro) var(--t-easing-out), border-color var(--t-duration-micro) var(--t-easing-out);
@@ -100,20 +110,44 @@
 .t-chip__count { color: var(--t-fg-secondary); font-variant-numeric: tabular-nums; }
 .t-chip .t-icon { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); }
 
-/* ---- FilterBar ---- */
+/* ---- FilterBar  ← Filter/Filter ----
+
+   774×32 in the kit: one scrolling row of chips, 8px apart, over nothing.
+   The bar has no fill of its own — putting glass here too would stack a
+   backdrop-filter inside a backdrop-filter, which costs a compositing layer
+   per chip and blurs the blur. Only the pinned variant gets a surface, and it
+   gets an opaque-ish one for the same reason. */
 .t-filter-bar {
   display: flex; align-items: center; gap: var(--t-space-2);
-  padding: var(--t-space-2) var(--t-space-4);
+  padding-block: var(--t-space-2);
+  padding-inline: var(--t-space-4);
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
   scrollbar-width: none;
-  background: var(--t-glass-filters-fill);
-  border-block-end: var(--t-border-thin) solid var(--t-glass-filters-border);
-  box-shadow: var(--t-glass-filters-shadow);
-  backdrop-filter: blur(var(--t-glass-blur));
-  -webkit-backdrop-filter: blur(var(--t-glass-blur));
+  scroll-padding-inline: var(--t-space-4);
 }
 .t-filter-bar::-webkit-scrollbar { display: none; }
+.t-filter-bar > * { flex: none; }
 .t-filter-bar__lead { flex: none; }
+
+/* A hairline that groups facets — 1×25 in the kit, so it stops short of the
+   chip edges rather than spanning the full row height. */
+.t-filter-bar__divider {
+  flex: none;
+  inline-size: var(--t-border-thin);
+  block-size: 25px;
+  background: var(--t-border-default);
+}
+
+/* Pinned under a header. Opaque, because this is the one surface the chips
+   scroll behind. */
+.t-filter-bar--sticky {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--t-z-sticky, 20);
+  background: var(--t-bg-canvas);
+  border-block-end: var(--t-border-thin) solid var(--t-border-subtle);
+}
 
 /* ---- PageHeader ---- */
 .t-page-header {
