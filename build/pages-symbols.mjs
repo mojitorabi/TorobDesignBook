@@ -9,6 +9,8 @@ const toFa = n => String(n).replace(/[0-9]/g, d => FA[+d]);
 /* A size is a bidi-neutral run: dropped into a Persian sentence the browser
    reorders it and ۳۴۳×۷۲ is read back as ۷۲×۳۴۳. */
 const dim = (w, h) => `<span class="t-bidi" dir="ltr">${toFa(w)}×${toFa(h)}</span>`;
+/* num() emits markup, so it is for text nodes only — never an attribute.
+   Inside placeholder="…" the span would close the tag and break the input. */
 const num = n => `<span class="t-bidi" dir="ltr">${toFa(n)}</span>`;
 
 /* The family a symbol belongs to, from its own name. */
@@ -91,7 +93,7 @@ export function symbolsPage(components) {
   body += S('index', 'فهرست کامل', `<div class="wide">
     <div class="site-search" style="max-inline-size:none;margin-block-end:12px">
       <svg class="site-search__icon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M15,14.3L10.7,10c1.9-2.3,1.6-5.8-0.7-7.7S4.2,0.7,2.3,3S0.7,8.8,3,10.7c2,1.7,5,1.7,7,0l4.3,4.3L15,14.3z M2,6.5	C2,4,4,2,6.5,2S11,4,11,6.5S9,11,6.5,11S2,9,2,6.5z"/></svg>
-      <input id="symSearch" type="search" placeholder="جست‌وجو در ${num(spec.unique)} سیمبل…" autocomplete="off" aria-controls="symTable">
+      <input id="symSearch" type="search" placeholder="جست‌وجو در ${toFa(spec.unique)} سیمبل…" autocomplete="off" aria-controls="symTable">
     </div>
     <div class="tbl-wrap"><table class="tbl" id="symTable">
       <thead><tr>
