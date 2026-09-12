@@ -553,3 +553,82 @@ main[data-sym-mode="diff"] .sym__stage { background-image: none; }
 .matrix__label code { font-size: 11.5px; color: var(--t-fg-default); }
 .matrix__label span { font-size: 11px; }
 @media (max-width: 520px) { .matrix { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); } }
+
+/* The hero specimen sits above the prose and carries more air than the
+   examples below it: it is the first answer to "what is this". */
+.spec-hero { margin-block: 8px 30px; }
+.spec-hero .spec__stage { padding-block: 44px; }
+
+/* ---- Anatomy ----
+   The live component with numbered callouts on its parts, and a legend that
+   outlines a part when you point at its row. The drawing is the component
+   itself, so it can never describe a version that no longer exists. */
+.anatomy {
+  position: relative;
+  display: grid; place-items: center;
+  padding: 56px 40px;
+  border: 1px solid var(--t-border-subtle); border-radius: 12px;
+  background-color: var(--t-bg-canvas);
+  background-image: radial-gradient(var(--t-border-subtle) 1px, transparent 1px);
+  background-size: 12px 12px;
+  margin-block: 18px 14px;
+  overflow: hidden;
+}
+.anatomy__stage { position: relative; max-inline-size: 100%; }
+.anatomy__pin {
+  position: absolute; z-index: 2;
+  inline-size: 20px; block-size: 20px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--t-action-blue-bg); color: var(--t-action-blue-fg);
+  font-size: 11px; font-weight: 700; line-height: 1;
+  box-shadow: 0 0 0 2px var(--t-bg-canvas);
+  transform: translate(50%, -50%);
+  pointer-events: none;
+}
+.anatomy__outline {
+  position: absolute; z-index: 1;
+  border: 1px dashed var(--t-border-selected); border-radius: 4px;
+  pointer-events: none; opacity: 0.4;
+  transition: opacity 120ms var(--site-ease), background-color 120ms var(--site-ease);
+}
+.anatomy__outline[data-on="true"] {
+  opacity: 1;
+  background: color-mix(in srgb, var(--t-border-selected) 12%, transparent);
+}
+.anatomy__legend { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; }
+.anatomy__row {
+  display: flex; gap: 11px; align-items: baseline;
+  padding: 9px 12px; border-radius: 9px;
+  font-size: 14px; line-height: 1.75; color: var(--t-fg-secondary);
+}
+.anatomy__row[data-part]:hover, .anatomy__row[data-part][data-on="true"] { background: var(--t-bg-subtle); }
+.anatomy__row strong { color: var(--t-fg-default); }
+.anatomy__num {
+  flex: none; inline-size: 20px; block-size: 20px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--t-action-blue-bg); color: var(--t-action-blue-fg);
+  font-size: 11px; font-weight: 700;
+}
+.anatomy__num[data-empty="true"] { background: var(--t-bg-subtle); color: var(--t-fg-secondary); }
+
+/* ---- Specification tables ---- */
+.spec-table { margin-block: 20px; }
+.spec-table__head {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  padding-block-end: 6px; font-size: 14px;
+}
+.spec-table__head code { font-size: 12px; color: var(--t-fg-secondary); }
+.spec-table .tbl { margin-block: 0; }
+.spec-table .tbl td:first-child { inline-size: 30%; }
+
+/* ---- Related components ---- */
+.related { display: grid; gap: 9px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); margin-block: 16px; }
+.related__card {
+  display: block; padding: 13px 15px;
+  border: 1px solid var(--t-border-subtle); border-radius: 11px;
+  background: var(--t-bg-fog); text-decoration: none; color: inherit;
+  transition: border-color 140ms var(--site-ease);
+}
+.related__card:hover { border-color: var(--t-border-control); }
+.related__name { font-weight: 700; font-size: 14px; }
+.related__sum { font-size: 12.5px; color: var(--t-fg-secondary); line-height: 1.6; margin-block-start: 2px; }

@@ -19,6 +19,7 @@ const steps = [
   ['sketch-coverage.mjs','GATE: every Sketch symbol has code'],
   ['css-bundle.mjs',     'Bundle the CSS layer'],
   ['css-map.mjs',        'GATE: every interactive component has a full state set'],
+  ['css-specs.mjs',      'Redlines read from the stylesheet'],
   ['make-map.mjs',       'Specimen map backgrounds'],
   ['mcp-build.mjs',      'MCP server data'],
   ['react-build.mjs',    'React package'],

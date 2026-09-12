@@ -14,13 +14,17 @@ import { symbolsPage } from './pages-symbols.mjs';
 import { simplePages } from './pages-simple.mjs';
 import { patternsPages, sellerPanelPage } from './pages-patterns.mjs';
 import { layout, specimen, section, table, guidance, esc, slugToPath, anchor,
-         extractElement, stateMatrix, modifierMatrix, STATE_FA } from './site-lib.mjs';
+         extractElement, stateMatrix, modifierMatrix, STATE_FA, dedupeIds, toFa,
+         bestForSelectors } from './site-lib.mjs';
 import { loadComponents } from './site-lib.mjs';
 
 /* What the stylesheet actually supports, read from the stylesheet.
    The matrices on every component page are drawn from this, so documentation
    cannot claim a variant the CSS does not have, or miss one it does. */
 const CSS_MAP = JSON.parse(readFileSync(join(ROOT, 'source', 'generated', 'css-map.json'), 'utf8'));
+/* The component's own declarations, grouped by part — a redline table that is
+   read from the stylesheet instead of typed next to it. */
+const SPECS = JSON.parse(readFileSync(join(ROOT, 'source', 'generated', 'specs.json'), 'utf8'));
 const SIZE_MODS = ['xs', 'sm', 'md', 'lg', 'xl'];
 const STATE_ORDER = ['default', 'hover', 'focus', 'active', 'selected', 'disabled', 'loading', 'error'];
 
@@ -122,23 +126,29 @@ function componentPage(c) {
     <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-block-end:14px">
       <span class="status-pill status-pill--${c.status}">${c.status === 'revised' ? UI_FA.statusRevised : c.status === 'new' ? UI_FA.statusNew : UI_FA.statusStable}</span>
       <code style="font-size:12px">&lt;${c.name} /&gt;</code>
-      <button class="site-tool copy-btn" data-copy-text="${esc(c.classes ? c.classes[0] : 't-' + c.slug)}">${UI_FA.copyClass}</button>
+      <button class="site-tool copy-btn" data-copy-text="${esc(c.root ?? 't-' + c.slug)}">${UI_FA.copyClass}</button>
     </div>
     ${legacyBlock(c.legacy)}
   </div>`;
 
+  /* The component before the prose about the component. A reader who came to
+     see what a thing looks like should not have to scroll past an essay. */
+  const [hero, ...rest] = c.specimens ?? [];
+  if (hero) body += `<div class="spec-hero">${specimen({ ...hero, react: undefined })}</div>`;
+
   if (c.description?.length) body += `<div class="prose">${c.description.map(p => `<p>${p}</p>`).join('')}</div>`;
 
-  if (c.specimens?.length) {
-    body += S('examples', UI_FA.examples,
-      c.specimens.map(s => specimen({ ...s, react: undefined })).join(''));
-  }
   if (c.use || c.avoid) body += S('usage', UI_FA.usage, guidance(c.use ?? [], c.avoid ?? []));
+  if (rest.length) body += S('examples', UI_FA.examples, rest.map(s => specimen({ ...s, react: undefined })).join(''));
 
   /* Variants, sizes and states — rendered, not described. */
   const map = c.root ? CSS_MAP[c.root] : null;
-  const sample = map && c.specimens?.length
-    ? extractElement(c.specimens.map(sp => sp.html).join('\n'), c.root) : null;
+  const allHtml = (c.specimens ?? []).map(sp => sp.html).join('\n');
+  const sample = map && c.specimens?.length ? extractElement(allHtml, c.root) : null;
+  /* The diagram wants the instance that shows the most of the component, which
+     is rarely the first one on the page. */
+  const anatomySample = c.anatomySample ?? (c.root && c.specimens?.length
+    ? bestForSelectors(allHtml, c.root, (c.anatomy ?? []).map(a => a[2]).filter(Boolean)) : null);
   /* A shell or a sheet fills the page; a matrix of those is a matrix of
      screenshots, which helps nobody. Everything else gets rendered. */
   const NO_MATRIX = ['t-shell', 't-sheet', 't-modal', 't-popover'];
@@ -156,7 +166,43 @@ function componentPage(c) {
       `<div class="prose"><p>هر حالت با <code>data-state</code> هم قابل اعمال است، نه فقط با اشاره‌گر؛ برای همین می‌شود آن را در مستندات، در تست تصویری و در دیف پیکسلی دید.</p></div>`
       + stateMatrix(sample, states));
   }
-  if (c.anatomy?.length) body += S('anatomy', UI_FA.anatomy, table(['بخش', 'توضیح'], c.anatomy.map(([a, b]) => [`<strong>${esc(a)}</strong>`, b])));
+  if (c.anatomy?.length) {
+    /* An annotated drawing beats a table of part names: the number in the
+       legend sits on the part it names, and pointing at a row outlines it.
+       The drawing is the live component, so it cannot go out of date. */
+    const marked = c.anatomy.filter(a => a[2]);
+    const legend = c.anatomy.map(([name, desc, sel], i) => {
+      const n = sel ? marked.findIndex(m => m[2] === sel) + 1 : 0;
+      return `<li class="anatomy__row"${sel ? ` data-part="${esc(sel)}"` : ''}>
+        <span class="anatomy__num"${n ? '' : ' data-empty="true"'}>${n ? toFa(n) : '·'}</span>
+        <span><strong>${esc(name)}</strong> ${desc}</span>
+      </li>`;
+    }).join('');
+    const diagram = (marked.length && anatomySample) ? `<div class="anatomy" data-anatomy='${esc(JSON.stringify(marked.map(m => m[2])))}'>
+      <div class="anatomy__stage" dir="rtl" lang="fa">${dedupeIds(anatomySample, 'an')}</div>
+    </div>` : '';
+    body += S('anatomy', UI_FA.anatomy, diagram + `<ol class="anatomy__legend">${legend}</ol>`);
+  }
+  /* Specification. Every value below is the declaration the stylesheet makes
+     for that part, with the token it comes from — nothing is retyped here. */
+  if (c.root) {
+    const blocks = (c.anatomy ?? []).map(([name, , sel]) => {
+      if (!sel) return '';
+      const cls = sel === ':root' ? c.root : (/^\.([a-z0-9_-]+)$/.exec(sel)?.[1]);
+      const rows = cls && SPECS[cls];
+      if (!rows?.length) return '';
+      return `<div class="spec-table">
+        <div class="spec-table__head"><strong>${esc(name)}</strong><code>${esc(sel === ':root' ? '.' + c.root : sel)}</code></div>
+        ${table(['ویژگی', 'توکن', 'مقدار'], rows.map(r => [
+          esc(r.fa),
+          r.tokens.length ? r.tokens.map(t => `<code>${esc(t)}</code>`).join(' ') : `<code>${esc(r.value)}</code>`,
+          esc(r.resolved.join(' / ') || (r.tokens.length ? '—' : r.value)),
+        ]))}
+      </div>`;
+    }).filter(Boolean).join('');
+    if (blocks) body += S('specs', 'مشخصات', `<div class="prose"><p>مقادیر زیر مستقیماً از استایل‌شیت خوانده می‌شوند، نه از یادداشتی کنار آن. هر جا توکنی هست، نام توکن آمده و مقدارش در پوستهٔ روشن.</p></div>${blocks}`);
+  }
+
   if (c.props?.length) body += S('props', UI_FA.props, table(['پراپ', 'نوع', 'پیش‌فرض', 'توضیح'],
     c.props.map(([n, t, d, desc]) => [`<code>${esc(n)}</code>`, `<code style="color:var(--t-fg-link)">${esc(t)}</code>`, `<code>${esc(d)}</code>`, desc])));
   if (c.react) body += S('react', 'React', `<div class="spec" data-spec>
@@ -167,6 +213,15 @@ function componentPage(c) {
     </div>`);
   if (c.a11y?.length) body += S('a11y', UI_FA.a11y, `<ul class="prose" style="max-inline-size:74ch">${c.a11y.map(a => `<li>${a}</li>`).join('')}</ul>`);
   if (c.responsive) body += S('responsive', UI_FA.responsive, `<div class="prose"><p>${c.responsive}</p></div>`);
+
+  /* Where to look next. Everything in the same group solves a neighbouring
+     problem, which is the question a reader has at the end of a page. */
+  const siblings = components.filter(o => o.group === c.group && o.name !== c.name).slice(0, 6);
+  if (siblings.length) body += S('related', 'کامپوننت‌های مرتبط',
+    `<div class="related">${siblings.map(o => `<a href="${o.slug}.html" class="related__card">
+      <div class="related__name">${esc(o.name)}</div>
+      <div class="related__sum">${esc(o.summary)}</div>
+    </a>`).join('')}</div>`);
 
   const { prev, next } = around(`components/${c.slug}`);
   return layout({

@@ -9,6 +9,10 @@ export const esc = s => String(s ?? '')
 /** Escape for a <pre><code> block. Content is already HTML-ish source. */
 export const codeEsc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+/** Persian digits, with the ٬ thousands separator this product uses. */
+const FA_DIGITS = '۰۱۲۳۴۵۶۷۸۹';
+export const toFa = n => String(n).replace(/[0-9]/g, d => FA_DIGITS[+d]).replace(/,/g, '٬');
+
 export const slugToPath = slug => slug === 'index' ? 'index.html' : `${slug}.html`;
 export const depthOf = slug => slug === 'index' ? 0 : slug.split('/').length - 1;
 export const rel = (slug, target) => '../'.repeat(depthOf(slug)) + target;
@@ -248,6 +252,49 @@ export function extractElement(html, cls) {
 export function withAttr(fragment, name, value) {
   const stripped = fragment.replace(new RegExp(`^(<[a-z0-9-]+)([^>]*?)\\s${name}="[^"]*"`, 'i'), '$1$2');
   return stripped.replace(/^(<[a-z0-9-]+)/i, `$1 ${name}="${value}"`);
+}
+
+
+/** Every element that carries `cls`, in document order. */
+export function extractAll(html, cls) {
+  const out = [];
+  let rest = html, offset = 0;
+  for (let guard = 0; guard < 50; guard++) {
+    const el = extractElement(rest, cls);
+    if (!el) break;
+    out.push(el);
+    const at = rest.indexOf(el);
+    rest = rest.slice(at + el.length);
+  }
+  return out;
+}
+
+/** The instance that shows the most of the component: the one a diagram wants. */
+export function richestSample(html, root) {
+  const all = extractAll(html, root);
+  if (!all.length) return null;
+  const score = el => new Set([...el.matchAll(new RegExp(`${root}__([a-z0-9-]+)`, 'g'))].map(m => m[1])).size;
+  return all.slice().sort((a, b) => score(b) - score(a) || a.length - b.length)[0];
+}
+
+
+/** Of every instance of `root`, the one that shows the most of `selectors`.
+    A selector counts once, when every class it requires is present; the
+    :not() part is what it must NOT have, so it is dropped before matching. */
+export function bestForSelectors(html, root, selectors) {
+  const all = extractAll(html, root);
+  if (!all.length) return null;
+  const needs = selectors.map(sel => {
+    const bare = String(sel).replace(/:not\([^)]*\)/g, '');
+    return [...bare.matchAll(/\.([a-z0-9_-]+)/g)].map(m => m[1]);
+  });
+  const score = el => needs.filter(cls => cls.length && cls.every(c => new RegExp(`\\b${c}\\b`).test(el))).length;
+  /* Two instances can satisfy the same selectors while one of them shows more:
+     a button with a leading icon AND a chevron matches no more selectors than
+     one with a chevron alone, but it is the better drawing. Break the tie on
+     how many of those classes actually appear, then prefer the smaller one. */
+  const depth = el => needs.flat().reduce((n, c) => n + (el.match(new RegExp(`\\b${c}\\b`, 'g'))?.length ?? 0), 0);
+  return all.slice().sort((a, b) => score(b) - score(a) || depth(b) - depth(a) || a.length - b.length)[0];
 }
 
 export const STATE_FA = {

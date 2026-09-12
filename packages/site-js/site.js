@@ -165,6 +165,56 @@
   const remarkScrollers = () => { clearTimeout(scrollTimer); scrollTimer = setTimeout(() => markScrollers(), 120); };
   addEventListener('resize', remarkScrollers);
 
+  /* ---------- Anatomy diagrams ----------
+     The callout numbers are placed from the rendered component, not from a
+     drawing, so they land on the real parts at the real size and follow any
+     change to the CSS. Pointing at a legend row outlines its part. */
+  function drawAnatomy(box) {
+    const stage = $('.anatomy__stage', box);
+    let sels;
+    try { sels = JSON.parse(box.dataset.anatomy || '[]'); } catch (e) { return; }
+    $$('.anatomy__pin, .anatomy__outline', box).forEach(el => el.remove());
+    const base = stage.getBoundingClientRect();
+    const taken = [];
+    sels.forEach((sel, i) => {
+      const el = sel === ':root' ? stage.firstElementChild : $(sel, stage);
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const pin = document.createElement('span');
+      pin.className = 'anatomy__pin';
+      pin.textContent = String(i + 1).replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d]);
+      /* The root's number hangs off the outer corner; an inner part's number
+         sits in the space just above it, so it points at the part without
+         covering it. Two parts that share a corner step further out. */
+      const isRoot = sel === ':root';
+      const x = base.right - r.right - (isRoot ? 6 : 0);
+      let y = r.top - base.top - (isRoot ? 0 : 13);
+      while (taken.some(t => Math.abs(t.x - x) < 18 && Math.abs(t.y - y) < 18)) y -= 16;
+      taken.push({ x, y });
+      pin.style.insetInlineStart = x + 'px';
+      pin.style.insetBlockStart = y + 'px';
+      const out = document.createElement('span');
+      out.className = 'anatomy__outline';
+      out.dataset.for = sel;
+      out.style.insetInlineStart = (base.right - r.right - 3) + 'px';
+      out.style.insetBlockStart = (r.top - base.top - 3) + 'px';
+      out.style.inlineSize = (r.width + 6) + 'px';
+      out.style.blockSize = (r.height + 6) + 'px';
+      stage.append(out, pin);
+    });
+  }
+  $$('.anatomy').forEach(box => {
+    drawAnatomy(box);
+    const legend = box.parentElement && $('.anatomy__legend', box.parentElement);
+    if (!legend) return;
+    legend.addEventListener('pointerover', e => {
+      const row = e.target.closest('.anatomy__row[data-part]');
+      $$('.anatomy__outline', box).forEach(o => { o.dataset.on = String(!!row && o.dataset.for === row.dataset.part); });
+    });
+    legend.addEventListener('pointerleave', () => $$('.anatomy__outline', box).forEach(o => { o.dataset.on = 'false'; }));
+  });
+  addEventListener('resize', () => { clearTimeout(window.__anatomyT); window.__anatomyT = setTimeout(() => $$('.anatomy').forEach(drawAnatomy), 140); });
+
   /* ---------- Copy ---------- */
   function flash(btn, text) {
     const was = btn.textContent;
