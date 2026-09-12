@@ -297,7 +297,7 @@
       "$description": "خود عدد قیمت"
     },
     "price-from": {
-      "$value": "{color.sky.500}",
+      "$value": "{color.sky.600}",
       "$description": "پیشوند «از …» و خط تعداد فروشنده"
     },
     "discount": {
@@ -308,7 +308,7 @@
       "$description": "آگهی — یک قرص تخت با برچسب سفید. یک افشا که نباید با تخفیف اشتباه گرفته شود."
     },
     "oos": {
-      "$value": "{color.sky.500}",
+      "$value": "{color.sky.600}",
       "$description": "ناموجود. عمداً خاکستری است نه قرمز؛ نبود کالا خطا نیست."
     },
     "open": {
@@ -316,14 +316,14 @@
       "$description": "باز الان"
     },
     "closed": {
-      "$value": "{color.sky.500}"
+      "$value": "{color.sky.600}"
     },
     "official": {
       "$value": "{color.blue.500}",
       "$description": "نمایندگی رسمی"
     },
     "distance": {
-      "$value": "{color.sky.500}"
+      "$value": "{color.sky.600}"
     },
     "kalabarg-bg": {
       "$value": "{color.yellow.50}",
@@ -383,6 +383,10 @@
   "map": {
     "$type": "color",
     "$description": "لایهٔ نقشهٔ «خرید از اطراف»",
+    "pill-fg": {
+      "$value": "{color.blue.500}",
+      "$description": "متن و حلقهٔ قرص قیمت روی نقشه. در تم‌های تیره Blue 300 است؛ Blue 500 روی زمینهٔ تیره ۲٫۷ به ۱ می‌دهد و AA را رد می‌کند."
+    },
     "poi": {
       "$value": "{color.blue.500}",
       "$description": "A store marker (POI/Normal). Blue: a place you can go, not a price alarm."

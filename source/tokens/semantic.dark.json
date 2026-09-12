@@ -363,6 +363,10 @@
   },
   "map": {
     "$type": "color",
+    "pill-fg": {
+      "$value": "{color.blue.300}",
+      "$description": "متن و حلقهٔ قرص قیمت روی نقشه. در تم‌های تیره Blue 300 است؛ Blue 500 روی زمینهٔ تیره ۲٫۷ به ۱ می‌دهد و AA را رد می‌کند."
+    },
     "poi": {
       "$value": "{color.blue.500}",
       "$description": "A store marker (POI/Normal). Blue: a place you can go, not a price alarm."

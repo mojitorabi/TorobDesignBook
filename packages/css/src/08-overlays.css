@@ -43,15 +43,17 @@
   display: flex; flex-direction: column;
   border-start-start-radius: var(--t-radius-xl);
   border-start-end-radius: var(--t-radius-xl);
-  background: var(--t-glass-list-fill);
+  /* A sheet carries body text over a dimmed backdrop, so its surface is the
+     opaque glass fallback tinted with the list fill: the same colour, but a
+     contrast you can predict. Glass stays on bars and filter rows, where it
+     covers no reading text. */
+  background-color: var(--t-glass-fallback);
+  background-image: linear-gradient(var(--t-glass-list-fill), var(--t-glass-list-fill));
   border-block-start: var(--t-border-thin) solid var(--t-glass-border);
-  backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
-  -webkit-backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
   box-shadow: var(--t-elevation-3);
   padding-block-end: env(safe-area-inset-bottom);
   animation: t-sheet-in var(--t-duration-sheet) var(--t-easing-out);
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .t-sheet { background: var(--t-glass-list-fill); } }
 @keyframes t-sheet-in { from { transform: translateY(100%); } }
 .t-sheet[data-leaving="true"] { animation: t-sheet-out var(--t-duration-standard) var(--t-easing-in) forwards; }
 @keyframes t-sheet-out { to { transform: translateY(100%); } }

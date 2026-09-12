@@ -109,9 +109,13 @@ export function layout({ slug, title, description, nav, components, body, toc = 
 
   <div class="site-search" role="search">
     <svg class="site-search__icon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M7 2a5 5 0 1 0 3.1 8.9l3.2 3.3 1.1-1.1-3.3-3.2A5 5 0 0 0 7 2zm0 1.4a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2z"/></svg>
-    <input id="siteSearch" type="search" placeholder="${esc(UI_FA.search)}" autocomplete="off" aria-label="${esc(UI_FA.searchLabel)}" aria-controls="siteResults" aria-expanded="false">
+    <input id="siteSearch" type="search" placeholder="${esc(UI_FA.search)}" autocomplete="off" aria-label="${esc(UI_FA.searchLabel)}" role="combobox" aria-autocomplete="list" aria-controls="siteResults" aria-expanded="false">
     <span class="site-search__kbd" aria-hidden="true"><kbd>/</kbd></span>
-    <div class="site-results" id="siteResults" role="listbox" hidden></div>
+    <div class="site-results" id="siteResultsBox" hidden>
+      <div id="siteResults" role="listbox" aria-label="${esc(UI_FA.searchLabel)}"></div>
+      <p class="site-results__empty" id="siteResultsEmpty" hidden></p>
+    </div>
+    <span class="t-visually-hidden" role="status" id="siteResultsStatus"></span>
   </div>
 
   <div class="site-bar__tools">

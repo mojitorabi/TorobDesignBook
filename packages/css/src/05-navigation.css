@@ -72,6 +72,9 @@
   block-size: var(--t-size-control-md);             /* 32 */
   padding-inline: var(--t-space-2);
   border: 0;
+  /* Clearable chip: the pill is a plain box holding two separate buttons —
+     choose the value, or clear it. A button inside a button is not a control
+     anyone can operate. Padding then belongs to the action, not the pill. */
   border-radius: var(--t-radius-md);
   background-color: var(--_bg);
   background-image: var(--_bg-image);
@@ -84,9 +87,18 @@
   -webkit-backdrop-filter: blur(var(--t-glass-blur));
   transition: background-color var(--t-duration-micro) var(--t-easing-out), box-shadow var(--t-duration-micro) var(--t-easing-out), color var(--t-duration-micro) var(--t-easing-out);
 }
-.t-choice:has(> .t-icon) { font-size: var(--t-font-size-14); }
+.t-choice:has(> .t-icon), .t-choice__action:has(> .t-icon) { font-size: var(--t-font-size-14); }
 .t-choice .t-icon { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); flex: none; }
-.t-choice[aria-checked="true"], .t-choice[aria-pressed="true"], .t-choice[aria-selected="true"] {
+.t-choice:has(> .t-choice__action) { padding-inline: 0; gap: 0; }
+.t-choice__action {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--t-space-1);
+  block-size: 100%; padding-inline: var(--t-space-2);
+  border: 0; background: none; color: inherit; font: inherit; cursor: pointer;
+  border-radius: inherit;
+}
+.t-choice:has(> .t-choice__clear) .t-choice__action { padding-inline-end: 0; }
+.t-choice[aria-checked="true"], .t-choice[aria-pressed="true"], .t-choice[aria-selected="true"],
+.t-choice:has(> .t-choice__action[aria-pressed="true"]) {
   --_bg: var(--t-action-blue-bg);
   --_bg-image: var(--t-action-blue-bg-gradient);
   --_fg: var(--t-action-blue-fg);
@@ -94,7 +106,19 @@
   --_lift: 0 2px 2px 0 rgb(51 51 51 / 0.2), 0 4px 12px 0 rgb(51 51 51 / 0.2);
   backdrop-filter: none;
 }
-.t-choice__clear { display: inline-grid; place-items: center; inline-size: 16px; block-size: 16px; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; }
+/* 24x24 hit area (WCAG 2.5.8) around a 16px glyph; the 4px of slack on each
+   side is pulled back with margin so the pill keeps its Sketch width. */
+.t-choice__clear {
+  position: relative;
+  display: inline-grid; place-items: center;
+  inline-size: var(--t-size-control-xs); block-size: var(--t-size-control-xs);
+  margin-inline-end: var(--t-space-1);
+  padding: 0; border: 0; background: none; color: inherit; cursor: pointer;
+  border-radius: var(--t-radius-sm);
+}
+/* Grows to 32x44 for thumbs. It stops 4px short on the inline axis so it never
+   reaches into the next chip — the row's gap is 8. */
+.t-choice__clear::after { content: ""; position: absolute; inset-block: -10px; inset-inline: -4px; }
 
 /* ---- ChipGroup  ← Tab/Selected · the Segmented Controls row ----
    One scrolling row, 8px apart, 16px above and below, flush to the inline

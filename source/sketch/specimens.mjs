@@ -118,10 +118,10 @@ add('FA29F459-8F18-478C-BF57-FF012D84B665', `<div class="t-filter-bar t-filter-b
 add('3CBA7995-8CC1-40A7-9070-2F63F75BF35C', `<button class="t-choice" aria-pressed="false">همه‌ی نتایج</button>`);
 add('3719A070-266C-4F80-8E48-58DF1325D168', `<button class="t-choice" aria-pressed="true">کافه</button>`);
 add('3CF4AA95-CF8A-40F0-B63A-995669205927', `<button class="t-choice" aria-pressed="false">${icon('location', 16)}تهران</button>`);
-add('370B044C-7D5B-4C2A-AA43-709C25C86ED5', `<span class="t-choice" aria-pressed="true" role="button" tabindex="0">${icon('location', 16)}تهران<span class="t-choice__clear" aria-label="حذف تهران">${icon('close', 16)}</span></span>`);
+add('370B044C-7D5B-4C2A-AA43-709C25C86ED5', `<span class="t-choice"><button class="t-choice__action" aria-pressed="true">${icon('location', 16)}تهران</button><button class="t-choice__clear" aria-label="حذف تهران">${icon('close', 16)}</button></span>`);
 const row = (city) => `<div class="t-chip-group" role="group" aria-label="دسته‌ها" style="padding-inline:0 12px">
   <button class="t-choice" aria-pressed="false">همه‌ی نتایج</button>
-  ${city ? `<span class="t-choice" aria-pressed="true" role="button" tabindex="0">${icon('location', 16)}تهران<span class="t-choice__clear" aria-label="حذف تهران">${icon('close', 16)}</span></span>` : `<button class="t-choice" aria-pressed="true">کافه</button>`}
+  ${city ? `<span class="t-choice"><button class="t-choice__action" aria-pressed="true">${icon('location', 16)}تهران</button><button class="t-choice__clear" aria-label="حذف تهران">${icon('close', 16)}</button></span>` : `<button class="t-choice" aria-pressed="true">کافه</button>`}
   <button class="t-choice" aria-pressed="false">موبایل</button>
   <button class="t-choice" aria-pressed="false">رستوران</button>
   <button class="t-choice" aria-pressed="false">گل فروشی</button>

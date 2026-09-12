@@ -421,8 +421,8 @@
  },
  "5808E4E2-B1FC-41F2-8177-39495890277E": {
   "label": "Button/Offline Buy box/Ad",
-  "score": 96.9,
-  "strict": 96,
+  "score": 96.6,
+  "strict": 95.8,
   "sketch": [
    343,
    72
@@ -785,7 +785,7 @@
  },
  "641CDD78-38C5-4142-A597-74BBABBB77D6": {
   "label": "Product Card/Normal",
-  "score": 91.7,
+  "score": 91.6,
   "strict": 85.1,
   "sketch": [
    153,

@@ -10,10 +10,11 @@ export function DataTable({ columns, rows, density = 'comfortable', freezeFirst,
       <table className={clsx('t-table', freezeFirst && 't-table--freeze', density === 'compact' && 't-table--compact')}>
         <thead>
           <tr>{columns.map(c => (
-            <th key={c.key} scope="col" className={clsx(c.numeric && 't-num')}>
+            <th key={c.key} scope="col" className={clsx(c.numeric && 't-num')}
+                aria-sort={c.sortable ? (sort?.key === c.key ? sort.direction : 'none') : undefined}>
+              {/* aria-sort belongs to the column header, not to the button inside it */}
               {c.sortable
-                ? <button className="t-table__sort" onClick={() => onSort(c.key)}
-                          aria-sort={sort?.key === c.key ? sort.direction : 'none'}>
+                ? <button className="t-table__sort" onClick={() => onSort(c.key)}>
                     {c.label}<SortIcon />
                   </button>
                 : c.label}

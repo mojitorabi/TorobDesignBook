@@ -11,12 +11,13 @@ export function ChoiceChips({ options, value, onChange, onClear, label }) {
       {options.map(o => {
         const on = o.value === value;
         return (
-          <span key={o.value} className="t-choice" role="button" tabIndex={0} aria-pressed={on}
-                onClick={() => onChange(o.value)} onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onChange(o.value)}>
-            {o.icon}{o.label}
+          <span key={o.value} className="t-choice">
+            <button className="t-choice__action" aria-pressed={on} onClick={() => onChange(o.value)}>
+              {o.icon}{o.label}
+            </button>
             {on && onClear && (
               <button className="t-choice__clear" aria-label={`حذف ${o.label}`}
-                      onClick={e => { e.stopPropagation(); onClear(); }}><Close16 className="t-icon" /></button>
+                      onClick={onClear}><Close16 className="t-icon" /></button>
             )}
           </span>
         );

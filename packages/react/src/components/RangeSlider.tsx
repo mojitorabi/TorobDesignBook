@@ -12,7 +12,7 @@ export function RangeSlider({ min, max, value, onChange, step = 1, format = Stri
       <div className="t-range__track">
         <div className="t-range__fill" style={{ insetInlineStart: pct(value[0]) + '%', inlineSize: (pct(value[1]) - pct(value[0])) + '%' }} />
         {value.map((v, i) => (
-          <div key={i} className="t-range__thumb" role="slider" tabIndex={0}
+          <div key={i} className="t-range__thumb" role="slider" aria-label="بیشترین قیمت" tabIndex={0}
                style={{ insetInlineStart: pct(v) + '%' }}
                aria-valuemin={min} aria-valuemax={max} aria-valuenow={v} aria-valuetext={format(v)}
                onKeyDown={e => handleKey(e, i, v, { min, max, step, value, onChange })} />

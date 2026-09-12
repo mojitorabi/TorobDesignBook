@@ -85,7 +85,7 @@ export function patternsPages() {
     <div class="t-page-header__title">فروشگاه‌های اطراف<div class="t-page-header__sub">تهران، ۷۸ مورد</div></div>
     <button class="t-icon-btn t-icon-btn--sm" aria-label="موقعیت من"><svg class="t-icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M4,12.9835a1,1,0,0,0,.6289.9448l9.6015,3.8409,3.8407,9.6019A1,1,0,0,0,19,28h.0162a1.0009,1.0009,0,0,0,.9238-.6582l8-22.0007A1,1,0,0,0,26.658,4.0594l-22,8A1.0011,1.0011,0,0,0,4,12.9835Z"/></svg></button>
   </header>
-  <div style="padding:12px 16px 0"><div class="t-search"><div class="t-input">${I.search}<input class="t-input__el" type="search" placeholder="جستجو در اطراف من"></div></div></div>
+  <div style="padding:12px 16px 0"><div class="t-search"><div class="t-input">${I.search}<input aria-label="جستجو در اطراف من" class="t-input__el" type="search" placeholder="جستجو در اطراف من"></div></div></div>
   <div style="padding:12px 16px 8px;display:flex;justify-content:center">
     <div class="t-segmented" role="radiogroup" aria-label="نمای اطراف">
       <button class="t-segmented__item" role="radio" aria-checked="true">فروشگاه‌ها</button>
@@ -225,7 +225,7 @@ export function patternsPages() {
       ['recent', 'فیلد خالی، جست‌وجوهای اخیر', phone(`
   <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">جستجو</div></header>
   <div style="padding:12px 16px">
-    <div class="t-search" data-state="default"><div class="t-input">${I.search}<input class="t-input__el" type="search" placeholder="جستجو در اطراف من">
+    <div class="t-search" data-state="default"><div class="t-input">${I.search}<input aria-label="جستجو در اطراف من" class="t-input__el" type="search" placeholder="جستجو در اطراف من">
       <span class="t-search__actions">
         <button class="t-icon-btn t-icon-btn--sm t-search__tool" aria-label="جستجوی صوتی"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M23,14v3A7,7,0,0,1,9,17V14H7v3a9,9,0,0,0,8,8.94V28H11v2H21V28H17V25.94A9,9,0,0,0,25,17V14Z"/><path d="M16,22a5,5,0,0,0,5-5V7A5,5,0,0,0,11,7V17A5,5,0,0,0,16,22ZM13,7a3,3,0,0,1,6,0V17a3,3,0,0,1-6,0Z"/></svg></button>
         <button class="t-icon-btn t-icon-btn--sm t-search__tool" aria-label="جستجو با تصویر"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,26H3a1,1,0,0,1-1-1V8A1,1,0,0,1,3,7H9.46l1.71-2.55A1,1,0,0,1,12,4h8a1,1,0,0,1,.83.45L22.54,7H29a1,1,0,0,1,1,1V25A1,1,0,0,1,29,26ZM4,24H28V9H22a1,1,0,0,1-.83-.45L19.46,6H12.54L10.83,8.55A1,1,0,0,1,10,9H4Z"/><path d="M16,22a6,6,0,1,1,6-6A6,6,0,0,1,16,22Zm0-10a4,4,0,1,0,4,4A4,4,0,0,0,16,12Z"/></svg></button>
@@ -241,7 +241,7 @@ export function patternsPages() {
   </div>`, 'جست‌وجو — خالی')],
       ['results', 'نتایج همراه فیلتر', phone(`
   <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">محصولات اطراف<div class="t-page-header__sub">تهران، ۵۵ مورد</div></div></header>
-  <div style="padding:10px 16px 0"><div class="t-search" data-state="searched"><div class="t-input">${I.search}<input class="t-input__el" type="search" value="ادکلن کازاموراتی"><span class="t-search__actions"><button class="t-icon-btn t-icon-btn--sm" aria-label="پاک کردن جستجو">${I.close}</button></span></div></div></div>
+  <div style="padding:10px 16px 0"><div class="t-search" data-state="searched"><div class="t-input">${I.search}<input aria-label="جست‌وجو" class="t-input__el" type="search" value="ادکلن کازاموراتی"><span class="t-search__actions"><button class="t-icon-btn t-icon-btn--sm" aria-label="پاک کردن جستجو">${I.close}</button></span></div></div></div>
   ${filterBar}
   <div class="phone__scroll" style="padding:12px 16px">
     <div class="t-grid-products">
@@ -260,7 +260,7 @@ export function patternsPages() {
         ${phone(`
   <div style="position:relative;flex:1;overflow:hidden">
     <div style="padding:12px 16px;opacity:.5">
-      <div class="t-search"><div class="t-input">${I.search}<input class="t-input__el" value="ادکلن کازاموراتی"></div></div>
+      <div class="t-search"><div class="t-input">${I.search}<input class="t-input__el" type="search" aria-label="جست‌وجو" value="ادکلن کازاموراتی"></div></div>
     </div>
     <div style="position:absolute;inset:0;background:var(--t-bg-scrim)"></div>
     <div class="t-sheet" style="position:absolute;animation:none;max-block-size:82%">
@@ -271,8 +271,8 @@ export function patternsPages() {
         <div class="t-range" style="margin-block-end:14px">
           <div class="t-range__values"><span>۱٬۲۰۰٬۰۰۰ تومان</span><span>۱۸٬۵۰۰٬۰۰۰ تومان</span></div>
           <div class="t-range__track"><div class="t-range__fill" style="inset-inline-start:14%;inline-size:58%"></div>
-            <div class="t-range__thumb" style="inset-inline-start:14%" role="slider" aria-valuemin="0" aria-valuemax="30000000" aria-valuenow="1200000" aria-valuetext="۱٬۲۰۰٬۰۰۰ تومان" tabindex="0"></div>
-            <div class="t-range__thumb" style="inset-inline-start:72%" role="slider" aria-valuemin="0" aria-valuemax="30000000" aria-valuenow="18500000" aria-valuetext="۱۸٬۵۰۰٬۰۰۰ تومان" tabindex="0"></div></div>
+            <div class="t-range__thumb" style="inset-inline-start:14%" role="slider" aria-label="کمترین قیمت" aria-valuemin="0" aria-valuemax="30000000" aria-valuenow="1200000" aria-valuetext="۱٬۲۰۰٬۰۰۰ تومان" tabindex="0"></div>
+            <div class="t-range__thumb" style="inset-inline-start:72%" role="slider" aria-label="بیشترین قیمت" aria-valuemin="0" aria-valuemax="30000000" aria-valuenow="18500000" aria-valuetext="۱۸٬۵۰۰٬۰۰۰ تومان" tabindex="0"></div></div>
         </div>
         <div class="t-divider" style="margin-block:12px"></div>
         <div class="t-body-sm-strong" style="margin-block-end:4px">ویژگی‌ها</div>
@@ -285,7 +285,7 @@ export function patternsPages() {
       ['empty', 'نتیجه‌ای نبود — راه جبران', `<div class="prose"><p>حالتی که بیشتر سیستم‌ها به‌صورت یک شانه بالا انداختن منتشرش می‌کنند. فیلتری را که باید حذف شود نام ببرید و آن را در یک دکمه بگذارید.</p></div>
         ${phone(`
   <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">محصولات اطراف<div class="t-page-header__sub">تهران، ۰ مورد</div></div></header>
-  <div style="padding:10px 16px 0"><div class="t-search" data-state="searched"><div class="t-input">${I.search}<input class="t-input__el" value="ادکلن کازاموراتی"><span class="t-search__actions"><button class="t-icon-btn t-icon-btn--sm" aria-label="پاک کردن جستجو">${I.close}</button></span></div></div></div>
+  <div style="padding:10px 16px 0"><div class="t-search" data-state="searched"><div class="t-input">${I.search}<input class="t-input__el" type="search" aria-label="جست‌وجو" value="ادکلن کازاموراتی"><span class="t-search__actions"><button class="t-icon-btn t-icon-btn--sm" aria-label="پاک کردن جستجو">${I.close}</button></span></div></div></div>
   ${filterBar}
   <div class="phone__scroll" aria-live="polite">
     <div class="t-empty">
@@ -381,7 +381,7 @@ export function sellerPanelPage() {
       <div class="t-shell-frame" style="inline-size:1100px;flex:none;border:1px solid var(--t-border-default);border-radius:14px;overflow:hidden"><div class="t-shell" style="block-size:520px">
         <div class="t-shell__brand"><span style="inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-action-red-bg-gradient);border:1px solid var(--t-action-red-border);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px">ت</span><strong style="font-size:14px">پنل فروشنده</strong></div>
         <div class="t-shell__top">
-          <div class="t-search" style="max-inline-size:240px"><div class="t-input t-input--sm"><svg class="t-input__icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z"/></svg><input class="t-input__el" type="search" placeholder="جست‌وجوی سفارش، محصول یا مشتری"></div></div>
+          <div class="t-search" style="max-inline-size:240px"><div class="t-input t-input--sm"><svg class="t-input__icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z"/></svg><input aria-label="جست‌وجوی سفارش، محصول یا مشتری" class="t-input__el" type="search" placeholder="جست‌وجوی سفارش، محصول یا مشتری"></div></div>
           <span style="flex:1"></span>
           <span class="t-kbd">/</span>
           <button class="t-icon-btn t-icon-btn--sm" aria-label="اعلان‌ها"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14.4,10.1L13,8.8V6.5c0-2.6-1.9-4.7-4.5-5v-1h-1v1C5,1.8,3,3.9,3,6.5v2.3l-1.4,1.3c-0.1,0.1-0.2,0.2-0.1,0.4V12	c0,0.3,0.2,0.5,0.4,0.5c0,0,0,0,0.1,0h3.5C5.5,13.9,6.6,15,8,15s2.5-1.1,2.5-2.5H14c0.3,0,0.5-0.2,0.5-0.4c0,0,0,0,0-0.1v-1.5	C14.5,10.4,14.4,10.2,14.4,10.1z M8,14c-0.8,0-1.5-0.7-1.5-1.5h3C9.5,13.3,8.8,14,8,14z M13.5,11.5h-11v-0.8l1.3-1.4	C3.9,9.3,4,9.1,4,9V6.5c0-2.2,1.8-4,4-4s4,1.8,4,4V9c0,0.1,0.1,0.3,0.1,0.4l1.4,1.3V11.5z"/></svg></button>

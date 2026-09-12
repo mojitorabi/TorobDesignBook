@@ -131,12 +131,39 @@
     const open = drawer.hasAttribute('hidden');
     drawer.toggleAttribute('hidden', !open);
     btn.setAttribute('aria-expanded', String(open));
+    remarkScrollers();
   }));
   $$('.spec__tab').forEach(tab => tab.addEventListener('click', () => {
     const wrap = tab.closest('.spec__code');
     $$('.spec__tab', wrap).forEach(t => t.setAttribute('aria-selected', String(t === tab)));
     $$('pre.code', wrap).forEach(p => p.toggleAttribute('hidden', p.dataset.panel !== tab.dataset.tab));
+    remarkScrollers();
   }));
+
+  /* ---------- Scrollable regions ----------
+     A box that scrolls must be reachable by keyboard (WCAG 2.1.1). Only the
+     boxes that actually overflow get a tab stop, so the page does not collect
+     stops it does not need. Re-checked on resize and when a drawer opens. */
+  const SCROLLERS = 'pre.code, .tbl-wrap, .sym__stage, .spec__stage--scroll, [data-scroll-region]';
+  function markScrollers(root) {
+    $$(SCROLLERS, root || document).forEach(el => {
+      const scrolls = el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1;
+      if (scrolls && !el.querySelector('a,button,input,select,textarea,[tabindex]')) {
+        el.setAttribute('tabindex', '0');
+        if (!el.hasAttribute('role')) el.setAttribute('role', 'group');
+        if (!el.hasAttribute('aria-label')) {
+          const kind = el.matches('pre.code') ? 'قطعهٔ کد' : el.matches('.tbl-wrap') ? 'جدول' : 'نمایش';
+          el.setAttribute('aria-label', el.dataset.scrollLabel || kind + ' — قابل پیمایش');
+        }
+      } else if (el.getAttribute('role') === 'group' && el.getAttribute('tabindex') === '0') {
+        el.removeAttribute('tabindex'); el.removeAttribute('role'); el.removeAttribute('aria-label');
+      }
+    });
+  }
+  markScrollers();
+  let scrollTimer;
+  const remarkScrollers = () => { clearTimeout(scrollTimer); scrollTimer = setTimeout(() => markScrollers(), 120); };
+  addEventListener('resize', remarkScrollers);
 
   /* ---------- Copy ---------- */
   function flash(btn, text) {
@@ -193,7 +220,26 @@
 
   /* ---------- Search ---------- */
   const input = $('#siteSearch'), results = $('#siteResults');
+  const resultsBox = $('#siteResultsBox'), resultsEmpty = $('#siteResultsEmpty'), resultsStatus = $('#siteResultsStatus');
   let index = null, activeIdx = -1;
+
+  /* ARIA 1.2 combobox: the input keeps focus, the active option is pointed at
+     with aria-activedescendant, and the popup is closed by clearing the flag. */
+  function setActive(i) {
+    const links = $$('a', results);
+    activeIdx = links.length ? (i + links.length) % links.length : -1;
+    links.forEach((a, n) => a.setAttribute('aria-selected', String(n === activeIdx)));
+    if (activeIdx >= 0) {
+      input.setAttribute('aria-activedescendant', links[activeIdx].id);
+      links[activeIdx].scrollIntoView({ block: 'nearest' });
+    } else input.removeAttribute('aria-activedescendant');
+  }
+  function closeResults() {
+    if (!resultsBox) return;
+    resultsBox.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+    input.removeAttribute('aria-activedescendant');
+  }
 
   async function ensureIndex() {
     if (index) return index;
@@ -204,17 +250,21 @@
     return index;
   }
   function render(items, q) {
-    if (!items.length) { results.innerHTML = `<div class="site-results__empty">نتیجه‌ای برای «${q}» پیدا نشد.</div>`; return; }
     results.innerHTML = items.map((it, i) =>
-      `<a href="${assetRoot}../${it.u}" role="option" ${i === 0 ? 'data-active="true"' : ''}>
+      `<a id="siteResult-${i}" href="${assetRoot}../${it.u}" role="option" tabindex="-1" aria-selected="${i === 0}">
          <span>${it.t}</span><span class="site-results__group">${it.g}</span>
        </a>`).join('');
-    activeIdx = 0;
+    if (resultsEmpty) {
+      resultsEmpty.hidden = items.length > 0;
+      if (!items.length) resultsEmpty.textContent = `نتیجه‌ای برای «${q}» پیدا نشد.`;
+    }
+    if (resultsStatus) resultsStatus.textContent = items.length ? `${items.length} نتیجه` : 'نتیجه‌ای پیدا نشد';
+    setActive(0);
   }
   async function run(q) {
     const idx = await ensureIndex();
     const needle = q.toLowerCase().trim();
-    if (!needle) { results.hidden = true; input.setAttribute('aria-expanded', 'false'); return; }
+    if (!needle) { closeResults(); if (resultsStatus) resultsStatus.textContent = ''; return; }
     const scored = [];
     for (const it of idx) {
       const hay = (it.t + ' ' + it.g + ' ' + (it.k || '')).toLowerCase();
@@ -223,7 +273,7 @@
     }
     scored.sort((a, b) => a[0] - b[0]);
     render(scored.slice(0, 24).map(s => s[1]), q);
-    results.hidden = false;
+    resultsBox.hidden = false;
     input.setAttribute('aria-expanded', 'true');
   }
   if (input) {
@@ -231,13 +281,11 @@
     input.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => run(input.value), 90); });
     input.addEventListener('keydown', e => {
       const links = $$('a', results);
-      if (e.key === 'Escape') { results.hidden = true; input.blur(); return; }
+      if (e.key === 'Escape') { closeResults(); input.blur(); return; }
       if (!links.length) return;
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        activeIdx = (activeIdx + (e.key === 'ArrowDown' ? 1 : -1) + links.length) % links.length;
-        links.forEach((a, i) => a.toggleAttribute('data-active', i === activeIdx));
-        links[activeIdx].scrollIntoView({ block: 'nearest' });
+        setActive(activeIdx + (e.key === 'ArrowDown' ? 1 : -1));
       }
       if (e.key === 'Enter' && links[activeIdx]) { e.preventDefault(); links[activeIdx].click(); }
     });
@@ -246,7 +294,7 @@
         e.preventDefault(); input.focus();
       }
     });
-    document.addEventListener('click', e => { if (!e.target.closest('.site-search')) results.hidden = true; });
+    document.addEventListener('click', e => { if (!e.target.closest('.site-search')) closeResults(); });
   }
 
   /* ---------- Live demo behaviours used across specimens ---------- */

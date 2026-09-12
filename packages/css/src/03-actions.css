@@ -430,5 +430,9 @@
   white-space: nowrap;
 }
 /* On the blue (offline) box the marker turns Blue 300: red on blue would read
-   as an error, not a disclosure. */
-.t-buybox--offline .t-buybox__ad, .t-buybox--blue .t-buybox__ad { background: var(--t-action-blue-border); }
+   as an error, not a disclosure. White on Blue 300 is 2.5:1, so the label goes
+   dark here — the chip keeps its colour, the word stays readable. */
+.t-buybox--offline .t-buybox__ad, .t-buybox--blue .t-buybox__ad {
+  background: var(--t-action-blue-border);
+  color: var(--t-commerce-ad-badge-fg);
+}

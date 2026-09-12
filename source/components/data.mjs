@@ -24,7 +24,7 @@ export default [
   ],
   anatomy: [
     ['ظرف', 'کادر مویی، گردی ۱۲، اسکرول در هر دو محور، سقف ارتفاع ۷۰ درصد کادر دید.'],
-    ['هدر', 'چسبان بالا، زمینهٔ ملایم، ۱۲ پیکسل Bold، دکمهٔ مرتب‌سازی با <code>aria-sort</code>.'],
+    ['هدر', 'چسبان بالا، زمینهٔ ملایم، ۱۲ پیکسل Bold، دکمهٔ مرتب‌سازی و <code>aria-sort</code> روی سرستون.'],
     ['ردیف', 'هاور زمینهٔ ملایم؛ انتخاب‌شده زمینهٔ آبی ملایم و <code>aria-selected</code>.'],
     ['ستون عددی', '<code>.t-num</code> — تراز انتهای محور، ارقام جدولی، بدون شکست خط.'],
     ['ستون ثابت', '<code>--freeze</code> ستون اول را روی <code>inset-inline-start</code> می‌چسباند.'],
@@ -37,7 +37,7 @@ export default [
   ],
   a11y: [
     'یک <code>&lt;table&gt;</code> واقعی با <code>&lt;th scope="col"&gt;</code>. شبکهٔ ساخته‌شده از <code>div</code> برای صفحه‌خوان جدول نیست.',
-    'دکمهٔ مرتب‌سازی <code>aria-sort</code> را روی <code>ascending</code>، <code>descending</code> یا <code>none</code> می‌گذارد و تغییر را با ناحیهٔ زنده اعلام می‌کند.',
+    'سرستون <code>aria-sort</code> را روی <code>ascending</code>، <code>descending</code> یا <code>none</code> می‌گذارد — روی خود سرستون، نه روی دکمهٔ داخلش — و تغییر را با ناحیهٔ زنده اعلام می‌کند.',
     'چک‌باکس انتخاب هر ردیف نام دسترس‌پذیر مخصوص خودش دارد («انتخاب سفارش ۱۰۲۳»)، نه فقط «انتخاب».',
     'ردیف انتخاب‌شده <code>aria-selected</code> می‌گیرد و نه‌فقط با رنگ، که با چک‌باکس هم مشخص می‌شود.',
     'ظرف اسکرول‌شونده <code>tabindex="0"</code> و برچسب می‌گیرد تا کاربر صفحه‌کلید بتواند اسکرولش کند (معیار ۲.۱.۱).',
@@ -45,7 +45,7 @@ export default [
   responsive: 'تا نقطهٔ lg اسکرول افقی با ستون اول ثابت. زیر آن هر ردیف به یک کارت تبدیل می‌شود: عنوان، سه فیلد کلیدی و یک منوی سرریز. جدول را روی گوشی فشرده نکنید؛ به کارت تبدیلش کنید.',
   specimens: [
     { label: 'جدول سفارش‌ها', canvas: 'plain', stageClass: 'spec__stage--stack', html: `<div class="t-toolbar">
-  <div class="t-search" style="max-inline-size:240px"><div class="t-input t-input--md"><svg class="t-input__icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z"/></svg><input class="t-input__el" type="search" placeholder="جست‌وجوی سفارش"></div></div>
+  <div class="t-search" style="max-inline-size:240px"><div class="t-input t-input--md"><svg class="t-input__icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z"/></svg><input aria-label="جست‌وجوی سفارش" class="t-input__el" type="search" placeholder="جست‌وجوی سفارش"></div></div>
   <button class="t-btn t-btn--black-ghost t-btn--md">وضعیت${chevD}</button>
   <button class="t-btn t-btn--black-ghost t-btn--md">بازهٔ زمانی${chevD}</button>
   <span class="t-toolbar__spacer"></span>
@@ -57,9 +57,9 @@ export default [
     <thead><tr>
       <th scope="col">شمارهٔ سفارش</th>
       <th scope="col">مشتری</th>
-      <th scope="col"><button class="t-table__sort" aria-sort="descending">تاریخ${sortIcon}</button></th>
+      <th scope="col" aria-sort="descending"><button class="t-table__sort">تاریخ${sortIcon}</button></th>
       <th scope="col">وضعیت</th>
-      <th scope="col" class="t-num"><button class="t-table__sort" aria-sort="none">مبلغ${sortIcon}</button></th>
+      <th scope="col" aria-sort="none" class="t-num"><button class="t-table__sort">مبلغ${sortIcon}</button></th>
     </tr></thead>
     <tbody>
       <tr><td><code>۱۰۲۳۴</code></td><td>سارا محمدی</td><td><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۹</span></td><td><span class="t-badge t-badge--positive">ارسال شده</span></td><td class="t-num">۲٬۴۵۰٬۰۰۰</td></tr>
@@ -83,10 +83,11 @@ export default [
       <table className={clsx('t-table', freezeFirst && 't-table--freeze', density === 'compact' && 't-table--compact')}>
         <thead>
           <tr>{columns.map(c => (
-            <th key={c.key} scope="col" className={clsx(c.numeric && 't-num')}>
+            <th key={c.key} scope="col" className={clsx(c.numeric && 't-num')}
+                aria-sort={c.sortable ? (sort?.key === c.key ? sort.direction : 'none') : undefined}>
+              {/* aria-sort belongs to the column header, not to the button inside it */}
               {c.sortable
-                ? <button className="t-table__sort" onClick={() => onSort(c.key)}
-                          aria-sort={sort?.key === c.key ? sort.direction : 'none'}>
+                ? <button className="t-table__sort" onClick={() => onSort(c.key)}>
                     {c.label}<SortIcon />
                   </button>
                 : c.label}
@@ -168,7 +169,7 @@ export default [
   props: [['value', 'string', '—', 'تاریخ شمسی، قالب <code>YYYY/MM/DD</code>.'],
     ['range', 'boolean', 'false', 'انتخاب بازه به‌جای یک روز.'],
     ['presets', 'boolean', 'true', 'میان‌برهای امروز، ۷ روز، این ماه.']],
-  a11y: ['شبکه <code>role="grid"</code> است و هر روز <code>role="gridcell"</code>؛ کلیدهای جهت بین روزها و PageUp/PageDown بین ماه‌ها حرکت می‌کنند.',
+  a11y: ['شبکه <code>role="grid"</code> است، هر هفته <code>role="row"</code> و هر روز <code>role="gridcell"</code>؛ کلیدهای جهت بین روزها و PageUp/PageDown بین ماه‌ها حرکت می‌کنند.',
     'نام دسترس‌پذیر هر روز، تاریخ کامل شمسی است: «۱۹ شهریور ۱۴۰۴، پنجشنبه».',
     'ورودی متنی همیشه در دسترس است، پس هیچ‌چیز فقط با ماوس قابل انجام نیست (معیار ۲.۱.۱ و ۲.۵.۷).',
     '<code>aria-live</code> تغییر ماه را اعلام می‌کند، نه حرکت روی هر روز.'],
@@ -186,12 +187,15 @@ export default [
       <button class="t-icon-btn t-icon-btn--sm" aria-label="ماه بعد"><svg class="t-icon t-icon--sm t-icon--directional" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M11 8 6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"/></svg></button>
     </div>
     <div class="t-cal__grid" role="grid" aria-label="شهریور ۱۴۰۴">
-      <div class="t-cal__dow">ش</div><div class="t-cal__dow">ی</div><div class="t-cal__dow">د</div><div class="t-cal__dow">س</div><div class="t-cal__dow">چ</div><div class="t-cal__dow" data-weekend="true">پ</div><div class="t-cal__dow" data-weekend="true">ج</div>
-      ${[...Array(31)].map((_, i) => {
-        const d = i + 1; const fa = String(d).replace(/[0-9]/g, x => '۰۱۲۳۴۵۶۷۸۹'[+x]);
-        const weekend = (i + 6) % 7 === 6;
-        return `<button class="t-cal__day" role="gridcell"${d === 19 ? ' aria-selected="true"' : ''}${d === 20 ? ' data-today="true"' : ''}${weekend ? ' data-weekend="true"' : ''}>${fa}</button>`;
-      }).join('')}
+      <div class="t-cal__row" role="row">${['ش','ی','د','س','چ','پ','ج'].map((d, i) =>
+        `<div class="t-cal__dow" role="columnheader"${i >= 5 ? ' data-weekend="true"' : ''}>${d}</div>`).join('')}</div>
+      ${[...Array(5)].map((_, r) => `<div class="t-cal__row" role="row">${[...Array(7)].map((_, c) => {
+        const d = r * 7 + c + 1;
+        if (d > 31) return '';
+        const fa = String(d).replace(/[0-9]/g, x => '۰۱۲۳۴۵۶۷۸۹'[+x]);
+        const weekend = c === 6;
+        return `<button class="t-cal__day" role="gridcell" aria-label="${fa} شهریور ۱۴۰۴"${d === 19 ? ' aria-selected="true"' : ''}${d === 20 ? ' data-today="true"' : ''}${weekend ? ' data-weekend="true"' : ''}>${fa}</button>`;
+      }).join('')}</div>`).join('')}
     </div>
   </div>
 </div>`, note: 'هفته از شنبه شروع می‌شود و جمعه آخر هفته است. روز ۱۹ انتخاب‌شده و ۲۰ امروز است.' },
@@ -204,22 +208,26 @@ export function DateField({ value, onChange, range, presets = true }) {
   const [y, mo] = value.split('/').map(Number);
   const days = jalaliDaysInMonth(y, mo);
   return (
-    <div className="t-cal" role="grid" aria-label={\`\${jalaliMonthName(mo)} \${toFa(y)}\`}>
-      {/* شنبه first — the Iranian week does not start on Sunday */}
-      {['ش','ی','د','س','چ','پ','ج'].map((d, i) => (
-        <div key={d} className="t-cal__dow" data-weekend={i === 6 || undefined}>{d}</div>
+    <div className="t-cal__grid" role="grid" aria-label={\`\${jalaliMonthName(mo)} \${toFa(y)}\`}>
+      {/* شنبه first — the Iranian week does not start on Sunday.
+          Every cell sits inside a row: a grid without rows is not a grid. */}
+      <div className="t-cal__row" role="row">
+        {['ش','ی','د','س','چ','پ','ج'].map((d, i) => (
+          <div key={d} className="t-cal__dow" role="columnheader" data-weekend={i >= 5 || undefined}>{d}</div>
+        ))}
+      </div>
+      {weeksOf(y, mo, days).map((week, r) => (
+        <div key={r} className="t-cal__row" role="row">
+          {week.map(day => day === null ? <div key={\`e\${r}\`} /> : (
+            <button key={day} className="t-cal__day" role="gridcell"
+                    aria-selected={day === Number(value.split('/')[2])}
+                    aria-label={\`\${toFa(day)} \${jalaliMonthName(mo)} \${toFa(y)}\`}
+                    onClick={() => onChange(\`\${y}/\${mo}/\${day}\`)}>
+              {toFa(day)}
+            </button>
+          ))}
+        </div>
       ))}
-      {Array.from({ length: days }, (_, i) => {
-        const day = i + 1;
-        return (
-          <button key={day} className="t-cal__day" role="gridcell"
-                  aria-selected={day === Number(value.split('/')[2])}
-                  aria-label={\`\${toFa(day)} \${jalaliMonthName(mo)} \${toFa(y)}\`}
-                  onClick={() => onChange(\`\${y}/\${mo}/\${day}\`)}>
-            {toFa(day)}
-          </button>
-        );
-      })}
     </div>
   );
 }`,
@@ -251,7 +259,7 @@ export function DateField({ value, onChange, range, presets = true }) {
     { label: 'اسکلت پنل', canvas: 'plain', stageClass: 'spec__stage--center', html: `<div class="t-shell" style="block-size:420px;inline-size:100%;max-inline-size:720px;border:1px solid var(--t-border-default);border-radius:12px;overflow:hidden">
   <div class="t-shell__brand"><span style="inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-action-red-bg-gradient);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px">ت</span><strong style="font-size:14px">پنل فروشنده</strong></div>
   <div class="t-shell__top">
-    <div class="t-search" style="max-inline-size:220px"><div class="t-input t-input--sm"><input class="t-input__el" type="search" placeholder="جست‌وجو"></div></div>
+    <div class="t-search" style="max-inline-size:220px"><div class="t-input t-input--sm"><input aria-label="جست‌وجو" class="t-input__el" type="search" placeholder="جست‌وجو"></div></div>
     <span style="flex:1"></span>
     <button class="t-icon-btn t-icon-btn--sm" aria-label="اعلان‌ها"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14.4,10.1L13,8.8V6.5c0-2.6-1.9-4.7-4.5-5v-1h-1v1C5,1.8,3,3.9,3,6.5v2.3l-1.4,1.3c-0.1,0.1-0.2,0.2-0.1,0.4V12	c0,0.3,0.2,0.5,0.4,0.5c0,0,0,0,0.1,0h3.5C5.5,13.9,6.6,15,8,15s2.5-1.1,2.5-2.5H14c0.3,0,0.5-0.2,0.5-0.4c0,0,0,0,0-0.1v-1.5	C14.5,10.4,14.4,10.2,14.4,10.1z M8,14c-0.8,0-1.5-0.7-1.5-1.5h3C9.5,13.3,8.8,14,8,14z M13.5,11.5h-11v-0.8l1.3-1.4	C3.9,9.3,4,9.1,4,9V6.5c0-2.2,1.8-4,4-4s4,1.8,4,4V9c0,0.1,0.1,0.3,0.1,0.4l1.4,1.3V11.5z"/></svg></button>
     <span class="t-avatar t-avatar--sm">ا</span>

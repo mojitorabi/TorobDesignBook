@@ -80,6 +80,16 @@ const pairs = [
   ['commerce.ad-badge-fg', 'commerce.kalabarg-bg', 4.5, 'کالابرگ badge'],
   ['commerce.guarantee-accent', 'commerce.guarantee-bg', 4.5, 'ضمانت ترب badge (yellow end)'],
   ['border.default', 'bg.canvas', 0, 'decorative divider (informational)'],
+
+  // Small commerce text sits on the grey app canvas, not on a white card —
+  // the canvas is the harder of the two, so it is the one worth gating.
+  ['commerce.price-from', 'bg.canvas', 4.5, '"from" price on canvas'],
+  ['commerce.distance', 'bg.canvas', 4.5, 'distance on canvas'],
+  ['commerce.closed', 'bg.canvas', 4.5, 'closed label on canvas'],
+  ['commerce.oos', 'bg.canvas', 4.5, 'out of stock on canvas'],
+  // The price pin reads as text, so 4.5 applies — in every theme, including
+  // the dark ones where the pill surface is dark.
+  ['map.pill-fg', 'bg.fog', 4.5, 'map price pill label'],
 ];
 
 let fails = 0, warns = 0;
