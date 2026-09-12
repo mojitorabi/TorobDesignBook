@@ -1,4 +1,4 @@
-# Rahnamā — the Torob Design System
+# کتاب دیزاین ترب — the Torob Design System
 
 راهنما, "the guide". The single source of truth for how Torob and Torob Nearby
 look, behave and are built.

@@ -1,4 +1,5 @@
-import { specimen, section, table, guidance, esc } from './site-lib.mjs';
+import { specimen, section, table, guidance, esc, toFa } from './site-lib.mjs';
+import { getFacts } from './facts.mjs';
 
 export function simplePages(m) {
   const P = {};
@@ -80,7 +81,6 @@ tokens.radius.md                 // '12px'</code></pre></div>`],
       ['<code>node build/icons-build.mjs</code>', 'بازسازی پکیج آیکون از فهرست اسکچ و کربن.'],
       ['<code>node build/site-build.mjs</code>', 'بازسازی همین وب‌سایت.'],
       ['<code>node build/mcp-build.mjs</code>', 'بازتولید دادهٔ سرور MCP.'],
-      ['<code>node build/translate-components.mjs</code>', 'اعمال جدول فارسی روی رجیستری کامپوننت‌ها.'],
       ['<code>node build/contrast-check.mjs</code>', 'سنجش هر جفت رنگ در برابر WCAG AA. با شکست، خروجی غیرصفر.'],
       ['<code>node build/validate-css.mjs</code>', 'بررسی اینکه هر ارجاع <code>var()</code> حل می‌شود.'],
       ['<code>node build/verify.mjs</code>', 'خزیدن در سایت ساخته‌شده: لینک شکسته، شناسهٔ تکراری، دکمهٔ بی‌نام.'],
@@ -93,7 +93,7 @@ tokens.radius.md                 // '12px'</code></pre></div>`],
         <li><strong>یک رنگ، اندازه یا مدت</strong> ← <code>source/tokens/*.json</code>، بعد <code>tokens-build</code>. پیش از کامیت <code>contrast-check</code> را اجرا کنید.</li>
         <li><strong>CSS یک کامپوننت</strong> ← <code>packages/css/src/*.css</code>.</li>
         <li><strong>مستندات، پراپ‌ها و نمونه‌های یک کامپوننت</strong> ← <code>source/components/*.mjs</code>. همین یک فایل، وب‌سایت، سرور MCP و <code>llms.txt</code> را تغذیه می‌کند.</li>
-        <li><strong>متن فارسی مستندات</strong> ← <code>source/fa/components.json</code>، بعد <code>translate-components</code>.</li>
+        <li><strong>متن فارسی مستندات</strong> ← همان رکورد کامپوننت در <code>source/components/*.mjs</code>. جدول ترجمهٔ جدا وجود ندارد؛ رجیستری خودش فارسی است.</li>
       </ul>
       <div class="note"><strong>محلی و گیت‌هاب همیشه یکی‌اند.</strong> ورک‌فلوی گیت‌هاب همان <code>build/all.mjs</code> را روی همان فایل‌های منبع اجرا می‌کند. سایت منتشرشده تولید می‌شود، نه آپلود؛ پس این دو به‌خاطر یک ژنراتور مشترک یکی می‌مانند، نه به‌خاطر اینکه کسی یادش مانده همگام‌سازی کند.</div>
     </div>`],
@@ -189,7 +189,7 @@ border-end-start-radius: var(--t-radius-md);</code></pre></div>`],
   /* ── دسترس‌پذیری (WCAG 2.2) ── */
   page('foundations/accessibility', 'دسترس‌پذیری', 'هدف WCAG 2.2 سطح AA است، با سنجش ماشینی در هر بیلد.', 'مبانی', [
     [null, null, `<div class="prose">
-      <p>هدف <strong>WCAG 2.2 سطح AA</strong> است؛ تازه‌ترین نسخهٔ توصیه‌شدهٔ W3C. نیمهٔ رنگیِ آن یک آیتم بازبینی نیست: <code>build/contrast-check.mjs</code> پنجاه‌ودو جفت پیش‌زمینه و پس‌زمینه را در <strong>هر سه پوسته</strong> می‌سنجد و با هر شکست <strong>خروجی غیرصفر</strong> می‌دهد. یک دروازهٔ بیلد است.</p>
+      <p>هدف <strong>WCAG 2.2 سطح AA</strong> است؛ تازه‌ترین نسخهٔ توصیه‌شدهٔ W3C. نیمهٔ رنگیِ آن یک آیتم بازبینی نیست: <code>build/contrast-check.mjs</code> ${toFa(getFacts().contrastPairs)} جفت پیش‌زمینه و پس‌زمینه را در <strong>هر سه پوسته</strong> می‌سنجد و با هر شکست <strong>خروجی غیرصفر</strong> می‌دهد. یک دروازهٔ بیلد است.</p>
       <div class="note note--new">اجرای همین ابزار روی پالت، همان‌طور که از اسکچ استخراج شد، <strong>چهار شکست متنی و چهار شکست غیرمتنی</strong> داد. هر کدام در <a href="./color.html#changes">رنگ ← چه چیزی تغییر کرد</a> اصلاح شده است.</div>
     </div>`],
     ['new22', 'آنچه نسخهٔ ۲.۲ اضافه کرد', `<div class="prose">

@@ -21,4 +21,4 @@ createServer(async (req, res) => {
     res.writeHead(404, { 'content-type': 'text/html; charset=utf-8' });
     res.end('<h1>404</h1>');
   }
-}).listen(PORT, () => console.log(`Rahnamā docs → http://localhost:${PORT}`));
+}).listen(PORT, () => console.log(`کتاب دیزاین ترب → http://localhost:${PORT}`));

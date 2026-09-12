@@ -1,4 +1,4 @@
-/* Rahnamā docs site behaviour. No dependencies. */
+/* کتاب دیزاین ترب — docs site behaviour. No dependencies. */
 (function () {
   'use strict';
   const $ = (s, r) => (r || document).querySelector(s);
@@ -248,10 +248,39 @@
 
   /* ---------- Mobile nav ---------- */
   const navToggle = $('#navToggle'), siteNav = $('#siteNav');
+  /* Off-canvas is not closed. A panel that is only translated off-screen keeps
+     its sixty links in the tab order and in the accessibility tree, so a
+     keyboard or screen-reader user on a phone walks the whole navigation
+     before reaching the page. `inert` is what actually closes it. */
+  const NAV_OFFCANVAS = () => matchMedia('(max-width: 1023px)').matches;
+  function syncNavInert() {
+    if (!siteNav) return;
+    const closed = NAV_OFFCANVAS() && siteNav.dataset.open !== 'true';
+    siteNav.toggleAttribute('inert', closed);
+  }
+  syncNavInert();
+  addEventListener('resize', syncNavInert);
   navToggle && navToggle.addEventListener('click', () => {
     const open = siteNav.dataset.open !== 'true';
     siteNav.dataset.open = String(open);
     navToggle.setAttribute('aria-expanded', String(open));
+    syncNavInert();
+    if (open) {
+      const first = $('a', siteNav);
+      first && first.focus({ preventScroll: true });
+    } else navToggle.focus({ preventScroll: true });
+  });
+  /* Escape closes it, and so does following a link — otherwise the panel stays
+     open over the page it just navigated to. */
+  siteNav && siteNav.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && siteNav.dataset.open === 'true') navToggle.click();
+  });
+  siteNav && siteNav.addEventListener('click', e => {
+    if (e.target.closest('a') && NAV_OFFCANVAS() && siteNav.dataset.open === 'true') {
+      siteNav.dataset.open = 'false';
+      navToggle.setAttribute('aria-expanded', 'false');
+      syncNavInert();
+    }
   });
 
   /* ---------- Table of contents scroll-spy ---------- */

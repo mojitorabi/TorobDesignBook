@@ -1,7 +1,7 @@
 # PRODUCT.md — Torob Design System
 
 ## What this is
-**Rahnamā** (راهنما, "the guide") — the Torob Design System. A public-facing documentation
+**کتاب دیزاین ترب** ("the Torob design book") — the Torob Design System. A public-facing documentation
 website plus a set of installable packages that together are the single source of truth for
 how Torob and Torob Nearby ("خرید از اطراف") products look, behave, and are built.
 

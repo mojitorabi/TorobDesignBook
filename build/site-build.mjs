@@ -17,6 +17,7 @@ import { layout, specimen, section, table, guidance, esc, slugToPath, anchor,
          extractElement, stateMatrix, modifierMatrix, STATE_FA, dedupeIds, toFa,
          bestForSelectors } from './site-lib.mjs';
 import { loadComponents } from './site-lib.mjs';
+import { initFacts } from './facts.mjs';
 
 /* What the stylesheet actually supports, read from the stylesheet.
    The matrices on every component page are drawn from this, so documentation
@@ -63,6 +64,7 @@ for (const [from, to] of [
   ['packages/site-js/site.js', 'assets/site.js'],
   ['packages/icons/sprite-16.svg', 'assets/sprite-16.svg'],
   ['packages/brand/sprite.svg', 'assets/brand.svg'],
+  ['packages/brand/og.png', 'assets/og.png'],
   ['packages/icons/sprite-20.svg', 'assets/sprite-20.svg'],
   ['packages/icons/index.json', 'assets/icons-index.json'],
   ['packages/icons/icons.json', 'assets/icons.json'],
@@ -70,6 +72,16 @@ for (const [from, to] of [
   ['packages/css/dist/tokens.flat.json', 'assets/tokens.flat.json'],
 ]) copyFileSync(join(ROOT, from), join(OUT, to));
 // torob.css is bundled with an @import for tokens.css — the copy keeps that relative path valid.
+
+/* Every token export ships with the site. The tokens page offers thirteen
+   formats for download, and a download link that points outside the published
+   folder is a 404 — which is what these were. */
+{
+  const dist = join(ROOT, 'packages', 'css', 'dist');
+  const out = join(OUT, 'assets', 'tokens');
+  mkdirSync(out, { recursive: true });
+  for (const f of readdirSync(dist)) copyFileSync(join(dist, f), join(out, f));
+}
 
 /* Sample content for specimens (store logos, product photos). Imagery, not
    system assets: it shows the components with the Sketch file's own content.
@@ -91,6 +103,8 @@ for (const [from, to] of [['source/samples', 'assets/samples'], ['source/sketch/
 }
 
 const components = await loadComponents();
+/* Numbers the prose states about the system, computed from the system. */
+await initFacts();
 const flatNav = nav.flatMap(g => g.items).concat(components.map(c => ({ slug: `components/${c.slug}`, title: c.name })));
 const around = slug => {
   const i = flatNav.findIndex(p => p.slug === slug);
@@ -285,6 +299,33 @@ const searchIndex = [
 ];
 writeFileSync(join(OUT, 'assets', 'search.json'), JSON.stringify(searchIndex));
 writeFileSync(join(OUT, 'assets', 'i18n.json'), JSON.stringify(fa2en));
+
+/* ============================================================
+   Things a public site is expected to have
+   ============================================================ */
+const SITE_URL = 'https://mojitorabi.github.io/TorobDesignBook';
+
+/* A sitemap and a robots file, so the book is findable rather than merely
+   published. */
+const urls = [...flatNav.map(p => slugToPath(p.slug)), ...components.map(c => `components/${c.slug}.html`)];
+writeFileSync(join(OUT, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+  urls.map(u => `  <url><loc>${SITE_URL}/${u}</loc></url>`).join('\n') +
+  `\n</urlset>\n`);
+writeFileSync(join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+
+/* A 404 that belongs to the book, with the search and the whole nav on it —
+   a wrong address is usually a nearly-right one. */
+write('404', layout({
+  slug: 'index', nav, components,
+  title: 'این صفحه پیدا نشد',
+  description: 'نشانی‌ای که دنبالش بودید در این کتاب نیست.',
+  eyebrow: '۴۰۴',
+  body: `<div class="prose">
+    <p>شاید نامش عوض شده باشد. کامپوننت‌ها در فهرست کناری‌اند، و جست‌وجوی بالای صفحه نام‌های قدیمی اسکچ را هم می‌شناسد — <code>Store-Card/VLP</code> را بزنید و به <a href="components/store-card.html">StoreCard</a> می‌رسید.</p>
+    <p><a class="t-btn t-btn--primary t-btn--md" href="index.html">بازگشت به خانه</a></p>
+  </div>`,
+}));
 
 console.log(`✓ ${components.length} component pages`);
 console.log(`✓ ${Object.keys(PAGES).length} foundation / resource / overview pages`);

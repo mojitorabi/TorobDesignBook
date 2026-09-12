@@ -19,7 +19,7 @@ const cssVar = p => '--t-' + p.replace(/\./g, '-');
 const groups = {};
 for (const c of components) (groups[c.group] ??= []).push(c);
 
-const llms = `# Rahnamā — Torob Design System
+const llms = `# کتاب دیزاین ترب — the Torob Design System
 
 > The design system for Torob and Torob Nearby, an Iranian price-comparison
 > marketplace. Persian, RTL-first, mobile-first. ${components.length} components,
@@ -152,7 +152,7 @@ writeFileSync(join(OUT, 'llms-full.txt'), full);
 /* ---- Agent rules ---- */
 const rules = `# Torob Design System — rules for AI agents
 
-This project uses the Torob Design System (Rahnamā). An MCP server named
+This project uses the Torob Design System — کتاب دیزاین ترب. An MCP server named
 "torob-design" exposes it. Use it — do not guess at values.
 
 ## Before writing any UI

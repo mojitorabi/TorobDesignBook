@@ -1,7 +1,5 @@
-import { specimen, section, table, guidance, esc } from './site-lib.mjs';
+import { specimen, section, table, guidance, esc, toFa } from './site-lib.mjs';
 
-const FA = '۰۱۲۳۴۵۶۷۸۹';
-const toFa = n => String(n).replace(/[0-9]/g, d => FA[+d]);
 
 /* ─────────────────── فاصله، گردی، ارتفاع ─────────────────── */
 export function spacingPage(m) {

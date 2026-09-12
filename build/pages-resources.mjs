@@ -1,7 +1,6 @@
-import { specimen, section, table, guidance, esc } from './site-lib.mjs';
+import { specimen, section, table, guidance, esc, toFa } from './site-lib.mjs';
+import { getFacts } from './facts.mjs';
 
-const FA_DIGITS = '۰۱۲۳۴۵۶۷۸۹';
-const toFa = n => String(n).replace(/[0-9]/g, d => FA_DIGITS[+d]);
 
 /* ─────────────────────────── ICONS ─────────────────────────── */
 export function iconsPage(cats, count) {
@@ -108,7 +107,7 @@ export function tokensPage(m) {
     <p><strong>${toFa(nBase)} توکن پایه</strong> و <strong>${toFa(nSem)} توکن معنایی در هر پوسته</strong>، تولیدشده از <code>source/tokens/*.json</code> با قالب استاندارد W3C DTCG. هر خروجی زیر — هر استایل‌شیت، هر خروجی پلتفرم، همین وب‌سایت و سرور MCP — از همان فایل‌ها تولید می‌شود. هیچ‌چیزِ پایین‌دستی دستی نگه‌داری نمی‌شود.</p>
   </div>`;
 
-  body += S('exports', 'خروجی‌ها', `<div class="prose"><p>یک دستور، سیزده خروجی:</p></div>
+  body += S('exports', 'خروجی‌ها', `<div class="prose"><p>یک دستور، ${toFa(getFacts().exports)} خروجی:</p></div>
     <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">terminal</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="tok-cmd">Copy</button></div></div>
     <pre class="code" id="tok-cmd"><code>node build/tokens-build.mjs</code></pre></div>
     ${table(['فایل', 'قالب', 'برای'], [
@@ -122,10 +121,12 @@ export function tokensPage(m) {
       ['<code>colors.xml</code> / <code>colors-night.xml</code> / <code>dimens.xml</code>', 'Android resources', 'در <code>values/</code> و <code>values-night/</code> بگذارید.'],
       ['<code>tokens.llms.md</code>', 'Markdown', 'عامل‌های هوش مصنوعی بدون دسترسی به MCP.'],
     ])}
-    <div class="prose" style="margin-block-start:18px"><p>هر کدام را دانلود کنید:</p>
+    <div class="prose" style="margin-block-start:18px"><p>هر ${toFa(getFacts().exports)} خروجی با خود سایت منتشر می‌شوند، پس می‌شود مستقیم دانلودشان کرد یا در بیلد از همین نشانی خواندشان:</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-block-start:10px">
-        ${['tokens.css', 'tokens.tailwind.css', 'tokens.scss', 'tokens.ts', 'tokens.flat.json'].map(f =>
-          `<a class="t-btn t-btn--outline t-btn--md" href="../packages/css/dist/${f}" download>${f}</a>`).join('')}
+        ${['tokens.css', 'tokens.tailwind.css', 'tokens.scss', 'tokens.ts', 'tokens.js',
+           'tokens.flat.json', 'tokens.resolved.json', 'tokens.llms.md', 'TorobTokens.swift',
+           'colors.xml', 'colors-night.xml', 'colors-night-true.xml', 'dimens.xml'].map(f =>
+          `<a class="t-btn t-btn--outline t-btn--md" href="assets/tokens/${f}" download>${f}</a>`).join('')}
       </div>
     </div>`);
 

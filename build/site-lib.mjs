@@ -44,6 +44,9 @@ export async function loadComponents() {
 /** Turn heading text into a stable anchor id. */
 export const anchor = s => String(s).toLowerCase().replace(/<[^>]+>/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
+/* Absolute URLs for sharing cards; GitHub Pages serves the book from here. */
+export const SITE_URL = 'https://mojitorabi.github.io/TorobDesignBook';
+
 export function layout({ slug, title, description, nav, components, body, toc = [], eyebrow, prev, next }) {
   const R = t => rel(slug, t);
   const groups = {};
@@ -82,6 +85,14 @@ export function layout({ slug, title, description, nav, components, body, toc = 
 <title>${pageTitle}</title>
 <meta name="description" content="${esc(String(description ?? '').replace(/<[^>]+>/g, ''))}">
 <meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="${esc(SITE_NAME)}">
+<meta property="og:title" content="${pageTitle}">
+<meta property="og:description" content="${esc(String(description ?? '').replace(/<[^>]+>/g, ''))}">
+<meta property="og:image" content="${SITE_URL}/assets/og.png">
+<meta property="og:url" content="${SITE_URL}/${slugToPath(slug)}">
+<meta property="og:locale" content="fa_IR">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23D73948'/><path d='M9 11h14v3h-5.2v10h-3.6V14H9z' fill='white'/></svg>">
 <link rel="stylesheet" href="${R('assets/fonts.css')}">
 <link rel="preload" href="${R('assets/fonts/IRANYekanX-Medium.woff2')}" as="font" type="font/woff2" crossorigin>

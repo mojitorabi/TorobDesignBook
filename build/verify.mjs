@@ -37,9 +37,13 @@ for (const p of pages) {
     const clean = u.split('#')[0].split('?')[0];
     if (!clean) continue;
     const target = resolve(base, clean);
-    const isAsset = /\.(css|js|json|svg|png|woff2?|md|txt)$/.test(clean);
+    const isAsset = /\.(css|js|json|svg|png|woff2?|md|txt|scss|ts|swift|xml)$/.test(clean);
     isAsset ? stats.assets++ : stats.links++;
     if (!existsSync(target)) issues.push(`missing target: ${u}`);
+    /* Only site/ is published. A link that resolves on this machine but points
+       outside the published folder is a 404 for everyone else — which is how
+       the token downloads were broken for two releases. */
+    else if (!resolve(target).startsWith(SITE)) issues.push(`points outside the published site: ${u}`);
   }
 
   // duplicate ids

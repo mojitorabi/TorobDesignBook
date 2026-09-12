@@ -1,6 +1,6 @@
 # Torob Design System — rules for AI agents
 
-This project uses the Torob Design System (Rahnamā). An MCP server named
+This project uses the Torob Design System — کتاب دیزاین ترب. An MCP server named
 "torob-design" exposes it. Use it — do not guess at values.
 
 ## Before writing any UI

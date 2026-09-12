@@ -1,8 +1,7 @@
-import { specimen, section, table, guidance, esc } from './site-lib.mjs';
+import { specimen, section, table, guidance, esc, toFa } from './site-lib.mjs';
+import { getFacts } from './facts.mjs';
 import { SITE_NAME, GROUP_FA } from '../source/site.nav.mjs';
 
-const FA_DIGITS = '۰۱۲۳۴۵۶۷۸۹';
-const toFa = n => String(n).replace(/[0-9]/g, d => FA_DIGITS[+d]);
 
 /* ─────────────────────────── HOME ─────────────────────────── */
 export function indexPage({ components, iconCount, tokenCount }) {
@@ -11,15 +10,15 @@ export function indexPage({ components, iconCount, tokenCount }) {
 
   let body = `<div class="prose" style="max-inline-size:none;margin-block-start:-14px">
     <div class="note" style="border-inline-start-color:var(--t-fg-brand)">
-      <strong>کتاب دیزاین ترب</strong> تنها مرجع این است که ترب و «خرید از اطراف» چه شکلی‌اند، چطور رفتار می‌کنند و چطور ساخته می‌شوند. توکن وارد می‌شود و بقیه بیرون می‌آید: همین وب‌سایت، پکیج CSS، کامپوننت‌های ری‌اکت، نُه قالب خروجی و سرور MCP همه از یک مجموعه فایل تولید می‌شوند. هیچ‌چیزِ پایین‌دستی دستی نگه‌داری نمی‌شود، پس هیچ‌چیزِ پایین‌دستی نمی‌تواند از منبع فاصله بگیرد.
+      <strong>کتاب دیزاین ترب</strong> تنها مرجع این است که ترب و «خرید از اطراف» چه شکلی‌اند، چطور رفتار می‌کنند و چطور ساخته می‌شوند. توکن وارد می‌شود و بقیه بیرون می‌آید: همین وب‌سایت، پکیج CSS، کامپوننت‌های ری‌اکت، ${toFa(getFacts().exports)} قالب خروجی و سرور MCP همه از یک مجموعه فایل تولید می‌شوند. هیچ‌چیزِ پایین‌دستی دستی نگه‌داری نمی‌شود، پس هیچ‌چیزِ پایین‌دستی نمی‌تواند از منبع فاصله بگیرد.
     </div>
   </div>
 
   <div class="wide" style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));margin-block:26px">
-    ${[[components.length, 'کامپوننت', 'components/button.html'],
-       [tokenCount, 'توکن طراحی', 'tokens.html'],
+    ${[[toFa(components.length), 'کامپوننت', 'components/button.html'],
+       [toFa(tokenCount.toLocaleString('en-US')), 'توکن طراحی', 'tokens.html'],
        [toFa(iconCount.toLocaleString('en-US')), 'آیکون', 'icons.html'],
-       ['۹', 'قالب خروجی', 'tokens.html#exports'],
+       [toFa(getFacts().exports), 'قالب خروجی', 'tokens.html#exports'],
        ['۹', 'ابزار MCP', 'ai.html']].map(([n, l, href]) =>
       `<a href="${href}" style="text-decoration:none;color:inherit;padding:16px 18px;border:1px solid var(--t-border-default);border-radius:12px;background:var(--t-bg-fog);display:block">
         <div style="font-size:27px;font-weight:800;line-height:1.1">${n}</div>
@@ -64,7 +63,7 @@ export function indexPage({ components, iconCount, tokenCount }) {
   </article>
 </div>` })}`);
 
-  body += section('components', 'کامپوننت‌ها', `<div class="prose"><p>${toFa(components.length)} کامپوننت در شش گروه. هر کدام نام‌های قدیمی سیمبل اسکچ را که جایگزینشان شده با خود دارد، تا واژگان قبلی همچنان کار کند.</p></div>
+  body += section('components', 'کامپوننت‌ها', `<div class="prose"><p>${toFa(components.length)} کامپوننت در ${toFa(getFacts().groups)} گروه. هر کدام نام‌های قدیمی سیمبل اسکچ را که جایگزینشان شده با خود دارد، تا واژگان قبلی همچنان کار کند.</p></div>
     <div class="wide">
     ${Object.entries(groups).map(([g, list]) => `
       <h3 style="font-size:14px;font-weight:700;margin-block:26px 9px;color:var(--t-fg-secondary);text-transform:uppercase;letter-spacing:0.07em">${esc(GROUP_FA[g] ?? g)}</h3>
@@ -84,7 +83,7 @@ export function indexPage({ components, iconCount, tokenCount }) {
         ['رنگ معنا دارد، نه فقط تأکید.', 'قرمز خرید اینترنتی است، آبی کنش فروشگاهی و مشکی خنثی. نام‌گذاری بر پایهٔ نیت هم پشتیبانی می‌شود، چون نیت از تغییر پالت جان سالم به در می‌برد.'],
         ['حالت، حالت است.', 'منبع <code>Button/Red/Hover</code> را به‌عنوان سیمبل مستقل فرستاده بود. اینجا یک سودوکلاس است. پوسته یک توکن است، نه یک کامپوننت.'],
         ['شیشه ساختاری است.', 'متریالی با بودجهٔ مشخص — سه لایه در هر کادر دید — نه تزئینی که هرجا کارت ساده به نظر می‌رسید اعمال شود.'],
-        ['دسترس‌پذیری یک دروازه است.', '۳۷ جفت رنگ در هر سه پوسته و در هر بیلد ماشینی بررسی می‌شوند. یک شکست، بیلد را متوقف می‌کند.'],
+        ['دسترس‌پذیری یک دروازه است.', `${toFa(getFacts().contrastPairs)} جفت رنگ در هر سه پوسته و در هر بیلد ماشینی بررسی می‌شوند. یک شکست، بیلد را متوقف می‌کند.`],
         ['ماشین‌خوان از پایه.', 'نُه ابزار MCP، یک <code>llms.txt</code> و یک نسخهٔ مارک‌داون برای هر صفحه. عامل‌های هوش مصنوعی مصرف‌کنندهٔ درجه‌یک‌اند، نه فکر بعدی.'],
       ].map(([t, d], i) => `<li style="display:flex;gap:15px;padding-block:13px;border-block-end:1px solid var(--t-border-subtle)">
         <span style="flex:none;inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-bg-subtle);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--t-fg-secondary)">${i + 1}</span>
@@ -110,7 +109,7 @@ export function aiPage(nComponents, nIcons) {
     ['<strong>سرور MCP</strong>', 'نُه ابزار روی stdio — کامپوننت، توکن، آیکون، راهنما، مهاجرت و یک لینتر', 'Claude Code، Cursor، Windsurf، Zed'],
     ['<strong>llms.txt</strong>', 'فهرست ماشین‌خوان در ریشهٔ سایت، به‌علاوهٔ نسخهٔ <code>.md</code> هر صفحه', 'هر مدلی با دسترسی به وب'],
     ['<strong>قواعد عامل</strong>', 'تولید <code>CLAUDE.md</code>، <code>.cursorrules</code> و <code>copilot-instructions.md</code>', 'حفاظ در سطح مخزن'],
-    ['<strong>خروجی توکن</strong>', 'نُه قالب، از جمله یک مرجع مارک‌داون', 'هر چیزی که بتواند فایل بخواند'],
+    ['<strong>خروجی توکن</strong>', `${toFa(getFacts().exports)} قالب، از جمله یک مرجع مارک‌داون`, 'هر چیزی که بتواند فایل بخواند'],
   ])}`;
 
   body += S('mcp', 'سرور MCP', `<div class="prose"><p>مسیر اصلی. همان خروجی‌هایی را می‌خواند که این وب‌سایت می‌خواند، پس نمی‌تواند از آنچه می‌بینید فاصله بگیرد.</p></div>
@@ -186,7 +185,7 @@ WARN  line 8  [off-scale-duration]   250ms is not a duration token (120/220/320/
     <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">AGENT_RULES.md</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="agent-rules">کپی</button></div></div>
     <pre class="code" id="agent-rules"><code># Torob Design System — rules for AI agents
 
-This project uses the Torob Design System (Rahnamā). An MCP server named
+This project uses the Torob Design System — کتاب دیزاین ترب. An MCP server named
 "torob-design" exposes it. Use it — do not guess at values.
 
 ## Before writing any UI
@@ -232,7 +231,7 @@ export function migrationPage(components) {
     <p>تغییر نامی که کسی نتواند اجرایش کند، تغییر نامی است که کسی نمی‌پذیردش. پس هر نام قدیمی اینجا، در <code>get_migration</code> سرور MCP و در صفحهٔ هر کامپوننت قابل جست‌وجو می‌ماند.</p>
   </div>`;
 
-  body += S('why', 'چهار ادغام', `<div class="prose"><p>۱۱۰ مستر اسکچ با چهار قاعدهٔ مکانیکی به ${toFa(components.length - nNew)} کامپوننت کاهش می‌یابند. هیچ‌کدام تصمیم سلیقه‌ای نیست.</p></div>
+  body += S('why', 'چهار ادغام', `<div class="prose"><p>${toFa(getFacts().masters)} مستر اسکچ با چهار قاعدهٔ مکانیکی به ${toFa(components.length - nNew)} کامپوننت کاهش می‌یابند. هیچ‌کدام تصمیم سلیقه‌ای نیست.</p></div>
     ${table(['قاعده', 'نمونه', 'چرا'], [
       ['<strong>حالت، حالت است</strong>', '<code>Button / Red / Hover</code> · <code>/ Default</code> · <code>/ Disable</code> ← یک <code>Button</code>', 'یک API کامپوننت نمی‌تواند برای هر سودوکلاس یک کامپوننت جدا داشته باشد.'],
       ['<strong>پوسته یک توکن است</strong>', '<code>Store-Card/VLP/With product/Light</code> + <code>/Dark</code> ← یک <code>StoreCard</code>', 'روشن و تیره یک کامپوننت‌اند، زیر مقادیر توکن متفاوت.'],
@@ -268,7 +267,7 @@ export function migrationPage(components) {
 
   body += S('hygiene', 'یافته‌های فایل منبع', `<div class="prose"><p>مشکلاتی که هنگام تجزیهٔ فایل‌های اسکچ پیدا شدند. ارزش دارد در خود منبع اصلاح شوند تا این دو از هم فاصله نگیرند.</p></div>
     ${table(['یافته', 'جزئیات'], [
-      ['<strong>۲۴ مستر تکراری</strong>', 'نام یکسان، شناسهٔ متفاوت. <code>Segmented Controls/Selected</code> <strong>چهار</strong> بار وجود دارد؛ <code>Search bar/Default</code>، <code>Product Card/Normal</code>، <code>Header/Profile</code> و ۲۰ مورد دیگر دو بار.'],
+      [`<strong>${toFa(getFacts().duplicateNames)} نام تکراری</strong>`, `نام یکسان، شناسهٔ متفاوت — دو مستر جدا که در فهرست سیمبل‌ها یکی به نظر می‌رسند: ${getFacts().duplicateNameList.map(n => `<code>${esc(n)}</code>`).join('، ')}. فایل از ۱۰۸ مستر با ۲۴ نام تکراری به ${toFa(getFacts().masters)} مستر رسیده؛ این چهارتا مانده‌اند.`],
       ['<strong>دو نسل سیمبل کنار هم زندگی می‌کنند</strong>', 'صفحهٔ نمونه‌ها از <code>Button/Normal/Primary/Icon</code> و <code>Store-Card/With product</code> استفاده می‌کند؛ صفحهٔ کامپوننت‌ها از <code>Button / Red / Icon</code> و <code>Store-Card/VLP/With product/Light</code>. نمونه‌ها از قبل مهاجرت به نام‌گذاری بر پایهٔ نیت را شروع کرده بودند.'],
       ['<strong>کامپوننت‌های مستندنشده</strong>', '<code>city filter</code>، <code>official seller</code> و <code>Badge / Ad on Buy Box</code> فقط در صفحهٔ نمونه‌ها دیده می‌شوند و هرگز در کتابخانهٔ کامپوننت نبودند.'],
       ['<strong>نیم‌فاصلهٔ نامرئی در نام سیمبل‌ها</strong>', '<code>Button/‌Blue/…</code> و <code>Glass - Dark - ‌List Background</code> نویسهٔ U+200C دارند. در اسکچ نامرئی است و بی‌صدا هر تولید کدی را که به نام تکیه کند می‌شکند.'],

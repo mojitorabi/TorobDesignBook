@@ -1,4 +1,5 @@
-import { specimen, section, table, guidance, esc } from './site-lib.mjs';
+import { specimen, section, table, guidance, esc, toFa } from './site-lib.mjs';
+import { getFacts } from './facts.mjs';
 
 const sw = (name, value, note) => `<button class="swatch" data-copy-text="var(${name})" title="Copy var(${name})">
   <div class="swatch__chip" style="background:${value}"></div>
@@ -68,7 +69,7 @@ export function colorPage(m) {
       ['<code>map.pill-fg</code> added', 'متن قرص قیمت روی نقشه در پوسته‌های تیره Blue 500 بود، یعنی ۲٫۷۳:۱ روی سطح تیره. در تیره Blue 300 شد (۵٫۶۴:۱)؛ روشن همان Blue 500 ماند.'],
       ['نشان «آگهی» روی جعبهٔ خرید آبی', 'سفید روی Blue 300 نسبت ۲٫۵۴:۱ می‌داد. رنگ قرص همان ماند و متن تیره شد (۵٫۷۵:۱).'],
     ])}
-    <div class="note"><strong>خودتان راستی‌آزمایی کنید:</strong> دستور <code>node build/contrast-check.mjs</code> پنجاه‌ودو جفت پیش‌زمینه و پس‌زمینه را در هر سه پوسته اجرا می‌کند و با هر شکست AA خروجی غیرصفر می‌دهد. این یک دروازه است، نه یک گزارش.</div>`);
+    <div class="note"><strong>خودتان راستی‌آزمایی کنید:</strong> دستور <code>node build/contrast-check.mjs</code> ${toFa(getFacts().contrastPairs)} جفت پیش‌زمینه و پس‌زمینه را در هر سه پوسته اجرا می‌کند و با هر شکست AA خروجی غیرصفر می‌دهد. این یک دروازه است، نه یک گزارش.</div>`);
 
   return { body, toc, title: 'رنگ', description: 'نُه خانواده به‌علاوهٔ برند. Sky ستون فقرات است؛ بقیه معنا حمل می‌کنند.', eyebrow: 'مبانی' };
 }
