@@ -4,6 +4,7 @@
 export default [
   {
     "name": "BottomSheet",
+    "root": "t-sheet",
     "slug": "bottom-sheet",
     "group": "Overlays",
     "status": "new",
@@ -90,6 +91,7 @@ export default [
   },
   {
     "name": "Modal",
+    "root": "t-modal",
     "slug": "modal",
     "group": "Overlays",
     "status": "new",
@@ -159,6 +161,7 @@ export default [
   },
   {
     "name": "Accordion",
+    "root": "t-accordion",
     "slug": "accordion",
     "group": "Overlays",
     "status": "new",
@@ -233,6 +236,7 @@ export default [
   },
   {
     "name": "Menu",
+    "root": "t-popover",
     "slug": "menu",
     "group": "Overlays",
     "status": "new",

@@ -5,6 +5,7 @@
 export default [
   {
     "name": "SplitButton",
+    "root": "t-btn-split",
     "slug": "split-button",
     "group": "Actions",
     "status": "revised",
@@ -100,6 +101,7 @@ export default [
   },
   {
     "name": "FilterBar",
+    "root": "t-filter-bar",
     "slug": "filter-bar",
     "group": "Navigation",
     "status": "revised",
@@ -188,6 +190,7 @@ export default [
   },
   {
     "name": "BrandMark",
+    "root": "t-brand",
     "slug": "brand-mark",
     "group": "Brand",
     "status": "revised",
@@ -267,6 +270,7 @@ export default [
   },
   {
     "name": "SocialLink",
+    "root": "t-social",
     "slug": "social-link",
     "group": "Brand",
     "status": "revised",

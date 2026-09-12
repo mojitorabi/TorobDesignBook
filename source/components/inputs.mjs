@@ -5,6 +5,7 @@
 export default [
   {
     "name": "SearchField",
+    "root": "t-search",
     "slug": "search-field",
     "group": "Inputs",
     "status": "revised",
@@ -91,6 +92,7 @@ export default [
   },
   {
     "name": "TextField",
+    "root": "t-field",
     "slug": "text-field",
     "group": "Inputs",
     "status": "new",
@@ -167,6 +169,7 @@ export default [
   },
   {
     "name": "SegmentedControl",
+    "root": "t-segmented",
     "slug": "segmented-control",
     "group": "Inputs",
     "status": "revised",
@@ -249,6 +252,7 @@ export default [
   },
   {
     "name": "Switch",
+    "root": "t-switch",
     "slug": "switch",
     "group": "Inputs",
     "status": "new",
@@ -312,6 +316,7 @@ export default [
   },
   {
     "name": "RangeSlider",
+    "root": "t-range",
     "slug": "range-slider",
     "group": "Inputs",
     "status": "new",
@@ -392,6 +397,7 @@ export default [
   },
   {
     "name": "Checkbox",
+    "root": "t-check",
     "slug": "checkbox",
     "group": "Inputs",
     "status": "new",
@@ -454,6 +460,7 @@ export default [
   },
   {
     "name": "QuantityStepper",
+    "root": "t-stepper",
     "slug": "quantity-stepper",
     "group": "Inputs",
     "status": "new",

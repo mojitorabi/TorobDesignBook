@@ -4,6 +4,7 @@
 export default [
   {
     "name": "Button",
+    "root": "t-btn",
     "slug": "button",
     "group": "Actions",
     "status": "revised",
@@ -138,6 +139,7 @@ export default [
   },
   {
     "name": "IconButton",
+    "root": "t-icon-btn",
     "slug": "icon-button",
     "group": "Actions",
     "status": "revised",
@@ -220,6 +222,7 @@ export default [
   },
   {
     "name": "BuyBoxButton",
+    "root": "t-buybox",
     "slug": "buy-box-button",
     "group": "Actions",
     "status": "revised",

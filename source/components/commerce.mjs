@@ -5,6 +5,7 @@
 export default [
   {
     "name": "PriceDisplay",
+    "root": "t-price",
     "slug": "price-display",
     "group": "Commerce",
     "status": "new",
@@ -95,6 +96,7 @@ export default [
   },
   {
     "name": "Badge",
+    "root": "t-badge",
     "slug": "badge",
     "group": "Commerce",
     "status": "revised",
@@ -188,6 +190,7 @@ export default [
   },
   {
     "name": "ProductCard",
+    "root": "t-product-card",
     "slug": "product-card",
     "group": "Commerce",
     "status": "revised",
@@ -286,6 +289,7 @@ export default [
   },
   {
     "name": "ProductThumb",
+    "root": "t-thumb",
     "slug": "product-thumb",
     "group": "Commerce",
     "status": "revised",
@@ -362,6 +366,7 @@ export default [
   },
   {
     "name": "StoreCard",
+    "root": "t-store-card",
     "slug": "store-card",
     "group": "Commerce",
     "status": "revised",
@@ -461,6 +466,7 @@ export default [
   },
   {
     "name": "OfferCard",
+    "root": "t-offer",
     "slug": "offer-card",
     "group": "Commerce",
     "status": "revised",
@@ -540,6 +546,7 @@ export default [
   },
   {
     "name": "MapPin",
+    "root": "t-pin",
     "slug": "map-pin",
     "group": "Commerce",
     "status": "revised",
@@ -623,6 +630,7 @@ export default [
   },
   {
     "name": "StatusDot",
+    "root": "t-status-dot",
     "slug": "status-dot",
     "group": "Commerce",
     "status": "revised",
@@ -675,6 +683,7 @@ export default [
   },
   {
     "name": "ListItem",
+    "root": "t-list-item",
     "slug": "list-item",
     "group": "Commerce",
     "status": "revised",

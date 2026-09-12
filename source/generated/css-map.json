@@ -1,0 +1,1328 @@
+{
+ "t-h1": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-h2": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-h3": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-h4": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-h5": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-body-lg": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-body-lg-strong": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-body-md": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-body-md-strong": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-body-sm": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-body-sm-strong": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-tone-default": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-tone-secondary": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-tone-disabled": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-tone-inverse": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-tone-brand": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-num-fa": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-num-tabular": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-bidi": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-truncate": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-clamp-2": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-clamp-3": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-visually-hidden": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-glass": {
+  "mods": [
+   "list",
+   "solid",
+   "selected",
+   "filters"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-surface": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-elevation-0": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-elevation-1": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-elevation-2": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-elevation-3": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-rules-y": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-fog": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-btn": {
+  "mods": [
+   "lg",
+   "md",
+   "sm",
+   "xs",
+   "xl",
+   "block",
+   "red",
+   "primary",
+   "blue",
+   "accent",
+   "blue-outline",
+   "outline-accent",
+   "black",
+   "neutral",
+   "black-ghost",
+   "outline",
+   "red-outline",
+   "soft",
+   "ghost",
+   "ghost-accent",
+   "glass",
+   "blue-ghost",
+   "filter"
+  ],
+  "parts": [
+   "chevron"
+  ],
+  "states": [
+   "active",
+   "disabled",
+   "hover"
+  ],
+  "attrs": [
+   "aria-expanded=true",
+   "aria-disabled=true",
+   "data-loading=true",
+   "data-state=loading"
+  ]
+ },
+ "t-icon-btn": {
+  "mods": [
+   "accent",
+   "accent-ghost",
+   "glass",
+   "sm",
+   "round",
+   "filter"
+  ],
+  "parts": [],
+  "states": [
+   "hover",
+   "disabled",
+   "active"
+  ],
+  "attrs": []
+ },
+ "t-btn-split": {
+  "mods": [],
+  "parts": [
+   "more"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-buybox": {
+  "mods": [
+   "offline",
+   "blue",
+   "compact"
+  ],
+  "parts": [
+   "body",
+   "seller",
+   "price",
+   "meta",
+   "ad"
+  ],
+  "states": [
+   "hover",
+   "disabled",
+   "active"
+  ],
+  "attrs": [
+   "data-state=disabled",
+   "aria-disabled=true"
+  ]
+ },
+ "t-field": {
+  "mods": [],
+  "parts": [
+   "label",
+   "hint",
+   "error",
+   "req"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-input": {
+  "mods": [
+   "md",
+   "sm",
+   "error",
+   "success",
+   "textarea"
+  ],
+  "parts": [
+   "el",
+   "icon"
+  ],
+  "states": [
+   "hover",
+   "disabled",
+   "invalid"
+  ],
+  "attrs": [
+   "data-state=disabled",
+   "data-disabled=true",
+   "data-invalid=true",
+   "aria-invalid=true",
+   "data-state=error",
+   "data-state=success",
+   "data-readonly=true",
+   "data-state=readonly"
+  ]
+ },
+ "t-search": {
+  "mods": [],
+  "parts": [
+   "actions",
+   "tool",
+   "clear"
+  ],
+  "states": [],
+  "attrs": [
+   "data-state=typing",
+   "data-state=searched"
+  ]
+ },
+ "t-select": {
+  "mods": [],
+  "parts": [
+   "chevron"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-check": {
+  "mods": [
+   "radio"
+  ],
+  "parts": [
+   "box",
+   "mark"
+  ],
+  "states": [
+   "checked",
+   "focus-visible",
+   "hover",
+   "disabled",
+   "active"
+  ],
+  "attrs": [
+   "data-state=selected",
+   "data-state=focus",
+   "data-state=disabled",
+   "data-state=active",
+   "data-state=hover"
+  ]
+ },
+ "t-switch": {
+  "mods": [],
+  "parts": [
+   "track",
+   "thumb"
+  ],
+  "states": [
+   "checked",
+   "focus-visible",
+   "disabled",
+   "hover",
+   "active"
+  ],
+  "attrs": [
+   "data-state=selected",
+   "data-state=focus",
+   "data-state=disabled",
+   "data-state=hover"
+  ]
+ },
+ "t-range": {
+  "mods": [],
+  "parts": [
+   "track",
+   "fill",
+   "thumb",
+   "values"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "data-state=disabled"
+  ]
+ },
+ "t-stepper": {
+  "mods": [],
+  "parts": [
+   "btn",
+   "value"
+  ],
+  "states": [
+   "hover",
+   "disabled",
+   "active"
+  ],
+  "attrs": []
+ },
+ "t-segmented": {
+  "mods": [
+   "block"
+  ],
+  "parts": [
+   "item"
+  ],
+  "states": [
+   "checked",
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "aria-checked=true",
+   "aria-selected=true",
+   "data-state=disabled"
+  ]
+ },
+ "t-choice": {
+  "mods": [],
+  "parts": [
+   "action",
+   "clear"
+  ],
+  "states": [
+   "hover",
+   "disabled",
+   "checked",
+   "active"
+  ],
+  "attrs": [
+   "data-state=disabled",
+   "aria-pressed=true",
+   "aria-checked=true",
+   "aria-selected=true"
+  ]
+ },
+ "t-chip-group": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-tabs": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-tab": {
+  "mods": [],
+  "parts": [
+   "count"
+  ],
+  "states": [
+   "hover",
+   "checked",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "aria-selected=true",
+   "data-state=disabled",
+   "aria-disabled=true"
+  ]
+ },
+ "t-chip": {
+  "mods": [
+   "action"
+  ],
+  "parts": [
+   "chevron",
+   "count"
+  ],
+  "states": [
+   "active",
+   "disabled",
+   "hover",
+   "checked"
+  ],
+  "attrs": [
+   "data-state=disabled",
+   "aria-disabled=true",
+   "aria-pressed=true",
+   "data-active=true"
+  ]
+ },
+ "t-filter-bar": {
+  "mods": [
+   "flush",
+   "sticky"
+  ],
+  "parts": [
+   "lead",
+   "divider"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-page-header": {
+  "mods": [
+   "plain"
+  ],
+  "parts": [
+   "title",
+   "sub",
+   "close",
+   "media",
+   "main",
+   "text"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-hours": {
+  "mods": [
+   "closed"
+  ],
+  "parts": [
+   "state"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-bottom-nav": {
+  "mods": [],
+  "parts": [
+   "item"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "aria-current=page",
+   "data-state=disabled",
+   "aria-disabled=true"
+  ]
+ },
+ "t-breadcrumb": {
+  "mods": [],
+  "parts": [
+   "item",
+   "sep"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "aria-current=page",
+   "data-state=disabled",
+   "aria-disabled=true"
+  ]
+ },
+ "t-pagination": {
+  "mods": [],
+  "parts": [
+   "page"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "aria-current=page",
+   "data-state=disabled"
+  ]
+ },
+ "t-steps": {
+  "mods": [],
+  "parts": [
+   "dot",
+   "item",
+   "bar"
+  ],
+  "states": [],
+  "attrs": [
+   "data-state=current",
+   "data-state=done"
+  ]
+ },
+ "t-badge": {
+  "mods": [
+   "sm",
+   "lg",
+   "kalabarg",
+   "ad",
+   "plain",
+   "positive",
+   "caution",
+   "critical",
+   "info",
+   "brand",
+   "guarantee",
+   "on-image"
+  ],
+  "parts": [
+   "label",
+   "dot"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-tag": {
+  "mods": [],
+  "parts": [
+   "remove"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "data-state=disabled"
+  ]
+ },
+ "t-price": {
+  "mods": [
+   "sm",
+   "lg",
+   "unavailable",
+   "xl"
+  ],
+  "parts": [
+   "value",
+   "unit",
+   "from",
+   "was"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-thumb": {
+  "mods": [
+   "sm",
+   "square",
+   "none"
+  ],
+  "parts": [
+   "badges",
+   "action"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-product-card": {
+  "mods": [
+   "sm",
+   "more",
+   "empty"
+  ],
+  "parts": [
+   "title",
+   "tags",
+   "tag",
+   "buy",
+   "foot",
+   "meta",
+   "actions",
+   "grid",
+   "cell"
+  ],
+  "states": [
+   "checked",
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "aria-pressed=true",
+   "data-state=hover",
+   "data-state=disabled",
+   "data-lines=3",
+   "data-theme=dim",
+   "data-theme=dark"
+  ]
+ },
+ "t-store-card": {
+  "mods": [
+   "pdp"
+  ],
+  "parts": [
+   "name",
+   "head",
+   "info",
+   "address",
+   "distance",
+   "photo",
+   "chips",
+   "rail",
+   "actions"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "data-state=disabled",
+   "data-theme=dim",
+   "data-theme=dark"
+  ]
+ },
+ "t-offer": {
+  "mods": [],
+  "parts": [
+   "top",
+   "head",
+   "row",
+   "seller",
+   "name",
+   "note",
+   "address",
+   "perks"
+  ],
+  "states": [
+   "active",
+   "hover",
+   "disabled"
+  ],
+  "attrs": [
+   "data-state=hover",
+   "data-state=disabled",
+   "aria-disabled=true"
+  ]
+ },
+ "t-perk": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-rating-pill": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-list": {
+  "mods": [
+   "zebra"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-list-item": {
+  "mods": [],
+  "parts": [
+   "lead",
+   "body",
+   "title",
+   "sub",
+   "trail"
+  ],
+  "states": [
+   "active",
+   "disabled",
+   "hover"
+  ],
+  "attrs": [
+   "data-state=disabled"
+  ]
+ },
+ "t-status-dot": {
+  "mods": [
+   "closed"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-avatar": {
+  "mods": [
+   "sm",
+   "lg",
+   "square"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-rating": {
+  "mods": [],
+  "parts": [
+   "value",
+   "count"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-divider": {
+  "mods": [
+   "vertical"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-pin": {
+  "mods": [
+   "dot",
+   "price",
+   "hero",
+   "me"
+  ],
+  "parts": [
+   "pill",
+   "tail",
+   "spot",
+   "label",
+   "drop",
+   "face"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled",
+   "checked"
+  ],
+  "attrs": [
+   "data-state=disabled",
+   "aria-disabled=true",
+   "aria-pressed=true"
+  ]
+ },
+ "t-cluster": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-toast-region": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-toast": {
+  "mods": [
+   "positive",
+   "critical",
+   "caution"
+  ],
+  "parts": [
+   "icon",
+   "body",
+   "title",
+   "desc",
+   "action",
+   "close"
+  ],
+  "states": [
+   "disabled",
+   "hover"
+  ],
+  "attrs": [
+   "data-state=disabled",
+   "data-leaving=true"
+  ]
+ },
+ "t-alert": {
+  "mods": [
+   "positive",
+   "caution",
+   "critical",
+   "info",
+   "guarantee"
+  ],
+  "parts": [
+   "icon",
+   "body",
+   "title",
+   "actions"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-inline-msg": {
+  "mods": [
+   "critical",
+   "positive"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-empty": {
+  "mods": [
+   "inline",
+   "error"
+  ],
+  "parts": [
+   "art",
+   "title",
+   "desc",
+   "actions",
+   "code"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-skeleton": {
+  "mods": [
+   "text",
+   "title",
+   "circle"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-spinner": {
+  "mods": [
+   "sm",
+   "lg"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-progress": {
+  "mods": [
+   "indeterminate"
+  ],
+  "parts": [
+   "bar"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-tooltip": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": [
+   "data-open=true"
+  ]
+ },
+ "t-scrim": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-modal": {
+  "mods": [],
+  "parts": [
+   "head",
+   "title",
+   "body",
+   "foot"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-sheet": {
+  "mods": [],
+  "parts": [
+   "grip",
+   "head",
+   "title",
+   "body",
+   "foot"
+  ],
+  "states": [],
+  "attrs": [
+   "data-leaving=true"
+  ]
+ },
+ "t-drawer": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-popover": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-menu-item": {
+  "mods": [
+   "critical"
+  ],
+  "parts": [],
+  "states": [
+   "hover",
+   "checked",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "aria-checked=true",
+   "data-state=disabled",
+   "aria-disabled=true"
+  ]
+ },
+ "t-menu-sep": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-accordion": {
+  "mods": [],
+  "parts": [
+   "item",
+   "trigger",
+   "label",
+   "chevron",
+   "panel"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "data-state=disabled",
+   "aria-expanded=true"
+  ]
+ },
+ "t-container": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-stack": {
+  "mods": [
+   "sm",
+   "lg"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-row": {
+  "mods": [
+   "between",
+   "wrap"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-spacer": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-grid-products": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-rail": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-split": {
+  "mods": [],
+  "parts": [
+   "list"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-only-mobile": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-only-desktop": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-safe-b": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-safe-t": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-icon": {
+  "mods": [
+   "sm",
+   "stroke",
+   "lg",
+   "directional"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-shell-frame": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-shell": {
+  "mods": [
+   "narrow"
+  ],
+  "parts": [
+   "brand",
+   "top",
+   "nav",
+   "main"
+  ],
+  "states": [],
+  "attrs": [
+   "data-nav=collapsed"
+  ]
+ },
+ "t-navitem": {
+  "mods": [],
+  "parts": [
+   "count"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "aria-current=page",
+   "data-state=disabled",
+   "aria-disabled=true"
+  ]
+ },
+ "t-navgroup": {
+  "mods": [],
+  "parts": [
+   "title"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-stats": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-stat": {
+  "mods": [],
+  "parts": [
+   "label",
+   "value",
+   "delta"
+  ],
+  "states": [],
+  "attrs": []
+ },
+ "t-toolbar": {
+  "mods": [],
+  "parts": [
+   "spacer",
+   "count"
+  ],
+  "states": [],
+  "attrs": [
+   "data-selection=true"
+  ]
+ },
+ "t-table-wrap": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-table": {
+  "mods": [
+   "freeze",
+   "compact"
+  ],
+  "parts": [
+   "sort"
+  ],
+  "states": [
+   "hover",
+   "disabled",
+   "checked"
+  ],
+  "attrs": [
+   "data-state=disabled",
+   "aria-disabled=true",
+   "aria-selected=true",
+   "aria-sort",
+   "aria-sort=none",
+   "aria-sort=descending"
+  ]
+ },
+ "t-dl": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-datefield": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-cal": {
+  "mods": [],
+  "parts": [
+   "head",
+   "title",
+   "grid",
+   "row",
+   "dow",
+   "day"
+  ],
+  "states": [
+   "hover",
+   "checked",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "aria-selected=true",
+   "data-today=true",
+   "data-outside=true",
+   "data-weekend=true",
+   "data-state=disabled",
+   "aria-disabled=true"
+  ]
+ },
+ "t-taginput": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-kbd": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-brand": {
+  "mods": [
+   "sm",
+   "lg",
+   "plate"
+  ],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-brand-lockup": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-guarantee": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-guarantee-badge": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-social": {
+  "mods": [],
+  "parts": [
+   "mark"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "data-state=disabled",
+   "aria-disabled=true"
+  ]
+ },
+ "t-social-row": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ }
+}

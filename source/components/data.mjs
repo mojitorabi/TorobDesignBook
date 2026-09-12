@@ -3,7 +3,7 @@ const sortIcon = `<svg class="t-icon" width="11" height="11" viewBox="0 0 16 16"
 
 export default [
 {
-  name: 'DataTable', slug: 'data-table', group: 'Data', status: 'new',
+  name: 'DataTable', root: 't-table', slug: 'data-table', group: 'Data', status: 'new',
   legacy: [],
   summary: 'ردیف‌های داده برای مرور، مرتب‌سازی و انتخاب گروهی.',
   description: [
@@ -105,7 +105,7 @@ export default [
 }`,
 },
 {
-  name: 'StatCard', slug: 'stat-card', group: 'Data', status: 'new',
+  name: 'StatCard', root: 't-stat', slug: 'stat-card', group: 'Data', status: 'new',
   legacy: [],
   summary: 'یک عدد که فروشنده هر روز نگاهش می‌کند.',
   description: [
@@ -151,7 +151,7 @@ export default [
 }`,
 },
 {
-  name: 'DateField', slug: 'date-field', group: 'Data', status: 'new',
+  name: 'DateField', root: 't-cal', slug: 'date-field', group: 'Data', status: 'new',
   legacy: [],
   summary: 'تاریخ شمسی. تقویم میلادی در پنل فروشنده قابل استفاده نیست.',
   description: [
@@ -233,7 +233,7 @@ export function DateField({ value, onChange, range, presets = true }) {
 }`,
 },
 {
-  name: 'AppShell', slug: 'app-shell', group: 'Layout', status: 'new',
+  name: 'AppShell', root: 't-shell', slug: 'app-shell', group: 'Layout', status: 'new',
   legacy: [],
   summary: 'اسکلت پنل فروشنده: نوار کناری، نوار بالا، محتوا.',
   description: [
@@ -307,7 +307,7 @@ export function DateField({ value, onChange, range, presets = true }) {
 }`,
 },
 {
-  name: 'DescriptionList', slug: 'description-list', group: 'Data', status: 'new',
+  name: 'DescriptionList', root: 't-dl', slug: 'description-list', group: 'Data', status: 'new',
   legacy: [],
   summary: 'جفت‌های برچسب و مقدار برای صفحهٔ جزئیات.',
   description: ['صفحهٔ جزئیات سفارش، پروفایل فروشگاه، مشخصات محصول. یک <code>&lt;dl&gt;</code> واقعی است، نه یک جدول دو‌ستونی؛ صفحه‌خوان جفت را به‌عنوان جفت می‌خواند.'],

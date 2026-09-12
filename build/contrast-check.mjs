@@ -90,6 +90,12 @@ const pairs = [
   // The price pin reads as text, so 4.5 applies — in every theme, including
   // the dark ones where the pill surface is dark.
   ['map.pill-fg', 'bg.fog', 4.5, 'map price pill label'],
+
+  // Text on a filled status surface: a toast, a step marker, a solid badge.
+  ['status.positive.on-solid', 'status.positive.solid', 4.5, 'text on positive solid'],
+  ['status.critical.on-solid', 'status.critical.solid', 4.5, 'text on critical solid'],
+  ['status.caution.on-solid', 'status.caution.solid', 4.5, 'text on caution solid'],
+  ['status.info.on-solid', 'status.info.solid', 4.5, 'text on info solid'],
 ];
 
 let fails = 0, warns = 0;

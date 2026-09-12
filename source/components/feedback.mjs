@@ -4,6 +4,7 @@
 export default [
   {
     "name": "Toast",
+    "root": "t-toast",
     "slug": "toast",
     "group": "Feedback",
     "status": "new",
@@ -91,6 +92,7 @@ export default [
   },
   {
     "name": "Alert",
+    "root": "t-alert",
     "slug": "alert",
     "group": "Feedback",
     "status": "new",
@@ -171,6 +173,7 @@ export default [
   },
   {
     "name": "EmptyState",
+    "root": "t-empty",
     "slug": "empty-state",
     "group": "Feedback",
     "status": "new",
@@ -249,6 +252,7 @@ export default [
   },
   {
     "name": "Skeleton",
+    "root": "t-skeleton",
     "slug": "skeleton",
     "group": "Feedback",
     "status": "new",
@@ -298,6 +302,7 @@ export default [
   },
   {
     "name": "Spinner",
+    "root": "t-spinner",
     "slug": "spinner",
     "group": "Feedback",
     "status": "new",

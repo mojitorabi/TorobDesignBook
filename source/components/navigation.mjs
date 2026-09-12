@@ -5,6 +5,7 @@
 export default [
   {
     "name": "ChoiceChip",
+    "root": "t-choice",
     "slug": "choice-chip",
     "group": "Navigation",
     "status": "revised",
@@ -94,6 +95,7 @@ export default [
   },
   {
     "name": "FilterChip",
+    "root": "t-chip",
     "slug": "filter-chip",
     "group": "Navigation",
     "status": "revised",
@@ -178,6 +180,7 @@ export default [
   },
   {
     "name": "Tabs",
+    "root": "t-tabs",
     "slug": "tabs",
     "group": "Navigation",
     "status": "new",
@@ -240,6 +243,7 @@ export default [
   },
   {
     "name": "PageHeader",
+    "root": "t-page-header",
     "slug": "page-header",
     "group": "Navigation",
     "status": "revised",
@@ -325,6 +329,7 @@ export default [
   },
   {
     "name": "BottomNav",
+    "root": "t-bottom-nav",
     "slug": "bottom-nav",
     "group": "Navigation",
     "status": "new",
@@ -387,6 +392,7 @@ export default [
   },
   {
     "name": "Breadcrumb",
+    "root": "t-breadcrumb",
     "slug": "breadcrumb",
     "group": "Navigation",
     "status": "new",

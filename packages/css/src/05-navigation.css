@@ -52,6 +52,8 @@
   color: var(--t-action-blue-fg);
 }
 .t-segmented__item:not([aria-checked="true"], [aria-selected="true"]):hover { color: var(--t-action-blue-ghost-fg); }
+.t-segmented__item:active { transform: scale(0.97); }
+.t-segmented__item:disabled, .t-segmented__item[data-state~="disabled"] { color: var(--t-fg-disabled); cursor: not-allowed; transform: none; }
 .t-segmented--block { display: flex; inline-size: 100%; }
 .t-segmented--block .t-segmented__item { flex: 1; }
 
@@ -97,6 +99,22 @@
   border-radius: inherit;
 }
 .t-choice:has(> .t-choice__clear) .t-choice__action { padding-inline-end: 0; }
+/* States. A resting chip is glass and takes the selected glass on hover; a
+   chosen chip is already the blue button, so it deepens instead. */
+.t-choice:not([data-state~="disabled"]):hover,
+.t-choice:not([data-state~="disabled"]):has(> .t-choice__action:hover) { --_bg: var(--t-glass-selected-fill); }
+.t-choice[aria-pressed="true"]:hover,
+.t-choice[aria-checked="true"]:hover,
+.t-choice:has(> .t-choice__action[aria-pressed="true"]):hover {
+  --_bg: var(--t-action-blue-bg-active); --_bg-image: none;
+}
+.t-choice:not([data-state~="disabled"]):active,
+.t-choice:not([data-state~="disabled"]):has(> .t-choice__action:active) { transform: scale(0.97); }
+.t-choice[data-state~="disabled"], .t-choice:has(> .t-choice__action:disabled) {
+  --_bg: var(--t-action-disabled-bg); --_bg-image: none;
+  --_fg: var(--t-action-disabled-fg);
+  --_ring: none; --_lift: none; cursor: not-allowed; backdrop-filter: none;
+}
 .t-choice[aria-checked="true"], .t-choice[aria-pressed="true"], .t-choice[aria-selected="true"],
 .t-choice:has(> .t-choice__action[aria-pressed="true"]) {
   --_bg: var(--t-action-blue-bg);
@@ -157,6 +175,11 @@
   transition: scale var(--t-duration-standard) var(--t-easing-out);
 }
 .t-tab[aria-selected="true"]::after { scale: 1 1; }
+.t-tab:active { color: var(--t-fg-default); }
+.t-tab:disabled, .t-tab[data-state~="disabled"], .t-tab[aria-disabled="true"] {
+  color: var(--t-fg-disabled); cursor: not-allowed;
+}
+.t-tab:disabled::after, .t-tab[data-state~="disabled"]::after { content: none; }
 .t-tab__count { margin-inline-start: var(--t-space-1); font-variant-numeric: tabular-nums; color: var(--t-fg-secondary); font-weight: var(--t-font-weight-medium); }
 
 /* ---- FilterChip  ← Filter/Cell/Cell · /Icon · /Icon+Chevron ----
@@ -186,12 +209,16 @@
   transition: background-color var(--t-duration-micro) var(--t-easing-out), box-shadow var(--t-duration-micro) var(--t-easing-out);
 }
 .t-chip .t-icon { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); flex: none; }
+.t-chip:active { transform: scale(0.97); }
+.t-chip:disabled, .t-chip[data-state~="disabled"], .t-chip[aria-disabled="true"] {
+  color: var(--t-fg-disabled); cursor: not-allowed; transform: none; backdrop-filter: none;
+}
 .t-chip .t-chip__chevron { margin-inline-start: -2px; }
 /* The two leading actions of a filter bar (sort, all filters): even 8px
    padding and a 20px glyph. */
 .t-chip--action { padding-inline: var(--t-space-2); }
 .t-chip--action .t-icon { inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); }
-.t-chip:is(:hover, [data-state="hover"]) { background: var(--t-glass-selected-fill); }
+.t-chip:hover { background: var(--t-glass-selected-fill); }
 .t-chip[aria-pressed="true"], .t-chip[data-active="true"] {
   background: var(--t-glass-selected-fill);
   box-shadow: inset 0 0 0 var(--t-border-hairline) var(--t-glass-selected-border);
@@ -302,12 +329,17 @@
   transition: color var(--t-duration-micro) var(--t-easing-out);
 }
 .t-bottom-nav__item[aria-current="page"] { color: var(--t-fg-brand); font-weight: var(--t-font-weight-bold); }
+.t-bottom-nav__item:hover { color: var(--t-fg-default); }
+.t-bottom-nav__item:active { transform: scale(0.94); }
+.t-bottom-nav__item[data-state~="disabled"], .t-bottom-nav__item[aria-disabled="true"] { color: var(--t-fg-disabled); pointer-events: none; }
 
 /* ---- Breadcrumb — [NEW] ---- */
 .t-breadcrumb { display: flex; align-items: center; gap: var(--t-space-1); flex-wrap: wrap; font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); }
 .t-breadcrumb__item { color: var(--t-fg-secondary); text-decoration: none; }
 .t-breadcrumb__item:hover { color: var(--t-fg-default); text-decoration: underline; }
 .t-breadcrumb__item[aria-current="page"] { color: var(--t-fg-default); font-weight: var(--t-font-weight-bold); }
+.t-breadcrumb__item:active { color: var(--t-fg-link); }
+.t-breadcrumb__item[data-state~="disabled"], .t-breadcrumb__item[aria-disabled="true"] { color: var(--t-fg-disabled); pointer-events: none; text-decoration: none; }
 /* The separator is a logical glyph — it must point along the reading direction. */
 .t-breadcrumb__sep { color: var(--t-fg-disabled); }
 
@@ -325,11 +357,13 @@
 }
 .t-pagination__page:hover { background: var(--t-bg-subtle); color: var(--t-fg-default); }
 .t-pagination__page[aria-current="page"] { background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); color: var(--t-action-blue-fg); font-weight: var(--t-font-weight-bold); }
+.t-pagination__page:active { background: var(--t-bg-sunken); }
+.t-pagination__page:disabled, .t-pagination__page[data-state~="disabled"] { color: var(--t-fg-disabled); cursor: not-allowed; background: none; }
 
 /* ---- Stepper / Wizard — [NEW] ---- */
 .t-steps { display: flex; align-items: center; gap: var(--t-space-2); }
 .t-steps__dot { inline-size: 24px; block-size: 24px; border-radius: var(--t-radius-full); display: grid; place-items: center; background: var(--t-bg-subtle); color: var(--t-fg-secondary); font-size: var(--t-font-size-12); font-weight: var(--t-font-weight-bold); flex: none; }
 .t-steps__item[data-state="current"] .t-steps__dot { background: var(--t-action-blue-bg); color: var(--t-action-blue-fg); }
-.t-steps__item[data-state="done"] .t-steps__dot { background: var(--t-status-positive-solid); color: var(--t-fg-inverse); }
+.t-steps__item[data-state="done"] .t-steps__dot { background: var(--t-status-positive-solid); color: var(--t-status-positive-on-solid); }
 .t-steps__bar { flex: 1; block-size: 2px; background: var(--t-border-default); border-radius: var(--t-radius-full); }
 .t-steps__item { display: flex; align-items: center; gap: var(--t-space-2); }

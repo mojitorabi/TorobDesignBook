@@ -1,6 +1,7 @@
 [
  {
   "name": "Button",
+  "root": "t-btn",
   "slug": "button",
   "group": "Actions",
   "status": "revised",
@@ -153,6 +154,7 @@
  },
  {
   "name": "IconButton",
+  "root": "t-icon-btn",
   "slug": "icon-button",
   "group": "Actions",
   "status": "revised",
@@ -242,6 +244,7 @@
  },
  {
   "name": "BuyBoxButton",
+  "root": "t-buybox",
   "slug": "buy-box-button",
   "group": "Actions",
   "status": "revised",
@@ -354,6 +357,7 @@
  },
  {
   "name": "SplitButton",
+  "root": "t-btn-split",
   "slug": "split-button",
   "group": "Actions",
   "status": "revised",
@@ -452,6 +456,7 @@
  },
  {
   "name": "FilterBar",
+  "root": "t-filter-bar",
   "slug": "filter-bar",
   "group": "Navigation",
   "status": "revised",
@@ -544,6 +549,7 @@
  },
  {
   "name": "BrandMark",
+  "root": "t-brand",
   "slug": "brand-mark",
   "group": "Brand",
   "status": "revised",
@@ -627,6 +633,7 @@
  },
  {
   "name": "SocialLink",
+  "root": "t-social",
   "slug": "social-link",
   "group": "Brand",
   "status": "revised",
@@ -716,6 +723,7 @@
  },
  {
   "name": "PriceDisplay",
+  "root": "t-price",
   "slug": "price-display",
   "group": "Commerce",
   "status": "new",
@@ -813,6 +821,7 @@
  },
  {
   "name": "Badge",
+  "root": "t-badge",
   "slug": "badge",
   "group": "Commerce",
   "status": "revised",
@@ -919,6 +928,7 @@
  },
  {
   "name": "ProductCard",
+  "root": "t-product-card",
   "slug": "product-card",
   "group": "Commerce",
   "status": "revised",
@@ -1023,6 +1033,7 @@
  },
  {
   "name": "ProductThumb",
+  "root": "t-thumb",
   "slug": "product-thumb",
   "group": "Commerce",
   "status": "revised",
@@ -1104,6 +1115,7 @@
  },
  {
   "name": "StoreCard",
+  "root": "t-store-card",
   "slug": "store-card",
   "group": "Commerce",
   "status": "revised",
@@ -1207,6 +1219,7 @@
  },
  {
   "name": "OfferCard",
+  "root": "t-offer",
   "slug": "offer-card",
   "group": "Commerce",
   "status": "revised",
@@ -1291,6 +1304,7 @@
  },
  {
   "name": "MapPin",
+  "root": "t-pin",
   "slug": "map-pin",
   "group": "Commerce",
   "status": "revised",
@@ -1381,6 +1395,7 @@
  },
  {
   "name": "StatusDot",
+  "root": "t-status-dot",
   "slug": "status-dot",
   "group": "Commerce",
   "status": "revised",
@@ -1437,6 +1452,7 @@
  },
  {
   "name": "ListItem",
+  "root": "t-list-item",
   "slug": "list-item",
   "group": "Commerce",
   "status": "revised",
@@ -1515,6 +1531,7 @@
  },
  {
   "name": "DataTable",
+  "root": "t-table",
   "slug": "data-table",
   "group": "Data",
   "status": "new",
@@ -1619,6 +1636,7 @@
  },
  {
   "name": "StatCard",
+  "root": "t-stat",
   "slug": "stat-card",
   "group": "Data",
   "status": "new",
@@ -1693,6 +1711,7 @@
  },
  {
   "name": "DateField",
+  "root": "t-cal",
   "slug": "date-field",
   "group": "Data",
   "status": "new",
@@ -1774,6 +1793,7 @@
  },
  {
   "name": "AppShell",
+  "root": "t-shell",
   "slug": "app-shell",
   "group": "Layout",
   "status": "new",
@@ -1849,6 +1869,7 @@
  },
  {
   "name": "DescriptionList",
+  "root": "t-dl",
   "slug": "description-list",
   "group": "Data",
   "status": "new",
@@ -1902,6 +1923,7 @@
  },
  {
   "name": "Toast",
+  "root": "t-toast",
   "slug": "toast",
   "group": "Feedback",
   "status": "new",
@@ -1992,6 +2014,7 @@
  },
  {
   "name": "Alert",
+  "root": "t-alert",
   "slug": "alert",
   "group": "Feedback",
   "status": "new",
@@ -2079,6 +2102,7 @@
  },
  {
   "name": "EmptyState",
+  "root": "t-empty",
   "slug": "empty-state",
   "group": "Feedback",
   "status": "new",
@@ -2163,6 +2187,7 @@
  },
  {
   "name": "Skeleton",
+  "root": "t-skeleton",
   "slug": "skeleton",
   "group": "Feedback",
   "status": "new",
@@ -2217,6 +2242,7 @@
  },
  {
   "name": "Spinner",
+  "root": "t-spinner",
   "slug": "spinner",
   "group": "Feedback",
   "status": "new",
@@ -2268,6 +2294,7 @@
  },
  {
   "name": "SearchField",
+  "root": "t-search",
   "slug": "search-field",
   "group": "Inputs",
   "status": "revised",
@@ -2357,6 +2384,7 @@
  },
  {
   "name": "TextField",
+  "root": "t-field",
   "slug": "text-field",
   "group": "Inputs",
   "status": "new",
@@ -2436,6 +2464,7 @@
  },
  {
   "name": "SegmentedControl",
+  "root": "t-segmented",
   "slug": "segmented-control",
   "group": "Inputs",
   "status": "revised",
@@ -2522,6 +2551,7 @@
  },
  {
   "name": "Switch",
+  "root": "t-switch",
   "slug": "switch",
   "group": "Inputs",
   "status": "new",
@@ -2588,6 +2618,7 @@
  },
  {
   "name": "RangeSlider",
+  "root": "t-range",
   "slug": "range-slider",
   "group": "Inputs",
   "status": "new",
@@ -2671,6 +2702,7 @@
  },
  {
   "name": "Checkbox",
+  "root": "t-check",
   "slug": "checkbox",
   "group": "Inputs",
   "status": "new",
@@ -2737,6 +2769,7 @@
  },
  {
   "name": "QuantityStepper",
+  "root": "t-stepper",
   "slug": "quantity-stepper",
   "group": "Inputs",
   "status": "new",
@@ -2802,6 +2835,7 @@
  },
  {
   "name": "ChoiceChip",
+  "root": "t-choice",
   "slug": "choice-chip",
   "group": "Navigation",
   "status": "revised",
@@ -2894,6 +2928,7 @@
  },
  {
   "name": "FilterChip",
+  "root": "t-chip",
   "slug": "filter-chip",
   "group": "Navigation",
   "status": "revised",
@@ -2981,6 +3016,7 @@
  },
  {
   "name": "Tabs",
+  "root": "t-tabs",
   "slug": "tabs",
   "group": "Navigation",
   "status": "new",
@@ -3046,6 +3082,7 @@
  },
  {
   "name": "PageHeader",
+  "root": "t-page-header",
   "slug": "page-header",
   "group": "Navigation",
   "status": "revised",
@@ -3135,6 +3172,7 @@
  },
  {
   "name": "BottomNav",
+  "root": "t-bottom-nav",
   "slug": "bottom-nav",
   "group": "Navigation",
   "status": "new",
@@ -3200,6 +3238,7 @@
  },
  {
   "name": "Breadcrumb",
+  "root": "t-breadcrumb",
   "slug": "breadcrumb",
   "group": "Navigation",
   "status": "new",
@@ -3253,6 +3292,7 @@
  },
  {
   "name": "BottomSheet",
+  "root": "t-sheet",
   "slug": "bottom-sheet",
   "group": "Overlays",
   "status": "new",
@@ -3342,6 +3382,7 @@
  },
  {
   "name": "Modal",
+  "root": "t-modal",
   "slug": "modal",
   "group": "Overlays",
   "status": "new",
@@ -3414,6 +3455,7 @@
  },
  {
   "name": "Accordion",
+  "root": "t-accordion",
   "slug": "accordion",
   "group": "Overlays",
   "status": "new",
@@ -3491,6 +3533,7 @@
  },
  {
   "name": "Menu",
+  "root": "t-popover",
   "slug": "menu",
   "group": "Overlays",
   "status": "new",

@@ -209,3 +209,111 @@ export const guidance = (use, avoid) => `<div class="guidance">
     <ul>${avoid.map(a => `<li>${a}</li>`).join('')}</ul>
   </div>
 </div>`;
+
+/* ── Matrices ───────────────────────────────────────────────────────────────
+   A variant you cannot see is a variant nobody checks. Both matrices below
+   are generated from the CSS itself (build/css-map.mjs) and from the
+   component's own specimen, so a modifier that exists in the stylesheet and
+   nowhere in the documentation cannot stay hidden — and a state that stops
+   working shows up as a picture that stopped changing. */
+
+const VOID_TAGS = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']);
+
+/** The outer HTML of the first element carrying `cls`, or null. */
+export function extractElement(html, cls) {
+  const re = new RegExp(`class="[^"]*\\b${cls}\\b[^"]*"`);
+  const m = re.exec(html);
+  if (!m) return null;
+  const open = html.lastIndexOf('<', m.index);
+  if (open < 0) return null;
+  const tag = /^<([a-z0-9-]+)/i.exec(html.slice(open))?.[1];
+  if (!tag) return null;
+  if (VOID_TAGS.has(tag.toLowerCase())) {
+    const end = html.indexOf('>', open);
+    return end < 0 ? null : html.slice(open, end + 1);
+  }
+  let i = open, depth = 0;
+  const step = new RegExp(`<(/?)${tag}\\b[^>]*?(/?)>`, 'gi');
+  step.lastIndex = open;
+  let s;
+  while ((s = step.exec(html))) {
+    if (s[2] === '/') { if (i === open && s.index === open) return html.slice(open, s.index + s[0].length); continue; }
+    depth += s[1] ? -1 : 1;
+    if (depth === 0) return html.slice(open, s.index + s[0].length);
+  }
+  return null;
+}
+
+/** Put an attribute on the first tag of a fragment, replacing any existing one. */
+export function withAttr(fragment, name, value) {
+  const stripped = fragment.replace(new RegExp(`^(<[a-z0-9-]+)([^>]*?)\\s${name}="[^"]*"`, 'i'), '$1$2');
+  return stripped.replace(/^(<[a-z0-9-]+)/i, `$1 ${name}="${value}"`);
+}
+
+export const STATE_FA = {
+  default: 'پیش‌فرض', hover: 'هاور', focus: 'فوکوس', active: 'فشرده',
+  disabled: 'غیرفعال', loading: 'در حال بارگذاری', selected: 'انتخاب‌شده', error: 'خطا',
+};
+
+/* Each cell is a copy of the same markup, so every id inside it — an SVG
+   gradient, a panel an aria-controls points at — has to be made unique per
+   cell, along with everything that refers to it. */
+let matrixCell = 0;
+
+export function dedupeIds(html, suffix) {
+  const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]);
+  let out = uniqueIds(html, suffix);
+  for (const id of new Set(ids)) {
+    const to = `${id}-${suffix}`;
+    out = out.replaceAll(` id="${id}"`, ` id="${to}"`)
+             .replaceAll(`="${id}"`, `="${to}"`)          // aria-controls, for, headers
+             .replaceAll(`href="#${id}"`, `href="#${to}"`);
+  }
+  return out;
+}
+
+/** One row per state, the same element rendered in each. */
+export function stateMatrix(sample, states) {
+  /* The neutral cell has to start neutral: a specimen is usually captured in
+     its interesting state, so anything already switched on is switched off
+     here and comes back in the cell that is about being switched on. */
+  const neutral = sample
+    .replace(/\s(checked|selected)(?=[\s>])/g, '')
+    .replace(/\s(aria-(?:pressed|checked|selected))="true"/g, ' $1="false"');
+  const cells = states.map(st => {
+    let el = neutral;
+    if (st === 'selected') {
+      el = withAttr(el, 'data-state', 'selected');
+      /* Only the root's OWN attribute may be flipped. Copying an aria-selected
+         from some descendant onto a plain <div> invents a role it does not
+         have, which is exactly the kind of markup this book tells people not
+         to write. */
+      const openTag = /^<[^>]*>/.exec(el)?.[0] ?? '';
+      for (const a of ['aria-pressed', 'aria-checked', 'aria-selected']) {
+        if (openTag.includes(a + '=')) { el = withAttr(el, a, 'true'); break; }
+      }
+    } else if (st !== 'default') {
+      el = withAttr(el, 'data-state', st);
+      if (st === 'disabled') el = withAttr(el, 'aria-disabled', 'true');
+      if (st === 'error') el = withAttr(el, 'aria-invalid', 'true');
+    }
+    return `<div class="matrix__cell">
+      <div class="matrix__stage" dir="rtl" lang="fa">${dedupeIds(el, 'mx' + ++matrixCell)}</div>
+      <div class="matrix__label">${STATE_FA[st] ?? st}</div>
+    </div>`;
+  }).join('');
+  return `<div class="matrix" data-kind="states">${cells}</div>`;
+}
+
+/** Every modifier the stylesheet defines for this root, rendered. */
+export function modifierMatrix(sample, root, mods, labels = {}) {
+  const strip = new RegExp(`\\s*${root}--[a-z0-9-]+`, 'g');
+  const cells = mods.map(mod => {
+    const el = sample.replace(/class="([^"]*)"/, (m, v) => `class="${v.replace(strip, '')} ${root}--${mod}"`);
+    return `<div class="matrix__cell">
+      <div class="matrix__stage" dir="rtl" lang="fa">${dedupeIds(el, 'mx' + ++matrixCell)}</div>
+      <div class="matrix__label"><code>--${mod}</code>${labels[mod] ? `<span>${labels[mod]}</span>` : ''}</div>
+    </div>`;
+  }).join('');
+  return `<div class="matrix" data-kind="modifiers">${cells}</div>`;
+}

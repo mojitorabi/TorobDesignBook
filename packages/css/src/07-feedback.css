@@ -17,6 +17,9 @@
 }
 @media (min-width: 768px) { .t-toast-region { inset-inline-start: auto; max-inline-size: 380px; } }
 
+/* A toast that can be dismissed can also be switched off while it animates
+   away; nothing else about it is interactive. */
+.t-toast[data-state~="disabled"] { opacity: 0.55; pointer-events: none; }
 .t-toast {
   pointer-events: auto;
   display: flex; align-items: flex-start; gap: var(--t-space-3);
@@ -35,12 +38,15 @@
 .t-toast__body { flex: 1; min-inline-size: 0; }
 .t-toast__title { font-weight: var(--t-font-weight-bold); }
 .t-toast__desc { opacity: 0.82; font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); }
-.t-toast__action { flex: none; border: none; background: none; cursor: pointer; color: var(--t-fg-inverse); font-weight: var(--t-font-weight-bold); text-decoration: underline; padding: 0; font-size: var(--t-font-size-12); }
+.t-toast__action { flex: none; border: none; background: none; cursor: pointer; color: currentColor; font-weight: var(--t-font-weight-bold); text-decoration: underline; padding: 0; font-size: var(--t-font-size-12); }
 .t-toast__close { flex: none; border: none; background: none; cursor: pointer; color: currentColor; opacity: 0.7; padding: 0; }
 .t-toast__close:hover { opacity: 1; }
-.t-toast--positive { background: var(--t-status-positive-solid); color: #FFF; }
-.t-toast--critical { background: var(--t-status-critical-solid); color: #FFF; }
-.t-toast--caution  { background: var(--t-status-caution-solid); color: var(--t-status-caution-fg); }
+/* A filled status surface carries its own foreground: the status solids are
+   dark inks on light and light tints on dark, so one hard-coded white would
+   fail on half the themes. */
+.t-toast--positive { background: var(--t-status-positive-solid); color: var(--t-status-positive-on-solid); }
+.t-toast--critical { background: var(--t-status-critical-solid); color: var(--t-status-critical-on-solid); }
+.t-toast--caution  { background: var(--t-status-caution-solid); color: var(--t-status-caution-on-solid); }
 
 /* ---- Alert / Banner ----
    Page-level. Persistent until resolved or dismissed.

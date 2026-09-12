@@ -63,6 +63,8 @@
 }
 .t-navitem:hover { background: var(--t-bg-subtle); color: var(--t-fg-default); }
 .t-navitem[aria-current="page"] { background: var(--t-action-blue-soft-bg); color: var(--t-action-blue-soft-fg); font-weight: var(--t-font-weight-bold); }
+.t-navitem:active { background: var(--t-bg-sunken); }
+.t-navitem[data-state~="disabled"], .t-navitem[aria-disabled="true"] { color: var(--t-fg-disabled); pointer-events: none; }
 .t-navitem__count { margin-inline-start: auto; font-variant-numeric: tabular-nums; font-size: var(--t-font-size-12); color: var(--t-fg-secondary); }
 .t-navgroup__title { font-size: var(--t-font-size-12); font-weight: var(--t-font-weight-bold); color: var(--t-fg-secondary); padding: var(--t-space-3) var(--t-space-3) var(--t-space-1); }
 
@@ -99,6 +101,9 @@
 .t-table td { padding: var(--t-space-3); border-block-end: var(--t-border-thin) solid var(--t-border-subtle); vertical-align: middle; }
 .t-table tbody tr:last-child td { border-block-end: none; }
 .t-table tbody tr:hover td { background: var(--t-bg-subtle); }
+.t-table tbody tr[data-state~="disabled"] td, .t-table tbody tr[aria-disabled="true"] td {
+  color: var(--t-fg-disabled);
+}
 .t-table tbody tr[aria-selected="true"] td { background: var(--t-action-blue-soft-bg); }
 /* Numbers are for comparing, so they align to the inline end and use
    tabular figures. A ragged column of prices cannot be scanned. */
@@ -151,6 +156,10 @@
 .t-cal__day[data-outside="true"] { color: var(--t-fg-disabled); }
 /* Friday is the Iranian weekend, not Sunday. */
 .t-cal__day[data-weekend="true"] { color: var(--t-status-critical-fg); }
+.t-cal__day:active { transform: scale(0.9); }
+.t-cal__day:disabled, .t-cal__day[data-state~="disabled"], .t-cal__day[aria-disabled="true"] {
+  color: var(--t-fg-disabled); cursor: not-allowed; background: none; box-shadow: none;
+}
 .t-cal__dow[data-weekend="true"] { color: var(--t-status-critical-fg); }
 
 /* ---- Tag input ---- */

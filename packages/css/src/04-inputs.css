@@ -33,9 +33,23 @@
 .t-input__icon { flex: none; color: var(--t-fg-secondary); inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); }
 .t-input--md { block-size: var(--t-size-control-lg); }
 .t-input--sm { block-size: var(--t-size-control-md); padding-inline: var(--t-space-2); }
-.t-input[data-invalid="true"] { border-color: var(--t-status-critical-solid); }
-.t-input[data-invalid="true"]:focus-within { box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-status-critical-solid) 22%, transparent); }
-.t-input[data-disabled="true"] { background: var(--t-bg-subtle); color: var(--t-fg-disabled); cursor: not-allowed; }
+/* States. A field answers to what the browser knows (:hover, :focus-within,
+   aria-invalid) and to what the page declares (data-state), so the same field
+   can be shown in every state on one page. */
+.t-input:hover:not(.t-input--error, [data-state~="disabled"], [data-disabled="true"]) { border-color: var(--t-border-strong); }
+.t-input--error, .t-input[data-invalid="true"], .t-input:has([aria-invalid="true"]), .t-input[data-state~="error"] {
+  border-color: var(--t-status-critical-solid);
+}
+:is(.t-input--error, .t-input[data-invalid="true"], .t-input:has([aria-invalid="true"]), .t-input[data-state~="error"]):focus-within {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-status-critical-solid) 22%, transparent);
+}
+.t-input--success, .t-input[data-state~="success"] { border-color: var(--t-status-positive-solid); }
+.t-input[data-disabled="true"], .t-input[data-state~="disabled"], .t-input:has(:disabled) {
+  background: var(--t-bg-subtle); color: var(--t-fg-disabled); cursor: not-allowed; border-color: var(--t-border-default);
+}
+.t-input[data-readonly="true"], .t-input[data-state~="readonly"], .t-input:has([readonly]) {
+  background: var(--t-bg-sunken); border-color: var(--t-border-default);
+}
 
 textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var(--t-space-2); }
 .t-input--textarea { block-size: auto; align-items: flex-start; padding-block: var(--t-space-2); }
@@ -102,11 +116,29 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
 .t-check input { position: absolute; opacity: 0; inline-size: 0; block-size: 0; }
 .t-check input:checked + .t-check__box { background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); color: var(--t-action-blue-fg); }
 .t-check input:focus-visible + .t-check__box { outline: 2px solid var(--t-border-focus); outline-offset: 2px; }
+.t-check:hover input:not(:disabled) + .t-check__box { border-color: var(--t-border-strong); }
+.t-check:hover input:checked:not(:disabled) + .t-check__box { background: var(--t-action-blue-bg-active); border-color: var(--t-action-blue-bg-active); }
+.t-check:active input:not(:disabled) + .t-check__box { transform: scale(0.94); }
 .t-check input:disabled ~ * { color: var(--t-fg-disabled); cursor: not-allowed; }
+.t-check input:disabled + .t-check__box { background: var(--t-bg-subtle); border-color: var(--t-border-default); }
+.t-check input:disabled:checked + .t-check__box { background: var(--t-action-disabled-bg); border-color: var(--t-action-disabled-bg); color: var(--t-action-disabled-fg); }
 .t-check__mark { opacity: 0; transition: opacity var(--t-duration-micro) var(--t-easing-out); }
 .t-check input:checked + .t-check__box .t-check__mark { opacity: 1; }
 .t-check--radio .t-check__box { border-radius: var(--t-radius-full); }
 .t-check--radio input:checked + .t-check__box { background: var(--t-bg-fog); border-color: var(--t-action-blue-bg); border-width: 6px; }
+
+/* Forced states. What a checkbox really is lives on its <input>, which a
+   documentation page cannot press and a screenshot test cannot focus. The
+   root carries the same states so every one of them can be rendered. */
+.t-check[data-state~="selected"] .t-check__box {
+  background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); color: var(--t-action-blue-fg);
+}
+.t-check[data-state~="selected"] .t-check__mark { opacity: 1; }
+.t-check[data-state~="focus"] .t-check__box { outline: 2px solid var(--t-border-focus); outline-offset: 2px; }
+.t-check[data-state~="disabled"] { color: var(--t-fg-disabled); cursor: not-allowed; }
+.t-check[data-state~="disabled"] .t-check__box { background: var(--t-bg-subtle); border-color: var(--t-border-default); }
+.t-check[data-state~="active"] .t-check__box { transform: scale(0.94); }
+.t-check[data-state~="hover"] .t-check__box { border-color: var(--t-border-strong); }
 
 /* ---- Switch (on/off) — [NEW], absent from the source kit ----
    The standard name for a boolean control. Sketch's own "Switch" symbols are
@@ -133,6 +165,16 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
   transition: translate var(--t-duration-standard) var(--t-easing-out);
 }
 .t-switch input:checked + .t-switch__track { background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); }
+.t-switch[data-state~="selected"] .t-switch__track { background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); }
+.t-switch[data-state~="selected"] .t-switch__thumb { translate: calc(18px * var(--t-dir, -1) * -1) 0; }
+.t-switch[data-state~="focus"] .t-switch__track { outline: 2px solid var(--t-border-focus); outline-offset: 2px; }
+.t-switch[data-state~="disabled"] { color: var(--t-fg-disabled); cursor: not-allowed; opacity: 0.6; }
+.t-switch[data-state~="hover"] .t-switch__track { border-color: var(--t-border-strong); }
+.t-switch:hover input:not(:disabled) + .t-switch__track { border-color: var(--t-border-strong); }
+.t-switch:hover input:checked:not(:disabled) + .t-switch__track { background: var(--t-action-blue-bg-active); border-color: var(--t-action-blue-bg-active); }
+/* Pressing stretches the thumb toward the side it is travelling to — the
+   gesture the control is asking for, shown before the finger lifts. */
+.t-switch:active input:not(:disabled) + .t-switch__track .t-switch__thumb { inline-size: 24px; }
 /* Logical translate: --t-dir is 1 in RTL, -1 in LTR, so the thumb always
    travels toward the inline end. */
 .t-switch input:checked + .t-switch__track .t-switch__thumb { translate: calc(18px * var(--t-dir, -1) * -1) 0; }
@@ -153,12 +195,16 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
   box-shadow: var(--t-elevation-1);
   cursor: grab;
 }
+.t-range__thumb:hover { box-shadow: var(--t-elevation-2); }
 .t-range__thumb:active { cursor: grabbing; scale: 1.1; }
+.t-range[data-state~="disabled"] { opacity: 0.55; pointer-events: none; }
+.t-range[data-state~="disabled"] .t-range__fill { background: var(--t-action-disabled-bg); }
 .t-range__values { display: flex; justify-content: space-between; font-size: var(--t-font-size-12); color: var(--t-fg-secondary); font-variant-numeric: tabular-nums; }
 
 /* ---- QuantityStepper — [NEW] ---- */
 .t-stepper { display: inline-flex; align-items: center; border: var(--t-border-thin) solid var(--t-border-control); border-radius: var(--t-radius-md); overflow: hidden; }
 .t-stepper__btn { inline-size: 36px; block-size: 36px; border: none; background: var(--t-bg-fog); color: var(--t-fg-default); cursor: pointer; display: grid; place-items: center; }
 .t-stepper__btn:hover:not(:disabled) { background: var(--t-bg-subtle); }
+.t-stepper__btn:active:not(:disabled) { background: var(--t-bg-sunken); }
 .t-stepper__btn:disabled { color: var(--t-fg-disabled); cursor: not-allowed; }
 .t-stepper__value { min-inline-size: 44px; text-align: center; font-weight: var(--t-font-weight-bold); font-variant-numeric: tabular-nums; }

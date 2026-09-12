@@ -104,8 +104,8 @@
   --_rim: var(--t-action-red-border);
   --_fg: var(--t-action-red-fg);
 }
-.t-btn--red:is(:hover, [data-state="hover"]):not(:disabled),
-.t-btn--primary:is(:hover, [data-state="hover"]):not(:disabled) {
+.t-btn--red:hover:not(:disabled),
+.t-btn--primary:hover:not(:disabled) {
   --_bg: var(--t-action-red-bg-hover);
   --_bg-image: none;
   --_rim: transparent;
@@ -118,8 +118,8 @@
   --_rim: var(--t-action-blue-border);
   --_fg: var(--t-action-blue-fg);
 }
-.t-btn--blue:is(:hover, [data-state="hover"]):not(:disabled),
-.t-btn--accent:is(:hover, [data-state="hover"]):not(:disabled) {
+.t-btn--blue:hover:not(:disabled),
+.t-btn--accent:hover:not(:disabled) {
   --_bg: var(--t-action-blue-bg-hover);
   --_bg-image: none;
   --_rim: transparent;
@@ -138,8 +138,8 @@
 
 /* Black is flat by design — no gradient, no rim. It is the quiet one. */
 .t-btn--black, .t-btn--neutral { --_bg: var(--t-action-black-bg); --_fg: var(--t-action-black-fg); }
-.t-btn--black:is(:hover, [data-state="hover"]):not(:disabled),
-.t-btn--neutral:is(:hover, [data-state="hover"]):not(:disabled) { --_bg: var(--t-action-black-bg-hover); }
+.t-btn--black:hover:not(:disabled),
+.t-btn--neutral:hover:not(:disabled) { --_bg: var(--t-action-black-bg-hover); }
 .t-btn--black:active:not(:disabled), .t-btn--neutral:active:not(:disabled) { --_bg: var(--t-action-black-bg-active); }
 
 /* ---- Outline  ← Button/Black ghost ---- */
@@ -148,8 +148,8 @@
   --_rim: var(--t-action-black-ghost-border);
   --_fg: var(--t-action-black-ghost-fg);
 }
-.t-btn--black-ghost:is(:hover, [data-state="hover"]):not(:disabled),
-.t-btn--outline:is(:hover, [data-state="hover"]):not(:disabled) { --_rim: var(--t-action-black-ghost-border-hover); }
+.t-btn--black-ghost:hover:not(:disabled),
+.t-btn--outline:hover:not(:disabled) { --_rim: var(--t-action-black-ghost-border-hover); }
 .t-btn--red-outline {
   --_bg: var(--t-bg-fog);
   --_rim: var(--t-action-red-outline-border);
@@ -158,11 +158,11 @@
 
 /* ---- Soft & ghost (system additions) ---- */
 .t-btn--soft { --_bg: var(--t-action-blue-soft-bg); --_fg: var(--t-action-blue-soft-fg); }
-.t-btn--soft:is(:hover, [data-state="hover"]):not(:disabled) { filter: brightness(0.96); }
+.t-btn--soft:hover:not(:disabled) { filter: brightness(0.96); }
 .t-btn--ghost { --_fg: var(--t-action-black-ghost-fg); }
-.t-btn--ghost:is(:hover, [data-state="hover"]):not(:disabled) { --_bg: var(--t-action-black-ghost-bg-hover); }
+.t-btn--ghost:hover:not(:disabled) { --_bg: var(--t-action-black-ghost-bg-hover); }
 .t-btn--ghost-accent { --_fg: var(--t-action-blue-ghost-fg); }
-.t-btn--ghost-accent:is(:hover, [data-state="hover"]):not(:disabled) { --_bg: var(--t-action-blue-soft-bg); }
+.t-btn--ghost-accent:hover:not(:disabled) { --_bg: var(--t-action-blue-soft-bg); }
 
 /* ---- Glass  ← Button/Black ghost/Icon · Button/‌Blue ghost/Icon/Light · /Dark ----
    Glass at the "selected" level: 60% fill, 15px backdrop blur and a 0.5px
@@ -215,9 +215,9 @@
 
 /* ---- Loading ----
    The label stays in place so the button does not resize mid-action. */
-.t-btn[data-loading="true"] { color: transparent !important; pointer-events: none; }
-.t-btn[data-loading="true"] > * { visibility: hidden; }
-.t-btn[data-loading="true"]::before {
+.t-btn:is([data-loading="true"], [data-state~="loading"]) { color: transparent !important; pointer-events: none; }
+.t-btn:is([data-loading="true"], [data-state~="loading"]) > * { visibility: hidden; }
+.t-btn:is([data-loading="true"], [data-state~="loading"])::before {
   content: "";
   position: absolute;
   inline-size: 1em; block-size: 1em;
@@ -254,7 +254,7 @@
   transition: background-color var(--t-duration-micro) var(--t-easing-out), transform var(--t-duration-micro) var(--t-easing-out);
 }
 .t-icon-btn > .t-icon, .t-icon-btn > svg, .t-icon-btn > img { inline-size: var(--_glyph); block-size: var(--_glyph); flex: none; }
-.t-icon-btn:is(:hover, [data-state="hover"]):not(:disabled) { --_bg: var(--t-action-black-ghost-bg-hover); }
+.t-icon-btn:hover:not(:disabled) { --_bg: var(--t-action-black-ghost-bg-hover); }
 .t-icon-btn:active:not(:disabled) { transform: scale(0.94); }
 .t-icon-btn:disabled { --_fg: var(--t-fg-disabled); cursor: not-allowed; }
 /* 32px targets still get a 44px hit area. */
@@ -267,7 +267,7 @@
   --_rim: var(--t-action-blue-border);
   --_fg: var(--t-action-blue-fg);
 }
-.t-icon-btn--accent:is(:hover, [data-state="hover"]):not(:disabled) { --_bg: var(--t-action-blue-bg-hover); --_bg-image: none; --_rim: transparent; }
+.t-icon-btn--accent:hover:not(:disabled) { --_bg: var(--t-action-blue-bg-hover); --_bg-image: none; --_rim: transparent; }
 
 /* ← Button/Icon/Ghost Icon — selected glass, a full 1px blue rim */
 .t-icon-btn--accent-ghost {
@@ -373,7 +373,11 @@
     background-color var(--t-duration-micro) var(--t-easing-out),
     transform        var(--t-duration-micro) var(--t-easing-out);
 }
-.t-buybox:is(:hover, [data-state="hover"]) { --_bg-image: none; --_bg: var(--t-action-red-bg-hover); --_rim: transparent; }
+.t-buybox:hover { --_bg-image: none; --_bg: var(--t-action-red-bg-hover); --_rim: transparent; }
+.t-buybox:disabled, .t-buybox[data-state~="disabled"], .t-buybox[aria-disabled="true"] {
+  --_bg-image: none; --_bg: var(--t-action-disabled-bg); --_fg: var(--t-action-disabled-fg);
+  --_rim: transparent; cursor: not-allowed; transform: none;
+}
 .t-buybox:active { transform: scale(0.995); }
 
 /* Seller over price, at the inline START; the ad marker at the END. */
@@ -401,7 +405,7 @@
   --_rim: var(--t-action-blue-border);
   --_fg: var(--t-action-blue-fg);
 }
-.t-buybox--offline:is(:hover, [data-state="hover"]), .t-buybox--blue:is(:hover, [data-state="hover"]) { --_bg-image: none; --_bg: var(--t-action-blue-bg-hover); --_rim: transparent; }
+.t-buybox--offline:hover, .t-buybox--blue:hover { --_bg-image: none; --_bg: var(--t-action-blue-bg-hover); --_rim: transparent; }
 
 /* The cheapest-seller shortcut: one centred label, 44 tall, radius 12, no rim. */
 .t-buybox--compact {

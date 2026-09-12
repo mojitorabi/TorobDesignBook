@@ -13,8 +13,37 @@ import { indexPage, aiPage, migrationPage } from './pages-index.mjs';
 import { symbolsPage } from './pages-symbols.mjs';
 import { simplePages } from './pages-simple.mjs';
 import { patternsPages, sellerPanelPage } from './pages-patterns.mjs';
-import { layout, specimen, section, table, guidance, esc, slugToPath, anchor } from './site-lib.mjs';
+import { layout, specimen, section, table, guidance, esc, slugToPath, anchor,
+         extractElement, stateMatrix, modifierMatrix, STATE_FA } from './site-lib.mjs';
 import { loadComponents } from './site-lib.mjs';
+
+/* What the stylesheet actually supports, read from the stylesheet.
+   The matrices on every component page are drawn from this, so documentation
+   cannot claim a variant the CSS does not have, or miss one it does. */
+const CSS_MAP = JSON.parse(readFileSync(join(ROOT, 'source', 'generated', 'css-map.json'), 'utf8'));
+const SIZE_MODS = ['xs', 'sm', 'md', 'lg', 'xl'];
+const STATE_ORDER = ['default', 'hover', 'focus', 'active', 'selected', 'disabled', 'loading', 'error'];
+
+/* 01-base gives every natively focusable element the focus ring, so a button
+   or a link shows a focus state even when its own file says nothing about it. */
+const FOCUSABLE = /^<(a|button|input|select|textarea|summary)\b/i;
+
+/** The states this root can actually show, in a fixed order. */
+function statesFor(root, sample = '') {
+  const m = CSS_MAP[root];
+  if (!m) return [];
+  const has = new Set(m.states);
+  const attrs = m.attrs.join(' ');
+  const out = ['default'];
+  if (has.has('hover')) out.push('hover');
+  if (has.has('focus-visible') || has.has('focus-within') || FOCUSABLE.test(sample.trim())) out.push('focus');
+  if (has.has('active')) out.push('active');
+  if (has.has('checked') || /aria-(pressed|selected|checked)/.test(attrs)) out.push('selected');
+  if (has.has('disabled')) out.push('disabled');
+  if (/data-(loading|state)/.test(attrs) && /loading/.test(attrs)) out.push('loading');
+  if (has.has('invalid')) out.push('error');
+  return out.length > 1 ? out : [];
+}
 
 const OUT = join(ROOT, 'site');
 mkdirSync(join(OUT, 'assets'), { recursive: true });
@@ -105,6 +134,28 @@ function componentPage(c) {
       c.specimens.map(s => specimen({ ...s, react: undefined })).join(''));
   }
   if (c.use || c.avoid) body += S('usage', UI_FA.usage, guidance(c.use ?? [], c.avoid ?? []));
+
+  /* Variants, sizes and states — rendered, not described. */
+  const map = c.root ? CSS_MAP[c.root] : null;
+  const sample = map && c.specimens?.length
+    ? extractElement(c.specimens.map(sp => sp.html).join('\n'), c.root) : null;
+  /* A shell or a sheet fills the page; a matrix of those is a matrix of
+     screenshots, which helps nobody. Everything else gets rendered. */
+  const NO_MATRIX = ['t-shell', 't-sheet', 't-modal', 't-popover'];
+  if (sample && sample.length < 20000 && !NO_MATRIX.includes(c.root)) {
+    const mods = (map.mods ?? []).filter(m => !/^(freeze|compact|narrow|adaptive)$/.test(m));
+    const sizes = mods.filter(m => SIZE_MODS.includes(m));
+    const variants = mods.filter(m => !SIZE_MODS.includes(m));
+    if (variants.length > 1) body += S('variants', 'گونه‌ها',
+      `<div class="prose"><p>هر گونه‌ای که استایل‌شیت تعریف می‌کند، رندرشده از همان مارک‌آپ. این فهرست از خود CSS خوانده می‌شود، پس نه چیزی جا می‌ماند و نه چیزی ادعا می‌شود که وجود ندارد.</p></div>`
+      + modifierMatrix(sample, c.root, variants));
+    if (sizes.length > 1) body += S('sizes', 'اندازه‌ها',
+      `<div class="prose"><p>یک مقیاس، در همهٔ کامپوننت‌ها یکی.</p></div>` + modifierMatrix(sample, c.root, sizes));
+    const states = statesFor(c.root, sample);
+    if (states.length > 2) body += S('states', 'حالت‌ها',
+      `<div class="prose"><p>هر حالت با <code>data-state</code> هم قابل اعمال است، نه فقط با اشاره‌گر؛ برای همین می‌شود آن را در مستندات، در تست تصویری و در دیف پیکسلی دید.</p></div>`
+      + stateMatrix(sample, states));
+  }
   if (c.anatomy?.length) body += S('anatomy', UI_FA.anatomy, table(['بخش', 'توضیح'], c.anatomy.map(([a, b]) => [`<strong>${esc(a)}</strong>`, b])));
   if (c.props?.length) body += S('props', UI_FA.props, table(['پراپ', 'نوع', 'پیش‌فرض', 'توضیح'],
     c.props.map(([n, t, d, desc]) => [`<code>${esc(n)}</code>`, `<code style="color:var(--t-fg-link)">${esc(t)}</code>`, `<code>${esc(d)}</code>`, desc])));

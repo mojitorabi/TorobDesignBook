@@ -68,6 +68,9 @@
 .t-tag { display: inline-flex; align-items: center; gap: var(--t-space-1); block-size: 24px; padding-inline: var(--t-space-2); border-radius: var(--t-radius-xs); background: var(--t-bg-subtle); color: var(--t-fg-default); font-size: var(--t-font-size-12); }
 .t-tag__remove { border: none; background: none; padding: 0; cursor: pointer; color: var(--t-fg-secondary); display: grid; place-items: center; }
 .t-tag__remove:hover { color: var(--t-fg-default); }
+.t-tag__remove:active { transform: scale(0.9); }
+a.t-tag:hover, button.t-tag:hover { background: var(--t-bg-sunken); }
+.t-tag[data-state~="disabled"] { color: var(--t-fg-disabled); pointer-events: none; }
 
 /* ---- PriceDisplay ----
    Persian numerals, the value in Bold and the currency word two sizes down in
@@ -136,6 +139,23 @@
 .t-product-card__actions > button[aria-pressed="true"] { color: var(--t-fg-brand); }
 
 /* Small (96 wide), for rails: photo, 4px, title Medium 10/24, price sm. */
+/* States. A card is a link to a product, so it answers the pointer: the photo
+   lifts a step and the title takes the link colour. The whole card presses. */
+a.t-product-card:hover .t-product-card__title,
+a.t-store-card:hover .t-store-card__name { color: var(--t-fg-link); }
+a.t-product-card:hover .t-thumb, a.t-product-card[data-state~="hover"] .t-thumb { box-shadow: var(--t-elevation-2); }
+/* A press must not shrink what is inside it: these cards carry their own
+   24px buttons, and a card that scales takes those under the 2.5.8 floor with
+   it. The photo presses instead, and a card with a surface tints. */
+a.t-product-card:active .t-thumb { scale: 0.98; }
+a.t-store-card:active, a.t-offer:active { background: var(--t-bg-sunken); }
+:is(a.t-product-card .t-thumb, a.t-store-card, a.t-offer) {
+  transition: scale var(--t-duration-micro) var(--t-easing-out), background-color var(--t-duration-micro) var(--t-easing-out);
+}
+.t-product-card[data-state~="disabled"], .t-store-card[data-state~="disabled"] {
+  opacity: 0.5; pointer-events: none;
+}
+
 .t-product-card--sm { gap: var(--t-space-1); }
 .t-product-card--sm .t-product-card__title { font-size: 10px; line-height: var(--t-font-leading-14); }
 .t-product-card--sm .t-product-card__title[data-lines="3"] { -webkit-line-clamp: 3; }
@@ -213,6 +233,10 @@
   box-shadow: inset 0 0 0 0.5px var(--t-bg-fog), 0 0 0 0.5px var(--t-bg-fog), 0 0.5px 1px 0 var(--t-border-default), 0 0.5px 1px 0 var(--t-border-default);
   color: var(--t-fg-default);
 }
+/* An offer card is a row in a list of sellers: it lifts under the pointer so
+   the row being compared is obvious, and dims when the seller is unavailable. */
+a.t-offer:hover, .t-offer[data-state~="hover"] { background: var(--t-bg-sunken); }
+.t-offer[data-state~="disabled"], .t-offer[aria-disabled="true"] { opacity: 0.55; pointer-events: none; }
 .t-offer__top { display: flex; flex-direction: column; gap: var(--t-space-3); }
 .t-offer__head, .t-offer__row { display: flex; align-items: center; justify-content: space-between; gap: var(--t-space-3); }
 .t-offer__seller { display: inline-flex; align-items: center; gap: var(--t-space-1); min-inline-size: 0; }
@@ -239,6 +263,10 @@ button.t-perk { cursor: pointer; }
 
 /* ---- ListItem ---- */
 .t-list { display: flex; flex-direction: column; background: var(--t-bg-fog); border-radius: var(--t-radius-md); overflow: hidden; }
+/* A row that leads somewhere presses like a button and takes focus like one. */
+a.t-list-item:active, button.t-list-item:active { background: var(--t-bg-sunken); }
+.t-list-item[data-state~="disabled"] { color: var(--t-fg-disabled); pointer-events: none; }
+
 .t-list-item {
   --_inset: calc(var(--t-space-3) + 24px + var(--t-space-2));  /* divider starts after the icon */
   position: relative;
@@ -261,7 +289,7 @@ button.t-perk { cursor: pointer; }
   block-size: 1px; background: var(--t-border-subtle);
 }
 .t-list-item:not(:has(> .t-list-item__lead)) { --_inset: var(--t-space-3); }
-.t-list-item:is(:hover, [data-state="hover"]) { background: var(--t-bg-subtle); }
+.t-list-item:hover { background: var(--t-bg-subtle); }
 .t-list-item__body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; }
 .t-list-item__title { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-medium); }
 .t-list-item__sub { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
@@ -329,7 +357,7 @@ button.t-perk { cursor: pointer; }
   transition: transform var(--t-duration-standard) var(--t-easing-out);
 }
 .t-pin > .t-icon { inline-size: 16px; block-size: 16px; }
-.t-pin:is(:hover, [data-state="hover"]) { transform: scale(1.08); }
+.t-pin:hover { transform: scale(1.08); }
 .t-pin--dot { --_s: 8px; box-shadow: none; background: var(--t-map-poi-dot); cursor: default; }
 
 /* price pills */
@@ -351,6 +379,8 @@ button.t-perk { cursor: pointer; }
   transition: background-color var(--t-duration-standard) var(--t-easing-out), color var(--t-duration-standard) var(--t-easing-out), box-shadow var(--t-duration-standard) var(--t-easing-out);
 }
 .t-pin__pill > .t-icon { inline-size: 16px; block-size: 16px; }
+.t-pin:active { transform: scale(0.94); }
+.t-pin[data-state~="disabled"], .t-pin[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
 .t-pin--price[aria-pressed="true"] .t-pin__pill {
   block-size: 28px;
   background: var(--t-map-poi);

@@ -114,6 +114,10 @@
 .t-menu-item:hover { background: var(--t-bg-subtle); }
 .t-menu-item[aria-checked="true"] { color: var(--t-fg-link); font-weight: var(--t-font-weight-bold); }
 .t-menu-item--critical { color: var(--t-status-critical-fg); }
+.t-menu-item:active { background: var(--t-bg-sunken); }
+.t-menu-item:disabled, .t-menu-item[data-state~="disabled"], .t-menu-item[aria-disabled="true"] {
+  color: var(--t-fg-disabled); background: none; cursor: not-allowed;
+}
 .t-menu-sep { block-size: 1px; background: var(--t-border-subtle); margin-block: var(--t-space-1); }
 
 /* ---- Accordion ---- */
@@ -128,6 +132,8 @@
   color: var(--t-fg-default); text-align: start;
 }
 .t-accordion__trigger:hover { background: var(--t-bg-subtle); }
+.t-accordion__trigger:active { background: var(--t-bg-sunken); }
+.t-accordion__trigger:disabled, .t-accordion__trigger[data-state~="disabled"] { color: var(--t-fg-disabled); cursor: not-allowed; background: none; }
 .t-accordion__label { flex: 1; min-inline-size: 0; }
 .t-accordion__chevron { flex: none; color: var(--t-fg-secondary); transition: rotate var(--t-duration-standard) var(--t-easing-out); }
 .t-accordion__trigger[aria-expanded="true"] .t-accordion__chevron { rotate: 180deg; }
