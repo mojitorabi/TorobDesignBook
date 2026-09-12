@@ -65,7 +65,20 @@ const pairs = [
   ['border.selected', 'bg.fog', 3.0, 'selection ring (non-text)'],
   ['border.focus', 'bg.canvas', 3.0, 'focus ring on canvas'],
   ['border.focus', 'bg.fog', 3.0, 'focus ring on card'],
-  ['map.poi', 'bg.fog', 3.0, 'map pin (non-text)'],
+  // A pin is found by its fill OR its 2px white ring, whichever contrasts.
+  ['map.poi', 'bg.fog', 3.0, 'map pin (fill or ring)', 'map.poi-ring'],
+  ['map.label', 'map.label-halo', 4.5, 'map pin label on its halo'],
+  ['map.cluster-fg', 'map.cluster-bg', 4.5, 'cluster count'],
+
+  // Commerce surfaces added with the Sketch-exact components
+  ['commerce.open-text', 'bg.fog', 4.5, '«باز» / near distance'],
+  ['commerce.distance-near', 'bg.store-card', 4.5, 'distance on store card'],
+  ['fg.default', 'bg.store-card', 4.5, 'text on store card'],
+  ['commerce.rating-fg', 'commerce.rating-bg', 4.5, 'seller rating pill'],
+  ['fg.default', 'commerce.perk-bg', 4.5, 'perk pill label'],
+  ['commerce.ad-badge-fg', 'commerce.ad-badge', 4.5, 'آگهی badge on photo'],
+  ['commerce.ad-badge-fg', 'commerce.kalabarg-bg', 4.5, 'کالابرگ badge'],
+  ['commerce.guarantee-accent', 'commerce.guarantee-bg', 4.5, 'ضمانت ترب badge (yellow end)'],
   ['border.default', 'bg.canvas', 0, 'decorative divider (informational)'],
 ];
 
@@ -74,12 +87,13 @@ for (const mode of Object.keys(m.modes)) {
   const t = { ...m.base, ...m.modes[mode] };
   const canvas = t['bg.canvas'].value;
   console.log(`\n${'═'.repeat(74)}\n  ${mode.toUpperCase()}\n${'═'.repeat(74)}`);
-  for (const [fk, bk, min, label] of pairs) {
+  for (const [fk, bk, min, label, alt] of pairs) {
     if (!t[fk] || !t[bk]) { console.log(`  ?  missing ${fk} / ${bk}`); continue; }
     const bg = flatten(String(t[bk].value), canvas);
-    const fg = flatten(String(t[fk].value), bg);
+    let fg = flatten(String(t[fk].value), bg);
     if (!/^#[0-9A-F]{6}$/i.test(fg) || !/^#[0-9A-F]{6}$/i.test(bg)) { console.log(`  –  ${label} (non-colour)`); continue; }
-    const r = ratio(fg, bg);
+    let r = ratio(fg, bg);
+    if (alt && t[alt]) { const af = flatten(String(t[alt].value), bg); const ar = ratio(af, bg); if (ar > r) { r = ar; fg = af; } }
     const ok = r >= min;
     if (!ok) { min >= 4.5 ? fails++ : warns++; }
     console.log(`  ${ok ? '✓' : '✗'}  ${r.toFixed(2).padStart(5)} : 1  (need ${min})  ${label.padEnd(28)} ${fg} on ${bg}`);

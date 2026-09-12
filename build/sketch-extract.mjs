@@ -135,6 +135,7 @@ function specOf(master) {
   const hasPad = Object.values(pad).some(Boolean);
 
   return {
+    id: master.do_objectID,
     name: master.name,
     width: r3(master.frame.width),
     height: r3(master.frame.height),
@@ -165,14 +166,20 @@ const page = pages.find(p => p.name === COMPONENTS_PAGE);
 if (!page) throw new Error(`no "${COMPONENTS_PAGE}" page in ${SKETCH}`);
 const masters = (page.layers ?? []).filter(l => l._class === 'symbolMaster');
 
-/* Duplicate masters (same name, different id) are a known defect in the
-   source file. Keep the first and count the rest. */
-const unique = new Map();
+/* Duplicate names (same name, different master) still exist in the source.
+   They are not always copies: two "Product Card/Small" masters hold different
+   content. So every master is kept, keyed by its Sketch object id, and the
+   second and later masters of a name are numbered: "Product Card/Small · 2". */
+const seen = new Map();
 const duplicates = [];
+const all = [];
 for (const m of masters) {
-  if (unique.has(m.name)) { duplicates.push(m.name); continue; }
-  unique.set(m.name, specOf(m));
+  const n = (seen.get(m.name) ?? 0) + 1;
+  seen.set(m.name, n);
+  if (n > 1) duplicates.push(m.name);
+  all.push({ ...specOf(m), label: n > 1 ? `${m.name} · ${n}` : m.name, x: m.frame.x, y: m.frame.y });
 }
+const unique = new Map(all.map(s => [s.name, s]));
 
 mkdirSync(join(ROOT, 'source', 'sketch'), { recursive: true });
 writeFileSync(join(ROOT, 'source', 'sketch', 'symbols.json'), JSON.stringify({
@@ -181,16 +188,13 @@ writeFileSync(join(ROOT, 'source', 'sketch', 'symbols.json'), JSON.stringify({
   masters: masters.length,
   unique: unique.size,
   duplicateNames: [...new Set(duplicates)].sort(),
-  symbols: [...unique.values()].sort((a, b) => a.name.localeCompare(b.name, 'en')),
+  symbols: all.sort((a, b) => a.label.localeCompare(b.label, 'en')).map(({ x, y, ...rest }) => rest),
 }, null, 2) + '\n');
 
 /* ── brand + social marks as SVG ────────────────────────────────────────── */
 const BRAND_OUT = join(ROOT, 'packages', 'brand');
 mkdirSync(BRAND_OUT, { recursive: true });
-const find = name => {
-  for (const m of masters) if (m.name === name) return m;
-  throw new Error('symbol not found: ' + name);
-};
+const find = name => masters.find(m => m.name === name) ?? null;
 const flatPaths = (layer, inheritFill) => {
   const out = [];
   (function walk(l, fill) {
@@ -210,7 +214,7 @@ const svg = (size, inner, extra = '') =>
 const brand = {};
 
 /* Torob wordmark / leaf logo — four solid paths, no boolean ops. */
-{
+if (find('Torob_Logo')) {
   const m = find('Torob_Logo');
   const paths = flatPaths(m, '#000000');
   brand.logo = { size: 32, paths: paths.map(p => ({ d: p.d, fill: p.fill, name: p.name })) };
@@ -220,7 +224,7 @@ const brand = {};
 
 /* The guarantee mark: indigo star, a wave field clipped to the star, and the
    logo filled with the holographic ramp. */
-{
+if (find('Torob star hologram')) {
   const m = find('Torob star hologram');
   const star = m.layers.find(l => l.name === 'Star');
   const wavy = m.layers.find(l => l.name === 'wavy pattern');
@@ -310,8 +314,12 @@ function emit(layer, inheritFill, ctx) {
   return d ? `<path fill="${fill}" d="${d}"/>` : '';
 }
 
+/* The social marks left the Components page in the September 2026 revision
+   of the file. The SVGs generated from the earlier revision stay committed;
+   they are only regenerated when the masters come back. */
 for (const [file, name] of [['bale', 'Social-Icons/Bale'], ['telegram', 'Social-Icons/Telegram'], ['whatsapp', 'Social-Icons/Whatsapp']]) {
   const m = find(name);
+  if (!m) { brand[file] = { size: 24 }; continue; }
   const ctx = { prefix: file, n: 0, defs: '' };
   const inner = emit({ ...m, frame: { ...m.frame, x: 0, y: 0 } }, 'currentColor', ctx);
   writeFileSync(join(BRAND_OUT, `${file}.svg`), svg(24, inner, ctx.defs ? `<defs>${ctx.defs}</defs>` : ''));
@@ -333,7 +341,7 @@ writeFileSync(join(BRAND_OUT, 'sprite.svg'),
 
 writeFileSync(join(BRAND_OUT, 'brand.json'), JSON.stringify(brand, null, 2) + '\n');
 
-console.log(`sketch-extract  ${masters.length} masters → ${unique.size} unique`
+console.log(`sketch-extract  ${masters.length} masters → ${unique.size} unique names`
   + ` (${new Set(duplicates).size} duplicated names)`);
 console.log(`                source/sketch/symbols.json`);
 console.log(`                packages/brand/ → torob-logo, torob-guarantee, bale, telegram, whatsapp`);

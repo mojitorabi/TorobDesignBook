@@ -5,12 +5,13 @@
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';
 
-export function Badge({ tone = 'neutral', size = 'md', onImage, dot, children }) {
+export function Badge({ tone = 'neutral', size = 'md', onImage, dot, icon, children }) {
   return (
     <span className={clsx('t-badge', tone !== 'neutral' && `t-badge--${tone}`,
-                          size === 'lg' && 't-badge--lg', onImage && 't-badge--on-image')}>
+                          size === 'sm' && 't-badge--sm', onImage && 't-badge--on-image')}>
       {dot && <span className="t-badge__dot" />}
-      {children}
+      {icon}
+      {tone === 'guarantee' ? <span className="t-badge__label">{children}</span> : children}
     </span>
   );
 }

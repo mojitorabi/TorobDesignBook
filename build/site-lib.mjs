@@ -13,6 +13,19 @@ export const slugToPath = slug => slug === 'index' ? 'index.html' : `${slug}.htm
 export const depthOf = slug => slug === 'index' ? 0 : slug.split('/').length - 1;
 export const rel = (slug, target) => '../'.repeat(depthOf(slug)) + target;
 
+/* A registry specimen may embed a Sketch symbol by id — {{sym:<id>}} — so a
+   component page and the symbols gallery render the very same markup and can
+   never drift apart. */
+let SYM = null;
+export async function resolveSymbols(html) {
+  if (!html || !html.includes('{{sym:')) return html;
+  SYM ??= (await import(new URL(`file://${join(ROOT, 'source', 'sketch', 'specimens.mjs')}`))).SPECIMENS;
+  return html.replace(/\{\{sym:([0-9A-F-]{36})\}\}/g, (_, id) => {
+    if (!SYM[id]) throw new Error(`no specimen for symbol ${id}`);
+    return SYM[id].html;
+  });
+}
+
 export async function loadComponents() {
   const dir = join(ROOT, 'source', 'components');
   const out = [];
@@ -20,6 +33,7 @@ export async function loadComponents() {
     const mod = await import(new URL(`file://${join(dir, f)}`));
     out.push(...mod.default);
   }
+  for (const c of out) for (const s of c.specimens ?? []) s.html = await resolveSymbols(s.html);
   return out;
 }
 
@@ -56,7 +70,7 @@ export function layout({ slug, title, description, nav, components, body, toc = 
 
   const pageTitle = title === SITE_NAME ? `${SITE_NAME} · ${SITE_TAGLINE}` : `${esc(title)} — ${SITE_NAME}`;
 
-  return `<!doctype html>
+  return (`<!doctype html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
@@ -130,13 +144,27 @@ ${tocHtml}
 
 <script src="${R('assets/site.js')}"></script>
 </body>
-</html>`;
+</html>`).replaceAll('%ASSETS%', R('assets'));
+}
+
+/** SVG paint servers (gradients, clip paths) are addressed by id, and a page
+    that shows the same mark twice must not define the same id twice. Give
+    every id that is referenced through url(#…) a per-block suffix. */
+export function uniqueIds(html, suffix) {
+  const ids = new Set([...html.matchAll(/url\(#([^)"']+)\)/g)].map(m => m[1]));
+  for (const id of ids) {
+    const e = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    html = html.replace(new RegExp(`id="${e}"`, 'g'), `id="${id}-${suffix}"`)
+               .replace(new RegExp(`url\\(#${e}\\)`, 'g'), `url(#${id}-${suffix})`);
+  }
+  return html;
 }
 
 /** A specimen block: live stage + code drawer with HTML / React tabs. */
 let specId = 0;
 export function specimen({ label, html, react, note, canvas, dir = 'rtl', stageClass = '' }) {
   const id = `sp${++specId}`;
+  html = uniqueIds(html, id);
   const tabs = [['HTML', codeEsc(html)]];
   if (react) tabs.push(['React', codeEsc(react)]);
   return `<div class="spec" data-spec>

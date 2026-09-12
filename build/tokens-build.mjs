@@ -48,12 +48,20 @@ ${base}
 ${modeBlock('light')}
 }
 
-/* Explicit choice wins in both directions. */
-:root[data-theme="dim"] {
+/* Explicit choice wins in both directions, and any element can scope a
+   theme: <section data-theme="dim"> re-tints everything inside it. */
+:root[data-theme="light"], [data-theme="light"] {
+  color-scheme: light;
+${modeBlock('light')}
+}
+
+:root[data-theme="dim"], [data-theme="dim"] {
+  color-scheme: dark;
 ${modeBlock('dim')}
 }
 
-:root[data-theme="dark"] {
+:root[data-theme="dark"], [data-theme="dark"] {
+  color-scheme: dark;
 ${modeBlock('dark')}
 }
 

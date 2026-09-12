@@ -4,8 +4,14 @@
 import { spawnSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { removeOrStash } from './fs-safe.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
+
+/* A clean slate, so a page that no longer exists cannot survive locally
+   while CI (which always starts clean) drops it. */
+const cleared = removeOrStash(join(HERE, '..', 'site'));
+if (cleared === 'stashed') console.log('  (old site/ moved to .transfer/stale — delete it when convenient)');
 const steps = [
   ['tokens-build.mjs',   'Tokens → 12 artefacts'],
   ['contrast-check.mjs', 'GATE: WCAG AA contrast'],

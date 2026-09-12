@@ -224,15 +224,16 @@ kbd {
 /* ---------- Prose ---------- */
 .prose { max-inline-size: var(--site-measure); }
 .prose > * + * { margin-block-start: 18px; }
-.prose h2 { font-size: 24px; line-height: 1.5; font-weight: 800; margin-block-start: 64px; }
-.prose h3 { font-size: 17px; line-height: 1.6; font-weight: 700; margin-block-start: 38px; }
-.prose p { color: var(--t-fg-secondary); }
-.prose strong { color: var(--t-fg-default); font-weight: 700; }
-.prose ul, .prose ol { color: var(--t-fg-secondary); padding-inline-start: 24px; }
-.prose ul { list-style: disc; } .prose ol { list-style: decimal; }
-.prose li + li { margin-block-start: 8px; }
-.prose li::marker { color: var(--t-fg-disabled); }
-.prose a { color: var(--t-fg-link); text-underline-offset: 3px; }
+/* Prose styling stops at a specimen: components style their own text. */
+.prose h2:not(.spec__stage *) { font-size: 24px; line-height: 1.5; font-weight: 800; margin-block-start: 64px; }
+.prose h3:not(.spec__stage *) { font-size: 17px; line-height: 1.6; font-weight: 700; margin-block-start: 38px; }
+.prose p:not(.spec__stage *) { color: var(--t-fg-secondary); }
+.prose strong:not(.spec__stage *) { color: var(--t-fg-default); font-weight: 700; }
+.prose :is(ul, ol):not(.spec__stage *) { color: var(--t-fg-secondary); padding-inline-start: 24px; }
+.prose ul:not(.spec__stage *) { list-style: disc; } .prose ol:not(.spec__stage *) { list-style: decimal; }
+.prose li:not(.spec__stage *) + li { margin-block-start: 8px; }
+.prose li:not(.spec__stage *)::marker { color: var(--t-fg-disabled); }
+.prose a:where(:not([class])):not(.spec__stage *) { color: var(--t-fg-link); text-underline-offset: 3px; }
 .prose code, .tbl code, .note code {
   font-family: var(--site-mono); font-size: 0.86em;
   padding: 2px 6px; border-radius: 6px;
@@ -472,3 +473,49 @@ pre.code code { background: none; padding: 0; font-size: inherit; }
   color: var(--t-fg-default);
   border-block-end: var(--t-border-thin) solid var(--t-border-subtle);
 }
+
+/* ---------- Symbols gallery ----------
+   Each card holds the coded symbol and Sketch's own export in the same
+   frame. The view mode on <main> decides which one shows, or both. */
+.sym-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1px; margin-block: 28px 8px; border-radius: var(--t-radius-lg); overflow: hidden; background: var(--t-border-subtle); }
+.sym-stats > div { display: flex; flex-direction: column; gap: 2px; padding: 16px 18px; background: var(--t-bg-fog); }
+.sym-stats strong { font-size: 24px; line-height: 1.3; font-weight: 800; }
+.sym-stats span { font-size: 13px; color: var(--t-fg-secondary); }
+.sym-bar { position: sticky; inset-block-start: calc(var(--site-bar-h) + 8px); z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-block-start: 28px; padding: 8px; border-radius: var(--t-radius-lg); background: var(--t-glass-fill); box-shadow: inset 0 0 0 1px var(--t-border-subtle); backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur)); }
+.sym-bar__search { flex: 1 1 220px; }
+.sym-bar__search .t-input { block-size: 36px; }
+.sym-bar__search .t-input__el { font-size: 14px; }
+.sym-families { padding-block: 12px 0; }
+.sym-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-block-start: 16px; }
+.sym { display: flex; flex-direction: column; min-inline-size: 0; border-radius: var(--t-radius-lg); background: var(--t-bg-fog); box-shadow: inset 0 0 0 1px var(--t-border-subtle); overflow: hidden; }
+.sym--wide { grid-column: 1 / -1; }
+.sym[hidden] { display: none; }
+.sym__stage { display: grid; place-items: center; padding: 28px 16px; overflow-x: auto; background-color: var(--t-bg-fog); background-image: radial-gradient(var(--t-border-subtle) 1px, transparent 1px); background-size: 12px 12px; }
+.sym__stage[data-theme="dim"], .sym__stage[data-theme="dark"] { background-color: #15202B; }
+.sym__frame { position: relative; inline-size: var(--w); block-size: var(--h); flex: none; }
+.sym__code { position: absolute; inset: 0; display: flex; align-items: flex-start; justify-content: flex-start; }
+.sym__sketch { position: absolute; inset: 0; inline-size: var(--w); block-size: var(--h); max-inline-size: none; pointer-events: none; opacity: 0; }
+main[data-sym-mode="sketch"] .sym__code { visibility: hidden; }
+main[data-sym-mode="sketch"] .sym__sketch { opacity: 1; }
+main[data-sym-mode="overlay"] .sym__sketch { opacity: 0.5; }
+main[data-sym-mode="diff"] .sym__sketch { opacity: 1; mix-blend-mode: difference; }
+main[data-sym-mode="diff"] .sym__stage { background-image: none; }
+.sym__meta { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-block-start: 1px solid var(--t-border-subtle); }
+.sym__line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-inline-size: 0; }
+.sym__line--sub { font-size: 13px; line-height: 1.6; }
+.sym__line--foot { font-size: 12px; line-height: 1.6; color: var(--t-fg-secondary); align-items: flex-start; }
+.sym__old { font-family: var(--site-mono); font-size: 12.5px; line-height: 1.6; font-weight: 600; color: var(--t-fg-default); overflow-wrap: anywhere; }
+.sym__score { margin-inline-start: auto; font-size: 12px; line-height: 20px; font-weight: 700; padding-inline: 8px; border-radius: var(--t-radius-full); background: var(--t-status-neutral-bg); color: var(--t-fg-default); }
+.sym__score[data-level="high"] { background: var(--t-status-positive-bg); color: var(--t-status-positive-fg); }
+.sym__score[data-level="low"] { background: var(--t-status-caution-bg); color: var(--t-status-caution-fg); }
+.sym__new { font-weight: 700; text-decoration: none; }
+.sym__class { font-family: var(--site-mono); font-size: 11.5px; color: var(--t-fg-secondary); overflow-wrap: anywhere; background: none; padding: 0; }
+.sym__notes { flex: 1 1 100%; order: 3; }
+.sym__notes summary { cursor: pointer; color: var(--t-fg-link); font-weight: 600; inline-size: fit-content; }
+.sym__notes ul { margin: 6px 0 2px; padding-inline-start: 18px; list-style: disc; font-size: 13px; line-height: 1.8; }
+.sym__notes li { margin-block: 4px; color: var(--t-fg-secondary); }
+.sym__notes li strong { color: var(--t-fg-default); }
+.sym__copy { margin-inline-start: auto; padding: 0; border: 0; background: none; color: var(--t-fg-link); font: inherit; font-weight: 600; cursor: pointer; }
+.sym__copy:hover { text-decoration: underline; }
+.sym-section[hidden] { display: none; }
+.sym-section__title { font-size: 21px; line-height: 1.3; font-weight: 800; margin-block: 52px 0; }

@@ -38,6 +38,15 @@ for (const [from, to] of [
 ]) copyFileSync(join(ROOT, from), join(OUT, to));
 // torob.css is bundled with an @import for tokens.css — the copy keeps that relative path valid.
 
+/* Sample content for specimens (store logos, product photos). Imagery, not
+   system assets: it shows the components with the Sketch file's own content.
+   And the exact-frame Sketch exports the symbols page compares against. */
+for (const [from, to] of [['source/samples', 'assets/samples'], ['source/sketch/ref', 'assets/sketch']]) {
+  const src = join(ROOT, from), out = join(OUT, to);
+  mkdirSync(out, { recursive: true });
+  for (const f of readdirSync(src)) copyFileSync(join(src, f), join(out, f));
+}
+
 /* The typeface is part of the site, not a local convenience — copy it from
    the package so a clean checkout produces the same pages. */
 {

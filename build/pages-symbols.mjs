@@ -1,144 +1,158 @@
-import { readFileSync } from 'node:fs';
+/* The symbols gallery: every master on the Sketch Components page, rebuilt
+   from system classes, shown next to Sketch's own export with a match score.
+
+   Four ways to look at each one:
+     کد        the live HTML render (default)
+     اسکچ      the exact-frame @2x export from Sketch
+     روی هم    Sketch over code at 50%, for alignment
+     تفاوت     difference blend — black where they agree
+
+   Scores come from build/dev/pixel-diff.mjs (source/sketch/match.json). */
+import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './tokens-lib.mjs';
-import { section, table, esc } from './site-lib.mjs';
-import { SYMBOL_CODE, KIND_FA, KIND_NOTE } from '../source/sketch/symbol-code.mjs';
+import { section, esc, uniqueIds } from './site-lib.mjs';
+import { SYMBOL_CODE } from '../source/sketch/symbol-code.mjs';
+import { SPECIMENS } from '../source/sketch/specimens.mjs';
+import { NOTES, KIND } from '../source/sketch/notes.mjs';
 
 const FA = '۰۱۲۳۴۵۶۷۸۹';
-const toFa = n => String(n).replace(/[0-9]/g, d => FA[+d]);
-/* A size is a bidi-neutral run: dropped into a Persian sentence the browser
-   reorders it and ۳۴۳×۷۲ is read back as ۷۲×۳۴۳. */
-const dim = (w, h) => `<span class="t-bidi" dir="ltr">${toFa(w)}×${toFa(h)}</span>`;
-/* num() emits markup, so it is for text nodes only — never an attribute.
-   Inside placeholder="…" the span would close the tag and break the input. */
+const toFa = n => String(n).replace(/[0-9]/g, d => FA[+d]).replace('.', '٫');
 const num = n => `<span class="t-bidi" dir="ltr">${toFa(n)}</span>`;
+const dim = (w, h) => `<span class="t-bidi" dir="ltr">${toFa(w)}×${toFa(h)}</span>`;
 
-/* The family a symbol belongs to, from its own name. */
 const familyOf = name => {
   const head = name.replace(/‌/g, '').split('/')[0].trim();
   if (/^Button$/i.test(head)) return 'Button';
-  if (/^Store-Card$/i.test(head)) return 'Store-Card';
+  if (/^Store-Card$/i.test(head)) return 'Store';
   if (/^Product/i.test(head)) return 'Product';
   if (/^(POI|Pin|Open Pin|Close Pin)$/i.test(head)) return 'Map';
-  if (/^(Torob_Logo|Torob star hologram|Brand|Social-Icons)$/i.test(head)) return 'Brand';
-  if (/^(Search bar|Switch)$/i.test(head)) return 'Inputs';
-  if (/^(Tab|List|Header|Segmented Controls)$/i.test(head)) return 'Navigation';
+  if (/^(Torob_Logo|Torob star hologram|Brand)$/i.test(head)) return 'Brand';
+  if (/^(Search bar|List|Header)$/i.test(head)) return 'Inputs';
+  if (/^(Segmented Controls|Tab|Switch|Filter)$/i.test(head)) return 'Chips';
   return head;
 };
-const FAMILY_FA = {
-  Button: 'دکمه', Badge: 'نشان', Filter: 'فیلتر', Product: 'محصول',
-  'Store-Card': 'کارت فروشگاه', Map: 'نقشه', Brand: 'برند',
-  Inputs: 'ورودی', Navigation: 'ناوبری',
-};
+const FAMILY_FA = { Button: 'دکمه', Badge: 'نشان', Chips: 'قرص و انتخابگر', Inputs: 'جست‌وجو، فهرست، سرتیتر', Map: 'نقشه', Product: 'محصول', Store: 'فروشگاه و پیشنهاد', Brand: 'برند' };
+const ORDER = ['Button', 'Badge', 'Chips', 'Inputs', 'Map', 'Product', 'Store', 'Brand'];
 
 export function symbolsPage(components) {
   const spec = JSON.parse(readFileSync(join(ROOT, 'source/sketch/symbols.json'), 'utf8'));
-  const toc = [], S = (id, t, i) => { toc.push({ id, label: t }); return section(id, t, i); };
-
+  const matchFile = join(ROOT, 'source/sketch/match.json');
+  const match = existsSync(matchFile) ? JSON.parse(readFileSync(matchFile, 'utf8')) : {};
   const norm = s => s.replace(/‌/g, '').replace(/\s*\/\s*/g, '/').toLowerCase().trim();
   const owner = new Map();
   for (const c of components) for (const l of c.legacy ?? []) owner.set(norm(l), c);
 
-  const rows = spec.symbols.map(s => ({
-    s, c: owner.get(norm(s.name)), m: SYMBOL_CODE[s.name], family: familyOf(s.name),
-  }));
-  const families = [...new Set(rows.map(r => r.family))].sort((a, b) => a.localeCompare(b, 'en'));
-  const kinds = {};
-  for (const r of rows) kinds[r.m.kind] = (kinds[r.m.kind] ?? 0) + 1;
-  const componentsHit = new Set(rows.map(r => r.c?.slug)).size;
+  const rows = spec.symbols.map(s => ({ s, c: owner.get(norm(s.name)), code: SYMBOL_CODE[s.name]?.code ?? '', sp: SPECIMENS[s.id], m: match[s.id], notes: NOTES[s.id] ?? [], family: familyOf(s.name) }));
+  const scored = rows.filter(r => r.m);
+  const mean = scored.reduce((a, r) => a + r.m.score, 0) / (scored.length || 1);
+  const high = scored.filter(r => r.m.score >= 95).length;
+  const sized = scored.filter(r => r.m.sizeOk).length;
+  const noted = rows.filter(r => r.notes.length).length;
+
+  const toc = [];
+  const S = (id, t, i) => { toc.push({ id, label: t }); return section(id, t, i); };
 
   let body = `<div class="prose">
-    <p>صفحهٔ <strong>Components</strong> در فایل <code>Torob Tokens.sketch</code> ${num(spec.masters)} مستر سیمبل دارد که ${num(spec.unique)} نام یکتا می‌سازند. هر ${num(spec.unique)} نام اینجا هست، با اندازهٔ اندازه‌گیری‌شده و کدی که جایش را گرفته. هیچ سیمبلی بدون کد نیست — این را <code>build/sketch-coverage.mjs</code> در هر ساخت بررسی می‌کند و اگر سیمبلی صاحب نداشته باشد، ساخت شکست می‌خورد.</p>
-    <p>اعداد این صفحه <strong>حدس نیستند</strong>. <code>build/sketch-extract.mjs</code> فایل اسکچ را باز می‌کند و هندسه را بیرون می‌کشد؛ جاهایی هم که فایل با خودش نمی‌خواند، خروجی رندرِ خودِ اسکچ اندازه‌گیری شده است.</p>
+    <p>هر ${num(spec.masters)} مستر صفحهٔ <strong>Components</strong> در فایل اسکچ، اینجا از کلاس‌های همین سیستم ساخته شده است. کنار هر کدام خروجی خود اسکچ هست تا بتوانید با چشم خودتان مقایسه کنید.</p>
+  </div>
+  <div class="sym-stats">
+    <div><strong>${num(spec.masters)}</strong><span>سیمبل از کد</span></div>
+    <div><strong>${num(Math.round(mean * 10) / 10)}٪</strong><span>میانگین تطابق</span></div>
+    <div><strong>${num(high)}</strong><span>بالای ۹۵٪</span></div>
+    <div><strong>${num(sized)}</strong><span>اندازهٔ دقیق</span></div>
   </div>`;
 
-  body += S('trap', 'دامی که در فایل هست', `<div class="prose">
-    <p>گردی گوشه در فایل اسکچ <strong>سه جا</strong> ذخیره می‌شود و فقط یکی از آنها معتبر است. خواندن از فیلد اشتباه، کل سیستم را روی عدد غلط بنا می‌کند.</p></div>
-    ${table(['فیلد', 'چیست', 'اعتبار'], [
-      ['<code>style.corners.radii</code>', 'گردی یک قاب — آرت‌بورد، سیمبل، گروه.', '<strong>معتبر</strong>'],
-      ['<code>points[].cornerRadius</code>', 'گردی یک شکل.', '<strong>معتبر</strong>'],
-      ['<code>fixedRadius</code>', 'آینهٔ قدیمی همان مقدار.', 'اغلب کهنه'],
-    ])}
-    <div class="prose"><p>روی سیمبل <code>Button / Red / Default</code> فیلد <code>fixedRadius</code> عدد ۸ را نگه داشته و <code>points[].cornerRadius</code> عدد ۱۲ را. اسکچ ۱۲ را می‌کشد. اگر اول <code>fixedRadius</code> را بخوانید، به این نتیجه می‌رسید که کل کیت روی گردی ۸ بنا شده — که نیست. برای همین ترتیب خواندن در استخراج‌گر صریح نوشته شده و با اندازه‌گیری روی خروجی رندر اسکچ راستی‌آزمایی شده است.</p></div>
-    ${table(['سیمبل', '<code>fixedRadius</code>', 'مقدار واقعی', 'اندازه‌گیری از رندر'], [
-      ['<code>Button / Red / Default</code>', num(8), '<strong>' + num(12) + '</strong>', num(12.1)],
-      ['<code>Button/Icon/Icon</code>', num(8), '<strong>' + num(12) + '</strong>', num(12.4)],
-      ['<code>Button/Buy box/Ad</code>', num(8), '<strong>' + num(16) + '</strong>', num(15.7)],
-      ['<code>Button / Blue /split</code>', '—', '<strong>' + num(12) + '</strong>', num(12.1)],
-    ])}
-    <div class="note"><strong>گوشه‌ها در اسکچ صاف‌شده‌اند.</strong> هر قاب <code>smoothing: ۰٫۶</code> دارد — یعنی گوشه یک اسکویرکل است، نه کمان دایره. CSS هنوز معادل قابل‌اتکایی برای این ندارد، پس اینجا ثبت شده و بازتولید نشده. تفاوتش در اندازه‌های کوچک زیر آستانهٔ ادراک است و در سطوح بزرگ کمی تیزتر دیده می‌شود.</div>`);
-
-  body += S('kinds', 'هر سیمبل چه می‌شود', `<div class="prose">
-    <p>${num(spec.unique)} سیمبل روی ${num(componentsHit)} کامپوننت می‌نشینند. تفاوت اینجاست که بیش از نیمی از آنها اصلاً کامپوننت نبودند.</p></div>
-    ${table(['دسته', 'تعداد', 'یعنی'], Object.entries(kinds).sort((a, b) => b[1] - a[1]).map(([k, n]) =>
-      [`<strong>${KIND_FA[k]}</strong>`, num(n), KIND_NOTE[k]]))}`);
-
-  const kindChip = k => `<span class="sym-kind" data-kind="${k}">${KIND_FA[k]}</span>`;
-  const rowHtml = r => {
-    const { s, c, m } = r;
-    /* "4 / 12" is a bidi-neutral run; unisolated it reads back as "12 / 4". */
-    const pad = s.padding
-      ? `<span class="t-bidi" dir="ltr">${toFa(s.padding.top)} / ${toFa(s.padding.start)}</span>`
-      : '—';
-    return `<tr data-k="${esc((s.name + ' ' + (c?.name ?? '') + ' ' + m.code + ' ' + KIND_FA[m.kind]).toLowerCase())}">
-      <td><span class="legacy">${esc(s.name)}</span> ${kindChip(m.kind)}</td>
-      <td class="t-num">${dim(s.width, s.height)}</td>
-      <td class="t-num">${s.radius ? num(s.radius) : '—'}</td>
-      <td class="t-num">${pad}</td>
-      <td>${c ? `<a href="components/${c.slug}.html" style="font-weight:600">${esc(c.name)}</a>` : '—'}</td>
-      <td><code>${esc(m.code)}</code></td>
-    </tr>`;
+  const scoreLevel = s => s >= 95 ? 'high' : s >= 90 ? 'mid' : 'low';
+  let n = 0;
+  const card = r => {
+    const { s, c, sp, m } = r;
+    const id = `sym${++n}`;
+    const theme = sp?.theme ?? 'light';
+    const wide = s.width > 240;
+    const html = sp ? uniqueIds(sp.html, id) : '';
+    const notes = r.notes.map(([k, t]) => `<li data-tone="${KIND[k].tone}"><strong>${KIND[k].fa}.</strong> ${t}</li>`).join('');
+    return `<article class="sym${wide ? ' sym--wide' : ''}" id="${id}" data-family="${r.family}" data-k="${esc((s.label + ' ' + (c?.name ?? '') + ' ' + r.code).toLowerCase())}">
+  <div class="sym__stage" data-theme="${theme}">
+    <div class="sym__frame" style="--w:${s.width}px;--h:${s.height}px">
+      <div class="sym__code" dir="rtl" lang="fa">${html}</div>
+      <img class="sym__sketch" src="%ASSETS%/sketch/${s.id}.png" width="${s.width}" height="${s.height}" alt="${esc(s.label)} در اسکچ" loading="lazy" decoding="async">
+    </div>
+  </div>
+  <div class="sym__meta">
+    <div class="sym__line">
+      <span class="sym__old" dir="ltr">${esc(s.label)}</span>
+      ${m ? `<span class="sym__score" data-level="${scoreLevel(m.score)}" title="سهم پیکسل‌های هم‌رنگ با خروجی اسکچ">${num(m.score)}٪</span>` : ''}
+    </div>
+    <div class="sym__line sym__line--sub">
+      ${c ? `<a class="sym__new" href="components/${c.slug}.html">${esc(c.name)}</a>` : ''}
+      <code class="sym__class" dir="ltr">${esc(r.code)}</code>
+    </div>
+    <div class="sym__line sym__line--foot">
+      <span class="sym__size">${dim(s.width, s.height)}</span>
+      ${notes ? `<details class="sym__notes"><summary>${num(r.notes.length)} یادداشت</summary><ul>${notes}</ul></details>` : ''}
+      <button class="sym__copy" data-sym-copy title="کپی HTML همین سیمبل">کپی HTML</button>
+    </div>
+  </div>
+</article>`;
   };
 
-  body += S('index', 'فهرست کامل', `<div class="wide">
-    <div class="site-search" style="max-inline-size:none;margin-block-end:12px">
-      <svg class="site-search__icon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M15,14.3L10.7,10c1.9-2.3,1.6-5.8-0.7-7.7S4.2,0.7,2.3,3S0.7,8.8,3,10.7c2,1.7,5,1.7,7,0l4.3,4.3L15,14.3z M2,6.5	C2,4,4,2,6.5,2S11,4,11,6.5S9,11,6.5,11S2,9,2,6.5z"/></svg>
-      <input id="symSearch" type="search" placeholder="جست‌وجو در ${toFa(spec.unique)} سیمبل…" autocomplete="off" aria-controls="symTable">
+  body += `<div class="sym-bar" role="toolbar" aria-label="نمایش سیمبل‌ها">
+    <div class="t-segmented" role="radiogroup" aria-label="حالت نمایش" id="symMode">
+      <button class="t-segmented__item" role="radio" aria-checked="true" data-mode="code">کد</button>
+      <button class="t-segmented__item" role="radio" aria-checked="false" data-mode="sketch">اسکچ</button>
+      <button class="t-segmented__item" role="radio" aria-checked="false" data-mode="overlay">روی هم</button>
+      <button class="t-segmented__item" role="radio" aria-checked="false" data-mode="diff">تفاوت</button>
     </div>
-    <div class="tbl-wrap"><table class="tbl" id="symTable">
-      <thead><tr>
-        <th scope="col">سیمبل در اسکچ</th><th scope="col">اندازه</th><th scope="col">گردی</th>
-        <th scope="col">فاصله<br><span class="t-body-sm t-tone-secondary">بالا / ابتدا</span></th>
-        <th scope="col">کامپوننت</th><th scope="col">کد</th>
-      </tr></thead>
-      ${families.map(f => `<tbody data-family="${esc(f)}">
-        <tr class="sym-group"><th colspan="6" scope="colgroup">${esc(FAMILY_FA[f] ?? f)}<span class="t-tone-secondary" style="font-weight:400"> · ${num(rows.filter(r => r.family === f).length)}</span></th></tr>
-        ${rows.filter(r => r.family === f).sort((a, b) => a.s.name.localeCompare(b.s.name, 'en')).map(rowHtml).join('')}
-      </tbody>`).join('')}
-    </table></div>
-    <p id="symEmpty" class="t-tone-secondary" hidden style="padding-block:16px">چیزی پیدا نشد.</p>
+    <div class="t-search sym-bar__search" data-state="default"><div class="t-input"><input class="t-input__el" type="search" id="symSearch" placeholder="جست‌وجوی نام قدیمی یا جدید…" aria-label="جست‌وجوی سیمبل" autocomplete="off"></div></div>
   </div>
-  <script>(function(){
-    var i=document.getElementById('symSearch'), tbl=document.getElementById('symTable');
-    var empty=document.getElementById('symEmpty');
-    var rows=[].slice.call(tbl.querySelectorAll('tr[data-k]'));
-    var heads=[].slice.call(tbl.querySelectorAll('tbody'));
-    var t; i.addEventListener('input', function(){ clearTimeout(t); t=setTimeout(function(){
-      var q=i.value.toLowerCase().trim(), n=0;
-      rows.forEach(function(r){ var hit=!q||r.dataset.k.indexOf(q)>=0; r.hidden=!hit; if(hit)n++; });
-      heads.forEach(function(b){
-        var any=[].slice.call(b.querySelectorAll('tr[data-k]')).some(function(r){return !r.hidden;});
-        b.hidden=!any;
-      });
-      empty.hidden=n>0;
-    },90); });
-  })();</script>`);
+  <div class="t-chip-group sym-families" role="group" aria-label="خانواده" id="symFam">
+    <button class="t-choice" aria-pressed="true" data-fam="">همه</button>
+    ${ORDER.map(f => `<button class="t-choice" aria-pressed="false" data-fam="${f}">${FAMILY_FA[f]} <span class="t-bidi" dir="ltr">${toFa(rows.filter(r => r.family === f).length)}</span></button>`).join('')}
+  </div>`;
 
-  body += S('source', 'ناسازگاری‌های منبع', `<div class="prose">
-    <p>چیزهایی که هنگام تجزیه پیدا شدند و بهتر است در خود فایل اسکچ اصلاح شوند، نه اینجا.</p></div>
-    ${table(['یافته', 'جزئیات'], [
-      [`<strong>${toFa(spec.duplicateNames.length)} نام تکراری</strong>`, `${toFa(spec.masters)} مستر با ${toFa(spec.unique)} نام یکتا. <code>Segmented Controls/Selected</code> چهار بار وجود دارد، با دو اندازهٔ متفاوت (${dim(38, 32)} و ${dim(395, 64)}) زیر یک نام.`],
-      ['<strong>نیم‌فاصلهٔ نامرئی در نام سیمبل</strong>', '<code dir="ltr">Button/‌Blue/…</code> نویسهٔ U+200C دارد. در اسکچ دیده نمی‌شود و هر تولید کدی را که به نام تکیه کند بی‌صدا می‌شکند. مقایسه‌ها در این سیستم روی شکل نرمال‌شده انجام می‌شوند.'],
-      ['<strong>لبهٔ دکمهٔ دونیمه‌ای دو جور است</strong>', `قرمز لبهٔ ${num(1)} پیکسلی بیرونی روی کل کنترل دارد، آبی فقط روی نیمهٔ دوم و درونی. در کد هر دو یکسان رفتار می‌کنند.`],
-      ['<strong>قرمز لوگو، قرمز برند نیست</strong>', 'نشان با <code dir="ltr">#E91E33</code> کشیده شده، توکن برند <code dir="ltr">#D73948</code> است.'],
-      ['<strong>دو خانوادهٔ فونت در یک کیت</strong>', '<code>Button/Buy box/Cheapest</code> از <code>IRANYekan-Bold</code> استفاده می‌کند و بقیه از <code>IRANYekanX</code>.'],
-      ['<strong>نام لایه‌ها کهنه‌اند</strong>', 'داخل <code>Button / Red /split</code> هر دو آیکون <code>Icon / 24px / call</code> نام دارند، ولی اسکچ یک سبد خرید و یک شورون می‌کشد. نام لایه بعد از کپی به‌روز نشده — به همین دلیل آیکون‌ها از رندر خوانده شدند، نه از نام.'],
-      ['<strong>فاصلهٔ داخلی ناهماهنگ</strong>', `دکمهٔ پرشده ${num(12)} پیکسل فاصلهٔ افقی دارد و دکمهٔ خط‌دار ${num(15)} — احتمالاً برای جبران لبهٔ ${num(1)} پیکسلی، ولی ${num(15)}+${num(1)} می‌شود ${num(16)}، نه ${num(12)}.`],
-    ])}`);
+  for (const f of ORDER) {
+    const list = rows.filter(r => r.family === f).sort((a, b) => a.s.label.localeCompare(b.s.label, 'en'));
+    if (!list.length) continue;
+    /* Not section(): its .prose wrapper would style the specimens' own
+       paragraphs and links. */
+    const hid = `f-${f.toLowerCase()}`;
+    toc.push({ id: hid, label: FAMILY_FA[f] });
+    body += `<section class="sym-section"><h2 id="${hid}" class="sym-section__title">${FAMILY_FA[f]}</h2><div class="sym-grid" data-group="${f}">${list.map(card).join('')}</div></section>`;
+  }
+  body += `<p id="symEmpty" class="t-tone-secondary" hidden>چیزی پیدا نشد.</p>`;
+
+  body += S('how', 'امتیاز چطور حساب می‌شود', `<div class="prose">
+    <p>هر سیمبل با همان اندازهٔ مستر و در چگالی ۲ برابر رندر می‌شود و با خروجی اسکچ (با قاب دقیق) پیکسل به پیکسل مقایسه می‌شود. امتیاز، سهم پیکسل‌های محتوایی است که رنگشان با اسکچ یکی است؛ جابه‌جایی یک پیکسل دستگاهی در لبه‌ها بخشیده می‌شود، چون موتور متن اسکچ و مرورگر هیچ‌وقت لبهٔ حروف را یکسان نمی‌کشند. برای همین سیمبل‌های پرمتن به ۱۰۰ نمی‌رسند.</p>
+    <p>${num(noted)} سیمبل یادداشت دارند: جاهایی که کد عمداً با اسکچ فرق دارد، چون اسکچ با خودش نمی‌خواند، دسترس‌پذیری را رد می‌کند، فونت یا آیکون غیرمجاز دارد، یا نمونه‌اش کش آمده است. هر یادداشت پیشنهادی برای اصلاح در خود فایل اسکچ است.</p>
+    <p>برای ساختن دوباره: <code>node build/dev/pixel-diff.mjs</code> (به Playwright نیاز دارد) و خروجی‌های مرجع با برش هم‌اندازهٔ هر مستر از خود اسکچ گرفته می‌شوند.</p>
+  </div>`);
+
+  body += `<script>(function(){
+  var mode=document.getElementById('symMode'), root=document.querySelector('main');
+  mode.addEventListener('click',function(e){var b=e.target.closest('[data-mode]'); if(!b)return;
+    mode.querySelectorAll('[data-mode]').forEach(function(x){x.setAttribute('aria-checked', x===b?'true':'false');});
+    root.setAttribute('data-sym-mode', b.dataset.mode);});
+  mode.addEventListener('keydown',function(e){var d={ArrowLeft:1,ArrowRight:-1}[e.key]; if(!d)return; e.preventDefault();
+    var all=[].slice.call(mode.querySelectorAll('[data-mode]')), i=all.findIndex(function(x){return x.getAttribute('aria-checked')==='true';});
+    var n=all[(i+d+all.length)%all.length]; n.focus(); n.click();});
+  var q=document.getElementById('symSearch'), fam=document.getElementById('symFam'), cur='', empty=document.getElementById('symEmpty');
+  var cards=[].slice.call(document.querySelectorAll('.sym'));
+  function apply(){var t=q.value.trim().toLowerCase(), shown=0;
+    cards.forEach(function(c){var ok=(!cur||c.dataset.family===cur)&&(!t||c.dataset.k.indexOf(t)>=0); c.hidden=!ok; if(ok)shown++;});
+    document.querySelectorAll('.sym-grid').forEach(function(g){var s=g.closest('section'); if(s) s.hidden=![].some.call(g.children,function(c){return !c.hidden;});});
+    empty.hidden=shown>0;}
+  q.addEventListener('input',apply);
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-sym-copy]'); if(!b)return;
+    var src=b.closest('.sym').querySelector('.sym__code').innerHTML.trim(), was=b.textContent;
+    (navigator.clipboard?navigator.clipboard.writeText(src):Promise.reject()).then(function(){b.textContent='کپی شد';setTimeout(function(){b.textContent=was;},1400);},function(){b.textContent='⌘C';});});
+  fam.addEventListener('click',function(e){var b=e.target.closest('[data-fam]'); if(!b)return; cur=b.dataset.fam;
+    fam.querySelectorAll('[data-fam]').forEach(function(x){x.setAttribute('aria-pressed', x===b?'true':'false');}); apply();});
+})();</script>`;
 
   return {
-    body, toc, title: 'فهرست سیمبل‌ها',
-    description: `هر ${toFa(spec.unique)} سیمبل کیت اسکچ، با اندازه و کدی که جایش را گرفت.`,
+    body, toc, title: 'سیمبل‌های اسکچ',
+    description: `هر ${toFa(spec.masters)} سیمبل کیت، ساخته‌شده از کد، کنار خروجی اسکچ با درصد تطابق.`,
     eyebrow: 'مرور کلی',
   };
 }

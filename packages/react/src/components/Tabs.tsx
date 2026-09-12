@@ -1,7 +1,6 @@
 /* Tabs — Torob Design System
  * بین بخش‌های یک صفحه جابه‌جا می‌شود. از پنج گزینه فراتر می‌رود.
  * Docs: /components/tabs.html
- * Replaces: Tab/Selected
  */
 import { clsx, toFa, formatPrice, formatDistance } from '../utils';
 

@@ -23,6 +23,12 @@
 .t-brand--sm { --_s: 24px; }
 .t-brand--lg { --_s: 48px; }
 
+/* ← Brand / Logo: the mark in one colour (Sky 500) on a white 32px plate,
+   2px in from each edge. For places where the full-colour mark would fight
+   the content around it: toolbars, empty states, seller documents. */
+.t-brand--plate { display: inline-grid; place-items: center; background: var(--t-brand-plate-bg); color: var(--t-brand-plate-fg); }
+.t-brand--plate > svg { inline-size: calc(var(--_s) - 4px); block-size: calc(var(--_s) - 4px); }
+
 /* The lockup: mark plus wordmark, aligned on the optical centre rather than
    the box centre — the leaf sits above the ring, so a box-centred mark reads
    as sitting low next to text. */

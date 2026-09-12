@@ -217,7 +217,7 @@ border-end-start-radius: var(--t-radius-md);</code></pre></div>`],
       ['نواحی زنده', '<code>polite</code> برای نتایج و توست‌ها. <code>assertive</code> فقط برای بحرانی، چون کار کاربر را قطع می‌کند.'],
       ['حرکت', '<code>prefers-reduced-motion</code> همه‌چیز را به ۱ میلی‌ثانیه جمع می‌کند. اسپینر به‌جای ایستادن کند می‌شود.'],
       ['شفافیت', '<code>prefers-reduced-transparency</code> هر سطح شیشه‌ای را با همان هندسه مات می‌کند.'],
-      ['نقشه', 'نقشه به‌تنهایی دسترس‌پذیر نیست. همیشه معادل فهرستی را هم عرضه کنید؛ <a href="../components/switch.html">Switch</a> دقیقاً برای همین است.'],
+      ['نقشه', 'نقشه به‌تنهایی دسترس‌پذیر نیست. همیشه معادل فهرستی را هم عرضه کنید؛ <a href="../components/segmented-control.html">SegmentedControl</a> دقیقاً برای همین است.'],
     ])],
     ['persian', 'مخصوص فارسی', `<div class="prose"><ul>
       <li><strong>هرگز فاصلهٔ حرفی منفی.</strong> فارسی پیوسته است؛ فشرده‌کردن اتصال حروف را می‌شکند و می‌تواند کلمه را برای کم‌بینا ناخوانا کند.</li>

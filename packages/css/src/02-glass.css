@@ -4,44 +4,58 @@
    Blur is a quarter of Apple's and carries a hard layer budget.
    ============================================================ */
 
-/* Mode-resolved glass channel. Every .t-glass reads these four vars, so the
-   light/dark switch happens once here rather than in every component. */
 /* Mode-resolved glass channel. Every .t-glass reads these four variables, so
    the theme switch happens once, here, instead of in every component. */
 :root {
   --t-glass-fill:     var(--t-glass-light-surface-fill);
   --t-glass-border:   var(--t-glass-light-surface-border);
   --t-glass-shadow:   var(--t-glass-light-surface-shadow);
-  --t-glass-list-fill:     var(--t-glass-list-fill);
-  --t-glass-solid-fill:    var(--t-glass-solid-fill);
-  --t-glass-selected-fill: var(--t-glass-selected-fill);
-  --t-glass-filters-fill:   var(--t-glass-filters-fill);
-  --t-glass-filters-border: var(--t-glass-filters-border);
-  --t-glass-filters-shadow: var(--t-glass-filters-shadow);
+  --t-glass-list-fill:       var(--t-glass-light-list-fill);
+  --t-glass-solid-fill:      var(--t-glass-light-solid-fill);
+  --t-glass-selected-fill:   var(--t-glass-light-selected-fill);
+  --t-glass-selected-border: var(--t-glass-light-selected-border);
+  --t-glass-filters-fill:   var(--t-glass-light-filters-fill);
+  --t-glass-filters-border: var(--t-glass-light-filters-border);
+  --t-glass-filters-shadow: var(--t-glass-light-filters-shadow);
   --t-glass-fallback: var(--t-glass-fallback-light);
 }
-:root[data-theme="dim"] {
+[data-theme="light"] {
+  --t-glass-fill:     var(--t-glass-light-surface-fill);
+  --t-glass-border:   var(--t-glass-light-surface-border);
+  --t-glass-shadow:   var(--t-glass-light-surface-shadow);
+  --t-glass-list-fill:       var(--t-glass-light-list-fill);
+  --t-glass-solid-fill:      var(--t-glass-light-solid-fill);
+  --t-glass-selected-fill:   var(--t-glass-light-selected-fill);
+  --t-glass-selected-border: var(--t-glass-light-selected-border);
+  --t-glass-filters-fill:   var(--t-glass-light-filters-fill);
+  --t-glass-filters-border: var(--t-glass-light-filters-border);
+  --t-glass-filters-shadow: var(--t-glass-light-filters-shadow);
+  --t-glass-fallback: var(--t-glass-fallback-light);
+}
+:root[data-theme="dim"], [data-theme="dim"] {
   --t-glass-fill:     var(--t-glass-dim-surface-fill);
   --t-glass-border:   var(--t-glass-dim-surface-border);
   --t-glass-shadow:   var(--t-glass-dim-surface-shadow);
   --t-glass-list-fill:     var(--t-glass-dim-list-fill);
   --t-glass-solid-fill:    var(--t-glass-dim-solid-fill);
   --t-glass-selected-fill: var(--t-glass-dim-selected-fill);
+  --t-glass-selected-border: var(--t-glass-dim-selected-border);
   --t-glass-filters-fill:   var(--t-glass-dim-filters-fill);
   --t-glass-filters-border: var(--t-glass-dim-filters-border);
   --t-glass-filters-shadow: var(--t-glass-dim-filters-shadow);
   --t-glass-fallback: var(--t-glass-fallback-dim);
 }
-:root[data-theme="dark"] {
+:root[data-theme="dark"], [data-theme="dark"] {
   --t-glass-fill:     var(--t-glass-dark-surface-fill);
   --t-glass-border:   var(--t-glass-dark-surface-border);
   --t-glass-shadow:   var(--t-glass-dark-surface-shadow);
-  --t-glass-list-fill:     var(--t-glass-list-fill);
-  --t-glass-solid-fill:    var(--t-glass-solid-fill);
-  --t-glass-selected-fill: var(--t-glass-selected-fill);
-  --t-glass-filters-fill:   var(--t-glass-filters-fill);
-  --t-glass-filters-border: var(--t-glass-filters-border);
-  --t-glass-filters-shadow: var(--t-glass-filters-shadow);
+  --t-glass-list-fill:       var(--t-glass-dark-list-fill);
+  --t-glass-solid-fill:      var(--t-glass-dark-solid-fill);
+  --t-glass-selected-fill:   var(--t-glass-dark-selected-fill);
+  --t-glass-selected-border: var(--t-glass-dark-selected-border);
+  --t-glass-filters-fill:   var(--t-glass-dark-filters-fill);
+  --t-glass-filters-border: var(--t-glass-dark-filters-border);
+  --t-glass-filters-shadow: var(--t-glass-dark-filters-shadow);
   --t-glass-fallback: var(--t-glass-fallback-dark);
 }
 @media (prefers-color-scheme: dark) {
@@ -52,6 +66,8 @@
     --t-glass-list-fill:     var(--t-glass-dim-list-fill);
     --t-glass-solid-fill:    var(--t-glass-dim-solid-fill);
     --t-glass-selected-fill: var(--t-glass-dim-selected-fill);
+    --t-glass-selected-border: var(--t-glass-dim-selected-border);
+  --t-glass-selected-border: var(--t-glass-dim-selected-border);
     --t-glass-filters-fill:   var(--t-glass-dim-filters-fill);
     --t-glass-filters-border: var(--t-glass-dim-filters-border);
     --t-glass-filters-shadow: var(--t-glass-dim-filters-shadow);

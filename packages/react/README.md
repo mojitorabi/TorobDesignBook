@@ -14,7 +14,7 @@ Set direction once, at the document root — never on a component:
 <html lang="fa" dir="rtl">
 ```
 
-41 components. Full documentation, including the accessibility
+43 components. Full documentation, including the accessibility
 contract for each, is on the design system site.
 
 These files are generated from `source/components/*.mjs`. Edit that, then run

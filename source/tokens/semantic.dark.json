@@ -20,6 +20,14 @@
     },
     "scrim": {
       "$value": "rgba(0, 0, 0, 0.72)"
+    },
+    "store-card": {
+      "$value": "rgba(33, 43, 54, 0.30)",
+      "$description": "Store Card - Light/Dark layer style fill."
+    },
+    "store-card-rule": {
+      "$value": "{color.sky.300}",
+      "$description": "The 0.5px rules above and below a store card (Sky 300 in both Sketch themes)."
     }
   },
   "fg": {
@@ -262,6 +270,10 @@
       "solid": {
         "$value": "{color.night.600}"
       }
+    },
+    "dot-halo": {
+      "$value": "rgba(0, 0, 0, 0.4)",
+      "$description": "Outer edge of the StatusDot halo: 40% of the ground."
     }
   },
   "commerce": {
@@ -293,24 +305,119 @@
     },
     "distance": {
       "$value": "{color.night.600}"
+    },
+    "kalabarg-bg": {
+      "$value": "{color.yellow.50}",
+      "$description": "کالابرگ — the payment-option badge. Same in every theme: it is a brand-like mark."
+    },
+    "ad-badge": {
+      "$value": "{color.yellow.500}",
+      "$description": "آگهی over a product photo (Badge/Card-Picture)."
+    },
+    "ad-badge-fg": {
+      "$value": "{color.sky.800}",
+      "$description": "Label on the yellow ad badge. Fixed dark in every theme."
+    },
+    "guarantee-bg": {
+      "$value": "{color.guarantee.800}",
+      "$description": "ضمانت ترب badge ground (Badge/Card/Guarantee). Fixed in every theme."
+    },
+    "guarantee-accent": {
+      "$value": "#FFFF00",
+      "$description": "The yellow end of the holographic ramp; the badge chevron."
+    },
+    "holo-text": {
+      "$value": "linear-gradient(90deg, {commerce.guarantee-accent} 0%, #00FFFF 100%)",
+      "$description": "The ضمانت ترب label ramp, yellow to cyan, physical left to right."
+    },
+    "open-dot": {
+      "$value": "{color.green.500}",
+      "$description": "باز — the StatusDot core (Open Pin)."
+    },
+    "closed-dot": {
+      "$value": "{color.red.500}",
+      "$description": "بسته — the StatusDot core (Close Pin)."
+    },
+    "rating-bg": {
+      "$value": "{color.green.200}",
+      "$description": "Seller rating pill (۵ (۸ ماه در ترب))."
+    },
+    "rating-fg": {
+      "$value": "{color.green.800}"
+    },
+    "rating-star": {
+      "$value": "{color.green.700}"
+    },
+    "perk-bg": {
+      "$value": "rgba(241, 245, 249, 0.08)",
+      "$description": "Store perk pill (ارسال رایگان، ارسال فوری)."
+    },
+    "distance-near": {
+      "$value": "#F1F5F9",
+      "$description": "Distance on a store card. Sketch paints it Green 500 in light (2.7:1 on Sky 50, fails AA); the token uses the darker open-green. In dim it is plain text, as drawn."
+    },
+    "open-text": {
+      "$value": "{color.green.400}",
+      "$description": "«باز» on dark."
     }
   },
   "map": {
     "$type": "color",
     "poi": {
-      "$value": "{color.red.400}"
+      "$value": "{color.blue.500}",
+      "$description": "A store marker (POI/Normal). Blue: a place you can go, not a price alarm."
     },
     "poi-selected": {
       "$value": "{color.blue.300}"
     },
     "poi-dot": {
-      "$value": "{color.sky.400}"
+      "$value": "{color.red.500}",
+      "$description": "POI/Dot — the far-zoom store dot."
     },
     "cluster-bg": {
-      "$value": "{color.night.100}"
+      "$value": "{color.blue.500}"
     },
     "cluster-fg": {
-      "$value": "{color.night.900}"
+      "$value": "{color.sky.50}"
+    },
+    "poi-ring": {
+      "$value": "{color.white}",
+      "$description": "2px inside ring on every marker, so it separates from any map tile."
+    },
+    "poi-fg": {
+      "$value": "{color.sky.50}",
+      "$description": "Glyph and figures on a filled marker."
+    },
+    "poi-selected-ring": {
+      "$value": "{color.blue.300}",
+      "$description": "2px outside ring and tail of the selected price marker."
+    },
+    "label": {
+      "$value": "{color.blue.300}",
+      "$description": "Store name under a selected marker."
+    },
+    "label-halo": {
+      "$value": "#15202B",
+      "$description": "4px halo around the label, the colour of the map ground."
+    },
+    "me": {
+      "$value": "{color.blue.location}",
+      "$description": "You are here (Sketch \"Pin\")."
+    },
+    "me-halo": {
+      "$value": "{color.blue.location-halo}"
+    }
+  },
+  "brand": {
+    "$type": "color",
+    "$description": "Fixed brand surfaces.",
+    "plate-bg": {
+      "$value": "{color.white}",
+      "$description": "Brand / Logo plate. White in every theme, like a sticker."
+    },
+    "plate-fg": {
+      "$value": "{color.sky.500}",
+      "$description": "The one-colour mark on the plate."
     }
   }
 }

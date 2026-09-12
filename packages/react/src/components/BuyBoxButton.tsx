@@ -13,11 +13,11 @@ export function BuyBoxButton({ variant = 'red', compact, ad, seller, price, ...r
       aria-label={label}
       {...rest}
     >
-      {ad && <span className="t-buybox__ad">آگهی</span>}
       <span className="t-buybox__body">
         <span className="t-buybox__seller">{seller}</span>
         {!compact && <span className="t-buybox__price">{price}</span>}
       </span>
+      {ad && <span className="t-buybox__ad">آگهی</span>}
     </button>
   );
 }

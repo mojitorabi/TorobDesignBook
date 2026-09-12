@@ -87,9 +87,9 @@ export function patternsPages() {
   </header>
   <div style="padding:12px 16px 0"><div class="t-search"><div class="t-input">${I.search}<input class="t-input__el" type="search" placeholder="جستجو در اطراف من"></div></div></div>
   <div style="padding:12px 16px 8px;display:flex;justify-content:center">
-    <div class="t-segmented" role="tablist" aria-label="نمای اطراف">
-      <button class="t-segmented__item" role="tab" aria-selected="true">فروشگاه‌ها<span class="t-chip__count">۴۳</span></button>
-      <button class="t-segmented__item" role="tab" aria-selected="false">محصولات<span class="t-chip__count">۵۵</span></button>
+    <div class="t-segmented" role="radiogroup" aria-label="نمای اطراف">
+      <button class="t-segmented__item" role="radio" aria-checked="true">فروشگاه‌ها</button>
+      <button class="t-segmented__item" role="radio" aria-checked="false">محصولات</button>
     </div>
   </div>
   ${filterBar}
@@ -104,10 +104,9 @@ export function patternsPages() {
         ${phone(`
   <div style="position:relative;flex:1;background-color:#EDF1F5;background-image:url('../assets/map-light.svg');background-size:900px auto;background-position:center">
     <div style="position:absolute;inset-block-start:12px;inset-inline:12px;display:flex;justify-content:center">
-      <div class="t-switch" role="radiogroup" aria-label="نمای نمایش">
-        <span class="t-switch__thumb"></span>
-        <button class="t-switch__option" role="radio" aria-checked="false">فهرست</button>
-        <button class="t-switch__option" role="radio" aria-checked="true">نقشه</button>
+      <div class="t-segmented" role="radiogroup" aria-label="نمای نمایش">
+        <button class="t-segmented__item" role="radio" aria-checked="false">فهرست</button>
+        <button class="t-segmented__item" role="radio" aria-checked="true">نقشه</button>
       </div>
     </div>
     <div data-pin-group style="position:absolute;inset-block-start:130px;inset-inline-start:40px"><button class="t-pin" aria-pressed="false" aria-label="ادکلن شهر، ۱۵٬۸۰۰٬۰۰۰ تومان"><span class="t-pin__body">۱۵٫۸ م‌ت</span><span class="t-pin__tail"></span></button></div>
@@ -167,10 +166,10 @@ export function patternsPages() {
         <span class="t-spacer"></span><span class="t-body-sm t-tone-secondary">در ۷۹ فروشگاه</span>
       </div>
       <div class="t-body-sm-strong" style="margin-block-end:7px">حافظه</div>
-      <div class="t-segmented t-segmented--block" role="tablist" aria-label="حافظه" style="margin-block-end:16px">
-        <button class="t-segmented__item" role="tab" aria-selected="false">۶۴ گیگ</button>
-        <button class="t-segmented__item" role="tab" aria-selected="true">۱۲۸ گیگ</button>
-        <button class="t-segmented__item" role="tab" aria-selected="false">۲۵۶ گیگ</button>
+      <div class="t-segmented t-segmented--block" role="radiogroup" aria-label="حافظه" style="margin-block-end:16px">
+        <button class="t-segmented__item" role="radio" aria-checked="false">۶۴ گیگ</button>
+        <button class="t-segmented__item" role="radio" aria-checked="true">۱۲۸ گیگ</button>
+        <button class="t-segmented__item" role="radio" aria-checked="false">۲۵۶ گیگ</button>
       </div>
       <button class="t-buybox" style="margin-block-end:8px">
         <span class="t-buybox__body"><span class="t-buybox__price">۲۳٬۵۵۰٬۰۰۰ تومان</span><span class="t-buybox__meta">خرید از تکنولایف · ارسال فوری</span></span>

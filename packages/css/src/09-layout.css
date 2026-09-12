@@ -69,6 +69,8 @@
 /* ---- Icons ---- */
 .t-icon { inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); flex: none; fill: currentColor; }
 .t-icon--sm { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); }
+/* Torob Library glyphs are drawn as strokes, not fills. */
+.t-icon--stroke { fill: none; stroke: currentColor; }
 .t-icon--lg { inline-size: var(--t-size-icon-lg); block-size: var(--t-size-icon-lg); }
 /* Directional icons mirror with the document.
    Author them in LTR orientation — a "forward" affordance is drawn pointing

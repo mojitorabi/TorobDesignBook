@@ -1,0 +1,1192 @@
+{
+ "315B0EC6-2861-415F-BF74-F747D5848801": {
+  "label": "Badge/Card",
+  "score": 96.2,
+  "strict": 95.5,
+  "sketch": [
+   71,
+   24
+  ],
+  "code": [
+   70.89,
+   24
+  ],
+  "sizeOk": true
+ },
+ "DA7AE168-E69A-4E98-A43B-3FCAEDB71415": {
+  "label": "Badge/Card-Picture",
+  "score": 95.8,
+  "strict": 88.8,
+  "sketch": [
+   53,
+   24
+  ],
+  "code": [
+   52.81,
+   24
+  ],
+  "sizeOk": true
+ },
+ "82A7EE65-515C-49FD-97F4-1D25863F6717": {
+  "label": "Badge/Card/Guarantee",
+  "score": 97,
+  "strict": 95.5,
+  "sketch": [
+   92,
+   24
+  ],
+  "code": [
+   91.11,
+   24
+  ],
+  "sizeOk": false
+ },
+ "EC91320E-5599-4C4F-B28F-239C17854AAD": {
+  "label": "Badge/Card/Normal",
+  "score": 82.9,
+  "strict": 77.3,
+  "sketch": [
+   78,
+   20
+  ],
+  "code": [
+   77.48,
+   20
+  ],
+  "sizeOk": true
+ },
+ "3C1C31C5-310C-48AE-B3E8-C31E30F506E0": {
+  "label": "Brand / Logo",
+  "score": 99,
+  "strict": 98,
+  "sketch": [
+   32,
+   32
+  ],
+  "code": [
+   32,
+   32
+  ],
+  "sizeOk": true
+ },
+ "BB4AF158-2170-4FFB-9534-14DC72B6A77F": {
+  "label": "Button / Blue /split",
+  "score": 96.6,
+  "strict": 96.3,
+  "sketch": [
+   157,
+   40
+  ],
+  "code": [
+   156.94,
+   40
+  ],
+  "sizeOk": true
+ },
+ "7BE18F04-4654-4C3A-81E4-991626D590FB": {
+  "label": "Button / Red / Default",
+  "score": 83.6,
+  "strict": 82.5,
+  "sketch": [
+   111,
+   40
+  ],
+  "code": [
+   111,
+   40
+  ],
+  "sizeOk": true
+ },
+ "3E6E9397-637C-4B37-8080-82E31462F562": {
+  "label": "Button / Red / Disable",
+  "score": 89.6,
+  "strict": 89,
+  "sketch": [
+   111,
+   40
+  ],
+  "code": [
+   111,
+   40
+  ],
+  "sizeOk": true
+ },
+ "394E4478-1EA8-462E-A041-D332C0241F8D": {
+  "label": "Button / Red / Hover",
+  "score": 89.3,
+  "strict": 88.8,
+  "sketch": [
+   111,
+   40
+  ],
+  "code": [
+   111,
+   40
+  ],
+  "sizeOk": true
+ },
+ "8B15F240-F1E9-4F22-ADEF-1A6CE9E90EC0": {
+  "label": "Button / Red / Icon",
+  "score": 98.7,
+  "strict": 97.8,
+  "sketch": [
+   162.5,
+   40
+  ],
+  "code": [
+   162.5,
+   40
+  ],
+  "sizeOk": true
+ },
+ "0A78F262-B375-4282-9C3D-1642B54A81D6": {
+  "label": "Button / Red /split",
+  "score": 97.2,
+  "strict": 96.9,
+  "sketch": [
+   157,
+   40
+  ],
+  "code": [
+   156.94,
+   40
+  ],
+  "sizeOk": true
+ },
+ "2C9CE530-4396-4529-A844-88D1A4989DEA": {
+  "label": "Button/Black ghost/Default",
+  "score": 93.5,
+  "strict": 93.2,
+  "sketch": [
+   66,
+   40
+  ],
+  "code": [
+   65.94,
+   40
+  ],
+  "sizeOk": true
+ },
+ "3030DFDE-AADC-490A-928C-525CBF581E09": {
+  "label": "Button/Black ghost/Hover",
+  "score": 93.6,
+  "strict": 93.4,
+  "sketch": [
+   66,
+   40
+  ],
+  "code": [
+   65.94,
+   40
+  ],
+  "sizeOk": true
+ },
+ "3737D472-40B9-4886-A9F6-6AEFB24EE6B4": {
+  "label": "Button/Black ghost/Icon",
+  "score": 95.8,
+  "strict": 93.2,
+  "sketch": [
+   162.5,
+   40
+  ],
+  "code": [
+   162.5,
+   40
+  ],
+  "sizeOk": true
+ },
+ "ACABA83F-4A6F-4221-BE1E-109DB5357E73": {
+  "label": "Button/Black/Default",
+  "score": 93.5,
+  "strict": 93.2,
+  "sketch": [
+   66,
+   40
+  ],
+  "code": [
+   65.94,
+   40
+  ],
+  "sizeOk": true
+ },
+ "17F27B29-82A7-4835-9CF5-62EE492DD36B": {
+  "label": "Button/Black/Disable",
+  "score": 93.9,
+  "strict": 93.6,
+  "sketch": [
+   66,
+   40
+  ],
+  "code": [
+   65.94,
+   40
+  ],
+  "sizeOk": true
+ },
+ "A7D7E08F-4F3C-4F24-AE0A-944973305015": {
+  "label": "Button/Black/Hover",
+  "score": 93.5,
+  "strict": 93.3,
+  "sketch": [
+   66,
+   40
+  ],
+  "code": [
+   65.94,
+   40
+  ],
+  "sizeOk": true
+ },
+ "76FC76F5-42F1-4BCE-A05C-04151B492E30": {
+  "label": "Button/‌Blue ghost/Icon/Dark",
+  "score": 90.7,
+  "strict": 89.8,
+  "sketch": [
+   162.5,
+   40
+  ],
+  "code": [
+   162.5,
+   40
+  ],
+  "sizeOk": true
+ },
+ "A7D7BED9-EB1A-4FBA-A0EF-F2C353AD23DF": {
+  "label": "Button/‌Blue ghost/Icon/Light",
+  "score": 96.2,
+  "strict": 93.5,
+  "sketch": [
+   162.5,
+   40
+  ],
+  "code": [
+   162.5,
+   40
+  ],
+  "sizeOk": true
+ },
+ "30985458-21FF-45EB-B83D-92DA3272B6D5": {
+  "label": "Button/‌Blue/Clicked + Chevron",
+  "score": 93,
+  "strict": 92.6,
+  "sketch": [
+   132,
+   40
+  ],
+  "code": [
+   131.72,
+   40
+  ],
+  "sizeOk": true
+ },
+ "58C31AC1-6BCF-4917-943C-CAD03D4AF0D1": {
+  "label": "Button/‌Blue/Default + Chevron",
+  "score": 94.5,
+  "strict": 92.8,
+  "sketch": [
+   132,
+   40
+  ],
+  "code": [
+   131.72,
+   40
+  ],
+  "sizeOk": true
+ },
+ "C07442FE-F899-4509-9542-13467E49BF26": {
+  "label": "Button/‌Blue/Hover + Chevron",
+  "score": 93.1,
+  "strict": 92.6,
+  "sketch": [
+   132,
+   40
+  ],
+  "code": [
+   131.72,
+   40
+  ],
+  "sizeOk": true
+ },
+ "51800D41-20BE-460E-855F-9669DFF68041": {
+  "label": "Button/‌Blue/Icon",
+  "score": 91.8,
+  "strict": 90.6,
+  "sketch": [
+   162.5,
+   40
+  ],
+  "code": [
+   162.5,
+   40
+  ],
+  "sizeOk": true
+ },
+ "D4AC33F9-CA8E-4652-8230-EE1E1EE74474": {
+  "label": "Button/Buy box/Ad",
+  "score": 94.1,
+  "strict": 93.4,
+  "sketch": [
+   343,
+   72
+  ],
+  "code": [
+   343,
+   72
+  ],
+  "sizeOk": true
+ },
+ "EA7A75AF-3DA7-4F06-BFAB-6479DC719785": {
+  "label": "Button/Buy box/Cheapest",
+  "score": 92.4,
+  "strict": 91.5,
+  "sketch": [
+   343,
+   44
+  ],
+  "code": [
+   343,
+   44
+  ],
+  "sizeOk": true
+ },
+ "F8D486A1-1216-4546-B67E-FFC7A66D0D82": {
+  "label": "Button/Icon/Blue Icon",
+  "score": 99.1,
+  "strict": 99,
+  "sketch": [
+   48,
+   48
+  ],
+  "code": [
+   48,
+   48
+  ],
+  "sizeOk": true
+ },
+ "74A28072-5A8E-402F-802F-FD5057864C4B": {
+  "label": "Button/Icon/Ghost Icon",
+  "score": 99.3,
+  "strict": 98.5,
+  "sketch": [
+   48,
+   48
+  ],
+  "code": [
+   48,
+   48
+  ],
+  "sizeOk": true
+ },
+ "250D8218-29C2-455F-A7FC-4944D8CD2633": {
+  "label": "Button/Icon/Icon",
+  "score": 99.4,
+  "strict": 99.1,
+  "sketch": [
+   48,
+   48
+  ],
+  "code": [
+   48,
+   48
+  ],
+  "sizeOk": true
+ },
+ "214DDA2D-686C-43A6-BDAC-6F98D8E6F835": {
+  "label": "Button/Icon/Icon Rounded",
+  "score": 97,
+  "strict": 97,
+  "sketch": [
+   32,
+   32
+  ],
+  "code": [
+   32,
+   32
+  ],
+  "sizeOk": true
+ },
+ "1B633B15-BE37-43EB-A4B2-DF506A1BB5ED": {
+  "label": "Button/Icon/Icon Rounded · 2",
+  "score": 97,
+  "strict": 97,
+  "sketch": [
+   32,
+   32
+  ],
+  "code": [
+   32,
+   32
+  ],
+  "sizeOk": true
+ },
+ "5808E4E2-B1FC-41F2-8177-39495890277E": {
+  "label": "Button/Offline Buy box/Ad",
+  "score": 96.9,
+  "strict": 96,
+  "sketch": [
+   343,
+   72
+  ],
+  "code": [
+   343,
+   72
+  ],
+  "sizeOk": true
+ },
+ "CB47F42E-18D9-4AF5-AA01-200F6936BD5B": {
+  "label": "Button/Small/Blue/with-badge",
+  "score": 95.8,
+  "strict": 94.5,
+  "sketch": [
+   70,
+   28
+  ],
+  "code": [
+   69.55,
+   28
+  ],
+  "sizeOk": true
+ },
+ "C23CEACE-F7D1-4C52-A0A7-9239B76116D6": {
+  "label": "Button/Xsmall/Secondary/Icon",
+  "score": 96.6,
+  "strict": 95.6,
+  "sketch": [
+   67,
+   24
+  ],
+  "code": [
+   66.58,
+   24
+  ],
+  "sizeOk": true
+ },
+ "CF0EE74F-37D4-49E3-A2AA-50F2D3084692": {
+  "label": "Close Pin/Dark",
+  "score": 90.7,
+  "strict": 48,
+  "sketch": [
+   16,
+   16
+  ],
+  "code": [
+   16,
+   16
+  ],
+  "sizeOk": true
+ },
+ "BDAAEDAD-47F9-42EC-B5E7-6E412B5BC706": {
+  "label": "Close Pin/Light",
+  "score": 82.3,
+  "strict": 43.5,
+  "sketch": [
+   16,
+   16
+  ],
+  "code": [
+   16,
+   16
+  ],
+  "sizeOk": true
+ },
+ "C138D556-0275-47BD-9CE4-0D2435AD7D72": {
+  "label": "Filter/Cell/Cell",
+  "score": 98.2,
+  "strict": 97.9,
+  "sketch": [
+   59,
+   32
+  ],
+  "code": [
+   58.45,
+   32
+  ],
+  "sizeOk": true
+ },
+ "D2DDC6B8-4C43-4F40-AEF6-E70574AD3EC6": {
+  "label": "Filter/Cell/Icon",
+  "score": 98,
+  "strict": 97.4,
+  "sketch": [
+   108,
+   32
+  ],
+  "code": [
+   107.19,
+   32
+  ],
+  "sizeOk": false
+ },
+ "A4BEA973-E62A-4965-B0B4-82B919925BE7": {
+  "label": "Filter/Cell/Icon+Chevron",
+  "score": 98.5,
+  "strict": 98.2,
+  "sketch": [
+   89,
+   32
+  ],
+  "code": [
+   88.73,
+   32
+  ],
+  "sizeOk": true
+ },
+ "FA29F459-8F18-478C-BF57-FF012D84B665": {
+  "label": "Filter/Filter",
+  "score": 93.6,
+  "strict": 91.8,
+  "sketch": [
+   774,
+   32
+  ],
+  "code": [
+   774,
+   32
+  ],
+  "sizeOk": true
+ },
+ "4BF08B65-CAD6-4882-8DCD-3158721D53F6": {
+  "label": "Header/Profile",
+  "score": 83,
+  "strict": 77.1,
+  "sketch": [
+   343,
+   56
+  ],
+  "code": [
+   343,
+   56
+  ],
+  "sizeOk": true
+ },
+ "F63E8B5F-5F73-46E9-AB52-FCB8BD2024B5": {
+  "label": "List / Item",
+  "score": 98.2,
+  "strict": 98.2,
+  "sketch": [
+   327,
+   56
+  ],
+  "code": [
+   327,
+   56
+  ],
+  "sizeOk": true
+ },
+ "E8E2F020-7E8B-4D92-8F69-B0C48ACFD390": {
+  "label": "List / last item",
+  "score": 97.3,
+  "strict": 97.2,
+  "sketch": [
+   327,
+   56
+  ],
+  "code": [
+   327,
+   56
+  ],
+  "sizeOk": true
+ },
+ "22CE258C-E778-44DA-8FF9-6FF491E35413": {
+  "label": "Open Pin/Dark",
+  "score": 98.6,
+  "strict": 58.9,
+  "sketch": [
+   16,
+   16
+  ],
+  "code": [
+   16,
+   16
+  ],
+  "sizeOk": true
+ },
+ "5DADA39D-C59B-4C1B-8EF8-B7C667B9124C": {
+  "label": "Open Pin/Light",
+  "score": 97.6,
+  "strict": 58.5,
+  "sketch": [
+   16,
+   16
+  ],
+  "code": [
+   16,
+   16
+  ],
+  "sizeOk": true
+ },
+ "BD8D64A1-20DD-43DA-85C4-74256CB57AF4": {
+  "label": "Pin",
+  "score": 98.7,
+  "strict": 97.9,
+  "sketch": [
+   86,
+   88
+  ],
+  "code": [
+   86,
+   88
+  ],
+  "sizeOk": true
+ },
+ "E4A9B4B0-3C9F-4436-9C9E-5DED2F2CBA6F": {
+  "label": "POI/Cluster",
+  "score": 91.3,
+  "strict": 90,
+  "sketch": [
+   48,
+   48
+  ],
+  "code": [
+   48,
+   48
+  ],
+  "sizeOk": true
+ },
+ "22043FBC-A47D-4828-9FBB-AC9604F021DD": {
+  "label": "POI/Dot",
+  "score": 96.3,
+  "strict": 96.3,
+  "sketch": [
+   8,
+   8
+  ],
+  "code": [
+   8,
+   8
+  ],
+  "sizeOk": true
+ },
+ "F1BBEC31-4D16-4BB3-892C-7257C2A43601": {
+  "label": "POI/Normal",
+  "score": 84.1,
+  "strict": 82.7,
+  "sketch": [
+   32,
+   32
+  ],
+  "code": [
+   32,
+   32
+  ],
+  "sizeOk": true
+ },
+ "7341B7CF-E5B7-45CF-9F55-517731648668": {
+  "label": "POI/Normal with name",
+  "score": 84.1,
+  "strict": 82.7,
+  "sketch": [
+   32,
+   32
+  ],
+  "code": [
+   32,
+   32
+  ],
+  "sizeOk": true
+ },
+ "65D3A449-8572-4EBF-9F05-78B63C752374": {
+  "label": "POI/Not-selected + Price",
+  "score": 94.5,
+  "strict": 92.3,
+  "sketch": [
+   67,
+   24
+  ],
+  "code": [
+   66.42,
+   24
+  ],
+  "sizeOk": true
+ },
+ "82A88842-3175-4C7A-8FC7-A0DF3927F930": {
+  "label": "POI/Selected",
+  "score": 95.9,
+  "strict": 93.6,
+  "sketch": [
+   74,
+   100
+  ],
+  "code": [
+   74,
+   106.25
+  ],
+  "sizeOk": false
+ },
+ "1EA5654D-C993-4442-85A6-63FCFCE972B0": {
+  "label": "POI/Selected + Price",
+  "score": 88.9,
+  "strict": 87.1,
+  "sketch": [
+   95,
+   67.72
+  ],
+  "code": [
+   94.69,
+   69.95
+  ],
+  "sizeOk": false
+ },
+ "7F1F6906-EEB4-4E5D-B7B0-7A026DE9A1A6": {
+  "label": "Product Card/Empty/Dark",
+  "score": 99.8,
+  "strict": 99.7,
+  "sketch": [
+   96,
+   196
+  ],
+  "code": [
+   96,
+   196
+  ],
+  "sizeOk": true
+ },
+ "F7FD4B2E-220E-4D24-83A0-8C0E4DF743A4": {
+  "label": "Product Card/Empty/Light",
+  "score": 99.7,
+  "strict": 99.7,
+  "sketch": [
+   96,
+   196
+  ],
+  "code": [
+   96,
+   196
+  ],
+  "sizeOk": true
+ },
+ "DCF7BFE3-8CC5-4C6B-A937-39F217AC1B3A": {
+  "label": "Product Card/More/Dark",
+  "score": 96.8,
+  "strict": 91,
+  "sketch": [
+   114,
+   196
+  ],
+  "code": [
+   114,
+   196
+  ],
+  "sizeOk": true
+ },
+ "FFD20D3E-31B9-42FB-B723-D3F9BB22B694": {
+  "label": "Product Card/More/Light",
+  "score": 95.7,
+  "strict": 90,
+  "sketch": [
+   114,
+   196
+  ],
+  "code": [
+   114,
+   196
+  ],
+  "sizeOk": true
+ },
+ "641CDD78-38C5-4142-A597-74BBABBB77D6": {
+  "label": "Product Card/Normal",
+  "score": 91.7,
+  "strict": 85.1,
+  "sketch": [
+   153,
+   386
+  ],
+  "code": [
+   153,
+   386
+  ],
+  "sizeOk": true
+ },
+ "010F7DA2-C959-4036-B6D1-E1A10BE1705F": {
+  "label": "Product Card/Small",
+  "score": 93.2,
+  "strict": 91.4,
+  "sketch": [
+   96,
+   196
+  ],
+  "code": [
+   96,
+   196
+  ],
+  "sizeOk": true
+ },
+ "811403E0-0303-4036-9872-91C4A192C1A5": {
+  "label": "Product Card/Small · 2",
+  "score": 93.2,
+  "strict": 91.4,
+  "sketch": [
+   96,
+   196
+  ],
+  "code": [
+   96,
+   196
+  ],
+  "sizeOk": true
+ },
+ "8EAF2AE4-CDD5-4FFE-8DF6-C446058D4A45": {
+  "label": "Product Card/Small Empty",
+  "score": 96.5,
+  "strict": 95.4,
+  "sketch": [
+   96,
+   220
+  ],
+  "code": [
+   96,
+   220
+  ],
+  "sizeOk": true
+ },
+ "56045C40-7EC5-4AB7-8A14-A132D3511AE1": {
+  "label": "Product Pic/Normal",
+  "score": 97.8,
+  "strict": 91,
+  "sketch": [
+   153,
+   186
+  ],
+  "code": [
+   153,
+   186
+  ],
+  "sizeOk": true
+ },
+ "99973E3D-5B46-4C18-BA6D-EBBAF70D0DD4": {
+  "label": "Product Pic/Small",
+  "score": 95.8,
+  "strict": 95,
+  "sketch": [
+   96,
+   112
+  ],
+  "code": [
+   96,
+   112
+  ],
+  "sizeOk": true
+ },
+ "1F956E7E-BC4C-44BD-843A-A2844E748D14": {
+  "label": "Product Pic/Small · 2",
+  "score": 95.8,
+  "strict": 95,
+  "sketch": [
+   96,
+   112
+  ],
+  "code": [
+   96,
+   112
+  ],
+  "sizeOk": true
+ },
+ "B73DBE71-DFD2-41CB-9F69-FB990D55A6DB": {
+  "label": "Search bar/Default",
+  "score": 97,
+  "strict": 96.3,
+  "sketch": [
+   299,
+   48
+  ],
+  "code": [
+   299,
+   48
+  ],
+  "sizeOk": true
+ },
+ "E897991E-7F8D-4BF6-BAD0-0480A16C5645": {
+  "label": "Search bar/Searched",
+  "score": 96.3,
+  "strict": 95.5,
+  "sketch": [
+   299,
+   48
+  ],
+  "code": [
+   299,
+   48
+  ],
+  "sizeOk": true
+ },
+ "F0B38598-91C1-47C5-AAEC-1EDB0792A641": {
+  "label": "Search bar/Typing",
+  "score": 94.6,
+  "strict": 93.6,
+  "sketch": [
+   299,
+   48
+  ],
+  "code": [
+   299,
+   48
+  ],
+  "sizeOk": true
+ },
+ "3CF4AA95-CF8A-40F0-B63A-995669205927": {
+  "label": "Segmented Controls/Icon Not-selected",
+  "score": 98.4,
+  "strict": 98,
+  "sketch": [
+   67,
+   32
+  ],
+  "code": [
+   66.73,
+   32
+  ],
+  "sizeOk": true
+ },
+ "370B044C-7D5B-4C2A-AA43-709C25C86ED5": {
+  "label": "Segmented Controls/Icon Selected",
+  "score": 98.4,
+  "strict": 97.9,
+  "sketch": [
+   87,
+   32
+  ],
+  "code": [
+   86.73,
+   32
+  ],
+  "sizeOk": true
+ },
+ "3CBA7995-8CC1-40A7-9070-2F63F75BF35C": {
+  "label": "Segmented Controls/Not-selected",
+  "score": 97.5,
+  "strict": 96.7,
+  "sketch": [
+   76,
+   32
+  ],
+  "code": [
+   75.8,
+   32
+  ],
+  "sizeOk": true
+ },
+ "3719A070-266C-4F80-8E48-58DF1325D168": {
+  "label": "Segmented Controls/Selected",
+  "score": 97.7,
+  "strict": 96.7,
+  "sketch": [
+   38,
+   32
+  ],
+  "code": [
+   37.73,
+   32
+  ],
+  "sizeOk": true
+ },
+ "7559E738-C3E9-487D-B595-99463A4EC7D5": {
+  "label": "Segmented Controls/Selected · 2",
+  "score": 94,
+  "strict": 91.6,
+  "sketch": [
+   395,
+   64
+  ],
+  "code": [
+   393.53,
+   64
+  ],
+  "sizeOk": false
+ },
+ "09EB68E3-D89A-4C8C-9D08-9FFDE396B14B": {
+  "label": "Store-Card/PDP/No product/Dark",
+  "score": 96,
+  "strict": 94.6,
+  "sketch": [
+   375,
+   208
+  ],
+  "code": [
+   375,
+   208
+  ],
+  "sizeOk": true
+ },
+ "6E4C8C1C-BA6E-4200-BEE7-239DD4B0D65F": {
+  "label": "Store-Card/PDP/No product/Light",
+  "score": 96.2,
+  "strict": 94.7,
+  "sketch": [
+   375,
+   208
+  ],
+  "code": [
+   375,
+   208
+  ],
+  "sizeOk": true
+ },
+ "262C26ED-53BA-4CD8-B2C4-00322D945A1F": {
+  "label": "Store-Card/PDP/Offline",
+  "score": 96,
+  "strict": 95.5,
+  "sketch": [
+   380,
+   244
+  ],
+  "code": [
+   380,
+   244
+  ],
+  "sizeOk": true
+ },
+ "6867FED2-4D53-4C52-AD54-C93776F8E53B": {
+  "label": "Store-Card/PDP/Online",
+  "score": 95,
+  "strict": 94.5,
+  "sketch": [
+   380,
+   204
+  ],
+  "code": [
+   380,
+   204
+  ],
+  "sizeOk": true
+ },
+ "C1BF73E9-DD90-4643-9141-D246A3347492": {
+  "label": "Store-Card/PDP/Online-Offline",
+  "score": 95,
+  "strict": 94.6,
+  "sketch": [
+   380,
+   244
+  ],
+  "code": [
+   380,
+   244
+  ],
+  "sizeOk": true
+ },
+ "C924F389-BA2C-46BF-AEFF-F855728BC745": {
+  "label": "Store-Card/VLP/With product/Dark",
+  "score": 86.5,
+  "strict": 84.6,
+  "sketch": [
+   375,
+   392
+  ],
+  "code": [
+   375,
+   392
+  ],
+  "sizeOk": true
+ },
+ "24B92E1D-830A-4F1A-87E4-8E0432DBC4CB": {
+  "label": "Store-Card/VLP/With product/Light",
+  "score": 96.3,
+  "strict": 93.9,
+  "sketch": [
+   375,
+   392
+  ],
+  "code": [
+   375,
+   392
+  ],
+  "sizeOk": true
+ },
+ "BF7AF680-AA4A-4DE6-B551-840D08F3D790": {
+  "label": "Store-Card/VLP/Without product/Dark",
+  "score": 95.5,
+  "strict": 94.3,
+  "sketch": [
+   375,
+   180
+  ],
+  "code": [
+   375,
+   180
+  ],
+  "sizeOk": true
+ },
+ "91C9981D-8479-45B5-ABA9-71CB166E7A74": {
+  "label": "Store-Card/VLP/Without product/Light",
+  "score": 95.9,
+  "strict": 94.6,
+  "sketch": [
+   375,
+   180
+  ],
+  "code": [
+   375,
+   180
+  ],
+  "sizeOk": true
+ },
+ "D8CA050D-7C28-4F10-BEB8-97D42C72D086": {
+  "label": "Switch/Left",
+  "score": 92.7,
+  "strict": 89.1,
+  "sketch": [
+   135,
+   36
+  ],
+  "code": [
+   134.14,
+   36
+  ],
+  "sizeOk": false
+ },
+ "2A388996-6F45-4842-8001-33C49394B07B": {
+  "label": "Switch/Right",
+  "score": 93.4,
+  "strict": 90.2,
+  "sketch": [
+   135,
+   36
+  ],
+  "code": [
+   134.14,
+   36
+  ],
+  "sizeOk": false
+ },
+ "6462765E-2967-441D-A712-B646C6EB5B96": {
+  "label": "Tab/Selected",
+  "score": 94.7,
+  "strict": 92.6,
+  "sketch": [
+   444,
+   64
+  ],
+  "code": [
+   442.53,
+   64
+  ],
+  "sizeOk": false
+ },
+ "B7DDEE1B-C17E-4026-861D-ECFD00E4A822": {
+  "label": "Torob star hologram",
+  "score": 94.4,
+  "strict": 94.1,
+  "sketch": [
+   200,
+   200
+  ],
+  "code": [
+   200,
+   200
+  ],
+  "sizeOk": true
+ },
+ "3926B714-3A7E-4B66-A7A5-59F523E2089D": {
+  "label": "Torob_Logo",
+  "score": 97,
+  "strict": 95.6,
+  "sketch": [
+   32,
+   32
+  ],
+  "code": [
+   32,
+   32
+  ],
+  "sizeOk": true
+ }
+}

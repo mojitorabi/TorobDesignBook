@@ -8,33 +8,56 @@
    PriceDisplay ← [NEW] extracted from the price treatment repeated across the source
    ============================================================ */
 
-/* ---- Badge ---- */
+/* ---- Badge  ← Badge/Card · /Card-Picture · /Card/Guarantee · /Card/Normal ----
+
+   A 24px pill: 8px sides, Regular 12/20, Sky 800 text, icon 2px from the
+   label. Four kinds are drawn in Sketch and each means one thing:
+
+     kalabarg   Yellow 50,  card glyph      a payment option (کالابرگ)
+     ad         Yellow 500, megaphone       sponsored (آگهی), over a photo
+     guarantee  Dark blue,  holo text + ▾   Torob Guarantee (ضمانت ترب)
+     plain      no fill,    20px glyph      a store perk (ارسال فوری)
+
+   Status tones (positive, caution, critical, info) are system additions for
+   the seller panel and follow the same geometry. */
 .t-badge {
-  display: inline-flex; align-items: center; gap: 4px;
-  block-size: 20px;
+  display: inline-flex; align-items: center; gap: 2px;
+  block-size: 24px;
   padding-inline: var(--t-space-2);
-  /* Badge/Card is 71×24 at radius 16 — a pill. Measured, not guessed: the
-     radius Sketch draws lives in style.corners, not in fixedRadius. */
   border-radius: var(--t-radius-full);
-  font-size: var(--t-font-size-12); line-height: 1;
-  font-weight: var(--t-font-weight-bold);
+  font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12);
+  font-weight: var(--t-font-weight-regular);
   white-space: nowrap;
   background: var(--t-status-neutral-bg);
-  color: var(--t-status-neutral-fg);
+  color: var(--t-fg-default);
 }
+.t-badge .t-icon { inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); flex: none; }
+.t-badge--sm { block-size: 20px; }
 .t-badge--lg { block-size: 24px; padding-inline: var(--t-space-3); }
+.t-badge--kalabarg  { background: var(--t-commerce-kalabarg-bg); color: var(--t-commerce-ad-badge-fg); }
+.t-badge--ad        { gap: var(--t-space-1); padding-inline: var(--t-space-1); background: var(--t-commerce-ad-badge); color: var(--t-commerce-ad-badge-fg); }
+.t-badge--ad .t-icon { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); }
+.t-badge--plain     { gap: var(--t-space-1); padding-inline: 0; block-size: 20px; background: none; }
 .t-badge--positive  { background: var(--t-status-positive-bg); color: var(--t-status-positive-fg); }
 .t-badge--caution   { background: var(--t-status-caution-bg);  color: var(--t-status-caution-fg); }
 .t-badge--critical  { background: var(--t-status-critical-bg); color: var(--t-status-critical-fg); }
 .t-badge--info      { background: var(--t-status-info-bg);     color: var(--t-status-info-fg); }
-.t-badge--guarantee { background: var(--t-status-guarantee-bg); color: var(--t-status-guarantee-fg); }
 .t-badge--brand     { background: var(--t-action-red-bg);  color: var(--t-action-red-fg); }
-/* آگهی — sponsored. Deliberately quiet: an ad marker that shouts is an ad. */
-.t-badge--ad        { background: var(--t-status-caution-bg);  color: var(--t-status-caution-fg); }
+/* ضمانت ترب: the one badge with a gradient. The label is painted with the
+   holographic yellow→cyan ramp from the guarantee mark, the chevron in
+   solid yellow. Physical left→right on purpose: it is a light effect, not
+   reading order. */
+.t-badge--guarantee { background: var(--t-commerce-guarantee-bg); color: var(--t-commerce-guarantee-accent); }
+.t-badge--guarantee .t-badge__label {
+  background: var(--t-commerce-holo-text);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.t-badge--guarantee .t-icon { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); }
 /* Over a product image. Glass, so the photo still reads through. */
 .t-badge--on-image {
   background: var(--t-glass-fill);
-  border: var(--t-border-thin) solid var(--t-glass-border);
+  box-shadow: inset 0 0 0 var(--t-border-thin) var(--t-glass-border);
   color: var(--t-fg-default);
   backdrop-filter: blur(var(--t-glass-blur));
   -webkit-backdrop-filter: blur(var(--t-glass-blur));
@@ -47,106 +70,218 @@
 .t-tag__remove:hover { color: var(--t-fg-default); }
 
 /* ---- PriceDisplay ----
-   Price is the most-read element in the product. Tabular figures so that
-   columns of prices align, Persian numerals, and the currency word never
-   competes with the number. */
-.t-price { display: inline-flex; align-items: baseline; gap: 4px; font-variant-numeric: tabular-nums; }
-.t-price__value { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-extrabold); color: var(--t-commerce-price); }
-.t-price__unit  { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-medium); color: var(--t-fg-secondary); }
-.t-price__from  { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-commerce-price-from); }
-.t-price__was   { font-size: var(--t-font-size-12); color: var(--t-fg-secondary); text-decoration: line-through; }
-.t-price--lg .t-price__value { font-size: var(--t-font-size-20); line-height: var(--t-font-leading-20); }
-.t-price--sm .t-price__value { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); }
-.t-price--unavailable .t-price__value { color: var(--t-commerce-oos); font-weight: var(--t-font-weight-bold); }
+   Persian numerals, the value in Bold and the currency word two sizes down in
+   Sky 500 so it never competes with the number. Three sizes, as drawn:
 
-/* ---- ProductThumb ---- */
+     sm  12 / 28 value, 10 unit     product card (small), store rail
+     md  14 / 24 value, 10 unit     product card (normal)
+     lg  16 / 28 value, 12 unit     PDP, seller lists                      */
+.t-price { display: inline-flex; align-items: baseline; gap: 2px; white-space: nowrap; }
+.t-price__value { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); font-weight: var(--t-font-weight-bold); color: var(--t-commerce-price); }
+.t-price__unit  { font-size: 10px; line-height: 28px; font-weight: var(--t-font-weight-medium); color: var(--t-commerce-price-from); }
+.t-price__from  { font-weight: var(--t-font-weight-bold); color: var(--t-commerce-price); }
+.t-price__was   { font-size: var(--t-font-size-12); color: var(--t-fg-secondary); text-decoration: line-through; }
+.t-price--sm { block-size: 28px; }
+.t-price--sm .t-price__value { font-size: var(--t-font-size-12); line-height: 28px; }
+.t-price--lg .t-price__value { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); }
+.t-price--lg .t-price__unit  { font-size: var(--t-font-size-12); }
+.t-price--unavailable .t-price__value { color: var(--t-commerce-oos); }
+
+/* ---- ProductThumb  ← Product Pic/Normal · /Small ----
+   153×186 or 96×112, radius 16, the photo cropped to fill. Badges sit 4px in
+   from the top and the inline start. */
 .t-thumb {
   position: relative;
   aspect-ratio: 153 / 186;
-  border-radius: var(--t-radius-lg);            /* 16 — Product Pic/* */
+  border-radius: var(--t-radius-lg);
   overflow: hidden;
   background: var(--t-bg-subtle);
   flex: none;
 }
-.t-thumb img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.t-thumb > img { inline-size: 100%; block-size: 100%; object-fit: cover; display: block; }
 .t-thumb--sm { aspect-ratio: 96 / 112; }
 .t-thumb--square { aspect-ratio: 1; }
-.t-thumb__badges { position: absolute; inset-block-start: var(--t-space-2); inset-inline-start: var(--t-space-2); display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
-.t-thumb__action { position: absolute; inset-block-start: var(--t-space-2); inset-inline-end: var(--t-space-2); }
+.t-thumb__badges { position: absolute; inset-block-start: var(--t-space-1); inset-inline-start: var(--t-space-1); display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.t-thumb__action { position: absolute; inset-block-start: var(--t-space-1); inset-inline-end: var(--t-space-1); }
+/* No photo: the "filters" glass tile with an image glyph, radius 8. */
+.t-thumb--none {
+  display: grid; place-items: center;
+  border-radius: var(--t-radius-sm);
+  background: var(--t-bg-subtle);
+  box-shadow: 0 0 0 1px var(--t-glass-filters-border), var(--t-glass-filters-shadow);
+  color: var(--t-fg-secondary);
+}
+.t-thumb--none > .t-icon { inline-size: 24px; block-size: 24px; }
 
-/* ---- ProductCard ---- */
+/* ---- ProductCard  ← Product Card/* ----
+   No box of its own: the photo carries the card. Title Medium 14/24 on two
+   lines, attribute tags, the "from" price, then seller count with bell and
+   heart. 12px between blocks, 8px before the footer. */
 .t-product-card {
-  display: flex; flex-direction: column; gap: var(--t-space-2);
+  display: flex; flex-direction: column; align-items: stretch; gap: var(--t-space-3);
   inline-size: 100%;
-  padding: var(--t-space-2);
-  border-radius: var(--t-radius-md);
-  background: var(--t-bg-fog);
-  text-decoration: none; color: inherit;
-  transition: box-shadow var(--t-duration-standard) var(--t-easing-out), transform var(--t-duration-standard) var(--t-easing-out);
+  text-decoration: none; color: var(--t-fg-default);
 }
-.t-product-card:hover { box-shadow: var(--t-elevation-2); transform: translateY(-2px); }
-.t-product-card:active { transform: translateY(0); }
-.t-product-card__title { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-default); }
-.t-product-card__meta { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
-.t-product-card__tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.t-product-card--sm .t-product-card__title { -webkit-line-clamp: 2; }
-/* "More" card — the terminal cell of a horizontal rail. */
-.t-product-card--more { align-items: center; justify-content: center; gap: var(--t-space-2); min-block-size: 196px; border: var(--t-border-thin) dashed var(--t-border-default); background: transparent; color: var(--t-fg-link); font-weight: var(--t-font-weight-bold); font-size: var(--t-font-size-12); }
-/* Empty card — a placeholder while the rail loads or when a slot has no product. */
-.t-product-card--empty { background: var(--t-bg-subtle); min-block-size: 196px; }
+.t-product-card__title { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); font-weight: var(--t-font-weight-medium); color: var(--t-fg-default);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.t-product-card__tags { display: flex; flex-wrap: wrap; gap: var(--t-space-2) 9px; }
+.t-product-card__tag { display: inline-flex; align-items: center; block-size: 24px; padding-inline: 6px; border-radius: var(--t-radius-full); background: var(--t-bg-subtle); font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-medium); }
+.t-product-card__buy { display: flex; flex-direction: column; gap: var(--t-space-2); }
+.t-product-card__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--t-space-2); }
+.t-product-card__meta { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-regular); color: var(--t-commerce-price-from); }
+.t-product-card__actions { display: flex; gap: var(--t-space-2); }
+.t-product-card__actions > button { position: relative; display: grid; place-items: center; inline-size: 24px; block-size: 24px; padding: 0; border: 0; border-radius: var(--t-radius-xs); background: none; color: var(--t-fg-secondary); cursor: pointer; }
+.t-product-card__actions > button::after { content: ""; position: absolute; inset: -10px; }
+.t-product-card__actions .t-icon { inline-size: 16px; block-size: 16px; }
+.t-product-card__actions > button[aria-pressed="true"] { color: var(--t-fg-brand); }
 
-/* ---- StoreCard ----
-   The hairline rule pair top and bottom reproduces "Store Card - Light/Dark". */
-.t-store-card {
-  display: flex; flex-direction: column;
-  inline-size: 100%;
-  background: var(--t-bg-fog);
-  box-shadow: var(--t-elevation-hairline-t), var(--t-elevation-hairline-b);
-}
-.t-store-card--glass {
+/* Small (96 wide), for rails: photo, 4px, title Medium 10/24, price sm. */
+.t-product-card--sm { gap: var(--t-space-1); }
+.t-product-card--sm .t-product-card__title { font-size: 10px; line-height: var(--t-font-leading-14); }
+.t-product-card--sm .t-product-card__title[data-lines="3"] { -webkit-line-clamp: 3; }
+
+/* The two rail cells: glass surface, 8px in, radius 12.
+   More  ← Product Card/More — a 2×2 of the next photos, the last one a count.
+   Empty ← Product Card/Empty — one image-glyph tile, centred. */
+.t-product-card--more, .t-product-card--empty {
+  gap: 0; justify-content: center; align-items: center;
+  min-block-size: 196px; padding: var(--t-space-2);
+  border-radius: var(--t-radius-md);
   background: var(--t-glass-fill);
-  border: var(--t-border-thin) solid var(--t-glass-border);
-  box-shadow: var(--t-glass-shadow);
-  border-radius: var(--t-radius-sm);            /* 8 — Store-Card/PDP/* */
-  backdrop-filter: blur(var(--t-glass-blur));
-  -webkit-backdrop-filter: blur(var(--t-glass-blur));
+  box-shadow: inset 0 0 0 0.5px var(--t-glass-border), 0 0 0 0.5px var(--t-glass-border), var(--t-glass-shadow);
+  backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur));
 }
-.t-store-card__head { display: flex; align-items: flex-start; gap: var(--t-space-3); padding: var(--t-space-3) var(--t-space-4); }
-.t-store-card__logo { inline-size: 48px; block-size: 48px; border-radius: var(--t-radius-sm); background: var(--t-bg-subtle); flex: none; overflow: hidden; }
-.t-store-card__body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: 2px; }
-.t-store-card__name { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); font-weight: var(--t-font-weight-bold); }
-.t-store-card__meta { display: flex; align-items: center; gap: var(--t-space-2); flex-wrap: wrap; font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
-.t-store-card__badges { display: flex; gap: 4px; flex-wrap: wrap; padding-inline: var(--t-space-4); padding-block-end: var(--t-space-2); }
-/* Horizontal product rail inside a store card. Scroll-snaps, RTL-aware. */
-.t-store-card__rail { display: flex; gap: var(--t-space-2); padding-inline: var(--t-space-4); padding-block-end: var(--t-space-3); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.t-product-card--more { inline-size: 114px; }
+.t-product-card--empty { inline-size: 96px; }
+.t-product-card__grid { display: grid; grid-template-columns: repeat(2, 45px); grid-auto-rows: 86px; gap: var(--t-space-2); }
+.t-product-card__cell { position: relative; overflow: hidden; border-radius: var(--t-radius-sm); background: var(--t-glass-filters-fill); box-shadow: 0 0 0 1px var(--t-glass-filters-border), var(--t-glass-filters-shadow); display: grid; place-items: center; font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-medium); color: var(--t-fg-default); }
+.t-product-card__cell:not(:has(img)) { background: var(--_cell-empty, var(--t-bg-subtle)); }
+:is([data-theme="dim"], [data-theme="dark"]) .t-product-card__cell { --_cell-empty: var(--t-glass-filters-fill); }
+.t-product-card__cell > img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.t-product-card--empty .t-product-card__cell { inline-size: 45px; block-size: 53px; color: var(--t-fg-default); }
+.t-product-card--empty .t-icon { inline-size: 24px; block-size: 24px; }
+
+/* ---- StoreCard  ← Store-Card/VLP/* · Store-Card/PDP/No product/* ----
+
+   A nearby store, full-bleed (375), 16px in. Sky 50 with a 0.5px Sky 300 rule
+   above and below — the "Store Card" layer style; in dim it turns to 30%
+   fog glass. Head: name (Medium 14/28) with a blue chevron, the price on a
+   PDP, then address and distance (Medium 12/28); the photo sits at the end,
+   56 (list) or 84 (PDP), radius 8, at 80% opacity. Then a row of xs glass
+   buttons (status, details, report) with the کالابرگ badge pushed to the
+   end, an optional product rail, and the two blue actions sharing the row. */
+.t-store-card {
+  display: flex; flex-direction: column; gap: var(--t-space-4);
+  inline-size: 100%;
+  padding: var(--t-space-4);
+  background: var(--t-bg-store-card);
+  box-shadow: 0 -0.5px 0 var(--t-bg-store-card-rule), 0 0.5px 0 var(--t-bg-store-card-rule);
+  color: var(--t-fg-default);
+}
+:is([data-theme="dim"], [data-theme="dark"]) .t-store-card { backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur)); }
+.t-store-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--t-space-3); margin-block-end: calc(var(--t-space-3) - var(--t-space-4)); }
+.t-store-card__info { display: flex; flex-direction: column; align-items: flex-start; min-inline-size: 0; }
+.t-store-card__name { display: inline-flex; align-items: center; gap: 2px; font-size: var(--t-font-size-14); line-height: 28px; font-weight: var(--t-font-weight-medium); color: inherit; text-decoration: none; }
+.t-store-card__name .t-icon { inline-size: 16px; block-size: 16px; color: var(--t-fg-link); }
+.t-store-card__address { font-size: var(--t-font-size-12); line-height: 28px; font-weight: var(--t-font-weight-medium); }
+.t-store-card__distance { color: var(--t-commerce-distance-near); }
+.t-store-card .t-price__value { line-height: 28px; }
+.t-store-card .t-price__unit { font-size: var(--t-font-size-12); color: var(--t-fg-default); }
+.t-store-card__photo { flex: none; inline-size: 56px; block-size: 56px; border-radius: var(--t-radius-sm); object-fit: cover; opacity: 0.8; }
+.t-store-card--pdp .t-store-card__photo { inline-size: 84px; block-size: 84px; }
+.t-store-card__chips { display: flex; align-items: center; gap: var(--t-space-2); }
+.t-store-card__chips > .t-badge { margin-inline-start: auto; }
+.t-store-card__rail { display: flex; justify-content: safe center; gap: var(--t-space-4); overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; }
 .t-store-card__rail::-webkit-scrollbar { display: none; }
-.t-store-card__rail > * { flex: none; inline-size: 96px; scroll-snap-align: start; }
-.t-store-card__actions { display: flex; gap: var(--t-space-2); padding: var(--t-space-3) var(--t-space-4); border-block-start: var(--t-border-thin) solid var(--t-border-subtle); }
-.t-store-card__actions > * { flex: 1; }
-/* Distance — always leading, always secondary. */
-.t-store-card__distance { display: inline-flex; align-items: center; gap: 4px; color: var(--t-commerce-distance); font-variant-numeric: tabular-nums; }
+.t-store-card__rail > * { flex: none; scroll-snap-align: start; }
+.t-store-card__actions { display: flex; gap: 18px; }
+.t-store-card__actions > * { flex: 1 1 0; }
+
+/* ---- OfferCard  ← Store-Card/PDP/Online · /Offline · /Online-Offline ----
+
+   One seller's offer on a product page. White, 24px top and bottom, 16 at
+   the sides, a 0.5px white edge and a soft 0.5px drop. Top: the ضمانت ترب
+   star (24), seller name Bold 16/28 and a chevron; the price or the rating
+   opposite. Then the warranty line, the address, the perk pills with the
+   report button opposite, and the buy row: price or rating against the
+   family button — red to go online, blue to reach the shop. */
+.t-offer {
+  display: flex; flex-direction: column; gap: var(--t-space-4);
+  inline-size: 100%;
+  padding: var(--t-space-6) var(--t-space-4);
+  background: var(--t-bg-fog);
+  box-shadow: inset 0 0 0 0.5px var(--t-bg-fog), 0 0 0 0.5px var(--t-bg-fog), 0 0.5px 1px 0 var(--t-border-default), 0 0.5px 1px 0 var(--t-border-default);
+  color: var(--t-fg-default);
+}
+.t-offer__top { display: flex; flex-direction: column; gap: var(--t-space-3); }
+.t-offer__head, .t-offer__row { display: flex; align-items: center; justify-content: space-between; gap: var(--t-space-3); }
+.t-offer__seller { display: inline-flex; align-items: center; gap: var(--t-space-1); min-inline-size: 0; }
+.t-offer__seller > .t-guarantee, .t-offer__seller > svg:first-child { inline-size: 24px; block-size: 24px; flex: none; }
+.t-offer__name { display: inline-flex; align-items: center; gap: var(--t-space-1); font-size: var(--t-font-size-16); line-height: 28px; font-weight: var(--t-font-weight-bold); color: inherit; text-decoration: none; }
+.t-offer__name .t-icon { inline-size: 16px; block-size: 16px; color: var(--t-fg-link); }
+.t-offer__note { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-medium); color: var(--t-fg-secondary); }
+.t-offer__address { font-size: var(--t-font-size-12); line-height: 28px; font-weight: var(--t-font-weight-medium); }
+.t-offer__perks { display: flex; align-items: center; gap: var(--t-space-1); }
+.t-offer .t-price--lg .t-price__value { line-height: 28px; }
+.t-offer .t-price__unit { font-weight: var(--t-font-weight-regular); }
+.t-price--xl .t-price__value { font-size: var(--t-font-size-20); line-height: 28px; }
+.t-price--xl .t-price__unit { font-size: var(--t-font-size-12); font-weight: var(--t-font-weight-regular); }
+
+/* A store perk: 24 tall pill, 8px in, 20px glyphs 4 apart, Medium 12/20. */
+.t-perk { display: inline-flex; align-items: center; gap: var(--t-space-1); block-size: 24px; padding: 0 var(--t-space-2); border: 0; border-radius: var(--t-radius-full); background: var(--t-commerce-perk-bg); color: var(--t-fg-default); font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-medium); white-space: nowrap; }
+.t-perk .t-icon { inline-size: 20px; block-size: 20px; }
+.t-perk .t-icon--tiny { inline-size: 16px; block-size: 16px; }
+button.t-perk { cursor: pointer; }
+
+/* The seller rating: green pill, a 14px star, Bold 12/20. */
+.t-rating-pill { display: inline-flex; align-items: center; gap: 2px; block-size: 24px; padding-inline: var(--t-space-2); border-radius: var(--t-radius-full); background: var(--t-commerce-rating-bg); color: var(--t-commerce-rating-fg); font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-bold); white-space: nowrap; }
+.t-rating-pill .t-icon { inline-size: 14px; block-size: 14px; color: var(--t-commerce-rating-star); }
 
 /* ---- ListItem ---- */
 .t-list { display: flex; flex-direction: column; background: var(--t-bg-fog); border-radius: var(--t-radius-md); overflow: hidden; }
 .t-list-item {
-  display: flex; align-items: center; gap: var(--t-space-3);
+  --_inset: calc(var(--t-space-3) + 24px + var(--t-space-2));  /* divider starts after the icon */
+  position: relative;
+  display: flex; align-items: center; gap: var(--t-space-2);
+  inline-size: 100%;
   min-block-size: 56px;
-  padding-inline: var(--t-space-4);
+  padding-inline: var(--t-space-3);
   padding-block: var(--t-space-2);
-  border-block-end: var(--t-border-thin) solid var(--t-border-subtle);
-  background: none; color: inherit; text-decoration: none;
+  border: 0;
+  background: none; color: var(--t-fg-default); text-decoration: none;
+  font: inherit;
   cursor: pointer; text-align: start;
   transition: background-color var(--t-duration-micro) var(--t-easing-out);
 }
-.t-list-item:hover { background: var(--t-bg-subtle); }
-/* "List / last item" is not a separate component — it is the last child. */
-.t-list-item:last-child { border-block-end: none; }
-.t-list-item__body { flex: 1; min-inline-size: 0; }
-.t-list-item__title { font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); }
+/* ← List / Item vs List / last item: a divider BETWEEN rows, inset past the
+   leading icon, flush at the end. "Last item" is a position, not a symbol. */
+.t-list-item + .t-list-item::before {
+  content: ""; position: absolute;
+  inset-block-start: 0; inset-inline: var(--_inset) 0;
+  block-size: 1px; background: var(--t-border-subtle);
+}
+.t-list-item:not(:has(> .t-list-item__lead)) { --_inset: var(--t-space-3); }
+.t-list-item:is(:hover, [data-state="hover"]) { background: var(--t-bg-subtle); }
+.t-list-item__body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; }
+.t-list-item__title { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-medium); }
 .t-list-item__sub { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
-.t-list-item__lead, .t-list-item__trail { flex: none; color: var(--t-fg-secondary); display: flex; align-items: center; gap: var(--t-space-2); }
+.t-list-item__lead, .t-list-item__trail { flex: none; color: var(--t-fg-default); display: flex; align-items: center; gap: var(--t-space-2); }
+.t-list-item__lead .t-icon, .t-list-item__trail .t-icon { inline-size: 24px; block-size: 24px; }
 /* Zebra rows ← "Spec / Desc / Even cell Style" */
 .t-list--zebra .t-list-item:nth-child(even) { background: var(--t-bg-subtle); }
+
+/* ---- StatusDot  ← Open Pin/Light · /Dark · Close Pin/Light · /Dark ----
+   16px halo — a radial fade from the status colour to 40% of the ground —
+   around a 6px solid dot. Green is open, red is closed. Always next to a
+   word (باز / بسته); colour alone never carries the state. */
+.t-status-dot {
+  --_c: var(--t-commerce-open-dot);
+  position: relative; flex: none;
+  inline-size: 16px; block-size: 16px; border-radius: var(--t-radius-full);
+  background: radial-gradient(circle closest-side, var(--_c) 0%, var(--t-status-dot-halo) 100%);
+}
+.t-status-dot::after { content: ""; position: absolute; inset: 5px; border-radius: inherit; background: var(--_c); }
+.t-status-dot--closed { --_c: var(--t-commerce-closed-dot); }
 
 /* ---- Avatar — [NEW] ---- */
 .t-avatar { inline-size: 40px; block-size: 40px; border-radius: var(--t-radius-full); overflow: hidden; background: var(--t-bg-subtle); display: grid; place-items: center; font-weight: var(--t-font-weight-bold); color: var(--t-fg-secondary); flex: none; }
@@ -163,26 +298,123 @@
 .t-divider { block-size: var(--t-border-thin); background: var(--t-border-subtle); border: none; margin: 0; }
 .t-divider--vertical { inline-size: var(--t-border-thin); block-size: auto; align-self: stretch; }
 
-/* ---- Map: Pin & Cluster  ← POI/* · Pin ---- */
-.t-pin { position: relative; display: inline-grid; place-items: center; cursor: pointer; }
-.t-pin__body {
-  display: inline-flex; align-items: center; gap: var(--t-space-1);
-  block-size: 32px; padding-inline: var(--t-space-2);
+/* ---- MapPin  ← POI/* · Pin ----
+
+   Five markers, one blue. Every filled marker has a 2px white ring INSIDE
+   its edge so it separates from any tile, light or dark.
+
+     .t-pin              32 round, a category glyph         ← POI/Normal
+     .t-pin--price       24 white pill, blue ring + price   ← POI/Not-selected + Price
+     .t-pin--price[aria-pressed=true]
+                         28 blue pill, 2px Blue 300 halo,
+                         tail, dot and the store name       ← POI/Selected + Price
+     .t-pin--hero        the white drop with a 64 blue face ← POI/Selected
+     .t-pin--dot         8px red dot at far zoom            ← POI/Dot
+     .t-cluster          48 round count                     ← POI/Cluster
+     .t-pin--me          you are here                       ← Pin
+
+   The selected states carry the store name below, in blue with a 4px halo
+   in the map's own ground colour, so it stays legible over streets. */
+.t-pin {
+  --_s: 32px;
+  position: relative;
+  display: inline-grid; place-items: center;
+  inline-size: var(--_s); block-size: var(--_s);
+  padding: 0; border: 0;
   border-radius: var(--t-radius-full);
-  background: var(--t-map-poi); color: var(--t-fg-inverse);
-  font-size: var(--t-font-size-12); font-weight: var(--t-font-weight-bold);
-  box-shadow: var(--t-elevation-2);
-  transition: transform var(--t-duration-standard) var(--t-easing-out), background-color var(--t-duration-standard) var(--t-easing-out);
+  background: var(--t-map-poi);
+  box-shadow: inset 0 0 0 2px var(--t-map-poi-ring);
+  color: var(--t-map-poi-fg);
+  cursor: pointer;
+  transition: transform var(--t-duration-standard) var(--t-easing-out);
 }
-.t-pin[aria-pressed="true"] .t-pin__body { background: var(--t-map-poi-selected); transform: scale(1.12); }
-.t-pin__tail { inline-size: 0; block-size: 0; border-inline: 5px solid transparent; border-block-start: 6px solid var(--t-map-poi); margin-block-start: -1px; }
-.t-pin[aria-pressed="true"] .t-pin__tail { border-block-start-color: var(--t-map-poi-selected); }
-.t-pin--dot { inline-size: 8px; block-size: 8px; border-radius: var(--t-radius-full); background: var(--t-map-poi-dot); }
+.t-pin > .t-icon { inline-size: 16px; block-size: 16px; }
+.t-pin:is(:hover, [data-state="hover"]) { transform: scale(1.08); }
+.t-pin--dot { --_s: 8px; box-shadow: none; background: var(--t-map-poi-dot); cursor: default; }
+
+/* price pills */
+.t-pin--price {
+  inline-size: auto; block-size: auto;
+  display: inline-flex; flex-direction: column; align-items: center; gap: 2px;
+  background: none; box-shadow: none; border-radius: 0;
+}
+.t-pin__pill {
+  display: inline-flex; align-items: center; gap: var(--t-space-1);
+  block-size: 24px; padding-inline: var(--t-space-2);
+  border-radius: var(--t-radius-lg);
+  background: var(--t-bg-fog);
+  box-shadow: inset 0 0 0 2px var(--t-map-poi);
+  color: var(--t-map-poi);
+  font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12);
+  font-weight: var(--t-font-weight-bold);
+  white-space: nowrap;
+  transition: background-color var(--t-duration-standard) var(--t-easing-out), color var(--t-duration-standard) var(--t-easing-out), box-shadow var(--t-duration-standard) var(--t-easing-out);
+}
+.t-pin__pill > .t-icon { inline-size: 16px; block-size: 16px; }
+.t-pin--price[aria-pressed="true"] .t-pin__pill {
+  block-size: 28px;
+  background: var(--t-map-poi);
+  box-shadow: inset 0 0 0 2px var(--t-map-poi-ring), 0 0 0 2px var(--t-map-poi-selected-ring);
+  color: var(--t-map-poi-fg);
+}
+.t-pin__tail, .t-pin__spot, .t-pin__label { display: none; }
+.t-pin--price[aria-pressed="true"] :is(.t-pin__tail, .t-pin__spot, .t-pin__label),
+.t-pin--hero :is(.t-pin__spot, .t-pin__label) { display: block; }
+/* 13×8, a softened triangle under the pill */
+.t-pin__tail { inline-size: 13px; block-size: 8px; background: var(--t-map-poi-selected-ring); clip-path: polygon(0 0, 100% 0, 58% 88%, 50% 100%, 42% 88%); }
+.t-pin__spot { inline-size: 6.72px; block-size: 6.72px; border-radius: var(--t-radius-full); background: var(--t-map-poi); box-shadow: 0 0 0 2.24px var(--t-map-poi-ring); margin-block-start: 2.24px; }
+.t-pin__label {
+  font-size: var(--t-font-size-14); line-height: 19px; font-weight: var(--t-font-weight-bold);
+  color: var(--t-map-label); white-space: nowrap;
+  -webkit-text-stroke: 8px var(--t-map-label-halo); paint-order: stroke fill;
+}
+
+/* the hero drop  ← POI/Selected */
+.t-pin--hero {
+  inline-size: auto; block-size: auto; min-inline-size: 74px;
+  display: inline-flex; flex-direction: column; align-items: center; gap: 4px;
+  background: none; box-shadow: none; border-radius: 0;
+}
+.t-pin__drop {
+  position: relative;
+  inline-size: 67.2px; block-size: 72.54px;
+  filter: drop-shadow(0 4px 16px rgb(0 0 0 / 0.24));
+}
+.t-pin__drop::before { content: ""; position: absolute; inset: 0 0 auto; block-size: 67.2px; border-radius: var(--t-radius-full); background: var(--t-map-poi-ring); }
+.t-pin__drop::after { content: ""; position: absolute; inset-block-end: 0; inset-inline-start: calc(50% - 6.72px); inline-size: 13.44px; block-size: 7.84px; background: var(--t-map-poi-ring); clip-path: polygon(0 0, 100% 0, 58% 88%, 50% 100%, 42% 88%); }
+.t-pin__face {
+  position: absolute; inset-block-start: 1.12px; inset-inline-start: 1.6px;
+  inline-size: 64px; block-size: 64px; border-radius: var(--t-radius-full);
+  display: grid; place-items: center;
+  background: var(--t-action-blue-bg-gradient), var(--t-action-blue-bg);
+  box-shadow: inset 0 0 0 1px var(--t-action-blue-border);
+  color: var(--t-map-poi-fg);
+}
+.t-pin__face > .t-icon { inline-size: 32px; block-size: 32px; }
+.t-pin--hero .t-pin__spot { margin-block-start: 0; }
+
+/* ← POI/Cluster */
 .t-cluster {
   inline-size: 48px; block-size: 48px; border-radius: var(--t-radius-full);
   display: grid; place-items: center;
+  padding: 0; border: 0;
   background: var(--t-map-cluster-bg); color: var(--t-map-cluster-fg);
-  font-weight: var(--t-font-weight-extrabold); font-variant-numeric: tabular-nums;
-  box-shadow: var(--t-elevation-2);
-  border: var(--t-border-thin) solid var(--t-glass-border);
+  box-shadow: inset 0 0 0 2px var(--t-map-poi-ring);
+  font-size: var(--t-font-size-16); line-height: 1; font-weight: var(--t-font-weight-bold);
+  cursor: pointer;
 }
+
+/* ← Pin: you are here. An 86px halo fading to nothing around a 16px dot with
+   a 4px white ring. The halo breathes; reduced motion holds it still. */
+.t-pin--me {
+  --_s: 86px;
+  block-size: 88px;
+  background: radial-gradient(closest-side, var(--t-map-me-halo) 0%, transparent 100%);
+  box-shadow: none; cursor: default;
+}
+.t-pin--me::after { content: ""; inline-size: 16px; block-size: 16px; border-radius: var(--t-radius-full); background: var(--t-map-me); box-shadow: 0 0 0 4px var(--t-map-poi-ring); }
+@media (prefers-reduced-motion: no-preference) {
+  .t-pin--me { animation: t-me-breathe 2.4s var(--t-easing-out) infinite; }
+}
+@keyframes t-me-breathe { 50% { background-size: 88% 88%; } }
+.t-pin--me { background-repeat: no-repeat; background-position: center; background-size: 100% 100%; }

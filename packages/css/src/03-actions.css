@@ -7,22 +7,38 @@
    ============================================================ */
 
 .t-btn {
-  --_h: var(--t-size-control-lg);
-  --_px: var(--t-space-4);
+  --_h: var(--t-size-control-lg);          /* 40 */
+  --_px: var(--t-space-4);                  /* 16 */
+  --_gap: 2px;                              /* Sketch stack gap, icon ↔ label */
   --_fs: var(--t-font-size-14);
   --_lh: var(--t-font-leading-14);
+  --_fw: var(--t-font-weight-bold);
+  --_icon: var(--t-size-icon-md);           /* 20 */
+  --_bg: transparent;
+  --_bg-image: none;
+  --_fg: var(--t-fg-default);
+  --_rim: transparent;                      /* 1px INSIDE edge, never layout */
+  --_rim-w: var(--t-border-thin);
+  --_lift: 0 0 transparent;                 /* glass drop shadows */
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--t-space-2);
+  gap: var(--_gap);
   block-size: var(--_h);
+  padding-block: 0;
   padding-inline: var(--_px);
-  border: var(--t-border-thin) solid transparent;
-  border-radius: var(--t-radius-md);
+  border: 0;
+  border-radius: var(--t-radius-md);        /* 12 at every size, as drawn */
+  background-color: var(--_bg);
+  background-image: var(--_bg-image);
+  /* Sketch draws the rim INSIDE the shape: it never moves the label. An inset
+     shadow is the only CSS border that behaves the same way. */
+  box-shadow: inset 0 0 0 var(--_rim-w) var(--_rim), var(--_lift);
+  color: var(--_fg);
   font-size: var(--_fs);
   line-height: var(--_lh);
-  font-weight: var(--t-font-weight-bold);
+  font-weight: var(--_fw);
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -30,7 +46,7 @@
   position: relative;
   transition:
     background-color var(--t-duration-micro) var(--t-easing-out),
-    border-color     var(--t-duration-micro) var(--t-easing-out),
+    box-shadow       var(--t-duration-micro) var(--t-easing-out),
     color            var(--t-duration-micro) var(--t-easing-out),
     transform        var(--t-duration-micro) var(--t-easing-out);
 }
@@ -45,14 +61,24 @@
 }
 @media (pointer: fine) { .t-btn::after { content: none; } }
 
+.t-btn .t-icon { inline-size: var(--_icon); block-size: var(--_icon); flex: none; }
+/* A trailing icon (a disclosure chevron) sits 14px from the edge: its 16px
+   box already carries 5px of air. Mark it .t-icon--end — a bare text label is
+   not an element, so position alone cannot tell leading from trailing. */
+.t-btn:has(> .t-icon--end) { padding-inline-end: calc(var(--_px) - 2px); }
+.t-btn .t-icon--tiny { inline-size: 16px; block-size: 16px; }
+.t-btn[aria-expanded="true"] .t-icon--tiny,
+.t-btn[aria-expanded="true"] .t-btn__chevron { rotate: 180deg; }
+
 .t-btn:active:not(:disabled) { transform: scale(0.97); }
 .t-btn:disabled, .t-btn[aria-disabled="true"] { cursor: not-allowed; transform: none; }
 
-/* ---- Sizes ---- */
-.t-btn--xs { --_h: var(--t-size-control-xs); --_px: var(--t-space-2); --_fs: var(--t-font-size-12); --_lh: var(--t-font-leading-12); border-radius: var(--t-radius-sm); }
-.t-btn--sm { --_h: var(--t-size-control-sm); --_px: var(--t-space-3); --_fs: var(--t-font-size-12); --_lh: var(--t-font-leading-12); border-radius: var(--t-radius-sm); }
-.t-btn--md { --_h: var(--t-size-control-md); --_px: var(--t-space-3); }
+/* ---- Sizes ----  lg 40 · sm 28 · xs 24 are drawn in Sketch; md 32 and xl 48
+   are system additions for dense desktop tables and hero actions. */
 .t-btn--lg { --_h: var(--t-size-control-lg); }
+.t-btn--md { --_h: var(--t-size-control-md); --_px: var(--t-space-3); }
+.t-btn--sm { --_h: var(--t-size-control-sm); --_px: var(--t-space-2); --_gap: var(--t-space-1); --_fs: var(--t-font-size-12); --_lh: var(--t-font-leading-12); --_fw: var(--t-font-weight-medium); --_icon: var(--t-size-icon-sm); }
+.t-btn--xs { --_h: var(--t-size-control-xs); --_px: var(--t-space-2); --_gap: var(--t-space-1); --_fs: var(--t-font-size-12); --_lh: var(--t-font-leading-12); --_fw: var(--t-font-weight-regular); --_icon: var(--t-size-icon-sm); }
 .t-btn--xl { --_h: var(--t-size-control-xl); --_px: var(--t-space-5); --_fs: var(--t-font-size-16); --_lh: var(--t-font-leading-16); }
 .t-btn--block { display: flex; inline-size: 100%; }
 
@@ -63,157 +89,213 @@
      BLUE   مسیریابی · تماس — an offline, store or contact action.
      BLACK  neutral. Runs on the legacy Ink ramp, not on Sky.
 
-   Two details carry the look and both are easy to lose:
-   1. DEFAULT is the gradient; HOVER collapses to the flat solid. Not the
-      other way round — the button settles under the cursor, it does not lift.
-   2. Every filled button has a 1px INSIDE rim tinted to its own family
-      (red → Red 50, blue → Blue 300). It is what stops a saturated fill from
-      looking like a flat rectangle.
+   Measured, and easy to lose:
+   1. DEFAULT is the gradient; HOVER collapses to the flat solid and drops the
+      rim. The button settles under the cursor, it does not lift.
+   2. Filled red and blue carry a 1px INSIDE rim in their own family's light
+      tint (red → Red 50, blue → Blue 300).
 
    Intent aliases (--primary / --accent / --neutral) point at the same rules.
    Prefer them in product code: intent survives a rebrand, colour does not. */
 
 .t-btn--red, .t-btn--primary {
-  background-image: var(--t-action-red-bg-gradient);
-  background-color: var(--t-action-red-bg);
-  border-color: var(--t-action-red-border);
-  color: var(--t-action-red-fg);
+  --_bg: var(--t-action-red-bg);
+  --_bg-image: var(--t-action-red-bg-gradient);
+  --_rim: var(--t-action-red-border);
+  --_fg: var(--t-action-red-fg);
 }
-.t-btn--red:hover:not(:disabled), .t-btn--primary:hover:not(:disabled) {
-  background-image: none;
-  background-color: var(--t-action-red-bg-hover);
+.t-btn--red:is(:hover, [data-state="hover"]):not(:disabled),
+.t-btn--primary:is(:hover, [data-state="hover"]):not(:disabled) {
+  --_bg: var(--t-action-red-bg-hover);
+  --_bg-image: none;
+  --_rim: transparent;
 }
-.t-btn--red:active:not(:disabled), .t-btn--primary:active:not(:disabled) {
-  background-image: none;
-  background-color: var(--t-action-red-bg-active);
-}
+.t-btn--red:active:not(:disabled), .t-btn--primary:active:not(:disabled) { --_bg: var(--t-action-red-bg-active); --_bg-image: none; --_rim: transparent; }
 
 .t-btn--blue, .t-btn--accent {
-  background-image: var(--t-action-blue-bg-gradient);
-  background-color: var(--t-action-blue-bg);
-  border-color: var(--t-action-blue-border);
-  color: var(--t-action-blue-fg);
+  --_bg: var(--t-action-blue-bg);
+  --_bg-image: var(--t-action-blue-bg-gradient);
+  --_rim: var(--t-action-blue-border);
+  --_fg: var(--t-action-blue-fg);
 }
-.t-btn--blue:hover:not(:disabled), .t-btn--accent:hover:not(:disabled) {
-  background-image: none;
-  background-color: var(--t-action-blue-bg-hover);
+.t-btn--blue:is(:hover, [data-state="hover"]):not(:disabled),
+.t-btn--accent:is(:hover, [data-state="hover"]):not(:disabled) {
+  --_bg: var(--t-action-blue-bg-hover);
+  --_bg-image: none;
+  --_rim: transparent;
 }
-.t-btn--blue:active:not(:disabled), .t-btn--accent:active:not(:disabled) {
-  background-image: none;
-  background-color: var(--t-action-blue-bg-active);
+.t-btn--blue:active:not(:disabled), .t-btn--accent:active:not(:disabled) { --_bg: var(--t-action-blue-bg-active); --_bg-image: none; --_rim: transparent; }
+
+/* Sketch's "Blue / Clicked + Chevron" is the OPEN state of a disclosure
+   button: the fill drops away, the label takes the family colour and the
+   chevron turns. It is aria-expanded, not a variant. */
+.t-btn--blue[aria-expanded="true"], .t-btn--accent[aria-expanded="true"], .t-btn--blue-outline, .t-btn--outline-accent {
+  --_bg: var(--t-bg-fog);
+  --_bg-image: none;
+  --_rim: var(--t-action-blue-outline-border);
+  --_fg: var(--t-action-blue-outline-fg);
 }
 
 /* Black is flat by design — no gradient, no rim. It is the quiet one. */
-.t-btn--black, .t-btn--neutral {
-  background-color: var(--t-action-black-bg);
-  color: var(--t-action-black-fg);
-}
-.t-btn--black:hover:not(:disabled), .t-btn--neutral:hover:not(:disabled) { background-color: var(--t-action-black-bg-hover); }
-.t-btn--black:active:not(:disabled), .t-btn--neutral:active:not(:disabled) { background-color: var(--t-action-black-bg-active); }
+.t-btn--black, .t-btn--neutral { --_bg: var(--t-action-black-bg); --_fg: var(--t-action-black-fg); }
+.t-btn--black:is(:hover, [data-state="hover"]):not(:disabled),
+.t-btn--neutral:is(:hover, [data-state="hover"]):not(:disabled) { --_bg: var(--t-action-black-bg-hover); }
+.t-btn--black:active:not(:disabled), .t-btn--neutral:active:not(:disabled) { --_bg: var(--t-action-black-bg-active); }
 
-/* ---- Outline ----
-   Sketch calls this "Clicked" on the blue family: the fill drops away and the
-   label takes the family colour. */
+/* ---- Outline  ← Button/Black ghost ---- */
 .t-btn--black-ghost, .t-btn--outline {
-  background: var(--t-bg-fog);
-  border-color: var(--t-action-black-ghost-border);
-  color: var(--t-action-black-ghost-fg);
+  --_bg: var(--t-bg-fog);
+  --_rim: var(--t-action-black-ghost-border);
+  --_fg: var(--t-action-black-ghost-fg);
 }
-.t-btn--black-ghost:hover:not(:disabled), .t-btn--outline:hover:not(:disabled) {
-  border-color: var(--t-action-black-ghost-border-hover);
-}
-.t-btn--blue-outline, .t-btn--outline-accent {
-  background: var(--t-bg-fog);
-  border-color: var(--t-action-blue-outline-border);
-  color: var(--t-action-blue-outline-fg);
-}
-.t-btn--blue-outline:hover:not(:disabled), .t-btn--outline-accent:hover:not(:disabled) {
-  background-color: var(--t-action-blue-soft-bg);
-}
+.t-btn--black-ghost:is(:hover, [data-state="hover"]):not(:disabled),
+.t-btn--outline:is(:hover, [data-state="hover"]):not(:disabled) { --_rim: var(--t-action-black-ghost-border-hover); }
 .t-btn--red-outline {
-  background: var(--t-bg-fog);
-  border-color: var(--t-action-red-outline-border);
-  color: var(--t-action-red-outline-fg);
+  --_bg: var(--t-bg-fog);
+  --_rim: var(--t-action-red-outline-border);
+  --_fg: var(--t-action-red-outline-fg);
 }
 
-/* ---- Soft & ghost ---- */
-.t-btn--soft { background-color: var(--t-action-blue-soft-bg); color: var(--t-action-blue-soft-fg); }
-.t-btn--soft:hover:not(:disabled) { filter: brightness(0.96); }
+/* ---- Soft & ghost (system additions) ---- */
+.t-btn--soft { --_bg: var(--t-action-blue-soft-bg); --_fg: var(--t-action-blue-soft-fg); }
+.t-btn--soft:is(:hover, [data-state="hover"]):not(:disabled) { filter: brightness(0.96); }
+.t-btn--ghost { --_fg: var(--t-action-black-ghost-fg); }
+.t-btn--ghost:is(:hover, [data-state="hover"]):not(:disabled) { --_bg: var(--t-action-black-ghost-bg-hover); }
+.t-btn--ghost-accent { --_fg: var(--t-action-blue-ghost-fg); }
+.t-btn--ghost-accent:is(:hover, [data-state="hover"]):not(:disabled) { --_bg: var(--t-action-blue-soft-bg); }
 
-.t-btn--ghost { background: transparent; color: var(--t-action-black-ghost-fg); }
-.t-btn--ghost:hover:not(:disabled) { background-color: var(--t-action-black-ghost-bg-hover); }
-.t-btn--ghost-accent, .t-btn--blue-ghost { background: transparent; color: var(--t-action-blue-ghost-fg); }
-.t-btn--ghost-accent:hover:not(:disabled), .t-btn--blue-ghost:hover:not(:disabled) { background-color: var(--t-action-blue-soft-bg); }
-
-/* ---- Glass ghost  ← Button/‌Blue ghost/Icon · Button/Black ghost/Icon ----
-   Glass at the "solid" level with a 0.5px family-tinted ring. For controls
-   that sit over the map or a photograph. */
+/* ---- Glass  ← Button/Black ghost/Icon · Button/‌Blue ghost/Icon/Light · /Dark ----
+   Glass at the "selected" level: 60% fill, 15px backdrop blur and a 0.5px
+   ring. Neutral rings in Sky 800, blue in Blue 300. For controls that sit
+   over the map or a photograph. */
 .t-btn--glass {
-  background-color: var(--t-glass-solid-fill);
-  border-width: var(--t-border-hairline);
-  border-color: var(--t-action-black-ghost-border);
-  color: var(--t-action-black-ghost-fg);
+  --_bg: var(--t-glass-selected-fill);
+  --_rim: var(--t-fg-default);
+  --_rim-w: var(--t-border-hairline);
+  --_fg: var(--t-fg-default);
   backdrop-filter: blur(var(--t-glass-blur));
   -webkit-backdrop-filter: blur(var(--t-glass-blur));
 }
-.t-btn--glass.t-btn--blue-ghost { border-color: var(--t-border-selected); color: var(--t-action-blue-ghost-fg); background-color: var(--t-glass-solid-fill); }
+.t-btn--glass.t-btn--blue-ghost, .t-btn--blue-ghost {
+  --_bg: var(--t-glass-selected-fill);
+  --_rim: var(--t-glass-selected-border);
+  --_rim-w: var(--t-border-hairline);
+  --_fg: var(--t-action-blue-ghost-fg);
+  backdrop-filter: blur(var(--t-glass-blur));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur));
+}
+
+/* ---- Glass chip button  ← Button/Xsmall/Secondary/Icon ----
+   The "filters" glass: 30% white, a 1px white edge OUTSIDE the shape, a
+   2px upward haze and a half-pixel hairline shadow down and to the left. */
+.t-btn--filter {
+  --_bg: var(--t-glass-filters-fill);
+  --_rim: transparent;
+  --_fg: var(--t-fg-default);
+  --_lift: 0 0 0 var(--t-border-thin) var(--t-glass-filters-border), var(--t-glass-filters-shadow);
+  backdrop-filter: blur(var(--t-glass-blur));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur));
+}
 
 /* ---- Disabled ----
    One treatment. Every family collapses to it, because a disabled control
-   that still reads as primary is worse than no affordance at all.
-   The label stays legible (4.8:1); the flat grey fill and the missing rim
-   carry the "disabled" signal instead. */
+   that still reads as primary is worse than no affordance at all. */
 .t-btn:disabled, .t-btn[aria-disabled="true"] {
-  background-image: none !important;
-  background-color: var(--t-action-disabled-bg) !important;
-  border-color: transparent !important;
-  color: var(--t-action-disabled-fg) !important;
+  --_bg: var(--t-action-disabled-bg) !important;
+  --_bg-image: none !important;
+  --_rim: transparent !important;
+  --_lift: 0 0 transparent !important;
+  --_fg: var(--t-action-disabled-fg) !important;
+  backdrop-filter: none;
 }
 .t-btn--ghost:disabled, .t-btn--ghost[aria-disabled="true"] {
-  background-color: transparent !important;
-  color: var(--t-fg-disabled) !important;
+  --_bg: transparent !important;
+  --_fg: var(--t-fg-disabled) !important;
 }
 
 /* ---- Loading ----
    The label stays in place so the button does not resize mid-action. */
 .t-btn[data-loading="true"] { color: transparent !important; pointer-events: none; }
+.t-btn[data-loading="true"] > * { visibility: hidden; }
 .t-btn[data-loading="true"]::before {
   content: "";
   position: absolute;
   inline-size: 1em; block-size: 1em;
-  border: 2px solid currentColor;
+  border: 2px solid var(--_fg);
   border-block-start-color: transparent;
   border-radius: var(--t-radius-full);
-  color: var(--t-action-red-fg);
   animation: t-spin 620ms linear infinite;
 }
 @keyframes t-spin { to { transform: rotate(360deg); } }
 
-/* Icons inside buttons. Directional icons flip with the document. */
-.t-btn .t-icon { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); flex: none; }
-.t-btn--xl .t-icon { inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); }
-
-/* ---- IconButton ---- */
+/* ---- IconButton  ← Button/Icon/* ----
+   48×48 with a 32px glyph (8px all round), or the 32×32 round glass button
+   with a 24px glyph. Always carries an aria-label. */
 .t-icon-btn {
-  --_s: var(--t-size-control-xl);
+  --_s: var(--t-size-control-xl);           /* 48 */
+  --_glyph: 32px;
+  --_bg: transparent;
+  --_bg-image: none;
+  --_fg: var(--t-fg-default);
+  --_rim: transparent;
+  --_rim-w: var(--t-border-thin);
+  --_lift: 0 0 transparent;
   display: inline-flex; align-items: center; justify-content: center;
   inline-size: var(--_s); block-size: var(--_s);
   padding: 0;
-  border: var(--t-border-thin) solid transparent;
+  border: 0;
   border-radius: var(--t-radius-md);
-  background: transparent;
-  color: var(--t-fg-default);
+  background-color: var(--_bg);
+  background-image: var(--_bg-image);
+  box-shadow: inset 0 0 0 var(--_rim-w) var(--_rim), var(--_lift);
+  color: var(--_fg);
   cursor: pointer;
+  position: relative;
   transition: background-color var(--t-duration-micro) var(--t-easing-out), transform var(--t-duration-micro) var(--t-easing-out);
 }
-.t-icon-btn:hover:not(:disabled) { background-color: var(--t-action-black-ghost-bg-hover); }
+.t-icon-btn > .t-icon, .t-icon-btn > svg, .t-icon-btn > img { inline-size: var(--_glyph); block-size: var(--_glyph); flex: none; }
+.t-icon-btn:is(:hover, [data-state="hover"]):not(:disabled) { --_bg: var(--t-action-black-ghost-bg-hover); }
 .t-icon-btn:active:not(:disabled) { transform: scale(0.94); }
-.t-icon-btn:disabled { color: var(--t-fg-disabled); cursor: not-allowed; }
-.t-icon-btn--sm { --_s: var(--t-size-control-md); border-radius: var(--t-radius-sm); }
+.t-icon-btn:disabled { --_fg: var(--t-fg-disabled); cursor: not-allowed; }
+/* 32px targets still get a 44px hit area. */
+.t-icon-btn::after { content: ""; position: absolute; inset: min(0px, calc((var(--_s) - var(--t-size-touch-min)) / 2)); border-radius: inherit; }
+
+/* ← Button/Icon/Blue Icon — the blue family, filled */
+.t-icon-btn--accent {
+  --_bg: var(--t-action-blue-bg);
+  --_bg-image: var(--t-action-blue-bg-gradient);
+  --_rim: var(--t-action-blue-border);
+  --_fg: var(--t-action-blue-fg);
+}
+.t-icon-btn--accent:is(:hover, [data-state="hover"]):not(:disabled) { --_bg: var(--t-action-blue-bg-hover); --_bg-image: none; --_rim: transparent; }
+
+/* ← Button/Icon/Ghost Icon — selected glass, a full 1px blue rim */
+.t-icon-btn--accent-ghost {
+  --_bg: var(--t-glass-selected-fill);
+  --_rim: var(--t-glass-selected-border);
+  --_fg: var(--t-action-blue-ghost-fg);
+  backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur));
+}
+
+/* ← Button/Icon/Icon — surface glass: 30% white, a 1px white edge on the
+   outline and the half-pixel hairline shadow. */
+.t-icon-btn--glass {
+  --_bg: var(--t-glass-fill);
+  --_rim: var(--t-glass-border);
+  --_rim-w: 0.5px;
+  --_lift: 0 0 0 0.5px var(--t-glass-border), var(--t-glass-shadow);
+  backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur));
+}
+
+/* ← Button/Icon/Icon Rounded — 32 round, the "filters" glass */
+.t-icon-btn--sm { --_s: var(--t-size-control-md); --_glyph: var(--t-size-icon-md); }
 .t-icon-btn--round { border-radius: var(--t-radius-full); }
-.t-icon-btn--accent { background-color: var(--t-action-blue-bg); color: var(--t-action-blue-fg); }
-.t-icon-btn--accent:hover:not(:disabled) { background-color: var(--t-action-blue-bg-hover); }
-.t-icon-btn--glass { background-color: var(--t-glass-fill); border-color: var(--t-glass-border); box-shadow: var(--t-glass-shadow); backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur)); }
+.t-icon-btn--sm.t-icon-btn--round { --_glyph: var(--t-size-icon-lg); }
+.t-icon-btn--filter {
+  --_bg: var(--t-glass-filters-fill);
+  --_lift: 0 0 0 var(--t-border-thin) var(--t-glass-filters-border), var(--t-glass-filters-shadow);
+  backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur));
+}
 
 /* ---- SplitButton  ← Button / Red /split · Button / Blue /split ----
 
@@ -231,6 +313,9 @@
   isolation: isolate;
 }
 .t-btn-split > .t-btn { border-radius: 0; }
+/* The label half runs 12px in from the start and stops 8px short of the
+   divider: the divider does the separating, so the padding does not. */
+.t-btn-split > .t-btn:first-child { padding-inline: var(--t-space-3) var(--t-space-2); --_rim: transparent; }
 .t-btn-split > .t-btn:first-child {
   border-start-start-radius: var(--t-radius-md);
   border-end-start-radius: var(--t-radius-md);
@@ -264,30 +349,35 @@
    on this row they are choosing *who* to buy from. */
 
 .t-buybox {
-  --_pad: var(--t-space-4);
+  --_bg: var(--t-action-red-bg);
+  --_bg-image: var(--t-action-red-bg-gradient);
+  --_rim: var(--t-action-red-border);
+  --_fg: var(--t-action-red-fg);
   display: flex;
   align-items: center;
   gap: var(--t-space-3);
   inline-size: 100%;
   max-inline-size: 343px;
-  block-size: 72px;                              /* exact, border included */
-  padding-inline: var(--_pad);
-  border: var(--t-border-thin) solid var(--t-action-red-border);
+  block-size: 72px;
+  padding-block: var(--t-space-2);
+  padding-inline: var(--t-space-4);
+  border: 0;
   border-radius: var(--t-radius-lg);            /* 16 */
-  background-image: var(--t-action-red-bg-gradient);
-  background-color: var(--t-action-red-bg);
-  color: var(--t-action-red-fg);
+  background-color: var(--_bg);
+  background-image: var(--_bg-image);
+  box-shadow: inset 0 0 0 var(--t-border-thin) var(--_rim);
+  color: var(--_fg);
   text-align: start;
   cursor: pointer;
   transition:
     background-color var(--t-duration-micro) var(--t-easing-out),
     transform        var(--t-duration-micro) var(--t-easing-out);
 }
-.t-buybox:hover { background-image: none; background-color: var(--t-action-red-bg-hover); }
+.t-buybox:is(:hover, [data-state="hover"]) { --_bg-image: none; --_bg: var(--t-action-red-bg-hover); --_rim: transparent; }
 .t-buybox:active { transform: scale(0.995); }
 
-/* The seller/price stack sits at the inline END; the ad marker at the START. */
-.t-buybox__body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; align-items: flex-end; }
+/* Seller over price, at the inline START; the ad marker at the END. */
+.t-buybox__body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; align-items: flex-start; }
 .t-buybox__seller {
   font-size: var(--t-font-size-16);
   line-height: var(--t-font-leading-16);
@@ -297,7 +387,6 @@
   font-size: var(--t-font-size-16);
   line-height: var(--t-font-leading-16);
   font-weight: var(--t-font-weight-medium);
-  font-variant-numeric: tabular-nums;
 }
 .t-buybox__meta {
   font-size: var(--t-font-size-12);
@@ -307,25 +396,23 @@
 
 /* Offline seller. Same geometry, blue family. */
 .t-buybox--offline, .t-buybox--blue {
-  background-image: var(--t-action-blue-bg-gradient);
-  background-color: var(--t-action-blue-bg);
-  border-color: var(--t-action-blue-border);
-  color: var(--t-action-blue-fg);
+  --_bg: var(--t-action-blue-bg);
+  --_bg-image: var(--t-action-blue-bg-gradient);
+  --_rim: var(--t-action-blue-border);
+  --_fg: var(--t-action-blue-fg);
 }
-.t-buybox--offline:hover, .t-buybox--blue:hover { background-image: none; background-color: var(--t-action-blue-bg-hover); }
+.t-buybox--offline:is(:hover, [data-state="hover"]), .t-buybox--blue:is(:hover, [data-state="hover"]) { --_bg-image: none; --_bg: var(--t-action-blue-bg-hover); --_rim: transparent; }
 
-/* The cheapest-seller shortcut: one centred label, shorter, tighter radius. */
+/* The cheapest-seller shortcut: one centred label, 44 tall, radius 12, no rim. */
 .t-buybox--compact {
   block-size: 44px;
-  border-radius: var(--t-radius-md);            /* 12 */
+  padding-block: 0;
+  border-radius: var(--t-radius-md);
   justify-content: center;
-  border-color: transparent;
+  --_rim: transparent;
 }
 .t-buybox--compact .t-buybox__body { align-items: center; }
-.t-buybox--compact .t-buybox__seller { font-size: var(--t-font-size-16); }
 
-/* آگهی — a solid pill, 45×24, radius 12. A legal disclosure: always present,
-   always real text, and deliberately not styled like a discount. */
 .t-buybox__ad {
   flex: none;
   display: inline-flex;
@@ -338,7 +425,10 @@
   background: var(--t-commerce-ad);
   color: var(--t-fg-on-solid);
   font-size: var(--t-font-size-12);
-  line-height: 1;
-  font-weight: var(--t-font-weight-medium);
+  line-height: var(--t-font-leading-12);
+  font-weight: var(--t-font-weight-bold);
   white-space: nowrap;
 }
+/* On the blue (offline) box the marker turns Blue 300: red on blue would read
+   as an error, not a disclosure. */
+.t-buybox--offline .t-buybox__ad, .t-buybox--blue .t-buybox__ad { background: var(--t-action-blue-border); }

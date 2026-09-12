@@ -45,9 +45,9 @@ export function indexPage({ components, iconCount, tokenCount }) {
       <p>شیشهٔ اپل ضخیم است: ۵۰ تا ۸۰ پیکسل بلور، تقویت اشباع و هایلایت‌های براق. شیشهٔ ترب <strong>نازک</strong> است: یک ورق نیمه‌شفاف از رنگ سطح، یک لبهٔ مویی و سایه‌ای آن‌قدر کوچک که مثل یک لبهٔ بلندشده خوانده شود. سطحی را نشان می‌دهد که بالای محتوا شناور است. هرگز تزئین نیست.</p>
     </div>
     ${specimen({ label: 'شیشهٔ ترب روی نقشه', canvas: 'map', stageClass: 'spec__stage--center', html: `<div style="display:flex;flex-direction:column;gap:11px;align-items:center;inline-size:100%;max-inline-size:330px">
-  <div class="t-segmented" role="tablist" aria-label="نمای اطراف" style="align-self:center">
-    <button class="t-segmented__item" role="tab" aria-selected="true">فروشگاه‌ها<span class="t-chip__count">۴۳</span></button>
-    <button class="t-segmented__item" role="tab" aria-selected="false">محصولات<span class="t-chip__count">۵۵</span></button>
+  <div class="t-segmented" role="radiogroup" aria-label="نمای اطراف" style="align-self:center">
+    <button class="t-segmented__item" role="radio" aria-checked="true">فروشگاه‌ها</button>
+    <button class="t-segmented__item" role="radio" aria-checked="false">محصولات</button>
   </div>
   <article class="t-store-card t-store-card--glass" style="inline-size:100%">
     <div class="t-store-card__head">

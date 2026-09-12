@@ -1,14 +1,20 @@
 #!/usr/bin/env node
 /* Generate the React package from the component registry, so the code on the
    website and the code you install are the same code. */
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './tokens-lib.mjs';
 import { loadComponents } from './site-lib.mjs';
+import { removeOrStash } from './fs-safe.mjs';
 
 const OUT = join(ROOT, 'packages', 'react', 'src');
 mkdirSync(join(OUT, 'components'), { recursive: true });
 const components = await loadComponents();
+
+/* A renamed component must not leave its old file behind. */
+const expected = new Set(components.map(c => `${c.name}.tsx`));
+for (const f of readdirSync(join(OUT, 'components')))
+  if (f.endsWith('.tsx') && !expected.has(f)) console.log(`  stale ${f}: ${removeOrStash(join(OUT, 'components', f))}`);
 
 /* Shared utilities every generated component leans on. */
 writeFileSync(join(OUT, 'utils.ts'), `/* Torob Design System — shared utilities. */

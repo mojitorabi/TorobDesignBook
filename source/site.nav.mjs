@@ -48,7 +48,7 @@ export const nav = [
     { slug: 'index', title: 'مقدمه' },
     { slug: 'start', title: 'شروع کار' },
     { slug: 'ai', title: 'اتصال به هوش مصنوعی' },
-    { slug: 'symbols', title: 'فهرست سیمبل‌ها' },
+    { slug: 'symbols', title: 'سیمبل‌های اسکچ' },
     { slug: 'migration', title: 'نام‌گذاری و مهاجرت' },
     { slug: 'changelog', title: 'تغییرات' },
   ]},

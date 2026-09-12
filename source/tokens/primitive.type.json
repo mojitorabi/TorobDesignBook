@@ -26,6 +26,10 @@
     },
     "weight": {
       "$type": "fontWeight",
+      "regular": {
+        "$value": 400,
+        "$description": "Chips, badges and 12px glass labels, as drawn in Sketch"
+      },
       "medium": {
         "$value": 500,
         "$description": "Body default"

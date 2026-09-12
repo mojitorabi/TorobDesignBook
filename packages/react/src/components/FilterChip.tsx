@@ -12,7 +12,7 @@ export function FilterChip({ active, count, opens, icon, children, ...rest }) {
             {...rest}>
       {icon}{children}
       {count != null && <span className="t-chip__count">{toFa(count)}</span>}
-      {opens && <ChevronDown className="t-icon t-icon--sm" />}
+      {opens && <ChevronDown16 className="t-icon t-chip__chevron" />}
     </button>
   );
 }

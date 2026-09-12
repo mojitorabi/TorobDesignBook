@@ -73,6 +73,14 @@
       },
       "800": {
         "$value": "#1E40AF"
+      },
+      "location": {
+        "$value": "#0C79FE",
+        "$description": "User location dot (Sketch \"Pin\")."
+      },
+      "location-halo": {
+        "$value": "#579DFF",
+        "$description": "User location halo centre."
       }
     },
     "red": {
@@ -130,6 +138,14 @@
       },
       "800": {
         "$value": "#003D01"
+      },
+      "700": {
+        "$value": "#248212",
+        "$description": "Rating star on the green seller-rating pill."
+      },
+      "650": {
+        "$value": "#2E7D32",
+        "$description": "[NEW] Open-now and distance TEXT. Green 500 (#4CAF50) is 2.8:1 on white and fails WCAG AA; this is 5.1:1."
       }
     },
     "yellow": {

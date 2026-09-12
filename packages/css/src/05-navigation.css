@@ -1,56 +1,116 @@
 /* ============================================================
    Navigation
-   SegmentedControl ← Segmented Controls/*
-   Tabs             ← Tab/Selected
+   SegmentedControl ← Switch/Left · Switch/Right
+   ChoiceChip       ← Segmented Controls/*
+   ChipGroup        ← Tab/Selected · Segmented Controls/Selected (row)
    FilterChip       ← Filter/Cell/Cell · Icon · Icon+Chevron
    FilterBar        ← Filter/Filter
+   Tabs             ← [NEW] underline tabs for dense desktop and B2B views
    PageHeader       ← Header/Profile
    BottomNav        ← [NEW]
    Breadcrumb       ← [NEW]
    Pagination       ← [NEW]
    ============================================================ */
 
-/* ---- SegmentedControl ---- */
+/* ---- SegmentedControl  ← Switch/Left · Switch/Right ----
+
+   Two (or three) named destinations in one glass track: 135×36 in Sketch,
+   4px inset, a 0.5px Blue 300 ring. The selected option IS the small blue
+   button (28 tall, gradient, rim), not a sliding thumb drawn under text, so
+   it reads as "this one is on" even in a screenshot.
+
+   Sketch calls this "Switch". Every major system calls it a segmented
+   control; a switch is the on/off control. */
 .t-segmented {
   display: inline-flex;
   align-items: center;
-  gap: var(--t-space-1);
-  padding: 3px;
+  padding: var(--t-space-1);
   border-radius: var(--t-radius-md);
-  background: var(--t-glass-fill);
-  border: var(--t-border-thin) solid var(--t-glass-border);
+  background: var(--t-glass-selected-fill);
+  box-shadow: inset 0 0 0 var(--t-border-hairline) var(--t-glass-selected-border);
   backdrop-filter: blur(var(--t-glass-blur));
   -webkit-backdrop-filter: blur(var(--t-glass-blur));
-  overflow-x: auto;
-  scrollbar-width: none;
-  max-inline-size: 100%;
 }
-.t-segmented::-webkit-scrollbar { display: none; }
 .t-segmented__item {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--t-space-1);
-  block-size: 26px;
-  padding-inline: var(--t-space-3);
-  border: var(--t-border-hairline) solid transparent;
-  border-radius: var(--t-radius-sm);
+  block-size: var(--t-size-control-sm);            /* 28 */
+  padding-inline: var(--t-space-1);
+  border: 0;
+  border-radius: var(--t-radius-md);
   background: transparent;
-  font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12);
-  font-weight: var(--t-font-weight-bold);
-  color: var(--t-fg-secondary);
-  white-space: nowrap; cursor: pointer;
-  transition: background-color var(--t-duration-micro) var(--t-easing-out), color var(--t-duration-micro) var(--t-easing-out), border-color var(--t-duration-micro) var(--t-easing-out);
-}
-.t-segmented__item:hover { color: var(--t-fg-default); }
-.t-segmented__item[aria-selected="true"], .t-segmented__item[aria-checked="true"] {
-  background: var(--t-glass-selected-fill);
-  border-color: var(--t-border-selected);
   color: var(--t-fg-default);
+  font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12);
+  font-weight: var(--t-font-weight-medium);
+  white-space: nowrap; cursor: pointer;
+  transition: background-color var(--t-duration-standard) var(--t-easing-out), color var(--t-duration-standard) var(--t-easing-out), padding var(--t-duration-standard) var(--t-easing-out);
 }
-.t-segmented--lg { padding: var(--t-space-2); border-radius: var(--t-radius-lg); }
-.t-segmented--lg .t-segmented__item { block-size: 44px; padding-inline: var(--t-space-4); font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); border-radius: var(--t-radius-md); }
+.t-segmented__item[aria-checked="true"], .t-segmented__item[aria-selected="true"] {
+  padding-inline: var(--t-space-2);
+  background-color: var(--t-action-blue-bg);
+  background-image: var(--t-action-blue-bg-gradient);
+  box-shadow: inset 0 0 0 var(--t-border-thin) var(--t-action-blue-border);
+  color: var(--t-action-blue-fg);
+}
+.t-segmented__item:not([aria-checked="true"], [aria-selected="true"]):hover { color: var(--t-action-blue-ghost-fg); }
 .t-segmented--block { display: flex; inline-size: 100%; }
 .t-segmented--block .t-segmented__item { flex: 1; }
 
-/* ---- Tabs ---- */
+/* ---- ChoiceChip  ← Segmented Controls/* ----
+
+   A single-select category pill, 32 tall. Resting: the surface glass (30%
+   white, a 1px white outline, the hairline shadow). Selected: the blue family
+   with a soft two-step drop shadow — the only chip that lifts.
+   Label is Medium 12/20; with an icon it steps up to 14/20. A selected chip
+   that holds a VALUE (a city) gets a trailing ✕ to clear it. */
+.t-choice {
+  --_bg: var(--t-glass-fill);
+  --_bg-image: none;
+  --_fg: var(--t-fg-default);
+  --_ring: inset 0 0 0 0.5px var(--t-glass-border), 0 0 0 0.5px var(--t-glass-border);
+  --_lift: var(--t-glass-shadow);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--t-space-1);
+  block-size: var(--t-size-control-md);             /* 32 */
+  padding-inline: var(--t-space-2);
+  border: 0;
+  border-radius: var(--t-radius-md);
+  background-color: var(--_bg);
+  background-image: var(--_bg-image);
+  box-shadow: var(--_ring), var(--_lift);
+  color: var(--_fg);
+  font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12);
+  font-weight: var(--t-font-weight-medium);
+  white-space: nowrap; cursor: pointer;
+  backdrop-filter: blur(var(--t-glass-blur));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur));
+  transition: background-color var(--t-duration-micro) var(--t-easing-out), box-shadow var(--t-duration-micro) var(--t-easing-out), color var(--t-duration-micro) var(--t-easing-out);
+}
+.t-choice:has(> .t-icon) { font-size: var(--t-font-size-14); }
+.t-choice .t-icon { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); flex: none; }
+.t-choice[aria-checked="true"], .t-choice[aria-pressed="true"], .t-choice[aria-selected="true"] {
+  --_bg: var(--t-action-blue-bg);
+  --_bg-image: var(--t-action-blue-bg-gradient);
+  --_fg: var(--t-action-blue-fg);
+  --_ring: inset 0 0 0 var(--t-border-thin) var(--t-action-blue-border);
+  --_lift: 0 2px 2px 0 rgb(51 51 51 / 0.2), 0 4px 12px 0 rgb(51 51 51 / 0.2);
+  backdrop-filter: none;
+}
+.t-choice__clear { display: inline-grid; place-items: center; inline-size: 16px; block-size: 16px; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; }
+
+/* ---- ChipGroup  ← Tab/Selected · the Segmented Controls row ----
+   One scrolling row, 8px apart, 16px above and below, flush to the inline
+   start so the first chip lines up with the page text. */
+.t-chip-group {
+  display: flex; align-items: center; gap: var(--t-space-2);
+  padding-block: var(--t-space-4);
+  overflow-x: auto; scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+}
+.t-chip-group::-webkit-scrollbar { display: none; }
+.t-chip-group > * { flex: none; }
+
+/* ---- Tabs — [NEW] ----
+   Underline tabs for pages with sections (product detail, seller panel).
+   Not in the Sketch kit; the kit's "Tab" is a chip row, see ChipGroup. */
 .t-tabs { display: flex; gap: var(--t-space-4); border-block-end: var(--t-border-thin) solid var(--t-border-default); overflow-x: auto; scrollbar-width: none; }
 .t-tabs::-webkit-scrollbar { display: none; }
 .t-tab {
@@ -78,37 +138,42 @@
 /* ---- FilterChip  ← Filter/Cell/Cell · /Icon · /Icon+Chevron ----
 
    The layer style "Glass - Light - Filters" belongs to the CHIP, not to the
-   bar behind it: 30% white, a 1px white rim and two micro-shadows — one
-   lifting from above, one settling below. The bar itself is transparent.
+   bar behind it: 30% white, a 1px white edge OUTSIDE the shape and two
+   micro-shadows — a 2px haze lifting from above, a half-pixel line settling
+   below. The bar itself is transparent.
 
-   Padding is asymmetric and deliberately so: 12 at the inline start, 8 at the
-   end. A trailing chevron already carries its own optical margin, so an even
-   12/12 reads as a gap on the closing side. */
+   32 tall. Padding is asymmetric, as drawn: 12 at the inline start, 8 at the
+   end, because a trailing chevron carries its own optical margin. Icon to
+   label is 4; label to chevron is 2. Label is Medium 14/24. */
 .t-chip {
   display: inline-flex; align-items: center; gap: var(--t-space-1);
   block-size: var(--t-size-control-md);
-  padding-inline-start: var(--t-space-3);
-  padding-inline-end: var(--t-space-2);
-  border: var(--t-border-thin) solid var(--t-glass-filters-border);
+  padding-inline: var(--t-space-3) var(--t-space-2);
+  border: 0;
   border-radius: var(--t-radius-md);
   background: var(--t-glass-filters-fill);
-  box-shadow: var(--t-glass-filters-shadow);
+  box-shadow: 0 0 0 var(--t-border-thin) var(--t-glass-filters-border), var(--t-glass-filters-shadow);
   backdrop-filter: blur(var(--t-glass-blur));
   -webkit-backdrop-filter: blur(var(--t-glass-blur));
   font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14);
   font-weight: var(--t-font-weight-medium);
   color: var(--t-fg-default);
   white-space: nowrap; cursor: pointer;
-  transition: background-color var(--t-duration-micro) var(--t-easing-out), border-color var(--t-duration-micro) var(--t-easing-out);
+  transition: background-color var(--t-duration-micro) var(--t-easing-out), box-shadow var(--t-duration-micro) var(--t-easing-out);
 }
-.t-chip:hover { border-color: var(--t-border-control); }
+.t-chip .t-icon { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); flex: none; }
+.t-chip .t-chip__chevron { margin-inline-start: -2px; }
+/* The two leading actions of a filter bar (sort, all filters): even 8px
+   padding and a 20px glyph. */
+.t-chip--action { padding-inline: var(--t-space-2); }
+.t-chip--action .t-icon { inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); }
+.t-chip:is(:hover, [data-state="hover"]) { background: var(--t-glass-selected-fill); }
 .t-chip[aria-pressed="true"], .t-chip[data-active="true"] {
   background: var(--t-glass-selected-fill);
-  border-color: var(--t-border-selected);
-  border-width: var(--t-border-hairline);
+  box-shadow: inset 0 0 0 var(--t-border-hairline) var(--t-glass-selected-border);
+  color: var(--t-action-blue-ghost-fg);
 }
 .t-chip__count { color: var(--t-fg-secondary); font-variant-numeric: tabular-nums; }
-.t-chip .t-icon { inline-size: var(--t-size-icon-sm); block-size: var(--t-size-icon-sm); }
 
 /* ---- FilterBar  ← Filter/Filter ----
 
@@ -128,6 +193,7 @@
 }
 .t-filter-bar::-webkit-scrollbar { display: none; }
 .t-filter-bar > * { flex: none; }
+.t-filter-bar--flush { padding: 0; }
 .t-filter-bar__lead { flex: none; }
 
 /* A hairline that groups facets — 1×25 in the kit, so it stops short of the
@@ -163,6 +229,31 @@
 }
 .t-page-header__title { flex: 1; min-inline-size: 0; font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); font-weight: var(--t-font-weight-bold); }
 .t-page-header__sub { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
+
+/* ← Header/Profile: the store header at the top of a store sheet. No bar of
+   its own (it sits inside the sheet): close at the start, a 48px logo, name
+   over an open/closed line, overflow at the end. 12px between groups, 8px
+   between logo and text, the two text lines 8px apart. */
+.t-page-header--plain {
+  background: none; border: 0; box-shadow: none;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+  position: static; padding-inline: 0; min-block-size: 56px;
+}
+.t-page-header__close { flex: none; display: inline-grid; place-items: center; inline-size: 24px; block-size: 24px; padding: 0; border: 0; background: none; color: var(--t-fg-default); cursor: pointer; position: relative; }
+.t-page-header__close::after { content: ""; position: absolute; inset: -10px; }
+.t-page-header__close .t-icon { inline-size: 24px; block-size: 24px; }
+.t-page-header__media { flex: none; inline-size: 48px; block-size: 48px; border-radius: var(--t-radius-md); overflow: hidden; display: grid; place-items: center; }
+.t-page-header__media > * { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.t-page-header__main { flex: 1; min-inline-size: 0; display: flex; align-items: center; gap: var(--t-space-2); }
+.t-page-header__text { display: flex; flex-direction: column; gap: var(--t-space-2); min-inline-size: 0; }
+.t-page-header--plain .t-page-header__title { flex: none; font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); font-weight: var(--t-font-weight-bold); }
+
+/* The open/closed line: dot, state word in its colour, the time, and a
+   chevron link to the full hours. Bold 14/24. */
+.t-hours { display: inline-flex; align-items: center; gap: 2px; text-decoration: none; font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); font-weight: var(--t-font-weight-bold); color: var(--t-fg-default); white-space: nowrap; }
+.t-hours__state { color: var(--t-commerce-open-text); }
+.t-hours--closed .t-hours__state { color: var(--t-commerce-closed); }
+.t-hours .t-icon { inline-size: 16px; block-size: 16px; color: var(--t-fg-link); }
 
 /* ---- BottomNav — [NEW] ---- */
 .t-bottom-nav {
