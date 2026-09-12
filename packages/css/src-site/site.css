@@ -632,3 +632,28 @@ main[data-sym-mode="diff"] .sym__stage { background-image: none; }
 .related__card:hover { border-color: var(--t-border-control); }
 .related__name { font-weight: 700; font-size: 14px; }
 .related__sum { font-size: 12.5px; color: var(--t-fg-secondary); line-height: 1.6; margin-block-start: 2px; }
+
+/* ---- Playground ----
+   Choose a combination, see it, copy the markup that makes it. The options
+   come from the stylesheet, so the box cannot offer a variant that is not
+   real. */
+.play { border: 1px solid var(--t-border-subtle); border-radius: 12px; overflow: hidden; margin-block: 18px; }
+.play__controls { display: flex; flex-wrap: wrap; gap: 18px; padding: 14px 16px; border-block-end: 1px solid var(--t-border-subtle); background: var(--t-bg-fog); }
+.play__group { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.play__label { font-size: 12px; color: var(--t-fg-secondary); font-weight: 700; margin-inline-end: 2px; }
+.play__opt {
+  font: inherit; font-size: 12.5px; font-weight: 600;
+  padding: 5px 11px; min-block-size: 28px;
+  border: 1px solid var(--t-border-default); border-radius: 999px;
+  background: var(--t-bg-fog); color: var(--t-fg-secondary); cursor: pointer;
+}
+.play__opt[aria-pressed="true"] { background: var(--t-action-blue-soft-bg); border-color: var(--t-border-selected); color: var(--t-fg-link); }
+.play__stage {
+  display: grid; place-items: center; padding: 40px 20px; min-block-size: 140px;
+  background-color: var(--t-bg-canvas);
+  background-image: radial-gradient(var(--t-border-subtle) 1px, transparent 1px);
+  background-size: 12px 12px;
+  overflow-x: auto;
+}
+.play__bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 14px; border-block-start: 1px solid var(--t-border-subtle); font-size: 12px; color: var(--t-fg-secondary); }
+.play__code pre.code { max-block-size: 240px; overflow: auto; }

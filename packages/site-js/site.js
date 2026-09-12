@@ -215,6 +215,74 @@
   });
   addEventListener('resize', () => { clearTimeout(window.__anatomyT); window.__anatomyT = setTimeout(() => $$('.anatomy').forEach(drawAnatomy), 140); });
 
+  /* ---------- Playground ----------
+     One sample, the variants and states the stylesheet actually defines, and
+     the markup those choices produce. Nothing here is hand-written per
+     component: the options come from the build, which read them from the CSS. */
+  const STATE_FA = { default: 'پیش‌فرض', hover: 'هاور', focus: 'فوکوس', active: 'فشرده',
+                     disabled: 'غیرفعال', loading: 'بارگذاری', selected: 'انتخاب‌شده', error: 'خطا' };
+
+  function playHtml(cfg, pick) {
+    let html = cfg.sample;
+    // strip the sample's own modifiers for the groups we control, then apply
+    for (const group of ['variant', 'size']) {
+      const list = group === 'variant' ? cfg.variants : cfg.sizes;
+      if (!list.length) continue;
+      const strip = new RegExp(`\\s*${cfg.root}--(?:${list.join('|')})\\b`, 'g');
+      html = html.replace(/class="([^"]*)"/, (m, v) => `class="${v.replace(strip, '')}"`);
+      if (pick[group]) html = html.replace(/class="([^"]*)"/, (m, v) => `class="${v.trim()} ${cfg.root}--${pick[group]}"`);
+    }
+    html = html.replace(/^(<[a-z0-9-]+)([^>]*?)\s(?:data-state|aria-disabled|aria-invalid)="[^"]*"/gi, '$1$2');
+    if (pick.state && pick.state !== 'default') {
+      if (pick.state === 'selected') {
+        html = html.replace(/^(<[a-z0-9-]+)/i, '$1 data-state="selected"');
+        const open = /^<[^>]*>/.exec(html)?.[0] ?? '';
+        for (const a of ['aria-pressed', 'aria-checked', 'aria-selected']) {
+          if (open.includes(a + '=')) { html = html.replace(new RegExp(`${a}="[^"]*"`), `${a}="true"`); break; }
+        }
+      } else {
+        html = html.replace(/^(<[a-z0-9-]+)/i, `$1 data-state="${pick.state}"`);
+        if (pick.state === 'disabled') html = html.replace(/^(<[a-z0-9-]+)/i, '$1 aria-disabled="true"');
+        if (pick.state === 'error') html = html.replace(/^(<[a-z0-9-]+)/i, '$1 aria-invalid="true"');
+      }
+    }
+    return html.replace(/\s{2,}/g, ' ').replace(/class="\s+/g, 'class="').replace(/\s+"/g, '"');
+  }
+
+  $$('.play').forEach(box => {
+    let cfg;
+    try { cfg = JSON.parse(box.dataset.play); } catch (e) { return; }
+    const controls = $('.play__controls', box), stage = $('.play__stage', box), code = $('pre.code code', box);
+    const pick = { variant: cfg.variants[0] || '', size: cfg.sizes.includes('md') ? 'md' : (cfg.sizes[0] || ''), state: 'default' };
+
+    const group = (label, name, values, fa) => {
+      if (values.length < 2) return '';
+      return `<div class="play__group"><span class="play__label">${label}</span>` +
+        values.map(v => `<button type="button" class="play__opt" data-name="${name}" data-value="${v}" aria-pressed="${String(pick[name] === v)}">${fa ? (STATE_FA[v] ?? v) : v}</button>`).join('') +
+        '</div>';
+    };
+    controls.innerHTML = group('گونه', 'variant', cfg.variants) +
+                         group('اندازه', 'size', cfg.sizes) +
+                         group('حالت', 'state', cfg.states, true);
+
+    function paint() {
+      const html = playHtml(cfg, pick);
+      stage.innerHTML = html;
+      code.textContent = html;
+      /* The code box only gets its content now, so whether it scrolls — and
+         so whether it needs a tab stop — can only be known after this. */
+      remarkScrollers();
+    }
+    controls.addEventListener('click', e => {
+      const b = e.target.closest('.play__opt');
+      if (!b) return;
+      pick[b.dataset.name] = b.dataset.value;
+      $$(`.play__opt[data-name="${b.dataset.name}"]`, controls).forEach(o => o.setAttribute('aria-pressed', String(o === b)));
+      paint();
+    });
+    paint();
+  });
+
   /* ---------- Copy ---------- */
   function flash(btn, text) {
     const was = btn.textContent;

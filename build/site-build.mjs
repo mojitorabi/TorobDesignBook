@@ -179,6 +179,23 @@ function componentPage(c) {
     if (states.length > 2) body += S('states', 'حالت‌ها',
       `<div class="prose"><p>هر حالت با <code>data-state</code> هم قابل اعمال است، نه فقط با اشاره‌گر؛ برای همین می‌شود آن را در مستندات، در تست تصویری و در دیف پیکسلی دید.</p></div>`
       + stateMatrix(sample, states));
+
+    /* Playground. The controls are built from the same stylesheet reading the
+       matrices use, so it can only offer combinations that exist — and the
+       code box below shows exactly the markup the choices produce, which is
+       the thing a developer came for. */
+    if (variants.length + sizes.length + states.length > 3) {
+      const cfg = { root: c.root, variants, sizes, states, sample };
+      body += S('playground', 'آزمایشگاه', `<div class="prose"><p>ترکیب را انتخاب کنید؛ مارک‌آپ همان پایین ساخته می‌شود. گزینه‌ها از خود استایل‌شیت می‌آیند، پس هر چه اینجا هست واقعاً وجود دارد.</p></div>
+        <div class="play" data-play='${esc(JSON.stringify(cfg))}'>
+          <div class="play__controls"></div>
+          <div class="play__stage" dir="rtl" lang="fa"></div>
+          <div class="play__code">
+            <div class="play__bar"><span>HTML</span><button class="site-tool copy-btn" data-copy="play-${c.slug}">${UI_FA.copy}</button></div>
+            <pre class="code" id="play-${c.slug}"><code></code></pre>
+          </div>
+        </div>`);
+    }
   }
   if (c.anatomy?.length) {
     /* An annotated drawing beats a table of part names: the number in the
