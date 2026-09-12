@@ -345,7 +345,7 @@ export function stateMatrix(sample, states) {
       if (st === 'error') el = withAttr(el, 'aria-invalid', 'true');
     }
     return `<div class="matrix__cell">
-      <div class="matrix__stage" dir="rtl" lang="fa">${dedupeIds(el, 'mx' + ++matrixCell)}</div>
+      <div class="matrix__stage" dir="rtl" lang="fa" inert aria-hidden="true">${dedupeIds(el, 'mx' + ++matrixCell)}</div>
       <div class="matrix__label">${STATE_FA[st] ?? st}</div>
     </div>`;
   }).join('');
@@ -358,7 +358,7 @@ export function modifierMatrix(sample, root, mods, labels = {}) {
   const cells = mods.map(mod => {
     const el = sample.replace(/class="([^"]*)"/, (m, v) => `class="${v.replace(strip, '')} ${root}--${mod}"`);
     return `<div class="matrix__cell">
-      <div class="matrix__stage" dir="rtl" lang="fa">${dedupeIds(el, 'mx' + ++matrixCell)}</div>
+      <div class="matrix__stage" dir="rtl" lang="fa" inert aria-hidden="true">${dedupeIds(el, 'mx' + ++matrixCell)}</div>
       <div class="matrix__label"><code>--${mod}</code>${labels[mod] ? `<span>${labels[mod]}</span>` : ''}</div>
     </div>`;
   }).join('');

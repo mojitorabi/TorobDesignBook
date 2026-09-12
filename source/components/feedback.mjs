@@ -359,5 +359,199 @@ export default [
       }
     ],
     "react": "export function Spinner({ size = 'md', label = 'در حال بارگذاری' }) {\n  return (\n    <span role=\"status\">\n      <span className={clsx('t-spinner', size !== 'md' && `t-spinner--${size}`)} />\n      <span className=\"t-visually-hidden\">{label}</span>\n    </span>\n  );\n}"
+  },
+  {
+    "name": "Tooltip",
+    "root": "t-tooltip",
+    "slug": "tooltip",
+    "group": "Feedback",
+    "status": "new",
+    "legacy": [],
+    "summary": "نام یک کنترل فقط‌آیکون، روی دسکتاپ. نه بیشتر.",
+    "description": [
+      "راهنمای شناور در ترب یک کاربرد دارد: گفتن نام دکمه‌ای که فقط آیکون دارد، آن هم روی دسکتاپ که اشاره‌گر وجود دارد. روی لمس، هاور نیست؛ پس هر چیزی که فقط در راهنمای شناور گفته شود، برای کاربر موبایل گفته نشده است.",
+      "به همین دلیل این کامپوننت هرگز حامل اطلاعات لازم نیست. توضیح ضروری در متن صفحه می‌آید، خطا زیر فیلد، و جزئیات در <a href=\"../components/bottom-sheet.html\">BottomSheet</a>."
+    ],
+    "use": [
+      "برای نام دکمه‌های فقط‌آیکون در پنل فروشنده.",
+      "۲۰۰ تا ۳۰۰ میلی‌ثانیه تأخیر پیش از نمایش؛ بدون تأخیر، حرکت ماوس روی نوار ابزار چشمک‌زن می‌شود.",
+      "متن را در حد دو تا چهار کلمه نگه دارید."
+    ],
+    "avoid": [
+      "راهنمای شناور روی لمس. آنجا وجود ندارد.",
+      "قراردادن لینک یا دکمه داخلش؛ با صفحه‌کلید قابل رسیدن نیست.",
+      "استفاده به‌جای برچسب. <code>aria-label</code> جای برچسب است."
+    ],
+    "anatomy": [
+      [
+        "حباب",
+        "زمینهٔ معکوس، گردی ۴، ارتفاع ۲، بدون شکست خط.",
+        ".t-tooltip"
+      ]
+    ],
+    "props": [
+      [
+        "label",
+        "string",
+        "—",
+        "متن راهنما."
+      ],
+      [
+        "placement",
+        "'top' | 'bottom'",
+        "'top'",
+        "روی محور عمودی؛ محور افقی در راست‌چین قرینه می‌شود."
+      ],
+      [
+        "delay",
+        "number",
+        "250",
+        "میلی‌ثانیه تا نمایش."
+      ]
+    ],
+    "a11y": [
+      "متن راهنما نباید تنها نام کنترل باشد: دکمه <code>aria-label</code> خودش را دارد و راهنما فقط همان را نشان می‌دهد.",
+      "با <code>aria-describedby</code> وصل می‌شود، نه <code>aria-labelledby</code>، مگر اینکه واقعاً نام باشد.",
+      "با فوکوس صفحه‌کلید هم باز می‌شود، نه فقط با هاور (معیار ۱.۴.۱۳).",
+      "کلید Escape می‌بنددش و تا وقتی اشاره‌گر روی خودش است باز می‌ماند."
+    ],
+    "responsive": "زیر md اصلاً نمایش داده نمی‌شود. اگر متنی روی گوشی لازم است، جایش در صفحه است نه در راهنمای شناور.",
+    "specimens": [
+      {
+        "label": "روی دکمهٔ فقط‌آیکون",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div style=\"position:relative;padding-block-start:38px\">\n  <span class=\"t-tooltip\" data-open=\"true\" role=\"tooltip\" id=\"tt1\" style=\"inset-block-start:0;inset-inline-start:50%;translate:50% 0\">خروجی اکسل</span>\n  <button class=\"t-icon-btn\" aria-label=\"خروجی اکسل\" aria-describedby=\"tt1\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26 24v4H6v-4H4v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-4zM26 14l-1.41-1.41L17 20.17V2h-2v18.17l-7.59-7.58L6 14l10 10 10-10z\"/></svg></button>\n</div>",
+        "note": "در این نمونه باز نگه داشته شده. در محصول، با هاور یا فوکوس و با ۲۵۰ میلی‌ثانیه تأخیر باز می‌شود."
+      }
+    ],
+    "react": "export function Tooltip({ label, children, delay = 250 }) {\n  const [open, setOpen] = useState(false);\n  const timer = useRef();\n  const id = useId();\n  const show = () => { timer.current = setTimeout(() => setOpen(true), delay); };\n  const hide = () => { clearTimeout(timer.current); setOpen(false); };\n  useEffect(() => {\n    const onKey = e => e.key === 'Escape' && hide();\n    document.addEventListener('keydown', onKey);\n    return () => document.removeEventListener('keydown', onKey);\n  }, []);\n  return (\n    <span style={{ position: 'relative', display: 'inline-flex' }}\n          onPointerEnter={show} onPointerLeave={hide} onFocus={show} onBlur={hide}>\n      {cloneElement(children, { 'aria-describedby': id })}\n      <span className=\"t-tooltip\" role=\"tooltip\" id={id} data-open={open || undefined}>{label}</span>\n    </span>\n  );\n}"
+  },
+  {
+    "name": "ProgressBar",
+    "root": "t-progress",
+    "slug": "progress-bar",
+    "group": "Feedback",
+    "status": "new",
+    "legacy": [],
+    "summary": "کاری که پیشرفتش را می‌شود شمرد. اگر نمی‌شود، اسپینر است.",
+    "description": [
+      "نوار پیشرفت وقتی درست است که عددی پشتش باشد: چند فایل از چند فایل، چند مگابایت از چند مگابایت. اگر آن عدد را ندارید، <a href=\"spinner.html\">Spinner</a> صادق‌تر است — و نوار نامعین (<code>--indeterminate</code>) فقط برای کاری است که طولانی است اما اندازه‌اش معلوم نیست، مثل پردازش سمت سرور.",
+      "ارتفاعش ۴ پیکسل است و عمداً نازک؛ نوار پیشرفت یک حاشیه است، نه محتوای صفحه."
+    ],
+    "use": [
+      "برای بارگذاری فایل، درصد تکمیل پروفایل فروشنده، مراحل یک فرم بلند.",
+      "درصد را در کنارش بنویسید. نوار به‌تنهایی عدد را منتقل نمی‌کند.",
+      "وقتی به ۱۰۰ رسید، جایش را با نتیجه عوض کنید؛ نوار پر، پیام موفقیت نیست."
+    ],
+    "avoid": [
+      "نوار پیشرفت برای انتظار کوتاه زیر یک ثانیه.",
+      "پیشرفت جعلی که با زمان جلو می‌رود نه با کار.",
+      "نوار نامعین جایی که عدد واقعی در دسترس است."
+    ],
+    "anatomy": [
+      [
+        "ریل",
+        "۴ پیکسل، گردی کامل، زمینهٔ ملایم، سرریز پنهان.",
+        ".t-progress"
+      ],
+      [
+        "پرشده",
+        "آبی کنش، عرضش با <code>inline-size</code> عوض می‌شود و انتقال استاندارد دارد.",
+        ".t-progress__bar"
+      ]
+    ],
+    "props": [
+      [
+        "value",
+        "number",
+        "—",
+        "۰ تا ۱۰۰. اگر ندهید، نامعین می‌شود."
+      ],
+      [
+        "label",
+        "string",
+        "—",
+        "نام کاری که پیش می‌رود؛ برای صفحه‌خوان لازم است."
+      ]
+    ],
+    "a11y": [
+      "<code>role=\"progressbar\"</code> با <code>aria-valuenow</code>، <code>aria-valuemin</code> و <code>aria-valuemax</code>.",
+      "نوار نامعین <code>aria-valuenow</code> ندارد؛ نبودش یعنی «نمی‌دانیم».",
+      "نام دسترس‌پذیر لازم است: <code>aria-label</code> یا <code>aria-labelledby</code> به متن کنارش.",
+      "با <code>prefers-reduced-motion</code> انیمیشن نوار نامعین متوقف می‌شود."
+    ],
+    "responsive": "تمام‌عرض ظرفش. درصد را روی گوشی بالای نوار بگذارید نه کنارش، تا برای عددهای بلند جا کم نیاید.",
+    "specimens": [
+      {
+        "label": "معین و نامعین",
+        "canvas": "plain",
+        "stageClass": "spec__stage--stack",
+        "html": "<div style=\"inline-size:100%;max-inline-size:360px;display:flex;flex-direction:column;gap:18px\">\n  <div>\n    <div style=\"display:flex;justify-content:space-between;margin-block-end:6px\"><span class=\"t-body-sm\">بارگذاری تصاویر</span><span class=\"t-body-sm t-tone-secondary t-num\">۶۰٪</span></div>\n    <div class=\"t-progress\" role=\"progressbar\" aria-label=\"بارگذاری تصاویر\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\"><div class=\"t-progress__bar\" style=\"inline-size:60%\"></div></div>\n  </div>\n  <div>\n    <div class=\"t-body-sm\" style=\"margin-block-end:6px\">در حال پردازش</div>\n    <div class=\"t-progress t-progress--indeterminate\" role=\"progressbar\" aria-label=\"در حال پردازش\"><div class=\"t-progress__bar\"></div></div>\n  </div>\n</div>",
+        "note": "نوار بالا عدد دارد، پس <code>aria-valuenow</code> هم دارد. نوار پایین ندارد."
+      }
+    ],
+    "react": "export function ProgressBar({ value, label }) {\n  const indeterminate = value == null;\n  return (\n    <div className={clsx('t-progress', indeterminate && 't-progress--indeterminate')}\n         role=\"progressbar\" aria-label={label}\n         aria-valuenow={indeterminate ? undefined : value}\n         aria-valuemin={0} aria-valuemax={100}>\n      <div className=\"t-progress__bar\" style={indeterminate ? undefined : { inlineSize: `${value}%` }} />\n    </div>\n  );\n}"
+  },
+  {
+    "name": "InlineMessage",
+    "root": "t-inline-msg",
+    "slug": "inline-message",
+    "group": "Feedback",
+    "status": "new",
+    "legacy": [],
+    "summary": "یک خط زیر فیلد: راهنما، خطا یا تأیید — همان‌جا که مشکل است.",
+    "description": [
+      "خطای فرم باید کنار همان فیلدی باشد که مشکل دارد. <a href=\"alert.html\">Alert</a> بالای فرم می‌گوید «چیزی درست نیست» و کاربر را می‌فرستد دنبال اینکه کجا؛ پیام درون‌خطی خودش جواب است.",
+      "سه لحن دارد و هر سه ۱۲ پیکسل‌اند: خنثی برای راهنما، بحرانی برای خطا، مثبت برای تأییدی که ارزش گفتن دارد («این نام فروشگاه آزاد است»). رنگ تنها حامل معنا نیست؛ آیکون و متن هم هستند."
+    ],
+    "use": [
+      "خطا را بعد از خروج از فیلد نشان دهید، نه هنگام تایپ اولین حرف.",
+      "بگویید چه چیزی اشتباه است و چطور درست می‌شود: «شمارهٔ موبایل باید با ۰۹ شروع شود».",
+      "فضای پیام را از اول رزرو کنید تا فرم هنگام ظاهر شدن خطا نپرد."
+    ],
+    "avoid": [
+      "«ورودی نامعتبر». چیزی نمی‌گوید.",
+      "پاک‌کردن مقدار فیلد هنگام خطا.",
+      "خطای درون‌خطی و هشدار بالای فرم، هر دو برای یک مشکل."
+    ],
+    "anatomy": [
+      [
+        "ردیف",
+        "آیکون ۱۲ پیکسلی و متن، با فاصلهٔ ۴ پیکسل.",
+        ".t-inline-msg"
+      ]
+    ],
+    "props": [
+      [
+        "tone",
+        "'neutral' | 'critical' | 'positive'",
+        "'neutral'",
+        "لحن پیام."
+      ],
+      [
+        "children",
+        "ReactNode",
+        "—",
+        "متن پیام."
+      ]
+    ],
+    "a11y": [
+      "پیام با <code>aria-describedby</code> به فیلد وصل می‌شود تا صفحه‌خوان آن را با خود فیلد بخواند.",
+      "فیلد خطادار <code>aria-invalid=\"true\"</code> می‌گیرد.",
+      "پیام خطایی که بعد از ثبت ظاهر می‌شود، در ناحیهٔ <code>aria-live=\"polite\"</code> می‌نشیند.",
+      "آیکون تزئینی است و <code>aria-hidden</code> می‌گیرد؛ معنا در متن است."
+    ],
+    "responsive": "تمام‌عرض فیلد، و اجازه دارد به خط دوم برود. متن خطا را برای جاشدن کوتاه نکنید.",
+    "specimens": [
+      {
+        "label": "سه لحن",
+        "canvas": "plain",
+        "stageClass": "spec__stage--stack",
+        "html": "<div style=\"display:flex;flex-direction:column;gap:10px\">\n  <span class=\"t-inline-msg\">شمارهٔ موبایل برای اطلاع‌رسانی سفارش استفاده می‌شود.</span>\n  <span class=\"t-inline-msg t-inline-msg--critical\"><svg class=\"t-icon\" width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8,1C4.2,1,1,4.2,1,8s3.2,7,7,7s7-3.1,7-7S11.9,1,8,1z M7.5,4h1v5h-1V4z M8,12.2c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8c0.4,0,0.8,0.4,0.8,0.8S8.4,12.2,8,12.2z\"/></svg>شمارهٔ موبایل باید با ۰۹ شروع شود.</span>\n  <span class=\"t-inline-msg t-inline-msg--positive\"><svg class=\"t-icon\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg>این نام فروشگاه آزاد است.</span>\n</div>",
+        "note": "هر سه ۱۲ پیکسل‌اند. خطا و تأیید آیکون دارند، راهنما ندارد."
+      }
+    ],
+    "react": "export function InlineMessage({ tone = 'neutral', children }) {\n  return (\n    <span className={clsx('t-inline-msg', tone !== 'neutral' && `t-inline-msg--${tone}`)}>\n      {tone === 'critical' && <WarningIcon className=\"t-icon\" width={12} height={12} aria-hidden=\"true\" />}\n      {tone === 'positive' && <CheckIcon className=\"t-icon\" width={12} height={12} aria-hidden=\"true\" />}\n      {children}\n    </span>\n  );\n}"
   }
 ];

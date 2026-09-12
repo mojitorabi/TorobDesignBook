@@ -91,3 +91,81 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ---- Link — [NEW] ----
+   A link inside running text. The underline is the signal, not the colour:
+   colour alone fails 1.4.1, and a blue word in a Persian paragraph is hard to
+   spot at small sizes anyway. The offset keeps the line clear of the descenders
+   and the ی tails. */
+.t-link {
+  color: var(--t-fg-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  border-radius: var(--t-radius-xs);
+}
+.t-link:hover { text-decoration-thickness: 2px; }
+.t-link:active { color: var(--t-action-blue-bg-active); }
+.t-link--quiet { color: inherit; text-decoration-color: var(--t-border-control); }
+.t-link--quiet:hover { color: var(--t-fg-link); text-decoration-color: currentColor; }
+.t-link[aria-disabled="true"], .t-link[data-state~="disabled"] {
+  color: var(--t-fg-disabled); text-decoration: none; pointer-events: none;
+}
+/* An external link says so, and the mark is part of the link so it never
+   wraps onto its own line. */
+.t-link--external::after {
+  content: ""; display: inline-block;
+  inline-size: 0.7em; block-size: 0.7em;
+  margin-inline-start: 0.25em;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M9 2v1.4h3.6L6.3 9.7l1 1 6.3-6.3V8H15V2zM13 13H3V3h4V1.6H1.6v12.8h12.8V9H13z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* ---- Timeline — [NEW] ----
+   Order status, vertical, newest last. The rail is drawn by the items so a
+   timeline of any length needs no extra markup. */
+.t-timeline { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.t-timeline__item { position: relative; display: flex; gap: var(--t-space-3); padding-block-end: var(--t-space-5); }
+.t-timeline__item:last-child { padding-block-end: 0; }
+.t-timeline__item::before {
+  content: ""; position: absolute;
+  inset-inline-start: 11px; inset-block: 24px 0;
+  inline-size: var(--t-border-thin);
+  background: var(--t-border-default);
+}
+.t-timeline__item:last-child::before { content: none; }
+.t-timeline__dot {
+  flex: none; inline-size: 24px; block-size: 24px; border-radius: var(--t-radius-full);
+  display: grid; place-items: center;
+  background: var(--t-bg-subtle); color: var(--t-fg-secondary);
+  box-shadow: 0 0 0 3px var(--t-bg-canvas);
+}
+.t-timeline__item[data-state="done"] .t-timeline__dot { background: var(--t-status-positive-solid); color: var(--t-status-positive-on-solid); }
+.t-timeline__item[data-state="current"] .t-timeline__dot { background: var(--t-action-blue-bg); color: var(--t-action-blue-fg); }
+.t-timeline__item[data-state="failed"] .t-timeline__dot { background: var(--t-status-critical-solid); color: var(--t-status-critical-on-solid); }
+.t-timeline__body { display: flex; flex-direction: column; gap: 2px; padding-block-start: 2px; min-inline-size: 0; }
+.t-timeline__title { font-weight: var(--t-font-weight-bold); font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); }
+.t-timeline__meta { color: var(--t-fg-secondary); font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-variant-numeric: tabular-nums; }
+
+/* ---- Carousel — [NEW] ----
+   A scrolling rail with snap points. Scrollbar hidden, keyboard kept: the
+   rail is focusable and the arrows are real buttons, because a rail that can
+   only be swiped does not exist for a keyboard. */
+.t-carousel { position: relative; }
+.t-carousel__track {
+  display: flex; gap: var(--t-space-3);
+  overflow-x: auto; scroll-snap-type: inline mandatory;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  padding-block-end: var(--t-space-1);
+}
+.t-carousel__track::-webkit-scrollbar { display: none; }
+.t-carousel__item { flex: none; scroll-snap-align: start; }
+.t-carousel__nav {
+  position: absolute; inset-block-start: 50%; translate: 0 -50%;
+  z-index: 1;
+  display: none;
+}
+@media (hover: hover) and (min-width: 768px) { .t-carousel__nav { display: grid; } }
+.t-carousel__nav--prev { inset-inline-start: calc(var(--t-space-3) * -1); }
+.t-carousel__nav--next { inset-inline-end: calc(var(--t-space-3) * -1); }

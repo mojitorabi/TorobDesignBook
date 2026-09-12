@@ -351,4 +351,76 @@ export function DateField({ value, onChange, range, presets = true }) {
   );
 }`,
 },
+  {
+    "name": "TagInput",
+    "root": "t-taginput",
+    "slug": "tag-input",
+    "group": "Data",
+    "status": "new",
+    "legacy": [],
+    "summary": "چند مقدار در یک فیلد: کلیدواژه‌های محصول، برچسب سفارش.",
+    "description": [
+      "فروشنده هنگام ثبت محصول باید چند کلیدواژه بنویسد. یک فیلد متنی با ویرگول این کار را می‌کند اما هیچ بازخوردی نمی‌دهد: کاربر نمی‌داند چه چیزی ثبت شده و چطور یکی را پس بگیرد. ورودی برچسبی هر مقدار را به یک <a href=\"../components/tag.html\">Tag</a> تبدیل می‌کند، همان‌جا، به‌محض زدن Enter.",
+      "کلید ویرگول فارسی (،) هم مثل Enter عمل می‌کند، چون کاربر فارسی‌زبان آن را طبیعی‌تر می‌زند."
+    ],
+    "use": [
+      "برای مجموعه‌ای از مقدارهای کوتاه و بدون ترتیب.",
+      "Backspace روی فیلد خالی، آخرین برچسب را بردارد.",
+      "تکراری‌ها را بی‌صدا نادیده بگیرید، نه با خطا."
+    ],
+    "avoid": [
+      "برچسب‌های بلند؛ بالای دو کلمه، فهرست می‌خواهد نه برچسب.",
+      "سقف نامرئی. اگر بیش از ده تا نمی‌شود، همان اول بگویید.",
+      "حذف برچسب فقط با کلیک؛ صفحه‌کلید هم باید بتواند."
+    ],
+    "anatomy": [
+      [
+        "ظرف",
+        "کمینه ۴۸ پیکسل، برچسب‌ها می‌پیچند و ورودی بقیهٔ ردیف را می‌گیرد.",
+        ".t-taginput"
+      ],
+      [
+        "ورودی",
+        "بدون کادر و بدون حلقه؛ حلقهٔ فوکوس روی ظرف کشیده می‌شود.",
+        "input"
+      ]
+    ],
+    "props": [
+      [
+        "value / onChange",
+        "string[]",
+        "—",
+        "کنترل‌شده."
+      ],
+      [
+        "max",
+        "number",
+        "—",
+        "سقف تعداد؛ وقتی پر شد ورودی غیرفعال می‌شود و پیام می‌آید."
+      ],
+      [
+        "placeholder",
+        "string",
+        "—",
+        "فقط وقتی هیچ برچسبی نیست."
+      ]
+    ],
+    "a11y": [
+      "ظرف <code>:focus-within</code> دارد، پس حلقهٔ فوکوس ورودیِ داخل را نشان می‌دهد.",
+      "هر برچسب دکمهٔ حذف با نام کامل دارد: «حذف گوشی موبایل».",
+      "افزودن و حذف در یک ناحیهٔ <code>aria-live=\"polite\"</code> اعلام می‌شود.",
+      "Backspace روی ورودی خالی آخرین برچسب را برمی‌دارد و آن را اعلام می‌کند."
+    ],
+    "responsive": "در همهٔ اندازه‌ها تمام‌عرض. برچسب‌ها می‌پیچند؛ ظرف بلندتر می‌شود و ارتفاعش را قفل نکنید.",
+    "specimens": [
+      {
+        "label": "کلیدواژه‌های محصول",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div class=\"t-field\" style=\"max-inline-size:420px\">\n  <label class=\"t-field__label\" for=\"tg1\">کلیدواژه‌ها</label>\n  <div class=\"t-taginput\">\n    <span class=\"t-tag\">گوشی موبایل<button class=\"t-tag__remove\" aria-label=\"حذف گوشی موبایل\"><svg class=\"t-icon\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button></span>\n    <span class=\"t-tag\">اپل<button class=\"t-tag__remove\" aria-label=\"حذف اپل\"><svg class=\"t-icon\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button></span>\n    <input id=\"tg1\" placeholder=\"کلیدواژه و Enter\">\n  </div>\n  <span class=\"t-field__hint\">تا ده کلیدواژه</span>\n</div>",
+        "note": "Enter و ویرگول فارسی هر دو برچسب می‌سازند. Backspace روی فیلد خالی آخری را برمی‌دارد."
+      }
+    ],
+    "react": "export function TagInput({ value, onChange, max, placeholder }) {\n  const [draft, setDraft] = useState('');\n  const commit = () => {\n    const t = draft.trim();\n    if (t && !value.includes(t) && (!max || value.length < max)) onChange([...value, t]);\n    setDraft('');\n  };\n  return (\n    <div className=\"t-taginput\">\n      {value.map(t => (\n        <Tag key={t} label={t} onRemove={() => onChange(value.filter(x => x !== t))} />\n      ))}\n      <input value={draft} placeholder={value.length ? undefined : placeholder}\n             onChange={e => setDraft(e.target.value)}\n             onKeyDown={e => {\n               if (e.key === 'Enter' || e.key === '،') { e.preventDefault(); commit(); }\n               if (e.key === 'Backspace' && !draft) onChange(value.slice(0, -1));\n             }} />\n    </div>\n  );\n}"
+  }
 ];

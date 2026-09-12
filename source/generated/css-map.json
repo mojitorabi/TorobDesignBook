@@ -412,6 +412,60 @@
   ],
   "attrs": []
  },
+ "t-otp": {
+  "mods": [
+   "error"
+  ],
+  "parts": [
+   "slot"
+  ],
+  "states": [
+   "hover",
+   "disabled",
+   "focus-visible"
+  ],
+  "attrs": [
+   "data-filled=true",
+   "data-state=disabled",
+   "data-state=error"
+  ]
+ },
+ "t-upload": {
+  "mods": [
+   "error"
+  ],
+  "parts": [
+   "icon",
+   "title",
+   "hint"
+  ],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "data-state=active",
+   "data-dragging=true",
+   "data-state=disabled",
+   "data-state=error"
+  ]
+ },
+ "t-upload-list": {
+  "mods": [],
+  "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-upload-item": {
+  "mods": [],
+  "parts": [
+   "name",
+   "size"
+  ],
+  "states": [],
+  "attrs": []
+ },
  "t-segmented": {
   "mods": [
    "block"
@@ -1124,6 +1178,48 @@
    "directional"
   ],
   "parts": [],
+  "states": [],
+  "attrs": []
+ },
+ "t-link": {
+  "mods": [
+   "quiet",
+   "external"
+  ],
+  "parts": [],
+  "states": [
+   "hover",
+   "active",
+   "disabled"
+  ],
+  "attrs": [
+   "aria-disabled=true",
+   "data-state=disabled"
+  ]
+ },
+ "t-timeline": {
+  "mods": [],
+  "parts": [
+   "item",
+   "dot",
+   "body",
+   "title",
+   "meta"
+  ],
+  "states": [],
+  "attrs": [
+   "data-state=done",
+   "data-state=current",
+   "data-state=failed"
+  ]
+ },
+ "t-carousel": {
+  "mods": [],
+  "parts": [
+   "track",
+   "item",
+   "nav"
+  ],
   "states": [],
   "attrs": []
  },

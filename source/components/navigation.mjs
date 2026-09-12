@@ -459,5 +459,159 @@ export default [
       }
     ],
     "react": "export function Breadcrumb({ items }) {\n  return (\n    <nav className=\"t-breadcrumb\" aria-label=\"مسیر\">\n      <ol style={{ display: 'contents' }}>\n        {items.map((it, i) => {\n          const last = i === items.length - 1;\n          return (\n            <li key={it.href} style={{ display: 'contents' }}>\n              {last ? <span className=\"t-breadcrumb__item\" aria-current=\"page\">{it.label}</span>\n                    : <><a className=\"t-breadcrumb__item\" href={it.href}>{it.label}</a>\n                        <span className=\"t-breadcrumb__sep\" aria-hidden=\"true\">›</span></>}\n            </li>\n          );\n        })}\n      </ol>\n    </nav>\n  );\n}"
+  },
+  {
+    "name": "Pagination",
+    "root": "t-pagination",
+    "slug": "pagination",
+    "group": "Navigation",
+    "status": "new",
+    "legacy": [],
+    "summary": "صفحه‌بندی برای پنل فروشنده، جایی که باید بشود به ردیف ۴۰۰ برگشت.",
+    "description": [
+      "اپلیکیشن خریدار اسکرول بی‌نهایت دارد و درست هم هست: کسی که دنبال یک کالاست، شمارهٔ صفحه برایش معنا ندارد. پنل فروشنده برعکس است. فروشنده‌ای که سفارش ۱۰۲۳۴ را دیده و حالا می‌خواهد برگردد سراغش، باید بتواند به همان صفحه برگردد — و بعد از رفرش هم همان‌جا باشد.",
+      "پس قاعده ساده است: <strong>صفحه‌بندی در پنل، اسکرول بی‌نهایت در اپلیکیشن</strong>. شمارهٔ صفحه در نشانی صفحه بماند تا لینک قابل اشتراک باشد."
+    ],
+    "use": [
+      "همیشه تعداد کل را نشان دهید: «۱ تا ۲۵ از ۴۸۳».",
+      "صفحهٔ جاری را با <code>aria-current=\"page\"</code> علامت بزنید، نه فقط با رنگ.",
+      "برای پرش‌های بلند، اولین و آخرین صفحه را همیشه نشان دهید."
+    ],
+    "avoid": [
+      "صفحه‌بندی در فهرست محصولات اپلیکیشن.",
+      "شمارهٔ صفحه‌ای که در نشانی صفحه نیست؛ دکمهٔ برگشت مرورگر آن را می‌شکند.",
+      "بیش از حدود هفت شماره در یک ردیف؛ بقیه با «…» جمع شوند."
+    ],
+    "anatomy": [
+      [
+        "ردیف",
+        "فقط یک فلکس با فاصلهٔ ۴ پیکسل؛ هر عنصر خودش هدف لمس است.",
+        ".t-pagination"
+      ],
+      [
+        "دکمهٔ صفحه",
+        "کمینه ۳۲ پیکسل، ارقام جدولی تا عرض عددها نپرد.",
+        ".t-pagination__page"
+      ],
+      [
+        "صفحهٔ جاری",
+        "زمینهٔ آبی پر، Bold، و <code>aria-current=\"page\"</code>.",
+        ".t-pagination__page[aria-current=\"page\"]"
+      ]
+    ],
+    "props": [
+      [
+        "page / onChange",
+        "number",
+        "—",
+        "کنترل‌شده؛ از یک شروع می‌شود."
+      ],
+      [
+        "pageCount",
+        "number",
+        "—",
+        "تعداد کل صفحه‌ها."
+      ],
+      [
+        "siblings",
+        "number",
+        "1",
+        "چند شماره در هر طرف صفحهٔ جاری دیده شود."
+      ]
+    ],
+    "a11y": [
+      "کل ردیف در <code>&lt;nav aria-label=\"صفحه‌بندی\"&gt;</code> می‌نشیند.",
+      "صفحهٔ جاری <code>aria-current=\"page\"</code> می‌گیرد؛ رنگ به‌تنهایی کافی نیست.",
+      "دکمه‌های قبلی و بعدی در اولین و آخرین صفحه <code>disabled</code> می‌شوند، نه پنهان — جابه‌جایی کنترل‌ها بدتر از غیرفعال‌بودنشان است.",
+      "هر شماره نام دسترس‌پذیر کامل دارد: «صفحهٔ ۳»، نه «۳»."
+    ],
+    "responsive": "روی گوشی فقط قبلی، جاری و بعدی می‌مانند و شماره‌های میانی حذف می‌شوند. در راست‌چین، «بعدی» سمت چپ است و آیکونش قرینه می‌شود.",
+    "specimens": [
+      {
+        "label": "صفحه‌بندی پنل",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<nav class=\"t-pagination\" aria-label=\"صفحه‌بندی\">\n  <button class=\"t-pagination__page\" aria-label=\"صفحهٔ قبلی\" disabled><svg class=\"t-icon t-icon--sm t-icon--directional\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M11 8 6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z\"/></svg></button>\n  <button class=\"t-pagination__page\" aria-current=\"page\" aria-label=\"صفحهٔ ۱\">۱</button>\n  <button class=\"t-pagination__page\" aria-label=\"صفحهٔ ۲\">۲</button>\n  <button class=\"t-pagination__page\" aria-label=\"صفحهٔ ۳\">۳</button>\n  <span class=\"t-pagination__page\" aria-hidden=\"true\">…</span>\n  <button class=\"t-pagination__page\" aria-label=\"صفحهٔ ۲۰\">۲۰</button>\n  <button class=\"t-pagination__page\" aria-label=\"صفحهٔ بعدی\"><svg class=\"t-icon t-icon--sm t-icon--directional\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M5 8 10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z\"/></svg></button>\n</nav>",
+        "note": "«قبلی» در صفحهٔ اول غیرفعال است، نه پنهان. جای کنترل‌ها ثابت می‌ماند."
+      }
+    ],
+    "react": "export function Pagination({ page, pageCount, onChange, siblings = 1 }) {\n  const pages = pageRange(page, pageCount, siblings); // [1, '…', 4, 5, 6, '…', 20]\n  return (\n    <nav className=\"t-pagination\" aria-label=\"صفحه‌بندی\">\n      <button className=\"t-pagination__page\" aria-label=\"صفحهٔ قبلی\"\n              disabled={page === 1} onClick={() => onChange(page - 1)}><ChevronStart /></button>\n      {pages.map((p, i) => p === '…'\n        ? <span key={`gap${i}`} className=\"t-pagination__page\" aria-hidden=\"true\">…</span>\n        : <button key={p} className=\"t-pagination__page\" aria-label={`صفحهٔ ${toFa(p)}`}\n                  aria-current={p === page ? 'page' : undefined}\n                  onClick={() => onChange(p)}>{toFa(p)}</button>)}\n      <button className=\"t-pagination__page\" aria-label=\"صفحهٔ بعدی\"\n              disabled={page === pageCount} onClick={() => onChange(page + 1)}><ChevronEnd /></button>\n    </nav>\n  );\n}"
+  },
+  {
+    "name": "Steps",
+    "root": "t-steps",
+    "slug": "steps",
+    "group": "Navigation",
+    "status": "new",
+    "legacy": [],
+    "summary": "یک کار چندمرحله‌ای، با جایی که هستید و راهی که مانده.",
+    "description": [
+      "ثبت فروشگاه، افزودن محصول و تسویه، کارهایی‌اند که در یک صفحه جا نمی‌شوند. مرحله‌نما دو چیز می‌گوید: <strong>کجای کار هستید</strong> و <strong>چقدر مانده</strong>. اگر پاسخ دومی معلوم نیست، مرحله‌نما نگذارید؛ نوار پیشرفت صادق‌تر است.",
+      "مرحلهٔ انجام‌شده سبز می‌شود و تیک می‌گیرد، مرحلهٔ جاری آبی، و مرحله‌های بعدی خاکستری. سه رنگ، سه معنا، و هیچ‌کدام تنها حامل معنا نیست: شماره و تیک هم هستند."
+    ],
+    "use": [
+      "بین سه تا پنج مرحله. کمتر از سه، مرحله‌نما لازم ندارد.",
+      "اجازهٔ برگشت به مرحله‌های انجام‌شده را بدهید.",
+      "نام مرحله را با اسم بنویسید («اطلاعات فروشگاه»)، نه «مرحلهٔ ۲»."
+    ],
+    "avoid": [
+      "مرحله‌نما برای فرمی که می‌شود یک‌صفحه‌ای کرد.",
+      "پرش به مرحله‌ای که هنوز داده‌اش آماده نیست.",
+      "نمایش فقط رنگ بدون شماره یا تیک."
+    ],
+    "anatomy": [
+      [
+        "ردیف",
+        "فلکس با فاصلهٔ ۸ پیکسل؛ خط رابط بین مرحله‌ها کشیده می‌شود.",
+        ".t-steps"
+      ],
+      [
+        "نشانگر",
+        "دایرهٔ ۲۴ پیکسلی با شماره یا تیک.",
+        ".t-steps__dot"
+      ],
+      [
+        "خط رابط",
+        "۲ پیکسل، فضای باقی‌مانده را پر می‌کند.",
+        ".t-steps__bar"
+      ]
+    ],
+    "props": [
+      [
+        "steps",
+        "{ label }[]",
+        "—",
+        "نام مرحله‌ها به ترتیب."
+      ],
+      [
+        "current",
+        "number",
+        "0",
+        "اندیس مرحلهٔ جاری."
+      ],
+      [
+        "onJump",
+        "(i) => void",
+        "—",
+        "اگر بدهید، مرحله‌های انجام‌شده قابل کلیک می‌شوند."
+      ]
+    ],
+    "a11y": [
+      "کل مرحله‌نما <code>&lt;nav aria-label&gt;</code> می‌گیرد و مرحله‌ها یک <code>&lt;ol&gt;</code> هستند؛ ترتیب بخشی از معناست.",
+      "مرحلهٔ جاری <code>aria-current=\"step\"</code> می‌گیرد.",
+      "وضعیت هر مرحله در متن هم می‌آید: «انجام شد»، «در حال انجام»، «مانده» — برای صفحه‌خوان، رنگ وجود ندارد.",
+      "مرحلهٔ غیرقابل‌دسترس <code>aria-disabled</code> می‌گیرد و فوکوس‌پذیر می‌ماند تا کاربر بفهمد هست اما هنوز نه."
+    ],
+    "responsive": "زیر md فقط مرحلهٔ جاری با شمارنده («مرحلهٔ ۲ از ۴») می‌ماند. چهار دایره و سه خط در ۳۶۰ پیکسل جا نمی‌شوند و فشرده‌کردنشان هیچ‌کدام را خوانا نمی‌گذارد.",
+    "specimens": [
+      {
+        "label": "ثبت فروشگاه",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<nav class=\"t-steps\" aria-label=\"مراحل ثبت فروشگاه\" style=\"inline-size:100%;max-inline-size:460px\">\n  <span class=\"t-steps__item\" data-state=\"done\"><span class=\"t-steps__dot\"><svg class=\"t-icon\" width=\"14\" height=\"14\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span><span class=\"t-body-sm\">حساب</span></span>\n  <span class=\"t-steps__bar\"></span>\n  <span class=\"t-steps__item\" data-state=\"current\" aria-current=\"step\"><span class=\"t-steps__dot\">۲</span><span class=\"t-body-sm\">اطلاعات فروشگاه</span></span>\n  <span class=\"t-steps__bar\"></span>\n  <span class=\"t-steps__item\"><span class=\"t-steps__dot\">۳</span><span class=\"t-body-sm t-tone-secondary\">مدارک</span></span>\n</nav>",
+        "note": "انجام‌شده تیک دارد، جاری شماره. رنگ تنها حامل معنا نیست."
+      }
+    ],
+    "react": "export function Steps({ steps, current = 0, onJump }) {\n  return (\n    <nav className=\"t-steps\" aria-label=\"مراحل\">\n      {steps.map((s, i) => (\n        <Fragment key={s.label}>\n          {i > 0 && <span className=\"t-steps__bar\" />}\n          <span className=\"t-steps__item\"\n                data-state={i < current ? 'done' : i === current ? 'current' : undefined}\n                aria-current={i === current ? 'step' : undefined}>\n            <span className=\"t-steps__dot\">{i < current ? <CheckIcon /> : toFa(i + 1)}</span>\n            <span className=\"t-body-sm\">{s.label}</span>\n            <span className=\"t-visually-hidden\">\n              {i < current ? 'انجام شد' : i === current ? 'در حال انجام' : 'مانده'}\n            </span>\n          </span>\n        </Fragment>\n      ))}\n    </nav>\n  );\n}"
   }
 ];

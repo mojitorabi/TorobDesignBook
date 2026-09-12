@@ -179,7 +179,7 @@ function componentPage(c) {
       </li>`;
     }).join('');
     const diagram = (marked.length && anatomySample) ? `<div class="anatomy" data-anatomy='${esc(JSON.stringify(marked.map(m => m[2])))}'>
-      <div class="anatomy__stage" dir="rtl" lang="fa">${dedupeIds(anatomySample, 'an')}</div>
+      <div class="anatomy__stage" dir="rtl" lang="fa" inert aria-hidden="true">${dedupeIds(anatomySample, 'an')}</div>
     </div>` : '';
     body += S('anatomy', UI_FA.anatomy, diagram + `<ol class="anatomy__legend">${legend}</ol>`);
   }

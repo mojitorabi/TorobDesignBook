@@ -362,5 +362,73 @@ export default [
       }
     ],
     "react": "const MARK = { telegram: TelegramMark, whatsapp: WhatsappMark, bale: BaleMark };\n\nexport function SocialLink({ service, href, label, showLabel = true }) {\n  const Mark = MARK[service];\n  return (\n    <a className=\"t-social\" href={href} rel=\"noopener\"\n       aria-label={showLabel ? undefined : label}>\n      <span className=\"t-social__mark\"><Mark aria-hidden=\"true\" /></span>\n      {showLabel && label}\n    </a>\n  );\n}"
+  },
+  {
+    "name": "Link",
+    "root": "t-link",
+    "slug": "link",
+    "group": "Navigation",
+    "status": "new",
+    "legacy": [],
+    "summary": "پیوند درون متن. خط زیرش، نه رنگش، آن را پیوند می‌کند.",
+    "description": [
+      "پیوندی که فقط با رنگ مشخص شده، معیار ۱.۴.۱ را رد می‌کند: کسی که تفاوت آبی و سیاه را نمی‌بیند، پیوند را نمی‌بیند. پس در این سیستم پیوندِ درون متن همیشه خط زیر دارد و رنگ، تأکید دوم است.",
+      "فاصلهٔ خط از متن ۳ پیکسل است، بیشتر از پیش‌فرض مرورگر. در فارسی دنباله‌های «ی» و «ج» پایین‌تر می‌روند و خط پیش‌فرض رویشان می‌افتد.",
+      "پیوند بیرونی علامت خودش را دارد و آن علامت بخشی از خود پیوند است، نه یک آیکون جدا؛ وگرنه در انتهای خط تنها می‌ماند."
+    ],
+    "use": [
+      "برای رفتن به جایی. کاری که انجام می‌شود، دکمه است نه پیوند.",
+      "متن پیوند مقصد را نام ببرد: «شرایط ضمانت ترب»، نه «اینجا».",
+      "پیوند بیرونی را علامت بزنید و در تب تازه باز کنید."
+    ],
+    "avoid": [
+      "پیوند بدون خط زیر در متن.",
+      "«بیشتر بخوانید» چند بار در یک صفحه؛ برای صفحه‌خوان همه یکی‌اند.",
+      "دکمه‌ای که شبیه پیوند است و برعکس."
+    ],
+    "anatomy": [
+      [
+        "پیوند",
+        "رنگ پیوند، خط زیر ۱ پیکسلی با فاصلهٔ ۳ پیکسل؛ در هاور ضخیم‌تر می‌شود.",
+        ".t-link"
+      ]
+    ],
+    "props": [
+      [
+        "href",
+        "string",
+        "—",
+        "مقصد."
+      ],
+      [
+        "variant",
+        "'default' | 'quiet'",
+        "'default'",
+        "آرام: رنگ متن را نگه می‌دارد و فقط خط زیر دارد."
+      ],
+      [
+        "external",
+        "boolean",
+        "false",
+        "علامت بیرونی و <code>rel=\"noopener\"</code>."
+      ]
+    ],
+    "a11y": [
+      "پیوند باید <code>href</code> داشته باشد؛ <code>&lt;a&gt;</code> بدون آن برای صفحه‌کلید وجود ندارد.",
+      "متن پیوند بیرون از متن اطراف هم معنا بدهد.",
+      "بازشدن در تب تازه در متن پیوند اعلام شود: «(در تب تازه)» یا برچسب پنهان.",
+      "حلقهٔ فوکوس همان حلقهٔ سراسری است و گردی ۴ می‌گیرد تا دور کلمه بنشیند."
+    ],
+    "responsive": "بدون تغییر. فقط مطمئن شوید پیوندهای پشت‌سرهم در یک خط، دست‌کم ۲۴ پیکسل ارتفاع هدف دارند.",
+    "specimens": [
+      {
+        "label": "درون متن",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<p class=\"t-body-md\" style=\"max-inline-size:420px;margin:0\">این کالا <a class=\"t-link\" href=\"#\">ضمانت ترب</a> دارد. شرایط کامل را در <a class=\"t-link t-link--external\" href=\"#\" rel=\"noopener\">صفحهٔ ضمانت<span class=\"t-visually-hidden\"> (در تب تازه)</span></a> بخوانید، یا با <a class=\"t-link t-link--quiet\" href=\"#\">پشتیبانی</a> تماس بگیرید.</p>",
+        "note": "سه گونه در یک جمله: معمولی، بیرونی، آرام."
+      }
+    ],
+    "react": "export function Link({ href, variant = 'default', external, children }) {\n  return (\n    <a href={href}\n       className={clsx('t-link', variant === 'quiet' && 't-link--quiet', external && 't-link--external')}\n       target={external ? '_blank' : undefined}\n       rel={external ? 'noopener' : undefined}>\n      {children}\n      {external && <span className=\"t-visually-hidden\"> (در تب تازه)</span>}\n    </a>\n  );\n}"
   }
 ];

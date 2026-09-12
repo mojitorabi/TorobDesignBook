@@ -317,5 +317,133 @@ export default [
       }
     ],
     "react": "export function Menu({ trigger, items, align = 'start' }) {\n  const [open, setOpen] = useState(false);\n  const isPhone = useMediaQuery('(max-width: 767px)');\n  if (isPhone) return <><span onClick={() => setOpen(true)}>{trigger}</span>\n    <BottomSheet open={open} onClose={() => setOpen(false)} title=\"عملیات\">\n      {items.map(i => <ListItem key={i.label} title={i.label} lead={i.icon} onClick={i.onSelect} />)}\n    </BottomSheet></>;\n  return (\n    <Popover open={open} onOpenChange={setOpen} trigger={trigger} align={align}>\n      <div className=\"t-popover\" role=\"menu\">\n        {items.map(i => i.separator\n          ? <div key={i.key} className=\"t-menu-sep\" role=\"separator\" />\n          : <button key={i.label} role=\"menuitem\" onClick={i.onSelect}\n                    className={clsx('t-menu-item', i.tone === 'critical' && 't-menu-item--critical')}>\n              {i.icon}{i.label}\n            </button>)}\n      </div>\n    </Popover>\n  );\n}"
+  },
+  {
+    "name": "Popover",
+    "root": "t-popover",
+    "slug": "popover",
+    "group": "Overlays",
+    "status": "new",
+    "legacy": [],
+    "summary": "یک لایهٔ کوچک که به عنصری چسبیده است. پایهٔ منو و انتخابگرها.",
+    "description": [
+      "پاپ‌اور خودش محتوا ندارد؛ ظرفی است که <a href=\"menu.html\">Menu</a>، انتخابگر تاریخ و فهرست فیلتر داخلش می‌نشینند. سه چیز را تضمین می‌کند: <strong>در کادر دید می‌ماند</strong> (اگر جا نباشد می‌چرخد)، <strong>با Escape بسته می‌شود</strong>، و <strong>فوکوس را به دکمهٔ آغازگر برمی‌گرداند</strong>.",
+      "روی محور منطقی می‌چرخد، پس در راست‌چین بدون کد اضافه درست قرار می‌گیرد. زیر md معمولاً اصلاً پاپ‌اور نیست: به <a href=\"bottom-sheet.html\">BottomSheet</a> تبدیل می‌شود، چون رسیدن به بالای صفحه با یک دست سخت است."
+    ],
+    "use": [
+      "برای محتوای کوتاهی که به یک کنترل وابسته است.",
+      "عرض کمینه ۱۸۰ پیکسل تا فهرست‌های کوتاه لاغر نشوند.",
+      "با کلیک بیرون و Escape ببندید، و فوکوس را برگردانید."
+    ],
+    "avoid": [
+      "پاپ‌اور روی پاپ‌اور.",
+      "فرم بلند داخل پاپ‌اور؛ آن یک برگه یا صفحه است.",
+      "بازشدن با هاور. روی لمس هاور وجود ندارد."
+    ],
+    "anatomy": [
+      [
+        "ظرف",
+        "گردی ۱۲، کادر مویی، ارتفاع ۲، حاشیهٔ داخلی ۴ پیکسل.",
+        ".t-popover"
+      ]
+    ],
+    "props": [
+      [
+        "open / onOpenChange",
+        "boolean",
+        "—",
+        "کنترل‌شده."
+      ],
+      [
+        "align",
+        "'start' | 'center' | 'end'",
+        "'start'",
+        "روی محور منطقی، پس در راست‌چین قرینه می‌شود."
+      ],
+      [
+        "adaptive",
+        "boolean",
+        "true",
+        "زیر md به برگهٔ پایینی تبدیل می‌شود."
+      ]
+    ],
+    "a11y": [
+      "دکمهٔ آغازگر <code>aria-expanded</code> و <code>aria-haspopup</code> می‌گیرد.",
+      "فوکوس هنگام باز شدن وارد لایه می‌شود و هنگام بستن به آغازگر برمی‌گردد.",
+      "کلید Escape می‌بندد، و کلیک بیرون هم.",
+      "اگر محتوا منو است، نقش‌های منو روی خود محتوا می‌نشیند نه روی ظرف."
+    ],
+    "responsive": "از md پاپ‌اور، زیر آن برگهٔ پایینی. همان مارک‌آپ، همان پراپ‌ها.",
+    "specimens": [
+      {
+        "label": "پاپ‌اور با فهرست",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div class=\"t-popover\" style=\"position:relative;inset:auto;animation:none;inline-size:220px\">\n  <div style=\"padding:6px 10px;font-size:12px;color:var(--t-fg-secondary)\">مرتب‌سازی بر اساس</div>\n  <button class=\"t-menu-item\">مرتبط‌ترین</button>\n  <button class=\"t-menu-item\">ارزان‌ترین</button>\n  <button class=\"t-menu-item\">نزدیک‌ترین</button>\n</div>",
+        "note": "ظرف فقط لایه است. نقش‌ها به محتوا تعلق دارند، نه به پاپ‌اور."
+      }
+    ],
+    "react": "export function Popover({ open, onOpenChange, trigger, align = 'start', children }) {\n  const ref = useRef(null);\n  const isPhone = useMediaQuery('(max-width: 767px)');\n  useReturnFocus(ref, open);\n  if (isPhone) return <BottomSheet open={open} onClose={() => onOpenChange(false)}>{children}</BottomSheet>;\n  return (\n    <span style={{ position: 'relative' }}>\n      {cloneElement(trigger, { 'aria-expanded': open, 'aria-haspopup': 'true' })}\n      {open && <div className=\"t-popover\" ref={ref} data-align={align}>{children}</div>}\n    </span>\n  );\n}"
+  },
+  {
+    "name": "Drawer",
+    "root": "t-drawer",
+    "slug": "drawer",
+    "group": "Overlays",
+    "status": "new",
+    "legacy": [],
+    "summary": "پنل کناری تمام‌ارتفاع: ناوبری پنل روی گوشی، فیلترهای دسکتاپ.",
+    "description": [
+      "کشو از لبهٔ آغاز محور می‌آید — در راست‌چین یعنی از راست — و تمام ارتفاع را می‌گیرد. دو کاربرد دارد و هر دو در پنل فروشنده‌اند: <strong>ناوبری</strong> وقتی نوار کناری روی گوشی جمع شده، و <strong>فیلترهای بلند</strong> روی دسکتاپ که ارزش گرفتن تمام ارتفاع را دارند.",
+      "تفاوتش با <a href=\"bottom-sheet.html\">BottomSheet</a> جهت نیست، عمر است: برگه برای یک انتخاب باز می‌شود و بسته می‌شود؛ کشو می‌تواند باز بماند و کاربر کنارش کار کند."
+    ],
+    "use": [
+      "برای ناوبری پنل روی عرض‌های کوچک.",
+      "عرض را زیر ۳۲۰ پیکسل نگه دارید تا محتوای پشتش دیده شود.",
+      "اگر کشو ماندنی است، پردهٔ پشت نگذارید؛ پرده یعنی «اول این را تمام کن»."
+    ],
+    "avoid": [
+      "کشو برای محتوای کوتاه. آن پاپ‌اور است.",
+      "کشو از لبهٔ انتهای محور برای ناوبری؛ در راست‌چین ناوبری از راست می‌آید.",
+      "کشویی که فقط با کشیدن بسته می‌شود."
+    ],
+    "anatomy": [
+      [
+        "پنل",
+        "تمام‌ارتفاع، عرض کمینهٔ ۸۶٪ کادر دید تا ۳۲۰ پیکسل، ارتفاع ۳.",
+        ".t-drawer"
+      ]
+    ],
+    "props": [
+      [
+        "open / onClose",
+        "boolean",
+        "—",
+        "کنترل‌شده."
+      ],
+      [
+        "modal",
+        "boolean",
+        "true",
+        "با پرده و تلهٔ فوکوس؛ اگر <code>false</code> باشد، کاربر می‌تواند کنارش کار کند."
+      ]
+    ],
+    "a11y": [
+      "کشوی پرده‌دار <code>role=\"dialog\" aria-modal=\"true\"</code> می‌گیرد و فوکوس در آن می‌ماند.",
+      "کشوی بدون پرده <code>aria-modal</code> نمی‌گیرد؛ ادعای نادرست بدتر از نبودن است.",
+      "کلید Escape می‌بندد و فوکوس به دکمهٔ آغازگر برمی‌گردد.",
+      "انیمیشن ورود روی محور منطقی است، پس در راست‌چین از راست می‌آید."
+    ],
+    "responsive": "زیر md تمام‌عرض‌تر و پرده‌دار؛ از lg معمولاً جایش را به نوار کناری ثابت <a href=\"app-shell.html\">AppShell</a> می‌دهد.",
+    "specimens": [
+      {
+        "label": "کشوی ناوبری",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div style=\"position:relative;inline-size:375px;max-inline-size:100%;block-size:300px;border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)\">\n  <div style=\"position:absolute;inset:0;background:var(--t-bg-scrim)\"></div>\n  <div class=\"t-drawer\" style=\"position:absolute;animation:none;inline-size:240px\" role=\"dialog\" aria-modal=\"true\" aria-label=\"ناوبری\">\n    <div style=\"padding:14px 16px;border-block-end:1px solid var(--t-border-subtle);font-weight:700\">پنل فروشنده</div>\n    <div style=\"padding:8px\">\n      <a class=\"t-navitem\" href=\"#\" aria-current=\"page\">سفارش‌ها<span class=\"t-navitem__count\">۳</span></a>\n      <a class=\"t-navitem\" href=\"#\">محصولات<span class=\"t-navitem__count\">۱۴۸</span></a>\n      <a class=\"t-navitem\" href=\"#\">گزارش‌ها</a>\n    </div>\n  </div>\n</div>",
+        "note": "از لبهٔ راست می‌آید، چون در راست‌چین آغاز محور راست است."
+      }
+    ],
+    "react": "export function Drawer({ open, onClose, modal = true, label, children }) {\n  const ref = useRef(null);\n  useFocusTrap(ref, open && modal);\n  useEscape(onClose, open);\n  if (!open) return null;\n  return createPortal(\n    <>\n      {modal && <div className=\"t-scrim\" onClick={onClose} />}\n      <aside className=\"t-drawer\" ref={ref} aria-label={label}\n             role={modal ? 'dialog' : undefined} aria-modal={modal || undefined}>\n        {children}\n      </aside>\n    </>, document.body);\n}"
   }
 ];

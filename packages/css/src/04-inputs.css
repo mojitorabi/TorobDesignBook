@@ -208,3 +208,72 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
 .t-stepper__btn:active:not(:disabled) { background: var(--t-bg-sunken); }
 .t-stepper__btn:disabled { color: var(--t-fg-disabled); cursor: not-allowed; }
 .t-stepper__value { min-inline-size: 44px; text-align: center; font-weight: var(--t-font-weight-bold); font-variant-numeric: tabular-nums; }
+
+/* ---- OTP — [NEW] ----
+   Iranian apps sign people in with an SMS code, so this is the first control
+   many users ever touch. One box per digit, tabular figures, and Latin digits
+   on purpose: the code arrives as Latin in the SMS and retyping it in Persian
+   is a translation nobody asked for. */
+.t-otp { display: inline-flex; gap: var(--t-space-2); direction: ltr; }
+.t-otp__slot {
+  inline-size: 48px; block-size: 56px;
+  text-align: center;
+  border: var(--t-border-thin) solid var(--t-border-control);
+  border-radius: var(--t-radius-md);
+  background: var(--t-bg-fog);
+  color: var(--t-fg-default);
+  font-size: var(--t-font-size-24); line-height: var(--t-font-leading-24);
+  font-weight: var(--t-font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  transition: border-color var(--t-duration-micro) var(--t-easing-out), box-shadow var(--t-duration-micro) var(--t-easing-out);
+}
+.t-otp__slot:hover:not(:disabled) { border-color: var(--t-border-strong); }
+.t-otp__slot:focus-visible {
+  border-color: var(--t-border-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-border-focus) 22%, transparent);
+  outline: none;
+}
+.t-otp__slot[data-filled="true"] { border-color: var(--t-border-strong); }
+.t-otp__slot:disabled, .t-otp[data-state~="disabled"] .t-otp__slot {
+  background: var(--t-bg-subtle); color: var(--t-fg-disabled); cursor: not-allowed;
+}
+.t-otp[data-state~="error"] .t-otp__slot, .t-otp--error .t-otp__slot { border-color: var(--t-status-critical-solid); }
+@media (max-width: 380px) { .t-otp { gap: var(--t-space-1); } .t-otp__slot { inline-size: 40px; block-size: 48px; font-size: var(--t-font-size-20); } }
+
+/* ---- FileUpload — [NEW] ----
+   A seller adds product photos from a phone camera or a desktop folder, so
+   the target is a large drop area that is also a real <input type="file">. */
+.t-upload {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--t-space-2);
+  min-block-size: 132px; inline-size: 100%;
+  padding: var(--t-space-5);
+  border: var(--t-border-thin) dashed var(--t-border-control);
+  border-radius: var(--t-radius-md);
+  background: var(--t-bg-fog);
+  color: var(--t-fg-secondary);
+  text-align: center; cursor: pointer;
+  transition: border-color var(--t-duration-micro) var(--t-easing-out), background-color var(--t-duration-micro) var(--t-easing-out);
+}
+.t-upload:hover { border-color: var(--t-border-focus); background: var(--t-bg-subtle); }
+.t-upload:focus-within { border-color: var(--t-border-focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-border-focus) 22%, transparent); }
+.t-upload[data-state~="active"], .t-upload[data-dragging="true"] {
+  border-color: var(--t-border-focus); border-style: solid; background: var(--t-action-blue-soft-bg);
+}
+.t-upload[data-state~="disabled"] { background: var(--t-bg-subtle); color: var(--t-fg-disabled); cursor: not-allowed; }
+.t-upload[data-state~="error"], .t-upload--error { border-color: var(--t-status-critical-solid); }
+.t-upload__icon { color: var(--t-fg-secondary); }
+.t-upload__title { color: var(--t-fg-default); font-weight: var(--t-font-weight-bold); font-size: var(--t-font-size-14); }
+.t-upload__hint { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); }
+.t-upload input[type="file"] { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
+/* The list of what was added sits under the drop area, never inside it. */
+.t-upload-list { display: flex; flex-direction: column; gap: var(--t-space-2); margin-block-start: var(--t-space-3); }
+.t-upload-item {
+  display: flex; align-items: center; gap: var(--t-space-3);
+  padding: var(--t-space-2) var(--t-space-3);
+  border: var(--t-border-thin) solid var(--t-border-subtle);
+  border-radius: var(--t-radius-sm);
+  background: var(--t-bg-fog);
+}
+.t-upload-item__name { flex: 1; min-inline-size: 0; font-size: var(--t-font-size-14); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.t-upload-item__size { color: var(--t-fg-secondary); font-size: var(--t-font-size-12); font-variant-numeric: tabular-nums; }

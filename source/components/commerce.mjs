@@ -784,5 +784,423 @@ export default [
       }
     ],
     "react": "export function ListItem({ as: As = 'button', lead, trail, title, subtitle, ...rest }) {\n  return (\n    <As className=\"t-list-item\" {...rest}>\n      {lead && <span className=\"t-list-item__lead\">{lead}</span>}\n      <span className=\"t-list-item__body\">\n        <span className=\"t-list-item__title\">{title}</span>\n        {subtitle && <span className=\"t-list-item__sub\">{subtitle}</span>}\n      </span>\n      {trail && <span className=\"t-list-item__trail\">{trail}</span>}\n    </As>\n  );\n}"
+  },
+  {
+    "name": "Tag",
+    "root": "t-tag",
+    "slug": "tag",
+    "group": "Commerce",
+    "status": "new",
+    "legacy": [],
+    "summary": "برچسب کوچک روی داده. خواندنی، نه کلیک‌کردنی — مگر ضربدر داشته باشد.",
+    "description": [
+      "تگ و <a href=\"badge.html\">Badge</a> شبیه هم دیده می‌شوند و کار متفاوتی می‌کنند. نشان <strong>وضعیت</strong> را می‌گوید و رنگش معنا دارد: ارسال شده، لغو شده، ضمانت ترب. تگ <strong>یک صفت</strong> را می‌گوید و خنثی است: «۱۲۸ گیگابایت»، «مشکی»، «اصفهان».",
+      "تگ قابل‌حذف هم هست؛ آنجا یک دکمهٔ ضربدر می‌گیرد و می‌شود فیلتری که کاربر گذاشته. همان‌جاست که تگ به <a href=\"filter-chip.html\">FilterChip</a> نزدیک می‌شود، با این تفاوت که تراشه فیلتر را <em>باز می‌کند</em> و تگ فقط آن را <em>برمی‌دارد</em>."
+    ],
+    "use": [
+      "برای صفت‌های کوتاه روی کارت، ردیف جدول یا بالای فهرست نتایج.",
+      "متن را دو تا سه کلمه نگه دارید.",
+      "اگر قابل حذف است، ضربدر بگذارید و نام کامل را در برچسب دکمه بنویسید."
+    ],
+    "avoid": [
+      "تگ رنگی برای چیزی که وضعیت نیست.",
+      "بیش از حدود چهار تگ در یک ردیف؛ بقیه «+۳» می‌شوند.",
+      "تگ کلیک‌شدنی که شبیه تگ خواندنی است."
+    ],
+    "anatomy": [
+      [
+        "ظرف",
+        "۲۴ پیکسل، گردی ۴، زمینهٔ ملایم، ۱۲ پیکسل.",
+        ".t-tag"
+      ],
+      [
+        "ضربدر",
+        "اختیاری؛ فقط وقتی هست که تگ واقعاً برداشتنی باشد.",
+        ".t-tag__remove"
+      ]
+    ],
+    "props": [
+      [
+        "label",
+        "string",
+        "—",
+        "متن تگ."
+      ],
+      [
+        "onRemove",
+        "() => void",
+        "—",
+        "اگر بدهید، ضربدر ظاهر می‌شود."
+      ]
+    ],
+    "a11y": [
+      "تگ خواندنی عنصر تعاملی نیست و نباید <code>tabindex</code> بگیرد.",
+      "ضربدر یک <code>&lt;button&gt;</code> با برچسب کامل است: «حذف مشکی»، نه «حذف».",
+      "بعد از حذف، فوکوس به تگ بعدی یا به ظرف می‌رود، نه به ابتدای صفحه.",
+      "تغییر فهرست تگ‌ها با یک ناحیهٔ زنده اعلام می‌شود."
+    ],
+    "responsive": "ردیف تگ‌ها می‌پیچد. روی گوشی به‌جای اسکرول افقی، از خط دوم استفاده کنید؛ تگ آن‌قدر کوچک است که پیچیدن ارزان‌تر از اسکرول است.",
+    "specimens": [
+      {
+        "label": "صفت و فیلتر برداشته‌شده",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div style=\"display:flex;gap:6px;flex-wrap:wrap\">\n  <span class=\"t-tag\">۱۲۸ گیگابایت</span>\n  <span class=\"t-tag\">مشکی</span>\n  <span class=\"t-tag\">ضمانت ۱۸ ماهه\n    <button class=\"t-tag__remove\" aria-label=\"حذف ضمانت ۱۸ ماهه\"><svg class=\"t-icon\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button>\n  </span>\n</div>",
+        "note": "دو تگ اول خواندنی‌اند و فوکوس نمی‌گیرند. سومی برداشتنی است."
+      }
+    ],
+    "react": "export function Tag({ label, onRemove }) {\n  return (\n    <span className=\"t-tag\">\n      {label}\n      {onRemove && (\n        <button className=\"t-tag__remove\" aria-label={`حذف ${label}`} onClick={onRemove}>\n          <CloseIcon className=\"t-icon\" width={12} height={12} />\n        </button>\n      )}\n    </span>\n  );\n}"
+  },
+  {
+    "name": "Avatar",
+    "root": "t-avatar",
+    "slug": "avatar",
+    "group": "Commerce",
+    "status": "new",
+    "legacy": [],
+    "summary": "لوگوی فروشگاه یا حرف اول نامش، وقتی لوگویی نیست.",
+    "description": [
+      "بیشتر فروشگاه‌های ترب لوگو ندارند و آنهایی که دارند، لوگویشان در ۴۰ پیکسل خوانده نمی‌شود. پس این کامپوننت دو حالت دارد و هر دو باید خوب باشند: <strong>تصویر</strong>، و <strong>حرف اول</strong> روی زمینهٔ ملایم.",
+      "حرف اول در فارسی یک نکته دارد: «فروشگاه تکنولایف» با «ف» شروع نمی‌شود، با «ت» شروع می‌شود — کلمهٔ عمومی اول را بیندازید. همین یک قاعده تفاوت بین آواتار مفید و آواتاری است که همهٔ فروشگاه‌ها را «ف» نشان می‌دهد."
+    ],
+    "use": [
+      "۳۲ پیکسل در ردیف فهرست، ۴۰ در کارت، ۵۶ در سرصفحهٔ فروشگاه.",
+      "وقتی تصویر نیست، حرف اولِ نام معنادار را بگذارید.",
+      "تصویر را با <code>object-fit: cover</code> برش بزنید، نه کش بدهید."
+    ],
+    "avoid": [
+      "آواتار به‌عنوان تنها راه تشخیص فروشگاه؛ نام همیشه کنارش باشد.",
+      "حاشیهٔ رنگی دور آواتار برای معنا؛ برای آن نشان وضعیت هست.",
+      "لوگوی شفاف روی زمینهٔ تیره بدون پشت سفید."
+    ],
+    "anatomy": [
+      [
+        "قاب",
+        "دایره، سرریز پنهان، ۴۰ پیکسل پیش‌فرض.",
+        ".t-avatar"
+      ]
+    ],
+    "props": [
+      [
+        "src",
+        "string",
+        "—",
+        "تصویر؛ اگر نباشد حرف اول نشان داده می‌شود."
+      ],
+      [
+        "name",
+        "string",
+        "—",
+        "برای حرف اول و برای متن جایگزین."
+      ],
+      [
+        "size",
+        "'sm' | 'md' | 'lg'",
+        "'md'",
+        "۳۲ / ۴۰ / ۵۶ پیکسل."
+      ]
+    ],
+    "a11y": [
+      "آواتار تزئینی است وقتی نام کنارش نوشته شده: <code>alt=\"\"</code> بگذارید تا صفحه‌خوان نام را دوبار نخواند.",
+      "اگر آواتار تنها شناسه است، <code>alt</code> باید نام کامل فروشگاه باشد.",
+      "حرف اول متن است، نه تصویر؛ پس با بزرگ‌نمایی متن بزرگ می‌شود.",
+      "کنتراست حرف روی زمینهٔ ملایم در هر سه پوسته سنجیده می‌شود."
+    ],
+    "responsive": "اندازه با جایگاه عوض می‌شود نه با کادر دید. در ردیف متراکم پنل، ۳۲ پیکسل بگذارید حتی روی دسکتاپ.",
+    "specimens": [
+      {
+        "label": "تصویر و حرف اول",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div style=\"display:flex;gap:14px;align-items:center\">\n  <span class=\"t-avatar t-avatar--sm\">ت</span>\n  <span class=\"t-avatar\">د</span>\n  <span class=\"t-avatar t-avatar--lg\"><img src=\"%ASSETS%/samples/store-logo-wave.svg\" alt=\"\" style=\"inline-size:100%;block-size:100%;object-fit:cover\"></span>\n</div>",
+        "note": "«تکنولایف» با ت نشان داده می‌شود، نه با ف «فروشگاه»."
+      }
+    ],
+    "react": "export function Avatar({ src, name, size = 'md' }) {\n  const initial = meaningfulInitial(name); // drops فروشگاه، گالری، نمایندگی\n  return (\n    <span className={clsx('t-avatar', size !== 'md' && `t-avatar--${size}`)}>\n      {src ? <img src={src} alt=\"\" /> : initial}\n    </span>\n  );\n}"
+  },
+  {
+    "name": "Divider",
+    "root": "t-divider",
+    "slug": "divider",
+    "group": "Layout",
+    "status": "new",
+    "legacy": [],
+    "summary": "یک خط مویی. اول ببینید فاصله کافی نیست.",
+    "description": [
+      "جداکننده ارزان‌ترین عنصر سیستم است و به همین دلیل بیشترین سوءاستفاده را از آن می‌شود. قاعده: <strong>اول با فاصله جدا کنید</strong>. اگر دو بلوک با ۲۴ پیکسل فاصله هنوز به هم چسبیده‌اند، احتمالاً مشکل از سلسله‌مراتب است نه از نبودن خط.",
+      "خط وقتی درست است که مرز <em>واقعی</em> باشد: بین ردیف‌های یک فهرست، بین سر و بدنهٔ یک برگه، بین بخش‌های یک فرم بلند. در فهرست، خط تورفته می‌شود تا از زیر آیکون شروع نشود."
+    ],
+    "use": [
+      "بین ردیف‌های یک فهرست، با تورفتگی هم‌اندازهٔ محتوا.",
+      "بین بخش‌های فرم بلند در پنل.",
+      "گونهٔ عمودی برای جداکردن دو کنش در یک نوار."
+    ],
+    "avoid": [
+      "خط بین هر دو عنصر صفحه.",
+      "خط ضخیم‌تر از ۱ پیکسل برای «تأکید»؛ تأکید کار تایپوگرافی است.",
+      "خط زیر آخرین ردیف فهرست."
+    ],
+    "anatomy": [
+      [
+        "خط",
+        "ارتفاع یک مو، رنگ کادر ملایم، بدون حاشیه.",
+        ".t-divider"
+      ]
+    ],
+    "props": [
+      [
+        "orientation",
+        "'horizontal' | 'vertical'",
+        "'horizontal'",
+        "عمودی خودش را به ارتفاع ظرف می‌کشد."
+      ]
+    ],
+    "a11y": [
+      "اگر جداکننده فقط تزئینی است، <code>&lt;hr&gt;</code> با <code>aria-hidden</code> یا یک <code>div</code> ساده بگذارید.",
+      "اگر واقعاً مرز معنایی است (بین گروه‌های یک منو)، <code>role=\"separator\"</code> بگذارید.",
+      "خط هرگز تنها نشانهٔ گروه‌بندی نباشد؛ عنوان گروه هم لازم است."
+    ],
+    "responsive": "روی گوشی تورفتگی را کم کنید تا خط از لبهٔ متن شروع شود، نه از لبهٔ صفحه.",
+    "specimens": [
+      {
+        "label": "افقی و عمودی",
+        "canvas": "plain",
+        "stageClass": "spec__stage--stack",
+        "html": "<div style=\"inline-size:100%;max-inline-size:320px\">\n  <div class=\"t-body-md\">اطلاعات فروشگاه</div>\n  <hr class=\"t-divider\" style=\"margin-block:12px\">\n  <div class=\"t-body-md\">ساعت کاری</div>\n</div>\n<div style=\"display:flex;align-items:center;gap:12px;block-size:24px\">\n  <button class=\"t-btn t-btn--ghost t-btn--sm\">تماس</button>\n  <span class=\"t-divider t-divider--vertical\" role=\"separator\" aria-orientation=\"vertical\"></span>\n  <button class=\"t-btn t-btn--ghost t-btn--sm\">مسیریابی</button>\n</div>",
+        "note": "عمودی خودش را به ارتفاع ردیف می‌کشد؛ ارتفاع ثابت لازم ندارد."
+      }
+    ],
+    "react": "export function Divider({ orientation = 'horizontal' }) {\n  return orientation === 'vertical'\n    ? <span className=\"t-divider t-divider--vertical\" role=\"separator\" aria-orientation=\"vertical\" />\n    : <hr className=\"t-divider\" />;\n}"
+  },
+  {
+    "name": "Rating",
+    "root": "t-rating",
+    "slug": "rating",
+    "group": "Commerce",
+    "status": "new",
+    "legacy": [],
+    "summary": "امتیاز فروشنده، با تعدادی که پشتش است.",
+    "description": [
+      "امتیاز بدون تعداد بی‌معناست: ۵٫۰ از یک نظر، کمتر از ۴٫۶ از دویست نظر ارزش دارد. پس این کامپوننت هر دو را با هم نشان می‌دهد و تعداد را هرگز پنهان نمی‌کند.",
+      "در ترب امتیاز فروشنده در دو جا دیده می‌شود: قرص فشردهٔ سبز روی <a href=\"offer-card.html\">OfferCard</a> که فقط عدد و یک ستاره دارد، و همین نسخهٔ کامل با پنج ستاره در صفحهٔ فروشگاه. اولی برای مقایسه در یک نگاه است، دومی برای تصمیم."
+    ],
+    "use": [
+      "عدد را با یک رقم اعشار بنویسید: ۴٫۶ نه ۴٫۶۲.",
+      "تعداد نظرها را همیشه کنارش بگذارید.",
+      "وقتی نظری نیست، «بدون امتیاز» بنویسید، نه صفر ستاره."
+    ],
+    "avoid": [
+      "گرد کردن به بالا. ۴٫۴۹ نمی‌شود ۴٫۵.",
+      "ستارهٔ نیمه‌ای که در ۱۴ پیکسل دیده نمی‌شود؛ عدد کار را می‌کند.",
+      "امتیاز بدون تعداد."
+    ],
+    "anatomy": [
+      [
+        "ستاره‌ها",
+        "۱۴ پیکسل، فام احتیاط، فاصلهٔ ۲ پیکسل.",
+        ".t-rating"
+      ],
+      [
+        "عدد",
+        "Bold، ارقام جدولی تا در فهرست ستون‌ها نپرند.",
+        ".t-rating__value"
+      ],
+      [
+        "تعداد",
+        "ثانویه، ۱۲ پیکسل، داخل پرانتز.",
+        ".t-rating__count"
+      ]
+    ],
+    "props": [
+      [
+        "value",
+        "number",
+        "—",
+        "۰ تا ۵."
+      ],
+      [
+        "count",
+        "number",
+        "—",
+        "تعداد نظرها."
+      ],
+      [
+        "size",
+        "'sm' | 'md'",
+        "'md'",
+        "۱۲ یا ۱۴ پیکسل برای ستاره‌ها."
+      ]
+    ],
+    "a11y": [
+      "کل گروه یک متن دسترس‌پذیر دارد: «۴٫۶ از ۵، بر پایهٔ ۲۱۳ نظر». ستاره‌ها جدا خوانده نمی‌شوند.",
+      "ستاره‌ها <code>aria-hidden</code> می‌گیرند؛ تصویرِ عدد هستند، نه خود عدد.",
+      "اگر امتیاز قابل ثبت است، آن یک گروه رادیو است نه این کامپوننت.",
+      "عدد فارسی با جداکنندهٔ اعشار فارسی (٫) نوشته می‌شود."
+    ],
+    "responsive": "روی گوشی در ردیف فشرده فقط عدد و یک ستاره بماند. پنج ستاره در ردیفی که عنوان فروشگاه هم دارد، جا را از نام می‌گیرد.",
+    "specimens": [
+      {
+        "label": "کامل و فشرده",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div style=\"display:flex;gap:22px;align-items:center;flex-wrap:wrap\">\n  <span class=\"t-rating\" role=\"img\" aria-label=\"۴٫۶ از ۵، بر پایهٔ ۲۱۳ نظر\">\n    <svg class=\"t-icon\" width=\"14\" height=\"14\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 24.4 6.9 29.2l1.7-10.1L1.3 12l10.2-1.5L16 1.3l4.5 9.2L30.7 12l-7.3 7.1 1.7 10.1z\"/></svg>\n    <svg class=\"t-icon\" width=\"14\" height=\"14\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 24.4 6.9 29.2l1.7-10.1L1.3 12l10.2-1.5L16 1.3l4.5 9.2L30.7 12l-7.3 7.1 1.7 10.1z\"/></svg>\n    <svg class=\"t-icon\" width=\"14\" height=\"14\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 24.4 6.9 29.2l1.7-10.1L1.3 12l10.2-1.5L16 1.3l4.5 9.2L30.7 12l-7.3 7.1 1.7 10.1z\"/></svg>\n    <svg class=\"t-icon\" width=\"14\" height=\"14\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 24.4 6.9 29.2l1.7-10.1L1.3 12l10.2-1.5L16 1.3l4.5 9.2L30.7 12l-7.3 7.1 1.7 10.1z\"/></svg>\n    <svg class=\"t-icon\" width=\"14\" height=\"14\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" style=\"opacity:.3\"><path d=\"M16 24.4 6.9 29.2l1.7-10.1L1.3 12l10.2-1.5L16 1.3l4.5 9.2L30.7 12l-7.3 7.1 1.7 10.1z\"/></svg>\n    <span class=\"t-rating__value\">۴٫۶</span><span class=\"t-rating__count\">(۲۱۳ نظر)</span>\n  </span>\n  <span class=\"t-rating-pill\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 24.4 6.9 29.2l1.7-10.1L1.3 12l10.2-1.5L16 1.3l4.5 9.2L30.7 12l-7.3 7.1 1.7 10.1z\"/></svg>۴٫۶ (۸ ماه در ترب)</span>\n</div>",
+        "note": "قرص سبز همان امتیاز است در حالت فشرده، روی کارت فروشنده."
+      }
+    ],
+    "react": "export function Rating({ value, count, size = 'md' }) {\n  const px = size === 'sm' ? 12 : 14;\n  return (\n    <span className=\"t-rating\" role=\"img\"\n          aria-label={`${toFa(value)} از ۵${count ? `، بر پایهٔ ${toFa(count)} نظر` : ''}`}>\n      {[1, 2, 3, 4, 5].map(i => (\n        <StarIcon key={i} className=\"t-icon\" width={px} height={px} aria-hidden=\"true\"\n                  style={{ opacity: i <= Math.round(value) ? 1 : 0.3 }} />\n      ))}\n      <span className=\"t-rating__value\">{toFa(value.toFixed(1))}</span>\n      {count != null && <span className=\"t-rating__count\">({toFa(count)} نظر)</span>}\n    </span>\n  );\n}"
+  },
+  {
+    "name": "Timeline",
+    "root": "t-timeline",
+    "slug": "timeline",
+    "group": "Commerce",
+    "status": "new",
+    "legacy": [],
+    "summary": "وضعیت سفارش: چه شد، کِی شد، حالا کجاست.",
+    "description": [
+      "«سفارش من کجاست» پرتکرارترین سؤال پس از خرید است و جوابش یک وضعیت نیست، یک تاریخچه است. کاربر می‌خواهد بداند کِی پرداخت ثبت شد، کِی بسته تحویل پست شد، و حالا منتظر چیست.",
+      "چیدمان عمودی است و جدیدترین رویداد <strong>پایین</strong> می‌نشیند، مثل یک گفت‌وگو: چشم از بالا شروع می‌کند و به حال می‌رسد. مرحلهٔ جاری آبی است، انجام‌شده‌ها سبز با تیک، و ناموفق قرمز — و هیچ‌کدام فقط با رنگ گفته نمی‌شوند.",
+      "برای کار چندمرحله‌ای که کاربر <em>خودش</em> جلو می‌برد (ثبت فروشگاه)، <a href=\"steps.html\">Steps</a> درست است. این یکی برای چیزی است که برای کاربر اتفاق می‌افتد."
+    ],
+    "use": [
+      "زمان هر رویداد را با تاریخ شمسی و ساعت بنویسید.",
+      "مرحلهٔ جاری را با متن هم مشخص کنید، نه فقط با رنگ نقطه.",
+      "اگر مرحله‌ای شکست خورد، بگویید چه کاری از کاربر برمی‌آید."
+    ],
+    "avoid": [
+      "تایم‌لاین افقی روی گوشی؛ متن زیر نقطه‌ها جا نمی‌شود.",
+      "نمایش مرحله‌های آینده با زمان حدسی.",
+      "تایم‌لاینی که فقط سه وضعیت ثابت دارد و هرگز عوض نمی‌شود؛ آن یک نشان وضعیت است."
+    ],
+    "anatomy": [
+      [
+        "فهرست",
+        "<code>&lt;ol&gt;</code> عمودی؛ خط رابط را خود آیتم‌ها می‌کشند.",
+        ".t-timeline"
+      ],
+      [
+        "نقطه",
+        "۲۴ پیکسل با حلقهٔ هم‌رنگ بوم، تا خط از پشتش رد نشود.",
+        ".t-timeline__dot"
+      ],
+      [
+        "عنوان",
+        "۱۴ پیکسل Bold؛ چه اتفاقی افتاد.",
+        ".t-timeline__title"
+      ],
+      [
+        "زمان",
+        "۱۲ پیکسل ثانویه با ارقام جدولی.",
+        ".t-timeline__meta"
+      ]
+    ],
+    "props": [
+      [
+        "items",
+        "{ title, time, state }[]",
+        "—",
+        "به ترتیب زمانی؛ قدیمی‌ترین اول."
+      ],
+      [
+        "state",
+        "'done' | 'current' | 'failed' | 'pending'",
+        "'pending'",
+        "روی هر آیتم."
+      ]
+    ],
+    "a11y": [
+      "یک <code>&lt;ol&gt;</code> واقعی است؛ ترتیب بخشی از معناست.",
+      "وضعیت هر رویداد در متن هم می‌آید، نه فقط در رنگ نقطه.",
+      "زمان در <code>&lt;time datetime&gt;</code> می‌نشیند با مقدار میلادی برای ماشین و نمایش شمسی برای آدم.",
+      "تغییر وضعیت زنده، در ناحیهٔ <code>aria-live=\"polite\"</code> اعلام می‌شود."
+    ],
+    "responsive": "در همهٔ اندازه‌ها عمودی. روی دسکتاپ فقط عرض بیشتری می‌گیرد؛ افقی‌کردنش متن را خرد می‌کند.",
+    "specimens": [
+      {
+        "label": "وضعیت سفارش",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<ol class=\"t-timeline\" style=\"inline-size:100%;max-inline-size:380px\">\n  <li class=\"t-timeline__item\" data-state=\"done\">\n    <span class=\"t-timeline__dot\"><svg class=\"t-icon\" width=\"14\" height=\"14\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span>\n    <span class=\"t-timeline__body\"><span class=\"t-timeline__title\">سفارش ثبت شد</span><span class=\"t-timeline__meta\">۱۹ شهریور ۱۴۰۴، ۱۰:۲۴</span></span>\n  </li>\n  <li class=\"t-timeline__item\" data-state=\"done\">\n    <span class=\"t-timeline__dot\"><svg class=\"t-icon\" width=\"14\" height=\"14\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span>\n    <span class=\"t-timeline__body\"><span class=\"t-timeline__title\">پرداخت تأیید شد</span><span class=\"t-timeline__meta\">۱۹ شهریور ۱۴۰۴، ۱۰:۲۶</span></span>\n  </li>\n  <li class=\"t-timeline__item\" data-state=\"current\">\n    <span class=\"t-timeline__dot\">۳</span>\n    <span class=\"t-timeline__body\"><span class=\"t-timeline__title\">در حال آماده‌سازی در فروشگاه</span><span class=\"t-timeline__meta\">از ۲۰ شهریور ۱۴۰۴، ۰۹:۱۰ — در حال انجام</span></span>\n  </li>\n  <li class=\"t-timeline__item\">\n    <span class=\"t-timeline__dot\">۴</span>\n    <span class=\"t-timeline__body\"><span class=\"t-timeline__title t-tone-secondary\">تحویل به پست</span><span class=\"t-timeline__meta\">مانده</span></span>\n  </li>\n</ol>",
+        "note": "جدیدترین پایین است. وضعیت هر مرحله در متن هم نوشته شده، نه فقط در رنگ نقطه."
+      }
+    ],
+    "react": "export function Timeline({ items }) {\n  return (\n    <ol className=\"t-timeline\">\n      {items.map((it, i) => (\n        <li key={i} className=\"t-timeline__item\" data-state={it.state}>\n          <span className=\"t-timeline__dot\">\n            {it.state === 'done' ? <CheckIcon /> : toFa(i + 1)}\n          </span>\n          <span className=\"t-timeline__body\">\n            <span className=\"t-timeline__title\">{it.title}</span>\n            <span className=\"t-timeline__meta\">\n              <time dateTime={it.iso}>{it.time}</time>\n              {it.state === 'current' && ' — در حال انجام'}\n            </span>\n          </span>\n        </li>\n      ))}\n    </ol>\n  );\n}"
+  },
+  {
+    "name": "Carousel",
+    "root": "t-carousel",
+    "slug": "carousel",
+    "group": "Commerce",
+    "status": "new",
+    "legacy": [],
+    "summary": "ریل افقی با نقطهٔ توقف: عکس‌های محصول، محصولات یک فروشگاه.",
+    "description": [
+      "ریل در ترب همه‌جا هست — عکس‌های محصول، «محصولات این فروشگاه»، دسته‌های صفحهٔ اول — و همیشه دستی کشیده شده بود. این کامپوننت همان الگو با سه تضمین است: <strong>نقطهٔ توقف</strong> روی هر آیتم، <strong>اسکرول‌بار پنهان اما پیمایش با صفحه‌کلید ممکن</strong>، و <strong>دکمه‌های واقعی</strong> روی دسکتاپ.",
+      "نقطهٔ توقف روی <em>آغاز</em> آیتم است نه وسط، چون در راست‌چین لبهٔ آغاز راست است و چشم از همان‌جا شروع می‌کند. هیچ چیز در این کامپوننت محور فیزیکی ندارد، پس در چپ‌چین بدون تغییر کد درست کار می‌کند.",
+      "ریل برای مرور است، نه برای محتوای مهم. چیزی که کاربر <em>باید</em> ببیند، در ریل پنهان نمی‌شود."
+    ],
+    "use": [
+      "نیمهٔ آیتم بعدی را در لبه نشان دهید تا معلوم شود ادامه دارد.",
+      "روی دسکتاپ دکمه‌های قبلی و بعدی بگذارید؛ کشیدن با ماوس رفتار طبیعی نیست.",
+      "تعداد کل را جایی بنویسید: «۱ از ۸»."
+    ],
+    "avoid": [
+      "چرخش خودکار. کاربر را از خواندن می‌اندازد و معیار ۲.۲.۲ را می‌شکند.",
+      "ریل برای کنش‌های اصلی صفحه.",
+      "نقطه‌های صفحه‌بندی به‌عنوان تنها راه پیمایش؛ هدفشان کوچک است."
+    ],
+    "anatomy": [
+      [
+        "ظرف",
+        "جایگاه نسبی برای دکمه‌های کناری.",
+        ".t-carousel"
+      ],
+      [
+        "ریل",
+        "اسکرول افقی با <code>scroll-snap</code>، اسکرول‌بار پنهان.",
+        ".t-carousel__track"
+      ],
+      [
+        "آیتم",
+        "عرض ثابت، توقف روی لبهٔ آغاز.",
+        ".t-carousel__item"
+      ],
+      [
+        "دکمهٔ کناری",
+        "فقط از md و فقط با اشاره‌گر؛ روی لمس انگشت کار می‌کند.",
+        ".t-carousel__nav"
+      ]
+    ],
+    "props": [
+      [
+        "itemWidth",
+        "number",
+        "—",
+        "عرض هر آیتم؛ نیمهٔ بعدی باید دیده شود."
+      ],
+      [
+        "label",
+        "string",
+        "—",
+        "نام ریل برای صفحه‌خوان."
+      ]
+    ],
+    "a11y": [
+      "ریل <code>tabindex=\"0\"</code> و <code>role=\"group\"</code> با برچسب می‌گیرد تا با صفحه‌کلید قابل پیمایش باشد (معیار ۲.۱.۱).",
+      "دکمه‌های کناری <code>&lt;button&gt;</code> واقعی‌اند با برچسب «قبلی» و «بعدی»؛ در لبه‌ها غیرفعال می‌شوند.",
+      "هیچ چرخش خودکاری وجود ندارد، پس معیار ۲.۲.۲ موضوعیت پیدا نمی‌کند.",
+      "با <code>prefers-reduced-motion</code> پرش نرم به پرش فوری تبدیل می‌شود."
+    ],
+    "responsive": "روی گوشی فقط انگشت؛ از md دکمه‌های کناری اضافه می‌شوند. عرض آیتم ثابت می‌ماند و تعداد دیده‌شده با عرض صفحه عوض می‌شود.",
+    "specimens": [
+      {
+        "label": "ریل محصول",
+        "canvas": "plain",
+        "stageClass": "spec__stage--stack",
+        "html": "<div class=\"t-carousel\" style=\"inline-size:100%;max-inline-size:440px\">\n  <div class=\"t-carousel__track\" role=\"group\" aria-label=\"محصولات این فروشگاه\" tabindex=\"0\">\n    <div class=\"t-carousel__item\"><span class=\"t-thumb\" style=\"inline-size:120px;block-size:120px\"><img src=\"%ASSETS%/samples/perfume-a.jpg\" alt=\"\"></span></div>\n    <div class=\"t-carousel__item\"><span class=\"t-thumb\" style=\"inline-size:120px;block-size:120px\"><img src=\"%ASSETS%/samples/perfume-b.jpg\" alt=\"\"></span></div>\n    <div class=\"t-carousel__item\"><span class=\"t-thumb\" style=\"inline-size:120px;block-size:120px\"><img src=\"%ASSETS%/samples/perfume-c.jpg\" alt=\"\"></span></div>\n    <div class=\"t-carousel__item\"><span class=\"t-thumb\" style=\"inline-size:120px;block-size:120px\"><img src=\"%ASSETS%/samples/perfume-proud.png\" alt=\"\"></span></div>\n  </div>\n</div>",
+        "note": "ریل خودش فوکوس می‌گیرد، پس با کلیدهای جهت پیمایش می‌شود. نیمهٔ آیتم بعدی در لبه دیده می‌شود."
+      }
+    ],
+    "react": "export function Carousel({ label, children }) {\n  const ref = useRef(null);\n  const by = dir => ref.current?.scrollBy({ left: dir * ref.current.clientWidth * 0.8, behavior: 'smooth' });\n  return (\n    <div className=\"t-carousel\">\n      <div className=\"t-carousel__track\" ref={ref} role=\"group\" aria-label={label} tabIndex={0}>\n        {Children.map(children, c => <div className=\"t-carousel__item\">{c}</div>)}\n      </div>\n      <IconButton className=\"t-carousel__nav t-carousel__nav--prev\" label=\"قبلی\" onClick={() => by(1)}><ChevronStart /></IconButton>\n      <IconButton className=\"t-carousel__nav t-carousel__nav--next\" label=\"بعدی\" onClick={() => by(-1)}><ChevronEnd /></IconButton>\n    </div>\n  );\n}"
   }
 ];

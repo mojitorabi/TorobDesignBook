@@ -71,7 +71,7 @@ console.log(`${rows.length} component root classes\n`);
 console.log('root'.padEnd(20) + 'mods parts  states'.padEnd(46) + 'missing');
 for (const [n, r] of rows) {
   const interactive = r.states.size > 0 || [...r.attrs].some(a => /aria-(pressed|selected|checked|expanded|current|disabled)/.test(a));
-  const noPress = /^t-(input|field|search|taginput|table|toast|alert|cal)$/.test(n);
+  const noPress = /^t-(input|field|search|taginput|table|toast|alert|cal|otp)$/.test(n);
   const missing = interactive ? KEY.filter(s => !r.states.has(s) && !(noPress && s === 'active')) : [];
   if (missing.length) gaps++;
   console.log(`.${n}`.padEnd(20) +
