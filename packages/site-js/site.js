@@ -486,7 +486,7 @@
     if (choice) {
       const chip = choice.closest('.t-choice');
       const row = chip.closest('.t-chip-group') || chip.parentElement;
-      $('.t-choice', row).forEach(c => {
+      $$('.t-choice', row).forEach(c => {
         const t = $('.t-choice__action', c) ?? c;
         if (t.hasAttribute('aria-pressed')) t.setAttribute('aria-pressed', String(c === chip));
       });
@@ -503,10 +503,10 @@
       const val = $('.t-stepper__value', wrap);
       const fa = '۰۱۲۳۴۵۶۷۸۹';
       const n = Number([...val.textContent.trim()].map(ch => { const i = fa.indexOf(ch); return i < 0 ? ch : i; }).join('')) || 1;
-      const first = $('.t-stepper__btn', wrap)[0] === step;
+      const first = $$('.t-stepper__btn', wrap)[0] === step;
       const next = Math.max(1, Math.min(99, n + (first ? -1 : 1)));
       val.textContent = String(next).replace(/[0-9]/g, d => fa[+d]);
-      $('.t-stepper__btn', wrap)[0].disabled = next <= 1;
+      $$('.t-stepper__btn', wrap)[0].disabled = next <= 1;
     }
 
     /* Anything with a close affordance inside a dismissible thing. */
@@ -537,14 +537,14 @@
     if (!slot) return;
     slot.value = slot.value.replace(/\D/g, '').slice(0, 1);
     slot.dataset.filled = slot.value ? 'true' : '';
-    const slots = $('.t-otp__slot', slot.closest('.t-otp'));
+    const slots = $$('.t-otp__slot', slot.closest('.t-otp'));
     const i = slots.indexOf(slot);
     if (slot.value && i < slots.length - 1) slots[i + 1].focus();
   });
   document.addEventListener('keydown', e => {
     const slot = e.target.closest('.t-otp__slot');
     if (!slot || e.key !== 'Backspace' || slot.value) return;
-    const slots = $('.t-otp__slot', slot.closest('.t-otp'));
+    const slots = $$('.t-otp__slot', slot.closest('.t-otp'));
     const i = slots.indexOf(slot);
     if (i > 0) slots[i - 1].focus();
   });
@@ -552,7 +552,7 @@
     const slot = e.target.closest('.t-otp__slot');
     if (!slot) return;
     e.preventDefault();
-    const slots = $('.t-otp__slot', slot.closest('.t-otp'));
+    const slots = $$('.t-otp__slot', slot.closest('.t-otp'));
     const code = (e.clipboardData.getData('text') || '').replace(/\D/g, '');
     slots.forEach((s, i) => { s.value = code[i] ?? ''; s.dataset.filled = s.value ? 'true' : ''; });
     (slots[Math.min(code.length, slots.length - 1)] || slot).focus();
