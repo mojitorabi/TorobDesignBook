@@ -26,7 +26,7 @@ export function indexPage({ components, iconCount, tokenCount }) {
       </a>`).join('')}
   </div>`;
 
-  body += section('start', 'از اینجا شروع کنید', `<div class="wide" style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(258px,1fr))">
+  body += section('start', 'از اینجا شروع کنید', `<div class="wide" style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(340px,1fr))">
     ${[
       ['برای توسعه‌دهنده', 'توکن‌ها را نصب کنید، کامپوننت را کپی کنید و منتشر کنید. CSS مستقل از فریم‌ورک، با ری‌اکت روی آن.', 'start.html', 'شروع کار'],
       ['برای عامل‌های هوش مصنوعی', 'کلاد کد، کرسر یا کوپایلت را به سرور MCP وصل کنید تا کد واقعی ترب بنویسند، نه کدی که فقط شبیه آن است.', 'ai.html', 'اتصال به هوش مصنوعی'],
