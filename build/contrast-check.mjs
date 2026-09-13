@@ -115,5 +115,31 @@ for (const mode of Object.keys(m.modes)) {
     console.log(`  ${ok ? '✓' : '✗'}  ${r.toFixed(2).padStart(5)} : 1  (need ${min})  ${label.padEnd(28)} ${fg} on ${bg}`);
   }
 }
+/* Glass is not gated like a flat surface. A bar, a toast or a tooltip floats
+   over content the system does not control, so the only honest test is the
+   worst case at both ends: composite the translucent fill over pure white and
+   over pure black, and require the label to pass against whichever is worse. */
+const GLASS = [
+  ['fg.inverse', 'glass.%.inverse.fill', 4.5, 'toast / tooltip label on inverse glass'],
+];
+console.log(`\n${'═'.repeat(74)}\n  GLASS — worst case over white and over black\n${'═'.repeat(74)}`);
+for (const mode of Object.keys(m.modes)) {
+  const t = { ...m.base, ...m.modes[mode] };
+  for (const [fk, bkTpl, min, label] of GLASS) {
+    const bk = bkTpl.replace('%', mode);
+    if (!t[fk] || !t[bk]) { console.log(`  ?  missing ${fk} / ${bk}`); continue; }
+    let worst = Infinity, over = '';
+    for (const backdrop of ['#FFFFFF', '#000000']) {
+      const bg = flatten(String(t[bk].value), backdrop);
+      const fg = flatten(String(t[fk].value), bg);
+      const r = ratio(fg, bg);
+      if (r < worst) { worst = r; over = backdrop; }
+    }
+    const ok = worst >= min;
+    if (!ok) fails++;
+    console.log(`  ${ok ? '✓' : '✗'}  ${worst.toFixed(2).padStart(5)} : 1  (need ${min})  ${(mode + ' · ' + label).padEnd(46)} worst over ${over}`);
+  }
+}
+
 console.log(`\n${fails} text failures, ${warns} non-text failures`);
 process.exit(fails > 0 ? 1 : 0);

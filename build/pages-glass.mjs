@@ -12,6 +12,7 @@ export function glassPage(m) {
   <div class="t-glass" style="padding:14px 18px;min-inline-size:250px"><span class="t-body-md-strong">۳۰٪ — سطح شناور</span><div class="t-body-sm t-tone-secondary">نوار، برگه، ریل فیلتر</div></div>
   <div class="t-glass t-glass--list" style="padding:14px 18px;min-inline-size:250px"><span class="t-body-md-strong">۵۰٪ — پس‌زمینهٔ فهرست</span><div class="t-body-sm t-tone-secondary">محتوا داخلش اسکرول می‌شود</div></div>
   <div class="t-glass t-glass--selected" style="padding:14px 18px;min-inline-size:250px"><span class="t-body-md-strong">۶۰٪ — انتخاب‌شده</span><div class="t-body-sm t-tone-secondary">بدون ارتفاع، با حلقهٔ آبی</div></div>
+  <div class="t-glass t-glass--inverse" style="padding:14px 18px;min-inline-size:250px"><span class="t-body-md-strong">۸۰٪ — وارونه</span><div class="t-body-sm" style="opacity:.8">توست و تولتیپ</div></div>
 </div>` })}`;
 
   body += S('recipe', 'دستور ساخت', `<div class="prose"><p>عیناً از دوازده استایل لایهٔ شیشه‌ای یکتا در <code>Torob Tokens.sketch</code> استخراج شده است.</p></div>
@@ -35,7 +36,9 @@ export function glassPage(m) {
       ['ثابت', '<code>.t-glass--solid</code>', '۶۰٪', 'ندارد', 'ندارد', 'در حالت آرامش، هم‌سطح با اطرافش'],
       ['انتخاب‌شده', '<code>.t-glass--selected</code>', '۶۰٪', '۰٫۵ پیکسل آبی', 'ندارد', 'انتخاب‌شده'],
       ['ریل فیلتر', '<code>.t-glass--filters</code>', '۳۰٪', 'مویی بیرونی', 'هایلایت بالا + لبه', 'ریلی که بالای فهرست در حال اسکرول نشسته'],
+      ['وارونه', '<code>.t-glass--inverse</code>', '۸۰٪', 'مویی', 'دارد', 'سطح گذرایی که از طرف سیستم حرف می‌زند: توست، تولتیپ'],
     ])}
+    <div class="prose"><p><strong>چرا رتبهٔ وارونه ۸۰ درصد است و نه ۳۰.</strong> چهار رتبهٔ اول زیر متن نمی‌نشینند: نوار، ریل و پس‌زمینهٔ فهرست کنترل نگه می‌دارند، نه جمله. رتبهٔ وارونه جمله نگه می‌دارد و روی محتوایی شناور است که سیستم انتخابش نکرده — یک عکس محصول، یک نقشه، هر چیزی. پس شفافیتش را تا جایی پایین می‌آوریم که برچسبش در بدترین حالت — روی سفید مطلق و روی سیاه مطلق — بالای ۷ به ۱ بماند. این نسبت در هر ساخت آزمایش می‌شود.</p></div>
     <div class="prose"><p><strong>ارتفاع روی شیشه دوحالته است.</strong> یک سطح شیشه‌ای یا ریزسایهٔ مویی را دارد یا ندارد. نردبان سایه وجود ندارد؛ آن مال <a href="./elevation.html">سطوح مات</a> است. عمق فراتر از لبهٔ مویی را شفافیت و حلقهٔ انتخاب می‌رسانند.</p></div>`);
 
   body += S('budget', 'بودجهٔ کارایی', `<div class="prose">
@@ -80,7 +83,8 @@ export function glassPage(m) {
     label: 'کلاس‌ها', canvas: 'plain', dir: 'ltr',
     html: `<pre class="code" style="inline-size:100%;background:var(--t-bg-sunken);border-radius:10px"><code>&lt;div class="t-glass"&gt;…&lt;/div&gt;
 &lt;div class="t-glass t-glass--list"&gt;…&lt;/div&gt;
-&lt;div class="t-glass t-glass--selected"&gt;…&lt;/div&gt;</code></pre>`
+&lt;div class="t-glass t-glass--selected"&gt;…&lt;/div&gt;
+&lt;div class="t-glass t-glass--inverse"&gt;…&lt;/div&gt;</code></pre>`
   })}
   <div class="spec" data-spec>
     <div class="spec__bar"><span class="spec__label">glass.css — قاعدهٔ کامل</span>

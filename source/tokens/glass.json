@@ -91,6 +91,21 @@
           "$type": "shadow",
           "$value": "0 -2px 2px 0 #F1F5F9, -0.5px 0.5px 0.5px 0 #CBD5E1"
         }
+      },
+      "inverse": {
+        "$description": "80% — the inverse rung. A transient surface that speaks for the system and still carries text you read: a toast, a tooltip. The alpha is high on purpose. At 30% the label would fail AA over a light photo; at 80% the composite stays above 7:1 against both white and black, so the surface can float over anything.",
+        "fill": {
+          "$type": "color",
+          "$value": "rgba(30, 41, 59, 0.80)"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "rgba(255, 255, 255, 0.12)"
+        },
+        "shadow": {
+          "$type": "shadow",
+          "$value": "-0.5px 0.5px 1px 0 #CBD5E1"
+        }
       }
     },
     "fallback": {
@@ -179,7 +194,22 @@
           "$value": "-0.5px 0.5px 0.5px 0 #475569"
         }
       },
-      "$description": "Dim theme. The tint extracted verbatim from the Sketch dark layer styles."
+      "$description": "Dim theme. The tint extracted verbatim from the Sketch dark layer styles.",
+      "inverse": {
+        "$description": "80% — the inverse rung. A transient surface that speaks for the system and still carries text you read: a toast, a tooltip. The alpha is high on purpose. At 30% the label would fail AA over a light photo; at 80% the composite stays above 7:1 against both white and black, so the surface can float over anything.",
+        "fill": {
+          "$type": "color",
+          "$value": "rgba(241, 245, 249, 0.82)"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "rgba(15, 23, 43, 0.10)"
+        },
+        "shadow": {
+          "$type": "shadow",
+          "$value": "-0.5px 0.5px 1px 0 #475569"
+        }
+      }
     },
     "dark": {
       "$description": "True-dark theme. Lower-alpha, near-black tint so the material still reads as translucent over a black ground.",
@@ -251,6 +281,21 @@
         "shadow": {
           "$type": "shadow",
           "$value": "-0.5px 0.5px 0.5px 0 rgba(0, 0, 0, 0.6)"
+        }
+      },
+      "inverse": {
+        "$description": "80% — the inverse rung. A transient surface that speaks for the system and still carries text you read: a toast, a tooltip. The alpha is high on purpose. At 30% the label would fail AA over a light photo; at 80% the composite stays above 7:1 against both white and black, so the surface can float over anything.",
+        "fill": {
+          "$type": "color",
+          "$value": "rgba(245, 247, 250, 0.82)"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "rgba(16, 20, 24, 0.12)"
+        },
+        "shadow": {
+          "$type": "shadow",
+          "$value": "-0.5px 0.5px 1px 0 rgba(0, 0, 0, 0.6)"
         }
       }
     }

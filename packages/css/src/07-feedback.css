@@ -20,16 +20,31 @@
 /* A toast that can be dismissed can also be switched off while it animates
    away; nothing else about it is interactive. */
 .t-toast[data-state~="disabled"] { opacity: 0.55; pointer-events: none; }
+/* Glass, on the inverse rung. A toast floats over whatever the reader was
+   looking at, so the surface should admit that something is behind it — but it
+   also carries a sentence, so the tint is 80%, not the 30% of a bar. The
+   composite stays above 7:1 against both white and black. Where backdrop-filter
+   is missing or the reader asked for less transparency, it goes fully opaque
+   with the same hue: 02-glass.css does that for every glass surface at once. */
 .t-toast {
   pointer-events: auto;
   display: flex; align-items: flex-start; gap: var(--t-space-3);
   padding: var(--t-space-3) var(--t-space-4);
   border-radius: var(--t-radius-md);
-  background: var(--t-bg-inverse);
+  background-color: var(--t-glass-inverse-fill);
+  border: var(--t-border-hairline) solid var(--t-glass-inverse-border);
   color: var(--t-fg-inverse);
   box-shadow: var(--t-elevation-3);
+  backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
   font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14);
   animation: t-toast-in var(--t-duration-sheet) var(--t-easing-out);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .t-toast { background-color: var(--t-bg-inverse); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .t-toast { background-color: var(--t-bg-inverse); backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
 @keyframes t-toast-in { from { opacity: 0; transform: translateY(12px) scale(0.98); } }
 .t-toast[data-leaving="true"] { animation: t-toast-out var(--t-duration-standard) var(--t-easing-in) forwards; }
@@ -44,9 +59,15 @@
 /* A filled status surface carries its own foreground: the status solids are
    dark inks on light and light tints on dark, so one hard-coded white would
    fail on half the themes. */
-.t-toast--positive { background: var(--t-status-positive-solid); color: var(--t-status-positive-on-solid); }
-.t-toast--critical { background: var(--t-status-critical-solid); color: var(--t-status-critical-on-solid); }
-.t-toast--caution  { background: var(--t-status-caution-solid); color: var(--t-status-caution-on-solid); }
+/* Status toasts stay opaque. Their colour is the message, and a tint that
+   let the page through would make critical red read as a lighter red. */
+.t-toast--positive, .t-toast--critical, .t-toast--caution {
+  border-color: transparent;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.t-toast--positive { background-color: var(--t-status-positive-solid); color: var(--t-status-positive-on-solid); }
+.t-toast--critical { background-color: var(--t-status-critical-solid); color: var(--t-status-critical-on-solid); }
+.t-toast--caution  { background-color: var(--t-status-caution-solid); color: var(--t-status-caution-on-solid); }
 
 /* ---- Alert / Banner ----
    Page-level. Persistent until resolved or dismissed.
@@ -132,7 +153,12 @@
   position: absolute; z-index: var(--t-z-tooltip);
   padding: var(--t-space-1) var(--t-space-2);
   border-radius: var(--t-radius-xs);
-  background: var(--t-bg-inverse); color: var(--t-fg-inverse);
+  /* Same inverse glass as the toast: a label that appears over the thing it
+     describes should not hide it completely. */
+  background-color: var(--t-glass-inverse-fill); color: var(--t-fg-inverse);
+  border: var(--t-border-hairline) solid var(--t-glass-inverse-border);
+  backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
   font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12);
   white-space: nowrap;
   box-shadow: var(--t-elevation-2);
@@ -140,3 +166,9 @@
   transition: opacity var(--t-duration-micro) var(--t-easing-out);
 }
 .t-tooltip[data-open="true"] { opacity: 1; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .t-tooltip { background-color: var(--t-bg-inverse); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .t-tooltip { background-color: var(--t-bg-inverse); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
