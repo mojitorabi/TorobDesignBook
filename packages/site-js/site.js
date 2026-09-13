@@ -112,18 +112,7 @@
     localeBtn.dataset.locale = next;
     localeLabel.textContent = next === 'fa' ? 'فارسی' : 'English';
     await setLocale(document, next);
-    $$('[data-spec-locale]').forEach(b => {
-      b.dataset.locale = next;
-      b.textContent = next === 'fa' ? 'فارسی' : 'English';
-    });
   });
-
-  $$('[data-spec-locale]').forEach(btn => btn.addEventListener('click', async () => {
-    const next = btn.dataset.locale === 'fa' ? 'en' : 'fa';
-    btn.dataset.locale = next;
-    btn.textContent = next === 'fa' ? 'فارسی' : 'English';
-    await setLocale(btn.closest('[data-spec]'), next);
-  }));
 
   /* ---------- Code drawers ---------- */
   $$('[data-spec-code]').forEach(btn => btn.addEventListener('click', () => {
@@ -139,6 +128,36 @@
     $$('pre.code', wrap).forEach(p => p.toggleAttribute('hidden', p.dataset.panel !== tab.dataset.tab));
     remarkScrollers();
   }));
+
+  /* ---------- Reference tabs ----------
+     Roving tabindex so the tab strip is one stop, arrows move between tabs,
+     and the visible panel is the only one in the accessibility tree. */
+  $$('.tabset').forEach(set => {
+    const tabs = $$('.tabset__tab', set), panels = $$('.tabset__panel', set);
+    const show = i => {
+      tabs.forEach((t, n) => {
+        t.setAttribute('aria-selected', String(n === i));
+        t.tabIndex = n === i ? 0 : -1;
+      });
+      panels.forEach((p, n) => {
+        p.toggleAttribute('hidden', n !== i);
+        if (n === i) p.tabIndex = 0; else p.removeAttribute('tabindex');
+      });
+      remarkScrollers();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(i));
+      t.addEventListener('keydown', e => {
+        /* RTL: ArrowLeft moves forward, the way the eye does. */
+        const step = { ArrowLeft: 1, ArrowRight: -1, Home: -99, End: 99 }[e.key];
+        if (step === undefined) return;
+        e.preventDefault();
+        const n = Math.abs(step) > 90 ? (step > 0 ? tabs.length - 1 : 0)
+                                      : (i + step + tabs.length) % tabs.length;
+        tabs[n].focus(); show(n);
+      });
+    });
+  });
 
   /* ---------- Scrollable regions ----------
      A box that scrolls must be reachable by keyboard (WCAG 2.1.1). Only the
@@ -351,6 +370,41 @@
     }
   });
 
+  /* ---------- Side nav: keep the reader's place ----------
+     Two small things, both about never having to hunt for where you are.
+     The group holding the current page is already open from the markup; here
+     we scroll it into view, and remember any other group the reader opened so
+     it survives the next page load. */
+  if (siteNav) {
+    const OPEN_KEY = 'torob-nav-open';
+    const groups = $$('[data-nav-group]', siteNav);
+    let opened = [];
+    try { opened = JSON.parse(sessionStorage.getItem(OPEN_KEY) || '[]'); } catch (e) {}
+    groups.forEach(g => { if (opened.indexOf(g.dataset.navGroup) >= 0) g.open = true; });
+    const remember = () => {
+      try {
+        sessionStorage.setItem(OPEN_KEY, JSON.stringify(
+          groups.filter(g => g.open).map(g => g.dataset.navGroup)));
+      } catch (e) {}
+    };
+    groups.forEach(g => g.addEventListener('toggle', remember));
+
+    /* Centre the current page in the panel, but only when it is not already
+       comfortably visible — otherwise every navigation nudges the list. */
+    const revealCurrent = () => {
+      const here = $('a[aria-current="page"]', siteNav);
+      if (!here || !siteNav.clientHeight) return;
+      const a = here.getBoundingClientRect(), n = siteNav.getBoundingClientRect();
+      if (a.top >= n.top + 48 && a.bottom <= n.bottom - 48) return;
+      siteNav.scrollTop += a.top - n.top - (n.height - a.height) / 2;
+    };
+    revealCurrent();
+    /* On a phone the panel has no height until it opens. */
+    navToggle && navToggle.addEventListener('click', () => {
+      if (siteNav.dataset.open === 'true') requestAnimationFrame(revealCurrent);
+    });
+  }
+
   /* ---------- Table of contents scroll-spy ---------- */
   const tocLinks = $$('.site-toc a');
   if (tocLinks.length && 'IntersectionObserver' in window) {
@@ -557,7 +611,6 @@
     slots.forEach((s, i) => { s.value = code[i] ?? ''; s.dataset.filled = s.value ? 'true' : ''; });
     (slots[Math.min(code.length, slots.length - 1)] || slot).focus();
   });
-
 
   /* The thumb is positioned with inset-inline-start, which is measured from the
      RIGHT edge in RTL — but offsetLeft is always measured from the left. Using

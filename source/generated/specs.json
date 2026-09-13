@@ -508,9 +508,9 @@
   {
    "prop": "background-color",
    "fa": "رنگ زمینه",
-   "value": "var(--t-glass-fallback)",
+   "value": "var(--t-glass-fill)",
    "tokens": [
-    "--t-glass-fallback"
+    "--t-glass-fill"
    ],
    "resolved": []
   },
@@ -551,9 +551,9 @@
   {
    "prop": "background-color",
    "fa": "رنگ زمینه",
-   "value": "var(--t-glass-fallback)",
+   "value": "var(--t-glass-list-fill)",
    "tokens": [
-    "--t-glass-fallback"
+    "--t-glass-list-fill"
    ],
    "resolved": []
   }
@@ -562,9 +562,9 @@
   {
    "prop": "background-color",
    "fa": "رنگ زمینه",
-   "value": "var(--t-glass-fallback)",
+   "value": "var(--t-glass-solid-fill)",
    "tokens": [
-    "--t-glass-fallback"
+    "--t-glass-solid-fill"
    ],
    "resolved": []
   }
@@ -573,9 +573,9 @@
   {
    "prop": "background-color",
    "fa": "رنگ زمینه",
-   "value": "var(--t-glass-fallback)",
+   "value": "var(--t-glass-selected-fill)",
    "tokens": [
-    "--t-glass-fallback"
+    "--t-glass-selected-fill"
    ],
    "resolved": []
   },
@@ -606,9 +606,9 @@
   {
    "prop": "background-color",
    "fa": "رنگ زمینه",
-   "value": "var(--t-glass-fallback)",
+   "value": "var(--t-glass-filters-fill)",
    "tokens": [
-    "--t-glass-fallback"
+    "--t-glass-filters-fill"
    ],
    "resolved": []
   },
@@ -629,6 +629,46 @@
     "--t-glass-filters-shadow"
    ],
    "resolved": []
+  }
+ ],
+ "t-glass--inverse": [
+  {
+   "prop": "background-color",
+   "fa": "رنگ زمینه",
+   "value": "var(--t-glass-inverse-fill)",
+   "tokens": [
+    "--t-glass-inverse-fill"
+   ],
+   "resolved": []
+  },
+  {
+   "prop": "border-color",
+   "fa": "رنگ کادر",
+   "value": "var(--t-glass-inverse-border)",
+   "tokens": [
+    "--t-glass-inverse-border"
+   ],
+   "resolved": []
+  },
+  {
+   "prop": "box-shadow",
+   "fa": "سایه",
+   "value": "var(--t-glass-inverse-shadow)",
+   "tokens": [
+    "--t-glass-inverse-shadow"
+   ],
+   "resolved": []
+  },
+  {
+   "prop": "color",
+   "fa": "رنگ متن",
+   "value": "var(--t-fg-inverse)",
+   "tokens": [
+    "--t-fg-inverse"
+   ],
+   "resolved": [
+    "#F8FAFC"
+   ]
   }
  ],
  "t-surface": [
@@ -741,34 +781,30 @@
   {
    "prop": "gap",
    "fa": "فاصله",
-   "value": "var(--t-space-1)",
-   "tokens": [
-    "--t-space-1"
-   ],
-   "resolved": [
-    "4px"
-   ]
+   "value": "2px",
+   "tokens": [],
+   "resolved": []
   },
   {
    "prop": "block-size",
    "fa": "ارتفاع",
-   "value": "var(--t-size-control-xl)",
+   "value": "var(--t-size-control-lg)",
    "tokens": [
-    "--t-size-control-xl"
+    "--t-size-control-lg"
    ],
    "resolved": [
-    "48px"
+    "40px"
    ]
   },
   {
    "prop": "padding-inline",
    "fa": "حاشیهٔ افقی",
-   "value": "var(--t-space-5)",
+   "value": "var(--t-space-4)",
    "tokens": [
-    "--t-space-5"
+    "--t-space-4"
    ],
    "resolved": [
-    "20px"
+    "16px"
    ]
   },
   {
@@ -783,72 +819,47 @@
    ]
   },
   {
-   "prop": "background-color",
-   "fa": "رنگ زمینه",
-   "value": "transparent !important",
-   "tokens": [],
-   "resolved": []
-  },
-  {
-   "prop": "background-image",
-   "fa": "گرادیان",
-   "value": "none !important",
-   "tokens": [],
-   "resolved": []
-  },
-  {
-   "prop": "box-shadow",
-   "fa": "سایه",
-   "value": "inset 0 0 0 var(--t-border-hairline) transparent, 0 0 transparent !important",
-   "tokens": [
-    "--t-border-hairline"
-   ],
-   "resolved": [
-    "0.5px"
-   ]
-  },
-  {
    "prop": "color",
    "fa": "رنگ متن",
-   "value": "var(--t-fg-disabled) !important",
+   "value": "var(--t-fg-default)",
    "tokens": [
-    "--t-fg-disabled"
+    "--t-fg-default"
    ],
    "resolved": [
-    "#CBD5E1"
+    "#1E293B"
    ]
   },
   {
    "prop": "font-size",
    "fa": "اندازهٔ قلم",
-   "value": "var(--t-font-size-16)",
+   "value": "var(--t-font-size-14)",
    "tokens": [
-    "--t-font-size-16"
+    "--t-font-size-14"
    ],
    "resolved": [
-    "16px"
+    "14px"
    ]
   },
   {
    "prop": "line-height",
    "fa": "ارتفاع خط",
-   "value": "var(--t-font-leading-16)",
+   "value": "var(--t-font-leading-14)",
    "tokens": [
-    "--t-font-leading-16"
+    "--t-font-leading-14"
    ],
    "resolved": [
-    "28px"
+    "24px"
    ]
   },
   {
    "prop": "font-weight",
    "fa": "وزن قلم",
-   "value": "var(--t-font-weight-regular)",
+   "value": "var(--t-font-weight-bold)",
    "tokens": [
-    "--t-font-weight-regular"
+    "--t-font-weight-bold"
    ],
    "resolved": [
-    400
+    700
    ]
   }
  ],
@@ -865,23 +876,23 @@
   {
    "prop": "inline-size",
    "fa": "عرض",
-   "value": "var(--t-size-control-md)",
+   "value": "var(--t-size-control-xl)",
    "tokens": [
-    "--t-size-control-md"
+    "--t-size-control-xl"
    ],
    "resolved": [
-    "32px"
+    "48px"
    ]
   },
   {
    "prop": "block-size",
    "fa": "ارتفاع",
-   "value": "var(--t-size-control-md)",
+   "value": "var(--t-size-control-xl)",
    "tokens": [
-    "--t-size-control-md"
+    "--t-size-control-xl"
    ],
    "resolved": [
-    "32px"
+    "48px"
    ]
   },
   {
@@ -896,44 +907,14 @@
    ]
   },
   {
-   "prop": "background-color",
-   "fa": "رنگ زمینه",
-   "value": "var(--t-glass-filters-fill)",
-   "tokens": [
-    "--t-glass-filters-fill"
-   ],
-   "resolved": []
-  },
-  {
-   "prop": "background-image",
-   "fa": "گرادیان",
-   "value": "none",
-   "tokens": [],
-   "resolved": []
-  },
-  {
-   "prop": "box-shadow",
-   "fa": "سایه",
-   "value": "inset 0 0 0 0.5px var(--t-glass-border), 0 0 0 var(--t-border-thin) var(--t-glass-filters-border), var(--t-glass-filters-shadow)",
-   "tokens": [
-    "--t-glass-border",
-    "--t-border-thin",
-    "--t-glass-filters-border",
-    "--t-glass-filters-shadow"
-   ],
-   "resolved": [
-    "1px"
-   ]
-  },
-  {
    "prop": "color",
    "fa": "رنگ متن",
-   "value": "var(--t-action-blue-ghost-fg)",
+   "value": "var(--t-fg-default)",
    "tokens": [
-    "--t-action-blue-ghost-fg"
+    "--t-fg-default"
    ],
    "resolved": [
-    "#3468CC"
+    "#1E293B"
    ]
   }
  ],
@@ -1041,38 +1022,44 @@
   {
    "prop": "background-color",
    "fa": "رنگ زمینه",
-   "value": "var(--t-action-blue-bg-hover)",
+   "value": "var(--t-action-red-bg)",
    "tokens": [
-    "--t-action-blue-bg-hover"
+    "--t-action-red-bg"
    ],
    "resolved": [
-    "#3468CC"
+    "#D73948"
    ]
   },
   {
    "prop": "background-image",
    "fa": "گرادیان",
-   "value": "none",
-   "tokens": [],
-   "resolved": []
+   "value": "var(--t-action-red-bg-gradient)",
+   "tokens": [
+    "--t-action-red-bg-gradient"
+   ],
+   "resolved": [
+    "linear-gradient(180deg, #F04151 0%, #D73948 100%)"
+   ]
   },
   {
    "prop": "box-shadow",
    "fa": "سایه",
-   "value": "inset 0 0 0 var(--t-border-thin) transparent",
+   "value": "inset 0 0 0 var(--t-border-thin) var(--t-action-red-border)",
    "tokens": [
-    "--t-border-thin"
+    "--t-border-thin",
+    "--t-action-red-border"
    ],
    "resolved": [
-    "1px"
+    "1px",
+    "#FFF0F2"
    ]
   },
   {
    "prop": "color",
    "fa": "رنگ متن",
-   "value": "var(--t-action-blue-fg)",
+   "value": "var(--t-action-red-fg)",
    "tokens": [
-    "--t-action-blue-fg"
+    "--t-action-red-fg"
    ],
    "resolved": [
     "#FFFFFF"
@@ -2710,47 +2697,32 @@
   {
    "prop": "background-color",
    "fa": "رنگ زمینه",
-   "value": "var(--t-action-blue-bg)",
+   "value": "var(--t-glass-fill)",
    "tokens": [
-    "--t-action-blue-bg"
+    "--t-glass-fill"
    ],
-   "resolved": [
-    "#3468CC"
-   ]
-  },
-  {
-   "prop": "background-image",
-   "fa": "گرادیان",
-   "value": "var(--t-action-blue-bg-gradient)",
-   "tokens": [
-    "--t-action-blue-bg-gradient"
-   ],
-   "resolved": [
-    "linear-gradient(180deg, #3A75E6 0%, #3468CC 100%)"
-   ]
+   "resolved": []
   },
   {
    "prop": "box-shadow",
    "fa": "سایه",
-   "value": "inset 0 0 0 var(--t-border-thin) var(--t-action-blue-border), 0 2px 2px 0 rgb(51 51 51 / 0.2), 0 4px 12px 0 rgb(51 51 51 / 0.2)",
+   "value": "inset 0 0 0 0.5px var(--t-glass-border), 0 0 0 0.5px var(--t-glass-border), var(--t-glass-shadow)",
    "tokens": [
-    "--t-border-thin",
-    "--t-action-blue-border"
+    "--t-glass-border",
+    "--t-glass-border",
+    "--t-glass-shadow"
    ],
-   "resolved": [
-    "1px",
-    "#60A5FA"
-   ]
+   "resolved": []
   },
   {
    "prop": "color",
    "fa": "رنگ متن",
-   "value": "var(--t-action-blue-fg)",
+   "value": "var(--t-fg-default)",
    "tokens": [
-    "--t-action-blue-fg"
+    "--t-fg-default"
    ],
    "resolved": [
-    "#FFFFFF"
+    "#1E293B"
    ]
   },
   {
@@ -3643,17 +3615,6 @@
    ],
    "resolved": [
     "8px"
-   ]
-  },
-  {
-   "prop": "border",
-   "fa": "کادر",
-   "value": "var(--t-border-thin) solid transparent",
-   "tokens": [
-    "--t-border-thin"
-   ],
-   "resolved": [
-    "1px"
    ]
   },
   {
@@ -5848,13 +5809,13 @@
   {
    "prop": "background",
    "fa": "زمینه",
-   "value": "radial-gradient(circle closest-side, var(--t-commerce-closed-dot) 0%, var(--t-status-dot-halo) 100%)",
+   "value": "radial-gradient(circle closest-side, var(--t-commerce-open-dot) 0%, var(--t-status-dot-halo) 100%)",
    "tokens": [
-    "--t-commerce-closed-dot",
+    "--t-commerce-open-dot",
     "--t-status-dot-halo"
    ],
    "resolved": [
-    "#D70040",
+    "#4CAF50",
     "rgba(255, 255, 255, 0.4)"
    ]
   }
@@ -6084,14 +6045,14 @@
   {
    "prop": "inline-size",
    "fa": "عرض",
-   "value": "86px",
+   "value": "32px",
    "tokens": [],
    "resolved": []
   },
   {
    "prop": "block-size",
    "fa": "ارتفاع",
-   "value": "86px",
+   "value": "32px",
    "tokens": [],
    "resolved": []
   },
@@ -6648,14 +6609,24 @@
    ]
   },
   {
-   "prop": "background",
-   "fa": "زمینه",
-   "value": "var(--t-bg-inverse)",
+   "prop": "background-color",
+   "fa": "رنگ زمینه",
+   "value": "var(--t-glass-inverse-fill)",
    "tokens": [
-    "--t-bg-inverse"
+    "--t-glass-inverse-fill"
+   ],
+   "resolved": []
+  },
+  {
+   "prop": "border",
+   "fa": "کادر",
+   "value": "var(--t-border-hairline) solid var(--t-glass-inverse-border)",
+   "tokens": [
+    "--t-border-hairline",
+    "--t-glass-inverse-border"
    ],
    "resolved": [
-    "#1E293B"
+    "0.5px"
    ]
   },
   {
@@ -6782,8 +6753,8 @@
  ],
  "t-toast--positive": [
   {
-   "prop": "background",
-   "fa": "زمینه",
+   "prop": "background-color",
+   "fa": "رنگ زمینه",
    "value": "var(--t-status-positive-solid)",
    "tokens": [
     "--t-status-positive-solid"
@@ -6806,8 +6777,8 @@
  ],
  "t-toast--critical": [
   {
-   "prop": "background",
-   "fa": "زمینه",
+   "prop": "background-color",
+   "fa": "رنگ زمینه",
    "value": "var(--t-status-critical-solid)",
    "tokens": [
     "--t-status-critical-solid"
@@ -6830,8 +6801,8 @@
  ],
  "t-toast--caution": [
   {
-   "prop": "background",
-   "fa": "زمینه",
+   "prop": "background-color",
+   "fa": "رنگ زمینه",
    "value": "var(--t-status-caution-solid)",
    "tokens": [
     "--t-status-caution-solid"
@@ -7656,15 +7627,13 @@
    ]
   },
   {
-   "prop": "background",
-   "fa": "زمینه",
-   "value": "var(--t-bg-inverse)",
+   "prop": "background-color",
+   "fa": "رنگ زمینه",
+   "value": "var(--t-glass-inverse-fill)",
    "tokens": [
-    "--t-bg-inverse"
+    "--t-glass-inverse-fill"
    ],
-   "resolved": [
-    "#1E293B"
-   ]
+   "resolved": []
   },
   {
    "prop": "color",
@@ -7675,6 +7644,18 @@
    ],
    "resolved": [
     "#F8FAFC"
+   ]
+  },
+  {
+   "prop": "border",
+   "fa": "کادر",
+   "value": "var(--t-border-hairline) solid var(--t-glass-inverse-border)",
+   "tokens": [
+    "--t-border-hairline",
+    "--t-glass-inverse-border"
+   ],
+   "resolved": [
+    "0.5px"
    ]
   },
   {
@@ -7998,6 +7979,15 @@
    "resolved": [
     "8px"
    ]
+  }
+ ],
+ "t-sheet--full": [
+  {
+   "prop": "block-size",
+   "fa": "ارتفاع",
+   "value": "90dvh",
+   "tokens": [],
+   "resolved": []
   }
  ],
  "t-sheet--adaptive": [
@@ -9702,14 +9692,14 @@
   {
    "prop": "inline-size",
    "fa": "عرض",
-   "value": "48px",
+   "value": "32px",
    "tokens": [],
    "resolved": []
   },
   {
    "prop": "block-size",
    "fa": "ارتفاع",
-   "value": "48px",
+   "value": "32px",
    "tokens": [],
    "resolved": []
   }

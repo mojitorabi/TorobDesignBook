@@ -14,7 +14,7 @@ export function indexPage({ components, iconCount, tokenCount }) {
     </div>
   </div>
 
-  <div class="wide" style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));margin-block:26px">
+  <div class="wide" style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(146px,1fr));margin-block:26px">
     ${[[toFa(components.length), 'کامپوننت', 'components/button.html'],
        [toFa(tokenCount.toLocaleString('en-US')), 'توکن طراحی', 'tokens.html'],
        [toFa(iconCount.toLocaleString('en-US')), 'آیکون', 'icons.html'],
@@ -63,7 +63,7 @@ export function indexPage({ components, iconCount, tokenCount }) {
   </article>
 </div>` })}`);
 
-  body += section('components', 'کامپوننت‌ها', `<div class="prose"><p>${toFa(components.length)} کامپوننت در ${toFa(getFacts().groups)} گروه. هر کدام نام‌های قدیمی سیمبل اسکچ را که جایگزینشان شده با خود دارد، تا واژگان قبلی همچنان کار کند.</p></div>
+  body += section('components', 'کامپوننت‌ها', `<div class="prose"><p>${toFa(components.length)} کامپوننت در ${toFa(getFacts().groups)} گروه. نشان «تازه» یعنی در کیت اسکچ وجود نداشت. بقیه نام‌های قدیمی سیمبل را با خود دارند، پس واژگان قبلی همچنان کار می‌کند — نگاشت کامل در <a href="migration.html">نام‌گذاری و مهاجرت</a>.</p></div>
     <div class="wide">
     ${Object.entries(groups).map(([g, list]) => `
       <h3 style="font-size:14px;font-weight:700;margin-block:26px 9px;color:var(--t-fg-secondary);text-transform:uppercase;letter-spacing:0.07em">${esc(GROUP_FA[g] ?? g)}</h3>
@@ -71,7 +71,6 @@ export function indexPage({ components, iconCount, tokenCount }) {
         ${list.map(c => `<a href="components/${c.slug}.html" style="text-decoration:none;color:inherit;padding:11px 13px;border:1px solid var(--t-border-subtle);border-radius:9px;background:var(--t-bg-fog);display:flex;align-items:center;gap:8px">
           <span style="font-weight:600;font-size:13.5px">${esc(c.name)}</span>
           ${c.status === 'new' ? '<span class="status-pill status-pill--new" style="font-size:9.5px;padding:1px 6px">تازه</span>' : ''}
-          ${c.status === 'revised' ? '<span class="status-pill status-pill--revised" style="font-size:9.5px;padding:1px 6px">تغییر نام</span>' : ''}
         </a>`).join('')}
       </div>`).join('')}
     </div>`);

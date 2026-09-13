@@ -13,7 +13,7 @@ for (const f of readdirSync(src).filter(f => f.endsWith('.css')).sort()) css += 
 css = css.replace(/\/\*[\s\S]*?\*\//g, '');
 
 const roots = new Map();
-const get = n => { if (!roots.has(n)) roots.set(n, { mods: new Set(), parts: new Set(), states: new Set(), attrs: new Set() }); return roots.get(n); };
+const get = n => { if (!roots.has(n)) roots.set(n, { mods: new Set(), parts: new Set(), states: new Set(), attrs: new Set(), alias: new Map() }); return roots.get(n); };
 const STATES = ['hover', 'focus-visible', 'active', 'disabled', 'checked', 'invalid'];
 
 /** Split a selector list on commas that are not inside brackets. */
@@ -30,6 +30,7 @@ function topSplit(list) {
 }
 
 for (const m of css.matchAll(/(^|\})([^{}@]+)\{/g)) {
+  const bare = [];
   for (const raw of topSplit(m[2])) {
     const s = raw.trim();
     if (!s || s.startsWith('@') || s === 'from' || s === 'to' || /^\d/.test(s)) continue;
@@ -44,6 +45,11 @@ for (const m of css.matchAll(/(^|\})([^{}@]+)\{/g)) {
       if (tail.startsWith('--')) r.mods.add(tail.slice(2));
       else if (tail.startsWith('__')) r.parts.add(tail.slice(2).split('--')[0]);
     }
+    /* Two modifiers written as bare selectors in the same list are the same
+       thing under two names — `.t-btn--red, .t-btn--primary { … }`. The book
+       should show one cell, not two identical ones, and it should say which
+       names reach it. Picked up here so the pairing cannot drift from the CSS. */
+    bare.push(s);
     // A state counts whether it is written as a pseudo-class, as a forced
     // [data-state] value or as the ARIA attribute that means the same thing.
     for (const st of STATES) {
@@ -55,6 +61,18 @@ for (const m of css.matchAll(/(^|\})([^{}@]+)\{/g)) {
           (st === 'invalid' && (s.includes('aria-invalid') || s.includes('data-invalid')))) r.states.add(st);
     }
     for (const am of s.matchAll(/\[((?:aria|data)-[a-z-]+)(?:[~^|*$]?=)?"?([a-z0-9 -]*)"?\]/g)) r.attrs.add(am[1] + (am[2] ? '=' + am[2] : ''));
+  }
+  /* Only a rule whose every selector is a bare `.root--mod` declares aliases;
+     anything with a state, a descendant or an attribute is a shared rule, not
+     the same variant twice. */
+  const mods = bare.map(sel => /^\.(t-[a-z0-9_-]+)--([a-z0-9-]+)$/.exec(sel.trim())).filter(Boolean);
+  if (mods.length > 1 && mods.length === bare.length) {
+    const rootName = mods[0][1];
+    if (mods.every(x => x[1] === rootName)) {
+      const r = get(rootName), names = mods.map(x => x[2]);
+      const canonical = names[0];
+      for (const n of names.slice(1)) r.alias.set(n, canonical);
+    }
   }
 }
 
@@ -81,4 +99,6 @@ for (const [n, r] of rows) {
 }
 console.log(`\n${gaps} interactive components with an incomplete state set`);
 if (gaps && process.env.CSS_MAP_STRICT !== '0') process.exitCode = 1;
-writeFileSync(join(ROOT, 'source', 'generated', 'css-map.json'), JSON.stringify(Object.fromEntries([...roots].map(([k, v]) => [k, { mods: [...v.mods], parts: [...v.parts], states: [...v.states], attrs: [...v.attrs] }])), null, 1));
+writeFileSync(join(ROOT, 'source', 'generated', 'css-map.json'), JSON.stringify(Object.fromEntries([...roots].map(([k, v]) => [k, { mods: [...v.mods], parts: [...v.parts], states: [...v.states], attrs: [...v.attrs], alias: Object.fromEntries(v.alias) }])), null, 1));
+const aliased = [...roots.values()].reduce((a, r) => a + r.alias.size, 0);
+console.log(`${aliased} modifier names are aliases of another name`);

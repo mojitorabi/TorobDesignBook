@@ -15,7 +15,7 @@ import { simplePages } from './pages-simple.mjs';
 import { patternsPages, sellerPanelPage } from './pages-patterns.mjs';
 import { layout, specimen, section, table, guidance, esc, slugToPath, anchor,
          extractElement, stateMatrix, modifierMatrix, STATE_FA, dedupeIds, toFa,
-         bestForSelectors } from './site-lib.mjs';
+         bestForSelectors, tabset } from './site-lib.mjs';
 import { loadComponents } from './site-lib.mjs';
 import { initFacts } from './facts.mjs';
 
@@ -85,8 +85,9 @@ for (const [from, to] of [
 
 /* Sample content for specimens (store logos, product photos). Imagery, not
    system assets: it shows the components with the Sketch file's own content.
-   And the exact-frame Sketch exports the symbols page compares against. */
-for (const [from, to] of [['source/samples', 'assets/samples'], ['source/sketch/ref', 'assets/sketch']]) {
+   The Sketch exports themselves stay out of the published site: they are an
+   input to build/dev/pixel-diff.mjs, not something a reader looks at. */
+for (const [from, to] of [['source/samples', 'assets/samples']]) {
   const src = join(ROOT, from), out = join(OUT, to);
   mkdirSync(out, { recursive: true });
   for (const f of readdirSync(src)) copyFileSync(join(src, f), join(out, f));
@@ -122,7 +123,7 @@ function legacyBlock(legacy) {
   const chips = `<div class="legacy-list">${legacy.map(l => `<span class="legacy">${esc(l)}</span>`).join('')}</div>`;
   if (legacy.length <= 5) return chips;
   return `<details class="legacy-fold">
-    <summary><svg class="legacy-fold__chev" width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11-5-5 1-1 4 4 4-4 1 1z"/></svg>${legacy.length} ${UI_FA.legacyFold}</summary>
+    <summary><svg class="legacy-fold__chev" width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11-5-5 1-1 4 4 4-4 1 1z"/></svg>${toFa(legacy.length)} ${UI_FA.legacyFold}</summary>
     ${chips}
   </details>`;
 }
@@ -139,8 +140,7 @@ function componentPage(c) {
   body += `<div class="prose" style="max-inline-size:none;margin-block-end:6px">
     <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-block-end:14px">
       <span class="status-pill status-pill--${c.status}">${c.status === 'revised' ? UI_FA.statusRevised : c.status === 'new' ? UI_FA.statusNew : UI_FA.statusStable}</span>
-      <code style="font-size:12px">&lt;${c.name} /&gt;</code>
-      <button class="site-tool copy-btn" data-copy-text="${esc(c.root ?? 't-' + c.slug)}">${UI_FA.copyClass}</button>
+      <button class="class-chip copy-btn" data-copy-text="${esc(c.root ?? 't-' + c.slug)}" title="${esc(UI_FA.copyClass)}"><code dir="ltr">.${esc(c.root ?? 't-' + c.slug)}</code></button>
     </div>
     ${legacyBlock(c.legacy)}
   </div>`;
@@ -172,9 +172,9 @@ function componentPage(c) {
     const variants = mods.filter(m => !SIZE_MODS.includes(m));
     if (variants.length > 1) body += S('variants', 'گونه‌ها',
       `<div class="prose"><p>هر گونه‌ای که استایل‌شیت تعریف می‌کند، رندرشده از همان مارک‌آپ. این فهرست از خود CSS خوانده می‌شود، پس نه چیزی جا می‌ماند و نه چیزی ادعا می‌شود که وجود ندارد.</p></div>`
-      + modifierMatrix(sample, c.root, variants));
+      + modifierMatrix(sample, c.root, variants, {}, map.alias ?? {}));
     if (sizes.length > 1) body += S('sizes', 'اندازه‌ها',
-      `<div class="prose"><p>یک مقیاس، در همهٔ کامپوننت‌ها یکی.</p></div>` + modifierMatrix(sample, c.root, sizes));
+      `<div class="prose"><p>یک مقیاس، در همهٔ کامپوننت‌ها یکی.</p></div>` + modifierMatrix(sample, c.root, sizes, {}, map.alias ?? {}));
     const states = statesFor(c.root, sample);
     if (states.length > 2) body += S('states', 'حالت‌ها',
       `<div class="prose"><p>هر حالت با <code>data-state</code> هم قابل اعمال است، نه فقط با اشاره‌گر؛ برای همین می‌شود آن را در مستندات، در تست تصویری و در دیف پیکسلی دید.</p></div>`
@@ -216,6 +216,7 @@ function componentPage(c) {
   }
   /* Specification. Every value below is the declaration the stylesheet makes
      for that part, with the token it comes from — nothing is retyped here. */
+  let specsBlock = '';
   if (c.root) {
     const blocks = (c.anatomy ?? []).map(([name, , sel]) => {
       if (!sel) return '';
@@ -227,23 +228,31 @@ function componentPage(c) {
         ${table(['ویژگی', 'توکن', 'مقدار'], rows.map(r => [
           esc(r.fa),
           r.tokens.length ? r.tokens.map(t => `<code>${esc(t)}</code>`).join(' ') : `<code>${esc(r.value)}</code>`,
-          esc(r.resolved.join(' / ') || (r.tokens.length ? '—' : r.value)),
+          `<code dir="ltr">${esc(r.resolved.join(' / ') || (r.tokens.length ? '—' : r.value))}</code>`,
         ]))}
       </div>`;
     }).filter(Boolean).join('');
-    if (blocks) body += S('specs', 'مشخصات', `<div class="prose"><p>مقادیر زیر مستقیماً از استایل‌شیت خوانده می‌شوند، نه از یادداشتی کنار آن. هر جا توکنی هست، نام توکن آمده و مقدارش در پوستهٔ روشن.</p></div>${blocks}`);
+    specsBlock = blocks;
   }
 
-  if (c.props?.length) body += S('props', UI_FA.props, table(['پراپ', 'نوع', 'پیش‌فرض', 'توضیح'],
-    c.props.map(([n, t, d, desc]) => [`<code>${esc(n)}</code>`, `<code style="color:var(--t-fg-link)">${esc(t)}</code>`, `<code>${esc(d)}</code>`, desc])));
-  if (c.react) body += S('react', 'React', `<div class="spec" data-spec>
+  /* One reference band instead of five more headings. Specs, props, React,
+     accessibility and responsive behaviour are things a reader consults after
+     deciding to use the component, not things they read on the way there —
+     so they share a tab set and the page gets a visible bottom. */
+  const refs = [
+    ['مشخصات', specsBlock && `<div class="prose"><p>مقادیر زیر مستقیماً از استایل‌شیت خوانده می‌شوند، نه از یادداشتی کنار آن. هر جا توکنی هست، نام توکن آمده و مقدارش در پوستهٔ روشن.</p></div>${specsBlock}`],
+    [UI_FA.props, c.props?.length && table(['پراپ', 'نوع', 'پیش‌فرض', 'توضیح'],
+      c.props.map(([n, t, d, desc]) => [`<code>${esc(n)}</code>`, `<code style="color:var(--t-fg-link)">${esc(t)}</code>`, `<code>${esc(d)}</code>`, desc]))],
+    ['React', c.react && `<div class="spec" data-spec>
       <div class="spec__bar"><span class="spec__label">${esc(c.name)}.tsx</span>
         <div class="spec__tools"><button class="site-tool copy-btn" data-copy="react-${c.slug}">${UI_FA.copy}</button></div>
       </div>
       <pre class="code" id="react-${c.slug}"><code>${c.react.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
-    </div>`);
-  if (c.a11y?.length) body += S('a11y', UI_FA.a11y, `<ul class="prose" style="max-inline-size:74ch">${c.a11y.map(a => `<li>${a}</li>`).join('')}</ul>`);
-  if (c.responsive) body += S('responsive', UI_FA.responsive, `<div class="prose"><p>${c.responsive}</p></div>`);
+    </div>`],
+    [UI_FA.a11y, c.a11y?.length && `<ul class="prose" style="max-inline-size:74ch">${c.a11y.map(a => `<li>${a}</li>`).join('')}</ul>`],
+    [UI_FA.responsive, c.responsive && `<div class="prose"><p>${c.responsive}</p></div>`],
+  ];
+  if (refs.some(r => r[1])) body += S('reference', 'مرجع فنی', tabset(refs, `مرجع فنی ${c.name}`));
 
   /* Where to look next. Everything in the same group solves a neighbouring
      problem, which is the question a reader has at the end of a page. */

@@ -1,14 +1,11 @@
 /* The symbols gallery: every master on the Sketch Components page, rebuilt
-   from system classes, shown next to Sketch's own export with a match score.
+   from system classes.
 
-   Four ways to look at each one:
-     کد        the live HTML render (default)
-     اسکچ      the exact-frame @2x export from Sketch
-     روی هم    Sketch over code at 50%, for alignment
-     تفاوت     difference blend — black where they agree
-
-   Scores come from build/dev/pixel-diff.mjs (source/sketch/match.json). */
-import { readFileSync, existsSync } from 'node:fs';
+   One card per master, showing the finished component and the two names it
+   answers to — the old Sketch name and the standard name in this system.
+   The old exports and the pixel scores are a build-time check
+   (build/dev/pixel-diff.mjs), not something a reader needs to look at. */
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './tokens-lib.mjs';
 import { section, esc, uniqueIds } from './site-lib.mjs';
@@ -37,36 +34,23 @@ const ORDER = ['Button', 'Badge', 'Chips', 'Inputs', 'Map', 'Product', 'Store', 
 
 export function symbolsPage(components) {
   const spec = JSON.parse(readFileSync(join(ROOT, 'source/sketch/symbols.json'), 'utf8'));
-  const matchFile = join(ROOT, 'source/sketch/match.json');
-  const match = existsSync(matchFile) ? JSON.parse(readFileSync(matchFile, 'utf8')) : {};
   const norm = s => s.replace(/‌/g, '').replace(/\s*\/\s*/g, '/').toLowerCase().trim();
   const owner = new Map();
   for (const c of components) for (const l of c.legacy ?? []) owner.set(norm(l), c);
 
-  const rows = spec.symbols.map(s => ({ s, c: owner.get(norm(s.name)), code: SYMBOL_CODE[s.name]?.code ?? '', sp: SPECIMENS[s.id], m: match[s.id], notes: NOTES[s.id] ?? [], family: familyOf(s.name) }));
-  const scored = rows.filter(r => r.m);
-  const mean = scored.reduce((a, r) => a + r.m.score, 0) / (scored.length || 1);
-  const high = scored.filter(r => r.m.score >= 95).length;
-  const sized = scored.filter(r => r.m.sizeOk).length;
+  const rows = spec.symbols.map(s => ({ s, c: owner.get(norm(s.name)), code: SYMBOL_CODE[s.name]?.code ?? '', sp: SPECIMENS[s.id], notes: NOTES[s.id] ?? [], family: familyOf(s.name) }));
   const noted = rows.filter(r => r.notes.length).length;
 
   const toc = [];
   const S = (id, t, i) => { toc.push({ id, label: t }); return section(id, t, i); };
 
   let body = `<div class="prose">
-    <p>هر ${num(spec.masters)} مستر صفحهٔ <strong>Components</strong> در فایل اسکچ، اینجا از کلاس‌های همین سیستم ساخته شده است. کنار هر کدام خروجی خود اسکچ هست تا بتوانید با چشم خودتان مقایسه کنید.</p>
-  </div>
-  <div class="sym-stats">
-    <div><strong>${num(spec.masters)}</strong><span>سیمبل از کد</span></div>
-    <div><strong>${num(Math.round(mean * 10) / 10)}٪</strong><span>میانگین تطابق</span></div>
-    <div><strong>${num(high)}</strong><span>بالای ۹۵٪</span></div>
-    <div><strong>${num(sized)}</strong><span>اندازهٔ دقیق</span></div>
+    <p>آنچه می‌بینید کد است، نه تصویر اسکچ. زیر هر کارت، نام استاندارد تازه و نام قدیمی همان سیمبل آمده تا بدانید هر چیزی حالا کجاست.</p>
   </div>`;
 
-  const scoreLevel = s => s >= 95 ? 'high' : s >= 90 ? 'mid' : 'low';
   let n = 0;
   const card = r => {
-    const { s, c, sp, m } = r;
+    const { s, c, sp } = r;
     const id = `sym${++n}`;
     const theme = sp?.theme ?? 'light';
     const wide = s.width > 240;
@@ -76,34 +60,27 @@ export function symbolsPage(components) {
   <div class="sym__stage" data-theme="${theme}">
     <div class="sym__frame" style="--w:${s.width}px;--h:${s.height}px">
       <div class="sym__code" dir="rtl" lang="fa">${html}</div>
-      <img class="sym__sketch" src="%ASSETS%/sketch/${s.id}.png" width="${s.width}" height="${s.height}" alt="${esc(s.label)} در اسکچ" loading="lazy" decoding="async">
     </div>
   </div>
   <div class="sym__meta">
     <div class="sym__line">
-      <span class="sym__old" dir="ltr">${esc(s.label)}</span>
-      ${m ? `<span class="sym__score" data-level="${scoreLevel(m.score)}" title="سهم پیکسل‌های هم‌رنگ با خروجی اسکچ">${num(m.score)}٪</span>` : ''}
+      ${c ? `<a class="sym__new" href="components/${c.slug}.html">${esc(c.name)}</a>` : '<span class="sym__new sym__new--none">بدون کامپوننت متناظر</span>'}
+      <span class="sym__size">${dim(s.width, s.height)}</span>
     </div>
     <div class="sym__line sym__line--sub">
-      ${c ? `<a class="sym__new" href="components/${c.slug}.html">${esc(c.name)}</a>` : ''}
-      <code class="sym__class" dir="ltr">${esc(r.code)}</code>
+      <span class="sym__was">قبلاً</span>
+      <span class="sym__old" dir="ltr">${esc(s.label)}</span>
     </div>
     <div class="sym__line sym__line--foot">
-      <span class="sym__size">${dim(s.width, s.height)}</span>
-      ${notes ? `<details class="sym__notes"><summary>${num(r.notes.length)} یادداشت</summary><ul>${notes}</ul></details>` : ''}
+      <code class="sym__class" dir="ltr">${esc(r.code)}</code>
       <button class="sym__copy" data-sym-copy title="کپی HTML همین سیمبل">کپی HTML</button>
+      ${notes ? `<details class="sym__notes"><summary>${num(r.notes.length)} تفاوت عمدی با اسکچ</summary><ul>${notes}</ul></details>` : ''}
     </div>
   </div>
 </article>`;
   };
 
-  body += `<div class="sym-bar" role="toolbar" aria-label="نمایش سیمبل‌ها">
-    <div class="t-segmented" role="radiogroup" aria-label="حالت نمایش" id="symMode">
-      <button class="t-segmented__item" role="radio" aria-checked="true" data-mode="code">کد</button>
-      <button class="t-segmented__item" role="radio" aria-checked="false" data-mode="sketch">اسکچ</button>
-      <button class="t-segmented__item" role="radio" aria-checked="false" data-mode="overlay">روی هم</button>
-      <button class="t-segmented__item" role="radio" aria-checked="false" data-mode="diff">تفاوت</button>
-    </div>
+  body += `<div class="sym-bar">
     <div class="t-search sym-bar__search" data-state="default"><div class="t-input"><input class="t-input__el" type="search" id="symSearch" placeholder="جست‌وجوی نام قدیمی یا جدید…" aria-label="جست‌وجوی سیمبل" autocomplete="off"></div></div>
   </div>
   <div class="t-chip-group sym-families" role="group" aria-label="خانواده" id="symFam">
@@ -122,20 +99,13 @@ export function symbolsPage(components) {
   }
   body += `<p id="symEmpty" class="t-tone-secondary" hidden>چیزی پیدا نشد.</p>`;
 
-  body += S('how', 'امتیاز چطور حساب می‌شود', `<div class="prose">
-    <p>هر سیمبل با همان اندازهٔ مستر و در چگالی ۲ برابر رندر می‌شود و با خروجی اسکچ (با قاب دقیق) پیکسل به پیکسل مقایسه می‌شود. امتیاز، سهم پیکسل‌های محتوایی است که رنگشان با اسکچ یکی است؛ جابه‌جایی یک پیکسل دستگاهی در لبه‌ها بخشیده می‌شود، چون موتور متن اسکچ و مرورگر هیچ‌وقت لبهٔ حروف را یکسان نمی‌کشند. برای همین سیمبل‌های پرمتن به ۱۰۰ نمی‌رسند.</p>
-    <p>${num(noted)} سیمبل یادداشت دارند: جاهایی که کد عمداً با اسکچ فرق دارد، چون اسکچ با خودش نمی‌خواند، دسترس‌پذیری را رد می‌کند، فونت یا آیکون غیرمجاز دارد، یا نمونه‌اش کش آمده است. هر یادداشت پیشنهادی برای اصلاح در خود فایل اسکچ است.</p>
-    <p>برای ساختن دوباره: <code>node build/dev/pixel-diff.mjs</code> (به Playwright نیاز دارد) و خروجی‌های مرجع با برش هم‌اندازهٔ هر مستر از خود اسکچ گرفته می‌شوند.</p>
+  body += S('how', 'این صفحه چطور ساخته می‌شود', `<div class="prose">
+    <p>هیچ‌کدام از این کارت‌ها تصویر نیستند. همه با همان HTML و همان کلاس‌هایی ساخته شده‌اند که در محصول استفاده می‌کنید؛ روی هر کدام «کپی HTML» بزنید و همان را بردارید.</p>
+    <p>درستی هندسه در زمان ساخت بررسی می‌شود: هر سیمبل با اندازهٔ مستر رندر و پیکسل به پیکسل با خروجی خود اسکچ مقایسه می‌شود (<code>node build/dev/pixel-diff.mjs</code>). این کار بیرون از صفحه انجام می‌شود تا چیزی که شما می‌بینید فقط نسخهٔ نهایی باشد.</p>
+    <p>${num(noted)} سیمبل «تفاوت عمدی» دارند: جایی که کد از قصد با اسکچ فرق می‌کند، چون اسکچ با خودش نمی‌خواند، دسترس‌پذیری را رد می‌کند، فونت یا آیکون غیرمجاز دارد، یا نمونه‌اش کش آمده است. هر کدام پیشنهادی برای اصلاح فایل اسکچ است.</p>
   </div>`);
 
   body += `<script>(function(){
-  var mode=document.getElementById('symMode'), root=document.querySelector('main');
-  mode.addEventListener('click',function(e){var b=e.target.closest('[data-mode]'); if(!b)return;
-    mode.querySelectorAll('[data-mode]').forEach(function(x){x.setAttribute('aria-checked', x===b?'true':'false');});
-    root.setAttribute('data-sym-mode', b.dataset.mode);});
-  mode.addEventListener('keydown',function(e){var d={ArrowLeft:1,ArrowRight:-1}[e.key]; if(!d)return; e.preventDefault();
-    var all=[].slice.call(mode.querySelectorAll('[data-mode]')), i=all.findIndex(function(x){return x.getAttribute('aria-checked')==='true';});
-    var n=all[(i+d+all.length)%all.length]; n.focus(); n.click();});
   var q=document.getElementById('symSearch'), fam=document.getElementById('symFam'), cur='', empty=document.getElementById('symEmpty');
   var cards=[].slice.call(document.querySelectorAll('.sym'));
   function apply(){var t=q.value.trim().toLowerCase(), shown=0;
@@ -152,7 +122,7 @@ export function symbolsPage(components) {
 
   return {
     body, toc, title: 'سیمبل‌های اسکچ',
-    description: `هر ${toFa(spec.masters)} سیمبل کیت، ساخته‌شده از کد، کنار خروجی اسکچ با درصد تطابق.`,
+    description: `هر ${toFa(spec.masters)} سیمبل کیت، ساخته‌شده از کد، با نام قدیمی و نام استاندارد جدیدش.`,
     eyebrow: 'مرور کلی',
   };
 }

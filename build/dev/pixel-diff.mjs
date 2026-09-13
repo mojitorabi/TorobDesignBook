@@ -22,7 +22,8 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import { ROOT } from '../tokens-lib.mjs';
 
-const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const pwMod = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const { chromium } = pwMod.chromium ? pwMod : pwMod.default;
 const { SPECIMENS, GROUND } = await import(join(ROOT, 'source/sketch/specimens.mjs'));
 const symbols = JSON.parse(readFileSync(join(ROOT, 'source/sketch/symbols.json'), 'utf8')).symbols;
 const filter = process.argv[2] ?? '';

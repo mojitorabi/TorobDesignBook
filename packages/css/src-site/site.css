@@ -143,10 +143,29 @@ kbd {
   border-inline-end: 1px solid var(--t-border-subtle);
   scrollbar-width: thin;
 }
-.site-nav__group { margin-block-end: 26px; }
+.site-nav__group { margin-block-end: 2px; }
 .site-nav__title {
-  font-size: 12px; color: var(--t-fg-secondary); font-weight: 700;
-  margin-block-end: 9px; padding-inline-start: 12px;
+  display: flex; align-items: center; gap: 8px;
+  min-block-size: 34px; padding: 4px 12px; border-radius: 8px;
+  font-size: 13px; color: var(--t-fg-default); font-weight: 700;
+  cursor: pointer; list-style: none; user-select: none;
+  transition: background-color 120ms var(--site-ease);
+}
+.site-nav__title::-webkit-details-marker { display: none; }
+.site-nav__title::after {
+  content: ""; margin-inline-start: auto; inline-size: 7px; block-size: 7px;
+  border-inline-end: 1.6px solid currentColor; border-block-end: 1.6px solid currentColor;
+  color: var(--t-fg-secondary);
+  transform: rotate(45deg); transform-origin: 60% 60%;
+  transition: transform 160ms var(--site-ease);
+}
+.site-nav__group[open] > .site-nav__title::after { transform: rotate(-45deg); }
+.site-nav__title:hover { background: var(--t-bg-subtle); }
+.site-nav__items { padding-block: 2px 10px; }
+.site-nav__section {
+  margin-block: 18px 6px; padding-inline-start: 12px;
+  font-size: 11.5px; font-weight: 800; letter-spacing: 0;
+  color: var(--t-fg-secondary);
 }
 .site-nav a {
   position: relative;
@@ -479,17 +498,12 @@ pre.code code { background: none; padding: 0; font-size: inherit; }
 }
 
 /* ---------- Symbols gallery ----------
-   Each card holds the coded symbol and Sketch's own export in the same
-   frame. The view mode on <main> decides which one shows, or both. */
-.sym-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1px; margin-block: 28px 8px; border-radius: var(--t-radius-lg); overflow: hidden; background: var(--t-border-subtle); }
-.sym-stats > div { display: flex; flex-direction: column; gap: 2px; padding: 16px 18px; background: var(--t-bg-fog); }
-.sym-stats strong { font-size: 24px; line-height: 1.3; font-weight: 800; }
-.sym-stats span { font-size: 13px; color: var(--t-fg-secondary); }
-.sym-bar { position: sticky; inset-block-start: calc(var(--site-bar-h) + 8px); z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-block-start: 28px; padding: 8px; border-radius: var(--t-radius-lg); background: var(--t-glass-fill); box-shadow: inset 0 0 0 1px var(--t-border-subtle); backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur)); }
-.sym-bar__search { flex: 1 1 220px; }
+   One card per Sketch master: the finished component, then the two names it
+   answers to. The Sketch export itself is a build-time check, not content. */
+.sym-bar { position: sticky; inset-block-start: calc(var(--site-bar-h) + 8px); z-index: 20; margin-block-start: 28px; padding-block: 8px; background: var(--t-bg-canvas); }
 .sym-bar__search .t-input { block-size: 36px; }
 .sym-bar__search .t-input__el { font-size: 14px; }
-.sym-families { padding-block: 12px 0; }
+.sym-families { padding-block: 4px 0; }
 .sym-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-block-start: 16px; }
 .sym { display: flex; flex-direction: column; min-inline-size: 0; border-radius: var(--t-radius-lg); background: var(--t-bg-fog); box-shadow: inset 0 0 0 1px var(--t-border-subtle); overflow: hidden; }
 .sym--wide { grid-column: 1 / -1; }
@@ -498,21 +512,15 @@ pre.code code { background: none; padding: 0; font-size: inherit; }
 .sym__stage[data-theme="dim"], .sym__stage[data-theme="dark"] { background-color: #15202B; }
 .sym__frame { position: relative; inline-size: var(--w); block-size: var(--h); flex: none; }
 .sym__code { position: absolute; inset: 0; display: flex; align-items: flex-start; justify-content: flex-start; }
-.sym__sketch { position: absolute; inset: 0; inline-size: var(--w); block-size: var(--h); max-inline-size: none; pointer-events: none; opacity: 0; }
-main[data-sym-mode="sketch"] .sym__code { visibility: hidden; }
-main[data-sym-mode="sketch"] .sym__sketch { opacity: 1; }
-main[data-sym-mode="overlay"] .sym__sketch { opacity: 0.5; }
-main[data-sym-mode="diff"] .sym__sketch { opacity: 1; mix-blend-mode: difference; }
-main[data-sym-mode="diff"] .sym__stage { background-image: none; }
 .sym__meta { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-block-start: 1px solid var(--t-border-subtle); }
 .sym__line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-inline-size: 0; }
-.sym__line--sub { font-size: 13px; line-height: 1.6; }
-.sym__line--foot { font-size: 12px; line-height: 1.6; color: var(--t-fg-secondary); align-items: flex-start; }
-.sym__old { font-family: var(--site-mono); font-size: 12.5px; line-height: 1.6; font-weight: 600; color: var(--t-fg-default); overflow-wrap: anywhere; }
-.sym__score { margin-inline-start: auto; font-size: 12px; line-height: 20px; font-weight: 700; padding-inline: 8px; border-radius: var(--t-radius-full); background: var(--t-status-neutral-bg); color: var(--t-fg-default); }
-.sym__score[data-level="high"] { background: var(--t-status-positive-bg); color: var(--t-status-positive-fg); }
-.sym__score[data-level="low"] { background: var(--t-status-caution-bg); color: var(--t-status-caution-fg); }
-.sym__new { font-weight: 700; text-decoration: none; }
+.sym__line--sub { font-size: 12.5px; line-height: 1.7; }
+.sym__line--foot { font-size: 12px; line-height: 1.6; color: var(--t-fg-secondary); align-items: flex-start; margin-block-start: 2px; }
+.sym__new { font-size: 15px; font-weight: 700; text-decoration: none; }
+.sym__new--none { color: var(--t-fg-secondary); font-weight: 600; }
+.sym__size { margin-inline-start: auto; font-size: 12px; color: var(--t-fg-secondary); }
+.sym__was { flex: none; color: var(--t-fg-secondary); }
+.sym__old { font-family: var(--site-mono); font-size: 12px; font-weight: 600; color: var(--t-fg-default); overflow-wrap: anywhere; }
 .sym__class { font-family: var(--site-mono); font-size: 11.5px; color: var(--t-fg-secondary); overflow-wrap: anywhere; background: none; padding: 0; }
 .sym__notes { flex: 1 1 100%; order: 3; }
 .sym__notes summary { cursor: pointer; color: var(--t-fg-link); font-weight: 600; inline-size: fit-content; }
@@ -548,10 +556,13 @@ main[data-sym-mode="diff"] .sym__stage { background-image: none; }
 .matrix__label {
   padding: 8px 12px; font-size: 12px; color: var(--t-fg-secondary);
   border-block-start: 1px solid var(--t-border-subtle);
-  display: flex; align-items: baseline; gap: 8px; justify-content: space-between;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; justify-content: space-between;
 }
-.matrix__label code { font-size: 11.5px; color: var(--t-fg-default); }
+.matrix__label code { font-size: 11.5px; color: var(--t-fg-default); white-space: nowrap; }
 .matrix__label span { font-size: 11px; }
+/* The second name a variant answers to, on its own line so neither wraps. */
+.matrix__eq { flex: 1 1 100%; color: var(--t-fg-secondary); }
+.matrix__eq code { color: var(--t-fg-secondary); }
 @media (max-width: 520px) { .matrix { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); } }
 
 /* The hero specimen sits above the prose and carries more air than the
@@ -657,3 +668,44 @@ main[data-sym-mode="diff"] .sym__stage { background-image: none; }
 }
 .play__bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 14px; border-block-start: 1px solid var(--t-border-subtle); font-size: 12px; color: var(--t-fg-secondary); }
 .play__code pre.code { max-block-size: 240px; overflow: auto; }
+
+/* ---------- Reference tabs ----------
+   The band at the foot of a component page. One heading, five panels. */
+.tabset { margin-block-start: 18px; }
+.tabset__list {
+  display: flex; gap: 2px; flex-wrap: wrap;
+  padding: 3px; border-radius: var(--t-radius-md);
+  background: var(--t-bg-subtle);
+  inline-size: fit-content; max-inline-size: 100%;
+}
+.tabset__tab {
+  appearance: none; border: 0; cursor: pointer;
+  min-block-size: 32px; padding-inline: 14px;
+  border-radius: calc(var(--t-radius-md) - 3px);
+  background: transparent; color: var(--t-fg-secondary);
+  font: inherit; font-size: 13.5px; font-weight: 600;
+  transition: background-color 120ms var(--site-ease), color 120ms var(--site-ease);
+}
+.tabset__tab:hover { color: var(--t-fg-default); }
+.tabset__tab[aria-selected="true"] {
+  background: var(--t-bg-canvas); color: var(--t-fg-default);
+  box-shadow: var(--t-elevation-1);
+}
+.tabset__panel { padding-block-start: 18px; }
+.tabset__panel[hidden] { display: none; }
+.tabset__panel:focus-visible { outline: var(--t-focus-width) solid var(--t-border-focus); outline-offset: 4px; border-radius: var(--t-radius-sm); }
+.tabset__panel > .prose:first-child > p:first-child { margin-block-start: 0; }
+.tabset__panel .spec-table:first-child { margin-block-start: 0; }
+
+/* The root class, which is the thing a developer copies first. The chip is
+   the button, so there is no separate "copy class" control beside it. */
+.class-chip {
+  appearance: none; cursor: pointer;
+  min-block-size: 26px; padding-inline: 9px;
+  border: 1px solid var(--t-border-subtle); border-radius: 7px;
+  background: var(--t-bg-fog); color: var(--t-fg-secondary);
+  font: inherit; line-height: 1;
+  transition: color 120ms var(--site-ease), border-color 120ms var(--site-ease);
+}
+.class-chip code { background: none; padding: 0; font-size: 12px; }
+.class-chip:hover { color: var(--t-fg-default); border-color: var(--t-border-control); }

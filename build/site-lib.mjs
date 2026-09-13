@@ -52,16 +52,28 @@ export function layout({ slug, title, description, nav, components, body, toc = 
   const groups = {};
   for (const c of components) (groups[c.group] ??= []).push(c);
 
-  const navHtml = nav.map(group => `
-      <div class="site-nav__group">
-        <div class="site-nav__title">${esc(group.title)}</div>
-        ${group.items.map(i => `<a href="${R(slugToPath(i.slug))}"${i.slug === slug ? ' aria-current="page"' : ''}>${esc(i.title)}</a>`).join('\n        ')}
-      </div>`).join('') +
-    Object.entries(groups).map(([g, list]) => `
-      <div class="site-nav__group">
-        <div class="site-nav__title">${esc(GROUP_FA[g] ?? g)}</div>
-        ${list.map(c => `<a href="${R('components/' + c.slug + '.html')}"${'components/' + c.slug === slug ? ' aria-current="page"' : ''}>${esc(c.name)}</a>`).join('\n        ')}
-      </div>`).join('');
+  /* Groups are <details> so the sidebar shows around a dozen headings instead
+     of ninety links. The group holding the current page is open; site.js
+     remembers whatever else the reader opens. Native disclosure means this
+     works with no JavaScript, and find-in-page still reaches closed groups. */
+  let navKey = 0;
+  const navGroup = (title, items, hasCurrent) => `
+      <details class="site-nav__group" data-nav-group="g${++navKey}"${hasCurrent ? ' open' : ''}>
+        <summary class="site-nav__title">${esc(title)}</summary>
+        <div class="site-nav__items">
+        ${items.join('\n        ')}
+        </div>
+      </details>`;
+
+  const navHtml = nav.map(group => navGroup(
+      group.title,
+      group.items.map(i => `<a href="${R(slugToPath(i.slug))}"${i.slug === slug ? ' aria-current="page"' : ''}>${esc(i.title)}</a>`),
+      group.items.some(i => i.slug === slug))).join('') +
+    `\n      <div class="site-nav__section">${esc(UI_FA.components)}</div>` +
+    Object.entries(groups).map(([g, list]) => navGroup(
+      GROUP_FA[g] ?? g,
+      list.map(c => `<a href="${R('components/' + c.slug + '.html')}"${'components/' + c.slug === slug ? ' aria-current="page"' : ''}>${esc(c.name)}</a>`),
+      list.some(c => 'components/' + c.slug === slug))).join('');
 
   const tocHtml = toc.length ? `
       <nav class="site-toc" aria-label="${esc(UI_FA.onThisPage)}">
@@ -190,7 +202,6 @@ export function specimen({ label, html, react, note, canvas, dir = 'rtl', stageC
   <div class="spec__bar">
     <span class="spec__label">${esc(label)}</span>
     <div class="spec__tools">
-      <button class="site-tool" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه" title="زبان و جهت این نمونه">فارسی</button>
       <button class="site-tool" data-spec-code aria-expanded="false">${UI_FA.code}</button>
       <button class="site-tool copy-btn" data-copy="${id}-html" title="کپی کد HTML">${UI_FA.copy}</button>
     </div>
@@ -203,6 +214,24 @@ export function specimen({ label, html, react, note, canvas, dir = 'rtl', stageC
     </div>
     ${tabs.map(([, code], i) => `<pre class="code" id="${id}-${i === 0 ? 'html' : 'react'}" data-panel="${i}"${i ? ' hidden' : ''}><code>${code}</code></pre>`).join('')}
   </div>
+</div>`;
+}
+
+/* A tab set for the reference material at the foot of a component page.
+   Five short sections that a reader consults rather than reads become one
+   band with five tabs, so the page has a bottom you can see. ARIA tabs:
+   roving tabindex, arrow keys, the panel labelled by its tab. */
+let refId = 0;
+export function tabset(items, label) {
+  const list = items.filter(i => i && i[1]);
+  if (!list.length) return "";
+  if (list.length === 1) return list[0][1];
+  const id = `rt${++refId}`;
+  return `<div class="tabset">
+  <div class="tabset__list" role="tablist" aria-label="${esc(label)}">
+    ${list.map(([t], i) => `<button class="tabset__tab" role="tab" id="${id}-t${i}" aria-controls="${id}-p${i}" aria-selected="${i === 0}" tabindex="${i ? -1 : 0}">${esc(t)}</button>`).join("")}
+  </div>
+  ${list.map(([, inner], i) => `<div class="tabset__panel" role="tabpanel" id="${id}-p${i}" aria-labelledby="${id}-t${i}"${i ? " hidden" : ""}${i ? "" : " tabindex=\"0\""}>${inner}</div>`).join("")}
 </div>`;
 }
 
@@ -364,13 +393,20 @@ export function stateMatrix(sample, states) {
 }
 
 /** Every modifier the stylesheet defines for this root, rendered. */
-export function modifierMatrix(sample, root, mods, labels = {}) {
+export function modifierMatrix(sample, root, mods, labels = {}, alias = {}) {
   const strip = new RegExp(`\\s*${root}--[a-z0-9-]+`, 'g');
-  const cells = mods.map(mod => {
+  /* `.t-btn--red` and `.t-btn--primary` are one rule under two names. Showing
+     both as separate cells made Button look like it had eighteen variants when
+     it has fourteen. One cell, both names on it. */
+  const also = {};
+  for (const [from, to] of Object.entries(alias)) (also[to] ??= []).push(from);
+  const cells = mods.filter(m => !alias[m]).map(mod => {
     const el = sample.replace(/class="([^"]*)"/, (m, v) => `class="${v.replace(strip, '')} ${root}--${mod}"`);
+    const same = also[mod] ?? [];
     return `<div class="matrix__cell">
       <div class="matrix__stage" dir="rtl" lang="fa" inert aria-hidden="true">${dedupeIds(el, 'mx' + ++matrixCell)}</div>
-      <div class="matrix__label"><code>--${mod}</code>${labels[mod] ? `<span>${labels[mod]}</span>` : ''}</div>
+      <div class="matrix__label"><code>--${mod}</code>${labels[mod] ? `<span>${labels[mod]}</span>` : ''}${
+        same.length ? `<span class="matrix__eq">همان ${same.map(n => `<code>--${n}</code>`).join('، ')}</span>` : ''}</div>
     </div>`;
   }).join('');
   return `<div class="matrix" data-kind="modifiers">${cells}</div>`;

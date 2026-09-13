@@ -29,8 +29,33 @@ const FA = {
   'letter-spacing': 'فاصلهٔ حرفی',
 };
 
+/* Fallback blocks describe what happens when something is unavailable, not
+   what the component is. A spec table that reads them ends up claiming a glass
+   toast has an opaque background, because the @supports fallback is parsed
+   last and wins. Cut those blocks out before anything else looks at the CSS. */
+const DEGRADE = /@(supports\s+not|media\s*\((?:prefers-reduced-(?:transparency|motion|data)|forced-colors)|media\s+print)/;
+function stripDegradation(css) {
+  let out = '', i = 0;
+  while (i < css.length) {
+    const at = css.indexOf('@', i);
+    if (at < 0) { out += css.slice(i); break; }
+    const head = css.slice(at, css.indexOf('{', at) + 1);
+    if (!DEGRADE.test(head) || head.indexOf('{') < 0) { out += css.slice(i, at + 1); i = at + 1; continue; }
+    out += css.slice(i, at);
+    /* Walk to the matching close brace so nested rules go with it. */
+    let depth = 0, j = at;
+    for (; j < css.length; j++) {
+      if (css[j] === '{') depth++;
+      else if (css[j] === '}' && --depth === 0) { j++; break; }
+    }
+    i = j;
+  }
+  return out;
+}
+
 function parse(css) {
   css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+  css = stripDegradation(css);
   const rules = [];
   for (const m of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
     const sel = m[1].trim();
@@ -66,9 +91,10 @@ export function specFor(cls) {
       if (s !== `.${cls}` && s !== `.${cls}, ` ) continue;
       /* "border: 0" answers nothing a reader asked. Declarations that only
          switch something off stay out of the table. */
-      for (const [p, v] of decls) {
+      for (const [p, rawV] of decls) {
         if (!SPEC_PROPS.includes(p)) continue;
-        if (/^(0|none|transparent|auto|inherit|initial|unset)$/.test(v.trim())) continue;
+        const v = rawV.replace(/\s*!important\s*$/, '').trim();
+        if (/^(0|none|transparent|auto|inherit|initial|unset)$/.test(v)) continue;
         out.set(p, v);
       }
     }
@@ -79,10 +105,19 @@ export function specFor(cls) {
 /** Custom-property indirection: --_h is set on the root, used on the part. */
 export function resolveLocals(cls, value) {
   if (!/var\(--_/.test(value)) return value;
+  /* Only the base rule defines the base spec. A selector like
+     `.t-btn:disabled` or `.t-btn--md` also sets --_bg and --_h, and the last
+     one parsed used to win — which is how a button's specification ended up
+     claiming its background was `transparent !important` and its text colour
+     was the disabled grey. Variants and states have their own matrices; the
+     spec table answers "what is this, before you change anything". */
   const locals = new Map();
   for (const [sel, decls] of rules()) {
-    if (!sel.split(',').some(s => s.trim().startsWith(`.${cls}`))) continue;
-    for (const [p, v] of decls) if (p.startsWith('--_')) locals.set(p, v);
+    if (!sel.split(',').some(s => s.trim() === `.${cls}`)) continue;
+    for (const [p, v] of decls) {
+      if (!p.startsWith('--_')) continue;
+      locals.set(p, v.replace(/\s*!important\s*$/, '').trim());
+    }
   }
   return value.replace(/var\((--_[\w-]+)(?:,\s*([^)]+))?\)/g, (m, name, fb) => locals.get(name) ?? fb ?? m);
 }
@@ -95,7 +130,15 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const m = /^\.(t-[a-z0-9_-]+)$/.exec(sel.trim());
     if (!m) continue;
     const specs = specFor(m[1]);
-    if (specs.length) out[m[1]] = specs.map(s => {
+    if (specs.length) out[m[1]] = specs.filter(s => {
+      /* A value that only switches something off answers nothing. The test has
+         to run after the local custom properties resolve: `background-color:
+         var(--_bg)` looks like a real declaration until --_bg turns out to be
+         `transparent`. */
+      const v = resolveLocals(m[1], s.value).trim();
+      return !/^(0|none|transparent|auto|inherit|initial|unset)$/.test(v)
+          && !(/transparent/.test(v) && !/(#|rgb|hsl|var\(--t-(?!border-thin|border-hairline))/.test(v.replace(/transparent/g, '')));
+    }).map(s => {
       const value = resolveLocals(m[1], s.value);
       const tokens = [...value.matchAll(/var\((--t-[\w-]+)/g)].map(t => t[1]);
       /* --t-size-control-xl is size.control-xl, not size.control.xl: only the
