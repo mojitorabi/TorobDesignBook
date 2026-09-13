@@ -65,6 +65,22 @@
 .t-sheet__body { padding-inline: var(--t-space-4); overflow-y: auto; flex: 1; overscroll-behavior: contain; }
 .t-sheet__foot { padding: var(--t-space-3) var(--t-space-4); display: flex; gap: var(--t-space-2); border-block-start: var(--t-border-thin) solid var(--t-border-subtle); }
 .t-sheet__foot > * { flex: 1; }
+/* ---- Sheet types ----
+   One component, five shapes. What changes is how much of the screen the
+   sheet claims and whether it scrolls, never the markup or the behaviour.
+
+   picker   a choice made once: rows, no footer, closes on the tap
+   compact  a short confirmation: content height, nothing to scroll
+   filter   the default: controls that scroll, two actions pinned below
+   full     detail that opens at full height instead of growing into it
+   input    holds a field, so the footer clears the on-screen keyboard */
+.t-sheet--picker .t-sheet__body { padding-inline: 0; }
+.t-sheet--picker .t-sheet__body .t-list-item { padding-inline: var(--t-space-4); }
+.t-sheet--compact { max-block-size: none; }
+.t-sheet--compact .t-sheet__body { overflow: visible; padding-block-end: var(--t-space-2); }
+.t-sheet--full { block-size: 90dvh; }
+.t-sheet--input .t-sheet__foot { padding-block-end: max(var(--t-space-3), env(safe-area-inset-bottom)); }
+
 /* Above the md breakpoint a bottom sheet is the wrong shape — it becomes a
    side panel. Same markup, same component, different surface. */
 @media (min-width: 768px) {

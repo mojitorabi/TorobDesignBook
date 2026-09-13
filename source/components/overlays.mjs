@@ -13,12 +13,14 @@ export default [
     "summary": "پرکاربردترین لایهٔ ترب. فیلتر، مرتب‌سازی، جزئیات فروشگاه، انتخاب گونه.",
     "description": [
       "صفحه‌های نمونه پر از برگهٔ پایینی‌اند — پنل فیلتر، فهرست مرتب‌سازی، کارت جزئیات فروشگاه، برگهٔ مشخصات — و حتی یکی به‌عنوان کامپوننت وجود نداشت. همه دستی کشیده شده بودند.",
-      "بالای ۷۶۸ پیکسل برگهٔ پایینی شکل درستی نیست: جای افقی هست و محدودیت شست نیست. <code>adaptive</code> همان کامپوننت را در md به یک پنل کناری تبدیل می‌کند، با همان مارک‌آپ، همان پراپ‌ها و همان رفتار فوکوس. یک کامپوننت، دو سطح."
+      "بالای ۷۶۸ پیکسل برگهٔ پایینی شکل درستی نیست: جای افقی هست و محدودیت شست نیست. <code>adaptive</code> همان کامپوننت را در md به یک پنل کناری تبدیل می‌کند، با همان مارک‌آپ، همان پراپ‌ها و همان رفتار فوکوس. یک کامپوننت، دو سطح.",
+      "پنج شکل دارد و همه یک کامپوننت‌اند. آنچه عوض می‌شود این است که برگه چقدر از صفحه را می‌گیرد و آیا اسکرول دارد یا نه، نه مارک‌آپ و نه رفتارش: <code>filter</code> (پیش‌فرض) کنترل‌های اسکرول‌شونده با دو کنش در فوتر، <code>picker</code> فهرست انتخاب بدون فوتر، <code>compact</code> تأیید کوتاه به‌اندازهٔ محتوا، <code>full</code> جزئیات تمام‌قد، و <code>input</code> برگه‌ای که فیلد دارد. هر پنج‌تا پایین‌تر رندر شده‌اند."
     ],
     "use": [
       "هر چیزی که کاربر باز می‌کند تا انتخابی بکند و بعد می‌بندد.",
       "برای محتوای بلند نقاط توقف بگذارید: سرک، نیمه، کامل.",
-      "کنش اصلی را در فوتر و بالای ناحیهٔ امن سنجاق کنید."
+      "کنش اصلی را در فوتر و بالای ناحیهٔ امن سنجاق کنید.",
+      "شکل را از کار انتخاب کنید، نه از ظاهر: انتخابِ یک‌باره <code>picker</code> است، تأیید <code>compact</code>."
     ],
     "avoid": [
       "برگه برای محتوایی که سزاوار صفحهٔ خودش است.",
@@ -59,6 +61,12 @@ export default [
         "کنترل‌شده."
       ],
       [
+        "type",
+        "\"filter\" | \"picker\" | \"compact\" | \"full\" | \"input\"",
+        "\"filter\"",
+        "شکل برگه. کلاس <code>.t-sheet--&lt;type&gt;</code> را می‌گذارد."
+      ],
+      [
         "adaptive",
         "boolean",
         "true",
@@ -86,10 +94,38 @@ export default [
     "responsive": "تا ۷۶۷ پیکسل برگهٔ پایینی، از ۷۶۸ پیکسل پنل ۴۲۰ پیکسلی در انتهای محور. انیمیشن هم با آن عوض می‌شود: بالا‌آمدن به ورود از انتهای محور تبدیل می‌شود که در راست‌چین درست قرینه می‌شود.",
     "specimens": [
       {
-        "label": "برگهٔ فیلتر",
+        "label": "فیلتر: کنترل‌های اسکرول‌شونده با دو کنش",
         "canvas": "plain",
         "stageClass": "spec__stage--center",
         "html": "<div style=\"position:relative;inline-size:375px;max-inline-size:100%;block-size:420px;border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)\">\n  <div style=\"position:absolute;inset:0;background:var(--t-bg-scrim)\"></div>\n  <div class=\"t-sheet\" style=\"position:absolute;animation:none\">\n    <div class=\"t-sheet__grip\"></div>\n    <div class=\"t-sheet__head\"><span class=\"t-sheet__title\">فیلترها</span><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بستن\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button></div>\n    <div class=\"t-sheet__body\">\n      <label class=\"t-check\"><input type=\"checkbox\" checked><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span><span class=\"t-body-md\">ضمانت ترب</span></label>\n      <label class=\"t-check\"><input type=\"checkbox\"><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span><span class=\"t-body-md\">نمایندگی رسمی</span></label>\n      <label class=\"t-check\"><input type=\"checkbox\" checked><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span><span class=\"t-body-md\">باز الان</span></label>\n      <label class=\"t-check\"><input type=\"checkbox\"><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span><span class=\"t-body-md\">ارسال فوری</span></label>\n    </div>\n    <div class=\"t-sheet__foot\"><button class=\"t-btn t-btn--ghost t-btn--md\">حذف همه</button><button class=\"t-btn t-btn--primary t-btn--md\">نمایش ۴۳ نتیجه</button></div>\n  </div>\n</div>"
+      },
+      {
+        "label": "انتخاب: یک تصمیم، بدون فوتر",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div style=\"position:relative;inline-size:375px;max-inline-size:100%;block-size:420px;border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)\">\n  <div style=\"position:absolute;inset:0;background:var(--t-bg-scrim)\"></div>\n  <div class=\"t-sheet t-sheet--picker\" style=\"position:absolute;animation:none\" role=\"dialog\" aria-modal=\"true\" aria-label=\"مرتب‌سازی\">\n    <div class=\"t-sheet__grip\"></div>\n    <div class=\"t-sheet__head\"><span class=\"t-sheet__title\">مرتب‌سازی</span><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بستن\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button></div>\n    <div class=\"t-sheet__body\"><div class=\"t-list\"><button class=\"t-list-item\" aria-current=\"true\"><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">مرتبط‌ترین</span></span><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" style=\"color:var(--t-fg-link)\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></button><button class=\"t-list-item\"><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">ارزان‌ترین</span></span></button><button class=\"t-list-item\"><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">گران‌ترین</span></span></button><button class=\"t-list-item\"><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">پربازدیدترین</span></span></button><button class=\"t-list-item\"><span class=\"t-list-item__body\"><span class=\"t-list-item__title\">نزدیک‌ترین</span></span></button></div></div>\n  </div>\n</div>",
+        "note": "ردیف‌ها خودشان کنش‌اند: یک ضربه انتخاب می‌کند و برگه بسته می‌شود. فوتر اضافه است."
+      },
+      {
+        "label": "تأیید: به‌اندازهٔ محتوا",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div style=\"position:relative;inline-size:375px;max-inline-size:100%;block-size:300px;border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)\">\n  <div style=\"position:absolute;inset:0;background:var(--t-bg-scrim)\"></div>\n  <div class=\"t-sheet t-sheet--compact\" style=\"position:absolute;animation:none\" role=\"dialog\" aria-modal=\"true\" aria-label=\"حذف «خانه»\">\n    <div class=\"t-sheet__head\"><span class=\"t-sheet__title\">حذف «خانه»</span><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بستن\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button></div>\n    <div class=\"t-sheet__body\"><p class=\"t-body-md t-tone-secondary\" style=\"margin:0\">با حذف این آدرس، سفارش‌های در جریان تغییری نمی‌کنند.</p></div>\n    <div class=\"t-sheet__foot\"><button class=\"t-btn t-btn--ghost t-btn--md\">انصراف</button><button class=\"t-btn t-btn--red t-btn--md\">حذف آدرس</button></div>\n  </div>\n</div>",
+        "note": "کوتاه است و اسکرول ندارد، پس دستگیره هم ندارد. دکمه‌ها نتیجه را نام می‌برند، نه «تأیید» و «انصراف»."
+      },
+      {
+        "label": "جزئیات: تمام‌قد از ابتدا",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div style=\"position:relative;inline-size:375px;max-inline-size:100%;block-size:460px;border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)\">\n  <div style=\"position:absolute;inset:0;background:var(--t-bg-scrim)\"></div>\n  <div class=\"t-sheet t-sheet--full\" style=\"position:absolute;animation:none;block-size:88%\" role=\"dialog\" aria-modal=\"true\" aria-label=\"جزئیات فروشگاه\">\n    <div class=\"t-sheet__grip\"></div>\n    <div class=\"t-sheet__head\"><span class=\"t-sheet__title\">جزئیات فروشگاه</span><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بستن\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button></div>\n    <div class=\"t-sheet__body\"><div class=\"t-stack\"><div class=\"t-row t-row--between\"><span class=\"t-body-md\">دیجی‌کالا</span><span class=\"t-badge t-badge--guarantee\">ضمانت ترب</span></div><p class=\"t-body-sm t-tone-secondary\" style=\"margin:0\">تهران، خیابان ولیعصر · ۱٫۲ کیلومتر</p><div class=\"t-divider\"></div><div class=\"t-row t-row--between\"><span class=\"t-body-sm t-tone-secondary\">گارانتی</span><span class=\"t-body-sm\">۱۸ ماه شرکتی</span></div><div class=\"t-row t-row--between\"><span class=\"t-body-sm t-tone-secondary\">ارسال</span><span class=\"t-body-sm\">امروز</span></div><div class=\"t-row t-row--between\"><span class=\"t-body-sm t-tone-secondary\">آخرین بروزرسانی</span><span class=\"t-body-sm\">۲ ساعت پیش</span></div><div class=\"t-divider\"></div><p class=\"t-body-sm t-tone-secondary\" style=\"margin:0\">قیمت را فروشنده اعلام می‌کند.</p></div></div>\n    <div class=\"t-sheet__foot\"><button class=\"t-btn t-btn--primary t-btn--md\">رفتن به فروشگاه</button></div>\n  </div>\n</div>",
+        "note": "وقتی از اول می‌دانید محتوا بلند است، برگه را تمام‌قد باز کنید تا کاربر مجبور نشود آن را بکشد."
+      },
+      {
+        "label": "ورودی: فوتر بالای صفحه‌کلید",
+        "canvas": "plain",
+        "stageClass": "spec__stage--center",
+        "html": "<div style=\"position:relative;inline-size:375px;max-inline-size:100%;block-size:330px;border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)\">\n  <div style=\"position:absolute;inset:0;background:var(--t-bg-scrim)\"></div>\n  <div class=\"t-sheet t-sheet--input\" style=\"position:absolute;animation:none\" role=\"dialog\" aria-modal=\"true\" aria-label=\"افزودن کد تخفیف\">\n    <div class=\"t-sheet__head\"><span class=\"t-sheet__title\">افزودن کد تخفیف</span><button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بستن\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button></div>\n    <div class=\"t-sheet__body\"><div class=\"t-field\"><label class=\"t-field__label\" for=\"sheet-code\">کد تخفیف</label><div class=\"t-input\"><input class=\"t-input__el\" id=\"sheet-code\" type=\"text\" placeholder=\"TOROB1404\" autocomplete=\"off\"></div><span class=\"t-field__hint\">کد فقط روی کالاهای دارای ضمانت ترب کار می‌کند.</span></div></div>\n    <div class=\"t-sheet__foot\"><button class=\"t-btn t-btn--primary t-btn--md\">اعمال کد</button></div>\n  </div>\n</div>",
+        "note": "برگه‌ای که فیلد دارد با لمس بیرون بسته نمی‌شود، و فوتر باید بالای صفحه‌کلید بماند."
       }
     ],
     "react": "export function BottomSheet({ open, onClose, title, adaptive = true, children, footer }) {\n  const ref = useRef(null);\n  useFocusTrap(ref, open);\n  useLockBodyScroll(open);\n  useEffect(() => {\n    if (!open) return;\n    const onKey = e => e.key === 'Escape' && onClose();\n    document.addEventListener('keydown', onKey);\n    return () => document.removeEventListener('keydown', onKey);\n  }, [open, onClose]);\n  if (!open) return null;\n  return createPortal(\n    <>\n      <div className=\"t-scrim\" onClick={onClose} />\n      <div className={clsx('t-sheet', adaptive && 't-sheet--adaptive')} ref={ref}\n           role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"sheet-title\">\n        <div className=\"t-sheet__grip\" />\n        <div className=\"t-sheet__head\">\n          <span className=\"t-sheet__title\" id=\"sheet-title\">{title}</span>\n          <IconButton size=\"sm\" label=\"بستن\" onClick={onClose}><CloseIcon /></IconButton>\n        </div>\n        <div className=\"t-sheet__body\">{children}</div>\n        {footer && <div className=\"t-sheet__foot\">{footer}</div>}\n      </div>\n    </>, document.body);\n}"
