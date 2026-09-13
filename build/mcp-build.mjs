@@ -16,7 +16,7 @@ for (const c of components) {
   for (const s of c.specimens ?? []) for (const m of (s.html ?? '').matchAll(BLOCK)) found.set(m[0], (found.get(m[0]) ?? 0) + 1);
   // The component's own root block first, then its modifiers, then the rest.
   /* A component whose root block is not simply t-<slug> declares it: the
-     frequency heuristic picks t-btn for SplitButton, which is a child. */
+     frequency heuristic picks t-button for SplitButton, which is a child. */
   const root = c.rootClass ??
                [...found.keys()].find(k => k === `t-${c.slug}`) ??
                [...found.keys()].sort((a, b) => found.get(b) - found.get(a))[0];
@@ -83,7 +83,7 @@ Icons, three cases:
      the most common RTL mistake and makes the UI feel broken.
 
 Numerals: Persian-Indic ۰۱۲۳۴۵۶۷۸۹, ٬ thousands separator, ٫ decimal.
-Always tabular figures in lists (.t-num-tabular).
+Always tabular figures in lists (.t-numerals-tabular).
 Never split a number across elements — a screen reader reads it as two numbers.
 
 Bidi: Latin product names sit inside Persian sentences constantly. Wrap any run
@@ -131,7 +131,7 @@ failure. It is a gate, not a report.
   border.default is decorative and deliberately below 3:1.
 - Touch targets >= 44px, even where the visual control is 24 or 32px. Buttons
   carry a transparent ::after that expands the target on coarse pointers.
-- Focus: 2px --t-border-focus at 2px offset. Never removed, only replaced.
+- Focus: 2px --t-color-focus-ring at 2px offset. Never removed, only replaced.
   outline:none is only acceptable inside :focus:not(:focus-visible).
 - Icon-only controls require aria-label. There is no unlabelled variant.
 - Never colour alone. Status badges pair colour with a word; current nav items
@@ -187,13 +187,13 @@ component under a theme.
 
 CSS: t- prefix, BEM-ish.
   block      .t-button
-  modifier   .t-btn--primary
+  modifier   .t-button--primary
   element    .t-store-card__head
   state      :hover, :disabled, [aria-pressed], [data-loading]
 
 Tokens: --t-{category}-{role}-{variant}-{state}
   primitive  --t-color-sky-800     (never used by product code)
-  semantic   --t-fg-default        (this is the layer you use)
+  semantic   --t-color-on-surface        (this is the layer you use)
   component  --t-action-primary-bg-hover
 
 Props: variant (intent), size, block, loading, disabled. Booleans read as

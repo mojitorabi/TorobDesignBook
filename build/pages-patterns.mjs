@@ -18,7 +18,7 @@ const phone = (inner, note) => `<div class="spec" data-spec>
   <div class="spec__bar">
     <span class="spec__label">${esc(note ?? '۳۷۵ × ۶۴۰')}</span>
     <div class="spec__tools">
-      <button class="t-btn t-btn--outline t-btn--sm" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه" title="زبان و جهت">فارسی</button>
+      <button class="t-button t-button--outline t-button--sm" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه" title="زبان و جهت">فارسی</button>
     </div>
   </div>
   <div class="spec__stage spec__stage--phone" dir="rtl" lang="fa">
@@ -41,13 +41,13 @@ const storeCard = (name, dist, hours, badges, rail = true, actions = true) => `
   ${badges ? `<div class="t-store-card__badges">${badges}</div>` : ''}
   ${rail ? `<div class="t-store-card__rail">${[1, 2, 3, 4].map(() => `<div><div class="t-thumb t-thumb--sm"></div></div>`).join('')}</div>` : ''}
   ${actions ? `<div class="t-store-card__actions">
-    <button class="t-btn t-btn--primary t-btn--md">${I.phone}تماس تلفنی</button>
-    <button class="t-btn t-btn--outline t-btn--md">${I.route}مسیریابی</button>
+    <button class="t-button t-button--primary t-button--md">${I.phone}تماس تلفنی</button>
+    <button class="t-button t-button--outline t-button--md">${I.route}مسیریابی</button>
   </div>` : ''}
 </article>`;
 
 const filterBar = `<div class="t-filter-bar">
-  <button class="t-icon-btn t-icon-btn--sm t-filter-bar__lead" aria-label="همه فیلترها">${I.filter}</button>
+  <button class="t-icon-button t-icon-button--sm t-filter-bar__lead" aria-label="همه فیلترها">${I.filter}</button>
   <button class="t-chip" aria-pressed="true">تهران</button>
   <button class="t-chip" aria-expanded="false" aria-haspopup="dialog">برند<span class="t-chip__count">۳</span></button>
   <button class="t-chip" aria-expanded="false" aria-haspopup="dialog">قیمت</button>
@@ -81,9 +81,9 @@ export function patternsPages() {
       </div>`],
       ['list', 'نمای فهرست', `${phone(`
   <header class="t-page-header">
-    <button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button>
+    <button class="t-icon-button t-icon-button--sm" aria-label="بازگشت">${I.back}</button>
     <div class="t-page-header__title">فروشگاه‌های اطراف<div class="t-page-header__sub">تهران، ۷۸ مورد</div></div>
-    <button class="t-icon-btn t-icon-btn--sm" aria-label="موقعیت من"><svg class="t-icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M4,12.9835a1,1,0,0,0,.6289.9448l9.6015,3.8409,3.8407,9.6019A1,1,0,0,0,19,28h.0162a1.0009,1.0009,0,0,0,.9238-.6582l8-22.0007A1,1,0,0,0,26.658,4.0594l-22,8A1.0011,1.0011,0,0,0,4,12.9835Z"/></svg></button>
+    <button class="t-icon-button t-icon-button--sm" aria-label="موقعیت من"><svg class="t-icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M4,12.9835a1,1,0,0,0,.6289.9448l9.6015,3.8409,3.8407,9.6019A1,1,0,0,0,19,28h.0162a1.0009,1.0009,0,0,0,.9238-.6582l8-22.0007A1,1,0,0,0,26.658,4.0594l-22,8A1.0011,1.0011,0,0,0,4,12.9835Z"/></svg></button>
   </header>
   <div style="padding:12px 16px 0"><div class="t-search"><div class="t-input">${I.search}<input aria-label="جستجو در اطراف من" class="t-input__el" type="search" placeholder="جستجو در اطراف من"></div></div></div>
   <div style="padding:12px 16px 8px;display:flex;justify-content:center">
@@ -122,8 +122,8 @@ export function patternsPages() {
           </div>
         </div>
         <div class="t-store-card__actions">
-          <button class="t-btn t-btn--primary t-btn--md">${I.phone}تماس</button>
-          <button class="t-btn t-btn--outline t-btn--md">${I.route}مسیریابی</button>
+          <button class="t-button t-button--primary t-button--md">${I.phone}تماس</button>
+          <button class="t-button t-button--outline t-button--md">${I.route}مسیریابی</button>
         </div>
       </article>
     </div>
@@ -149,14 +149,14 @@ export function patternsPages() {
       [null, null, `<div class="prose"><p>از صفحه‌های ۳، ۳-۱ و ۳-۳. باکس خرید عنصر تعیین‌کننده است: قیمت، فروشنده و کنش را در یک هدف لمس جمع می‌کند و هرجا لازم باشد افشای «آگهی» را هم می‌آورد.</p></div>`],
       ['screen', 'خود صفحه', `${phone(`
   <header class="t-page-header">
-    <button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button>
+    <button class="t-icon-button t-icon-button--sm" aria-label="بازگشت">${I.back}</button>
     <div class="t-page-header__title" style="font-size:14px">گوشی اپل iPhone 11 <span class="t-bidi">128 GB</span></div>
-    <button class="t-icon-btn t-icon-btn--sm" aria-label="افزودن به علاقه‌مندی">${I.heart}</button>
+    <button class="t-icon-button t-icon-button--sm" aria-label="افزودن به علاقه‌مندی">${I.heart}</button>
   </header>
   <div class="phone__scroll">
     <div style="padding:16px">
       <div class="t-thumb" style="aspect-ratio:1;max-inline-size:180px;margin-inline:auto"></div>
-      <h2 class="t-h4" style="margin-block:14px 6px">گوشی اپل (استوک) iPhone 11 | حافظه ۱۲۸ گیگابایت</h2>
+      <h2 class="t-heading-4" style="margin-block:14px 6px">گوشی اپل (استوک) iPhone 11 | حافظه ۱۲۸ گیگابایت</h2>
       <div class="t-row" style="gap:6px;flex-wrap:wrap;margin-block-end:12px">
         <span class="t-badge t-badge--guarantee">ضمانت ترب</span>
         <span class="t-badge t-badge--info">نمایندگی رسمی</span>
@@ -171,12 +171,12 @@ export function patternsPages() {
         <button class="t-segmented__item" role="radio" aria-checked="true">۱۲۸ گیگ</button>
         <button class="t-segmented__item" role="radio" aria-checked="false">۲۵۶ گیگ</button>
       </div>
-      <button class="t-buybox" style="margin-block-end:8px">
-        <span class="t-buybox__body"><span class="t-buybox__price">۲۳٬۵۵۰٬۰۰۰ تومان</span><span class="t-buybox__meta">خرید از تکنولایف · ارسال فوری</span></span>
+      <button class="t-buy-box" style="margin-block-end:8px">
+        <span class="t-buy-box__body"><span class="t-buy-box__price">۲۳٬۵۵۰٬۰۰۰ تومان</span><span class="t-buy-box__meta">خرید از تکنولایف · ارسال فوری</span></span>
         ${I.backSm}
       </button>
-      <button class="t-buybox t-buybox--accent" style="margin-block-end:16px">
-        <span class="t-buybox__body"><span class="t-buybox__price">۲۴٬۹۰۰٬۰۰۰ تومان</span><span class="t-buybox__meta">خرید از دیجی‌کالا · <span class="t-badge t-badge--ad" style="vertical-align:middle">آگهی</span></span></span>
+      <button class="t-buy-box t-buy-box--accent" style="margin-block-end:16px">
+        <span class="t-buy-box__body"><span class="t-buy-box__price">۲۴٬۹۰۰٬۰۰۰ تومان</span><span class="t-buy-box__meta">خرید از دیجی‌کالا · <span class="t-badge t-badge--ad" style="vertical-align:middle">آگهی</span></span></span>
       </button>
       <div class="t-tabs" role="tablist" aria-label="بخش‌های محصول" style="margin-block-end:12px">
         <button class="t-tab" role="tab" aria-selected="true">فروشنده‌ها<span class="t-tab__count">۷۹</span></button>
@@ -193,7 +193,7 @@ export function patternsPages() {
         <div class="prose"><p><strong>به ظاهر قیمت دقت کنید.</strong> هر عدد در فهرست فروشنده‌ها جدولی است، پس ستون در یک نگاه خوانده می‌شود. ردیف ناموجود خاکستری است نه قرمز؛ نبود کالا خطا نیست و قرمز اینجا با سیگنال تخفیف رقابت می‌کرد.</p></div>`],
       ['specs', 'مشخصات', `<div class="prose"><p>صفحهٔ ۳-۵ منبع چهل ردیف ویژگی بدون هیچ ساختاری است. یک <a href="../components/accordion.html">Accordion</a> به خریدار اجازه می‌دهد آن دو ردیفی را که برایش مهم است پیدا کند.</p></div>
         ${phone(`
-  <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بستن">${I.close}</button><div class="t-page-header__title">مشخصات کامل</div></header>
+  <header class="t-page-header"><button class="t-icon-button t-icon-button--sm" aria-label="بستن">${I.close}</button><div class="t-page-header__title">مشخصات کامل</div></header>
   <div class="phone__scroll" style="padding:12px">
     <div class="t-accordion">
       <div class="t-accordion__item">
@@ -223,16 +223,16 @@ export function patternsPages() {
     [
       [null, null, `<div class="prose"><p>ترب از جست‌وجو شروع می‌شود. این جریان سه حالت SearchField، جست‌وجوهای اخیر، برگهٔ فیلتر و راه جبران «نتیجه‌ای نبود» را پوشش می‌دهد؛ همان حالتی که بیشتر سیستم‌ها فراموشش می‌کنند.</p></div>`],
       ['recent', 'فیلد خالی، جست‌وجوهای اخیر', phone(`
-  <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">جستجو</div></header>
+  <header class="t-page-header"><button class="t-icon-button t-icon-button--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">جستجو</div></header>
   <div style="padding:12px 16px">
     <div class="t-search" data-state="default"><div class="t-input">${I.search}<input aria-label="جستجو در اطراف من" class="t-input__el" type="search" placeholder="جستجو در اطراف من">
       <span class="t-search__actions">
-        <button class="t-icon-btn t-icon-btn--sm t-search__tool" aria-label="جستجوی صوتی"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M23,14v3A7,7,0,0,1,9,17V14H7v3a9,9,0,0,0,8,8.94V28H11v2H21V28H17V25.94A9,9,0,0,0,25,17V14Z"/><path d="M16,22a5,5,0,0,0,5-5V7A5,5,0,0,0,11,7V17A5,5,0,0,0,16,22ZM13,7a3,3,0,0,1,6,0V17a3,3,0,0,1-6,0Z"/></svg></button>
-        <button class="t-icon-btn t-icon-btn--sm t-search__tool" aria-label="جستجو با تصویر"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,26H3a1,1,0,0,1-1-1V8A1,1,0,0,1,3,7H9.46l1.71-2.55A1,1,0,0,1,12,4h8a1,1,0,0,1,.83.45L22.54,7H29a1,1,0,0,1,1,1V25A1,1,0,0,1,29,26ZM4,24H28V9H22a1,1,0,0,1-.83-.45L19.46,6H12.54L10.83,8.55A1,1,0,0,1,10,9H4Z"/><path d="M16,22a6,6,0,1,1,6-6A6,6,0,0,1,16,22Zm0-10a4,4,0,1,0,4,4A4,4,0,0,0,16,12Z"/></svg></button>
+        <button class="t-icon-button t-icon-button--sm t-search__tool" aria-label="جستجوی صوتی"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M23,14v3A7,7,0,0,1,9,17V14H7v3a9,9,0,0,0,8,8.94V28H11v2H21V28H17V25.94A9,9,0,0,0,25,17V14Z"/><path d="M16,22a5,5,0,0,0,5-5V7A5,5,0,0,0,11,7V17A5,5,0,0,0,16,22ZM13,7a3,3,0,0,1,6,0V17a3,3,0,0,1-6,0Z"/></svg></button>
+        <button class="t-icon-button t-icon-button--sm t-search__tool" aria-label="جستجو با تصویر"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,26H3a1,1,0,0,1-1-1V8A1,1,0,0,1,3,7H9.46l1.71-2.55A1,1,0,0,1,12,4h8a1,1,0,0,1,.83.45L22.54,7H29a1,1,0,0,1,1,1V25A1,1,0,0,1,29,26ZM4,24H28V9H22a1,1,0,0,1-.83-.45L19.46,6H12.54L10.83,8.55A1,1,0,0,1,10,9H4Z"/><path d="M16,22a6,6,0,1,1,6-6A6,6,0,0,1,16,22Zm0-10a4,4,0,1,0,4,4A4,4,0,0,0,16,12Z"/></svg></button>
       </span></div></div>
   </div>
   <div class="phone__scroll" style="padding:0 16px">
-    <div class="t-row" style="margin-block:6px 4px"><span class="t-body-sm-strong">جستجوهای اخیر</span><span class="t-spacer"></span><button class="t-btn t-btn--ghost t-btn--xs">پاک کردن</button></div>
+    <div class="t-row" style="margin-block:6px 4px"><span class="t-body-sm-strong">جستجوهای اخیر</span><span class="t-spacer"></span><button class="t-button t-button--ghost t-button--xs">پاک کردن</button></div>
     <div class="t-list">
       <button class="t-list-item"><span class="t-list-item__body"><span class="t-list-item__title">ادکلن کازاموراتی</span></span><span class="t-list-item__trail">${I.close}</span></button>
       <button class="t-list-item"><span class="t-list-item__body"><span class="t-list-item__title">گوشی اپل استوک</span></span><span class="t-list-item__trail">${I.close}</span></button>
@@ -240,8 +240,8 @@ export function patternsPages() {
     </div>
   </div>`, 'جست‌وجو — خالی')],
       ['results', 'نتایج همراه فیلتر', phone(`
-  <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">محصولات اطراف<div class="t-page-header__sub">تهران، ۵۵ مورد</div></div></header>
-  <div style="padding:10px 16px 0"><div class="t-search" data-state="searched"><div class="t-input">${I.search}<input aria-label="جست‌وجو" class="t-input__el" type="search" value="ادکلن کازاموراتی"><span class="t-search__actions"><button class="t-icon-btn t-icon-btn--sm" aria-label="پاک کردن جستجو">${I.close}</button></span></div></div></div>
+  <header class="t-page-header"><button class="t-icon-button t-icon-button--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">محصولات اطراف<div class="t-page-header__sub">تهران، ۵۵ مورد</div></div></header>
+  <div style="padding:10px 16px 0"><div class="t-search" data-state="searched"><div class="t-input">${I.search}<input aria-label="جست‌وجو" class="t-input__el" type="search" value="ادکلن کازاموراتی"><span class="t-search__actions"><button class="t-icon-button t-icon-button--sm" aria-label="پاک کردن جستجو">${I.close}</button></span></div></div></div>
   ${filterBar}
   <div class="phone__scroll" style="padding:12px 16px">
     <div class="t-grid-products">
@@ -250,7 +250,7 @@ export function patternsPages() {
          ['کازاموراتی ایتالیکا ۱۲۰ میل', '۱۹٬۹۰۰٬۰۰۰', '۱۲', ''],
          ['کازاموراتی فیوری ۱۰۰ میل', '۱۱٬۵۰۰٬۰۰۰', '۴۱', '']]
         .map(([t, p, n, b]) => `<a class="t-product-card" href="#">
-          <div class="t-thumb">${b ? `<div class="t-thumb__badges"><span class="t-badge t-badge--on-image">${b}</span></div>` : ''}<div class="t-thumb__action"><button class="t-icon-btn t-icon-btn--sm" aria-label="افزودن به علاقه‌مندی">${I.heart}</button></div></div>
+          <div class="t-thumb">${b ? `<div class="t-thumb__badges"><span class="t-badge t-badge--on-image">${b}</span></div>` : ''}<div class="t-thumb__action"><button class="t-icon-button t-icon-button--sm" aria-label="افزودن به علاقه‌مندی">${I.heart}</button></div></div>
           <div class="t-product-card__title t-clamp-2">${t}</div>
           <span class="t-price t-price--sm"><span class="t-price__from">از</span><span class="t-price__value">${p}</span><span class="t-price__unit">تومان</span></span>
           <div class="t-product-card__meta">در ${n} فروشگاه</div></a>`).join('')}
@@ -262,10 +262,10 @@ export function patternsPages() {
     <div style="padding:12px 16px;opacity:.5">
       <div class="t-search"><div class="t-input">${I.search}<input class="t-input__el" type="search" aria-label="جست‌وجو" value="ادکلن کازاموراتی"></div></div>
     </div>
-    <div style="position:absolute;inset:0;background:var(--t-bg-scrim)"></div>
+    <div style="position:absolute;inset:0;background:var(--t-color-scrim)"></div>
     <div class="t-sheet" style="position:absolute;animation:none;max-block-size:82%">
       <div class="t-sheet__grip"></div>
-      <div class="t-sheet__head"><span class="t-sheet__title">فیلترها</span><button class="t-icon-btn t-icon-btn--sm" aria-label="بستن">${I.close}</button></div>
+      <div class="t-sheet__head"><span class="t-sheet__title">فیلترها</span><button class="t-icon-button t-icon-button--sm" aria-label="بستن">${I.close}</button></div>
       <div class="t-sheet__body">
         <div class="t-body-sm-strong" style="margin-block:4px 8px">بازه قیمت</div>
         <div class="t-range" style="margin-block-end:14px">
@@ -277,22 +277,22 @@ export function patternsPages() {
         <div class="t-divider" style="margin-block:12px"></div>
         <div class="t-body-sm-strong" style="margin-block-end:4px">ویژگی‌ها</div>
         ${[['ضمانت ترب', 1], ['نمایندگی رسمی', 0], ['باز الان', 1], ['ارسال فوری', 0], ['پرداخت قسطی', 0]].map(([l, on]) =>
-          `<label class="t-check"><input type="checkbox"${on ? ' checked' : ''}><span class="t-check__box"><svg class="t-check__mark" width="12" height="12" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z"/></svg></span><span class="t-body-md">${l}</span></label>`).join('')}
+          `<label class="t-checkbox"><input type="checkbox"${on ? ' checked' : ''}><span class="t-checkbox__box"><svg class="t-checkbox__mark" width="12" height="12" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z"/></svg></span><span class="t-body-md">${l}</span></label>`).join('')}
       </div>
-      <div class="t-sheet__foot"><button class="t-btn t-btn--ghost t-btn--md">حذف همه</button><button class="t-btn t-btn--primary t-btn--md">نمایش ۴۳ نتیجه</button></div>
+      <div class="t-sheet__foot"><button class="t-button t-button--ghost t-button--md">حذف همه</button><button class="t-button t-button--primary t-button--md">نمایش ۴۳ نتیجه</button></div>
     </div>
   </div>`, 'برگهٔ فیلتر')}`],
       ['empty', 'نتیجه‌ای نبود — راه جبران', `<div class="prose"><p>حالتی که بیشتر سیستم‌ها به‌صورت یک شانه بالا انداختن منتشرش می‌کنند. فیلتری را که باید حذف شود نام ببرید و آن را در یک دکمه بگذارید.</p></div>
         ${phone(`
-  <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">محصولات اطراف<div class="t-page-header__sub">تهران، ۰ مورد</div></div></header>
-  <div style="padding:10px 16px 0"><div class="t-search" data-state="searched"><div class="t-input">${I.search}<input class="t-input__el" type="search" aria-label="جست‌وجو" value="ادکلن کازاموراتی"><span class="t-search__actions"><button class="t-icon-btn t-icon-btn--sm" aria-label="پاک کردن جستجو">${I.close}</button></span></div></div></div>
+  <header class="t-page-header"><button class="t-icon-button t-icon-button--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">محصولات اطراف<div class="t-page-header__sub">تهران، ۰ مورد</div></div></header>
+  <div style="padding:10px 16px 0"><div class="t-search" data-state="searched"><div class="t-input">${I.search}<input class="t-input__el" type="search" aria-label="جست‌وجو" value="ادکلن کازاموراتی"><span class="t-search__actions"><button class="t-icon-button t-icon-button--sm" aria-label="پاک کردن جستجو">${I.close}</button></span></div></div></div>
   ${filterBar}
   <div class="phone__scroll" aria-live="polite">
     <div class="t-empty">
       <div class="t-empty__art"><svg class="t-icon" width="40" height="40" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z"/></svg></div>
       <div class="t-empty__title">با این فیلترها چیزی پیدا نشد</div>
       <div class="t-empty__desc">در شعاع ۲ کیلومتری ۴۳ محصول هست. فیلتر «باز الان» را بردارید تا همه را ببینید.</div>
-      <div class="t-empty__actions"><button class="t-btn t-btn--primary t-btn--md">حذف فیلتر «باز الان»</button><button class="t-btn t-btn--ghost t-btn--md">حذف همه فیلترها</button></div>
+      <div class="t-empty__actions"><button class="t-button t-button--primary t-button--md">حذف فیلتر «باز الان»</button><button class="t-button t-button--ghost t-button--md">حذف همه فیلترها</button></div>
     </div>
   </div>`, 'نتیجه‌ای نبود')}`],
     ]);
@@ -315,12 +315,12 @@ export function patternsPages() {
       ])}`],
       ['offline', 'آفلاین', `<div class="prose"><p>ترب روی شبکه‌های موبایلی اجرا می‌شود که قطع می‌شوند. حالت آفلاین به‌جای صفحهٔ خالی، نتایج ذخیره‌شده را نشان می‌دهد و همین را هم می‌گوید.</p></div>
         ${phone(`
-  <header class="t-page-header"><button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">فروشگاه‌های اطراف<div class="t-page-header__sub">تهران، ۷۸ مورد</div></div></header>
+  <header class="t-page-header"><button class="t-icon-button t-icon-button--sm" aria-label="بازگشت">${I.back}</button><div class="t-page-header__title">فروشگاه‌های اطراف<div class="t-page-header__sub">تهران، ۷۸ مورد</div></div></header>
   <div style="padding:12px 16px 0">
     <div class="t-alert t-alert--critical" role="alert">
       <svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8,1C4.2,1,1,4.2,1,8s3.2,7,7,7s7-3.1,7-7S11.9,1,8,1z M7.5,4h1v5h-1C7.5,9,7.5,4,7.5,4z M8,12.2	c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8c0.4,0,0.8,0.4,0.8,0.8S8.4,12.2,8,12.2z"/><path d="M7.5,4h1v5h-1C7.5,9,7.5,4,7.5,4z M8,12.2c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8	c0.4,0,0.8,0.4,0.8,0.8S8.4,12.2,8,12.2z" data-icon-path="inner-path" opacity="0"/></svg>
       <div class="t-alert__body"><div class="t-alert__title">اتصال به اینترنت برقرار نیست</div><div>نتایج نمایش‌داده‌شده مربوط به آخرین بازدید شماست.</div>
-        <div class="t-alert__actions"><button class="t-btn t-btn--outline t-btn--sm">تلاش مجدد</button></div></div>
+        <div class="t-alert__actions"><button class="t-button t-button--outline t-button--sm">تلاش مجدد</button></div></div>
     </div>
   </div>
   <div class="phone__scroll" style="padding:12px 16px">
@@ -342,9 +342,9 @@ export function patternsPages() {
       ['toasts', 'تأیید', `<div class="prose"><p>لنگرانداخته به پایین، چون بالای صفحهٔ ترب جای جست‌وجوست و پایین همان‌جایی است که شست از قبل هست. از دکمه‌های زیر اجرایشان کنید؛ در پایین همین صفحه ظاهر می‌شوند.</p></div>
         <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">زنده</span></div>
         <div class="spec__stage" dir="rtl" lang="fa">
-          <button class="t-btn t-btn--outline t-btn--md" onclick="torobToast({title:'به علاقه‌مندی‌ها اضافه شد',desc:'کازاموراتی مفیستو ۱۰۰ میل',action:'واگرد'})">افزوده شد، با واگرد</button>
-          <button class="t-btn t-btn--outline t-btn--md" onclick="torobToast({variant:'positive',title:'آدرس ذخیره شد'})">ذخیره شد</button>
-          <button class="t-btn t-btn--outline t-btn--md" onclick="torobToast({variant:'critical',title:'اتصال برقرار نشد',desc:'دوباره تلاش کنید.',action:'تلاش مجدد'})">شکست خورد، با تلاش مجدد</button>
+          <button class="t-button t-button--outline t-button--md" onclick="torobToast({title:'به علاقه‌مندی‌ها اضافه شد',desc:'کازاموراتی مفیستو ۱۰۰ میل',action:'واگرد'})">افزوده شد، با واگرد</button>
+          <button class="t-button t-button--outline t-button--md" onclick="torobToast({variant:'positive',title:'آدرس ذخیره شد'})">ذخیره شد</button>
+          <button class="t-button t-button--outline t-button--md" onclick="torobToast({variant:'critical',title:'اتصال برقرار نشد',desc:'دوباره تلاش کنید.',action:'تلاش مجدد'})">شکست خورد، با تلاش مجدد</button>
         </div></div>`],
       ['rules', 'قواعد', guidance([
         'هر خطا اول مشکل را نام می‌برد، بعد راه جبران را.',
@@ -376,25 +376,25 @@ export function sellerPanelPage() {
   body += S('shell', 'اسکلت', `<div class="prose"><p>نوار کناری، نوار بالا، یک ناحیهٔ اسکرول. نوار کناری روی عرض کم جمع می‌شود اما ناپدید نمی‌شود؛ فروشنده‌ای که در درخت ناوبری است نباید جایش را گم کند.</p></div>
   <div class="spec" data-spec>
     <div class="spec__bar"><span class="spec__label">پنل فروشنده — داشبورد</span>
-      <div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه">فارسی</button></div></div>
+      <div class="spec__tools"><button class="t-button t-button--outline t-button--sm" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه">فارسی</button></div></div>
     <div class="spec__stage" data-canvas="plain" dir="rtl" lang="fa" style="padding:16px;overflow-x:auto">
-      <div class="t-shell-frame" style="inline-size:1100px;flex:none;border:1px solid var(--t-border-default);border-radius:14px;overflow:hidden"><div class="t-shell" style="block-size:520px">
-        <div class="t-shell__brand"><span style="inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-action-red-bg-gradient);border:1px solid var(--t-action-red-border);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px">ت</span><strong style="font-size:14px">پنل فروشنده</strong></div>
+      <div class="t-shell-frame" style="inline-size:1100px;flex:none;border:1px solid var(--t-color-outline);border-radius:14px;overflow:hidden"><div class="t-shell" style="block-size:520px">
+        <div class="t-shell__brand"><span style="inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-color-action-primary-bg-gradient);border:1px solid var(--t-color-action-primary-border);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px">ت</span><strong style="font-size:14px">پنل فروشنده</strong></div>
         <div class="t-shell__top">
           <div class="t-search" style="max-inline-size:240px"><div class="t-input t-input--sm"><svg class="t-input__icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z"/></svg><input aria-label="جست‌وجوی سفارش، محصول یا مشتری" class="t-input__el" type="search" placeholder="جست‌وجوی سفارش، محصول یا مشتری"></div></div>
           <span style="flex:1"></span>
           <span class="t-kbd">/</span>
-          <button class="t-icon-btn t-icon-btn--sm" aria-label="اعلان‌ها"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14.4,10.1L13,8.8V6.5c0-2.6-1.9-4.7-4.5-5v-1h-1v1C5,1.8,3,3.9,3,6.5v2.3l-1.4,1.3c-0.1,0.1-0.2,0.2-0.1,0.4V12	c0,0.3,0.2,0.5,0.4,0.5c0,0,0,0,0.1,0h3.5C5.5,13.9,6.6,15,8,15s2.5-1.1,2.5-2.5H14c0.3,0,0.5-0.2,0.5-0.4c0,0,0,0,0-0.1v-1.5	C14.5,10.4,14.4,10.2,14.4,10.1z M8,14c-0.8,0-1.5-0.7-1.5-1.5h3C9.5,13.3,8.8,14,8,14z M13.5,11.5h-11v-0.8l1.3-1.4	C3.9,9.3,4,9.1,4,9V6.5c0-2.2,1.8-4,4-4s4,1.8,4,4V9c0,0.1,0.1,0.3,0.1,0.4l1.4,1.3V11.5z"/></svg></button>
+          <button class="t-icon-button t-icon-button--sm" aria-label="اعلان‌ها"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14.4,10.1L13,8.8V6.5c0-2.6-1.9-4.7-4.5-5v-1h-1v1C5,1.8,3,3.9,3,6.5v2.3l-1.4,1.3c-0.1,0.1-0.2,0.2-0.1,0.4V12	c0,0.3,0.2,0.5,0.4,0.5c0,0,0,0,0.1,0h3.5C5.5,13.9,6.6,15,8,15s2.5-1.1,2.5-2.5H14c0.3,0,0.5-0.2,0.5-0.4c0,0,0,0,0-0.1v-1.5	C14.5,10.4,14.4,10.2,14.4,10.1z M8,14c-0.8,0-1.5-0.7-1.5-1.5h3C9.5,13.3,8.8,14,8,14z M13.5,11.5h-11v-0.8l1.3-1.4	C3.9,9.3,4,9.1,4,9V6.5c0-2.2,1.8-4,4-4s4,1.8,4,4V9c0,0.1,0.1,0.3,0.1,0.4l1.4,1.3V11.5z"/></svg></button>
           <span class="t-avatar t-avatar--sm">ا</span>
         </div>
         <nav class="t-shell__nav" aria-label="ناوبری پنل">
-          <div class="t-navgroup__title">فروش</div>
-          <a class="t-navitem" href="#" aria-current="page"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M10 6H28V8H10z"/><path d="M10 24H28V26H10z"/><path d="M10 15H28V17H10z"/><path d="M4 15H6V17H4z"/><path d="M4 6H6V8H4z"/><path d="M4 24H6V26H4z"/></svg>سفارش‌ها<span class="t-navitem__count">۳</span></a>
-          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M20,21H12a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2h8a2,2,0,0,1,2,2v2A2,2,0,0,1,20,21Zm-8-4v2h8V17Z"/><path d="M28,4H4A2,2,0,0,0,2,6v4a2,2,0,0,0,2,2V28a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V12a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4ZM26,28H6V12H26Zm2-18H4V6H28v4Z"/></svg>محصولات<span class="t-navitem__count">۱۴۸</span></a>
-          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M27,28V6H19V28H15V14H7V28H4V2H2V28a2,2,0,0,0,2,2H30V28ZM13,28H9V16h4Zm12,0H21V8h4Z"/></svg>گزارش‌ها</a>
-          <div class="t-navgroup__title">فروشگاه</div>
-          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm0,15a4,4,0,1,1,4-4A4.0045,4.0045,0,0,1,16,17Z"/><circle cx="16" cy="13" r="4" fill="none"/></svg>اطلاعات فروشگاه</a>
-          <a class="t-navitem" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.5,8.4c0-0.1,0-0.3,0-0.4c0-0.1,0-0.3,0-0.4l1-0.8c0.4-0.3,0.4-0.9,0.2-1.3l-1.2-2C13.3,3.2,13,3,12.6,3	c-0.1,0-0.2,0-0.3,0.1l-1.2,0.4c-0.2-0.1-0.4-0.3-0.7-0.4l-0.3-1.3C10.1,1.3,9.7,1,9.2,1H6.8c-0.5,0-0.9,0.3-1,0.8L5.6,3.1	C5.3,3.2,5.1,3.3,4.9,3.4L3.7,3C3.6,3,3.5,3,3.4,3C3,3,2.7,3.2,2.5,3.5l-1.2,2C1.1,5.9,1.2,6.4,1.6,6.8l0.9,0.9c0,0.1,0,0.3,0,0.4	c0,0.1,0,0.3,0,0.4L1.6,9.2c-0.4,0.3-0.5,0.9-0.2,1.3l1.2,2C2.7,12.8,3,13,3.4,13c0.1,0,0.2,0,0.3-0.1l1.2-0.4	c0.2,0.1,0.4,0.3,0.7,0.4l0.3,1.3c0.1,0.5,0.5,0.8,1,0.8h2.4c0.5,0,0.9-0.3,1-0.8l0.3-1.3c0.2-0.1,0.4-0.2,0.7-0.4l1.2,0.4	c0.1,0,0.2,0.1,0.3,0.1c0.4,0,0.7-0.2,0.9-0.5l1.1-2c0.2-0.4,0.2-0.9-0.2-1.3L13.5,8.4z M12.6,12l-1.7-0.6c-0.4,0.3-0.9,0.6-1.4,0.8	L9.2,14H6.8l-0.4-1.8c-0.5-0.2-0.9-0.5-1.4-0.8L3.4,12l-1.2-2l1.4-1.2c-0.1-0.5-0.1-1.1,0-1.6L2.2,6l1.2-2l1.7,0.6	C5.5,4.2,6,4,6.5,3.8L6.8,2h2.4l0.4,1.8c0.5,0.2,0.9,0.5,1.4,0.8L12.6,4l1.2,2l-1.4,1.2c0.1,0.5,0.1,1.1,0,1.6l1.4,1.2L12.6,12z"/><path d="M8,11c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3C11,9.6,9.7,11,8,11C8,11,8,11,8,11z M8,6C6.9,6,6,6.8,6,7.9C6,7.9,6,8,6,8	c0,1.1,0.8,2,1.9,2c0,0,0.1,0,0.1,0c1.1,0,2-0.8,2-1.9c0,0,0-0.1,0-0.1C10,6.9,9.2,6,8,6C8.1,6,8,6,8,6z"/></svg>تنظیمات</a>
+          <div class="t-nav-group__title">فروش</div>
+          <a class="t-nav-item" href="#" aria-current="page"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M10 6H28V8H10z"/><path d="M10 24H28V26H10z"/><path d="M10 15H28V17H10z"/><path d="M4 15H6V17H4z"/><path d="M4 6H6V8H4z"/><path d="M4 24H6V26H4z"/></svg>سفارش‌ها<span class="t-nav-item__count">۳</span></a>
+          <a class="t-nav-item" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M20,21H12a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2h8a2,2,0,0,1,2,2v2A2,2,0,0,1,20,21Zm-8-4v2h8V17Z"/><path d="M28,4H4A2,2,0,0,0,2,6v4a2,2,0,0,0,2,2V28a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V12a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4ZM26,28H6V12H26Zm2-18H4V6H28v4Z"/></svg>محصولات<span class="t-nav-item__count">۱۴۸</span></a>
+          <a class="t-nav-item" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M27,28V6H19V28H15V14H7V28H4V2H2V28a2,2,0,0,0,2,2H30V28ZM13,28H9V16h4Zm12,0H21V8h4Z"/></svg>گزارش‌ها</a>
+          <div class="t-nav-group__title">فروشگاه</div>
+          <a class="t-nav-item" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm0,15a4,4,0,1,1,4-4A4.0045,4.0045,0,0,1,16,17Z"/><circle cx="16" cy="13" r="4" fill="none"/></svg>اطلاعات فروشگاه</a>
+          <a class="t-nav-item" href="#"><svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.5,8.4c0-0.1,0-0.3,0-0.4c0-0.1,0-0.3,0-0.4l1-0.8c0.4-0.3,0.4-0.9,0.2-1.3l-1.2-2C13.3,3.2,13,3,12.6,3	c-0.1,0-0.2,0-0.3,0.1l-1.2,0.4c-0.2-0.1-0.4-0.3-0.7-0.4l-0.3-1.3C10.1,1.3,9.7,1,9.2,1H6.8c-0.5,0-0.9,0.3-1,0.8L5.6,3.1	C5.3,3.2,5.1,3.3,4.9,3.4L3.7,3C3.6,3,3.5,3,3.4,3C3,3,2.7,3.2,2.5,3.5l-1.2,2C1.1,5.9,1.2,6.4,1.6,6.8l0.9,0.9c0,0.1,0,0.3,0,0.4	c0,0.1,0,0.3,0,0.4L1.6,9.2c-0.4,0.3-0.5,0.9-0.2,1.3l1.2,2C2.7,12.8,3,13,3.4,13c0.1,0,0.2,0,0.3-0.1l1.2-0.4	c0.2,0.1,0.4,0.3,0.7,0.4l0.3,1.3c0.1,0.5,0.5,0.8,1,0.8h2.4c0.5,0,0.9-0.3,1-0.8l0.3-1.3c0.2-0.1,0.4-0.2,0.7-0.4l1.2,0.4	c0.1,0,0.2,0.1,0.3,0.1c0.4,0,0.7-0.2,0.9-0.5l1.1-2c0.2-0.4,0.2-0.9-0.2-1.3L13.5,8.4z M12.6,12l-1.7-0.6c-0.4,0.3-0.9,0.6-1.4,0.8	L9.2,14H6.8l-0.4-1.8c-0.5-0.2-0.9-0.5-1.4-0.8L3.4,12l-1.2-2l1.4-1.2c-0.1-0.5-0.1-1.1,0-1.6L2.2,6l1.2-2l1.7,0.6	C5.5,4.2,6,4,6.5,3.8L6.8,2h2.4l0.4,1.8c0.5,0.2,0.9,0.5,1.4,0.8L12.6,4l1.2,2l-1.4,1.2c0.1,0.5,0.1,1.1,0,1.6l1.4,1.2L12.6,12z"/><path d="M8,11c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3C11,9.6,9.7,11,8,11C8,11,8,11,8,11z M8,6C6.9,6,6,6.8,6,7.9C6,7.9,6,8,6,8	c0,1.1,0.8,2,1.9,2c0,0,0.1,0,0.1,0c1.1,0,2-0.8,2-1.9c0,0,0-0.1,0-0.1C10,6.9,9.2,6,8,6C8.1,6,8,6,8,6z"/></svg>تنظیمات</a>
         </nav>
         <main class="t-shell__main">
           <h2 style="font-size:19px;font-weight:800;margin-block-end:14px">سفارش‌ها</h2>
@@ -404,11 +404,11 @@ export function sellerPanelPage() {
             <div class="t-stat"><div class="t-stat__label">نرخ لغو</div><div class="t-stat__value">۲٫۱٪</div><div class="t-stat__delta t-stat__delta--flat">بدون تغییر</div></div>
           </div>
           <div class="t-toolbar">
-            <button class="t-btn t-btn--black-ghost t-btn--md">وضعیت${chev}</button>
-            <button class="t-btn t-btn--black-ghost t-btn--md"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۳</span> تا <span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۹</span>${chev}</button>
+            <button class="t-button t-button--black-ghost t-button--md">وضعیت${chev}</button>
+            <button class="t-button t-button--black-ghost t-button--md"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۳</span> تا <span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۹</span>${chev}</button>
             <span class="t-toolbar__spacer"></span>
             <span class="t-body-sm t-tone-secondary">۱ تا ۴ از ۴۸۳</span>
-            <button class="t-btn t-btn--blue t-btn--md">خروجی اکسل</button>
+            <button class="t-button t-button--blue t-button--md">خروجی اکسل</button>
           </div>
           <div class="t-table-wrap" tabindex="0" role="region" aria-label="جدول سفارش‌ها">
             <table class="t-table t-table--freeze">
@@ -417,10 +417,10 @@ export function sellerPanelPage() {
                 <th scope="col">تاریخ</th><th scope="col">وضعیت</th><th scope="col" class="t-num">مبلغ</th>
               </tr></thead>
               <tbody>
-                <tr><td><code>۱۰۲۳۴</code></td><td>سارا محمدی</td><td class="t-num-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۹</span></td><td><span class="t-badge t-badge--positive">ارسال شده</span></td><td class="t-num">۲٬۴۵۰٬۰۰۰</td></tr>
-                <tr aria-selected="true"><td><code>۱۰۲۳۳</code></td><td>رضا کریمی</td><td class="t-num-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۹</span></td><td><span class="t-badge t-badge--caution">در انتظار پرداخت</span></td><td class="t-num">۸۹۰٬۰۰۰</td></tr>
-                <tr><td><code>۱۰۲۳۲</code></td><td>مینا رضایی</td><td class="t-num-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۸</span></td><td><span class="t-badge t-badge--info">در حال آماده‌سازی</span></td><td class="t-num">۱۵٬۸۰۰٬۰۰۰</td></tr>
-                <tr><td><code>۱۰۲۳۱</code></td><td>حسین نوری</td><td class="t-num-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۸</span></td><td><span class="t-badge t-badge--critical">لغو شده</span></td><td class="t-num">۳۲۰٬۰۰۰</td></tr>
+                <tr><td><code>۱۰۲۳۴</code></td><td>سارا محمدی</td><td class="t-numerals-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۹</span></td><td><span class="t-badge t-badge--positive">ارسال شده</span></td><td class="t-num">۲٬۴۵۰٬۰۰۰</td></tr>
+                <tr aria-selected="true"><td><code>۱۰۲۳۳</code></td><td>رضا کریمی</td><td class="t-numerals-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۹</span></td><td><span class="t-badge t-badge--caution">در انتظار پرداخت</span></td><td class="t-num">۸۹۰٬۰۰۰</td></tr>
+                <tr><td><code>۱۰۲۳۲</code></td><td>مینا رضایی</td><td class="t-numerals-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۸</span></td><td><span class="t-badge t-badge--info">در حال آماده‌سازی</span></td><td class="t-num">۱۵٬۸۰۰٬۰۰۰</td></tr>
+                <tr><td><code>۱۰۲۳۱</code></td><td>حسین نوری</td><td class="t-numerals-tabular"><span class="t-bidi" dir="ltr">۱۴۰۴/۰۶/۱۸</span></td><td><span class="t-badge t-badge--critical">لغو شده</span></td><td class="t-num">۳۲۰٬۰۰۰</td></tr>
               </tbody>
             </table>
           </div>

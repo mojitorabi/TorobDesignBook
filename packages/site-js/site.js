@@ -547,7 +547,7 @@
     }
 
     /* Favourite, and anything else that is a two-state icon button. */
-    const toggle = e.target.closest('.t-icon-btn[aria-pressed], [data-toggle]');
+    const toggle = e.target.closest('.t-icon-button[aria-pressed], [data-toggle]');
     if (toggle) toggle.setAttribute('aria-pressed', toggle.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
 
     /* Quantity stepper: the value between the two buttons. */

@@ -23,85 +23,85 @@ const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
 
 const pairs = [
   // [foreground, background, minimum, label]
-  ['fg.default', 'bg.canvas', 4.5, 'body on canvas'],
-  ['fg.default', 'bg.fog', 4.5, 'body on card'],
-  ['fg.secondary', 'bg.canvas', 4.5, 'secondary on canvas'],
-  ['fg.secondary', 'bg.fog', 4.5, 'secondary on card'],
-  ['fg.brand', 'bg.canvas', 4.5, 'brand text on canvas'],
-  ['fg.brand', 'bg.fog', 4.5, 'brand text on card'],
-  ['fg.link', 'bg.fog', 4.5, 'link on card'],
-  ['fg.link', 'bg.canvas', 4.5, 'link on canvas'],
+  ['color.on-surface', 'color.surface', 4.5, 'body on canvas'],
+  ['color.on-surface', 'color.surface-raised', 4.5, 'body on card'],
+  ['color.on-surface-variant', 'color.surface', 4.5, 'secondary on canvas'],
+  ['color.on-surface-variant', 'color.surface-raised', 4.5, 'secondary on card'],
+  ['color.brand', 'color.surface', 4.5, 'brand text on canvas'],
+  ['color.brand', 'color.surface-raised', 4.5, 'brand text on card'],
+  ['color.link', 'color.surface-raised', 4.5, 'link on card'],
+  ['color.link', 'color.surface', 4.5, 'link on canvas'],
 
   // Three button families
-  ['action.red.fg', 'action.red.bg', 4.5, 'red button label'],
-  ['action.blue.fg', 'action.blue.bg', 4.5, 'blue button label'],
-  ['action.black.fg', 'action.black.bg', 4.5, 'black button label'],
-  ['action.blue.soft-fg', 'action.blue.soft-bg', 4.5, 'soft blue button'],
-  ['action.black.ghost-fg', 'bg.canvas', 4.5, 'black ghost label'],
-  ['action.red.outline-fg', 'bg.canvas', 4.5, 'red outline label'],
-  ['action.blue.outline-fg', 'bg.canvas', 4.5, 'blue outline label'],
-  ['action.disabled.fg', 'action.disabled.bg', 4.5, 'disabled label'],
+  ['color.action.primary.fg', 'color.action.primary.bg', 4.5, 'red button label'],
+  ['color.action.accent.fg', 'color.action.accent.bg', 4.5, 'blue button label'],
+  ['color.action.neutral.fg', 'color.action.neutral.bg', 4.5, 'black button label'],
+  ['color.action.accent.soft-fg', 'color.action.accent.soft-bg', 4.5, 'soft blue button'],
+  ['color.action.neutral.ghost-fg', 'color.surface', 4.5, 'black ghost label'],
+  ['color.action.primary.outline-fg', 'color.surface', 4.5, 'red outline label'],
+  ['color.action.accent.outline-fg', 'color.surface', 4.5, 'blue outline label'],
+  ['color.action.disabled.fg', 'color.action.disabled.bg', 4.5, 'disabled label'],
   // The tinted rim is ornament on a filled surface. The fill identifies the
   // control, so 1.4.11 does not govern the rim. Reported, not gated.
-  ['action.red.border', 'action.red.bg', 0, 'red button rim (ornament)'],
-  ['action.blue.border', 'action.blue.bg', 0, 'blue button rim (ornament)'],
+  ['color.action.primary.border', 'color.action.primary.bg', 0, 'red button rim (ornament)'],
+  ['color.action.accent.border', 'color.action.accent.bg', 0, 'blue button rim (ornament)'],
 
-  ['status.positive.fg', 'status.positive.bg', 4.5, 'positive alert'],
-  ['status.caution.fg', 'status.caution.bg', 4.5, 'caution alert'],
-  ['status.critical.fg', 'status.critical.bg', 4.5, 'critical alert'],
-  ['status.info.fg', 'status.info.bg', 4.5, 'info alert'],
-  ['status.guarantee.fg', 'status.guarantee.bg', 4.5, 'guarantee badge'],
-  ['status.neutral.fg', 'status.neutral.bg', 4.5, 'neutral badge'],
+  ['color.status.positive.on-container', 'color.status.positive.container', 4.5, 'positive alert'],
+  ['color.status.caution.on-container', 'color.status.caution.container', 4.5, 'caution alert'],
+  ['color.status.critical.on-container', 'color.status.critical.container', 4.5, 'critical alert'],
+  ['color.status.info.on-container', 'color.status.info.container', 4.5, 'info alert'],
+  ['color.status.guarantee.on-container', 'color.status.guarantee.container', 4.5, 'guarantee badge'],
+  ['color.status.neutral.on-container', 'color.status.neutral.container', 4.5, 'neutral badge'],
 
-  ['commerce.price', 'bg.fog', 4.5, 'price on card'],
-  ['commerce.price-from', 'bg.fog', 4.5, '"from" price line'],
-  ['commerce.oos', 'bg.fog', 4.5, 'out of stock'],
-  ['commerce.open', 'bg.fog', 3.0, 'open-now dot (non-text)'],
-  ['commerce.official', 'bg.fog', 4.5, 'official dealer'],
-  ['fg.on-solid', 'commerce.ad', 4.5, 'ad marker label'],
+  ['color.commerce.price', 'color.surface-raised', 4.5, 'price on card'],
+  ['color.commerce.price-from', 'color.surface-raised', 4.5, '"from" price line'],
+  ['color.commerce.oos', 'color.surface-raised', 4.5, 'out of stock'],
+  ['color.commerce.open', 'color.surface-raised', 3.0, 'open-now dot (non-text)'],
+  ['color.commerce.official', 'color.surface-raised', 4.5, 'official dealer'],
+  ['color.on-solid', 'color.commerce.ad', 4.5, 'ad marker label'],
 
-  ['border.control', 'bg.canvas', 3.0, 'form-control border'],
-  ['border.control', 'bg.fog', 3.0, 'form-control border on card'],
-  ['border.selected', 'bg.fog', 3.0, 'selection ring (non-text)'],
-  ['border.focus', 'bg.canvas', 3.0, 'focus ring on canvas'],
-  ['border.focus', 'bg.fog', 3.0, 'focus ring on card'],
+  ['color.outline-control', 'color.surface', 3.0, 'form-control border'],
+  ['color.outline-control', 'color.surface-raised', 3.0, 'form-control border on card'],
+  ['color.outline-selected', 'color.surface-raised', 3.0, 'selection ring (non-text)'],
+  ['color.focus-ring', 'color.surface', 3.0, 'focus ring on canvas'],
+  ['color.focus-ring', 'color.surface-raised', 3.0, 'focus ring on card'],
   // A pin is found by its fill OR its 2px white ring, whichever contrasts.
-  ['map.poi', 'bg.fog', 3.0, 'map pin (fill or ring)', 'map.poi-ring'],
-  ['map.label', 'map.label-halo', 4.5, 'map pin label on its halo'],
-  ['map.cluster-fg', 'map.cluster-bg', 4.5, 'cluster count'],
+  ['color.map.poi', 'color.surface-raised', 3.0, 'map pin (fill or ring)', 'color.map.poi-ring'],
+  ['color.map.label', 'color.map.label-halo', 4.5, 'map pin label on its halo'],
+  ['color.map.cluster-fg', 'color.map.cluster-bg', 4.5, 'cluster count'],
 
   // Commerce surfaces added with the Sketch-exact components
-  ['commerce.open-text', 'bg.fog', 4.5, '«باز» / near distance'],
-  ['commerce.distance-near', 'bg.store-card', 4.5, 'distance on store card'],
-  ['fg.default', 'bg.store-card', 4.5, 'text on store card'],
-  ['commerce.rating-fg', 'commerce.rating-bg', 4.5, 'seller rating pill'],
-  ['fg.default', 'commerce.perk-bg', 4.5, 'perk pill label'],
-  ['commerce.ad-badge-fg', 'commerce.ad-badge', 4.5, 'آگهی badge on photo'],
-  ['commerce.ad-badge-fg', 'commerce.kalabarg-bg', 4.5, 'کالابرگ badge'],
-  ['commerce.guarantee-accent', 'commerce.guarantee-bg', 4.5, 'ضمانت ترب badge (yellow end)'],
-  ['border.default', 'bg.canvas', 0, 'decorative divider (informational)'],
+  ['color.commerce.open-text', 'color.surface-raised', 4.5, '«باز» / near distance'],
+  ['color.commerce.distance-near', 'color.surface-store-card', 4.5, 'distance on store card'],
+  ['color.on-surface', 'color.surface-store-card', 4.5, 'text on store card'],
+  ['color.commerce.rating-fg', 'color.commerce.rating-bg', 4.5, 'seller rating pill'],
+  ['color.on-surface', 'color.commerce.perk-bg', 4.5, 'perk pill label'],
+  ['color.commerce.ad-badge-fg', 'color.commerce.ad-badge', 4.5, 'آگهی badge on photo'],
+  ['color.commerce.ad-badge-fg', 'color.commerce.kalabarg-bg', 4.5, 'کالابرگ badge'],
+  ['color.commerce.guarantee-accent', 'color.commerce.guarantee-bg', 4.5, 'ضمانت ترب badge (yellow end)'],
+  ['color.outline', 'color.surface', 0, 'decorative divider (informational)'],
 
   // Small commerce text sits on the grey app canvas, not on a white card —
   // the canvas is the harder of the two, so it is the one worth gating.
-  ['commerce.price-from', 'bg.canvas', 4.5, '"from" price on canvas'],
-  ['commerce.distance', 'bg.canvas', 4.5, 'distance on canvas'],
-  ['commerce.closed', 'bg.canvas', 4.5, 'closed label on canvas'],
-  ['commerce.oos', 'bg.canvas', 4.5, 'out of stock on canvas'],
+  ['color.commerce.price-from', 'color.surface', 4.5, '"from" price on canvas'],
+  ['color.commerce.distance', 'color.surface', 4.5, 'distance on canvas'],
+  ['color.commerce.closed', 'color.surface', 4.5, 'closed label on canvas'],
+  ['color.commerce.oos', 'color.surface', 4.5, 'out of stock on canvas'],
   // The price pin reads as text, so 4.5 applies — in every theme, including
   // the dark ones where the pill surface is dark.
-  ['map.pill-fg', 'bg.fog', 4.5, 'map price pill label'],
+  ['color.map.pill-fg', 'color.surface-raised', 4.5, 'map price pill label'],
 
   // Text on a filled status surface: a toast, a step marker, a solid badge.
-  ['status.positive.on-solid', 'status.positive.solid', 4.5, 'text on positive solid'],
-  ['status.critical.on-solid', 'status.critical.solid', 4.5, 'text on critical solid'],
-  ['status.caution.on-solid', 'status.caution.solid', 4.5, 'text on caution solid'],
-  ['status.info.on-solid', 'status.info.solid', 4.5, 'text on info solid'],
+  ['color.status.positive.on-solid', 'color.status.positive.solid', 4.5, 'text on positive solid'],
+  ['color.status.critical.on-solid', 'color.status.critical.solid', 4.5, 'text on critical solid'],
+  ['color.status.caution.on-solid', 'color.status.caution.solid', 4.5, 'text on caution solid'],
+  ['color.status.info.on-solid', 'color.status.info.solid', 4.5, 'text on info solid'],
 ];
 
 let fails = 0, warns = 0;
 for (const mode of Object.keys(m.modes)) {
   const t = { ...m.base, ...m.modes[mode] };
-  const canvas = t['bg.canvas'].value;
+  const canvas = t['color.surface'].value;
   console.log(`\n${'═'.repeat(74)}\n  ${mode.toUpperCase()}\n${'═'.repeat(74)}`);
   for (const [fk, bk, min, label, alt] of pairs) {
     if (!t[fk] || !t[bk]) { console.log(`  ?  missing ${fk} / ${bk}`); continue; }
@@ -120,7 +120,7 @@ for (const mode of Object.keys(m.modes)) {
    worst case at both ends: composite the translucent fill over pure white and
    over pure black, and require the label to pass against whichever is worse. */
 const GLASS = [
-  ['fg.inverse', 'glass.%.inverse.fill', 4.5, 'toast / tooltip label on inverse glass'],
+  ['color.on-surface-inverse', 'glass.%.inverse.fill', 4.5, 'toast / tooltip label on inverse glass'],
 ];
 console.log(`\n${'═'.repeat(74)}\n  GLASS — worst case over white and over black\n${'═'.repeat(74)}`);
 for (const mode of Object.keys(m.modes)) {

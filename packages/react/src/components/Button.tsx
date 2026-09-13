@@ -14,7 +14,7 @@ export const Button = forwardRef(function Button(
   return (
     <button
       ref={ref}
-      className={clsx('t-btn', `t-btn--${variant}`, `t-btn--${size}`, block && 't-btn--block', className)}
+      className={clsx('t-button', `t-button--${variant}`, `t-button--${size}`, block && 't-button--block', className)}
       data-loading={loading || undefined}
       aria-busy={loading || undefined}
       disabled={disabled || loading}

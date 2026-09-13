@@ -6,19 +6,19 @@
    BuyBoxButton    ← Button/Buy box/* · Button/Offline Buy box/Ad
    ============================================================ */
 
-.t-btn {
+.t-button {
   --_h: var(--t-size-control-lg);          /* 40 */
   --_px: var(--t-space-4);                  /* 16 */
   --_gap: 2px;                              /* Sketch stack gap, icon ↔ label */
   --_fs: var(--t-font-size-14);
-  --_lh: var(--t-font-leading-14);
+  --_lh: var(--t-font-line-height-14);
   --_fw: var(--t-font-weight-bold);
   --_icon: var(--t-size-icon-md);           /* 20 */
   --_bg: transparent;
   --_bg-image: none;
-  --_fg: var(--t-fg-default);
+  --_fg: var(--t-color-on-surface);
   --_rim: transparent;                      /* 1px INSIDE edge, never layout */
-  --_rim-w: var(--t-border-thin);
+  --_rim-w: var(--t-border-width-thin);
   --_lift: 0 0 transparent;                 /* glass drop shadows */
 
   display: inline-flex;
@@ -52,35 +52,35 @@
 }
 
 /* Touch target. The visual control can be 24px; the tappable area never is. */
-.t-btn::after {
+.t-button::after {
   content: "";
   position: absolute;
   inset-block: calc((var(--t-size-touch-min) - var(--_h)) / -2);
   inset-inline: 0;
   min-block-size: var(--t-size-touch-min);
 }
-@media (pointer: fine) { .t-btn::after { content: none; } }
+@media (pointer: fine) { .t-button::after { content: none; } }
 
-.t-btn .t-icon { inline-size: var(--_icon); block-size: var(--_icon); flex: none; }
+.t-button .t-icon { inline-size: var(--_icon); block-size: var(--_icon); flex: none; }
 /* A trailing icon (a disclosure chevron) sits 14px from the edge: its 16px
    box already carries 5px of air. Mark it .t-icon--end — a bare text label is
    not an element, so position alone cannot tell leading from trailing. */
-.t-btn:has(> .t-icon--end) { padding-inline-end: calc(var(--_px) - 2px); }
-.t-btn .t-icon--tiny { inline-size: 16px; block-size: 16px; }
-.t-btn[aria-expanded="true"] .t-icon--tiny,
-.t-btn[aria-expanded="true"] .t-btn__chevron { rotate: 180deg; }
+.t-button:has(> .t-icon--end) { padding-inline-end: calc(var(--_px) - 2px); }
+.t-button .t-icon--tiny { inline-size: 16px; block-size: 16px; }
+.t-button[aria-expanded="true"] .t-icon--tiny,
+.t-button[aria-expanded="true"] .t-button__chevron { rotate: 180deg; }
 
-.t-btn:active:not(:disabled) { transform: scale(0.97); }
-.t-btn:disabled, .t-btn[aria-disabled="true"] { cursor: not-allowed; transform: none; }
+.t-button:active:not(:disabled) { transform: scale(0.97); }
+.t-button:disabled, .t-button[aria-disabled="true"] { cursor: not-allowed; transform: none; }
 
 /* ---- Sizes ----  lg 40 · sm 28 · xs 24 are drawn in Sketch; md 32 and xl 48
    are system additions for dense desktop tables and hero actions. */
-.t-btn--lg { --_h: var(--t-size-control-lg); }
-.t-btn--md { --_h: var(--t-size-control-md); --_px: var(--t-space-3); }
-.t-btn--sm { --_h: var(--t-size-control-sm); --_px: var(--t-space-2); --_gap: var(--t-space-1); --_fs: var(--t-font-size-12); --_lh: var(--t-font-leading-12); --_fw: var(--t-font-weight-medium); --_icon: var(--t-size-icon-sm); }
-.t-btn--xs { --_h: var(--t-size-control-xs); --_px: var(--t-space-2); --_gap: var(--t-space-1); --_fs: var(--t-font-size-12); --_lh: var(--t-font-leading-12); --_fw: var(--t-font-weight-regular); --_icon: var(--t-size-icon-sm); }
-.t-btn--xl { --_h: var(--t-size-control-xl); --_px: var(--t-space-5); --_fs: var(--t-font-size-16); --_lh: var(--t-font-leading-16); }
-.t-btn--block { display: flex; inline-size: 100%; }
+.t-button--lg { --_h: var(--t-size-control-lg); }
+.t-button--md { --_h: var(--t-size-control-md); --_px: var(--t-space-3); }
+.t-button--sm { --_h: var(--t-size-control-sm); --_px: var(--t-space-2); --_gap: var(--t-space-1); --_fs: var(--t-font-size-12); --_lh: var(--t-font-line-height-12); --_fw: var(--t-font-weight-medium); --_icon: var(--t-size-icon-sm); }
+.t-button--xs { --_h: var(--t-size-control-xs); --_px: var(--t-space-2); --_gap: var(--t-space-1); --_fs: var(--t-font-size-12); --_lh: var(--t-font-line-height-12); --_fw: var(--t-font-weight-regular); --_icon: var(--t-size-icon-sm); }
+.t-button--xl { --_h: var(--t-size-control-xl); --_px: var(--t-space-5); --_fs: var(--t-font-size-16); --_lh: var(--t-font-line-height-16); }
+.t-button--block { display: flex; inline-size: 100%; }
 
 /* ---- Colour families ----
    Three, exactly as drawn in Sketch.
@@ -98,89 +98,89 @@
    Intent aliases (--primary / --accent / --neutral) point at the same rules.
    Prefer them in product code: intent survives a rebrand, colour does not. */
 
-.t-btn--red, .t-btn--primary {
-  --_bg: var(--t-action-red-bg);
-  --_bg-image: var(--t-action-red-bg-gradient);
-  --_rim: var(--t-action-red-border);
-  --_fg: var(--t-action-red-fg);
+.t-button--red, .t-button--primary {
+  --_bg: var(--t-color-action-primary-bg);
+  --_bg-image: var(--t-color-action-primary-bg-gradient);
+  --_rim: var(--t-color-action-primary-border);
+  --_fg: var(--t-color-action-primary-fg);
 }
-.t-btn--red:hover:not(:disabled),
-.t-btn--primary:hover:not(:disabled) {
-  --_bg: var(--t-action-red-bg-hover);
+.t-button--red:hover:not(:disabled),
+.t-button--primary:hover:not(:disabled) {
+  --_bg: var(--t-color-action-primary-bg-hover);
   --_bg-image: none;
   --_rim: transparent;
 }
-.t-btn--red:active:not(:disabled), .t-btn--primary:active:not(:disabled) { --_bg: var(--t-action-red-bg-active); --_bg-image: none; --_rim: transparent; }
+.t-button--red:active:not(:disabled), .t-button--primary:active:not(:disabled) { --_bg: var(--t-color-action-primary-bg-active); --_bg-image: none; --_rim: transparent; }
 
-.t-btn--blue, .t-btn--accent {
-  --_bg: var(--t-action-blue-bg);
-  --_bg-image: var(--t-action-blue-bg-gradient);
-  --_rim: var(--t-action-blue-border);
-  --_fg: var(--t-action-blue-fg);
+.t-button--blue, .t-button--accent {
+  --_bg: var(--t-color-action-accent-bg);
+  --_bg-image: var(--t-color-action-accent-bg-gradient);
+  --_rim: var(--t-color-action-accent-border);
+  --_fg: var(--t-color-action-accent-fg);
 }
-.t-btn--blue:hover:not(:disabled),
-.t-btn--accent:hover:not(:disabled) {
-  --_bg: var(--t-action-blue-bg-hover);
+.t-button--blue:hover:not(:disabled),
+.t-button--accent:hover:not(:disabled) {
+  --_bg: var(--t-color-action-accent-bg-hover);
   --_bg-image: none;
   --_rim: transparent;
 }
-.t-btn--blue:active:not(:disabled), .t-btn--accent:active:not(:disabled) { --_bg: var(--t-action-blue-bg-active); --_bg-image: none; --_rim: transparent; }
+.t-button--blue:active:not(:disabled), .t-button--accent:active:not(:disabled) { --_bg: var(--t-color-action-accent-bg-active); --_bg-image: none; --_rim: transparent; }
 
 /* Sketch's "Blue / Clicked + Chevron" is the OPEN state of a disclosure
    button: the fill drops away, the label takes the family colour and the
    chevron turns. It is aria-expanded, not a variant. */
-.t-btn--blue[aria-expanded="true"], .t-btn--accent[aria-expanded="true"], .t-btn--blue-outline, .t-btn--outline-accent {
-  --_bg: var(--t-bg-fog);
+.t-button--blue[aria-expanded="true"], .t-button--accent[aria-expanded="true"], .t-button--blue-outline, .t-button--outline-accent {
+  --_bg: var(--t-color-surface-raised);
   --_bg-image: none;
-  --_rim: var(--t-action-blue-outline-border);
-  --_fg: var(--t-action-blue-outline-fg);
+  --_rim: var(--t-color-action-accent-outline-border);
+  --_fg: var(--t-color-action-accent-outline-fg);
 }
 
 /* Black is flat by design — no gradient, no rim. It is the quiet one. */
-.t-btn--black, .t-btn--neutral { --_bg: var(--t-action-black-bg); --_fg: var(--t-action-black-fg); }
-.t-btn--black:hover:not(:disabled),
-.t-btn--neutral:hover:not(:disabled) { --_bg: var(--t-action-black-bg-hover); }
-.t-btn--black:active:not(:disabled), .t-btn--neutral:active:not(:disabled) { --_bg: var(--t-action-black-bg-active); }
+.t-button--black, .t-button--neutral { --_bg: var(--t-color-action-neutral-bg); --_fg: var(--t-color-action-neutral-fg); }
+.t-button--black:hover:not(:disabled),
+.t-button--neutral:hover:not(:disabled) { --_bg: var(--t-color-action-neutral-bg-hover); }
+.t-button--black:active:not(:disabled), .t-button--neutral:active:not(:disabled) { --_bg: var(--t-color-action-neutral-bg-active); }
 
 /* ---- Outline  ← Button/Black ghost ---- */
-.t-btn--black-ghost, .t-btn--outline {
-  --_bg: var(--t-bg-fog);
-  --_rim: var(--t-action-black-ghost-border);
-  --_fg: var(--t-action-black-ghost-fg);
+.t-button--black-ghost, .t-button--outline {
+  --_bg: var(--t-color-surface-raised);
+  --_rim: var(--t-color-action-neutral-ghost-border);
+  --_fg: var(--t-color-action-neutral-ghost-fg);
 }
-.t-btn--black-ghost:hover:not(:disabled),
-.t-btn--outline:hover:not(:disabled) { --_rim: var(--t-action-black-ghost-border-hover); }
-.t-btn--red-outline {
-  --_bg: var(--t-bg-fog);
-  --_rim: var(--t-action-red-outline-border);
-  --_fg: var(--t-action-red-outline-fg);
+.t-button--black-ghost:hover:not(:disabled),
+.t-button--outline:hover:not(:disabled) { --_rim: var(--t-color-action-neutral-ghost-border-hover); }
+.t-button--red-outline {
+  --_bg: var(--t-color-surface-raised);
+  --_rim: var(--t-color-action-primary-outline-border);
+  --_fg: var(--t-color-action-primary-outline-fg);
 }
 
 /* ---- Soft & ghost (system additions) ---- */
-.t-btn--soft { --_bg: var(--t-action-blue-soft-bg); --_fg: var(--t-action-blue-soft-fg); }
-.t-btn--soft:hover:not(:disabled) { filter: brightness(0.96); }
-.t-btn--ghost { --_fg: var(--t-action-black-ghost-fg); }
-.t-btn--ghost:hover:not(:disabled) { --_bg: var(--t-action-black-ghost-bg-hover); }
-.t-btn--ghost-accent { --_fg: var(--t-action-blue-ghost-fg); }
-.t-btn--ghost-accent:hover:not(:disabled) { --_bg: var(--t-action-blue-soft-bg); }
+.t-button--soft { --_bg: var(--t-color-action-accent-soft-bg); --_fg: var(--t-color-action-accent-soft-fg); }
+.t-button--soft:hover:not(:disabled) { filter: brightness(0.96); }
+.t-button--ghost { --_fg: var(--t-color-action-neutral-ghost-fg); }
+.t-button--ghost:hover:not(:disabled) { --_bg: var(--t-color-action-neutral-ghost-bg-hover); }
+.t-button--ghost-accent { --_fg: var(--t-color-action-accent-ghost-fg); }
+.t-button--ghost-accent:hover:not(:disabled) { --_bg: var(--t-color-action-accent-soft-bg); }
 
 /* ---- Glass  ← Button/Black ghost/Icon · Button/‌Blue ghost/Icon/Light · /Dark ----
    Glass at the "selected" level: 60% fill, 15px backdrop blur and a 0.5px
    ring. Neutral rings in Sky 800, blue in Blue 300. For controls that sit
    over the map or a photograph. */
-.t-btn--glass {
+.t-button--glass {
   --_bg: var(--t-glass-selected-fill);
-  --_rim: var(--t-fg-default);
-  --_rim-w: var(--t-border-hairline);
-  --_fg: var(--t-fg-default);
+  --_rim: var(--t-color-on-surface);
+  --_rim-w: var(--t-border-width-hairline);
+  --_fg: var(--t-color-on-surface);
   backdrop-filter: blur(var(--t-glass-blur));
   -webkit-backdrop-filter: blur(var(--t-glass-blur));
 }
-.t-btn--glass.t-btn--blue-ghost, .t-btn--blue-ghost {
+.t-button--glass.t-button--blue-ghost, .t-button--blue-ghost {
   --_bg: var(--t-glass-selected-fill);
   --_rim: var(--t-glass-selected-border);
-  --_rim-w: var(--t-border-hairline);
-  --_fg: var(--t-action-blue-ghost-fg);
+  --_rim-w: var(--t-border-width-hairline);
+  --_fg: var(--t-color-action-accent-ghost-fg);
   backdrop-filter: blur(var(--t-glass-blur));
   -webkit-backdrop-filter: blur(var(--t-glass-blur));
 }
@@ -188,11 +188,11 @@
 /* ---- Glass chip button  ← Button/Xsmall/Secondary/Icon ----
    The "filters" glass: 30% white, a 1px white edge OUTSIDE the shape, a
    2px upward haze and a half-pixel hairline shadow down and to the left. */
-.t-btn--filter {
+.t-button--filter {
   --_bg: var(--t-glass-filters-fill);
   --_rim: transparent;
-  --_fg: var(--t-fg-default);
-  --_lift: 0 0 0 var(--t-border-thin) var(--t-glass-filters-border), var(--t-glass-filters-shadow);
+  --_fg: var(--t-color-on-surface);
+  --_lift: 0 0 0 var(--t-border-width-thin) var(--t-glass-filters-border), var(--t-glass-filters-shadow);
   backdrop-filter: blur(var(--t-glass-blur));
   -webkit-backdrop-filter: blur(var(--t-glass-blur));
 }
@@ -200,24 +200,24 @@
 /* ---- Disabled ----
    One treatment. Every family collapses to it, because a disabled control
    that still reads as primary is worse than no affordance at all. */
-.t-btn:disabled, .t-btn[aria-disabled="true"] {
-  --_bg: var(--t-action-disabled-bg) !important;
+.t-button:disabled, .t-button[aria-disabled="true"] {
+  --_bg: var(--t-color-action-disabled-bg) !important;
   --_bg-image: none !important;
   --_rim: transparent !important;
   --_lift: 0 0 transparent !important;
-  --_fg: var(--t-action-disabled-fg) !important;
+  --_fg: var(--t-color-action-disabled-fg) !important;
   backdrop-filter: none;
 }
-.t-btn--ghost:disabled, .t-btn--ghost[aria-disabled="true"] {
+.t-button--ghost:disabled, .t-button--ghost[aria-disabled="true"] {
   --_bg: transparent !important;
-  --_fg: var(--t-fg-disabled) !important;
+  --_fg: var(--t-color-on-surface-disabled) !important;
 }
 
 /* ---- Loading ----
    The label stays in place so the button does not resize mid-action. */
-.t-btn:is([data-loading="true"], [data-state~="loading"]) { color: transparent !important; pointer-events: none; }
-.t-btn:is([data-loading="true"], [data-state~="loading"]) > * { visibility: hidden; }
-.t-btn:is([data-loading="true"], [data-state~="loading"])::before {
+.t-button:is([data-loading="true"], [data-state~="loading"]) { color: transparent !important; pointer-events: none; }
+.t-button:is([data-loading="true"], [data-state~="loading"]) > * { visibility: hidden; }
+.t-button:is([data-loading="true"], [data-state~="loading"])::before {
   content: "";
   position: absolute;
   inline-size: 1em; block-size: 1em;
@@ -231,14 +231,14 @@
 /* ---- IconButton  ← Button/Icon/* ----
    48×48 with a 32px glyph (8px all round), or the 32×32 round glass button
    with a 24px glyph. Always carries an aria-label. */
-.t-icon-btn {
+.t-icon-button {
   --_s: var(--t-size-control-xl);           /* 48 */
   --_glyph: 32px;
   --_bg: transparent;
   --_bg-image: none;
-  --_fg: var(--t-fg-default);
+  --_fg: var(--t-color-on-surface);
   --_rim: transparent;
-  --_rim-w: var(--t-border-thin);
+  --_rim-w: var(--t-border-width-thin);
   --_lift: 0 0 transparent;
   display: inline-flex; align-items: center; justify-content: center;
   inline-size: var(--_s); block-size: var(--_s);
@@ -253,33 +253,33 @@
   position: relative;
   transition: background-color var(--t-duration-micro) var(--t-easing-out), transform var(--t-duration-micro) var(--t-easing-out);
 }
-.t-icon-btn > .t-icon, .t-icon-btn > svg, .t-icon-btn > img { inline-size: var(--_glyph); block-size: var(--_glyph); flex: none; }
-.t-icon-btn:hover:not(:disabled) { --_bg: var(--t-action-black-ghost-bg-hover); }
-.t-icon-btn:active:not(:disabled) { transform: scale(0.94); }
-.t-icon-btn:disabled { --_fg: var(--t-fg-disabled); cursor: not-allowed; }
+.t-icon-button > .t-icon, .t-icon-button > svg, .t-icon-button > img { inline-size: var(--_glyph); block-size: var(--_glyph); flex: none; }
+.t-icon-button:hover:not(:disabled) { --_bg: var(--t-color-action-neutral-ghost-bg-hover); }
+.t-icon-button:active:not(:disabled) { transform: scale(0.94); }
+.t-icon-button:disabled { --_fg: var(--t-color-on-surface-disabled); cursor: not-allowed; }
 /* 32px targets still get a 44px hit area. */
-.t-icon-btn::after { content: ""; position: absolute; inset: min(0px, calc((var(--_s) - var(--t-size-touch-min)) / 2)); border-radius: inherit; }
+.t-icon-button::after { content: ""; position: absolute; inset: min(0px, calc((var(--_s) - var(--t-size-touch-min)) / 2)); border-radius: inherit; }
 
 /* ← Button/Icon/Blue Icon — the blue family, filled */
-.t-icon-btn--accent {
-  --_bg: var(--t-action-blue-bg);
-  --_bg-image: var(--t-action-blue-bg-gradient);
-  --_rim: var(--t-action-blue-border);
-  --_fg: var(--t-action-blue-fg);
+.t-icon-button--accent {
+  --_bg: var(--t-color-action-accent-bg);
+  --_bg-image: var(--t-color-action-accent-bg-gradient);
+  --_rim: var(--t-color-action-accent-border);
+  --_fg: var(--t-color-action-accent-fg);
 }
-.t-icon-btn--accent:hover:not(:disabled) { --_bg: var(--t-action-blue-bg-hover); --_bg-image: none; --_rim: transparent; }
+.t-icon-button--accent:hover:not(:disabled) { --_bg: var(--t-color-action-accent-bg-hover); --_bg-image: none; --_rim: transparent; }
 
 /* ← Button/Icon/Ghost Icon — selected glass, a full 1px blue rim */
-.t-icon-btn--accent-ghost {
+.t-icon-button--accent-ghost {
   --_bg: var(--t-glass-selected-fill);
   --_rim: var(--t-glass-selected-border);
-  --_fg: var(--t-action-blue-ghost-fg);
+  --_fg: var(--t-color-action-accent-ghost-fg);
   backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur));
 }
 
 /* ← Button/Icon/Icon — surface glass: 30% white, a 1px white edge on the
    outline and the half-pixel hairline shadow. */
-.t-icon-btn--glass {
+.t-icon-button--glass {
   --_bg: var(--t-glass-fill);
   --_rim: var(--t-glass-border);
   --_rim-w: 0.5px;
@@ -288,12 +288,12 @@
 }
 
 /* ← Button/Icon/Icon Rounded — 32 round, the "filters" glass */
-.t-icon-btn--sm { --_s: var(--t-size-control-md); --_glyph: var(--t-size-icon-md); }
-.t-icon-btn--round { border-radius: var(--t-radius-full); }
-.t-icon-btn--sm.t-icon-btn--round { --_glyph: var(--t-size-icon-lg); }
-.t-icon-btn--filter {
+.t-icon-button--sm { --_s: var(--t-size-control-md); --_glyph: var(--t-size-icon-md); }
+.t-icon-button--round { border-radius: var(--t-radius-full); }
+.t-icon-button--sm.t-icon-button--round { --_glyph: var(--t-size-icon-lg); }
+.t-icon-button--filter {
   --_bg: var(--t-glass-filters-fill);
-  --_lift: 0 0 0 var(--t-border-thin) var(--t-glass-filters-border), var(--t-glass-filters-shadow);
+  --_lift: 0 0 0 var(--t-border-width-thin) var(--t-glass-filters-border), var(--t-glass-filters-shadow);
   backdrop-filter: blur(var(--t-glass-blur)); -webkit-backdrop-filter: blur(var(--t-glass-blur));
 }
 
@@ -307,32 +307,32 @@
    The divider is the trailing segment's own family rim, not a separate line.
    That keeps it in the family tint automatically and means it survives a
    palette change. No overflow:hidden — it would clip the focus ring. */
-.t-btn-split {
+.t-button-split {
   display: inline-flex;
   border-radius: var(--t-radius-md);
   isolation: isolate;
 }
-.t-btn-split > .t-btn { border-radius: 0; }
+.t-button-split > .t-button { border-radius: 0; }
 /* The label half runs 12px in from the start and stops 8px short of the
    divider: the divider does the separating, so the padding does not. */
-.t-btn-split > .t-btn:first-child { padding-inline: var(--t-space-3) var(--t-space-2); --_rim: transparent; }
-.t-btn-split > .t-btn:first-child {
+.t-button-split > .t-button:first-child { padding-inline: var(--t-space-3) var(--t-space-2); --_rim: transparent; }
+.t-button-split > .t-button:first-child {
   border-start-start-radius: var(--t-radius-md);
   border-end-start-radius: var(--t-radius-md);
   border-inline-end: 0;
 }
-.t-btn-split > .t-btn:last-child {
+.t-button-split > .t-button:last-child {
   border-start-end-radius: var(--t-radius-md);
   border-end-end-radius: var(--t-radius-md);
 }
 /* The trailing half is icon-only at a fixed 44px — wide enough to be its own
    touch target without stealing width from the label. */
-.t-btn-split__more {
+.t-button-split__more {
   inline-size: 44px;
   flex: none;
   padding-inline: 0;
 }
-.t-btn-split:focus-within { border-radius: var(--t-radius-md); }
+.t-button-split:focus-within { border-radius: var(--t-radius-md); }
 
 /* ---- BuyBoxButton  ← Button/Buy box/Ad · /Cheapest · Button/Offline Buy box/Ad ----
 
@@ -348,11 +348,11 @@
    shouted here — the shopper already knows the price band from the listing;
    on this row they are choosing *who* to buy from. */
 
-.t-buybox {
-  --_bg: var(--t-action-red-bg);
-  --_bg-image: var(--t-action-red-bg-gradient);
-  --_rim: var(--t-action-red-border);
-  --_fg: var(--t-action-red-fg);
+.t-buy-box {
+  --_bg: var(--t-color-action-primary-bg);
+  --_bg-image: var(--t-color-action-primary-bg-gradient);
+  --_rim: var(--t-color-action-primary-border);
+  --_fg: var(--t-color-action-primary-fg);
   display: flex;
   align-items: center;
   gap: var(--t-space-3);
@@ -365,7 +365,7 @@
   border-radius: var(--t-radius-lg);            /* 16 */
   background-color: var(--_bg);
   background-image: var(--_bg-image);
-  box-shadow: inset 0 0 0 var(--t-border-thin) var(--_rim);
+  box-shadow: inset 0 0 0 var(--t-border-width-thin) var(--_rim);
   color: var(--_fg);
   text-align: start;
   cursor: pointer;
@@ -373,51 +373,51 @@
     background-color var(--t-duration-micro) var(--t-easing-out),
     transform        var(--t-duration-micro) var(--t-easing-out);
 }
-.t-buybox:hover { --_bg-image: none; --_bg: var(--t-action-red-bg-hover); --_rim: transparent; }
-.t-buybox:disabled, .t-buybox[data-state~="disabled"], .t-buybox[aria-disabled="true"] {
-  --_bg-image: none; --_bg: var(--t-action-disabled-bg); --_fg: var(--t-action-disabled-fg);
+.t-buy-box:hover { --_bg-image: none; --_bg: var(--t-color-action-primary-bg-hover); --_rim: transparent; }
+.t-buy-box:disabled, .t-buy-box[data-state~="disabled"], .t-buy-box[aria-disabled="true"] {
+  --_bg-image: none; --_bg: var(--t-color-action-disabled-bg); --_fg: var(--t-color-action-disabled-fg);
   --_rim: transparent; cursor: not-allowed; transform: none;
 }
-.t-buybox:active { transform: scale(0.995); }
+.t-buy-box:active { transform: scale(0.995); }
 
 /* Seller over price, at the inline START; the ad marker at the END. */
-.t-buybox__body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; align-items: flex-start; }
-.t-buybox__seller {
+.t-buy-box__body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; align-items: flex-start; }
+.t-buy-box__seller {
   font-size: var(--t-font-size-16);
-  line-height: var(--t-font-leading-16);
+  line-height: var(--t-font-line-height-16);
   font-weight: var(--t-font-weight-bold);
 }
-.t-buybox__price {
+.t-buy-box__price {
   font-size: var(--t-font-size-16);
-  line-height: var(--t-font-leading-16);
+  line-height: var(--t-font-line-height-16);
   font-weight: var(--t-font-weight-medium);
 }
-.t-buybox__meta {
+.t-buy-box__meta {
   font-size: var(--t-font-size-12);
-  line-height: var(--t-font-leading-12);
+  line-height: var(--t-font-line-height-12);
   opacity: 0.86;
 }
 
 /* Offline seller. Same geometry, blue family. */
-.t-buybox--offline, .t-buybox--blue {
-  --_bg: var(--t-action-blue-bg);
-  --_bg-image: var(--t-action-blue-bg-gradient);
-  --_rim: var(--t-action-blue-border);
-  --_fg: var(--t-action-blue-fg);
+.t-buy-box--offline, .t-buy-box--blue {
+  --_bg: var(--t-color-action-accent-bg);
+  --_bg-image: var(--t-color-action-accent-bg-gradient);
+  --_rim: var(--t-color-action-accent-border);
+  --_fg: var(--t-color-action-accent-fg);
 }
-.t-buybox--offline:hover, .t-buybox--blue:hover { --_bg-image: none; --_bg: var(--t-action-blue-bg-hover); --_rim: transparent; }
+.t-buy-box--offline:hover, .t-buy-box--blue:hover { --_bg-image: none; --_bg: var(--t-color-action-accent-bg-hover); --_rim: transparent; }
 
 /* The cheapest-seller shortcut: one centred label, 44 tall, radius 12, no rim. */
-.t-buybox--compact {
+.t-buy-box--compact {
   block-size: 44px;
   padding-block: 0;
   border-radius: var(--t-radius-md);
   justify-content: center;
   --_rim: transparent;
 }
-.t-buybox--compact .t-buybox__body { align-items: center; }
+.t-buy-box--compact .t-buy-box__body { align-items: center; }
 
-.t-buybox__ad {
+.t-buy-box__ad {
   flex: none;
   display: inline-flex;
   align-items: center;
@@ -426,17 +426,17 @@
   block-size: 24px;
   padding-inline: var(--t-space-2);
   border-radius: var(--t-radius-md);
-  background: var(--t-commerce-ad);
-  color: var(--t-fg-on-solid);
+  background: var(--t-color-commerce-ad);
+  color: var(--t-color-on-solid);
   font-size: var(--t-font-size-12);
-  line-height: var(--t-font-leading-12);
+  line-height: var(--t-font-line-height-12);
   font-weight: var(--t-font-weight-bold);
   white-space: nowrap;
 }
 /* On the blue (offline) box the marker turns Blue 300: red on blue would read
    as an error, not a disclosure. White on Blue 300 is 2.5:1, so the label goes
    dark here — the chip keeps its colour, the word stays readable. */
-.t-buybox--offline .t-buybox__ad, .t-buybox--blue .t-buybox__ad {
-  background: var(--t-action-blue-border);
-  color: var(--t-commerce-ad-badge-fg);
+.t-buy-box--offline .t-buy-box__ad, .t-buy-box--blue .t-buy-box__ad {
+  background: var(--t-color-action-accent-border);
+  color: var(--t-color-commerce-ad-badge-fg);
 }

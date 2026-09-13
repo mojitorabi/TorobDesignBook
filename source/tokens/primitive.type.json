@@ -44,7 +44,6 @@
       }
     },
     "size": {
-      "$type": "dimension",
       "12": {
         "$value": "12px"
       },
@@ -70,11 +69,10 @@
       "36": {
         "$value": "36px",
         "$description": "[NEW] Desktop display"
-      }
+      },
+      "$type": "dimension"
     },
-    "leading": {
-      "$type": "dimension",
-      "$description": "Persian-generous. Deep descenders and stacked diacritics need the room. Do not tighten.",
+    "line-height": {
       "12": {
         "$value": "20px"
       },

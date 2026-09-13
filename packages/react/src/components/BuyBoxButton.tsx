@@ -9,15 +9,15 @@ export function BuyBoxButton({ variant = 'red', compact, ad, seller, price, ...r
   const label = [price, seller, ad && 'آگهی'].filter(Boolean).join('، ');
   return (
     <button
-      className={clsx('t-buybox', variant === 'blue' && 't-buybox--offline', compact && 't-buybox--compact')}
+      className={clsx('t-buy-box', variant === 'blue' && 't-buy-box--offline', compact && 't-buy-box--compact')}
       aria-label={label}
       {...rest}
     >
-      <span className="t-buybox__body">
-        <span className="t-buybox__seller">{seller}</span>
-        {!compact && <span className="t-buybox__price">{price}</span>}
+      <span className="t-buy-box__body">
+        <span className="t-buy-box__seller">{seller}</span>
+        {!compact && <span className="t-buy-box__price">{price}</span>}
       </span>
-      {ad && <span className="t-buybox__ad">آگهی</span>}
+      {ad && <span className="t-buy-box__ad">آگهی</span>}
     </button>
   );
 }

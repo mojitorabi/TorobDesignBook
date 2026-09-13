@@ -78,8 +78,8 @@ const TOOLS = [
   },
   {
     name: 'resolve_token',
-    description: 'Trace one semantic token to its primitive and final value in both modes. Use when you need to know what --t-fg-default actually is.',
-    inputSchema: { type: 'object', properties: { token: { type: 'string', description: 'e.g. "fg.default" or "--t-fg-default".' } }, required: ['token'] },
+    description: 'Trace one semantic token to its primitive and final value in both modes. Use when you need to know what --t-color-on-surface actually is.',
+    inputSchema: { type: 'object', properties: { token: { type: 'string', description: 'e.g. "fg.default" or "--t-color-on-surface".' } }, required: ['token'] },
   },
   {
     name: 'search_icons',

@@ -413,7 +413,7 @@ export default [
   },
   {
     "name": "Checkbox",
-    "root": "t-check",
+    "root": "t-checkbox",
     "slug": "checkbox",
     "group": "Inputs",
     "status": "new",
@@ -434,7 +434,7 @@ export default [
       [
         "کادر",
         "۲۰ پیکسل، گردی ۴ (کامل برای رادیو). در حالت انتخاب پرشدهٔ آبی.",
-        ".t-check__box"
+        ".t-checkbox__box"
       ],
       [
         "برچسب",
@@ -471,10 +471,10 @@ export default [
       {
         "label": "چک‌باکس و رادیو",
         "stageClass": "spec__stage--stack",
-        "html": "<label class=\"t-check\"><input type=\"checkbox\" checked><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span><span class=\"t-body-md\">ضمانت ترب</span></label>\n<label class=\"t-check\"><input type=\"checkbox\"><span class=\"t-check__box\"><svg class=\"t-check__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span><span class=\"t-body-md\">نمایندگی رسمی</span></label>\n<label class=\"t-check t-check--radio\"><input type=\"radio\" name=\"sort\" checked><span class=\"t-check__box\"></span><span class=\"t-body-md\">ارزان‌ترین</span></label>\n<label class=\"t-check t-check--radio\"><input type=\"radio\" name=\"sort\"><span class=\"t-check__box\"></span><span class=\"t-body-md\">نزدیک‌ترین</span></label>"
+        "html": "<label class=\"t-checkbox\"><input type=\"checkbox\" checked><span class=\"t-checkbox__box\"><svg class=\"t-checkbox__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span><span class=\"t-body-md\">ضمانت ترب</span></label>\n<label class=\"t-checkbox\"><input type=\"checkbox\"><span class=\"t-checkbox__box\"><svg class=\"t-checkbox__mark\" width=\"12\" height=\"12\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M13 24 4 15 5.414 13.586 13 21.171 26.586 7.586 28 9 13 24z\"/></svg></span><span class=\"t-body-md\">نمایندگی رسمی</span></label>\n<label class=\"t-checkbox t-checkbox--radio\"><input type=\"radio\" name=\"sort\" checked><span class=\"t-checkbox__box\"></span><span class=\"t-body-md\">ارزان‌ترین</span></label>\n<label class=\"t-checkbox t-checkbox--radio\"><input type=\"radio\" name=\"sort\"><span class=\"t-checkbox__box\"></span><span class=\"t-body-md\">نزدیک‌ترین</span></label>"
       }
     ],
-    "react": "export function Checkbox({ variant = 'checkbox', checked, onChange, label, ...rest }) {\n  return (\n    <label className={clsx('t-check', variant === 'radio' && 't-check--radio')}>\n      <input type={variant} checked={checked} onChange={e => onChange(e.target.checked)} {...rest} />\n      <span className=\"t-check__box\">{variant === 'checkbox' && <CheckMark className=\"t-check__mark\" />}</span>\n      <span className=\"t-body-md\">{label}</span>\n    </label>\n  );\n}"
+    "react": "export function Checkbox({ variant = 'checkbox', checked, onChange, label, ...rest }) {\n  return (\n    <label className={clsx('t-checkbox', variant === 'radio' && 't-checkbox--radio')}>\n      <input type={variant} checked={checked} onChange={e => onChange(e.target.checked)} {...rest} />\n      <span className=\"t-checkbox__box\">{variant === 'checkbox' && <CheckMark className=\"t-checkbox__mark\" />}</span>\n      <span className=\"t-body-md\">{label}</span>\n    </label>\n  );\n}"
   },
   {
     "name": "QuantityStepper",
@@ -625,7 +625,7 @@ export default [
   },
   {
     "name": "Radio",
-    "root": "t-check",
+    "root": "t-checkbox",
     "slug": "radio",
     "group": "Inputs",
     "status": "new",
@@ -649,7 +649,7 @@ export default [
       [
         "دایره",
         "۲۰ پیکسل، کادر ۱ پیکسلی؛ در حالت انتخاب کادر به ۶ پیکسل آبی ضخیم می‌شود و مرکز سفید می‌ماند.",
-        ".t-check__box"
+        ".t-checkbox__box"
       ],
       [
         "برچسب",
@@ -689,11 +689,11 @@ export default [
         "label": "گروه رادیو",
         "canvas": "plain",
         "stageClass": "spec__stage--center",
-        "html": "<fieldset style=\"border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:4px\">\n  <legend class=\"t-field__label\" style=\"margin-block-end:6px\">مرتب‌سازی</legend>\n  <label class=\"t-check t-check--radio\"><input type=\"radio\" name=\"sort\" checked><span class=\"t-check__box\"></span><span class=\"t-body-md\">مرتبط‌ترین</span></label>\n  <label class=\"t-check t-check--radio\"><input type=\"radio\" name=\"sort\"><span class=\"t-check__box\"></span><span class=\"t-body-md\">ارزان‌ترین</span></label>\n  <label class=\"t-check t-check--radio\"><input type=\"radio\" name=\"sort\"><span class=\"t-check__box\"></span><span class=\"t-body-md\">نزدیک‌ترین</span></label>\n</fieldset>",
+        "html": "<fieldset style=\"border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:4px\">\n  <legend class=\"t-field__label\" style=\"margin-block-end:6px\">مرتب‌سازی</legend>\n  <label class=\"t-checkbox t-checkbox--radio\"><input type=\"radio\" name=\"sort\" checked><span class=\"t-checkbox__box\"></span><span class=\"t-body-md\">مرتبط‌ترین</span></label>\n  <label class=\"t-checkbox t-checkbox--radio\"><input type=\"radio\" name=\"sort\"><span class=\"t-checkbox__box\"></span><span class=\"t-body-md\">ارزان‌ترین</span></label>\n  <label class=\"t-checkbox t-checkbox--radio\"><input type=\"radio\" name=\"sort\"><span class=\"t-checkbox__box\"></span><span class=\"t-body-md\">نزدیک‌ترین</span></label>\n</fieldset>",
         "note": "یکی همیشه از پیش انتخاب است. کلیدهای جهت بین گزینه‌ها حرکت می‌کنند."
       }
     ],
-    "react": "export function RadioGroup({ name, value, onChange, options, legend }) {\n  return (\n    <fieldset className=\"t-fieldset\">\n      <legend className=\"t-field__label\">{legend}</legend>\n      {options.map(o => (\n        <label key={o.value} className=\"t-check t-check--radio\">\n          <input type=\"radio\" name={name} value={o.value}\n                 checked={value === o.value} onChange={() => onChange(o.value)} />\n          <span className=\"t-check__box\" />\n          <span className=\"t-body-md\">{o.label}</span>\n        </label>\n      ))}\n    </fieldset>\n  );\n}"
+    "react": "export function RadioGroup({ name, value, onChange, options, legend }) {\n  return (\n    <fieldset className=\"t-fieldset\">\n      <legend className=\"t-field__label\">{legend}</legend>\n      {options.map(o => (\n        <label key={o.value} className=\"t-checkbox t-checkbox--radio\">\n          <input type=\"radio\" name={name} value={o.value}\n                 checked={value === o.value} onChange={() => onChange(o.value)} />\n          <span className=\"t-checkbox__box\" />\n          <span className=\"t-body-md\">{o.label}</span>\n        </label>\n      ))}\n    </fieldset>\n  );\n}"
   },
   {
     "name": "Textarea",
@@ -841,7 +841,7 @@ export default [
         "label": "کد پنج‌رقمی",
         "canvas": "plain",
         "stageClass": "spec__stage--center",
-        "html": "<fieldset style=\"border:0;padding:0;margin:0\">\n  <legend class=\"t-field__label\" style=\"margin-block-end:10px\">کد پنج‌رقمی پیامک‌شده</legend>\n  <div class=\"t-otp\">\n    <input class=\"t-otp__slot\" data-filled=\"true\" inputmode=\"numeric\" maxlength=\"1\" value=\"4\" aria-label=\"رقم ۱ از ۵\" autocomplete=\"one-time-code\">\n    <input class=\"t-otp__slot\" data-filled=\"true\" inputmode=\"numeric\" maxlength=\"1\" value=\"8\" aria-label=\"رقم ۲ از ۵\">\n    <input class=\"t-otp__slot\" data-filled=\"true\" inputmode=\"numeric\" maxlength=\"1\" value=\"1\" aria-label=\"رقم ۳ از ۵\">\n    <input class=\"t-otp__slot\" inputmode=\"numeric\" maxlength=\"1\" aria-label=\"رقم ۴ از ۵\">\n    <input class=\"t-otp__slot\" inputmode=\"numeric\" maxlength=\"1\" aria-label=\"رقم ۵ از ۵\">\n  </div>\n  <div class=\"t-inline-msg\" style=\"margin-block-start:10px\">ارسال دوباره تا <span class=\"t-bidi t-num\" dir=\"ltr\">۰۰:۴۲</span></div>\n</fieldset>",
+        "html": "<fieldset style=\"border:0;padding:0;margin:0\">\n  <legend class=\"t-field__label\" style=\"margin-block-end:10px\">کد پنج‌رقمی پیامک‌شده</legend>\n  <div class=\"t-otp\">\n    <input class=\"t-otp__slot\" data-filled=\"true\" inputmode=\"numeric\" maxlength=\"1\" value=\"4\" aria-label=\"رقم ۱ از ۵\" autocomplete=\"one-time-code\">\n    <input class=\"t-otp__slot\" data-filled=\"true\" inputmode=\"numeric\" maxlength=\"1\" value=\"8\" aria-label=\"رقم ۲ از ۵\">\n    <input class=\"t-otp__slot\" data-filled=\"true\" inputmode=\"numeric\" maxlength=\"1\" value=\"1\" aria-label=\"رقم ۳ از ۵\">\n    <input class=\"t-otp__slot\" inputmode=\"numeric\" maxlength=\"1\" aria-label=\"رقم ۴ از ۵\">\n    <input class=\"t-otp__slot\" inputmode=\"numeric\" maxlength=\"1\" aria-label=\"رقم ۵ از ۵\">\n  </div>\n  <div class=\"t-inline-message\" style=\"margin-block-start:10px\">ارسال دوباره تا <span class=\"t-bidi t-num\" dir=\"ltr\">۰۰:۴۲</span></div>\n</fieldset>",
         "note": "ارقام لاتین‌اند چون کد در پیامک لاتین می‌آید. شمارش معکوس فارسی است."
       }
     ],
@@ -931,7 +931,7 @@ export default [
         "label": "عکس محصول",
         "canvas": "plain",
         "stageClass": "spec__stage--center",
-        "html": "<div style=\"inline-size:100%;max-inline-size:420px\">\n  <label class=\"t-upload\">\n    <svg class=\"t-icon t-upload__icon\" width=\"28\" height=\"28\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26 24v4H6v-4H4v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-4zM6 12l1.41 1.41L15 5.83V24h2V5.83l7.59 7.58L26 12 16 2 6 12z\"/></svg>\n    <span class=\"t-upload__title\">انتخاب عکس</span>\n    <span class=\"t-upload__hint\">JPG یا PNG، هر فایل تا ۵ مگابایت، حداکثر ۸ عکس</span>\n    <input type=\"file\" accept=\"image/png,image/jpeg\" multiple>\n  </label>\n  <div class=\"t-upload-list\">\n    <div class=\"t-upload-item\">\n      <svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M19 14a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm0-4a1 1 0 1 1-1 1 1 1 0 0 1 1-1z\"/><path d=\"M26 4H6a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 22H6v-6l5-5 5.59 5.59a2 2 0 0 0 2.82 0L21 19l5 5zm0-4.83-3.59-3.59a2 2 0 0 0-2.82 0L18 19.17l-5.59-5.59a2 2 0 0 0-2.82 0L6 17.17V6h20z\"/></svg>\n      <span class=\"t-upload-item__name\">product-front.jpg</span>\n      <span class=\"t-upload-item__size\">۱٫۲ مگابایت</span>\n      <button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"حذف product-front.jpg\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button>\n    </div>\n  </div>\n</div>",
+        "html": "<div style=\"inline-size:100%;max-inline-size:420px\">\n  <label class=\"t-upload\">\n    <svg class=\"t-icon t-upload__icon\" width=\"28\" height=\"28\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26 24v4H6v-4H4v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-4zM6 12l1.41 1.41L15 5.83V24h2V5.83l7.59 7.58L26 12 16 2 6 12z\"/></svg>\n    <span class=\"t-upload__title\">انتخاب عکس</span>\n    <span class=\"t-upload__hint\">JPG یا PNG، هر فایل تا ۵ مگابایت، حداکثر ۸ عکس</span>\n    <input type=\"file\" accept=\"image/png,image/jpeg\" multiple>\n  </label>\n  <div class=\"t-upload-list\">\n    <div class=\"t-upload-item\">\n      <svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M19 14a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm0-4a1 1 0 1 1-1 1 1 1 0 0 1 1-1z\"/><path d=\"M26 4H6a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 22H6v-6l5-5 5.59 5.59a2 2 0 0 0 2.82 0L21 19l5 5zm0-4.83-3.59-3.59a2 2 0 0 0-2.82 0L18 19.17l-5.59-5.59a2 2 0 0 0-2.82 0L6 17.17V6h20z\"/></svg>\n      <span class=\"t-upload-item__name\">product-front.jpg</span>\n      <span class=\"t-upload-item__size\">۱٫۲ مگابایت</span>\n      <button class=\"t-icon-button t-icon-button--sm\" aria-label=\"حذف product-front.jpg\"><svg class=\"t-icon t-icon--sm\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button>\n    </div>\n  </div>\n</div>",
         "note": "کل ناحیه یک برچسب است، پس Enter هم بازش می‌کند. فهرست زیر ناحیه می‌ماند."
       }
     ],

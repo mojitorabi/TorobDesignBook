@@ -9,10 +9,10 @@ export function RadioGroup({ name, value, onChange, options, legend }) {
     <fieldset className="t-fieldset">
       <legend className="t-field__label">{legend}</legend>
       {options.map(o => (
-        <label key={o.value} className="t-check t-check--radio">
+        <label key={o.value} className="t-checkbox t-checkbox--radio">
           <input type="radio" name={name} value={o.value}
                  checked={value === o.value} onChange={() => onChange(o.value)} />
-          <span className="t-check__box" />
+          <span className="t-checkbox__box" />
           <span className="t-body-md">{o.label}</span>
         </label>
       ))}

@@ -1,6 +1,12 @@
-import { specimen, section, table, guidance, esc, toFa } from './site-lib.mjs';
+import { specimen, section, table, guidance, esc, toFa, explain } from './site-lib.mjs';
 import { getFacts } from './facts.mjs';
 import { SITE_NAME, GROUP_FA } from '../source/site.nav.mjs';
+import { TOKEN_RENAMES, CLASS_RENAMES, cssVar } from '../source/rename.mjs';
+import { buildModel } from './tokens-lib.mjs';
+
+/* Only the renames the model actually produced are a promise worth printing. */
+const _m = buildModel();
+const KNOWN_TOKENS = new Set([...Object.keys(_m.base), ...Object.values(_m.modes).flatMap(t => Object.keys(t))]);
 
 
 /* ─────────────────────────── HOME ─────────────────────────── */
@@ -20,7 +26,7 @@ export function indexPage({ components, iconCount, tokenCount }) {
        [toFa(iconCount.toLocaleString('en-US')), 'آیکون', 'icons.html'],
        [toFa(getFacts().exports), 'قالب خروجی', 'tokens.html#exports'],
        ['۹', 'ابزار MCP', 'ai.html']].map(([n, l, href]) =>
-      `<a href="${href}" style="text-decoration:none;color:inherit;padding:16px 18px;border:1px solid var(--t-border-default);border-radius:12px;background:var(--t-bg-fog);display:block">
+      `<a href="${href}" style="text-decoration:none;color:inherit;padding:16px 18px;border:1px solid var(--t-color-outline);border-radius:12px;background:var(--t-color-surface-raised);display:block">
         <div style="font-size:27px;font-weight:800;line-height:1.1">${n}</div>
         <div class="t-body-sm t-tone-secondary" style="margin-block-start:3px">${l}</div>
       </a>`).join('')}
@@ -33,10 +39,10 @@ export function indexPage({ components, iconCount, tokenCount }) {
       ['برای طراح', 'هر نام قدیمی سیمبل در اسکچ و چیزی که جایش را گرفت.', 'migration.html', 'نام‌گذاری و مهاجرت'],
       ['متریال', 'شیشهٔ ترب؛ چیست، چه هزینه‌ای دارد و مرزش کجاست.', 'foundations/glass.html', 'شیشه'],
     ].map(([t, d, href, cta]) =>
-      `<a href="${href}" style="text-decoration:none;color:inherit;padding:19px 20px;border:1px solid var(--t-border-default);border-radius:12px;background:var(--t-bg-fog);display:flex;flex-direction:column;gap:6px">
+      `<a href="${href}" style="text-decoration:none;color:inherit;padding:19px 20px;border:1px solid var(--t-color-outline);border-radius:12px;background:var(--t-color-surface-raised);display:flex;flex-direction:column;gap:6px">
         <div style="font-weight:700;font-size:15px">${t}</div>
         <div class="t-body-sm t-tone-secondary" style="flex:1;line-height:1.6">${d}</div>
-        <div style="color:var(--t-fg-link);font-size:13px;font-weight:600;margin-block-start:4px">${cta} →</div>
+        <div style="color:var(--t-color-link);font-size:13px;font-weight:600;margin-block-start:4px">${cta} →</div>
       </a>`).join('')}
   </div>`);
 
@@ -66,9 +72,9 @@ export function indexPage({ components, iconCount, tokenCount }) {
   body += section('components', 'کامپوننت‌ها', `<div class="prose"><p>${toFa(components.length)} کامپوننت در ${toFa(getFacts().groups)} گروه. نشان «تازه» یعنی در کیت اسکچ وجود نداشت. بقیه نام‌های قدیمی سیمبل را با خود دارند، پس واژگان قبلی همچنان کار می‌کند — نگاشت کامل در <a href="migration.html">نام‌گذاری و مهاجرت</a>.</p></div>
     <div class="wide">
     ${Object.entries(groups).map(([g, list]) => `
-      <h3 style="font-size:14px;font-weight:700;margin-block:26px 9px;color:var(--t-fg-secondary);text-transform:uppercase;letter-spacing:0.07em">${esc(GROUP_FA[g] ?? g)}</h3>
+      <h3 style="font-size:14px;font-weight:700;margin-block:26px 9px;color:var(--t-color-on-surface-variant);text-transform:uppercase;letter-spacing:0.07em">${esc(GROUP_FA[g] ?? g)}</h3>
       <div style="display:grid;gap:7px;grid-template-columns:repeat(auto-fill,minmax(216px,1fr))">
-        ${list.map(c => `<a href="components/${c.slug}.html" style="text-decoration:none;color:inherit;padding:11px 13px;border:1px solid var(--t-border-subtle);border-radius:9px;background:var(--t-bg-fog);display:flex;align-items:center;gap:8px">
+        ${list.map(c => `<a href="components/${c.slug}.html" style="text-decoration:none;color:inherit;padding:11px 13px;border:1px solid var(--t-color-outline-subtle);border-radius:9px;background:var(--t-color-surface-raised);display:flex;align-items:center;gap:8px">
           <span style="font-weight:600;font-size:13.5px">${esc(c.name)}</span>
           ${c.status === 'new' ? '<span class="t-badge t-badge--guarantee">تازه</span>' : ''}
         </a>`).join('')}
@@ -84,9 +90,9 @@ export function indexPage({ components, iconCount, tokenCount }) {
         ['شیشه ساختاری است.', 'متریالی با بودجهٔ مشخص — سه لایه در هر کادر دید — نه تزئینی که هرجا کارت ساده به نظر می‌رسید اعمال شود.'],
         ['دسترس‌پذیری یک دروازه است.', `${toFa(getFacts().contrastPairs)} جفت رنگ در هر سه پوسته و در هر بیلد ماشینی بررسی می‌شوند. یک شکست، بیلد را متوقف می‌کند.`],
         ['ماشین‌خوان از پایه.', 'نُه ابزار MCP، یک <code>llms.txt</code> و یک نسخهٔ مارک‌داون برای هر صفحه. عامل‌های هوش مصنوعی مصرف‌کنندهٔ درجه‌یک‌اند، نه فکر بعدی.'],
-      ].map(([t, d], i) => `<li style="display:flex;gap:15px;padding-block:13px;border-block-end:1px solid var(--t-border-subtle)">
-        <span style="flex:none;inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-bg-subtle);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--t-fg-secondary)">${i + 1}</span>
-        <span><strong style="color:var(--t-fg-default)">${t}</strong> <span style="color:var(--t-fg-secondary)">${d}</span></span>
+      ].map(([t, d], i) => `<li style="display:flex;gap:15px;padding-block:13px;border-block-end:1px solid var(--t-color-outline-subtle)">
+        <span style="flex:none;inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-color-surface-container);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--t-color-on-surface-variant)">${i + 1}</span>
+        <span><strong style="color:var(--t-color-on-surface)">${t}</strong> <span style="color:var(--t-color-on-surface-variant)">${d}</span></span>
       </li>`).join('')}
     </ol></div>`);
 
@@ -125,7 +131,7 @@ export function aiPage(nComponents, nIcons) {
     ])}`);
 
   body += S('install', 'نصب', `<div class="prose"><p>نودجی‌اس ۱۸ به بالا. نیازی به نصب سراسری نیست.</p></div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Claude Code — فایل .mcp.json در ریشهٔ مخزن</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="mcp-claude">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Claude Code — فایل .mcp.json در ریشهٔ مخزن</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="mcp-claude">کپی</button></div></div>
     <pre class="code" id="mcp-claude"><code>{
   "mcpServers": {
     "torob-design": {
@@ -136,7 +142,7 @@ export function aiPage(nComponents, nIcons) {
   }
 }</code></pre></div>
 
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Cursor — فایل .cursor/mcp.json</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="mcp-cursor">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Cursor — فایل .cursor/mcp.json</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="mcp-cursor">کپی</button></div></div>
     <pre class="code" id="mcp-cursor"><code>{
   "mcpServers": {
     "torob-design": {
@@ -146,7 +152,7 @@ export function aiPage(nComponents, nIcons) {
   }
 }</code></pre></div>
 
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">بررسی درست کارکردن</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="mcp-test">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">بررسی درست کارکردن</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="mcp-test">کپی</button></div></div>
     <pre class="code" id="mcp-test"><code>cd design-system/packages/mcp
 npm install
 node test-server.mjs      # exercises all nine tools and prints the output</code></pre></div>`);
@@ -154,7 +160,7 @@ node test-server.mjs      # exercises all nine tools and prints the output</code
   body += S('validate', 'لینتر همان بخشی است که اهمیت دارد', `<div class="prose">
       <p>مستنداتی که عامل <em>می‌تواند</em> بخواند با مستنداتی که <em>خوانده است</em> یکی نیست. <code>validate_code</code> همین شکاف را می‌بندد: روی هر رابطی که تولید شده اجرایش کنید تا تخلف‌های مشخص را برگرداند، به‌همراه توکنی که باید استفاده می‌شد.</p>
     </div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">ورودی ← خروجی</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="lint-demo">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">ورودی ← خروجی</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="lint-demo">کپی</button></div></div>
     <pre class="code" id="lint-demo"><code>validate_code({ code: \`
 .card {
   background: #FFFFFF;
@@ -181,7 +187,7 @@ WARN  line 8  [off-scale-duration]   250ms is not a duration token (120/220/320/
     <div class="prose"><p>همچنین شیشهٔ تودرتو، تخطی از بودجهٔ شیشه، دکمهٔ آیکونی بدون نام، <code>&lt;img&gt;</code> بدون <code>alt</code>، <code>&lt;div&gt;</code> کلیک‌پذیر و هر نام قدیمی اسکچ را که هنوز در کد مانده پیدا می‌کند.</p></div>`);
 
   body += S('prompt', 'به عامل چه بگویید', `<div class="prose"><p>این را در <code>CLAUDE.md</code> یا <code>.cursorrules</code> بگذارید. بیلد آن را در <code>packages/mcp/AGENT_RULES.md</code> برایتان تولید می‌کند.</p></div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">AGENT_RULES.md</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="agent-rules">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">AGENT_RULES.md</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="agent-rules">کپی</button></div></div>
     <pre class="code" id="agent-rules"><code># Torob Design System — rules for AI agents
 
 This project uses the Torob Design System — کتاب دیزاین ترب. An MCP server named
@@ -239,13 +245,13 @@ export function migrationPage(components) {
     ])}`);
 
   body += S('map', 'نقشهٔ نگاشت', `<div class="wide">
-    <div class="site-search" style="max-inline-size:none;margin-block-end:12px">
-      <svg class="site-search__icon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M15,14.3L10.7,10c1.9-2.3,1.6-5.8-0.7-7.7S4.2,0.7,2.3,3S0.7,8.8,3,10.7c2,1.7,5,1.7,7,0l4.3,4.3L15,14.3z M2,6.5	C2,4,4,2,6.5,2S11,4,11,6.5S9,11,6.5,11S2,9,2,6.5z"/></svg>
-      <input aria-label="جست‌وجو در ${toFa(rows.length)} نام قدیمی…" id="migSearch" type="search" placeholder="جست‌وجو در ${toFa(rows.length)} نام قدیمی…" autocomplete="off">
-    </div>
+    <div class="t-search" style="margin-block-end:12px"><div class="t-input">
+      <svg class="t-icon t-icon--sm t-input__icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M15,14.3L10.7,10c1.9-2.3,1.6-5.8-0.7-7.7S4.2,0.7,2.3,3S0.7,8.8,3,10.7c2,1.7,5,1.7,7,0l4.3,4.3L15,14.3z M2,6.5	C2,4,4,2,6.5,2S11,4,11,6.5S9,11,6.5,11S2,9,2,6.5z"/></svg>
+      <input class="t-input__el" aria-label="جست‌وجو در ${toFa(rows.length)} نام قدیمی…" id="migSearch" type="search" placeholder="جست‌وجو در ${toFa(rows.length)} نام قدیمی…" autocomplete="off">
+    </div></div>
     <div class="tbl-wrap"><table class="tbl"><thead><tr><th>نام قدیمی در اسکچ</th><th>کامپوننت</th><th>کلاس CSS</th><th>گروه</th></tr></thead>
     <tbody id="migRows">${rows.map(r => `<tr data-k="${esc((r.old + ' ' + r.name + ' ' + r.cls).toLowerCase())}">
-      <td><span class="legacy">${esc(r.old)}</span></td>
+      <td><span class="t-tag legacy-name">${esc(r.old)}</span></td>
       <td><a href="components/${r.slug}.html" style="font-weight:600">${esc(r.name)}</a></td>
       <td><code>${esc(r.cls)}</code></td>
       <td>${esc(GROUP_FA[r.group] ?? r.group)}</td></tr>`).join('')}</tbody></table></div></div>
@@ -257,9 +263,34 @@ export function migrationPage(components) {
       },90); });
     })();</script>`);
 
+  /* The second rename: not Sketch → system, but the system's first names →
+     standard ones. Generated from source/rename.mjs, so this table cannot say
+     something the compatibility layer does not actually do. */
+  const tokenRows = Object.entries(TOKEN_RENAMES)
+    .filter(([, to]) => KNOWN_TOKENS.has(to))
+    .map(([from, to]) => [`<code dir="ltr">${esc(cssVar(from))}</code>`, `<code dir="ltr">${esc(cssVar(to))}</code>`])
+    .sort((a, b) => a[1].localeCompare(b[1]));
+  const classRows = Object.entries(CLASS_RENAMES)
+    .map(([from, to]) => [`<code dir="ltr">.${esc(from)}</code>`, `<code dir="ltr">.${esc(to)}</code>`]);
+
+  body += S('standard', 'نام‌های استاندارد', `<div class="prose">
+    <p>نام‌گذاری اول این سیستم از فایل اسکچ آمده بود یا از سرعت تایپ: <code>bg</code>، <code>fg</code>، <code>btn</code>، <code>action-red</code>. این‌ها برای نوشتن خوب‌اند و برای خواندن بد. حالا هر نام عمومی، نقشش را کامل می‌گوید و از واژگانی می‌آید که متریال، HIG و کربن هم از آن استفاده می‌کنند.</p>
+    <p><strong>هیچ‌چیز نمی‌شکند.</strong> هر ${toFa(tokenRows.length)} توکن و هر ${toFa(classRows.length)} کلاس قدیمی هنوز کار می‌کنند: توکن قدیمی به‌صورت نام مستعار تعریف شده و کلاس قدیمی همچنان انتخاب می‌شود، چون باندلر هر کلاس تغییرنام‌یافته را به <code>:is(.جدید, .قدیمی)</code> باز می‌کند — بدون تغییر در ویژگی‌مندی. کد فعلی ترب هر وقت خواست به‌روز می‌شود، فایل به فایل.</p>
+    </div>
+    ${explain('چهار قاعدهٔ نام‌گذاری', `<ol style="padding-inline-start:20px;line-height:2">
+      <li><strong>رنگ معنایی زیر <code>color.</code> زندگی می‌کند</strong>، مثل لایهٔ معنایی هر سیستم دیگر، تا یک پیشوند برای مرور کافی باشد.</li>
+      <li><strong>سطح <code>surface</code> است، متن رویش <code>on-surface</code> و خط <code>outline</code>.</strong> این واژگان متریال ۳ است و نزدیک‌ترین چیزی که صنعت به زبان مشترک دارد.</li>
+      <li><strong>نیت، نه رنگدانه:</strong> <code>action-primary</code> نه <code>action-red</code>. نیت از تغییر برند جان سالم به در می‌برد، قرمز نه.</li>
+      <li><strong>هیچ سرواژه‌ای در نام عمومی:</strong> <code>button</code> نه <code>btn</code>، <code>checkbox</code> نه <code>check</code>، <code>line-height</code> نه <code>leading</code>.</li>
+    </ol>`)}
+    <h3 style="font-size:15px;font-weight:700;margin-block:26px 6px">کلاس‌ها</h3>
+    ${table(['قبلاً', 'حالا'], classRows)}
+    <h3 style="font-size:15px;font-weight:700;margin-block:26px 6px">توکن‌ها</h3>
+    ${explain(`${toFa(tokenRows.length)} توکن تغییر نام داده`, table(['قبلاً', 'حالا'], tokenRows))}`);
+
   body += S('new', 'کامپوننت‌های تازه', `<div class="prose"><p>${toFa(nNew)} کامپوننت که کیت نداشت. لایهٔ بازخورد بزرگ‌ترین خلأ است: بیست‌ونه صفحهٔ نمونه، و حتی یک تأیید، خطا یا حالت خالی به‌عنوان کامپوننت وجود نداشت.</p></div>
     <div class="wide" style="display:grid;gap:7px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">
-    ${components.filter(c => c.status === 'new').map(c => `<a href="components/${c.slug}.html" style="text-decoration:none;color:inherit;padding:12px 14px;border:1px solid var(--t-border-subtle);border-radius:9px;background:var(--t-bg-fog);display:block">
+    ${components.filter(c => c.status === 'new').map(c => `<a href="components/${c.slug}.html" style="text-decoration:none;color:inherit;padding:12px 14px;border:1px solid var(--t-color-outline-subtle);border-radius:9px;background:var(--t-color-surface-raised);display:block">
       <div style="font-weight:650;font-size:13.5px">${esc(c.name)}</div>
       <div class="t-body-sm t-tone-secondary" style="margin-block-start:2px;line-height:1.5">${esc(c.summary)}</div></a>`).join('')}
     </div>`);

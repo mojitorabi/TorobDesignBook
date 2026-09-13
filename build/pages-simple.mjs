@@ -18,19 +18,19 @@ export function simplePages(m) {
     [null, null, `<div class="prose">
       <p>لایهٔ مرجع، <strong>متغیرهای CSS و کلاس‌های مستقل از فریم‌ورک</strong> است. ری‌اکت یک پوشش نازک روی همان است، نه یک انشعاب از آن. همین چیزی است که به یک پشتهٔ ناهمگون اجازه می‌دهد سیستم را بدون بازنویسی بپذیرد.</p>
     </div>`],
-    ['install', 'نصب', `<div class="spec" data-spec><div class="spec__bar"><span class="spec__label">هر پروژه‌ای — لایهٔ CSS</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="i1">کپی</button></div></div>
+    ['install', 'نصب', `<div class="spec" data-spec><div class="spec__bar"><span class="spec__label">هر پروژه‌ای — لایهٔ CSS</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="i1">کپی</button></div></div>
       <pre class="code" id="i1"><code>&lt;!-- tokens.css همهٔ متغیرها را تعریف می‌کند؛ torob.css آن را ایمپورت می‌کند --&gt;
 &lt;link rel="stylesheet" href="/design-system/packages/css/dist/torob.css"&gt;
 &lt;link rel="stylesheet" href="/design-system/packages/css/dist/fonts.css"&gt;
 
 &lt;html lang="fa" dir="rtl"&gt;   &lt;!-- جهت اینجا زندگی می‌کند، هیچ‌جای دیگر --&gt;</code></pre></div>
-      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">تیلویند ۴</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="i2">کپی</button></div></div>
+      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">تیلویند ۴</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="i2">کپی</button></div></div>
       <pre class="code" id="i2"><code>/* app.css — هر توکن را به یوتیلیتی‌های تیلویند نگاشت می‌کند */
 @import "tailwindcss";
 @import "/design-system/packages/css/dist/tokens.tailwind.css";
 
 /* bg-fg-default، text-commerce-price، rounded-md، gap-4 … همه به توکن حل می‌شوند */</code></pre></div>
-      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">جاوااسکریپت و تایپ‌اسکریپت</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="i3">کپی</button></div></div>
+      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">جاوااسکریپت و تایپ‌اسکریپت</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="i3">کپی</button></div></div>
       <pre class="code" id="i3"><code>import tokens from '@torob/tokens';
 
 tokens.light.fg.default          // '#1E293B'
@@ -41,12 +41,12 @@ tokens.radius.md                 // '12px'</code></pre></div>`],
     ['first', 'اولین صفحهٔ شما', `<div class="prose"><p>سه قاعده شما را نود درصد راه می‌برد:</p>
       <ol>
         <li><strong>جهت را یک بار تعیین کنید</strong>، روی <code>&lt;html dir="rtl" lang="fa"&gt;</code>. هرگز روی یک کامپوننت.</li>
-        <li><strong>از توکن معنایی استفاده کنید</strong> — <code>var(--t-fg-default)</code>، نه <code>var(--t-color-sky-800)</code> و هرگز <code>#1E293B</code>.</li>
+        <li><strong>از توکن معنایی استفاده کنید</strong> — <code>var(--t-color-on-surface)</code>، نه <code>var(--t-color-sky-800)</code> و هرگز <code>#1E293B</code>.</li>
         <li><strong>فقط ویژگی منطقی.</strong> <code>margin-inline-start</code>، نه <code>margin-left</code>.</li>
       </ol></div>
-      ${specimen({ label: 'یک صفحهٔ فروشگاه‌های اطراف، فقط از اجزای سیستم', canvas: 'plain', stageClass: 'spec__stage--center', html: `<div style="inline-size:100%;max-inline-size:375px;background:var(--t-bg-canvas);border-radius:16px;overflow:hidden;border:1px solid var(--t-border-default)">
+      ${specimen({ label: 'یک صفحهٔ فروشگاه‌های اطراف، فقط از اجزای سیستم', canvas: 'plain', stageClass: 'spec__stage--center', html: `<div style="inline-size:100%;max-inline-size:375px;background:var(--t-color-surface);border-radius:16px;overflow:hidden;border:1px solid var(--t-color-outline)">
   <header class="t-page-header" style="position:relative">
-    <button class="t-icon-btn t-icon-btn--sm" aria-label="بازگشت"><svg class="t-icon t-icon--directional" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M10 16 20 6 21.4 7.4 12.8 16 21.4 24.6 20 26z"/></svg></button>
+    <button class="t-icon-button t-icon-button--sm" aria-label="بازگشت"><svg class="t-icon t-icon--directional" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M10 16 20 6 21.4 7.4 12.8 16 21.4 24.6 20 26z"/></svg></button>
     <div class="t-page-header__title">فروشگاه‌های اطراف<div class="t-page-header__sub">تهران، ۷۸ مورد</div></div>
   </header>
   <div class="t-filter-bar">
@@ -65,8 +65,8 @@ tokens.radius.md                 // '12px'</code></pre></div>`],
       </div>
       <div class="t-store-card__badges"><span class="t-badge t-badge--guarantee">ضمانت ترب</span><span class="t-badge">کالابرگ</span></div>
       <div class="t-store-card__actions">
-        <button class="t-btn t-btn--red t-btn--md">تماس تلفنی</button>
-        <button class="t-btn t-btn--black-ghost t-btn--md">مسیریابی</button>
+        <button class="t-button t-button--red t-button--md">تماس تلفنی</button>
+        <button class="t-button t-button--black-ghost t-button--md">مسیریابی</button>
       </div>
     </article>
   </div>
@@ -111,7 +111,7 @@ tokens.radius.md                 // '12px'</code></pre></div>`],
       <p>منبع، جداکننده‌های کارت فروشگاه را به‌جای کادر با دو سایهٔ بدون بلور در ±۰٫۵ پیکسل کشیده بود. هر دو به‌عنوان توکن نگه داشته شده‌اند، چون یک قاعدهٔ سایه <em>بیرون</em> جعبهٔ چیدمان می‌نشیند و آن‌طور که کادر جابه‌جا می‌کند، چیدمان را جابه‌جا نمی‌کند.</p>
     </div>
     ${specimen({ label: 'نردبان', canvas: 'fog', dir: 'ltr', html: elev.filter(([p]) => /elevation\.[0-3]$/.test(p)).map(([p, t]) =>
-      `<div style="text-align:center"><div style="inline-size:104px;block-size:72px;background:var(--t-bg-fog);border-radius:12px;box-shadow:${t.value}"></div><div style="font-size:11px;margin-block-start:10px;color:var(--t-fg-secondary)">elevation-${p.split('.')[1]}</div></div>`).join('') })}
+      `<div style="text-align:center"><div style="inline-size:104px;block-size:72px;background:var(--t-color-surface-raised);border-radius:12px;box-shadow:${t.value}"></div><div style="font-size:11px;margin-block-start:10px;color:var(--t-color-on-surface-variant)">elevation-${p.split('.')[1]}</div></div>`).join('') })}
     ${table(['توکن', 'مقدار', 'کاربرد'], elev.map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, `<code style="font-size:11.5px">${esc(String(t.value))}</code>`, t.description ?? '']))}`],
     ['z', 'ترتیب لایه‌ها', `<div class="prose"><p>هرگز <code>z-index</code> خام ننویسید. هر لایه در سیستم توکن خودش را دارد و فاصلهٔ بین آنها برای لایه‌های مخصوص محصول جا باز می‌گذارد.</p></div>
       ${table(['توکن', 'مقدار', 'لایه'], Object.entries(m.base).filter(([p]) => p.startsWith('z.')).map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, String(t.value), p.split('.')[1]]))}`],
@@ -135,11 +135,11 @@ tokens.radius.md                 // '12px'</code></pre></div>`],
       <div class="t-alert site-note"><strong>قاعدهٔ تودرتویی:</strong> گردی داخلی باید برابر گردی بیرونی منهای فاصلهٔ بینشان باشد. یک کارت ۱۲ پیکسلی با فاصلهٔ داخلی ۸، عنصر داخلی ۸ پیکسلی می‌خواهد؛ نه یک ۱۲ دیگر که مثل حباب توی حباب خوانده می‌شود.</div>
     </div>
     ${specimen({ label: 'مقیاس', canvas: 'fog', dir: 'ltr', html: radii.map(([p, t]) =>
-      `<div style="text-align:center"><div style="inline-size:70px;block-size:70px;background:var(--t-bg-subtle);border:1px solid var(--t-border-default);border-radius:${t.value}"></div><div style="font-size:11px;margin-block-start:8px;color:var(--t-fg-secondary)">${p.replace('radius.', '')}<br>${t.value}</div></div>`).join('') })}
+      `<div style="text-align:center"><div style="inline-size:70px;block-size:70px;background:var(--t-color-surface-container);border:1px solid var(--t-color-outline);border-radius:${t.value}"></div><div style="font-size:11px;margin-block-start:8px;color:var(--t-color-on-surface-variant)">${p.replace('radius.', '')}<br>${t.value}</div></div>`).join('') })}
     ${table(['توکن', 'مقدار', 'کاربرد'], radii.map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, t.value, t.description ?? '']))}`],
     ['rtl', 'گردی و جهت', `<div class="prose">
       <p>حالت کوتاه چهارگوشه فیزیکی است و قرینه نمی‌شود. برگهٔ پایینی که فقط گوشه‌های بالایش گرد است متقارن و بی‌خطر است، اما هر چیز نامتقارن به ویژگی‌های گوشهٔ منطقی نیاز دارد:</p></div>
-      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">گوشه‌های منطقی</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="rad-src">کپی</button></div></div>
+      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">گوشه‌های منطقی</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="rad-src">کپی</button></div></div>
       <pre class="code" id="rad-src"><code>/* ✗ فیزیکی — قرینه نمی‌شود */
 border-radius: 12px 0 0 12px;
 
@@ -207,9 +207,9 @@ border-end-start-radius: var(--t-radius-md);</code></pre></div>`],
       ])}`],
     ['contract', 'قرارداد', table(['حوزه', 'قاعده'], [
       ['کنتراست متن', 'دست‌کم ۴٫۵:۱. متن بزرگ و عناصر غیرمتنی رابط دست‌کم ۳:۱.'],
-      ['کادر کنترل‌ها', 'از <code>--t-border-control</code> استفاده کنید که ۳:۱ را برآورده می‌کند. <code>--t-border-default</code> تزئینی است و عمداً زیر آن.'],
+      ['کادر کنترل‌ها', 'از <code>--t-color-outline-control</code> استفاده کنید که ۳:۱ را برآورده می‌کند. <code>--t-color-outline</code> تزئینی است و عمداً زیر آن.'],
       ['هدف لمس', 'دست‌کم ۴۴ پیکسل، حتی جایی که کنترل بصری ۲۴ یا ۳۲ پیکسل است. دکمه‌ها یک <code>::after</code> شفاف دارند که روی اشاره‌گرهای درشت ناحیه را گسترش می‌دهد.'],
-      ['فوکوس', 'حلقهٔ ۲ پیکسلی <code>--t-border-focus</code> با فاصلهٔ ۲ پیکسل. هرگز حذف نمی‌شود، فقط جایگزین. <code>outline: none</code> تنها درون <code>:focus:not(:focus-visible)</code> پذیرفتنی است.'],
+      ['فوکوس', 'حلقهٔ ۲ پیکسلی <code>--t-color-focus-ring</code> با فاصلهٔ ۲ پیکسل. هرگز حذف نمی‌شود، فقط جایگزین. <code>outline: none</code> تنها درون <code>:focus:not(:focus-visible)</code> پذیرفتنی است.'],
       ['کنترل فقط‌آیکون', '<code>aria-label</code> اجباری است. نسخهٔ بی‌برچسب وجود ندارد.'],
       ['رنگ به‌تنهایی', 'هرگز تنها کانال نیست. نشان‌های وضعیت رنگ را با واژه جفت می‌کنند و آیتم ناوبری جاری رنگ را با وزن.'],
       ['لایه‌ها', 'تلهٔ فوکوس، بازگشت فوکوس به دکمهٔ آغازگر، بستن با Escape، <code>aria-modal</code> و قفل اسکرول بدنه — نه فقط پوشاندن آن.'],

@@ -1,7 +1,6 @@
 {
   "$description": "Dimensional primitives. 4px grid throughout.",
   "space": {
-    "$type": "dimension",
     "0": {
       "$value": "0px"
     },
@@ -37,7 +36,8 @@
     },
     "20": {
       "$value": "80px"
-    }
+    },
+    "$type": "dimension"
   },
   "radius": {
     "$type": "dimension",
@@ -106,16 +106,18 @@
   },
   "border": {
     "$type": "dimension",
-    "hairline": {
-      "$value": "0.5px",
-      "$description": "Selection ring"
-    },
-    "thin": {
-      "$value": "1px",
-      "$description": "DEFAULT"
-    },
-    "thick": {
-      "$value": "2px"
+    "width": {
+      "hairline": {
+        "$value": "0.5px",
+        "$description": "Selection ring"
+      },
+      "thin": {
+        "$value": "1px",
+        "$description": "DEFAULT"
+      },
+      "thick": {
+        "$value": "2px"
+      }
     }
   },
   "breakpoint": {
@@ -146,8 +148,7 @@
       "$description": "دسکتاپ عریض. محتوا سقف می‌گیرد و حاشیه‌ها بزرگ می‌شوند."
     }
   },
-  "z": {
-    "$type": "number",
+  "z-index": {
     "base": {
       "$value": 0
     },

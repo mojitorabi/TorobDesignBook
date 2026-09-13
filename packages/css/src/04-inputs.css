@@ -6,49 +6,49 @@
    ============================================================ */
 
 .t-field { display: flex; flex-direction: column; gap: var(--t-space-1); inline-size: 100%; }
-.t-field__label { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-weight: var(--t-font-weight-bold); color: var(--t-fg-default); }
-.t-field__hint  { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-fg-secondary); }
-.t-field__error { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); color: var(--t-status-critical-fg); display: flex; align-items: center; gap: var(--t-space-1); }
-.t-field__req { color: var(--t-fg-brand); margin-inline-start: 2px; }
+.t-field__label { font-size: var(--t-font-size-12); line-height: var(--t-font-line-height-12); font-weight: var(--t-font-weight-bold); color: var(--t-color-on-surface); }
+.t-field__hint  { font-size: var(--t-font-size-12); line-height: var(--t-font-line-height-12); color: var(--t-color-on-surface-variant); }
+.t-field__error { font-size: var(--t-font-size-12); line-height: var(--t-font-line-height-12); color: var(--t-color-status-critical-on-container); display: flex; align-items: center; gap: var(--t-space-1); }
+.t-field__req { color: var(--t-color-brand); margin-inline-start: 2px; }
 
 .t-input {
   display: flex; align-items: center; gap: var(--t-space-2);
   block-size: var(--t-size-control-xl);
   padding-inline: var(--t-space-3);
-  border: var(--t-border-thin) solid var(--t-border-control);
+  border: var(--t-border-width-thin) solid var(--t-color-outline-control);
   border-radius: var(--t-radius-md);
-  background: var(--t-bg-fog);
-  color: var(--t-fg-default);
+  background: var(--t-color-surface-raised);
+  color: var(--t-color-on-surface);
   inline-size: 100%;
   transition: border-color var(--t-duration-micro) var(--t-easing-out), box-shadow var(--t-duration-micro) var(--t-easing-out);
 }
-.t-input:focus-within { border-color: var(--t-border-focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-border-focus) 22%, transparent); outline: none; }
+.t-input:focus-within { border-color: var(--t-color-focus-ring); box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-color-focus-ring) 22%, transparent); outline: none; }
 .t-input__el {
   flex: 1; min-inline-size: 0;
   border: none; background: none; outline: none; padding: 0;
-  font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14);
+  font-size: var(--t-font-size-14); line-height: var(--t-font-line-height-14);
   color: inherit; text-align: start;
 }
-.t-input__el::placeholder { color: var(--t-fg-secondary); }
-.t-input__icon { flex: none; color: var(--t-fg-secondary); inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); }
+.t-input__el::placeholder { color: var(--t-color-on-surface-variant); }
+.t-input__icon { flex: none; color: var(--t-color-on-surface-variant); inline-size: var(--t-size-icon-md); block-size: var(--t-size-icon-md); }
 .t-input--md { block-size: var(--t-size-control-lg); }
 .t-input--sm { block-size: var(--t-size-control-md); padding-inline: var(--t-space-2); }
 /* States. A field answers to what the browser knows (:hover, :focus-within,
    aria-invalid) and to what the page declares (data-state), so the same field
    can be shown in every state on one page. */
-.t-input:hover:not(.t-input--error, [data-state~="disabled"], [data-disabled="true"]) { border-color: var(--t-border-strong); }
+.t-input:hover:not(.t-input--error, [data-state~="disabled"], [data-disabled="true"]) { border-color: var(--t-color-outline-strong); }
 .t-input--error, .t-input[data-invalid="true"], .t-input:has([aria-invalid="true"]), .t-input[data-state~="error"] {
-  border-color: var(--t-status-critical-solid);
+  border-color: var(--t-color-status-critical-solid);
 }
 :is(.t-input--error, .t-input[data-invalid="true"], .t-input:has([aria-invalid="true"]), .t-input[data-state~="error"]):focus-within {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-status-critical-solid) 22%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-color-status-critical-solid) 22%, transparent);
 }
-.t-input--success, .t-input[data-state~="success"] { border-color: var(--t-status-positive-solid); }
+.t-input--success, .t-input[data-state~="success"] { border-color: var(--t-color-status-positive-solid); }
 .t-input[data-disabled="true"], .t-input[data-state~="disabled"], .t-input:has(:disabled) {
-  background: var(--t-bg-subtle); color: var(--t-fg-disabled); cursor: not-allowed; border-color: var(--t-border-default);
+  background: var(--t-color-surface-container); color: var(--t-color-on-surface-disabled); cursor: not-allowed; border-color: var(--t-color-outline);
 }
 .t-input[data-readonly="true"], .t-input[data-state~="readonly"], .t-input:has([readonly]) {
-  background: var(--t-bg-sunken); border-color: var(--t-border-default);
+  background: var(--t-color-surface-sunken); border-color: var(--t-color-outline);
 }
 
 textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var(--t-space-2); }
@@ -75,12 +75,12 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
 }
 .t-search > .t-input:focus-within, .t-search[data-state="typing"] > .t-input {
   background: var(--t-glass-selected-fill);
-  box-shadow: inset 0 0 0 var(--t-border-hairline) var(--t-glass-selected-border);
+  box-shadow: inset 0 0 0 var(--t-border-width-hairline) var(--t-glass-selected-border);
 }
-.t-search .t-input__el { font-size: var(--t-font-size-16); line-height: var(--t-font-leading-16); color: var(--t-fg-default); }
-.t-search .t-input__el::placeholder { color: var(--t-fg-default); opacity: 1; }
+.t-search .t-input__el { font-size: var(--t-font-size-16); line-height: var(--t-font-line-height-16); color: var(--t-color-on-surface); }
+.t-search .t-input__el::placeholder { color: var(--t-color-on-surface); opacity: 1; }
 .t-search .t-input__el::-webkit-search-cancel-button { display: none; }
-.t-search .t-input__icon { color: var(--t-fg-secondary); }
+.t-search .t-input__icon { color: var(--t-color-on-surface-variant); }
 .t-search__actions { display: flex; align-items: center; gap: var(--t-space-3); flex: none; margin-inline-start: var(--t-space-6); }
 /* 24px glyph buttons with a 44px hit area. */
 .t-search__tool, .t-search__clear {
@@ -88,11 +88,11 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
   display: inline-grid; place-items: center;
   inline-size: 24px; block-size: 24px; padding: 0;
   border: 0; background: none; cursor: pointer;
-  color: var(--t-fg-secondary);
+  color: var(--t-color-on-surface-variant);
 }
 .t-search__tool::after, .t-search__clear::after { content: ""; position: absolute; inset: -10px; }
 .t-search__tool .t-icon, .t-search__clear .t-icon { inline-size: 24px; block-size: 24px; }
-.t-search__clear { display: none; color: var(--t-fg-default); }
+.t-search__clear { display: none; color: var(--t-color-on-surface); }
 .t-search[data-state="typing"] .t-search__clear,
 .t-search[data-state="searched"] .t-search__clear { display: inline-grid; }
 .t-search:is([data-state="typing"], [data-state="searched"]) .t-search__tool { display: none; }
@@ -100,45 +100,45 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
 /* ---- Select ---- */
 .t-select { position: relative; }
 .t-select select.t-input__el { appearance: none; cursor: pointer; padding-inline-end: var(--t-space-6); }
-.t-select__chevron { position: absolute; inset-inline-end: var(--t-space-3); inset-block-start: 50%; translate: 0 -50%; pointer-events: none; color: var(--t-fg-secondary); }
+.t-select__chevron { position: absolute; inset-inline-end: var(--t-space-3); inset-block-start: 50%; translate: 0 -50%; pointer-events: none; color: var(--t-color-on-surface-variant); }
 
 /* ---- Checkbox & Radio ---- */
-.t-check { display: inline-flex; align-items: center; gap: var(--t-space-2); cursor: pointer; min-block-size: var(--t-size-touch-min); }
-.t-check__box {
+.t-checkbox { display: inline-flex; align-items: center; gap: var(--t-space-2); cursor: pointer; min-block-size: var(--t-size-touch-min); }
+.t-checkbox__box {
   flex: none;
   inline-size: 20px; block-size: 20px;
-  border: var(--t-border-thin) solid var(--t-border-control);
+  border: var(--t-border-width-thin) solid var(--t-color-outline-control);
   border-radius: var(--t-radius-xs);
-  background: var(--t-bg-fog);
+  background: var(--t-color-surface-raised);
   display: grid; place-items: center;
   transition: background-color var(--t-duration-micro) var(--t-easing-out), border-color var(--t-duration-micro) var(--t-easing-out);
 }
-.t-check input { position: absolute; opacity: 0; inline-size: 0; block-size: 0; }
-.t-check input:checked + .t-check__box { background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); color: var(--t-action-blue-fg); }
-.t-check input:focus-visible + .t-check__box { outline: 2px solid var(--t-border-focus); outline-offset: 2px; }
-.t-check:hover input:not(:disabled) + .t-check__box { border-color: var(--t-border-strong); }
-.t-check:hover input:checked:not(:disabled) + .t-check__box { background: var(--t-action-blue-bg-active); border-color: var(--t-action-blue-bg-active); }
-.t-check:active input:not(:disabled) + .t-check__box { transform: scale(0.94); }
-.t-check input:disabled ~ * { color: var(--t-fg-disabled); cursor: not-allowed; }
-.t-check input:disabled + .t-check__box { background: var(--t-bg-subtle); border-color: var(--t-border-default); }
-.t-check input:disabled:checked + .t-check__box { background: var(--t-action-disabled-bg); border-color: var(--t-action-disabled-bg); color: var(--t-action-disabled-fg); }
-.t-check__mark { opacity: 0; transition: opacity var(--t-duration-micro) var(--t-easing-out); }
-.t-check input:checked + .t-check__box .t-check__mark { opacity: 1; }
-.t-check--radio .t-check__box { border-radius: var(--t-radius-full); }
-.t-check--radio input:checked + .t-check__box { background: var(--t-bg-fog); border-color: var(--t-action-blue-bg); border-width: 6px; }
+.t-checkbox input { position: absolute; opacity: 0; inline-size: 0; block-size: 0; }
+.t-checkbox input:checked + .t-checkbox__box { background: var(--t-color-action-accent-bg); border-color: var(--t-color-action-accent-bg); color: var(--t-color-action-accent-fg); }
+.t-checkbox input:focus-visible + .t-checkbox__box { outline: 2px solid var(--t-color-focus-ring); outline-offset: 2px; }
+.t-checkbox:hover input:not(:disabled) + .t-checkbox__box { border-color: var(--t-color-outline-strong); }
+.t-checkbox:hover input:checked:not(:disabled) + .t-checkbox__box { background: var(--t-color-action-accent-bg-active); border-color: var(--t-color-action-accent-bg-active); }
+.t-checkbox:active input:not(:disabled) + .t-checkbox__box { transform: scale(0.94); }
+.t-checkbox input:disabled ~ * { color: var(--t-color-on-surface-disabled); cursor: not-allowed; }
+.t-checkbox input:disabled + .t-checkbox__box { background: var(--t-color-surface-container); border-color: var(--t-color-outline); }
+.t-checkbox input:disabled:checked + .t-checkbox__box { background: var(--t-color-action-disabled-bg); border-color: var(--t-color-action-disabled-bg); color: var(--t-color-action-disabled-fg); }
+.t-checkbox__mark { opacity: 0; transition: opacity var(--t-duration-micro) var(--t-easing-out); }
+.t-checkbox input:checked + .t-checkbox__box .t-checkbox__mark { opacity: 1; }
+.t-checkbox--radio .t-checkbox__box { border-radius: var(--t-radius-full); }
+.t-checkbox--radio input:checked + .t-checkbox__box { background: var(--t-color-surface-raised); border-color: var(--t-color-action-accent-bg); border-width: 6px; }
 
 /* Forced states. What a checkbox really is lives on its <input>, which a
    documentation page cannot press and a screenshot test cannot focus. The
    root carries the same states so every one of them can be rendered. */
-.t-check[data-state~="selected"] .t-check__box {
-  background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); color: var(--t-action-blue-fg);
+.t-checkbox[data-state~="selected"] .t-checkbox__box {
+  background: var(--t-color-action-accent-bg); border-color: var(--t-color-action-accent-bg); color: var(--t-color-action-accent-fg);
 }
-.t-check[data-state~="selected"] .t-check__mark { opacity: 1; }
-.t-check[data-state~="focus"] .t-check__box { outline: 2px solid var(--t-border-focus); outline-offset: 2px; }
-.t-check[data-state~="disabled"] { color: var(--t-fg-disabled); cursor: not-allowed; }
-.t-check[data-state~="disabled"] .t-check__box { background: var(--t-bg-subtle); border-color: var(--t-border-default); }
-.t-check[data-state~="active"] .t-check__box { transform: scale(0.94); }
-.t-check[data-state~="hover"] .t-check__box { border-color: var(--t-border-strong); }
+.t-checkbox[data-state~="selected"] .t-checkbox__mark { opacity: 1; }
+.t-checkbox[data-state~="focus"] .t-checkbox__box { outline: 2px solid var(--t-color-focus-ring); outline-offset: 2px; }
+.t-checkbox[data-state~="disabled"] { color: var(--t-color-on-surface-disabled); cursor: not-allowed; }
+.t-checkbox[data-state~="disabled"] .t-checkbox__box { background: var(--t-color-surface-container); border-color: var(--t-color-outline); }
+.t-checkbox[data-state~="active"] .t-checkbox__box { transform: scale(0.94); }
+.t-checkbox[data-state~="hover"] .t-checkbox__box { border-color: var(--t-color-outline-strong); }
 
 /* ---- Switch (on/off) — [NEW], absent from the source kit ----
    The standard name for a boolean control. Sketch's own "Switch" symbols are
@@ -149,8 +149,8 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
   flex: none;
   inline-size: 44px; block-size: 26px;
   border-radius: var(--t-radius-full);
-  background: var(--t-bg-subtle);
-  border: var(--t-border-thin) solid var(--t-border-default);
+  background: var(--t-color-surface-container);
+  border: var(--t-border-width-thin) solid var(--t-color-outline);
   position: relative;
   transition: background-color var(--t-duration-standard) var(--t-easing-out), border-color var(--t-duration-standard) var(--t-easing-out);
 }
@@ -160,53 +160,53 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
   inset-inline-start: 2px;
   inline-size: 20px; block-size: 20px;
   border-radius: var(--t-radius-full);
-  background: var(--t-bg-fog);
+  background: var(--t-color-surface-raised);
   box-shadow: var(--t-elevation-1);
   transition: translate var(--t-duration-standard) var(--t-easing-out);
 }
-.t-switch input:checked + .t-switch__track { background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); }
-.t-switch[data-state~="selected"] .t-switch__track { background: var(--t-action-blue-bg); border-color: var(--t-action-blue-bg); }
+.t-switch input:checked + .t-switch__track { background: var(--t-color-action-accent-bg); border-color: var(--t-color-action-accent-bg); }
+.t-switch[data-state~="selected"] .t-switch__track { background: var(--t-color-action-accent-bg); border-color: var(--t-color-action-accent-bg); }
 .t-switch[data-state~="selected"] .t-switch__thumb { translate: calc(18px * var(--t-dir, -1) * -1) 0; }
-.t-switch[data-state~="focus"] .t-switch__track { outline: 2px solid var(--t-border-focus); outline-offset: 2px; }
-.t-switch[data-state~="disabled"] { color: var(--t-fg-disabled); cursor: not-allowed; opacity: 0.6; }
-.t-switch[data-state~="hover"] .t-switch__track { border-color: var(--t-border-strong); }
-.t-switch:hover input:not(:disabled) + .t-switch__track { border-color: var(--t-border-strong); }
-.t-switch:hover input:checked:not(:disabled) + .t-switch__track { background: var(--t-action-blue-bg-active); border-color: var(--t-action-blue-bg-active); }
+.t-switch[data-state~="focus"] .t-switch__track { outline: 2px solid var(--t-color-focus-ring); outline-offset: 2px; }
+.t-switch[data-state~="disabled"] { color: var(--t-color-on-surface-disabled); cursor: not-allowed; opacity: 0.6; }
+.t-switch[data-state~="hover"] .t-switch__track { border-color: var(--t-color-outline-strong); }
+.t-switch:hover input:not(:disabled) + .t-switch__track { border-color: var(--t-color-outline-strong); }
+.t-switch:hover input:checked:not(:disabled) + .t-switch__track { background: var(--t-color-action-accent-bg-active); border-color: var(--t-color-action-accent-bg-active); }
 /* Pressing stretches the thumb toward the side it is travelling to — the
    gesture the control is asking for, shown before the finger lifts. */
 .t-switch:active input:not(:disabled) + .t-switch__track .t-switch__thumb { inline-size: 24px; }
 /* Logical translate: --t-dir is 1 in RTL, -1 in LTR, so the thumb always
    travels toward the inline end. */
 .t-switch input:checked + .t-switch__track .t-switch__thumb { translate: calc(18px * var(--t-dir, -1) * -1) 0; }
-.t-switch input:focus-visible + .t-switch__track { outline: 2px solid var(--t-border-focus); outline-offset: 2px; }
+.t-switch input:focus-visible + .t-switch__track { outline: 2px solid var(--t-color-focus-ring); outline-offset: 2px; }
 .t-switch input:disabled + .t-switch__track { opacity: 0.5; cursor: not-allowed; }
 
 /* ---- RangeSlider — [NEW]. Price range is Torob's most-used filter and the
    kit had no control for it. ---- */
 .t-range { inline-size: 100%; }
-.t-range__track { position: relative; block-size: 4px; border-radius: var(--t-radius-full); background: var(--t-bg-subtle); margin-block: var(--t-space-4); }
-.t-range__fill  { position: absolute; block-size: 100%; border-radius: var(--t-radius-full); background: var(--t-action-blue-bg); }
+.t-range__track { position: relative; block-size: 4px; border-radius: var(--t-radius-full); background: var(--t-color-surface-container); margin-block: var(--t-space-4); }
+.t-range__fill  { position: absolute; block-size: 100%; border-radius: var(--t-radius-full); background: var(--t-color-action-accent-bg); }
 .t-range__thumb {
   position: absolute; inset-block-start: 50%;
   inline-size: 22px; block-size: 22px; translate: 50% -50%;
   border-radius: var(--t-radius-full);
-  background: var(--t-bg-fog);
-  border: 2px solid var(--t-action-blue-bg);
+  background: var(--t-color-surface-raised);
+  border: 2px solid var(--t-color-action-accent-bg);
   box-shadow: var(--t-elevation-1);
   cursor: grab;
 }
 .t-range__thumb:hover { box-shadow: var(--t-elevation-2); }
 .t-range__thumb:active { cursor: grabbing; scale: 1.1; }
 .t-range[data-state~="disabled"] { opacity: 0.55; pointer-events: none; }
-.t-range[data-state~="disabled"] .t-range__fill { background: var(--t-action-disabled-bg); }
-.t-range__values { display: flex; justify-content: space-between; font-size: var(--t-font-size-12); color: var(--t-fg-secondary); font-variant-numeric: tabular-nums; }
+.t-range[data-state~="disabled"] .t-range__fill { background: var(--t-color-action-disabled-bg); }
+.t-range__values { display: flex; justify-content: space-between; font-size: var(--t-font-size-12); color: var(--t-color-on-surface-variant); font-variant-numeric: tabular-nums; }
 
 /* ---- QuantityStepper — [NEW] ---- */
-.t-stepper { display: inline-flex; align-items: center; border: var(--t-border-thin) solid var(--t-border-control); border-radius: var(--t-radius-md); overflow: hidden; }
-.t-stepper__btn { inline-size: 36px; block-size: 36px; border: none; background: var(--t-bg-fog); color: var(--t-fg-default); cursor: pointer; display: grid; place-items: center; }
-.t-stepper__btn:hover:not(:disabled) { background: var(--t-bg-subtle); }
-.t-stepper__btn:active:not(:disabled) { background: var(--t-bg-sunken); }
-.t-stepper__btn:disabled { color: var(--t-fg-disabled); cursor: not-allowed; }
+.t-stepper { display: inline-flex; align-items: center; border: var(--t-border-width-thin) solid var(--t-color-outline-control); border-radius: var(--t-radius-md); overflow: hidden; }
+.t-stepper__btn { inline-size: 36px; block-size: 36px; border: none; background: var(--t-color-surface-raised); color: var(--t-color-on-surface); cursor: pointer; display: grid; place-items: center; }
+.t-stepper__btn:hover:not(:disabled) { background: var(--t-color-surface-container); }
+.t-stepper__btn:active:not(:disabled) { background: var(--t-color-surface-sunken); }
+.t-stepper__btn:disabled { color: var(--t-color-on-surface-disabled); cursor: not-allowed; }
 .t-stepper__value { min-inline-size: 44px; text-align: center; font-weight: var(--t-font-weight-bold); font-variant-numeric: tabular-nums; }
 
 /* ---- OTP — [NEW] ----
@@ -218,26 +218,26 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
 .t-otp__slot {
   inline-size: 48px; block-size: 56px;
   text-align: center;
-  border: var(--t-border-thin) solid var(--t-border-control);
+  border: var(--t-border-width-thin) solid var(--t-color-outline-control);
   border-radius: var(--t-radius-md);
-  background: var(--t-bg-fog);
-  color: var(--t-fg-default);
-  font-size: var(--t-font-size-24); line-height: var(--t-font-leading-24);
+  background: var(--t-color-surface-raised);
+  color: var(--t-color-on-surface);
+  font-size: var(--t-font-size-24); line-height: var(--t-font-line-height-24);
   font-weight: var(--t-font-weight-bold);
   font-variant-numeric: tabular-nums;
   transition: border-color var(--t-duration-micro) var(--t-easing-out), box-shadow var(--t-duration-micro) var(--t-easing-out);
 }
-.t-otp__slot:hover:not(:disabled) { border-color: var(--t-border-strong); }
+.t-otp__slot:hover:not(:disabled) { border-color: var(--t-color-outline-strong); }
 .t-otp__slot:focus-visible {
-  border-color: var(--t-border-focus);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-border-focus) 22%, transparent);
+  border-color: var(--t-color-focus-ring);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-color-focus-ring) 22%, transparent);
   outline: none;
 }
-.t-otp__slot[data-filled="true"] { border-color: var(--t-border-strong); }
+.t-otp__slot[data-filled="true"] { border-color: var(--t-color-outline-strong); }
 .t-otp__slot:disabled, .t-otp[data-state~="disabled"] .t-otp__slot {
-  background: var(--t-bg-subtle); color: var(--t-fg-disabled); cursor: not-allowed;
+  background: var(--t-color-surface-container); color: var(--t-color-on-surface-disabled); cursor: not-allowed;
 }
-.t-otp[data-state~="error"] .t-otp__slot, .t-otp--error .t-otp__slot { border-color: var(--t-status-critical-solid); }
+.t-otp[data-state~="error"] .t-otp__slot, .t-otp--error .t-otp__slot { border-color: var(--t-color-status-critical-solid); }
 @media (max-width: 380px) { .t-otp { gap: var(--t-space-1); } .t-otp__slot { inline-size: 40px; block-size: 48px; font-size: var(--t-font-size-20); } }
 
 /* ---- FileUpload — [NEW] ----
@@ -248,32 +248,32 @@ textarea.t-input__el { resize: vertical; min-block-size: 5em; padding-block: var
   gap: var(--t-space-2);
   min-block-size: 132px; inline-size: 100%;
   padding: var(--t-space-5);
-  border: var(--t-border-thin) dashed var(--t-border-control);
+  border: var(--t-border-width-thin) dashed var(--t-color-outline-control);
   border-radius: var(--t-radius-md);
-  background: var(--t-bg-fog);
-  color: var(--t-fg-secondary);
+  background: var(--t-color-surface-raised);
+  color: var(--t-color-on-surface-variant);
   text-align: center; cursor: pointer;
   transition: border-color var(--t-duration-micro) var(--t-easing-out), background-color var(--t-duration-micro) var(--t-easing-out);
 }
-.t-upload:hover { border-color: var(--t-border-focus); background: var(--t-bg-subtle); }
-.t-upload:focus-within { border-color: var(--t-border-focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-border-focus) 22%, transparent); }
+.t-upload:hover { border-color: var(--t-color-focus-ring); background: var(--t-color-surface-container); }
+.t-upload:focus-within { border-color: var(--t-color-focus-ring); box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-color-focus-ring) 22%, transparent); }
 .t-upload[data-state~="active"], .t-upload[data-dragging="true"] {
-  border-color: var(--t-border-focus); border-style: solid; background: var(--t-action-blue-soft-bg);
+  border-color: var(--t-color-focus-ring); border-style: solid; background: var(--t-color-action-accent-soft-bg);
 }
-.t-upload[data-state~="disabled"] { background: var(--t-bg-subtle); color: var(--t-fg-disabled); cursor: not-allowed; }
-.t-upload[data-state~="error"], .t-upload--error { border-color: var(--t-status-critical-solid); }
-.t-upload__icon { color: var(--t-fg-secondary); }
-.t-upload__title { color: var(--t-fg-default); font-weight: var(--t-font-weight-bold); font-size: var(--t-font-size-14); }
-.t-upload__hint { font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); }
+.t-upload[data-state~="disabled"] { background: var(--t-color-surface-container); color: var(--t-color-on-surface-disabled); cursor: not-allowed; }
+.t-upload[data-state~="error"], .t-upload--error { border-color: var(--t-color-status-critical-solid); }
+.t-upload__icon { color: var(--t-color-on-surface-variant); }
+.t-upload__title { color: var(--t-color-on-surface); font-weight: var(--t-font-weight-bold); font-size: var(--t-font-size-14); }
+.t-upload__hint { font-size: var(--t-font-size-12); line-height: var(--t-font-line-height-12); }
 .t-upload input[type="file"] { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
 /* The list of what was added sits under the drop area, never inside it. */
 .t-upload-list { display: flex; flex-direction: column; gap: var(--t-space-2); margin-block-start: var(--t-space-3); }
 .t-upload-item {
   display: flex; align-items: center; gap: var(--t-space-3);
   padding: var(--t-space-2) var(--t-space-3);
-  border: var(--t-border-thin) solid var(--t-border-subtle);
+  border: var(--t-border-width-thin) solid var(--t-color-outline-subtle);
   border-radius: var(--t-radius-sm);
-  background: var(--t-bg-fog);
+  background: var(--t-color-surface-raised);
 }
 .t-upload-item__name { flex: 1; min-inline-size: 0; font-size: var(--t-font-size-14); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.t-upload-item__size { color: var(--t-fg-secondary); font-size: var(--t-font-size-12); font-variant-numeric: tabular-nums; }
+.t-upload-item__size { color: var(--t-color-on-surface-variant); font-size: var(--t-font-size-12); font-variant-numeric: tabular-nums; }

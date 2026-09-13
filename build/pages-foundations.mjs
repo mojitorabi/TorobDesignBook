@@ -13,7 +13,7 @@ export function colorPage(m) {
   const toc = [], S = (id, t, inner) => { toc.push({ id, label: t }); return section(id, t, inner); };
   const fam = (prefix) => Object.entries(m.base).filter(([p]) => p.startsWith(`color.${prefix}.`))
     .map(([p, t]) => sw('--t-' + p.replace(/\./g, '-'), t.value, t.description?.startsWith('[NEW]') ? 'NEW' : ''));
-  const chip = v => `<span style="display:inline-flex;align-items:center;gap:7px"><span style="inline-size:15px;block-size:15px;border-radius:4px;border:1px solid var(--t-border-subtle);background:${v}"></span><code>${esc(String(v))}</code></span>`;
+  const chip = v => `<span style="display:inline-flex;align-items:center;gap:7px"><span style="inline-size:15px;block-size:15px;border-radius:4px;border:1px solid var(--t-color-outline-subtle);background:${v}"></span><code>${esc(String(v))}</code></span>`;
 
   /* One card per semantic token. Closed, it is three colours and a name —
      which is the question "what does this look like" answered. The three hex
@@ -33,14 +33,14 @@ export function colorPage(m) {
   <div class="tok__body">
     <dl class="tok__vals">${Object.entries(vals).map(([k, v]) => `<dt>${THEME_FA[k]}</dt><dd>${esc(String(v))}</dd>`).join('')}</dl>
     ${t.description ? `<p class="tok__note">${t.description}</p>` : ''}
-    <button class="t-btn t-btn--outline t-btn--xs copy-btn" data-copy-text="var(${name})">کپی متغیر</button>
+    <button class="t-button t-button--outline t-button--xs copy-btn" data-copy-text="var(${name})">کپی متغیر</button>
   </div>
 </details>`;
     }).join('')}</div>`;
 
   let body = `<div class="prose">
     <p>نُه خانواده به‌علاوهٔ رنگ برند. <strong>Sky</strong> ستون فقرات است؛ بین پوسته‌ها یکجا وارونه می‌شود و هر سطح، کادر و فام متن خنثی را حمل می‌کند. بقیه معنا دارند.</p>
-    <div class="t-alert site-note"><strong>از توکن‌های معنایی استفاده کنید، نه پایه‌ای.</strong> <code>--t-fg-default</code> خودش در روشن به Sky 800 و در تیره به Sky 100 حل می‌شود. اگر مستقیم سراغ <code>--t-color-sky-800</code> بروید، خودتان را به یک پوسته میخکوب می‌کنید و بقیه را می‌شکنید.</div>
+    <div class="t-alert site-note"><strong>از توکن‌های معنایی استفاده کنید، نه پایه‌ای.</strong> <code>--t-color-on-surface</code> خودش در روشن به Sky 800 و در تیره به Sky 100 حل می‌شود. اگر مستقیم سراغ <code>--t-color-sky-800</code> بروید، خودتان را به یک پوسته میخکوب می‌کنید و بقیه را می‌شکنید.</div>
   </div>`;
 
   body += S('semantic', 'توکن‌های معنایی', `<div class="prose"><p>لایه‌ای که کد محصول مصرف می‌کند. سه مربع کنار هر نام، همان رنگ در روشن، ملایم و تیره است؛ برای مقدارها و دلیلش روی کارت بزنید.</p></div>
@@ -110,11 +110,11 @@ export function typographyPage(m) {
     <div class="tbl-wrap"><table class="tbl">
       <thead><tr><th>کلاس</th><th>اندازه / ارتفاع خط</th><th>وزن</th><th>قبلاً</th><th>نمونه</th></tr></thead>
       <tbody>
-        ${row('t-h1', 'H1', '24px', '40px', 'ExtraBold 800', 'Heading/H1')}
-        ${row('t-h2', 'H2', '20px', '36px', 'ExtraBold 800', 'Heading/H2')}
-        ${row('t-h3', 'H3', '18px', '32px', 'ExtraBold 800', 'Heading/H3')}
-        ${row('t-h4', 'H4', '16px', '28px', 'Bold 700', 'Heading/H4')}
-        ${row('t-h5', 'H5', '14px', '24px', 'Bold 700', 'Heading/H5')}
+        ${row('t-heading-1', 'H1', '24px', '40px', 'ExtraBold 800', 'Heading/H1')}
+        ${row('t-heading-2', 'H2', '20px', '36px', 'ExtraBold 800', 'Heading/H2')}
+        ${row('t-heading-3', 'H3', '18px', '32px', 'ExtraBold 800', 'Heading/H3')}
+        ${row('t-heading-4', 'H4', '16px', '28px', 'Bold 700', 'Heading/H4')}
+        ${row('t-heading-5', 'H5', '14px', '24px', 'Bold 700', 'Heading/H5')}
         ${row('t-body-lg', 'Body large', '16px', '28px', 'Medium 500', 'Normal/NR main')}
         ${row('t-body-lg-strong', 'Body large strong', '16px', '28px', 'Bold 700', 'Normal/NB main')}
         ${row('t-body-md', 'Body medium', '14px', '24px', 'Medium 500', 'Small/SR main')}
@@ -141,22 +141,22 @@ export function typographyPage(m) {
       ['<code>.t-body-md-strong</code>', '<span class="legacy">Small/SB main</span>', '<span class="legacy">ui / normal / bold 80</span>'],
       ['<code>.t-body-lg-strong</code>', '<span class="legacy">Normal/NB main</span>', '<span class="legacy">ui / large / bold 80</span>'],
       ['<code>.t-body-lg-strong t-tone-inverse</code>', '<span class="legacy">Normal/NB reverse</span>', '<span class="legacy">ui / large / bold reverse</span>'],
-      ['<code>.t-h5</code>', '<span class="legacy">Heading/H5</span>', '<span class="legacy">heading / h5</span>'],
+      ['<code>.t-heading-5</code>', '<span class="legacy">Heading/H5</span>', '<span class="legacy">heading / h5</span>'],
     ])}`);
 
   body += S('numerals', 'اعداد و متن دوجهته', `<div class="prose">
       <p>ترب اعداد فارسی (۰۱۲۳۴۵۶۷۸۹) را با جداکنندهٔ هزارگان ٬ و اعشار ٫ نشان می‌دهد. نام‌های لاتین محصول مدام داخل رشته‌های فارسی می‌آیند (<em>گوشی اپل iPhone 11</em>)، پس متن دوجهته قاعده است، نه استثنا.</p>
       <ul>
-        <li><strong>در فهرست‌ها همیشه ارقام جدولی.</strong> کلاس <code>.t-num-tabular</code>. ستونی از قیمت‌های متناسب قابل مرور نیست.</li>
+        <li><strong>در فهرست‌ها همیشه ارقام جدولی.</strong> کلاس <code>.t-numerals-tabular</code>. ستونی از قیمت‌های متناسب قابل مرور نیست.</li>
         <li><strong>رشته‌های غیرقابل‌پیش‌بینی را ایزوله کنید</strong> با <code>.t-bidi</code> (<code>unicode-bidi: isolate</code>). وگرنه نام فروشگاه و شمارهٔ مدل که کاربر وارد کرده، جملهٔ اطرافشان را جابه‌جا می‌کنند.</li>
         <li><strong>هرگز یک عدد را بین چند عنصر نشکنید.</strong> صفحه‌خوان <code>&lt;span&gt;۱۵&lt;/span&gt;&lt;span&gt;٬۸۰۰&lt;/span&gt;</code> را دو عدد جدا می‌خواند.</li>
       </ul>
     </div>
     ${specimen({ label: 'جدولی در برابر متناسب', canvas: 'fog', stageClass: 'spec__stage--stack', html: `<div style="display:flex;gap:34px">
   <div><div class="t-body-sm t-tone-secondary" style="margin-block-end:6px">Tabular ✓</div>
-    <div class="t-body-lg-strong t-num-tabular">۱۵٬۸۰۰٬۰۰۰</div>
-    <div class="t-body-lg-strong t-num-tabular">۹٬۹۹۰٬۰۰۰</div>
-    <div class="t-body-lg-strong t-num-tabular">۲۳٬۵۵۰٬۰۰۰</div></div>
+    <div class="t-body-lg-strong t-numerals-tabular">۱۵٬۸۰۰٬۰۰۰</div>
+    <div class="t-body-lg-strong t-numerals-tabular">۹٬۹۹۰٬۰۰۰</div>
+    <div class="t-body-lg-strong t-numerals-tabular">۲۳٬۵۵۰٬۰۰۰</div></div>
   <div><div class="t-body-sm t-tone-secondary" style="margin-block-end:6px">Proportional ✗</div>
     <div class="t-body-lg-strong">۱۵٬۸۰۰٬۰۰۰</div>
     <div class="t-body-lg-strong">۹٬۹۹۰٬۰۰۰</div>

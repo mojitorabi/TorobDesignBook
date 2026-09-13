@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { TOKEN_RENAMES } from '../source/rename.mjs';
 import { buildModel, cssVar, fmtCssValue, ROOT } from './tokens-lib.mjs';
 
 const OUT = join(ROOT, 'packages', 'css', 'dist');
@@ -34,6 +35,12 @@ const decl = (path, t) => `  ${cssVar(path)}: ${fmtCssValue(t)};`;
    black opts into it. */
 {
   const base = Object.entries(m.base).map(([p, t]) => decl(p, t)).join('\n');
+  /* Old name → new name, as a plain alias. `var()` keeps the indirection live,
+     so a theme switch still reaches code that reads the old name. */
+  const known = new Set([...Object.keys(m.base), ...Object.values(m.modes).flatMap(t => Object.keys(t))]);
+  const compat = Object.entries(TOKEN_RENAMES)
+    .filter(([, to]) => known.has(to))
+    .map(([from, to]) => `  ${cssVar(from)}: var(${cssVar(to)});`).join('\n');
   const modeBlock = mode => Object.entries(m.modes[mode]).map(([p, t]) => decl(p, t)).join('\n');
   const indent = txt => txt.split('\n').map(l => '  ' + l).join('\n');
 
@@ -76,6 +83,16 @@ ${indent(indent(modeBlock('dim')))}
    or the reader has asked for less transparency. */
 @media (prefers-reduced-transparency: reduce) {
   :root { --t-glass-blur: 0px; }
+}
+
+/* ---- compatibility ----
+   Every name this system used before the rename, pointed at the name it has
+   now. Generated from source/rename.mjs, so the two can never drift, and
+   checked by build/rename-check.mjs. Nothing in the system reads these: they
+   exist so that product code written against the old names keeps working
+   until it is updated, one file at a time, on its own schedule. */
+:root {
+${compat}
 }
 `);
 }

@@ -12,7 +12,7 @@ export function TagInput({ value, onChange, max, placeholder }) {
     setDraft('');
   };
   return (
-    <div className="t-taginput">
+    <div className="t-tag-input">
       {value.map(t => (
         <Tag key={t} label={t} onRemove={() => onChange(value.filter(x => x !== t))} />
       ))}

@@ -1,54 +1,50 @@
 {
   "$description": "Semantic tokens, light mode. THIS is the layer product code consumes.",
   "$mode": "light",
-  "bg": {
-    "$type": "color",
-    "canvas": {
+  "color": {
+    "surface": {
       "$value": "{color.sky.100}",
       "$description": "پس‌زمینهٔ صفحه. قبلاً: Background Bright - Light"
     },
-    "fog": {
+    "surface-raised": {
       "$value": "{color.white}",
       "$description": "زمینهٔ کارت و برگهٔ بالاآمده. قبلاً: Background Fog - Light"
     },
-    "sunken": {
-      "$value": "{color.sky.50}"
-    },
-    "subtle": {
+    "surface-container": {
       "$value": "{color.sky.100}",
       "$description": "ردیف‌های راه‌راه، سلول‌های زوج جدول مشخصات"
     },
-    "inverse": {
+    "surface-sunken": {
+      "$value": "{color.sky.50}"
+    },
+    "surface-inverse": {
       "$value": "{color.sky.800}"
     },
     "scrim": {
       "$value": "rgba(30, 41, 59, 0.48)",
       "$description": "پشت مودال‌ها و برگه‌ها"
     },
-    "store-card": {
+    "surface-store-card": {
       "$value": "{color.sky.50}",
       "$description": "Store Card - Light/Dark layer style fill."
     },
-    "store-card-rule": {
+    "outline-store-card": {
       "$value": "{color.sky.300}",
       "$description": "The 0.5px rules above and below a store card (Sky 300 in both Sketch themes)."
-    }
-  },
-  "fg": {
-    "$type": "color",
-    "default": {
+    },
+    "on-surface": {
       "$value": "{color.sky.800}",
       "$description": "قبلاً: Sky 800 - Light / استایل متنی main"
     },
-    "secondary": {
+    "on-surface-variant": {
       "$value": "{color.sky.600}",
       "$description": "قبلاً: sec. به‌جای Sky 500 از Sky 600 استفاده می‌کند؛ یادداشت رنگ پایه را ببینید."
     },
-    "disabled": {
+    "on-surface-disabled": {
       "$value": "{color.sky.300}",
       "$description": "قبلاً: disable"
     },
-    "inverse": {
+    "on-surface-inverse": {
       "$value": "{color.sky.50}",
       "$description": "قبلاً: reverse"
     },
@@ -62,410 +58,393 @@
     "on-solid": {
       "$value": "{color.white}",
       "$description": "متن روی سطح کنش پرشده"
-    }
-  },
-  "border": {
-    "$type": "color",
-    "subtle": {
+    },
+    "outline-subtle": {
       "$value": "{color.sky.100}"
     },
-    "default": {
+    "outline": {
       "$value": "{color.sky.300}"
     },
-    "control": {
+    "outline-control": {
       "$value": "{color.sky.500}",
       "$description": "مرز کنترل فرم. معیار ۱.۴.۱۱ نسبت ۳:۱ می‌خواهد؛ border.default فقط تزئینی است و آن را برآورده نمی‌کند."
     },
-    "strong": {
+    "outline-strong": {
       "$value": "{color.sky.500}"
     },
-    "selected": {
+    "outline-selected": {
       "$value": "{color.blue.500}",
       "$description": "[NEW] حلقهٔ انتخاب. منبع در هر دو حالت Blue 300 داشت که روی روشن ۲٫۵۴:۱ می‌دهد. Blue 500 همان زبان آبی را نگه می‌دارد و با ۴٫۷۹:۱ قبول می‌شود."
     },
-    "focus": {
+    "focus-ring": {
       "$value": "{color.blue.500}",
       "$description": "حلقهٔ فوکوس صفحه‌کلید"
-    }
-  },
-  "action": {
-    "$type": "color",
-    "$description": "Three colour families. RED is an online commerce action, BLUE an offline or store action, BLACK a neutral one. Intent aliases (primary/accent/neutral) point at the same values.",
-    "red": {
-      "$description": "خرید اینترنتی — online commerce. One per screen.",
-      "bg-gradient": {
-        "$value": "linear-gradient(180deg, {color.red.300} 0%, {color.brand.red} 100%)"
+    },
+    "action": {
+      "primary": {
+        "bg": {
+          "$value": "{color.brand.red}"
+        },
+        "bg-gradient": {
+          "$value": "linear-gradient(180deg, {color.red.300} 0%, {color.brand.red} 100%)"
+        },
+        "bg-hover": {
+          "$value": "{color.brand.red}",
+          "$description": "Hover drops the gradient for the flat brand red."
+        },
+        "bg-active": {
+          "$value": "{color.red.800}"
+        },
+        "border": {
+          "$value": "{color.red.50}",
+          "$description": "1px inside rim. The signature edge on every filled Torob button."
+        },
+        "fg": {
+          "$value": "{color.white}"
+        },
+        "outline-fg": {
+          "$value": "{color.red.600}"
+        },
+        "outline-border": {
+          "$value": "{color.brand.red}"
+        },
+        "ghost-fg": {
+          "$value": "{color.red.600}"
+        }
       },
-      "bg": {
+      "accent": {
+        "bg": {
+          "$value": "{color.blue.500}"
+        },
+        "bg-gradient": {
+          "$value": "linear-gradient(180deg, {color.blue.600} 0%, {color.blue.500} 100%)"
+        },
+        "bg-hover": {
+          "$value": "{color.blue.500}"
+        },
+        "bg-active": {
+          "$value": "{color.blue.800}"
+        },
+        "border": {
+          "$value": "{color.blue.300}",
+          "$description": "1px inside rim."
+        },
+        "fg": {
+          "$value": "{color.white}"
+        },
+        "outline-fg": {
+          "$value": "{color.blue.500}"
+        },
+        "outline-border": {
+          "$value": "{color.blue.500}"
+        },
+        "ghost-fg": {
+          "$value": "{color.blue.500}"
+        },
+        "soft-bg": {
+          "$value": "{color.blue.50}"
+        },
+        "soft-fg": {
+          "$value": "{color.blue.800}"
+        }
+      },
+      "neutral": {
+        "bg": {
+          "$value": "{color.ink.80}"
+        },
+        "bg-hover": {
+          "$value": "{color.ink.60}"
+        },
+        "bg-active": {
+          "$value": "{color.sky.900}"
+        },
+        "fg": {
+          "$value": "{color.white}"
+        },
+        "ghost-fg": {
+          "$value": "{color.ink.80}"
+        },
+        "ghost-border": {
+          "$value": "{color.ink.80}"
+        },
+        "ghost-border-hover": {
+          "$value": "{color.ink.40}"
+        },
+        "ghost-bg-hover": {
+          "$value": "{color.sky.100}"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$value": "{color.grey.disabled}"
+        },
+        "fg": {
+          "$value": "{color.ink.55}"
+        }
+      }
+    },
+    "status": {
+      "positive": {
+        "container": {
+          "$value": "{color.green.50}"
+        },
+        "on-container": {
+          "$value": "{color.green.800}"
+        },
+        "outline": {
+          "$value": "{color.green.200}"
+        },
+        "solid": {
+          "$value": "{color.green.500}"
+        },
+        "on-solid": {
+          "$value": "{color.green.800}",
+          "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
+        }
+      },
+      "caution": {
+        "container": {
+          "$value": "{color.yellow.50}"
+        },
+        "on-container": {
+          "$value": "{color.yellow.800}"
+        },
+        "outline": {
+          "$value": "{color.yellow.200}"
+        },
+        "solid": {
+          "$value": "{color.yellow.500}"
+        },
+        "on-solid": {
+          "$value": "{color.yellow.900}",
+          "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
+        }
+      },
+      "critical": {
+        "container": {
+          "$value": "{color.red.50}"
+        },
+        "on-container": {
+          "$value": "{color.red.800}"
+        },
+        "outline": {
+          "$value": "{color.red.300}"
+        },
+        "solid": {
+          "$value": "{color.red.500}"
+        },
+        "on-solid": {
+          "$value": "{color.white}",
+          "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
+        }
+      },
+      "info": {
+        "container": {
+          "$value": "{color.blue.50}"
+        },
+        "on-container": {
+          "$value": "{color.blue.800}"
+        },
+        "outline": {
+          "$value": "{color.blue.200}"
+        },
+        "solid": {
+          "$value": "{color.blue.500}"
+        },
+        "on-solid": {
+          "$value": "{color.white}",
+          "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
+        }
+      },
+      "guarantee": {
+        "container": {
+          "$value": "{color.guarantee.50}"
+        },
+        "on-container": {
+          "$value": "{color.guarantee.800}"
+        },
+        "outline": {
+          "$value": "{color.guarantee.300}"
+        },
+        "solid": {
+          "$value": "{color.guarantee.800}"
+        },
+        "on-solid": {
+          "$value": "{color.white}",
+          "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
+        }
+      },
+      "neutral": {
+        "container": {
+          "$value": "{color.sky.100}"
+        },
+        "on-container": {
+          "$value": "{color.sky.800}"
+        },
+        "outline": {
+          "$value": "{color.sky.300}"
+        },
+        "solid": {
+          "$value": "{color.sky.500}"
+        },
+        "on-solid": {
+          "$value": "{color.white}",
+          "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
+        }
+      },
+      "dot-halo": {
+        "$value": "rgba(255, 255, 255, 0.4)",
+        "$description": "Outer edge of the StatusDot halo: 40% of the ground."
+      }
+    },
+    "commerce": {
+      "price": {
+        "$value": "{color.sky.800}",
+        "$description": "خود عدد قیمت"
+      },
+      "price-from": {
+        "$value": "{color.sky.600}",
+        "$description": "پیشوند «از …» و خط تعداد فروشنده"
+      },
+      "discount": {
         "$value": "{color.brand.red}"
       },
-      "bg-hover": {
-        "$value": "{color.brand.red}",
-        "$description": "Hover drops the gradient for the flat brand red."
+      "ad": {
+        "$value": "{color.red.500}",
+        "$description": "آگهی — یک قرص تخت با برچسب سفید. یک افشا که نباید با تخفیف اشتباه گرفته شود."
       },
-      "bg-active": {
-        "$value": "{color.red.800}"
+      "oos": {
+        "$value": "{color.sky.600}",
+        "$description": "ناموجود. عمداً خاکستری است نه قرمز؛ نبود کالا خطا نیست."
       },
-      "border": {
-        "$value": "{color.red.50}",
-        "$description": "1px inside rim. The signature edge on every filled Torob button."
+      "open": {
+        "$value": "{color.green.600}",
+        "$description": "باز الان"
       },
-      "fg": {
-        "$value": "{color.white}"
+      "closed": {
+        "$value": "{color.sky.600}"
       },
-      "outline-fg": {
-        "$value": "{color.red.600}"
+      "official": {
+        "$value": "{color.blue.500}",
+        "$description": "نمایندگی رسمی"
       },
-      "outline-border": {
-        "$value": "{color.brand.red}"
+      "distance": {
+        "$value": "{color.sky.600}"
       },
-      "ghost-fg": {
-        "$value": "{color.red.600}"
-      }
-    },
-    "blue": {
-      "$description": "مسیریابی · تماس — offline, store and contact actions.",
-      "bg-gradient": {
-        "$value": "linear-gradient(180deg, {color.blue.600} 0%, {color.blue.500} 100%)"
+      "kalabarg-bg": {
+        "$value": "{color.yellow.50}",
+        "$description": "کالابرگ — the payment-option badge. Same in every theme: it is a brand-like mark."
       },
-      "bg": {
-        "$value": "{color.blue.500}"
+      "ad-badge": {
+        "$value": "{color.yellow.500}",
+        "$description": "آگهی over a product photo (Badge/Card-Picture)."
       },
-      "bg-hover": {
-        "$value": "{color.blue.500}"
+      "ad-badge-fg": {
+        "$value": "{color.sky.800}",
+        "$description": "Label on the yellow ad badge. Fixed dark in every theme."
       },
-      "bg-active": {
-        "$value": "{color.blue.800}"
+      "guarantee-bg": {
+        "$value": "{color.guarantee.800}",
+        "$description": "ضمانت ترب badge ground (Badge/Card/Guarantee). Fixed in every theme."
       },
-      "border": {
-        "$value": "{color.blue.300}",
-        "$description": "1px inside rim."
+      "guarantee-accent": {
+        "$value": "#FFFF00",
+        "$description": "The yellow end of the holographic ramp; the badge chevron."
       },
-      "fg": {
-        "$value": "{color.white}"
+      "holo-text": {
+        "$value": "linear-gradient(90deg, {color.commerce.guarantee-accent} 0%, #00FFFF 100%)",
+        "$description": "The ضمانت ترب label ramp, yellow to cyan, physical left to right."
       },
-      "outline-fg": {
-        "$value": "{color.blue.500}"
+      "open-dot": {
+        "$value": "{color.green.500}",
+        "$description": "باز — the StatusDot core (Open Pin)."
       },
-      "outline-border": {
-        "$value": "{color.blue.500}"
+      "closed-dot": {
+        "$value": "{color.red.500}",
+        "$description": "بسته — the StatusDot core (Close Pin)."
       },
-      "ghost-fg": {
-        "$value": "{color.blue.500}"
+      "rating-bg": {
+        "$value": "{color.green.200}",
+        "$description": "Seller rating pill (۵ (۸ ماه در ترب))."
       },
-      "soft-bg": {
-        "$value": "{color.blue.50}"
-      },
-      "soft-fg": {
-        "$value": "{color.blue.800}"
-      }
-    },
-    "black": {
-      "$description": "Neutral. Runs on the legacy Ink ramp, not on Sky.",
-      "bg": {
-        "$value": "{color.ink.80}"
-      },
-      "bg-hover": {
-        "$value": "{color.ink.60}"
-      },
-      "bg-active": {
-        "$value": "{color.sky.900}"
-      },
-      "fg": {
-        "$value": "{color.white}"
-      },
-      "ghost-fg": {
-        "$value": "{color.ink.80}"
-      },
-      "ghost-border": {
-        "$value": "{color.ink.80}"
-      },
-      "ghost-border-hover": {
-        "$value": "{color.ink.40}"
-      },
-      "ghost-bg-hover": {
-        "$value": "{color.sky.100}"
-      }
-    },
-    "disabled": {
-      "$description": "One disabled treatment. Every family collapses to it — a disabled control must not still read as primary.",
-      "bg": {
-        "$value": "{color.grey.disabled}"
-      },
-      "fg": {
-        "$value": "{color.ink.55}"
-      }
-    }
-  },
-  "status": {
-    "$type": "color",
-    "positive": {
-      "fg": {
+      "rating-fg": {
         "$value": "{color.green.800}"
       },
-      "bg": {
-        "$value": "{color.green.50}"
+      "rating-star": {
+        "$value": "{color.green.700}"
       },
-      "border": {
-        "$value": "{color.green.200}"
+      "perk-bg": {
+        "$value": "{color.sky.100}",
+        "$description": "Store perk pill (ارسال رایگان، ارسال فوری)."
       },
-      "solid": {
-        "$value": "{color.green.500}"
+      "distance-near": {
+        "$value": "{color.green.650}",
+        "$description": "Distance on a store card (Sketch: Green 500, corrected for AA)."
       },
-      "on-solid": {
-        "$value": "{color.green.800}",
-        "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
+      "open-text": {
+        "$value": "{color.green.650}",
+        "$description": "«باز» and a near distance as text. Sketch draws Green 500, which fails AA; corrected."
       }
     },
-    "caution": {
-      "fg": {
-        "$value": "{color.yellow.800}"
+    "map": {
+      "pill-fg": {
+        "$value": "{color.blue.500}",
+        "$description": "متن و حلقهٔ قرص قیمت روی نقشه. در تم‌های تیره Blue 300 است؛ Blue 500 روی زمینهٔ تیره ۲٫۷ به ۱ می‌دهد و AA را رد می‌کند."
       },
-      "bg": {
-        "$value": "{color.yellow.50}"
+      "poi": {
+        "$value": "{color.blue.500}",
+        "$description": "A store marker (POI/Normal). Blue: a place you can go, not a price alarm."
       },
-      "border": {
-        "$value": "{color.yellow.200}"
-      },
-      "solid": {
-        "$value": "{color.yellow.500}"
-      },
-      "on-solid": {
-        "$value": "{color.yellow.900}",
-        "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
-      }
-    },
-    "critical": {
-      "fg": {
-        "$value": "{color.red.800}"
-      },
-      "bg": {
-        "$value": "{color.red.50}"
-      },
-      "border": {
-        "$value": "{color.red.300}"
-      },
-      "solid": {
-        "$value": "{color.red.500}"
-      },
-      "on-solid": {
-        "$value": "{color.white}",
-        "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
-      }
-    },
-    "info": {
-      "fg": {
-        "$value": "{color.blue.800}"
-      },
-      "bg": {
-        "$value": "{color.blue.50}"
-      },
-      "border": {
-        "$value": "{color.blue.200}"
-      },
-      "solid": {
+      "poi-selected": {
         "$value": "{color.blue.500}"
       },
-      "on-solid": {
+      "poi-dot": {
+        "$value": "{color.red.500}",
+        "$description": "POI/Dot — the far-zoom store dot."
+      },
+      "poi-ring": {
         "$value": "{color.white}",
-        "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
+        "$description": "2px inside ring on every marker, so it separates from any map tile."
+      },
+      "poi-fg": {
+        "$value": "{color.sky.50}",
+        "$description": "Glyph and figures on a filled marker."
+      },
+      "poi-selected-ring": {
+        "$value": "{color.blue.300}",
+        "$description": "2px outside ring and tail of the selected price marker."
+      },
+      "cluster-bg": {
+        "$value": "{color.blue.500}"
+      },
+      "cluster-fg": {
+        "$value": "{color.sky.50}"
+      },
+      "label": {
+        "$value": "{color.blue.500}",
+        "$description": "Store name under a selected marker."
+      },
+      "label-halo": {
+        "$value": "{color.white}",
+        "$description": "4px halo around the label, the colour of the map ground."
+      },
+      "me": {
+        "$value": "{color.blue.location}",
+        "$description": "You are here (Sketch \"Pin\")."
+      },
+      "me-halo": {
+        "$value": "{color.blue.location-halo}"
       }
     },
-    "guarantee": {
-      "fg": {
-        "$value": "{color.guarantee.800}"
-      },
+    "brand-plate": {
       "bg": {
-        "$value": "{color.guarantee.50}"
-      },
-      "border": {
-        "$value": "{color.guarantee.300}"
-      },
-      "solid": {
-        "$value": "{color.guarantee.800}"
-      },
-      "on-solid": {
         "$value": "{color.white}",
-        "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
+        "$description": "Brand / Logo plate. White in every theme, like a sticker."
       },
-      "$description": "ضمانت ترب"
-    },
-    "neutral": {
       "fg": {
-        "$value": "{color.sky.800}"
-      },
-      "bg": {
-        "$value": "{color.sky.100}"
-      },
-      "border": {
-        "$value": "{color.sky.300}"
-      },
-      "solid": {
-        "$value": "{color.sky.500}"
-      },
-      "on-solid": {
-        "$value": "{color.white}",
-        "$description": "رنگ متن روی سطح پرشدهٔ همین وضعیت. سالیدهای وضعیت در پوسته‌های تیره روشن‌اند، پس متن آنجا تیره می‌شود."
+        "$value": "{color.sky.500}",
+        "$description": "The one-colour mark on the plate."
       }
-    },
-    "dot-halo": {
-      "$value": "rgba(255, 255, 255, 0.4)",
-      "$description": "Outer edge of the StatusDot halo: 40% of the ground."
-    }
-  },
-  "commerce": {
-    "$type": "color",
-    "$description": "Torob-specific meaning. These are load-bearing — do not substitute generic status colours.",
-    "price": {
-      "$value": "{color.sky.800}",
-      "$description": "خود عدد قیمت"
-    },
-    "price-from": {
-      "$value": "{color.sky.600}",
-      "$description": "پیشوند «از …» و خط تعداد فروشنده"
-    },
-    "discount": {
-      "$value": "{color.brand.red}"
-    },
-    "ad": {
-      "$value": "{color.red.500}",
-      "$description": "آگهی — یک قرص تخت با برچسب سفید. یک افشا که نباید با تخفیف اشتباه گرفته شود."
-    },
-    "oos": {
-      "$value": "{color.sky.600}",
-      "$description": "ناموجود. عمداً خاکستری است نه قرمز؛ نبود کالا خطا نیست."
-    },
-    "open": {
-      "$value": "{color.green.600}",
-      "$description": "باز الان"
-    },
-    "closed": {
-      "$value": "{color.sky.600}"
-    },
-    "official": {
-      "$value": "{color.blue.500}",
-      "$description": "نمایندگی رسمی"
-    },
-    "distance": {
-      "$value": "{color.sky.600}"
-    },
-    "kalabarg-bg": {
-      "$value": "{color.yellow.50}",
-      "$description": "کالابرگ — the payment-option badge. Same in every theme: it is a brand-like mark."
-    },
-    "ad-badge": {
-      "$value": "{color.yellow.500}",
-      "$description": "آگهی over a product photo (Badge/Card-Picture)."
-    },
-    "ad-badge-fg": {
-      "$value": "{color.sky.800}",
-      "$description": "Label on the yellow ad badge. Fixed dark in every theme."
-    },
-    "guarantee-bg": {
-      "$value": "{color.guarantee.800}",
-      "$description": "ضمانت ترب badge ground (Badge/Card/Guarantee). Fixed in every theme."
-    },
-    "guarantee-accent": {
-      "$value": "#FFFF00",
-      "$description": "The yellow end of the holographic ramp; the badge chevron."
-    },
-    "holo-text": {
-      "$value": "linear-gradient(90deg, {commerce.guarantee-accent} 0%, #00FFFF 100%)",
-      "$description": "The ضمانت ترب label ramp, yellow to cyan, physical left to right."
-    },
-    "open-dot": {
-      "$value": "{color.green.500}",
-      "$description": "باز — the StatusDot core (Open Pin)."
-    },
-    "closed-dot": {
-      "$value": "{color.red.500}",
-      "$description": "بسته — the StatusDot core (Close Pin)."
-    },
-    "rating-bg": {
-      "$value": "{color.green.200}",
-      "$description": "Seller rating pill (۵ (۸ ماه در ترب))."
-    },
-    "rating-fg": {
-      "$value": "{color.green.800}"
-    },
-    "rating-star": {
-      "$value": "{color.green.700}"
-    },
-    "perk-bg": {
-      "$value": "{color.sky.100}",
-      "$description": "Store perk pill (ارسال رایگان، ارسال فوری)."
-    },
-    "distance-near": {
-      "$value": "{color.green.650}",
-      "$description": "Distance on a store card (Sketch: Green 500, corrected for AA)."
-    },
-    "open-text": {
-      "$value": "{color.green.650}",
-      "$description": "«باز» and a near distance as text. Sketch draws Green 500, which fails AA; corrected."
-    }
-  },
-  "map": {
-    "$type": "color",
-    "$description": "لایهٔ نقشهٔ «خرید از اطراف»",
-    "pill-fg": {
-      "$value": "{color.blue.500}",
-      "$description": "متن و حلقهٔ قرص قیمت روی نقشه. در تم‌های تیره Blue 300 است؛ Blue 500 روی زمینهٔ تیره ۲٫۷ به ۱ می‌دهد و AA را رد می‌کند."
-    },
-    "poi": {
-      "$value": "{color.blue.500}",
-      "$description": "A store marker (POI/Normal). Blue: a place you can go, not a price alarm."
-    },
-    "poi-selected": {
-      "$value": "{color.blue.500}"
-    },
-    "poi-dot": {
-      "$value": "{color.red.500}",
-      "$description": "POI/Dot — the far-zoom store dot."
-    },
-    "cluster-bg": {
-      "$value": "{color.blue.500}"
-    },
-    "cluster-fg": {
-      "$value": "{color.sky.50}"
-    },
-    "poi-ring": {
-      "$value": "{color.white}",
-      "$description": "2px inside ring on every marker, so it separates from any map tile."
-    },
-    "poi-fg": {
-      "$value": "{color.sky.50}",
-      "$description": "Glyph and figures on a filled marker."
-    },
-    "poi-selected-ring": {
-      "$value": "{color.blue.300}",
-      "$description": "2px outside ring and tail of the selected price marker."
-    },
-    "label": {
-      "$value": "{color.blue.500}",
-      "$description": "Store name under a selected marker."
-    },
-    "label-halo": {
-      "$value": "{color.white}",
-      "$description": "4px halo around the label, the colour of the map ground."
-    },
-    "me": {
-      "$value": "{color.blue.location}",
-      "$description": "You are here (Sketch \"Pin\")."
-    },
-    "me-halo": {
-      "$value": "{color.blue.location-halo}"
-    }
-  },
-  "brand": {
-    "$type": "color",
-    "$description": "Fixed brand surfaces.",
-    "plate-bg": {
-      "$value": "{color.white}",
-      "$description": "Brand / Logo plate. White in every theme, like a sticker."
-    },
-    "plate-fg": {
-      "$value": "{color.sky.500}",
-      "$description": "The one-colour mark on the plate."
     }
   }
 }

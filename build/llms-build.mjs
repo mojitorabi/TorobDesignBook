@@ -172,18 +172,28 @@ This project uses the Torob Design System — کتاب دیزاین ترب. An M
 - At most 3 glass surfaces per viewport; never on repeating elements.
 - Direction lives on <html dir>, never on a component.
 
+## Names
+Every public name says its role in full. \`button\`, not \`btn\`. \`checkbox\`,
+not \`check\`. \`color-surface\` / \`color-on-surface\` / \`color-outline\` for
+surface, text and line, the way Material 3 names them. Intent over pigment:
+\`action-primary\`, not \`action-red\`.
+
+Every name this system used before still works — the old token is an alias and
+the old class still selects — but write the new one. \`get_migration()\` has the
+full table.
+
 ## Before you present code
 Run validate_code() on it and fix everything it reports.
 
 ## Quick reference
-Surfaces   var(--t-bg-canvas) var(--t-bg-fog) var(--t-bg-subtle)
-Text       var(--t-fg-default) var(--t-fg-secondary) var(--t-fg-disabled)
-Borders    var(--t-border-subtle) var(--t-border-default) var(--t-border-control)
-Actions    var(--t-action-primary-bg) var(--t-action-accent-bg)
+Surfaces   var(--t-color-surface) var(--t-color-surface-raised) var(--t-color-surface-container)
+Text       var(--t-color-on-surface) var(--t-color-on-surface-variant) var(--t-color-on-surface-disabled)
+Borders    var(--t-color-outline-subtle) var(--t-color-outline) var(--t-color-outline-control)
+Actions    var(--t-color-action-primary-bg) var(--t-color-action-accent-bg)
 Spacing    var(--t-space-1..20)   4px grid
 Radius     var(--t-radius-md)     12px default
 Motion     var(--t-duration-micro|standard|sheet) + var(--t-easing-out)
-Glass      class="t-glass" / --list / --solid / --selected / --filters
+Glass      class="t-glass" / --list / --solid / --selected / --filters / --inverse
 `;
 writeFileSync(join(ROOT, 'packages/mcp/AGENT_RULES.md'), rules);
 writeFileSync(join(ROOT, 'CLAUDE.md'), rules);

@@ -26,7 +26,7 @@
 /* ← Brand / Logo: the mark in one colour (Sky 500) on a white 32px plate,
    2px in from each edge. For places where the full-colour mark would fight
    the content around it: toolbars, empty states, seller documents. */
-.t-brand--plate { display: inline-grid; place-items: center; background: var(--t-brand-plate-bg); color: var(--t-brand-plate-fg); }
+.t-brand--plate { display: inline-grid; place-items: center; background: var(--t-color-brand-plate-bg); color: var(--t-color-brand-plate-fg); }
 .t-brand--plate > svg { inline-size: calc(var(--_s) - 4px); block-size: calc(var(--_s) - 4px); }
 
 /* The lockup: mark plus wordmark, aligned on the optical centre rather than
@@ -37,10 +37,10 @@
   align-items: center;
   gap: var(--t-space-2);
   text-decoration: none;
-  color: var(--t-fg-default);
+  color: var(--t-color-on-surface);
   font-weight: var(--t-font-weight-extrabold);
   font-size: var(--t-font-size-16);
-  line-height: var(--t-font-leading-16);
+  line-height: var(--t-font-line-height-16);
 }
 
 /* ---- Guarantee mark  ← Torob star hologram ----
@@ -71,8 +71,8 @@
   padding-inline-start: var(--t-space-1);
   padding-inline-end: var(--t-space-2);
   border-radius: var(--t-radius-full);
-  background: var(--t-status-guarantee-bg);
-  color: var(--t-status-guarantee-fg);
+  background: var(--t-color-status-guarantee-container);
+  color: var(--t-color-status-guarantee-on-container);
   font-size: var(--t-font-size-12);
   line-height: 1;
   font-weight: var(--t-font-weight-bold);
@@ -94,13 +94,13 @@
   padding-inline: var(--t-space-2);
   border-radius: var(--t-radius-md);
   text-decoration: none;
-  color: var(--t-fg-default);
+  color: var(--t-color-on-surface);
   font-size: var(--t-font-size-14);
-  line-height: var(--t-font-leading-14);
+  line-height: var(--t-font-line-height-14);
   font-weight: var(--t-font-weight-medium);
   transition: background-color var(--t-duration-micro) var(--t-easing-out);
 }
-.t-social:hover { background-color: var(--t-action-black-ghost-bg-hover); }
+.t-social:hover { background-color: var(--t-color-action-neutral-ghost-bg-hover); }
 .t-social:active { transform: scale(0.94); }
 .t-social[data-state~="disabled"], .t-social[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
 .t-social__mark {

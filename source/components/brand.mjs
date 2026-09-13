@@ -5,11 +5,11 @@
 export default [
   {
     "name": "SplitButton",
-    "root": "t-btn-split",
+    "root": "t-button-split",
     "slug": "split-button",
     "group": "Actions",
     "status": "revised",
-    "rootClass": "t-btn-split",
+    "rootClass": "t-button-split",
     "legacy": [
       "Button / Red /split",
       "Button / Blue /split"
@@ -36,7 +36,7 @@ export default [
       [
         "نیمهٔ اصلی",
         "آیکون اختیاری و برچسب Bold ۱۴. فاصلهٔ داخلی ۱۲ در ابتدای محور.",
-        ".t-btn:not(.t-btn-split__more)"
+        ".t-button:not(.t-button-split__more)"
       ],
       [
         "لبهٔ مشترک",
@@ -45,7 +45,7 @@ export default [
       [
         "بخش شورون",
         "۴۴ پیکسل ثابت، فقط آیکون، همیشه با نام دسترس‌پذیر.",
-        ".t-btn-split__more"
+        ".t-button-split__more"
       ],
       [
         "منو",
@@ -89,17 +89,17 @@ export default [
       {
         "label": "قرمز و آبی",
         "canvas": "plain",
-        "html": "<div style=\"display:flex;gap:12px;flex-wrap:wrap\">\n  <div class=\"t-btn-split\">\n    <button type=\"button\" class=\"t-btn t-btn--red\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"28\" r=\"2\"/><circle cx=\"24\" cy=\"28\" r=\"2\"/><path d=\"M28,7H5.82L5,2.8A1,1,0,0,0,4,2H0V4H3.18L7,23.2A1,1,0,0,0,8,24H26V22H8.82L8,18H26a1,1,0,0,0,1-.78l2-9A1,1,0,0,0,28,7Zm-2.8,9H7.62L6.22,9H26.75Z\"/></svg>برو به سایت</button>\n    <button type=\"button\" class=\"t-btn t-btn--red t-btn-split__more\" aria-label=\"فروشندگان دیگر این کالا\" aria-haspopup=\"menu\" aria-expanded=\"false\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 22 6 12 7.4 10.6 16 19.2 24.6 10.6 26 12z\"/></svg></button>\n  </div>\n  <div class=\"t-btn-split\">\n    <button type=\"button\" class=\"t-btn t-btn--blue\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26,29h-.17C6.18,27.87,3.39,11.29,3,6.23A3,3,0,0,1,5.76,3h5.51a2,2,0,0,1,1.86,1.26L14.65,8a2,2,0,0,1-.44,2.16l-2.13,2.15a9.37,9.37,0,0,0,7.58,7.6l2.17-2.15A2,2,0,0,1,24,17.35l3.77,1.51A2,2,0,0,1,29,20.72V26A3,3,0,0,1,26,29ZM6,5A1,1,0,0,0,5,6v.08C5.46,12,8.41,26,25.94,27A1,1,0,0,0,27,26.06V20.72l-3.77-1.51-2.87,2.85L19.88,22C11.18,20.91,10,12.21,10,12.12l-.06-.48,2.84-2.87L11.28,5Z\"/></svg>تماس با فروشگاه</button>\n    <button type=\"button\" class=\"t-btn t-btn--blue t-btn-split__more\" aria-label=\"راه‌های دیگر ارتباط\" aria-haspopup=\"menu\" aria-expanded=\"false\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 22 6 12 7.4 10.6 16 19.2 24.6 10.6 26 12z\"/></svg></button>\n  </div>\n</div>",
+        "html": "<div style=\"display:flex;gap:12px;flex-wrap:wrap\">\n  <div class=\"t-button-split\">\n    <button type=\"button\" class=\"t-button t-button--red\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"28\" r=\"2\"/><circle cx=\"24\" cy=\"28\" r=\"2\"/><path d=\"M28,7H5.82L5,2.8A1,1,0,0,0,4,2H0V4H3.18L7,23.2A1,1,0,0,0,8,24H26V22H8.82L8,18H26a1,1,0,0,0,1-.78l2-9A1,1,0,0,0,28,7Zm-2.8,9H7.62L6.22,9H26.75Z\"/></svg>برو به سایت</button>\n    <button type=\"button\" class=\"t-button t-button--red t-button-split__more\" aria-label=\"فروشندگان دیگر این کالا\" aria-haspopup=\"menu\" aria-expanded=\"false\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 22 6 12 7.4 10.6 16 19.2 24.6 10.6 26 12z\"/></svg></button>\n  </div>\n  <div class=\"t-button-split\">\n    <button type=\"button\" class=\"t-button t-button--blue\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26,29h-.17C6.18,27.87,3.39,11.29,3,6.23A3,3,0,0,1,5.76,3h5.51a2,2,0,0,1,1.86,1.26L14.65,8a2,2,0,0,1-.44,2.16l-2.13,2.15a9.37,9.37,0,0,0,7.58,7.6l2.17-2.15A2,2,0,0,1,24,17.35l3.77,1.51A2,2,0,0,1,29,20.72V26A3,3,0,0,1,26,29ZM6,5A1,1,0,0,0,5,6v.08C5.46,12,8.41,26,25.94,27A1,1,0,0,0,27,26.06V20.72l-3.77-1.51-2.87,2.85L19.88,22C11.18,20.91,10,12.21,10,12.12l-.06-.48,2.84-2.87L11.28,5Z\"/></svg>تماس با فروشگاه</button>\n    <button type=\"button\" class=\"t-button t-button--blue t-button-split__more\" aria-label=\"راه‌های دیگر ارتباط\" aria-haspopup=\"menu\" aria-expanded=\"false\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 22 6 12 7.4 10.6 16 19.2 24.6 10.6 26 12z\"/></svg></button>\n  </div>\n</div>",
         "note": "همان دو سیمبلی که در کیت هستند. قرمز کنش اینترنتی، آبی کنش حضوری."
       },
       {
         "label": "خنثی",
         "canvas": "plain",
-        "html": "<div class=\"t-btn-split\">\n  <button type=\"button\" class=\"t-btn t-btn--black\">ذخیره</button>\n  <button type=\"button\" class=\"t-btn t-btn--black t-btn-split__more\" aria-label=\"گزینه‌های ذخیره\" aria-haspopup=\"menu\" aria-expanded=\"false\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 22 6 12 7.4 10.6 16 19.2 24.6 10.6 26 12z\"/></svg></button>\n</div>",
+        "html": "<div class=\"t-button-split\">\n  <button type=\"button\" class=\"t-button t-button--black\">ذخیره</button>\n  <button type=\"button\" class=\"t-button t-button--black t-button-split__more\" aria-label=\"گزینه‌های ذخیره\" aria-haspopup=\"menu\" aria-expanded=\"false\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 22 6 12 7.4 10.6 16 19.2 24.6 10.6 26 12z\"/></svg></button>\n</div>",
         "note": "خانوادهٔ مشکی تخت است و لبه ندارد، پس جداکننده از لبهٔ پیش‌فرض کنترل می‌آید."
       }
     ],
-    "react": "export function SplitButton({ variant = 'red', children, onAction, menuLabel, items = [] }) {\n  const [open, setOpen] = useState(false);\n  return (\n    <div className=\"t-btn-split\">\n      <button type=\"button\" className={`t-btn t-btn--${variant}`} onClick={onAction}>\n        {children}\n      </button>\n      <button\n        type=\"button\"\n        className={`t-btn t-btn--${variant} t-btn-split__more`}\n        aria-label={menuLabel}\n        aria-haspopup=\"menu\"\n        aria-expanded={open}\n        onClick={() => setOpen(o => !o)}\n      >\n        <Icon name=\"chevron--down\" size={20} />\n      </button>\n      {open && <Menu items={items} onClose={() => setOpen(false)} />}\n    </div>\n  );\n}"
+    "react": "export function SplitButton({ variant = 'red', children, onAction, menuLabel, items = [] }) {\n  const [open, setOpen] = useState(false);\n  return (\n    <div className=\"t-button-split\">\n      <button type=\"button\" className={`t-button t-button--${variant}`} onClick={onAction}>\n        {children}\n      </button>\n      <button\n        type=\"button\"\n        className={`t-button t-button--${variant} t-button-split__more`}\n        aria-label={menuLabel}\n        aria-haspopup=\"menu\"\n        aria-expanded={open}\n        onClick={() => setOpen(o => !o)}\n      >\n        <Icon name=\"chevron--down\" size={20} />\n      </button>\n      {open && <Menu items={items} onClose={() => setOpen(false)} />}\n    </div>\n  );\n}"
   },
   {
     "name": "FilterBar",
@@ -188,7 +188,7 @@ export default [
       {
         "label": "چسبیده به بالا",
         "canvas": "plain",
-        "html": "<div style=\"block-size:150px;overflow:auto;border:1px solid var(--t-border-subtle);border-radius:12px\">\n  <div class=\"t-filter-bar t-filter-bar--sticky\">\n    <button type=\"button\" class=\"t-chip\">قیمت<svg class=\"t-icon t-chip__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z\"/></svg></button><button type=\"button\" class=\"t-chip\">برند<svg class=\"t-icon t-chip__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z\"/></svg></button><button type=\"button\" class=\"t-chip\">شهر<svg class=\"t-icon t-chip__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z\"/></svg></button>\n  </div>\n  <div style=\"padding:16px;font-size:13px;line-height:2;color:var(--t-fg-secondary)\">\n    نتیجهٔ اول<br>نتیجهٔ دوم<br>نتیجهٔ سوم<br>نتیجهٔ چهارم<br>نتیجهٔ پنجم<br>نتیجهٔ ششم\n  </div>\n</div>",
+        "html": "<div style=\"block-size:150px;overflow:auto;border:1px solid var(--t-color-outline-subtle);border-radius:12px\">\n  <div class=\"t-filter-bar t-filter-bar--sticky\">\n    <button type=\"button\" class=\"t-chip\">قیمت<svg class=\"t-icon t-chip__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z\"/></svg></button><button type=\"button\" class=\"t-chip\">برند<svg class=\"t-icon t-chip__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z\"/></svg></button><button type=\"button\" class=\"t-chip\">شهر<svg class=\"t-icon t-chip__chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z\"/></svg></button>\n  </div>\n  <div style=\"padding:16px;font-size:13px;line-height:2;color:var(--t-color-on-surface-variant)\">\n    نتیجهٔ اول<br>نتیجهٔ دوم<br>نتیجهٔ سوم<br>نتیجهٔ چهارم<br>نتیجهٔ پنجم<br>نتیجهٔ ششم\n  </div>\n</div>",
         "note": "حالت چسبیده پس‌زمینهٔ مات می‌گیرد، نه شیشه — محتوا از پشتش رد می‌شود."
       }
     ],

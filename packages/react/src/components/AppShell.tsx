@@ -12,13 +12,13 @@ export function AppShell({ nav, current, collapsed, children, topbar, brand }) {
       <nav className="t-shell__nav" aria-label="ناوبری پنل">
         {nav.map(g => (
           <Fragment key={g.title}>
-            {g.title && <div className="t-navgroup__title">{g.title}</div>}
+            {g.title && <div className="t-nav-group__title">{g.title}</div>}
             {g.items.map(i => (
-              <a key={i.href} href={i.href} className="t-navitem"
+              <a key={i.href} href={i.href} className="t-nav-item"
                  aria-label={collapsed ? i.label : undefined}
                  aria-current={i.href === current ? 'page' : undefined}>
                 {i.icon}{!collapsed && i.label}
-                {i.count != null && !collapsed && <span className="t-navitem__count">{toFa(i.count)}</span>}
+                {i.count != null && !collapsed && <span className="t-nav-item__count">{toFa(i.count)}</span>}
               </a>
             ))}
           </Fragment>

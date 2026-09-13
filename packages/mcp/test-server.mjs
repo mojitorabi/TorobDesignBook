@@ -18,7 +18,7 @@ console.log('RESOURCES (%d)', (await c.listResources()).resources.length);
 
 show('search_components("Button / Red / Default")  — legacy name lookup', await call('search_components', { query: 'Button / Red / Default' }));
 show('get_tokens(filter="glass.light.surface")', await call('get_tokens', { filter: 'glass.light.surface', format: 'css' }));
-show('resolve_token("--t-fg-default")', await call('resolve_token', { token: '--t-fg-default' }));
+show('resolve_token("--t-color-on-surface")', await call('resolve_token', { token: '--t-color-on-surface' }));
 show('search_icons("filter")', await call('search_icons', { query: 'filter', limit: 5 }));
 show('get_icon("filter", 20)', await call('get_icon', { name: 'filter', size: 20 }), 330);
 show('get_migration("POI")', await call('get_migration', { name: 'POI' }));
@@ -39,7 +39,7 @@ show('validate_code(deliberately bad CSS)', await call('validate_code', { code: 
 
 show('validate_code(correct CSS)', await call('validate_code', {
   code: `.t-card {
-  background: var(--t-bg-fog);
+  background: var(--t-color-surface-raised);
   margin-inline-start: var(--t-space-4);
   border-radius: var(--t-radius-md);
   text-align: start;

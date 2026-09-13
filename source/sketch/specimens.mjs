@@ -58,38 +58,38 @@ const S = {};
 const add = (id, html, opts = {}) => { S[id] = { html: html.trim(), ...opts }; };
 
 /* ───────────── Buttons ───────────── */
-add('7BE18F04-4654-4C3A-81E4-991626D590FB', `<button class="t-btn t-btn--red" style="inline-size:111px">خرید اینترنتی</button>`);
-add('394E4478-1EA8-462E-A041-D332C0241F8D', `<button class="t-btn t-btn--red" data-state="hover" style="inline-size:111px">خرید اینترنتی</button>`);
-add('3E6E9397-637C-4B37-8080-82E31462F562', `<button class="t-btn t-btn--red" disabled style="inline-size:111px">خرید اینترنتی</button>`);
-add('8B15F240-F1E9-4F22-ADEF-1A6CE9E90EC0', `<button class="t-btn t-btn--red" style="inline-size:162.5px">${icon('send--alt--filled')}برو به سایت</button>`);
-add('ACABA83F-4A6F-4221-BE1E-109DB5357E73', `<button class="t-btn t-btn--black">عنوان</button>`);
-add('A7D7E08F-4F3C-4F24-AE0A-944973305015', `<button class="t-btn t-btn--black" data-state="hover">عنوان</button>`);
-add('17F27B29-82A7-4835-9CF5-62EE492DD36B', `<button class="t-btn t-btn--black" disabled>عنوان</button>`);
-add('2C9CE530-4396-4529-A844-88D1A4989DEA', `<button class="t-btn t-btn--black-ghost">عنوان</button>`);
-add('3030DFDE-AADC-490A-928C-525CBF581E09', `<button class="t-btn t-btn--black-ghost" data-state="hover">عنوان</button>`);
-add('3737D472-40B9-4886-A9F6-6AEFB24EE6B4', `<button class="t-btn t-btn--glass" style="inline-size:162.5px">${icon('location--filled')}مسیریابی</button>`);
-add('58C31AC1-6BCF-4917-943C-CAD03D4AF0D1', `<button class="t-btn t-btn--blue" aria-expanded="false">اطلاعات تماس${ticon('chevron-tiny--down', 't-icon t-icon--tiny t-icon--end')}</button>`);
-add('C07442FE-F899-4509-9542-13467E49BF26', `<button class="t-btn t-btn--blue" data-state="hover" aria-expanded="false">اطلاعات تماس${ticon('chevron-tiny--down', 't-icon t-icon--tiny t-icon--end')}</button>`);
-add('30985458-21FF-45EB-B83D-92DA3272B6D5', `<button class="t-btn t-btn--blue" aria-expanded="true">اطلاعات تماس${ticon('chevron-tiny--down', 't-icon t-icon--tiny t-icon--end')}</button>`);
-add('51800D41-20BE-460E-855F-9669DFF68041', `<button class="t-btn t-btn--blue" style="inline-size:162.5px">${icon('send--alt--filled')}ارتباط با فروشگاه</button>`);
-add('A7D7BED9-EB1A-4FBA-A0EF-F2C353AD23DF', `<button class="t-btn t-btn--glass t-btn--blue-ghost" style="inline-size:162.5px">${icon('location--filled')}مسیریابی</button>`);
-add('76FC76F5-42F1-4BCE-A05C-04151B492E30', `<button class="t-btn t-btn--glass t-btn--blue-ghost" style="inline-size:162.5px">${icon('location--filled')}مسیریابی</button>`, { theme: 'dim' });
-add('CB47F42E-18D9-4AF5-AA01-200F6936BD5B', `<button class="t-btn t-btn--blue t-btn--sm">فروشگاه‌ها</button>`);
-add('C23CEACE-F7D1-4C52-A0A7-9239B76116D6', `<button class="t-btn t-btn--xs t-btn--filter">${ticon('report')}گزارش</button>`);
-add('0A78F262-B375-4282-9C3D-1642B54A81D6', `<div class="t-btn-split"><button class="t-btn t-btn--red">${icon('shopping--cart')}برو به سایت</button><button class="t-btn t-btn--red t-btn-split__more" aria-label="فروشگاه‌های دیگر">${icon('chevron--down')}</button></div>`);
-add('BB4AF158-2170-4FFB-9534-14DC72B6A77F', `<div class="t-btn-split"><button class="t-btn t-btn--blue">${icon('shopping--cart')}برو به سایت</button><button class="t-btn t-btn--blue t-btn-split__more" aria-label="فروشگاه‌های دیگر">${icon('chevron--down')}</button></div>`);
+add('7BE18F04-4654-4C3A-81E4-991626D590FB', `<button class="t-button t-button--red" style="inline-size:111px">خرید اینترنتی</button>`);
+add('394E4478-1EA8-462E-A041-D332C0241F8D', `<button class="t-button t-button--red" data-state="hover" style="inline-size:111px">خرید اینترنتی</button>`);
+add('3E6E9397-637C-4B37-8080-82E31462F562', `<button class="t-button t-button--red" disabled style="inline-size:111px">خرید اینترنتی</button>`);
+add('8B15F240-F1E9-4F22-ADEF-1A6CE9E90EC0', `<button class="t-button t-button--red" style="inline-size:162.5px">${icon('send--alt--filled')}برو به سایت</button>`);
+add('ACABA83F-4A6F-4221-BE1E-109DB5357E73', `<button class="t-button t-button--black">عنوان</button>`);
+add('A7D7E08F-4F3C-4F24-AE0A-944973305015', `<button class="t-button t-button--black" data-state="hover">عنوان</button>`);
+add('17F27B29-82A7-4835-9CF5-62EE492DD36B', `<button class="t-button t-button--black" disabled>عنوان</button>`);
+add('2C9CE530-4396-4529-A844-88D1A4989DEA', `<button class="t-button t-button--black-ghost">عنوان</button>`);
+add('3030DFDE-AADC-490A-928C-525CBF581E09', `<button class="t-button t-button--black-ghost" data-state="hover">عنوان</button>`);
+add('3737D472-40B9-4886-A9F6-6AEFB24EE6B4', `<button class="t-button t-button--glass" style="inline-size:162.5px">${icon('location--filled')}مسیریابی</button>`);
+add('58C31AC1-6BCF-4917-943C-CAD03D4AF0D1', `<button class="t-button t-button--blue" aria-expanded="false">اطلاعات تماس${ticon('chevron-tiny--down', 't-icon t-icon--tiny t-icon--end')}</button>`);
+add('C07442FE-F899-4509-9542-13467E49BF26', `<button class="t-button t-button--blue" data-state="hover" aria-expanded="false">اطلاعات تماس${ticon('chevron-tiny--down', 't-icon t-icon--tiny t-icon--end')}</button>`);
+add('30985458-21FF-45EB-B83D-92DA3272B6D5', `<button class="t-button t-button--blue" aria-expanded="true">اطلاعات تماس${ticon('chevron-tiny--down', 't-icon t-icon--tiny t-icon--end')}</button>`);
+add('51800D41-20BE-460E-855F-9669DFF68041', `<button class="t-button t-button--blue" style="inline-size:162.5px">${icon('send--alt--filled')}ارتباط با فروشگاه</button>`);
+add('A7D7BED9-EB1A-4FBA-A0EF-F2C353AD23DF', `<button class="t-button t-button--glass t-button--blue-ghost" style="inline-size:162.5px">${icon('location--filled')}مسیریابی</button>`);
+add('76FC76F5-42F1-4BCE-A05C-04151B492E30', `<button class="t-button t-button--glass t-button--blue-ghost" style="inline-size:162.5px">${icon('location--filled')}مسیریابی</button>`, { theme: 'dim' });
+add('CB47F42E-18D9-4AF5-AA01-200F6936BD5B', `<button class="t-button t-button--blue t-button--sm">فروشگاه‌ها</button>`);
+add('C23CEACE-F7D1-4C52-A0A7-9239B76116D6', `<button class="t-button t-button--xs t-button--filter">${ticon('report')}گزارش</button>`);
+add('0A78F262-B375-4282-9C3D-1642B54A81D6', `<div class="t-button-split"><button class="t-button t-button--red">${icon('shopping--cart')}برو به سایت</button><button class="t-button t-button--red t-button-split__more" aria-label="فروشگاه‌های دیگر">${icon('chevron--down')}</button></div>`);
+add('BB4AF158-2170-4FFB-9534-14DC72B6A77F', `<div class="t-button-split"><button class="t-button t-button--blue">${icon('shopping--cart')}برو به سایت</button><button class="t-button t-button--blue t-button-split__more" aria-label="فروشگاه‌های دیگر">${icon('chevron--down')}</button></div>`);
 
 /* Icon-only */
-add('F8D486A1-1216-4546-B67E-FFC7A66D0D82', `<button class="t-icon-btn t-icon-btn--accent" aria-label="تماس">${icon('phone--filled')}</button>`);
-add('74A28072-5A8E-402F-802F-FD5057864C4B', `<button class="t-icon-btn t-icon-btn--accent-ghost" aria-label="تماس">${icon('phone--filled')}</button>`);
-add('250D8218-29C2-455F-A7FC-4944D8CD2633', `<button class="t-icon-btn t-icon-btn--glass" aria-label="ترب">${logo()}</button>`);
-add('214DDA2D-686C-43A6-BDAC-6F98D8E6F835', `<button class="t-icon-btn t-icon-btn--sm t-icon-btn--round t-icon-btn--filter" aria-label="بیشتر">${icon('overflow-menu--horizontal', 16)}</button>`);
-add('1B633B15-BE37-43EB-A4B2-DF506A1BB5ED', `<button class="t-icon-btn t-icon-btn--sm t-icon-btn--round t-icon-btn--filter" aria-label="بیشتر">${icon('overflow-menu--horizontal', 16)}</button>`);
+add('F8D486A1-1216-4546-B67E-FFC7A66D0D82', `<button class="t-icon-button t-icon-button--accent" aria-label="تماس">${icon('phone--filled')}</button>`);
+add('74A28072-5A8E-402F-802F-FD5057864C4B', `<button class="t-icon-button t-icon-button--accent-ghost" aria-label="تماس">${icon('phone--filled')}</button>`);
+add('250D8218-29C2-455F-A7FC-4944D8CD2633', `<button class="t-icon-button t-icon-button--glass" aria-label="ترب">${logo()}</button>`);
+add('214DDA2D-686C-43A6-BDAC-6F98D8E6F835', `<button class="t-icon-button t-icon-button--sm t-icon-button--round t-icon-button--filter" aria-label="بیشتر">${icon('overflow-menu--horizontal', 16)}</button>`);
+add('1B633B15-BE37-43EB-A4B2-DF506A1BB5ED', `<button class="t-icon-button t-icon-button--sm t-icon-button--round t-icon-button--filter" aria-label="بیشتر">${icon('overflow-menu--horizontal', 16)}</button>`);
 
 /* Buy box */
-add('D4AC33F9-CA8E-4652-8230-EE1E1EE74474', `<button class="t-buybox"><span class="t-buybox__body"><span class="t-buybox__seller">خرید از تکنولایف</span><span class="t-buybox__price">۱۶٫۱۰۰٫۰۰۰ تومان</span></span><span class="t-buybox__ad">آگهی</span></button>`);
-add('5808E4E2-B1FC-41F2-8177-39495890277E', `<button class="t-buybox t-buybox--offline"><span class="t-buybox__body"><span class="t-buybox__seller">خرید از تکنولایف</span><span class="t-buybox__price">۱۶٫۱۰۰٫۰۰۰ تومان</span></span><span class="t-buybox__ad">آگهی</span></button>`);
-add('EA7A75AF-3DA7-4F06-BFAB-6479DC719785', `<button class="t-buybox t-buybox--compact"><span class="t-buybox__body"><span class="t-buybox__seller">خرید از ارزان‌ترین فروشنده</span></span></button>`);
+add('D4AC33F9-CA8E-4652-8230-EE1E1EE74474', `<button class="t-buy-box"><span class="t-buy-box__body"><span class="t-buy-box__seller">خرید از تکنولایف</span><span class="t-buy-box__price">۱۶٫۱۰۰٫۰۰۰ تومان</span></span><span class="t-buy-box__ad">آگهی</span></button>`);
+add('5808E4E2-B1FC-41F2-8177-39495890277E', `<button class="t-buy-box t-buy-box--offline"><span class="t-buy-box__body"><span class="t-buy-box__seller">خرید از تکنولایف</span><span class="t-buy-box__price">۱۶٫۱۰۰٫۰۰۰ تومان</span></span><span class="t-buy-box__ad">آگهی</span></button>`);
+add('EA7A75AF-3DA7-4F06-BFAB-6479DC719785', `<button class="t-buy-box t-buy-box--compact"><span class="t-buy-box__body"><span class="t-buy-box__seller">خرید از ارزان‌ترین فروشنده</span></span></button>`);
 
 /* ───────────── Badges ───────────── */
 add('315B0EC6-2861-415F-BF74-F747D5848801', `<span class="t-badge t-badge--kalabarg">${ticon('kalabarg')}کالابرگ</span>`);
@@ -155,7 +155,7 @@ add('4BF08B65-CAD6-4882-8DCD-3158721D53F6', `<header class="t-page-header t-page
       <a class="t-hours" href="#"><span class="t-status-dot"></span><span class="t-hours__state">باز</span> تا ۲۲:۳۰${icon('chevron--left')}</a>
     </div>
   </div>
-  <button class="t-icon-btn t-icon-btn--sm t-icon-btn--round t-icon-btn--filter" aria-label="بیشتر">${icon('overflow-menu--horizontal', 16)}</button>
+  <button class="t-icon-button t-icon-button--sm t-icon-button--round t-icon-button--filter" aria-label="بیشتر">${icon('overflow-menu--horizontal', 16)}</button>
 </header>`);
 
 /* ───────────── Status dots ───────────── */
@@ -210,9 +210,9 @@ add('641CDD78-38C5-4142-A597-74BBABBB77D6', `<a class="t-product-card" href="#" 
 </a>`);
 
 /* ───────────── Store card ───────────── */
-const storeActions = (dim) => `<div class="t-store-card__actions"><button class="t-btn t-btn--blue">${icon('send--alt--filled')}ارتباط با فروشگاه</button><button class="t-btn t-btn--blue-ghost">${icon('location--filled')}مسیریابی</button></div>`;
-const statusChip = (open) => `<button class="t-btn t-btn--xs t-btn--filter"><span class="t-status-dot${open ? '' : ' t-status-dot--closed'}"></span>${open ? 'باز' : 'بسته'} تا ۲۲:۳۰</button>`;
-const chips = (open, kala) => `<div class="t-store-card__chips">${statusChip(open)}<button class="t-btn t-btn--xs t-btn--filter">${icon('information', 16)}توضیحات</button><button class="t-btn t-btn--xs t-btn--filter">${ticon('report')}گزارش</button>${kala ? `<span class="t-badge t-badge--kalabarg">${ticon('kalabarg')}کالابرگ</span>` : ''}</div>`;
+const storeActions = (dim) => `<div class="t-store-card__actions"><button class="t-button t-button--blue">${icon('send--alt--filled')}ارتباط با فروشگاه</button><button class="t-button t-button--blue-ghost">${icon('location--filled')}مسیریابی</button></div>`;
+const statusChip = (open) => `<button class="t-button t-button--xs t-button--filter"><span class="t-status-dot${open ? '' : ' t-status-dot--closed'}"></span>${open ? 'باز' : 'بسته'} تا ۲۲:۳۰</button>`;
+const chips = (open, kala) => `<div class="t-store-card__chips">${statusChip(open)}<button class="t-button t-button--xs t-button--filter">${icon('information', 16)}توضیحات</button><button class="t-button t-button--xs t-button--filter">${ticon('report')}گزارش</button>${kala ? `<span class="t-badge t-badge--kalabarg">${ticon('kalabarg')}کالابرگ</span>` : ''}</div>`;
 const storeHead = (pdp) => `<div class="t-store-card__head"><div class="t-store-card__info"><a class="t-store-card__name" href="#">ادکلن شهر${icon('chevron--left', 16)}</a>${pdp ? `<span class="t-price"><span class="t-price__value">۱۵٫۸۰۰٫۰۰۰</span><span class="t-price__unit">تومان</span></span>` : ''}<span class="t-store-card__address">ولیعصر، حافظ . <span class="t-store-card__distance">۱ کیلومتر</span></span></div><img class="t-store-card__photo" src="${sample('store-mobile-shahr.png')}" alt=""></div>`;
 const rail = (dim) => `<div class="t-store-card__rail">${small}${small}${more(dim ? moreDark : undefined)}</div>`;
 const store = ({ pdp = false, withRail = false, open = true, kala = true, dim = false } = {}) =>
@@ -229,11 +229,11 @@ const seller = () => `<span class="t-offer__seller">${guarantee(24, 't-guarantee
 const rating = `<span class="t-rating-pill">${icon('star--filled', 16)}۵ (۸ ماه در ترب)</span>`;
 const note = `<p class="t-offer__note">رجیستر شده | ۱۲ ماه گارانتی داریا همراه پایتخت + تضمین رجیستری</p>`;
 const address = `<p class="t-offer__address">ولیعصر، حافظ . ۱ کیلومتر</p>`;
-const perks = (fast) => `<div class="t-offer__row"><span class="t-offer__perks"><button class="t-perk" aria-expanded="false">${ticon('delivery--free')}ارسال رایگان${fast ? `${ticon('delivery--fast')}ارسال فوری` : ''}${ticon('chevron-tiny--down', 't-icon t-icon--tiny')}</button><span class="t-perk"><span class="t-bidi" dir="ltr">+۲</span></span></span><button class="t-btn t-btn--xs t-btn--filter">${ticon('report')}گزارش</button></div>`;
+const perks = (fast) => `<div class="t-offer__row"><span class="t-offer__perks"><button class="t-perk" aria-expanded="false">${ticon('delivery--free')}ارسال رایگان${fast ? `${ticon('delivery--fast')}ارسال فوری` : ''}${ticon('chevron-tiny--down', 't-icon t-icon--tiny')}</button><span class="t-perk"><span class="t-bidi" dir="ltr">+۲</span></span></span><button class="t-button t-button--xs t-button--filter">${ticon('report')}گزارش</button></div>`;
 const priceLg = `<span class="t-price t-price--lg"><span class="t-price__value">۱۵٫۸۰۰٫۰۰۰</span><span class="t-price__unit">تومان</span></span>`;
 const priceXl = `<span class="t-price t-price--xl"><span class="t-price__value">۱۵٫۸۰۰٫۰۰۰</span><span class="t-price__unit">تومان</span></span>`;
-const splitBtn = (fam, label, iconName) => `<div class="t-btn-split"><button class="t-btn t-btn--${fam}">${icon(iconName)}${label}</button><button class="t-btn t-btn--${fam} t-btn-split__more" aria-label="گزینه‌های دیگر">${icon('chevron--down')}</button></div>`;
-add('6867FED2-4D53-4C52-AD54-C93776F8E53B', `<article class="t-offer" style="inline-size:380px"><div class="t-offer__top"><div class="t-offer__head">${seller()}${priceLg}</div>${note}</div>${perks(true)}<div class="t-offer__row"><button class="t-btn t-btn--red">${icon('shopping--cart')}برو به سایت</button>${rating}</div></article>`);
+const splitBtn = (fam, label, iconName) => `<div class="t-button-split"><button class="t-button t-button--${fam}">${icon(iconName)}${label}</button><button class="t-button t-button--${fam} t-button-split__more" aria-label="گزینه‌های دیگر">${icon('chevron--down')}</button></div>`;
+add('6867FED2-4D53-4C52-AD54-C93776F8E53B', `<article class="t-offer" style="inline-size:380px"><div class="t-offer__top"><div class="t-offer__head">${seller()}${priceLg}</div>${note}</div>${perks(true)}<div class="t-offer__row"><button class="t-button t-button--red">${icon('shopping--cart')}برو به سایت</button>${rating}</div></article>`);
 add('262C26ED-53BA-4CD8-B2C4-00322D945A1F', `<article class="t-offer" style="inline-size:380px"><div class="t-offer__top"><div class="t-offer__head">${seller()}${priceLg}</div>${note}${address}</div>${perks(true)}<div class="t-offer__row">${splitBtn('blue', 'ارتباط با فروشگاه', 'shopping--cart')}${rating}</div></article>`);
 add('C1BF73E9-DD90-4643-9141-D246A3347492', `<article class="t-offer" style="inline-size:380px"><div class="t-offer__top"><div class="t-offer__head">${seller()}${rating}</div>${note}${address}</div>${perks(false)}<div class="t-offer__row">${splitBtn('red', 'برو به سایت', 'shopping--cart')}${priceXl}</div></article>`);
 

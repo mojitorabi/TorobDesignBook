@@ -81,17 +81,17 @@ export function glassPage(m) {
 
   body += S('code', 'کد', `${specimen({
     label: 'کلاس‌ها', canvas: 'plain', dir: 'ltr',
-    html: `<pre class="code" style="inline-size:100%;background:var(--t-bg-sunken);border-radius:10px"><code>&lt;div class="t-glass"&gt;…&lt;/div&gt;
+    html: `<pre class="code" style="inline-size:100%;background:var(--t-color-surface-sunken);border-radius:10px"><code>&lt;div class="t-glass"&gt;…&lt;/div&gt;
 &lt;div class="t-glass t-glass--list"&gt;…&lt;/div&gt;
 &lt;div class="t-glass t-glass--selected"&gt;…&lt;/div&gt;
 &lt;div class="t-glass t-glass--inverse"&gt;…&lt;/div&gt;</code></pre>`
   })}
   <div class="spec" data-spec>
     <div class="spec__bar"><span class="spec__label">glass.css — قاعدهٔ کامل</span>
-      <div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="glass-src">کپی</button></div></div>
+      <div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="glass-src">کپی</button></div></div>
     <pre class="code" id="glass-src"><code>.t-glass {
   background-color: var(--t-glass-fill);
-  border: var(--t-border-thin) solid var(--t-glass-border);
+  border: var(--t-border-width-thin) solid var(--t-glass-border);
   box-shadow: var(--t-glass-shadow);
   border-radius: var(--t-radius-md);
   backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));

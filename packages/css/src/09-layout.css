@@ -98,18 +98,18 @@
    spot at small sizes anyway. The offset keeps the line clear of the descenders
    and the ی tails. */
 .t-link {
-  color: var(--t-fg-link);
+  color: var(--t-color-link);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   border-radius: var(--t-radius-xs);
 }
 .t-link:hover { text-decoration-thickness: 2px; }
-.t-link:active { color: var(--t-action-blue-bg-active); }
-.t-link--quiet { color: inherit; text-decoration-color: var(--t-border-control); }
-.t-link--quiet:hover { color: var(--t-fg-link); text-decoration-color: currentColor; }
+.t-link:active { color: var(--t-color-action-accent-bg-active); }
+.t-link--quiet { color: inherit; text-decoration-color: var(--t-color-outline-control); }
+.t-link--quiet:hover { color: var(--t-color-link); text-decoration-color: currentColor; }
 .t-link[aria-disabled="true"], .t-link[data-state~="disabled"] {
-  color: var(--t-fg-disabled); text-decoration: none; pointer-events: none;
+  color: var(--t-color-on-surface-disabled); text-decoration: none; pointer-events: none;
 }
 /* An external link says so, and the mark is part of the link so it never
    wraps onto its own line. */
@@ -130,22 +130,22 @@
 .t-timeline__item::before {
   content: ""; position: absolute;
   inset-inline-start: 11px; inset-block: 24px 0;
-  inline-size: var(--t-border-thin);
-  background: var(--t-border-default);
+  inline-size: var(--t-border-width-thin);
+  background: var(--t-color-outline);
 }
 .t-timeline__item:last-child::before { content: none; }
 .t-timeline__dot {
   flex: none; inline-size: 24px; block-size: 24px; border-radius: var(--t-radius-full);
   display: grid; place-items: center;
-  background: var(--t-bg-subtle); color: var(--t-fg-secondary);
-  box-shadow: 0 0 0 3px var(--t-bg-canvas);
+  background: var(--t-color-surface-container); color: var(--t-color-on-surface-variant);
+  box-shadow: 0 0 0 3px var(--t-color-surface);
 }
-.t-timeline__item[data-state="done"] .t-timeline__dot { background: var(--t-status-positive-solid); color: var(--t-status-positive-on-solid); }
-.t-timeline__item[data-state="current"] .t-timeline__dot { background: var(--t-action-blue-bg); color: var(--t-action-blue-fg); }
-.t-timeline__item[data-state="failed"] .t-timeline__dot { background: var(--t-status-critical-solid); color: var(--t-status-critical-on-solid); }
+.t-timeline__item[data-state="done"] .t-timeline__dot { background: var(--t-color-status-positive-solid); color: var(--t-color-status-positive-on-solid); }
+.t-timeline__item[data-state="current"] .t-timeline__dot { background: var(--t-color-action-accent-bg); color: var(--t-color-action-accent-fg); }
+.t-timeline__item[data-state="failed"] .t-timeline__dot { background: var(--t-color-status-critical-solid); color: var(--t-color-status-critical-on-solid); }
 .t-timeline__body { display: flex; flex-direction: column; gap: 2px; padding-block-start: 2px; min-inline-size: 0; }
-.t-timeline__title { font-weight: var(--t-font-weight-bold); font-size: var(--t-font-size-14); line-height: var(--t-font-leading-14); }
-.t-timeline__meta { color: var(--t-fg-secondary); font-size: var(--t-font-size-12); line-height: var(--t-font-leading-12); font-variant-numeric: tabular-nums; }
+.t-timeline__title { font-weight: var(--t-font-weight-bold); font-size: var(--t-font-size-14); line-height: var(--t-font-line-height-14); }
+.t-timeline__meta { color: var(--t-color-on-surface-variant); font-size: var(--t-font-size-12); line-height: var(--t-font-line-height-12); font-variant-numeric: tabular-nums; }
 
 /* ---- Carousel — [NEW] ----
    A scrolling rail with snap points. Scrollbar hidden, keyboard kept: the

@@ -18,6 +18,10 @@ import { layout, specimen, section, table, guidance, esc, slugToPath, anchor,
          bestForSelectors, tabset, explain } from './site-lib.mjs';
 import { loadComponents } from './site-lib.mjs';
 import { initFacts } from './facts.mjs';
+import { CLASS_RENAMES } from '../source/rename.mjs';
+
+/* new class → the name it used to have, so a page can say so once. */
+const OLD_CLASS = Object.fromEntries(Object.entries(CLASS_RENAMES).map(([a, b]) => [b, a]));
 
 /* What the stylesheet actually supports, read from the stylesheet.
    The matrices on every component page are drawn from this, so documentation
@@ -144,6 +148,7 @@ function componentPage(c) {
     <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-block-end:14px">
       <span class="t-badge site-status" data-status="${c.status}">${c.status === 'revised' ? UI_FA.statusRevised : c.status === 'new' ? UI_FA.statusNew : UI_FA.statusStable}</span>
       <button class="t-tag site-tag-btn copy-btn" data-copy-text="${esc(c.root ?? 't-' + c.slug)}" title="${esc(UI_FA.copyClass)}"><code dir="ltr">.${esc(c.root ?? 't-' + c.slug)}</code></button>
+      ${OLD_CLASS[c.root] ? `<span class="t-tag site-was" title="این نام هم هنوز کار می‌کند">قبلاً <code dir="ltr">.${esc(OLD_CLASS[c.root])}</code></span>` : ''}
     </div>
     ${legacyBlock(c.legacy)}
   </div>`;
@@ -194,7 +199,7 @@ function componentPage(c) {
           <div class="play__controls"></div>
           <div class="play__stage" dir="rtl" lang="fa"></div>
           <div class="play__code">
-            <div class="play__bar"><span>HTML</span><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="play-${c.slug}">${UI_FA.copy}</button></div>
+            <div class="play__bar"><span>HTML</span><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="play-${c.slug}">${UI_FA.copy}</button></div>
             <pre class="code" id="play-${c.slug}"><code></code></pre>
           </div>
         </div>`);
@@ -245,10 +250,10 @@ function componentPage(c) {
   const refs = [
     ['مشخصات', specsBlock && explain('این مقادیر از کجا می‌آیند', `<p>مستقیماً از استایل‌شیت خوانده می‌شوند، نه از یادداشتی کنار آن. هر جا توکنی هست، نام توکن آمده و مقدارش در پوستهٔ روشن.</p>`) + specsBlock],
     [UI_FA.props, c.props?.length && table(['پراپ', 'نوع', 'پیش‌فرض', 'توضیح'],
-      c.props.map(([n, t, d, desc]) => [`<code>${esc(n)}</code>`, `<code style="color:var(--t-fg-link)">${esc(t)}</code>`, `<code>${esc(d)}</code>`, desc]))],
+      c.props.map(([n, t, d, desc]) => [`<code>${esc(n)}</code>`, `<code style="color:var(--t-color-link)">${esc(t)}</code>`, `<code>${esc(d)}</code>`, desc]))],
     ['React', c.react && `<div class="spec" data-spec>
       <div class="spec__bar"><span class="spec__label">${esc(c.name)}.tsx</span>
-        <div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="react-${c.slug}">${UI_FA.copy}</button></div>
+        <div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="react-${c.slug}">${UI_FA.copy}</button></div>
       </div>
       <pre class="code" id="react-${c.slug}"><code>${c.react.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
     </div>`],
@@ -354,7 +359,7 @@ write('404', layout({
   eyebrow: '۴۰۴',
   body: `<div class="prose">
     <p>شاید نامش عوض شده باشد. کامپوننت‌ها در فهرست کناری‌اند، و جست‌وجوی بالای صفحه نام‌های قدیمی اسکچ را هم می‌شناسد — <code>Store-Card/VLP</code> را بزنید و به <a href="components/store-card.html">StoreCard</a> می‌رسید.</p>
-    <p><a class="t-btn t-btn--primary t-btn--md" href="index.html">بازگشت به خانه</a></p>
+    <p><a class="t-button t-button--primary t-button--md" href="index.html">بازگشت به خانه</a></p>
   </div>`,
 }));
 

@@ -106,7 +106,7 @@ export function specFor(cls) {
 export function resolveLocals(cls, value) {
   if (!/var\(--_/.test(value)) return value;
   /* Only the base rule defines the base spec. A selector like
-     `.t-btn:disabled` or `.t-btn--md` also sets --_bg and --_h, and the last
+     `.t-button:disabled` or `.t-button--md` also sets --_bg and --_h, and the last
      one parsed used to win — which is how a button's specification ended up
      claiming its background was `transparent !important` and its text colour
      was the disabled grey. Variants and states have their own matrices; the

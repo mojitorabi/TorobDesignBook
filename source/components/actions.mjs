@@ -5,8 +5,8 @@
 export default [
   {
     "name": "Button",
-    "root": "t-btn",
-    "anatomySample": "<button class=\"t-btn t-btn--blue t-btn--lg\" aria-expanded=\"false\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26,29h-.17C6.18,27.87,3.39,11.29,3,6.23A3,3,0,0,1,5.76,3H11.4a2,2,0,0,1,1.86,1.26L14.82,8.1a2,2,0,0,1-.44,2.15l-2.17,2.19a9.29,9.29,0,0,0,7.31,7.32l2.21-2.19a2,2,0,0,1,2.16-.41l3.87,1.55A2,2,0,0,1,29,20.6v5.52A3,3,0,0,1,26,29ZM6,5A1,1,0,0,0,5,6v.08C5.46,12,8.41,26,25.94,27A1,1,0,0,0,27,26.06V20.6l-3.87-1.55-2.92,2.9-.48-.06c-8.85-1.11-10-10-10-10.05l-.06-.48,2.89-2.92L11,5Z\"/></svg>اطلاعات تماس<svg class=\"t-icon t-icon--end\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z\"/></svg></button>",
+    "root": "t-button",
+    "anatomySample": "<button class=\"t-button t-button--blue t-button--lg\" aria-expanded=\"false\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26,29h-.17C6.18,27.87,3.39,11.29,3,6.23A3,3,0,0,1,5.76,3H11.4a2,2,0,0,1,1.86,1.26L14.82,8.1a2,2,0,0,1-.44,2.15l-2.17,2.19a9.29,9.29,0,0,0,7.31,7.32l2.21-2.19a2,2,0,0,1,2.16-.41l3.87,1.55A2,2,0,0,1,29,20.6v5.52A3,3,0,0,1,26,29ZM6,5A1,1,0,0,0,5,6v.08C5.46,12,8.41,26,25.94,27A1,1,0,0,0,27,26.06V20.6l-3.87-1.55-2.92,2.9-.48-.06c-8.85-1.11-10-10-10-10.05l-.06-.48,2.89-2.92L11,5Z\"/></svg>اطلاعات تماس<svg class=\"t-icon t-icon--end\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 11 3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z\"/></svg></button>",
     "slug": "button",
     "group": "Actions",
     "status": "revised",
@@ -111,7 +111,7 @@ export default [
       ]
     ],
     "a11y": [
-      "یک <code>&lt;button&gt;</code> واقعی رندر می‌شود. <code>&lt;a class=\"t-btn\"&gt;</code> فقط وقتی که ناوبری می‌کند.",
+      "یک <code>&lt;button&gt;</code> واقعی رندر می‌شود. <code>&lt;a class=\"t-button\"&gt;</code> فقط وقتی که ناوبری می‌کند.",
       "حالت بارگذاری <code>aria-busy=\"true\"</code> می‌گذارد و نام دسترس‌پذیر ثابت می‌ماند تا صفحه‌خوان دوباره اعلام نکند.",
       "حلقهٔ فوکوس ۲ پیکسل با فاصلهٔ ۲ پیکسل است و در هر سه پوسته نسبت <span class=\"t-bidi\" dir=\"ltr\">۳:۱</span> را نگه می‌دارد (معیار ۲.۴.۱۳ نسخهٔ ۲.۲).",
       "غیرفعال با صفت <code>disabled</code>، نه با <code>pointer-events: none</code> که برای فناوری کمکی نامرئی است.",
@@ -124,27 +124,27 @@ export default [
         "label": "سه خانوادهٔ رنگی",
         "note": "قرمز خرید اینترنتی است، آبی کنش فروشگاهی و مشکی خنثی. روی هر کدام هاور کنید: گرادیان به رنگ تخت جمع می‌شود.",
         "stageClass": "spec__stage--stack",
-        "html": "<div style=\"display:flex;gap:12px;flex-wrap:wrap;align-items:center\">\n  <button class=\"t-btn t-btn--red\">خرید اینترنتی</button>\n  <button class=\"t-btn t-btn--blue\">اطلاعات تماس</button>\n  <button class=\"t-btn t-btn--black\">عنوان</button>\n</div>\n<div style=\"display:flex;gap:12px;flex-wrap:wrap;align-items:center\">\n  <button class=\"t-btn t-btn--red-outline\">خرید اینترنتی</button>\n  <button class=\"t-btn t-btn--blue-outline\">اطلاعات تماس</button>\n  <button class=\"t-btn t-btn--black-ghost\">عنوان</button>\n</div>\n<div style=\"display:flex;gap:12px;flex-wrap:wrap;align-items:center\">\n  <button class=\"t-btn t-btn--soft\">ذخیره</button>\n  <button class=\"t-btn t-btn--blue-ghost\">بیشتر</button>\n  <button class=\"t-btn t-btn--ghost\">انصراف</button>\n</div>"
+        "html": "<div style=\"display:flex;gap:12px;flex-wrap:wrap;align-items:center\">\n  <button class=\"t-button t-button--red\">خرید اینترنتی</button>\n  <button class=\"t-button t-button--blue\">اطلاعات تماس</button>\n  <button class=\"t-button t-button--black\">عنوان</button>\n</div>\n<div style=\"display:flex;gap:12px;flex-wrap:wrap;align-items:center\">\n  <button class=\"t-button t-button--red-outline\">خرید اینترنتی</button>\n  <button class=\"t-button t-button--blue-outline\">اطلاعات تماس</button>\n  <button class=\"t-button t-button--black-ghost\">عنوان</button>\n</div>\n<div style=\"display:flex;gap:12px;flex-wrap:wrap;align-items:center\">\n  <button class=\"t-button t-button--soft\">ذخیره</button>\n  <button class=\"t-button t-button--blue-ghost\">بیشتر</button>\n  <button class=\"t-button t-button--ghost\">انصراف</button>\n</div>"
       },
       {
         "label": "اندازه‌ها",
-        "html": "<button class=\"t-btn t-btn--red t-btn--xs\">Xsmall</button>\n<button class=\"t-btn t-btn--red t-btn--sm\">Small</button>\n<button class=\"t-btn t-btn--red t-btn--md\">Medium</button>\n<button class=\"t-btn t-btn--red t-btn--lg\">Large</button>\n<button class=\"t-btn t-btn--red t-btn--xl\">XLarge</button>"
+        "html": "<button class=\"t-button t-button--red t-button--xs\">Xsmall</button>\n<button class=\"t-button t-button--red t-button--sm\">Small</button>\n<button class=\"t-button t-button--red t-button--md\">Medium</button>\n<button class=\"t-button t-button--red t-button--lg\">Large</button>\n<button class=\"t-button t-button--red t-button--xl\">XLarge</button>"
       },
       {
         "label": "حالت‌ها",
         "note": "همهٔ خانواده‌ها به یک ظاهر غیرفعال جمع می‌شوند. برچسب با نسبت <span class=\"t-bidi\" dir=\"ltr\">۴٫۸:۱</span> خوانا می‌ماند؛ سطح تخت و نبود لبه سیگنال را می‌رسانند، نه متن ناخوانا.",
-        "html": "<button class=\"t-btn t-btn--red\">خرید اینترنتی</button>\n<button class=\"t-btn t-btn--red\" data-loading=\"true\">در حال ارسال</button>\n<button class=\"t-btn t-btn--red\" disabled>خرید اینترنتی</button>\n<button class=\"t-btn t-btn--blue\" disabled>اطلاعات تماس</button>\n<button class=\"t-btn t-btn--black\" disabled>عنوان</button>"
+        "html": "<button class=\"t-button t-button--red\">خرید اینترنتی</button>\n<button class=\"t-button t-button--red\" data-loading=\"true\">در حال ارسال</button>\n<button class=\"t-button t-button--red\" disabled>خرید اینترنتی</button>\n<button class=\"t-button t-button--blue\" disabled>اطلاعات تماس</button>\n<button class=\"t-button t-button--black\" disabled>عنوان</button>"
       },
       {
         "label": "همراه آیکون",
-        "html": "<button class=\"t-btn t-btn--blue\" aria-expanded=\"false\">اطلاعات تماس<svg class=\"t-icon t-icon--tiny t-icon--stroke t-icon--end\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11 7L8 10L5 7\"/></svg></button>\n<button class=\"t-btn t-btn--black-ghost\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm0,15a4,4,0,1,1,4-4A4.0045,4.0045,0,0,1,16,17Z\"/><circle cx=\"16\" cy=\"13\" r=\"4\" fill=\"none\"/></svg>مسیریابی</button>\n<button class=\"t-btn t-btn--red t-btn--block\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26,29h-.17C6.18,27.87,3.39,11.29,3,6.23A3,3,0,0,1,5.76,3h5.51a2,2,0,0,1,1.86,1.26L14.65,8a2,2,0,0,1-.44,2.16l-2.13,2.15a9.37,9.37,0,0,0,7.58,7.6l2.17-2.15A2,2,0,0,1,24,17.35l3.77,1.51A2,2,0,0,1,29,20.72V26A3,3,0,0,1,26,29ZM6,5A1,1,0,0,0,5,6v.08C5.46,12,8.41,26,25.94,27A1,1,0,0,0,27,26.06V20.72l-3.77-1.51-2.87,2.85L19.88,22C11.18,20.91,10,12.21,10,12.12l-.06-.48,2.84-2.87L11.28,5Z\"/></svg>تماس با فروشگاه</button>"
+        "html": "<button class=\"t-button t-button--blue\" aria-expanded=\"false\">اطلاعات تماس<svg class=\"t-icon t-icon--tiny t-icon--stroke t-icon--end\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11 7L8 10L5 7\"/></svg></button>\n<button class=\"t-button t-button--black-ghost\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm0,15a4,4,0,1,1,4-4A4.0045,4.0045,0,0,1,16,17Z\"/><circle cx=\"16\" cy=\"13\" r=\"4\" fill=\"none\"/></svg>مسیریابی</button>\n<button class=\"t-button t-button--red t-button--block\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26,29h-.17C6.18,27.87,3.39,11.29,3,6.23A3,3,0,0,1,5.76,3h5.51a2,2,0,0,1,1.86,1.26L14.65,8a2,2,0,0,1-.44,2.16l-2.13,2.15a9.37,9.37,0,0,0,7.58,7.6l2.17-2.15A2,2,0,0,1,24,17.35l3.77,1.51A2,2,0,0,1,29,20.72V26A3,3,0,0,1,26,29ZM6,5A1,1,0,0,0,5,6v.08C5.46,12,8.41,26,25.94,27A1,1,0,0,0,27,26.06V20.72l-3.77-1.51-2.87,2.85L19.88,22C11.18,20.91,10,12.21,10,12.12l-.06-.48,2.84-2.87L11.28,5Z\"/></svg>تماس با فروشگاه</button>"
       }
     ],
-    "react": "import { forwardRef } from 'react';\nimport clsx from 'clsx';\n\nexport const Button = forwardRef(function Button(\n  { variant = 'neutral', size = 'lg', block, loading, disabled,\n    iconStart, iconEnd, children, className, ...rest }, ref) {\n  return (\n    <button\n      ref={ref}\n      className={clsx('t-btn', `t-btn--${variant}`, `t-btn--${size}`, block && 't-btn--block', className)}\n      data-loading={loading || undefined}\n      aria-busy={loading || undefined}\n      disabled={disabled || loading}\n      {...rest}\n    >\n      {iconStart}\n      {children}\n      {iconEnd}\n    </button>\n  );\n});"
+    "react": "import { forwardRef } from 'react';\nimport clsx from 'clsx';\n\nexport const Button = forwardRef(function Button(\n  { variant = 'neutral', size = 'lg', block, loading, disabled,\n    iconStart, iconEnd, children, className, ...rest }, ref) {\n  return (\n    <button\n      ref={ref}\n      className={clsx('t-button', `t-button--${variant}`, `t-button--${size}`, block && 't-button--block', className)}\n      data-loading={loading || undefined}\n      aria-busy={loading || undefined}\n      disabled={disabled || loading}\n      {...rest}\n    >\n      {iconStart}\n      {children}\n      {iconEnd}\n    </button>\n  );\n});"
   },
   {
     "name": "IconButton",
-    "root": "t-icon-btn",
+    "root": "t-icon-button",
     "slug": "icon-button",
     "group": "Actions",
     "status": "revised",
@@ -215,21 +215,21 @@ export default [
     "specimens": [
       {
         "label": "گونه‌ها",
-        "html": "<button class=\"t-icon-btn\" aria-label=\"جستجو\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--accent\" aria-label=\"تماس\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26,29h-.17C6.18,27.87,3.39,11.29,3,6.23A3,3,0,0,1,5.76,3h5.51a2,2,0,0,1,1.86,1.26L14.65,8a2,2,0,0,1-.44,2.16l-2.13,2.15a9.37,9.37,0,0,0,7.58,7.6l2.17-2.15A2,2,0,0,1,24,17.35l3.77,1.51A2,2,0,0,1,29,20.72V26A3,3,0,0,1,26,29ZM6,5A1,1,0,0,0,5,6v.08C5.46,12,8.41,26,25.94,27A1,1,0,0,0,27,26.06V20.72l-3.77-1.51-2.87,2.85L19.88,22C11.18,20.91,10,12.21,10,12.12l-.06-.48,2.84-2.87L11.28,5Z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--sm\" aria-label=\"بستن\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--round t-icon-btn--accent\" aria-label=\"افزودن\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17 15 17 8 15 8 15 15 8 15 8 17 15 17 15 24 17 24 17 17 24 17 24 15z\"/></svg></button>"
+        "html": "<button class=\"t-icon-button\" aria-label=\"جستجو\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z\"/></svg></button>\n<button class=\"t-icon-button t-icon-button--accent\" aria-label=\"تماس\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M26,29h-.17C6.18,27.87,3.39,11.29,3,6.23A3,3,0,0,1,5.76,3h5.51a2,2,0,0,1,1.86,1.26L14.65,8a2,2,0,0,1-.44,2.16l-2.13,2.15a9.37,9.37,0,0,0,7.58,7.6l2.17-2.15A2,2,0,0,1,24,17.35l3.77,1.51A2,2,0,0,1,29,20.72V26A3,3,0,0,1,26,29ZM6,5A1,1,0,0,0,5,6v.08C5.46,12,8.41,26,25.94,27A1,1,0,0,0,27,26.06V20.72l-3.77-1.51-2.87,2.85L19.88,22C11.18,20.91,10,12.21,10,12.12l-.06-.48,2.84-2.87L11.28,5Z\"/></svg></button>\n<button class=\"t-icon-button t-icon-button--sm\" aria-label=\"بستن\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z\"/></svg></button>\n<button class=\"t-icon-button t-icon-button--round t-icon-button--accent\" aria-label=\"افزودن\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17 15 17 8 15 8 15 15 8 15 8 17 15 17 15 24 17 24 17 17 24 17 24 15z\"/></svg></button>"
       },
       {
         "label": "شیشه، روی محتوا",
         "note": "نسخهٔ شیشه‌ای همان چیزی است که کنترل را روی نقشه یا عکس محصول خوانا نگه می‌دارد.",
         "canvas": "map",
         "stageClass": "spec__stage--center",
-        "html": "<button class=\"t-icon-btn t-icon-btn--glass\" aria-label=\"موقعیت من\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M4,12.9835a1,1,0,0,0,.6289.9448l9.6015,3.8409,3.8407,9.6019A1,1,0,0,0,19,28h.0162a1.0009,1.0009,0,0,0,.9238-.6582l8-22.0007A1,1,0,0,0,26.658,4.0594l-22,8A1.0011,1.0011,0,0,0,4,12.9835Z\"/></svg></button>\n<button class=\"t-icon-btn t-icon-btn--glass\" aria-label=\"لایه‌های نقشه\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16,24a.9967.9967,0,0,1-.4741-.12l-13-7L3.4741,15.12,16,21.8643,28.5259,15.12l.9482,1.7607-13,7A.9967.9967,0,0,1,16,24Z\"/><path d=\"M16,30a.9967.9967,0,0,1-.4741-.12l-13-7L3.4741,21.12,16,27.8643,28.5259,21.12l.9482,1.7607-13,7A.9967.9967,0,0,1,16,30Z\"/><path d=\"M16,18a.9967.9967,0,0,1-.4741-.12l-13-7a1,1,0,0,1,0-1.7607l13-7a.9982.9982,0,0,1,.9482,0l13,7a1,1,0,0,1,0,1.7607l-13,7A.9967.9967,0,0,1,16,18ZM5.1094,10,16,15.8643,26.8906,10,16,4.1358Z\"/></svg></button>"
+        "html": "<button class=\"t-icon-button t-icon-button--glass\" aria-label=\"موقعیت من\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M4,12.9835a1,1,0,0,0,.6289.9448l9.6015,3.8409,3.8407,9.6019A1,1,0,0,0,19,28h.0162a1.0009,1.0009,0,0,0,.9238-.6582l8-22.0007A1,1,0,0,0,26.658,4.0594l-22,8A1.0011,1.0011,0,0,0,4,12.9835Z\"/></svg></button>\n<button class=\"t-icon-button t-icon-button--glass\" aria-label=\"لایه‌های نقشه\"><svg class=\"t-icon\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16,24a.9967.9967,0,0,1-.4741-.12l-13-7L3.4741,15.12,16,21.8643,28.5259,15.12l.9482,1.7607-13,7A.9967.9967,0,0,1,16,24Z\"/><path d=\"M16,30a.9967.9967,0,0,1-.4741-.12l-13-7L3.4741,21.12,16,27.8643,28.5259,21.12l.9482,1.7607-13,7A.9967.9967,0,0,1,16,30Z\"/><path d=\"M16,18a.9967.9967,0,0,1-.4741-.12l-13-7a1,1,0,0,1,0-1.7607l13-7a.9982.9982,0,0,1,.9482,0l13,7a1,1,0,0,1,0,1.7607l-13,7A.9967.9967,0,0,1,16,18ZM5.1094,10,16,15.8643,26.8906,10,16,4.1358Z\"/></svg></button>"
       }
     ],
-    "react": "export function IconButton({ variant = 'ghost', size = 'md', round, label, children, className, ...rest }) {\n  return (\n    <button\n      className={clsx('t-icon-btn', variant !== 'ghost' && `t-icon-btn--${variant}`,\n                      size === 'sm' && 't-icon-btn--sm', round && 't-icon-btn--round', className)}\n      aria-label={label}\n      {...rest}\n    >{children}</button>\n  );\n}"
+    "react": "export function IconButton({ variant = 'ghost', size = 'md', round, label, children, className, ...rest }) {\n  return (\n    <button\n      className={clsx('t-icon-button', variant !== 'ghost' && `t-icon-button--${variant}`,\n                      size === 'sm' && 't-icon-button--sm', round && 't-icon-button--round', className)}\n      aria-label={label}\n      {...rest}\n    >{children}</button>\n  );\n}"
   },
   {
     "name": "BuyBoxButton",
-    "root": "t-buybox",
+    "root": "t-buy-box",
     "slug": "buy-box-button",
     "group": "Actions",
     "status": "revised",
@@ -266,17 +266,17 @@ export default [
       [
         "نشان آگهی",
         "<span class=\"t-bidi\" dir=\"ltr\">۴۵×۲۴</span>، گردی ۱۲، پرشدهٔ #D70040 با برچسب سفید Medium ۱۲. ابتدای محور.",
-        ".t-buybox__ad"
+        ".t-buy-box__ad"
       ],
       [
         "فروشنده",
         "Bold ۱۶. خط اصلی.",
-        ".t-buybox__seller"
+        ".t-buy-box__seller"
       ],
       [
         "قیمت",
         "Medium ۱۶، ارقام جدولی، اعداد فارسی.",
-        ".t-buybox__price"
+        ".t-buy-box__price"
       ],
       [
         "فشرده",
@@ -321,22 +321,22 @@ export default [
         "label": "فروشندهٔ اینترنتی، تبلیغاتی",
         "canvas": "fog",
         "stageClass": "spec__stage--stack spec__stage--center",
-        "html": "<button class=\"t-buybox\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__seller\">خرید از تکنولایف</span>\n    <span class=\"t-buybox__price\">۱۶٫۱۰۰٫۰۰۰ تومان</span>\n  </span>\n  <span class=\"t-buybox__ad\">آگهی</span>\n</button>\n<button class=\"t-buybox\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__seller\">خرید از دیجی‌کالا</span>\n    <span class=\"t-buybox__price\">۱۵٫۸۰۰٫۰۰۰ تومان</span>\n  </span>\n</button>"
+        "html": "<button class=\"t-buy-box\">\n  <span class=\"t-buy-box__body\">\n    <span class=\"t-buy-box__seller\">خرید از تکنولایف</span>\n    <span class=\"t-buy-box__price\">۱۶٫۱۰۰٫۰۰۰ تومان</span>\n  </span>\n  <span class=\"t-buy-box__ad\">آگهی</span>\n</button>\n<button class=\"t-buy-box\">\n  <span class=\"t-buy-box__body\">\n    <span class=\"t-buy-box__seller\">خرید از دیجی‌کالا</span>\n    <span class=\"t-buy-box__price\">۱۵٫۸۰۰٫۰۰۰ تومان</span>\n  </span>\n</button>"
       },
       {
         "label": "فروشندهٔ حضوری",
         "note": "آبی اینجا دکمهٔ درجه‌دو نیست. پیش از لمس به خریدار می‌گوید این خرید در فروشگاه اتفاق می‌افتد.",
         "canvas": "fog",
         "stageClass": "spec__stage--stack spec__stage--center",
-        "html": "<button class=\"t-buybox t-buybox--offline\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__seller\">خرید از ادکلن شهر</span>\n    <span class=\"t-buybox__price\">۱۶٫۱۰۰٫۰۰۰ تومان</span>\n  </span>\n  <span class=\"t-buybox__ad\">آگهی</span>\n</button>\n<button class=\"t-buybox t-buybox--offline\">\n  <span class=\"t-buybox__body\">\n    <span class=\"t-buybox__seller\">خرید از موبایل ولیعصر</span>\n    <span class=\"t-buybox__price\">۱۵٫۸۰۰٫۰۰۰ تومان</span>\n  </span>\n</button>"
+        "html": "<button class=\"t-buy-box t-buy-box--offline\">\n  <span class=\"t-buy-box__body\">\n    <span class=\"t-buy-box__seller\">خرید از ادکلن شهر</span>\n    <span class=\"t-buy-box__price\">۱۶٫۱۰۰٫۰۰۰ تومان</span>\n  </span>\n  <span class=\"t-buy-box__ad\">آگهی</span>\n</button>\n<button class=\"t-buy-box t-buy-box--offline\">\n  <span class=\"t-buy-box__body\">\n    <span class=\"t-buy-box__seller\">خرید از موبایل ولیعصر</span>\n    <span class=\"t-buy-box__price\">۱۵٫۸۰۰٫۰۰۰ تومان</span>\n  </span>\n</button>"
       },
       {
         "label": "میان‌بر ارزان‌ترین فروشنده",
         "canvas": "fog",
         "stageClass": "spec__stage--center",
-        "html": "<button class=\"t-buybox t-buybox--compact\">\n  <span class=\"t-buybox__body\"><span class=\"t-buybox__seller\">خرید از ارزان‌ترین فروشنده</span></span>\n</button>"
+        "html": "<button class=\"t-buy-box t-buy-box--compact\">\n  <span class=\"t-buy-box__body\"><span class=\"t-buy-box__seller\">خرید از ارزان‌ترین فروشنده</span></span>\n</button>"
       }
     ],
-    "react": "export function BuyBoxButton({ variant = 'red', compact, ad, seller, price, ...rest }) {\n  const label = [price, seller, ad && 'آگهی'].filter(Boolean).join('، ');\n  return (\n    <button\n      className={clsx('t-buybox', variant === 'blue' && 't-buybox--offline', compact && 't-buybox--compact')}\n      aria-label={label}\n      {...rest}\n    >\n      <span className=\"t-buybox__body\">\n        <span className=\"t-buybox__seller\">{seller}</span>\n        {!compact && <span className=\"t-buybox__price\">{price}</span>}\n      </span>\n      {ad && <span className=\"t-buybox__ad\">آگهی</span>}\n    </button>\n  );\n}"
+    "react": "export function BuyBoxButton({ variant = 'red', compact, ad, seller, price, ...rest }) {\n  const label = [price, seller, ad && 'آگهی'].filter(Boolean).join('، ');\n  return (\n    <button\n      className={clsx('t-buy-box', variant === 'blue' && 't-buy-box--offline', compact && 't-buy-box--compact')}\n      aria-label={label}\n      {...rest}\n    >\n      <span className=\"t-buy-box__body\">\n        <span className=\"t-buy-box__seller\">{seller}</span>\n        {!compact && <span className=\"t-buy-box__price\">{price}</span>}\n      </span>\n      {ad && <span className=\"t-buy-box__ad\">آگهی</span>}\n    </button>\n  );\n}"
   }
 ];

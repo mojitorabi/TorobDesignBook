@@ -18,7 +18,7 @@ export function iconsPage(cats, count) {
         <svg class="site-search__icon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M15,14.3L10.7,10c1.9-2.3,1.6-5.8-0.7-7.7S4.2,0.7,2.3,3S0.7,8.8,3,10.7c2,1.7,5,1.7,7,0l4.3,4.3L15,14.3z M2,6.5	C2,4,4,2,6.5,2S11,4,11,6.5S9,11,6.5,11S2,9,2,6.5z"/></svg>
         <input id="iconSearch" type="search" aria-label="جست‌وجوی آیکون" placeholder="Search ${count.toLocaleString('en-US')} icons — try “filter”, “location”, “receipt”…" autocomplete="off">
       </div>
-      <button class="t-btn t-btn--outline t-btn--sm" id="iconSize" data-size="20">20px</button>
+      <button class="t-button t-button--outline t-button--sm" id="iconSize" data-size="20">20px</button>
       <div class="t-select" style="flex:none"><select class="t-input t-input__el t-input--sm" id="iconCat" aria-label="دستهٔ آیکون">
         <option value="">همهٔ دسته‌ها</option>
         ${catList.map(([c, subs]) => `<option value="${esc(c)}">${esc(c)} (${Object.values(subs).reduce((x, y) => x + y, 0)})</option>`).join('')}
@@ -34,7 +34,7 @@ export function iconsPage(cats, count) {
       <p>پنج آیکون در این مجموعه نسخهٔ قرینه دارند: <code>search--locate</code>، <code>run</code>، <code>list--checked</code>، <code>list--numbered</code> و <code>summary--KPI</code>. شورون‌ها و فلش‌ها نسخهٔ قرینه ندارند و به‌جایش از <code>.t-icon--directional</code> استفاده می‌کنند. بقیه — دوربین، قلب، تلفن — نباید برگردند.</p>
     </div>`);
 
-  body += S('usage', 'استفاده از آیکون', `${specimen({ label: 'سه راه استفاده', canvas: 'plain', dir: 'ltr', html: `<pre class="code" style="inline-size:100%;background:var(--t-bg-sunken);border-radius:10px"><code>&lt;!-- 1. Sprite — one request, any icon --&gt;
+  body += S('usage', 'استفاده از آیکون', `${specimen({ label: 'سه راه استفاده', canvas: 'plain', dir: 'ltr', html: `<pre class="code" style="inline-size:100%;background:var(--t-color-surface-sunken);border-radius:10px"><code>&lt;!-- 1. Sprite — one request, any icon --&gt;
 &lt;svg class="t-icon"&gt;&lt;use href="/assets/sprite-20.svg#t-filter"/&gt;&lt;/svg&gt;
 
 &lt;!-- 2. Inline — when you need to style the paths --&gt;
@@ -65,15 +65,15 @@ import { Filter } from '@torob/icons';
   function cell(it){
     var g=geo&&geo[it.n]&&geo[it.n].sizes[size];
     return '<button class="swatch" data-copy-text="'+it.n+'" title="'+it.n+'" style="padding:11px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;border-radius:9px">'
-      +(g?'<svg viewBox="'+g.viewBox+'" width="'+size+'" height="'+size+'" fill="currentColor" style="color:var(--t-fg-default)">'+g.content+'</svg>':'<span style="inline-size:'+size+'px;block-size:'+size+'px"></span>')
-      +'<span style="font-size:9.5px;line-height:1.3;color:var(--t-fg-secondary);word-break:break-word;text-align:center;max-inline-size:86px">'+it.n+'</span></button>';
+      +(g?'<svg viewBox="'+g.viewBox+'" width="'+size+'" height="'+size+'" fill="currentColor" style="color:var(--t-color-on-surface)">'+g.content+'</svg>':'<span style="inline-size:'+size+'px;block-size:'+size+'px"></span>')
+      +'<span style="font-size:9.5px;line-height:1.3;color:var(--t-color-on-surface-variant);word-break:break-word;text-align:center;max-inline-size:86px">'+it.n+'</span></button>';
   }
   function renderMore(){
     var next=filtered.slice(shown, shown+PAGE);
     grid.insertAdjacentHTML('beforeend', next.map(cell).join(''));
     shown+=next.length;
     moreEl.innerHTML = shown<filtered.length
-      ? '<button class="t-btn t-btn--outline t-btn--md" id="iconMoreBtn">Show '+Math.min(PAGE,filtered.length-shown)+' more of '+(filtered.length-shown)+'</button>' : '';
+      ? '<button class="t-button t-button--outline t-button--md" id="iconMoreBtn">Show '+Math.min(PAGE,filtered.length-shown)+' more of '+(filtered.length-shown)+'</button>' : '';
     var b=document.getElementById('iconMoreBtn'); if(b) b.onclick=renderMore;
   }
   function apply(){
@@ -108,7 +108,7 @@ export function tokensPage(m) {
   </div>`;
 
   body += S('exports', 'خروجی‌ها', `<div class="prose"><p>یک دستور، ${toFa(getFacts().exports)} خروجی:</p></div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">terminal</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="tok-cmd">Copy</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">terminal</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="tok-cmd">Copy</button></div></div>
     <pre class="code" id="tok-cmd"><code>node build/tokens-build.mjs</code></pre></div>
     ${table(['فایل', 'قالب', 'برای'], [
       ['<code>tokens.css</code>', 'CSS custom properties', 'لایهٔ مرجع. روشن، ملایم، تیره و حالت کاهش شفافیت، همه در یک فایل.'],
@@ -126,7 +126,7 @@ export function tokensPage(m) {
         ${['tokens.css', 'tokens.tailwind.css', 'tokens.scss', 'tokens.ts', 'tokens.js',
            'tokens.flat.json', 'tokens.resolved.json', 'tokens.llms.md', 'TorobTokens.swift',
            'colors.xml', 'colors-night.xml', 'colors-night-true.xml', 'dimens.xml'].map(f =>
-          `<a class="t-btn t-btn--outline t-btn--md" href="assets/tokens/${f}" download>${f}</a>`).join('')}
+          `<a class="t-button t-button--outline t-button--md" href="assets/tokens/${f}" download>${f}</a>`).join('')}
       </div>
     </div>`);
 
@@ -134,11 +134,11 @@ export function tokensPage(m) {
       <p>معماری استاندارد — متریال ۳، ادوبی اسپکتروم و سیلزفورس لایتنینگ همه نسخه‌ای از آن را دارند — و همان دلیلی که تغییر برند به‌جای بازنویسی کل کد، فقط ویرایش توکن است.</p>
       <ol>
         <li><strong>پایه</strong> — <code>--t-color-sky-800</code>. پالت خام. کد محصول هرگز اینها را لمس نمی‌کند.</li>
-        <li><strong>معنایی</strong> — <code>--t-fg-default</code>. نقش‌محور، در هر پوسته مقدار خودش را می‌گیرد. <em>این همان لایه‌ای است که شما استفاده می‌کنید.</em></li>
-        <li><strong>کامپوننتی</strong> — <code>--t-action-red-bg-hover</code>. اجزای داخلی یک کامپوننت.</li>
+        <li><strong>معنایی</strong> — <code>--t-color-on-surface</code>. نقش‌محور، در هر پوسته مقدار خودش را می‌گیرد. <em>این همان لایه‌ای است که شما استفاده می‌کنید.</em></li>
+        <li><strong>کامپوننتی</strong> — <code>--t-color-action-primary-bg-hover</code>. اجزای داخلی یک کامپوننت.</li>
       </ol>
     </div>
-    ${specimen({ label: 'زنجیرهٔ حل مقدار', canvas: 'plain', dir: 'ltr', html: `<pre class="code" style="inline-size:100%;background:var(--t-bg-sunken);border-radius:10px"><code>--t-fg-default
+    ${specimen({ label: 'زنجیرهٔ حل مقدار', canvas: 'plain', dir: 'ltr', html: `<pre class="code" style="inline-size:100%;background:var(--t-color-surface-sunken);border-radius:10px"><code>--t-color-on-surface
   ↳ light: {color.sky.800} → #1E293B
   ↳ dark:  {color.sky.100} → #F1F5F9
 
@@ -162,13 +162,13 @@ export function tokensPage(m) {
     var all=[];
     function chip(v){
       var isC=/^(#|rgb|hsl|linear-gradient)/.test(String(v));
-      return (isC?'<span style="display:inline-block;inline-size:14px;block-size:14px;border-radius:4px;border:1px solid var(--t-border-subtle);background:'+v+';vertical-align:-2px;margin-inline-end:6px"></span>':'')
+      return (isC?'<span style="display:inline-block;inline-size:14px;block-size:14px;border-radius:4px;border:1px solid var(--t-color-outline-subtle);background:'+v+';vertical-align:-2px;margin-inline-end:6px"></span>':'')
         +'<code style="font-size:11.5px">'+String(v).replace(/</g,'&lt;')+'</code>';
     }
     function render(list){
       countEl.textContent=list.length.toLocaleString('fa-IR')+' توکن';
       rows.innerHTML=list.slice(0,400).map(function(t){
-        return '<tr><td><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy-text="var('+t.k+')" style="font-family:inherit;font-size:11.5px;padding:2px 7px;block-size:auto">'+t.k+'</button></td><td>'+chip(t.l)+'</td><td>'+(t.d!=null?chip(t.d):'<span style="color:var(--t-fg-disabled)">—</span>')+'</td><td>'+t.tier+'</td></tr>';
+        return '<tr><td><button class="t-button t-button--outline t-button--sm copy-btn" data-copy-text="var('+t.k+')" style="font-family:inherit;font-size:11.5px;padding:2px 7px;block-size:auto">'+t.k+'</button></td><td>'+chip(t.l)+'</td><td>'+(t.d!=null?chip(t.d):'<span style="color:var(--t-color-on-surface-disabled)">—</span>')+'</td><td>'+t.tier+'</td></tr>';
       }).join('');
     }
     fetch(root+'tokens.json').then(function(r){return r.json()}).then(function(m){

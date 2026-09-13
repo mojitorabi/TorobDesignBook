@@ -6,6 +6,7 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './tokens-lib.mjs';
+import { MODIFIER_CANONICAL } from '../source/rename.mjs';
 
 const src = join(ROOT, 'packages', 'css', 'src');
 let css = '';
@@ -46,7 +47,7 @@ for (const m of css.matchAll(/(^|\})([^{}@]+)\{/g)) {
       else if (tail.startsWith('__')) r.parts.add(tail.slice(2).split('--')[0]);
     }
     /* Two modifiers written as bare selectors in the same list are the same
-       thing under two names — `.t-btn--red, .t-btn--primary { … }`. The book
+       thing under two names — `.t-button--red, .t-button--primary { … }`. The book
        should show one cell, not two identical ones, and it should say which
        names reach it. Picked up here so the pairing cannot drift from the CSS. */
     bare.push(s);
@@ -70,8 +71,12 @@ for (const m of css.matchAll(/(^|\})([^{}@]+)\{/g)) {
     const rootName = mods[0][1];
     if (mods.every(x => x[1] === rootName)) {
       const r = get(rootName), names = mods.map(x => x[2]);
-      const canonical = names[0];
-      for (const n of names.slice(1)) r.alias.set(n, canonical);
+      /* Which of the pair the book prints is a decision, not an accident of
+         which one the author typed first. Intent wins over pigment:
+         `--primary`, with `--red` recorded as the other name it answers to. */
+      const canonical = names.find(n => Object.values(MODIFIER_CANONICAL).includes(n))
+        ?? names.find(n => !MODIFIER_CANONICAL[n]) ?? names[0];
+      for (const n of names) if (n !== canonical) r.alias.set(n, canonical);
     }
   }
 }

@@ -12,9 +12,9 @@ const count = {};
 
 const PAIRS = [
   /* A tool button is a button. Icon-only ones are icon buttons. */
-  ['class="site-tool site-nav-toggle"', 'class="t-icon-btn t-icon-btn--sm site-nav-toggle"'],
-  ['class="site-tool copy-btn"', 'class="t-btn t-btn--outline t-btn--sm copy-btn"'],
-  ['class="site-tool"', 'class="t-btn t-btn--outline t-btn--sm"'],
+  ['class="site-tool site-nav-toggle"', 'class="t-icon-button t-icon-button--sm site-nav-toggle"'],
+  ['class="site-tool copy-btn"', 'class="t-button t-button--outline t-button--sm copy-btn"'],
+  ['class="site-tool"', 'class="t-button t-button--outline t-button--sm"'],
 
   /* Status is a badge. */
   ['class="status-pill status-pill--new" style="font-size:9.5px;padding:1px 6px"', 'class="t-badge t-badge--guarantee"'],

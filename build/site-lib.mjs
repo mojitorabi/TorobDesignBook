@@ -74,12 +74,12 @@ export function layout({ slug, title, description, nav, components, body, toc = 
 
   const navHtml = nav.map(group => navGroup(
       group.title,
-      group.items.map(i => `<a class="t-navitem" href="${R(slugToPath(i.slug))}"${i.slug === slug ? ' aria-current="page"' : ''}>${esc(i.title)}</a>`),
+      group.items.map(i => `<a class="t-nav-item" href="${R(slugToPath(i.slug))}"${i.slug === slug ? ' aria-current="page"' : ''}>${esc(i.title)}</a>`),
       group.items.some(i => i.slug === slug))).join('') +
     `\n      <div class="site-nav__section">${esc(UI_FA.components)}</div>` +
     Object.entries(groups).map(([g, list]) => navGroup(
       GROUP_FA[g] ?? g,
-      list.map(c => `<a class="t-navitem" href="${R('components/' + c.slug + '.html')}"${'components/' + c.slug === slug ? ' aria-current="page"' : ''}>${esc(c.name)}</a>`),
+      list.map(c => `<a class="t-nav-item" href="${R('components/' + c.slug + '.html')}"${'components/' + c.slug === slug ? ' aria-current="page"' : ''}>${esc(c.name)}</a>`),
       list.some(c => 'components/' + c.slug === slug))).join('');
 
   const tocHtml = toc.length ? `
@@ -133,7 +133,7 @@ export function layout({ slug, title, description, nav, components, body, toc = 
 <a class="site-skip" href="#main">${esc(UI_FA.skip)}</a>
 
 <header class="site-bar">
-  <button class="t-icon-btn t-icon-btn--sm site-nav-toggle" id="navToggle" aria-label="${esc(UI_FA.toggleNav)}" aria-expanded="false">
+  <button class="t-icon-button t-icon-button--sm site-nav-toggle" id="navToggle" aria-label="${esc(UI_FA.toggleNav)}" aria-expanded="false">
     <svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2 4h12v1.4H2zm0 3.3h12v1.4H2zm0 3.3h12V12H2z"/></svg>
   </button>
   <a class="site-brand" href="${R('index.html')}">
@@ -156,11 +156,11 @@ export function layout({ slug, title, description, nav, components, body, toc = 
   </div>
 
   <div class="site-bar__tools">
-    <button class="t-btn t-btn--outline t-btn--sm" id="localeToggle" data-locale="fa" aria-label="زبان و جهت نمونه‌ها: فارسی — برای تغییر کلیک کنید" title="زبان و جهت همهٔ نمونه‌های این صفحه">
+    <button class="t-button t-button--outline t-button--sm" id="localeToggle" data-locale="fa" aria-label="زبان و جهت نمونه‌ها: فارسی — برای تغییر کلیک کنید" title="زبان و جهت همهٔ نمونه‌های این صفحه">
       <svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm4.9 4.5h-2a11 11 0 0 0-.9-2.7 5.6 5.6 0 0 1 2.9 2.7zM8 2.5c.5.7.9 1.7 1.2 3H6.8c.3-1.3.7-2.3 1.2-3zM2.6 9.5a5.5 5.5 0 0 1 0-3h2.3a13 13 0 0 0 0 3zm.5 1.5h2a11 11 0 0 0 .9 2.7 5.6 5.6 0 0 1-2.9-2.7zm2-5.5h-2a5.6 5.6 0 0 1 2.9-2.7c-.4.8-.7 1.7-.9 2.7zM8 13.5c-.5-.7-.9-1.7-1.2-3h2.4c-.3 1.3-.7 2.3-1.2 3zm1.5-4.5h-3a11.6 11.6 0 0 1 0-3h3a11.6 11.6 0 0 1 0 3zm.5 4.7c.4-.8.7-1.7.9-2.7h2a5.6 5.6 0 0 1-2.9 2.7zm1.1-4.2a13 13 0 0 0 0-3h2.3a5.5 5.5 0 0 1 0 3z"/></svg>
       <span id="localeLabel">فارسی</span>
     </button>
-    <button class="t-btn t-btn--outline t-btn--sm" id="themeToggle" aria-label="تغییر پوسته">
+    <button class="t-button t-button--outline t-button--sm" id="themeToggle" aria-label="تغییر پوسته">
       <svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path id="themeIcon" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 0h.01V3H8zm0 13h.01V16H8zM0 7.99h3V8H0zm13 0h3V8h-3zM2.3 3.3l2.1 2.1-1 1-2.1-2.1zm8.3 8.3 2.1 2.1-1 1-2.1-2.1zm3.1-9.3 1 1-2.1 2.1-1-1zM4.4 10.6l1 1-2.1 2.1-1-1z"/></svg>
       <span id="themeLabel">روشن</span>
     </button>
@@ -212,12 +212,12 @@ export function specimen({ label, html, react, note, canvas, dir = 'rtl', stageC
   <div class="spec__bar">
     <span class="spec__label">${esc(label)}</span>
     <div class="spec__tools">
-      <button class="t-btn t-btn--outline t-btn--sm" data-spec-code aria-expanded="false">${UI_FA.code}</button>
-      <button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="${id}-html" title="کپی کد HTML">${UI_FA.copy}</button>
+      <button class="t-button t-button--outline t-button--sm" data-spec-code aria-expanded="false">${UI_FA.code}</button>
+      <button class="t-button t-button--outline t-button--sm copy-btn" data-copy="${id}-html" title="کپی کد HTML">${UI_FA.copy}</button>
     </div>
   </div>
   <div class="spec__stage ${stageClass}"${canvas ? ` data-canvas="${canvas}"` : ''} dir="${dir}" lang="fa">${html}</div>
-  ${note ? `<div style="padding:9px 14px;font-size:12.5px;color:var(--t-fg-secondary);border-block-start:1px solid var(--t-border-subtle)">${note}</div>` : ''}
+  ${note ? `<div style="padding:9px 14px;font-size:12.5px;color:var(--t-color-on-surface-variant);border-block-start:1px solid var(--t-color-outline-subtle)">${note}</div>` : ''}
   <div class="spec__code" hidden>
     <div class="spec__tabs" role="tablist">
       ${tabs.map(([t], i) => `<button class="spec__tab" role="tab" aria-selected="${i === 0}" data-tab="${i}">${t}</button>`).join('')}
@@ -424,7 +424,7 @@ export function stateMatrix(sample, states) {
 /** Every modifier the stylesheet defines for this root, rendered. */
 export function modifierMatrix(sample, root, mods, labels = {}, alias = {}) {
   const strip = new RegExp(`\\s*${root}--[a-z0-9-]+`, 'g');
-  /* `.t-btn--red` and `.t-btn--primary` are one rule under two names. Showing
+  /* `.t-button--red` and `.t-button--primary` are one rule under two names. Showing
      both as separate cells made Button look like it had eighteen variants when
      it has fourteen. One cell, both names on it. */
   const also = {};

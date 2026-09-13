@@ -1,33 +1,33 @@
 {
- "t-h1": {
+ "t-heading-1": {
   "mods": [],
   "parts": [],
   "states": [],
   "attrs": [],
   "alias": {}
  },
- "t-h2": {
+ "t-heading-2": {
   "mods": [],
   "parts": [],
   "states": [],
   "attrs": [],
   "alias": {}
  },
- "t-h3": {
+ "t-heading-3": {
   "mods": [],
   "parts": [],
   "states": [],
   "attrs": [],
   "alias": {}
  },
- "t-h4": {
+ "t-heading-4": {
   "mods": [],
   "parts": [],
   "states": [],
   "attrs": [],
   "alias": {}
  },
- "t-h5": {
+ "t-heading-5": {
   "mods": [],
   "parts": [],
   "states": [],
@@ -111,14 +111,14 @@
   "attrs": [],
   "alias": {}
  },
- "t-num-fa": {
+ "t-numerals-fa": {
   "mods": [],
   "parts": [],
   "states": [],
   "attrs": [],
   "alias": {}
  },
- "t-num-tabular": {
+ "t-numerals-tabular": {
   "mods": [],
   "parts": [],
   "states": [],
@@ -222,7 +222,7 @@
   "attrs": [],
   "alias": {}
  },
- "t-btn": {
+ "t-button": {
   "mods": [
    "lg",
    "md",
@@ -263,13 +263,13 @@
    "data-state=loading"
   ],
   "alias": {
-   "primary": "red",
-   "accent": "blue",
-   "neutral": "black",
-   "outline": "black-ghost"
+   "red": "primary",
+   "blue": "accent",
+   "black": "neutral",
+   "black-ghost": "outline"
   }
  },
- "t-icon-btn": {
+ "t-icon-button": {
   "mods": [
    "accent",
    "accent-ghost",
@@ -287,7 +287,7 @@
   "attrs": [],
   "alias": {}
  },
- "t-btn-split": {
+ "t-button-split": {
   "mods": [],
   "parts": [
    "more"
@@ -296,7 +296,7 @@
   "attrs": [],
   "alias": {}
  },
- "t-buybox": {
+ "t-buy-box": {
   "mods": [
    "offline",
    "blue",
@@ -386,7 +386,7 @@
   "attrs": [],
   "alias": {}
  },
- "t-check": {
+ "t-checkbox": {
   "mods": [
    "radio"
   ],
@@ -1043,7 +1043,7 @@
   "attrs": [],
   "alias": {}
  },
- "t-inline-msg": {
+ "t-inline-message": {
   "mods": [
    "critical",
    "positive"
@@ -1373,7 +1373,7 @@
   ],
   "alias": {}
  },
- "t-navitem": {
+ "t-nav-item": {
   "mods": [],
   "parts": [
    "count"
@@ -1390,7 +1390,7 @@
   ],
   "alias": {}
  },
- "t-navgroup": {
+ "t-nav-group": {
   "mods": [],
   "parts": [
    "title"
@@ -1459,21 +1459,21 @@
   ],
   "alias": {}
  },
- "t-dl": {
+ "t-description-list": {
   "mods": [],
   "parts": [],
   "states": [],
   "attrs": [],
   "alias": {}
  },
- "t-datefield": {
+ "t-date-field": {
   "mods": [],
   "parts": [],
   "states": [],
   "attrs": [],
   "alias": {}
  },
- "t-cal": {
+ "t-calendar": {
   "mods": [],
   "parts": [
    "head",
@@ -1499,7 +1499,7 @@
   ],
   "alias": {}
  },
- "t-taginput": {
+ "t-tag-input": {
   "mods": [],
   "parts": [],
   "states": [],

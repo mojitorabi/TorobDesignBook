@@ -2,6 +2,7 @@
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './tokens-lib.mjs';
+import { CLASS_RENAMES } from '../source/rename.mjs';
 
 /* ── Forced states ──────────────────────────────────────────────────────────
    A state you cannot see is a state nobody maintains. Every interactive state
@@ -27,6 +28,26 @@ const FORCED = [
   [/:disabled\b/g, ':is(:disabled, [data-state~="disabled"])'],
 ];
 
+/* ── Renamed classes ────────────────────────────────────────────────────────
+   A component that was renamed keeps answering to its old class. Rather than
+   duplicating every rule, each selector mentioning the new root is expanded to
+   `:is(.new, .old)`, including its BEM tails — `.t-button__icon` becomes
+   `:is(.t-button__icon, .t-btn__icon)`. Specificity does not move: :is() takes
+   the weight of its most specific argument, and both arguments are one class.
+
+   Source CSS therefore only ever spells the new name. The compatibility exists
+   in the bundle, where nobody has to maintain it. */
+const ALIAS = Object.entries(CLASS_RENAMES).map(([oldName, newName]) => [
+  new RegExp('\\.' + newName + '((?:__|--)[a-z0-9-]+)?(?![a-z0-9_-])', 'g'),
+  (_, tail = '') => `:is(.${newName}${tail}, .${oldName}${tail})`,
+]);
+
+function aliasClasses(sel) {
+  let s = sel;
+  for (const [re, rep] of ALIAS) s = s.replace(re, rep);
+  return s;
+}
+
 /** Rewrite selectors only: comments and declaration bodies are left alone. */
 function forceStates(css) {
   let out = '', i = 0;
@@ -36,7 +57,7 @@ function forceStates(css) {
     out += block.replace(/([^{}@;]+)(\{)/g, (m, sel, brace) => {
       let s = sel;
       for (const [re, rep] of FORCED) s = s.replace(re, rep);
-      return s + brace;
+      return aliasClasses(s) + brace;
     });
     if (c === -1) break;
     const end = css.indexOf('*/', c + 2);
@@ -55,4 +76,5 @@ for (const f of files) body += `\n/* ═══ ${f} ═══ */\n` + forceState
 writeFileSync(join(out, 'torob.css'), '@import "./tokens.css";\n' + body);
 writeFileSync(join(out, 'fonts.css'), readFileSync(join(ROOT, 'packages/css/src-site/fonts.css'), 'utf8'));
 const forced = (body.match(/data-state~=/g) ?? []).length;
-console.log(`✓ torob.css — ${files.length} parts, ${(body.length / 1024).toFixed(1)}KB, ${forced} forced-state selectors`);
+const aliased = (body.match(/:is\(\.t-[a-z0-9_-]+, \.t-/g) ?? []).length;
+console.log(`✓ torob.css — ${files.length} parts, ${(body.length / 1024).toFixed(1)}KB, ${forced} forced-state selectors, ${aliased} renamed-class aliases`);

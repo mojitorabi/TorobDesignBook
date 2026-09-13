@@ -8,13 +8,13 @@ import { clsx, toFa, formatPrice, formatDistance } from '../utils';
 export function SplitButton({ variant = 'red', children, onAction, menuLabel, items = [] }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="t-btn-split">
-      <button type="button" className={`t-btn t-btn--${variant}`} onClick={onAction}>
+    <div className="t-button-split">
+      <button type="button" className={`t-button t-button--${variant}`} onClick={onAction}>
         {children}
       </button>
       <button
         type="button"
-        className={`t-btn t-btn--${variant} t-btn-split__more`}
+        className={`t-button t-button--${variant} t-button-split__more`}
         aria-label={menuLabel}
         aria-haspopup="menu"
         aria-expanded={open}

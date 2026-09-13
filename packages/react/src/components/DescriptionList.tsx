@@ -6,11 +6,11 @@ import { clsx, toFa, formatPrice, formatDistance } from '../utils';
 
 export function DescriptionList({ items }) {
   return (
-    <dl className="t-dl">
+    <dl className="t-description-list">
       {items.map(i => (
         <Fragment key={i.label}>
           <dt>{i.label}</dt>
-          <dd className={clsx(i.numeric && 't-num-tabular')}>{i.value ?? '—'}</dd>
+          <dd className={clsx(i.numeric && 't-numerals-tabular')}>{i.value ?? '—'}</dd>
         </Fragment>
       ))}
     </dl>

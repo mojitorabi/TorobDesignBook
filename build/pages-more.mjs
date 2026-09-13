@@ -8,7 +8,7 @@ export function spacingPage(m) {
 
   let body = `<div class="prose"><p>یک شبکهٔ ۴ پیکسلی. ده پله، و هر کدام مضربی از چهار — نه ۶ هست، نه ۱۰، نه ۱۴. اگر مقداری روی مقیاس نیست، پاسخ تغییر چیدمان است، نه افزودن یک توکن تازه.</p></div>
   ${specimen({ label: 'مقیاس فاصله', canvas: 'fog', stageClass: 'spec__stage--stack', dir: 'ltr', html: spaces.map(([p, t]) =>
-    `<div style="display:flex;align-items:center;gap:14px"><code style="inline-size:118px;font-size:12px">--t-${p.replace(/\./g, '-')}</code><span style="inline-size:46px;font-size:12px;color:var(--t-fg-secondary)">${t.value}</span><span style="block-size:15px;inline-size:${t.value};background:var(--t-fg-brand);border-radius:2px;min-inline-size:1px"></span></div>`).join('') })}`;
+    `<div style="display:flex;align-items:center;gap:14px"><code style="inline-size:118px;font-size:12px">--t-${p.replace(/\./g, '-')}</code><span style="inline-size:46px;font-size:12px;color:var(--t-color-on-surface-variant)">${t.value}</span><span style="block-size:15px;inline-size:${t.value};background:var(--t-color-brand);border-radius:2px;min-inline-size:1px"></span></div>`).join('') })}`;
 
   body += S('rhythm', 'ریتم', `<div class="prose">
     <p>درون یک گروه تنگ، بین گروه‌ها سخاوتمند. فاصله‌ای که دو چیز را از هم جدا می‌کند باید به‌وضوح بزرگ‌تر از فاصله‌ای باشد که اجزای هرکدام را به هم می‌بندد؛ وگرنه چشم نمی‌تواند گروه‌بندی را پیدا کند.</p>
@@ -26,7 +26,7 @@ export function spacingPage(m) {
   const radii = Object.entries(m.base).filter(([p]) => p.startsWith('radius.'));
   body += S('radius', 'گردی گوشه', `<div class="prose"><p><strong>۱۲ پیکسل پیش‌فرض است.</strong> این سلیقه نیست، شمارش است: از ۴۴۳ گردی <em>واقعی</em> در فایل اسکچ، ۲۶۳ مورد (۵۹٪) دوازده‌اند و ۱۳۲ مورد (۳۰٪) شانزده. شانزده تقریباً همیشه روی تصویر محصول و سطوح بزرگ می‌نشیند.</p><p>«واقعی» دو قید دارد و هر دو لازم‌اند. اول، فقط لایه‌هایی شمرده می‌شوند که <strong>واقعاً رنگ می‌گیرند</strong>؛ گردی روی یک گروه بی‌پرکننده دیده نمی‌شود. دوم، ۴۹۶ شکل دیگر گردی‌شان از نصف ارتفاعشان بیشتر است — آنها گوشهٔ ۱۶ پیکسلی ندارند، <strong>قرص‌اند</strong>، و ۲۹۷تایشان نشان‌های ۲۴ پیکسلی‌اند. ریختن آنها در همان سطل، شانزده را به پرتکرارترین گردی تبدیل می‌کند و نتیجه‌گیری را وارونه.</p></div>
     ${specimen({ label: 'مقیاس گردی', canvas: 'fog', dir: 'ltr', html: radii.map(([p, t]) =>
-      `<div style="text-align:center"><div style="inline-size:70px;block-size:70px;background:var(--t-bg-subtle);border:1px solid var(--t-border-default);border-radius:${t.value}"></div><div style="font-size:11px;margin-block-start:8px;color:var(--t-fg-secondary)">${p.replace('radius.', '')}<br>${t.value}</div></div>`).join('') })}
+      `<div style="text-align:center"><div style="inline-size:70px;block-size:70px;background:var(--t-color-surface-container);border:1px solid var(--t-color-outline);border-radius:${t.value}"></div><div style="font-size:11px;margin-block-start:8px;color:var(--t-color-on-surface-variant)">${p.replace('radius.', '')}<br>${t.value}</div></div>`).join('') })}
     ${table(['توکن', 'مقدار', 'کاربرد'], radii.map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, t.value, t.description ?? '']))}`);
 
   const elev = Object.entries(m.base).filter(([p]) => p.startsWith('elevation.'));
@@ -35,7 +35,7 @@ export function spacingPage(m) {
       <p>جفت خط مویی همان <code>Store Card - Light/Dark</code> منبع را بازتولید می‌کند، که خط بالا و پایینش را به‌جای کادر، با دو سایهٔ بدون بلور در ±۰٫۵ پیکسل کشیده بود.</p>
     </div>
     ${specimen({ label: 'نردبان ارتفاع', canvas: 'fog', dir: 'ltr', html: elev.filter(([p]) => /elevation\.[0-3]$/.test(p)).map(([p, t]) =>
-      `<div style="text-align:center"><div style="inline-size:96px;block-size:66px;background:var(--t-bg-fog);border-radius:12px;box-shadow:${t.value}"></div><div style="font-size:11px;margin-block-start:9px;color:var(--t-fg-secondary)">elevation-${p.split('.')[1]}</div></div>`).join('') })}
+      `<div style="text-align:center"><div style="inline-size:96px;block-size:66px;background:var(--t-color-surface-raised);border-radius:12px;box-shadow:${t.value}"></div><div style="font-size:11px;margin-block-start:9px;color:var(--t-color-on-surface-variant)">elevation-${p.split('.')[1]}</div></div>`).join('') })}
     ${table(['توکن', 'مقدار', 'کاربرد'], elev.map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, `<code style="font-size:11.5px">${esc(String(t.value))}</code>`, t.description ?? '']))}`);
 
   return { body, toc, title: 'فاصله و چیدمان', description: 'یک شبکهٔ ۴ پیکسلی، گردی پیش‌فرض ۱۲ و سه پلهٔ ارتفاع.', eyebrow: 'مبانی' };
@@ -57,7 +57,7 @@ export function motionPage(m) {
   body += S('demo', 'منحنی‌ها', `<div class="prose"><p>روی هر مربع هاور کنید. <code>out</code> پیش‌فرض است: کاهش‌شتاب نمایی که سریع می‌رسد و نرم می‌نشیند. حسش این است که رابط دارد به شما پاسخ می‌دهد، نه اینکه دارد برایتان انیمیشن پخش می‌کند.</p></div>
     ${specimen({ label: 'مقایسهٔ منحنی‌ها', canvas: 'fog', dir: 'ltr', html: e.map(([p, t]) => {
       const n = p.replace('easing.', '');
-      return `<div style="text-align:center"><div class="motion-demo" style="--e:cubic-bezier(${t.value.join(',')});inline-size:112px;block-size:52px;border-radius:10px;background:var(--t-bg-subtle);border:1px solid var(--t-border-default);display:grid;place-items:start;padding:11px;overflow:hidden"><span style="inline-size:26px;block-size:26px;border-radius:7px;background:var(--t-fg-brand);transition:translate 480ms var(--e)"></span></div><div style="font-size:11px;margin-block-start:7px;color:var(--t-fg-secondary)">${n}</div></div>`;
+      return `<div style="text-align:center"><div class="motion-demo" style="--e:cubic-bezier(${t.value.join(',')});inline-size:112px;block-size:52px;border-radius:10px;background:var(--t-color-surface-container);border:1px solid var(--t-color-outline);display:grid;place-items:start;padding:11px;overflow:hidden"><span style="inline-size:26px;block-size:26px;border-radius:7px;background:var(--t-color-brand);transition:translate 480ms var(--e)"></span></div><div style="font-size:11px;margin-block-start:7px;color:var(--t-color-on-surface-variant)">${n}</div></div>`;
     }).join('') + `<style>.motion-demo:hover > span { translate: 58px 0; }</style>` })}`);
 
   body += S('rules', 'قواعد', guidance([
@@ -73,7 +73,7 @@ export function motionPage(m) {
   ]));
 
   body += S('reduced', 'کاهش حرکت', `<div class="prose"><p>یک مدیا کوئری کل سیستم را جمع می‌کند. هر انیمیشنی در ترب از همین‌جا در دسترس است و این فقط به این دلیل درست است که مدت‌ها از توکن می‌آیند، نه از عددهای پراکنده در CSS کامپوننت‌ها.</p></div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">layout.css</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="rm-src">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">layout.css</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="rm-src">کپی</button></div></div>
     <pre class="code" id="rm-src"><code>@media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 1ms !important;
@@ -133,7 +133,7 @@ export function rtlPage() {
   body += S('motion', 'حرکت هم جهت دارد', `<div class="prose">
       <p>یک پنل کناری از انتهای محور وارد می‌شود. در راست‌چین یعنی از چپ و در چپ‌چین یعنی از راست. <code>translateX</code> به‌تنهایی نمی‌تواند این را بگوید، پس سیستم یک ضریب جهت در اختیار می‌گذارد:</p>
     </div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">base.css</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="dir-src">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">base.css</span><div class="spec__tools"><button class="t-button t-button--outline t-button--sm copy-btn" data-copy="dir-src">کپی</button></div></div>
     <pre class="code" id="dir-src"><code>:root                        { --t-dir: -1; }
 :root[dir="rtl"], [dir="rtl"] { --t-dir:  1; }
 :root[dir="ltr"], [dir="ltr"] { --t-dir: -1; }

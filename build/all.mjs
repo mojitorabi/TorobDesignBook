@@ -20,6 +20,7 @@ const steps = [
   ['css-bundle.mjs',     'Bundle the CSS layer'],
   ['css-map.mjs',        'GATE: every interactive component has a full state set'],
   ['js-check.mjs',       'GATE: site.js asks for lists with the list selector'],
+  ['rename-check.mjs',   'GATE: every name the system used before still works'],
   ['css-specs.mjs',      'Redlines read from the stylesheet'],
   ['make-map.mjs',       'Specimen map backgrounds'],
   ['mcp-build.mjs',      'MCP server data'],
