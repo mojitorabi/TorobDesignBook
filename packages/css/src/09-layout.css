@@ -160,6 +160,14 @@
   padding-block-end: var(--t-space-1);
 }
 .t-carousel__track::-webkit-scrollbar { display: none; }
+/* The arrows scroll the rail with behavior:'auto', so the stylesheet decides
+   whether that glides or jumps. It has to be this way round: a programmatic
+   smooth scroll on a mandatory-snap container is cancelled by the snap engine
+   mid-animation and the rail never leaves the item it started on. Declaring
+   the motion here also means it answers to the motion preference for free. */
+@media (prefers-reduced-motion: no-preference) {
+  .t-carousel__track { scroll-behavior: smooth; }
+}
 .t-carousel__item { flex: none; scroll-snap-align: start; }
 .t-carousel__nav {
   position: absolute; inset-block-start: 50%; translate: 0 -50%;
