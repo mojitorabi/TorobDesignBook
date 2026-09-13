@@ -9,7 +9,7 @@ export function indexPage({ components, iconCount, tokenCount }) {
   for (const c of components) (groups[c.group] ??= []).push(c);
 
   let body = `<div class="prose" style="max-inline-size:none;margin-block-start:-14px">
-    <div class="note" style="border-inline-start-color:var(--t-fg-brand)">
+    <div class="t-alert site-note">
       <strong>کتاب دیزاین ترب</strong> تنها مرجع این است که ترب و «خرید از اطراف» چه شکلی‌اند، چطور رفتار می‌کنند و چطور ساخته می‌شوند. توکن وارد می‌شود و بقیه بیرون می‌آید: همین وب‌سایت، پکیج CSS، کامپوننت‌های ری‌اکت، ${toFa(getFacts().exports)} قالب خروجی و سرور MCP همه از یک مجموعه فایل تولید می‌شوند. هیچ‌چیزِ پایین‌دستی دستی نگه‌داری نمی‌شود، پس هیچ‌چیزِ پایین‌دستی نمی‌تواند از منبع فاصله بگیرد.
     </div>
   </div>
@@ -70,7 +70,7 @@ export function indexPage({ components, iconCount, tokenCount }) {
       <div style="display:grid;gap:7px;grid-template-columns:repeat(auto-fill,minmax(216px,1fr))">
         ${list.map(c => `<a href="components/${c.slug}.html" style="text-decoration:none;color:inherit;padding:11px 13px;border:1px solid var(--t-border-subtle);border-radius:9px;background:var(--t-bg-fog);display:flex;align-items:center;gap:8px">
           <span style="font-weight:600;font-size:13.5px">${esc(c.name)}</span>
-          ${c.status === 'new' ? '<span class="status-pill status-pill--new" style="font-size:9.5px;padding:1px 6px">تازه</span>' : ''}
+          ${c.status === 'new' ? '<span class="t-badge t-badge--guarantee">تازه</span>' : ''}
         </a>`).join('')}
       </div>`).join('')}
     </div>`);
@@ -125,7 +125,7 @@ export function aiPage(nComponents, nIcons) {
     ])}`);
 
   body += S('install', 'نصب', `<div class="prose"><p>نودجی‌اس ۱۸ به بالا. نیازی به نصب سراسری نیست.</p></div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Claude Code — فایل .mcp.json در ریشهٔ مخزن</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="mcp-claude">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Claude Code — فایل .mcp.json در ریشهٔ مخزن</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="mcp-claude">کپی</button></div></div>
     <pre class="code" id="mcp-claude"><code>{
   "mcpServers": {
     "torob-design": {
@@ -136,7 +136,7 @@ export function aiPage(nComponents, nIcons) {
   }
 }</code></pre></div>
 
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Cursor — فایل .cursor/mcp.json</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="mcp-cursor">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">Cursor — فایل .cursor/mcp.json</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="mcp-cursor">کپی</button></div></div>
     <pre class="code" id="mcp-cursor"><code>{
   "mcpServers": {
     "torob-design": {
@@ -146,7 +146,7 @@ export function aiPage(nComponents, nIcons) {
   }
 }</code></pre></div>
 
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">بررسی درست کارکردن</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="mcp-test">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">بررسی درست کارکردن</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="mcp-test">کپی</button></div></div>
     <pre class="code" id="mcp-test"><code>cd design-system/packages/mcp
 npm install
 node test-server.mjs      # exercises all nine tools and prints the output</code></pre></div>`);
@@ -154,7 +154,7 @@ node test-server.mjs      # exercises all nine tools and prints the output</code
   body += S('validate', 'لینتر همان بخشی است که اهمیت دارد', `<div class="prose">
       <p>مستنداتی که عامل <em>می‌تواند</em> بخواند با مستنداتی که <em>خوانده است</em> یکی نیست. <code>validate_code</code> همین شکاف را می‌بندد: روی هر رابطی که تولید شده اجرایش کنید تا تخلف‌های مشخص را برگرداند، به‌همراه توکنی که باید استفاده می‌شد.</p>
     </div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">ورودی ← خروجی</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="lint-demo">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">ورودی ← خروجی</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="lint-demo">کپی</button></div></div>
     <pre class="code" id="lint-demo"><code>validate_code({ code: \`
 .card {
   background: #FFFFFF;
@@ -181,7 +181,7 @@ WARN  line 8  [off-scale-duration]   250ms is not a duration token (120/220/320/
     <div class="prose"><p>همچنین شیشهٔ تودرتو، تخطی از بودجهٔ شیشه، دکمهٔ آیکونی بدون نام، <code>&lt;img&gt;</code> بدون <code>alt</code>، <code>&lt;div&gt;</code> کلیک‌پذیر و هر نام قدیمی اسکچ را که هنوز در کد مانده پیدا می‌کند.</p></div>`);
 
   body += S('prompt', 'به عامل چه بگویید', `<div class="prose"><p>این را در <code>CLAUDE.md</code> یا <code>.cursorrules</code> بگذارید. بیلد آن را در <code>packages/mcp/AGENT_RULES.md</code> برایتان تولید می‌کند.</p></div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">AGENT_RULES.md</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="agent-rules">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">AGENT_RULES.md</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="agent-rules">کپی</button></div></div>
     <pre class="code" id="agent-rules"><code># Torob Design System — rules for AI agents
 
 This project uses the Torob Design System — کتاب دیزاین ترب. An MCP server named

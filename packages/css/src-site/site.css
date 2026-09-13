@@ -60,14 +60,10 @@ body.site {
   -webkit-backdrop-filter: blur(var(--t-glass-blur)) saturate(var(--t-glass-saturate));
 }
 .site-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: inherit; flex: none; }
-.site-brand__mark {
-  inline-size: 28px; block-size: 28px; border-radius: 9px;
-  background: var(--t-action-red-bg-gradient);
-  border: 1px solid var(--t-action-red-border);
-  display: grid; place-items: center;
-  color: #fff; font-size: 15px; font-weight: 800; line-height: 1;
-  box-shadow: var(--t-elevation-1);
-}
+/* The mark carries its own colour, so the slot around it is nothing but a
+   box of the right size. */
+.site-brand__mark { display: grid; place-items: center; flex: none; }
+.site-brand__logo { inline-size: 26px; block-size: 26px; display: block; }
 .site-brand__name { font-weight: 800; font-size: 16px; }
 .site-brand__sub {
   color: var(--t-fg-secondary); font-weight: 500; font-size: 13px;
@@ -75,36 +71,21 @@ body.site {
   border-inline-start: 1px solid var(--t-border-default);
 }
 
-.site-search { flex: 1; min-inline-size: 0; max-inline-size: 480px; position: relative; }
-.site-search input {
-  inline-size: 100%; block-size: 36px;
-  padding-inline: 34px 46px;
-  border: 1px solid var(--t-border-default);
-  border-radius: 10px;
-  background: var(--t-bg-fog);
-  font: inherit; font-size: 14px; color: inherit;
-  transition: border-color 140ms var(--site-ease), box-shadow 140ms var(--site-ease);
-}
-.site-search input::placeholder { color: var(--t-fg-secondary); }
-.site-search input:focus {
-  outline: none;
-  border-color: var(--t-border-focus);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-border-focus) 22%, transparent);
-}
-.site-search__icon { position: absolute; inset-inline-start: 11px; inset-block-start: 10px; color: var(--t-fg-secondary); pointer-events: none; }
-.site-search__kbd { position: absolute; inset-inline-end: 9px; inset-block-start: 8px; pointer-events: none; }
+/* Search is `.t-search` + `.t-input`; the dropdown is `.t-popover` with
+   `.t-menu-item` rows. The site only sets the width it may take in the bar,
+   trims the control to bar height, and parks the keyboard hint. */
+.site-search { flex: 1; min-inline-size: 0; max-inline-size: 480px; }
+.site-search > .t-input { block-size: 36px; }
+.site-search .t-input__el { font-size: 14px; line-height: 1.5; }
+.site-search .t-input__el::placeholder { color: var(--t-fg-secondary); opacity: 1; }
+.site-search__kbd { flex: none; pointer-events: none; }
 .site-results {
-  position: absolute; inset-inline: 0; inset-block-start: 43px;
-  max-block-size: 62vh; overflow-y: auto;
-  background: var(--t-bg-fog);
-  border: 1px solid var(--t-border-default);
-  border-radius: 12px;
+  inset-inline: 0; inset-block-start: calc(100% + 7px);
+  max-block-size: 62vh; overflow-y: auto; z-index: 70;
   box-shadow: var(--t-elevation-3);
-  padding: 6px; z-index: 70;
 }
 .site-results[hidden] { display: none !important; }
-.site-results a { display: flex; align-items: baseline; gap: 9px; padding: 8px 11px; border-radius: 8px; text-decoration: none; color: inherit; font-size: 14px; }
-.site-results a:hover, .site-results a[aria-selected="true"] { background: var(--t-bg-subtle); }
+.site-results a { text-decoration: none; }
 .site-results__group { color: var(--t-fg-secondary); font-size: 11.5px; margin-inline-start: auto; }
 .site-results__empty { padding: 15px; margin: 0; color: var(--t-fg-secondary); font-size: 14px; }
 .site-results__empty[hidden] { display: none !important; }
@@ -118,18 +99,6 @@ kbd {
 }
 
 .site-bar__tools { display: flex; align-items: center; gap: 7px; margin-inline-start: auto; flex: none; }
-.site-tool {
-  block-size: 34px; min-inline-size: 34px;
-  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-  padding-inline: 10px;
-  border: 1px solid var(--t-border-default); border-radius: 9px;
-  background: var(--t-bg-fog); color: var(--t-fg-secondary);
-  font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
-  white-space: nowrap;
-  transition: color 140ms var(--site-ease), border-color 140ms var(--site-ease), background-color 140ms var(--site-ease);
-}
-.site-tool:hover { color: var(--t-fg-default); border-color: var(--t-border-control); }
-.site-tool[aria-pressed="true"] { color: var(--t-fg-link); border-color: var(--t-border-selected); background: var(--t-action-blue-soft-bg); }
 
 /* ---------- Shell ---------- */
 .site-shell { display: flex; align-items: flex-start; max-inline-size: var(--site-max); margin-inline: auto; }
@@ -167,18 +136,10 @@ kbd {
   font-size: 11.5px; font-weight: 800; letter-spacing: 0;
   color: var(--t-fg-secondary);
 }
-.site-nav a {
-  position: relative;
-  display: flex; align-items: center;
-  min-block-size: 32px;
-  padding: 4px 12px; border-radius: 8px;
-  color: var(--t-fg-secondary); text-decoration: none;
-  font-size: 14.5px; line-height: 1.5;
-  transition: color 120ms var(--site-ease), background-color 120ms var(--site-ease);
-}
-.site-nav a:hover { color: var(--t-fg-default); background: var(--t-bg-subtle); }
-.site-nav a[aria-current="page"] { color: var(--t-fg-default); background: var(--t-bg-subtle); font-weight: 700; }
-.site-nav a[aria-current="page"]::before {
+/* A row in the sidebar is `.t-navitem`, the same component the seller panel
+   uses. The site adds the brand rule on the current page and nothing else. */
+.site-nav .t-navitem { position: relative; min-block-size: 32px; font-size: 14.5px; }
+.site-nav .t-navitem[aria-current="page"]::before {
   content: ""; position: absolute;
   inset-inline-start: 0; inset-block: 7px;
   inline-size: 3px; border-radius: 2px;
@@ -267,37 +228,35 @@ kbd {
 .fam-blue  { color: var(--t-fg-link); }
 .fam-black { color: var(--t-fg-default); }
 
-/* ---------- Legacy name chip ---------- */
-.legacy {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 4px 10px; border-radius: 7px;
+/* ---------- Old Sketch names ----------
+   The chip is `.t-tag`, the component. All this adds is the monospace face an
+   identifier deserves and the "قبلاً" that says what the name is. */
+.legacy-list { display: flex; flex-wrap: wrap; gap: 7px; }
+.legacy-list .t-tag {
   background: var(--t-status-caution-bg); color: var(--t-status-caution-fg);
-  font-family: var(--site-mono); font-size: 12px; line-height: 1.6;
-  direction: ltr; unicode-bidi: isolate;
+  font-family: var(--site-mono); direction: ltr; unicode-bidi: isolate;
 }
-.legacy::before {
+.legacy-list .t-tag::before {
   content: "قبلاً"; font-family: var(--t-font-family-sans);
   font-weight: 700; font-size: 11px; opacity: 0.75;
 }
-.legacy-list { display: flex; flex-wrap: wrap; gap: 7px; }
 .legacy-fold { margin-block: 6px 16px; }
-.legacy-fold > summary {
-  cursor: pointer; list-style: none;
-  display: inline-flex; align-items: center; gap: 8px;
-  min-block-size: 32px;
-  font-size: 13.5px; font-weight: 600; color: var(--t-fg-secondary);
-  padding: 5px 12px; border: 1px dashed var(--t-border-default); border-radius: 9px;
-}
+.legacy-fold > summary { list-style: none; cursor: pointer; inline-size: fit-content; }
 .legacy-fold > summary::-webkit-details-marker { display: none; }
-.legacy-fold > summary:hover { color: var(--t-fg-default); border-color: var(--t-border-control); }
 .legacy-fold[open] > summary { margin-block-end: 12px; }
 .legacy-fold__chev { transition: rotate 200ms var(--site-ease); }
 .legacy-fold[open] .legacy-fold__chev { rotate: 180deg; }
 
-.status-pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 11px; border-radius: 999px; font-size: 12.5px; font-weight: 700; }
-.status-pill--stable { background: var(--t-status-positive-bg); color: var(--t-status-positive-fg); }
-.status-pill--new { background: var(--t-status-info-bg); color: var(--t-status-info-fg); }
-.status-pill--revised { background: var(--t-status-caution-bg); color: var(--t-status-caution-fg); }
+/* Status is `.t-badge`; only the tone per status is ours. */
+.site-status[data-status="stable"]  { background: var(--t-status-positive-bg); color: var(--t-status-positive-fg); }
+.site-status[data-status="new"]     { background: var(--t-status-info-bg);     color: var(--t-status-info-fg); }
+.site-status[data-status="revised"] { background: var(--t-status-caution-bg);  color: var(--t-status-caution-fg); }
+.site-status { font-weight: var(--t-font-weight-bold); }
+
+/* The copyable root class: `.t-tag` that behaves like a button. */
+.site-tag-btn { appearance: none; border: 0; cursor: pointer; font: inherit; }
+.site-tag-btn code { background: none; padding: 0; font-size: 12px; font-family: var(--site-mono); }
+.site-tag-btn:hover { background: var(--t-bg-sunken); }
 
 /* ---------- Specimen ----------
    A quiet frame with a lot of internal room. The stage is the only place on
@@ -421,19 +380,12 @@ pre.code code { background: none; padding: 0; font-size: inherit; }
 .swatch__name { font-size: 12.5px; font-weight: 700; color: var(--t-fg-default); word-break: break-word; }
 .swatch__val { font-family: var(--site-mono); font-size: 11px; color: var(--t-fg-secondary); direction: ltr; unicode-bidi: isolate; }
 
-/* ---------- Callout ---------- */
-.note {
-  border-inline-start: 3px solid var(--t-border-selected);
-  padding: 16px 20px;
-  border-start-end-radius: 12px; border-end-end-radius: 12px;
-  background: var(--t-bg-subtle);
-  font-size: 14.5px; color: var(--t-fg-secondary);
-  margin-block: 22px;
-  max-inline-size: var(--site-measure);
-}
-.note strong { color: var(--t-fg-default); }
-.note--warn { border-inline-start-color: var(--t-status-caution-solid); }
-.note--new { border-inline-start-color: var(--t-status-positive-solid); }
+/* ---------- Callout ----------
+   `.t-alert`, the component. The only site-specific part is the measure, so a
+   callout does not run wider than the prose it interrupts. */
+.site-note { margin-block: 22px; max-inline-size: var(--site-measure); display: block; }
+.site-note strong { color: inherit; font-weight: var(--t-font-weight-bold); }
+.site-note code { background: color-mix(in srgb, currentColor 8%, transparent); }
 
 /* ---------- Page footer nav ---------- */
 .page-nav { display: flex; gap: 14px; margin-block-start: 80px; padding-block-start: 28px; border-block-start: 1px solid var(--t-border-subtle); }
@@ -632,17 +584,17 @@ pre.code code { background: none; padding: 0; font-size: inherit; }
 .spec-table .tbl { margin-block: 0; }
 .spec-table .tbl td:first-child { inline-size: 30%; }
 
-/* ---- Related components ---- */
+/* ---- Related components ----
+   `.t-list-item` rows, laid out in columns because there are six of them. */
 .related { display: grid; gap: 9px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); margin-block: 16px; }
-.related__card {
-  display: block; padding: 13px 15px;
-  border: 1px solid var(--t-border-subtle); border-radius: 11px;
-  background: var(--t-bg-fog); text-decoration: none; color: inherit;
-  transition: border-color 140ms var(--site-ease);
+.related .t-list-item {
+  align-items: flex-start; min-block-size: 0; padding: 13px 15px;
+  border-radius: var(--t-radius-md); background: var(--t-bg-fog);
+  box-shadow: inset 0 0 0 1px var(--t-border-subtle);
+  text-decoration: none; color: inherit;
 }
-.related__card:hover { border-color: var(--t-border-control); }
-.related__name { font-weight: 700; font-size: 14px; }
-.related__sum { font-size: 12.5px; color: var(--t-fg-secondary); line-height: 1.6; margin-block-start: 2px; }
+.related .t-list-item::after { display: none; }
+.related .t-list-item:hover { box-shadow: inset 0 0 0 1px var(--t-border-control); }
 
 /* ---- Playground ----
    Choose a combination, see it, copy the markup that makes it. The options
@@ -670,42 +622,64 @@ pre.code code { background: none; padding: 0; font-size: inherit; }
 .play__code pre.code { max-block-size: 240px; overflow: auto; }
 
 /* ---------- Reference tabs ----------
-   The band at the foot of a component page. One heading, five panels. */
+   The band at the foot of a component page. The strip is `.t-segmented`, the
+   component; only the panel below it belongs to the site. */
 .tabset { margin-block-start: 18px; }
-.tabset__list {
-  display: flex; gap: 2px; flex-wrap: wrap;
-  padding: 3px; border-radius: var(--t-radius-md);
-  background: var(--t-bg-subtle);
-  inline-size: fit-content; max-inline-size: 100%;
-}
-.tabset__tab {
-  appearance: none; border: 0; cursor: pointer;
-  min-block-size: 32px; padding-inline: 14px;
-  border-radius: calc(var(--t-radius-md) - 3px);
-  background: transparent; color: var(--t-fg-secondary);
-  font: inherit; font-size: 13.5px; font-weight: 600;
-  transition: background-color 120ms var(--site-ease), color 120ms var(--site-ease);
-}
-.tabset__tab:hover { color: var(--t-fg-default); }
-.tabset__tab[aria-selected="true"] {
-  background: var(--t-bg-canvas); color: var(--t-fg-default);
-  box-shadow: var(--t-elevation-1);
-}
+.tabset__list { max-inline-size: 100%; flex-wrap: wrap; }
 .tabset__panel { padding-block-start: 18px; }
 .tabset__panel[hidden] { display: none; }
 .tabset__panel:focus-visible { outline: var(--t-focus-width) solid var(--t-border-focus); outline-offset: 4px; border-radius: var(--t-radius-sm); }
 .tabset__panel > .prose:first-child > p:first-child { margin-block-start: 0; }
 .tabset__panel .spec-table:first-child { margin-block-start: 0; }
 
-/* The root class, which is the thing a developer copies first. The chip is
-   the button, so there is no separate "copy class" control beside it. */
-.class-chip {
-  appearance: none; cursor: pointer;
-  min-block-size: 26px; padding-inline: 9px;
-  border: 1px solid var(--t-border-subtle); border-radius: 7px;
-  background: var(--t-bg-fog); color: var(--t-fg-secondary);
-  font: inherit; line-height: 1;
-  transition: color 120ms var(--site-ease), border-color 120ms var(--site-ease);
+/* ---------- Explanation on request ----------
+   `.t-accordion` as a <details>, so it needs no script. The chevron turns on
+   [open] rather than aria-expanded, which is the button form of the same
+   component. */
+.explain { margin-block: 14px; max-inline-size: var(--site-measure); }
+.explain > summary { list-style: none; }
+.explain > summary::-webkit-details-marker { display: none; }
+.explain[open] > .t-accordion__trigger .t-accordion__chevron { rotate: 180deg; }
+.explain .t-accordion__panel > :first-child { margin-block-start: 0; }
+.explain .t-accordion__panel > :last-child { margin-block-end: 0; }
+.explain .t-accordion__panel p { margin-block: 0 10px; line-height: 1.9; }
+.explain .t-accordion__panel .prose { max-inline-size: none; font-size: inherit; }
+
+/* ---------- Token cards ----------
+   A semantic token used to be a table row: the name, three hex values and a
+   sentence of Persian. Twenty of those in a column is a wall. The card shows
+   the three colours and the name; the values and the note open on request. */
+.tok-grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); margin-block: 14px 26px; }
+.tok {
+  border-radius: var(--t-radius-md); background: var(--t-bg-fog);
+  box-shadow: inset 0 0 0 1px var(--t-border-subtle);
+  font-size: 13px;
 }
-.class-chip code { background: none; padding: 0; font-size: 12px; }
-.class-chip:hover { color: var(--t-fg-default); border-color: var(--t-border-control); }
+.tok > summary {
+  display: flex; align-items: center; gap: 10px;
+  min-block-size: 44px; padding-inline: 12px;
+  cursor: pointer; list-style: none;
+  border-radius: var(--t-radius-md);
+}
+.tok > summary::-webkit-details-marker { display: none; }
+.tok > summary:hover { background: var(--t-bg-subtle); }
+.tok__chips { display: flex; flex: none; }
+.tok__chip {
+  inline-size: 17px; block-size: 24px;
+  box-shadow: inset 0 0 0 1px var(--t-border-subtle);
+}
+.tok__chip:first-child { border-start-start-radius: 6px; border-end-start-radius: 6px; }
+.tok__chip:last-child  { border-start-end-radius: 6px; border-end-end-radius: 6px; }
+.tok__name {
+  flex: 1; min-inline-size: 0;
+  font-family: var(--site-mono); font-size: 11.5px; color: var(--t-fg-default);
+  direction: ltr; unicode-bidi: isolate; text-align: start;
+  overflow-wrap: anywhere;
+}
+.tok__more { flex: none; color: var(--t-fg-secondary); font-size: 11px; }
+.tok[open] .tok__more { color: var(--t-fg-link); }
+.tok__body { padding: 2px 12px 12px; }
+.tok__vals { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; margin-block-end: 8px; }
+.tok__vals dt { color: var(--t-fg-secondary); font-size: 11.5px; }
+.tok__vals dd { margin: 0; font-family: var(--site-mono); font-size: 11.5px; direction: ltr; unicode-bidi: isolate; }
+.tok__note { color: var(--t-fg-secondary); line-height: 1.8; margin: 0 0 8px; }

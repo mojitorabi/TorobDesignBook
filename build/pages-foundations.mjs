@@ -1,4 +1,4 @@
-import { specimen, section, table, guidance, esc, toFa } from './site-lib.mjs';
+import { specimen, section, table, guidance, esc, toFa, explain } from './site-lib.mjs';
 import { getFacts } from './facts.mjs';
 
 const sw = (name, value, note) => `<button class="swatch" data-copy-text="var(${name})" title="Copy var(${name})">
@@ -14,31 +14,48 @@ export function colorPage(m) {
   const fam = (prefix) => Object.entries(m.base).filter(([p]) => p.startsWith(`color.${prefix}.`))
     .map(([p, t]) => sw('--t-' + p.replace(/\./g, '-'), t.value, t.description?.startsWith('[NEW]') ? 'NEW' : ''));
   const chip = v => `<span style="display:inline-flex;align-items:center;gap:7px"><span style="inline-size:15px;block-size:15px;border-radius:4px;border:1px solid var(--t-border-subtle);background:${v}"></span><code>${esc(String(v))}</code></span>`;
-  const semantic = (prefix) => Object.entries(m.modes.light).filter(([p]) => p.startsWith(prefix))
-    .map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`,
-      chip(t.value),
-      chip(m.modes.dim[p]?.value ?? t.value),
-      chip(m.modes.dark[p]?.value ?? t.value),
-      t.description ?? '']);
+
+  /* One card per semantic token. Closed, it is three colours and a name —
+     which is the question "what does this look like" answered. The three hex
+     values and the Persian note are the answer to "why", so they open on
+     request instead of filling the page. */
+  const THEME_FA = { light: 'روشن', dim: 'ملایم', dark: 'تیره' };
+  const semanticGrid = (prefix) => `<div class="tok-grid">${
+    Object.entries(m.modes.light).filter(([p]) => p.startsWith(prefix)).map(([p, t]) => {
+      const name = `--t-${p.replace(/\./g, '-')}`;
+      const vals = { light: t.value, dim: m.modes.dim[p]?.value ?? t.value, dark: m.modes.dark[p]?.value ?? t.value };
+      return `<details class="tok">
+  <summary>
+    <span class="tok__chips" aria-hidden="true">${Object.values(vals).map(v => `<span class="tok__chip" style="background:${v}"></span>`).join('')}</span>
+    <code class="tok__name">${esc(name)}</code>
+    <span class="tok__more">جزئیات</span>
+  </summary>
+  <div class="tok__body">
+    <dl class="tok__vals">${Object.entries(vals).map(([k, v]) => `<dt>${THEME_FA[k]}</dt><dd>${esc(String(v))}</dd>`).join('')}</dl>
+    ${t.description ? `<p class="tok__note">${t.description}</p>` : ''}
+    <button class="t-btn t-btn--outline t-btn--xs copy-btn" data-copy-text="var(${name})">کپی متغیر</button>
+  </div>
+</details>`;
+    }).join('')}</div>`;
 
   let body = `<div class="prose">
     <p>نُه خانواده به‌علاوهٔ رنگ برند. <strong>Sky</strong> ستون فقرات است؛ بین پوسته‌ها یکجا وارونه می‌شود و هر سطح، کادر و فام متن خنثی را حمل می‌کند. بقیه معنا دارند.</p>
-    <div class="note"><strong>از توکن‌های معنایی استفاده کنید، نه پایه‌ای.</strong> <code>--t-fg-default</code> خودش در روشن به Sky 800 و در تیره به Sky 100 حل می‌شود. اگر مستقیم سراغ <code>--t-color-sky-800</code> بروید، خودتان را به یک پوسته میخکوب می‌کنید و بقیه را می‌شکنید.</div>
+    <div class="t-alert site-note"><strong>از توکن‌های معنایی استفاده کنید، نه پایه‌ای.</strong> <code>--t-fg-default</code> خودش در روشن به Sky 800 و در تیره به Sky 100 حل می‌شود. اگر مستقیم سراغ <code>--t-color-sky-800</code> بروید، خودتان را به یک پوسته میخکوب می‌کنید و بقیه را می‌شکنید.</div>
   </div>`;
 
-  body += S('semantic', 'توکن‌های معنایی', `<div class="prose"><p>این همان لایه‌ای است که کد محصول مصرف می‌کند. هر توکن زیر در هر پوسته مقدار خودش را می‌گیرد.</p></div>
-    <h3 style="font-size:15px;font-weight:700;margin-block:26px 6px">سطوح</h3>${table(['توکن', 'روشن', 'ملایم', 'تیره', 'یادداشت'], semantic('bg.'))}
-    <h3 style="font-size:15px;font-weight:700;margin-block:26px 6px">پیش‌زمینه</h3>${table(['توکن', 'روشن', 'ملایم', 'تیره', 'یادداشت'], semantic('fg.'))}
-    <h3 style="font-size:15px;font-weight:700;margin-block:26px 6px">کادرها</h3>${table(['توکن', 'روشن', 'ملایم', 'تیره', 'یادداشت'], semantic('border.'))}
+  body += S('semantic', 'توکن‌های معنایی', `<div class="prose"><p>لایه‌ای که کد محصول مصرف می‌کند. سه مربع کنار هر نام، همان رنگ در روشن، ملایم و تیره است؛ برای مقدارها و دلیلش روی کارت بزنید.</p></div>
+    <h3 style="font-size:15px;font-weight:700;margin-block:26px 6px">سطوح</h3>${semanticGrid('bg.')}
+    <h3 style="font-size:15px;font-weight:700;margin-block:26px 6px">پیش‌زمینه</h3>${semanticGrid('fg.')}
+    <h3 style="font-size:15px;font-weight:700;margin-block:26px 6px">کادرها</h3>${semanticGrid('border.')}
     <h3 style="font-size:15px;font-weight:700;margin-block:26px 6px">تجارت</h3>
-    <div class="prose"><p>Torob-specific meaning. These are load-bearing — do not substitute a generic status colour for <code>commerce.oos</code> or <code>commerce.ad</code>.</p></div>
-    ${table(['توکن', 'روشن', 'ملایم', 'تیره', 'یادداشت'], semantic('commerce.'))}`);
+    ${explain('چرا رنگ‌های تجارت را نمی‌شود با رنگ وضعیت جایگزین کرد', `<p>این‌ها معنای مخصوص ترب را حمل می‌کنند و باربر هستند: <code>commerce.oos</code> یعنی ناموجود و <code>commerce.ad</code> یعنی آگهی. اگر به‌جایشان یک رنگ وضعیت عمومی بگذارید، معنا از دست می‌رود و همان رنگ جای دیگری چیز دیگری می‌گوید.</p>`)}
+    ${semanticGrid('commerce.')}`);
 
   body += S('status', 'وضعیت', `<div class="prose">
       <p>پنج نیت به‌علاوهٔ خنثی. هر کدام چهار نقش دارند: <code>fg</code>، <code>bg</code>، <code>border</code> و <code>solid</code>.</p>
-      <div class="note note--new"><strong>نردبان‌های تیره از نو استخراج شده‌اند، نه بازاستفاده.</strong> منبع اسکچ مقادیر روشن را عیناً در هر دو حالت فرستاده بود، یعنی متن سبز <code>#003D01</code> روی زمینهٔ <code>#15202B</code> — عملاً نامرئی. هر نردبان تیره اینجا مقدار متفاوتی دارد و کنتراستش سنجیده شده.</div>
     </div>
-    ${table(['توکن', 'روشن', 'ملایم', 'تیره', 'یادداشت'], semantic('status.'))}
+    ${explain('نردبان‌های تیره از نو استخراج شده‌اند، نه بازاستفاده', `<p>منبع اسکچ مقادیر روشن را عیناً در هر دو حالت فرستاده بود، یعنی متن سبز <code>#003D01</code> روی زمینهٔ <code>#15202B</code> — عملاً نامرئی. هر نردبان تیره اینجا مقدار متفاوتی دارد و کنتراستش سنجیده شده.</p>`)}
+    ${semanticGrid('status.')}
     ${specimen({ label: 'وضعیت در عمل', canvas: 'fog', html: `<span class="t-badge t-badge--positive">باز الان</span><span class="t-badge t-badge--caution">موجودی کم</span><span class="t-badge t-badge--critical">ناموجود</span><span class="t-badge t-badge--info">نمایندگی رسمی</span><span class="t-badge t-badge--guarantee">ضمانت ترب</span><span class="t-badge">کالابرگ</span>` })}`);
 
   body += S('primitives', 'رنگ‌های پایه', `<div class="prose"><p>پالت خام، عیناً از <code>sharedSwatches</code> منبع اسکچ استخراج شده. مقادیر با نشان <strong>NEW</strong> افزوده یا اصلاح شده‌اند. روی هر سوآچ کلیک کنید تا متغیرش کپی شود.</p></div>
@@ -54,7 +71,7 @@ export function colorPage(m) {
 
   body += S('changes', 'چه چیزی نسبت به منبع اسکچ تغییر کرد', `<div class="prose">
     <p>سیزده اصلاح. هر کدام یا یک شکست دسترس‌پذیری بود یا یک نردبان شکسته. هیچ‌کدام تصمیم سلیقه‌ای نیست.</p></div>
-    ${table(['تغییر', 'چرا'], [
+    ${explain('فهرست کامل سیزده اصلاح', table(['تغییر', 'چرا'], [
       ['<code>sky.600</code> added', 'Sky 500 یعنی <code>#64748B</code> روی بوم نسبت ۴٫۳۴:۱ می‌دهد که زیر AA است. متن ثانویه حالا <code>#5E6D83</code> با نسبت ۴٫۸۰:۱ است.'],
       ['<code>red.600</code> added', 'قرمز برند به‌عنوان <em>متن</em> روی بوم ۴٫۲۰:۱ می‌دهد. پرکردن، لوگو و پین نقشه همان <code>#D73948</code> اصلی را نگه می‌دارند؛ متن از <code>#CD2A39</code> استفاده می‌کند.'],
       ['<code>red.350</code>, <code>red.200</code> added', 'پیش‌زمینهٔ برند و بحرانی روی زمینهٔ تیره هر دو رد شدند. روشن‌تر و دوباره سنجیده شدند.'],
@@ -68,8 +85,8 @@ export function colorPage(m) {
       ['<code>commerce.price-from</code>, <code>distance</code>, <code>closed</code>, <code>oos</code> → <code>sky.600</code>', 'همان مشکل Sky 500: این‌ها متن ۱۲ پیکسلی روی بوم خاکستری‌اند و ۴٫۳۴:۱ می‌دادند. حالا ۴٫۸۰:۱.'],
       ['<code>map.pill-fg</code> added', 'متن قرص قیمت روی نقشه در پوسته‌های تیره Blue 500 بود، یعنی ۲٫۷۳:۱ روی سطح تیره. در تیره Blue 300 شد (۵٫۶۴:۱)؛ روشن همان Blue 500 ماند.'],
       ['نشان «آگهی» روی جعبهٔ خرید آبی', 'سفید روی Blue 300 نسبت ۲٫۵۴:۱ می‌داد. رنگ قرص همان ماند و متن تیره شد (۵٫۷۵:۱).'],
-    ])}
-    <div class="note"><strong>خودتان راستی‌آزمایی کنید:</strong> دستور <code>node build/contrast-check.mjs</code> ${toFa(getFacts().contrastPairs)} جفت پیش‌زمینه و پس‌زمینه را در هر سه پوسته اجرا می‌کند و با هر شکست AA خروجی غیرصفر می‌دهد. این یک دروازه است، نه یک گزارش.</div>`);
+    ]))}
+    <div class="t-alert site-note"><strong>خودتان راستی‌آزمایی کنید:</strong> دستور <code>node build/contrast-check.mjs</code> ${toFa(getFacts().contrastPairs)} جفت پیش‌زمینه و پس‌زمینه را در هر سه پوسته اجرا می‌کند و با هر شکست AA خروجی غیرصفر می‌دهد. این یک دروازه است، نه یک گزارش.</div>`);
 
   return { body, toc, title: 'رنگ', description: 'نُه خانواده به‌علاوهٔ برند. Sky ستون فقرات است؛ بقیه معنا حمل می‌کنند.', eyebrow: 'مبانی' };
 }
@@ -86,7 +103,7 @@ export function typographyPage(m) {
 
   let body = `<div class="prose">
     <p><strong>IRANYekanX</strong> کل سیستم را حمل می‌کند: فارسی، لاتین و هر دو مجموعهٔ اعداد. سه وزن کار را انجام می‌دهند: <strong>Medium ۵۰۰</strong> پیش‌فرض متن، <strong>Bold ۷۰۰</strong> برای تأکید و <strong>ExtraBold ۸۰۰</strong> برای عنوان‌ها.</p>
-    <div class="note"><strong>Medium، نه Regular.</strong> کیت اولیه همهٔ استایل‌های متن را روی Medium گذاشته و همین درست است: وزن Regular برای فارسی در اندازه‌های رابط کاربری بیش‌ازحد نازک است، جایی که تراکم نقطه‌ها و اعراب، ضخامت قلم را می‌خورد.</div>
+    <div class="t-alert site-note"><strong>Medium، نه Regular.</strong> کیت اولیه همهٔ استایل‌های متن را روی Medium گذاشته و همین درست است: وزن Regular برای فارسی در اندازه‌های رابط کاربری بیش‌ازحد نازک است، جایی که تراکم نقطه‌ها و اعراب، ضخامت قلم را می‌خورد.</div>
   </div>`;
 
   body += S('scale', 'مقیاس', `<div class="prose"><p>شش اندازه، هر کدام با ارتفاع خط ثابت. نسبت‌ها بین ۱٫۶۷ تا ۱٫۷۵ هستند؛ سخاوتمند برای فارسی و غیرقابل مذاکره: فارسی دنباله‌های عمیق و اعراب روی‌هم دارد که ارتفاع خط ۱٫۴ آنها را می‌برد.</p></div>

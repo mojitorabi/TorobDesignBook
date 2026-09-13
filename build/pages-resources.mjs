@@ -18,11 +18,11 @@ export function iconsPage(cats, count) {
         <svg class="site-search__icon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M15,14.3L10.7,10c1.9-2.3,1.6-5.8-0.7-7.7S4.2,0.7,2.3,3S0.7,8.8,3,10.7c2,1.7,5,1.7,7,0l4.3,4.3L15,14.3z M2,6.5	C2,4,4,2,6.5,2S11,4,11,6.5S9,11,6.5,11S2,9,2,6.5z"/></svg>
         <input id="iconSearch" type="search" aria-label="جست‌وجوی آیکون" placeholder="Search ${count.toLocaleString('en-US')} icons — try “filter”, “location”, “receipt”…" autocomplete="off">
       </div>
-      <button class="site-tool" id="iconSize" data-size="20">20px</button>
-      <select class="site-tool" id="iconCat" aria-label="دستهٔ آیکون" style="padding-inline:10px">
+      <button class="t-btn t-btn--outline t-btn--sm" id="iconSize" data-size="20">20px</button>
+      <div class="t-select" style="flex:none"><select class="t-input t-input__el t-input--sm" id="iconCat" aria-label="دستهٔ آیکون">
         <option value="">همهٔ دسته‌ها</option>
         ${catList.map(([c, subs]) => `<option value="${esc(c)}">${esc(c)} (${Object.values(subs).reduce((x, y) => x + y, 0)})</option>`).join('')}
-      </select>
+      </select></div>
       <span class="t-body-sm t-tone-secondary" id="iconCount"></span>
     </div>
     <div id="iconGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:5px"></div>
@@ -108,7 +108,7 @@ export function tokensPage(m) {
   </div>`;
 
   body += S('exports', 'خروجی‌ها', `<div class="prose"><p>یک دستور، ${toFa(getFacts().exports)} خروجی:</p></div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">terminal</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="tok-cmd">Copy</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">terminal</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="tok-cmd">Copy</button></div></div>
     <pre class="code" id="tok-cmd"><code>node build/tokens-build.mjs</code></pre></div>
     ${table(['فایل', 'قالب', 'برای'], [
       ['<code>tokens.css</code>', 'CSS custom properties', 'لایهٔ مرجع. روشن، ملایم، تیره و حالت کاهش شفافیت، همه در یک فایل.'],
@@ -168,7 +168,7 @@ export function tokensPage(m) {
     function render(list){
       countEl.textContent=list.length.toLocaleString('fa-IR')+' توکن';
       rows.innerHTML=list.slice(0,400).map(function(t){
-        return '<tr><td><button class="site-tool copy-btn" data-copy-text="var('+t.k+')" style="font-family:inherit;font-size:11.5px;padding:2px 7px;block-size:auto">'+t.k+'</button></td><td>'+chip(t.l)+'</td><td>'+(t.d!=null?chip(t.d):'<span style="color:var(--t-fg-disabled)">—</span>')+'</td><td>'+t.tier+'</td></tr>';
+        return '<tr><td><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy-text="var('+t.k+')" style="font-family:inherit;font-size:11.5px;padding:2px 7px;block-size:auto">'+t.k+'</button></td><td>'+chip(t.l)+'</td><td>'+(t.d!=null?chip(t.d):'<span style="color:var(--t-fg-disabled)">—</span>')+'</td><td>'+t.tier+'</td></tr>';
       }).join('');
     }
     fetch(root+'tokens.json').then(function(r){return r.json()}).then(function(m){

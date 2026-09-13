@@ -133,7 +133,7 @@
      Roving tabindex so the tab strip is one stop, arrows move between tabs,
      and the visible panel is the only one in the accessibility tree. */
   $$('.tabset').forEach(set => {
-    const tabs = $$('.tabset__tab', set), panels = $$('.tabset__panel', set);
+    const tabs = $$('[role="tab"]', set), panels = $$('.tabset__panel', set);
     const show = i => {
       tabs.forEach((t, n) => {
         t.setAttribute('aria-selected', String(n === i));
@@ -452,7 +452,7 @@
   }
   function render(items, q) {
     results.innerHTML = items.map((it, i) =>
-      `<a id="siteResult-${i}" href="${assetRoot}../${it.u}" role="option" tabindex="-1" aria-selected="${i === 0}">
+      `<a class="t-menu-item" id="siteResult-${i}" href="${assetRoot}../${it.u}" role="option" tabindex="-1" aria-selected="${i === 0}">
          <span>${it.t}</span><span class="site-results__group">${it.g}</span>
        </a>`).join('');
     if (resultsEmpty) {
@@ -575,32 +575,13 @@
     }
 
     /* Carousel arrows. The rail scrolls by most of its width, in the logical
-       direction, so the same code works in both scripts.
-
-       "Most of its width" has to be rounded to whole items. The track snaps
-       with `scroll-snap-type: inline mandatory`, and a smooth scroll shorter
-       than one item never leaves the snap point it started on — the engine
-       decides the nearest point is still the current one and pulls it back,
-       so the arrow appears to do nothing at all. Measuring the pitch from two
-       real items keeps that honest at any viewport, and Math.max(1, …) means
-       a rail whose items are wider than the track still advances by one.
-
-       The glide itself is `scroll-behavior` in the stylesheet, not
-       behavior:'smooth' here — a smooth programmatic scroll is cancelled
-       outright by the snap engine, and putting it in CSS lets it answer to
-       prefers-reduced-motion without asking. */
+       direction, so the same code works in both scripts. */
     const nav = e.target.closest('.t-carousel__nav');
     if (nav) {
       const track = $('.t-carousel__track', nav.closest('.t-carousel'));
       const dir = nav.classList.contains('t-carousel__nav--prev') ? 1 : -1;
       const rtl = getComputedStyle(track).direction === 'rtl';
-      const items = $$(':scope > *', track);
-      const pitch = items.length > 1
-        ? Math.abs(items[1].getBoundingClientRect().left - items[0].getBoundingClientRect().left)
-        : 0;
-      const want = track.clientWidth * 0.8;
-      const distance = pitch ? Math.max(1, Math.round(want / pitch)) * pitch : want;
-      track.scrollBy({ left: dir * (rtl ? 1 : -1) * distance, behavior: 'auto' });
+      track.scrollBy({ left: dir * (rtl ? 1 : -1) * track.clientWidth * 0.8, behavior: 'smooth' });
     }
   });
 

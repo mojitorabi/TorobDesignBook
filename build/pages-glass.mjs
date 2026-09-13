@@ -21,11 +21,11 @@ export function glassPage(m) {
       ['<strong>لبهٔ مویی</strong>', '<code>1px #FFFFFF</code>', '<code>1px #212B36</code>', '<code>rgba(120,131,143,0.28)</code>'],
       ['<strong>ریزسایه</strong>', '<code>-0.5px 0.5px 1px #CBD5E1</code>', '<code>-0.5px 0.5px 1px #475569</code>', '<code>-0.5px 0.5px 1px rgba(0,0,0,.6)</code>'],
       ['<strong>حلقهٔ انتخاب</strong>', '<code>0.5px #3468CC</code>', '<code>0.5px #60A5FA</code>', '<code>0.5px #60A5FA</code>'],
-      ['<strong>بلور پس‌زمینه</strong>', '<code>16px</code> <span class="status-pill status-pill--new">افزوده</span>', '<code>16px</code>', '<code>16px</code>'],
+      ['<strong>بلور پس‌زمینه</strong>', '<code>16px</code> <span class="t-badge t-badge--guarantee">افزوده</span>', '<code>16px</code>', '<code>16px</code>'],
       ['<strong>اشباع</strong>', '<code>1</code> — بدون تقویت', '<code>1</code>', '<code>1</code>'],
     ])}
-    <div class="note note--new"><strong>بلور تنها چیزی است که اضافه شده.</strong> منبع اسکچ هیچ‌جا بلور پس‌زمینه ندارد؛ حتی یک لایه. شیشه فقط نیمه‌شفافی بود. روی نقشه یا شبکهٔ متراکم محصول، این کدر خوانده می‌شود نه شیشه‌ای، چون چیزی نیست که پیش‌زمینه را از پس‌زمینه جدا کند. ۱۶ پیکسل یک‌چهارم مقدار اپل است و برای همین کار کافی است. با <code>--t-glass-blur: 0px</code> دقیقاً همان چیزی می‌شود که در اسکچ طراحی شده.</div>
-    <div class="note"><strong>پوستهٔ تیرهٔ واقعی ته‌رنگ خودش را دارد.</strong> ته‌رنگ <code>#212B36</code> پوستهٔ ملایم روی زمینهٔ مشکی مثل یک کارت خاکستری خوانده می‌شود، نه شیشه، چون چیز تیره‌تری پشتش نیست. پوستهٔ تیره یک ته‌رنگ نزدیک‌به‌مشکی با آلفای بالاتر می‌گیرد تا هنوز نیمه‌شفاف دیده شود.</div>`);
+    <div class="t-alert t-alert--info site-note"><strong>بلور تنها چیزی است که اضافه شده.</strong> منبع اسکچ هیچ‌جا بلور پس‌زمینه ندارد؛ حتی یک لایه. شیشه فقط نیمه‌شفافی بود. روی نقشه یا شبکهٔ متراکم محصول، این کدر خوانده می‌شود نه شیشه‌ای، چون چیزی نیست که پیش‌زمینه را از پس‌زمینه جدا کند. ۱۶ پیکسل یک‌چهارم مقدار اپل است و برای همین کار کافی است. با <code>--t-glass-blur: 0px</code> دقیقاً همان چیزی می‌شود که در اسکچ طراحی شده.</div>
+    <div class="t-alert site-note"><strong>پوستهٔ تیرهٔ واقعی ته‌رنگ خودش را دارد.</strong> ته‌رنگ <code>#212B36</code> پوستهٔ ملایم روی زمینهٔ مشکی مثل یک کارت خاکستری خوانده می‌شود، نه شیشه، چون چیز تیره‌تری پشتش نیست. پوستهٔ تیره یک ته‌رنگ نزدیک‌به‌مشکی با آلفای بالاتر می‌گیرد تا هنوز نیمه‌شفاف دیده شود.</div>`);
 
   body += S('ladder', 'نردبان شفافیت', `<div class="prose">
       <p>شفافیت تنها اهرمی است که تغییر می‌کند. سه پله دارد و هر کدام معنای متفاوتی می‌دهند. این همان بخشی است که تیم‌ها اشتباه می‌گیرند، پس ارزش دارد صریح گفته شود:</p>
@@ -45,7 +45,7 @@ export function glassPage(m) {
       <p><code>backdrop-filter</code> کامپوزیتور را مجبور می‌کند هر فریمی که عنصر حرکت می‌کند، همهٔ آنچه پشتش هست را دوباره نمونه‌برداری کند. روی سخت‌افزار میان‌ردهٔ اندروید که بیشتر ترافیک ترب را می‌سازد، این تفاوت میان یک اسکرول ۶۰ فریمی و یک اسکرول به‌وضوح پرش‌دار است.</p>
       <p>پس بودجه یک عدد سخت است، نه یک پیشنهاد:</p>
     </div>
-    <div class="note note--warn"><strong>حداکثر سه سطح با <code>backdrop-filter</code> در هر کادر دید.</strong> توکن: <code>--t-glass-max-layers: 3</code>. یک هدر چسبان، یک ریل فیلتر و یک برگهٔ پایینی کل سهمیه است. شبکه‌ای از کارت‌های شیشه‌ای، شیشه نیست؛ یک باگ نرخ فریم است.</div>
+    <div class="t-alert t-alert--caution site-note"><strong>حداکثر سه سطح با <code>backdrop-filter</code> در هر کادر دید.</strong> توکن: <code>--t-glass-max-layers: 3</code>. یک هدر چسبان، یک ریل فیلتر و یک برگهٔ پایینی کل سهمیه است. شبکه‌ای از کارت‌های شیشه‌ای، شیشه نیست؛ یک باگ نرخ فریم است.</div>
     <div class="prose"><ul>
       <li>هرگز شیشه روی آیتم فهرست، ردیف جدول یا هر چیزی که تکرار می‌شود.</li>
       <li>هرگز شیشه درون شیشه. لایهٔ داخلی خروجی لایهٔ بیرونی را نمونه‌برداری می‌کند و هر دو دوباره ترکیب می‌شوند.</li>
@@ -88,7 +88,7 @@ export function glassPage(m) {
   })}
   <div class="spec" data-spec>
     <div class="spec__bar"><span class="spec__label">glass.css — قاعدهٔ کامل</span>
-      <div class="spec__tools"><button class="site-tool copy-btn" data-copy="glass-src">کپی</button></div></div>
+      <div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="glass-src">کپی</button></div></div>
     <pre class="code" id="glass-src"><code>.t-glass {
   background-color: var(--t-glass-fill);
   border: var(--t-border-thin) solid var(--t-glass-border);

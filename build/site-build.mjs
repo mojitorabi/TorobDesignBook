@@ -15,7 +15,7 @@ import { simplePages } from './pages-simple.mjs';
 import { patternsPages, sellerPanelPage } from './pages-patterns.mjs';
 import { layout, specimen, section, table, guidance, esc, slugToPath, anchor,
          extractElement, stateMatrix, modifierMatrix, STATE_FA, dedupeIds, toFa,
-         bestForSelectors, tabset } from './site-lib.mjs';
+         bestForSelectors, tabset, explain } from './site-lib.mjs';
 import { loadComponents } from './site-lib.mjs';
 import { initFacts } from './facts.mjs';
 
@@ -93,6 +93,9 @@ for (const [from, to] of [['source/samples', 'assets/samples']]) {
   for (const f of readdirSync(src)) copyFileSync(join(src, f), join(out, f));
 }
 
+/* The tab icon is the real mark, the same file the header uses. */
+copyFileSync(join(ROOT, 'packages/brand/torob-logo.svg'), join(OUT, 'assets', 'favicon.svg'));
+
 /* The typeface is part of the site, not a local convenience — copy it from
    the package so a clean checkout produces the same pages. */
 {
@@ -120,7 +123,7 @@ const write = (slug, html) => {
 /* Legacy names: inline when few, folded when many. */
 function legacyBlock(legacy) {
   if (!legacy?.length) return '';
-  const chips = `<div class="legacy-list">${legacy.map(l => `<span class="legacy">${esc(l)}</span>`).join('')}</div>`;
+  const chips = `<div class="legacy-list">${legacy.map(l => `<span class="t-tag">${esc(l)}</span>`).join('')}</div>`;
   if (legacy.length <= 5) return chips;
   return `<details class="legacy-fold">
     <summary><svg class="legacy-fold__chev" width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11-5-5 1-1 4 4 4-4 1 1z"/></svg>${toFa(legacy.length)} ${UI_FA.legacyFold}</summary>
@@ -139,8 +142,8 @@ function componentPage(c) {
   /* Header meta: status + legacy names */
   body += `<div class="prose" style="max-inline-size:none;margin-block-end:6px">
     <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-block-end:14px">
-      <span class="status-pill status-pill--${c.status}">${c.status === 'revised' ? UI_FA.statusRevised : c.status === 'new' ? UI_FA.statusNew : UI_FA.statusStable}</span>
-      <button class="class-chip copy-btn" data-copy-text="${esc(c.root ?? 't-' + c.slug)}" title="${esc(UI_FA.copyClass)}"><code dir="ltr">.${esc(c.root ?? 't-' + c.slug)}</code></button>
+      <span class="t-badge site-status" data-status="${c.status}">${c.status === 'revised' ? UI_FA.statusRevised : c.status === 'new' ? UI_FA.statusNew : UI_FA.statusStable}</span>
+      <button class="t-tag site-tag-btn copy-btn" data-copy-text="${esc(c.root ?? 't-' + c.slug)}" title="${esc(UI_FA.copyClass)}"><code dir="ltr">.${esc(c.root ?? 't-' + c.slug)}</code></button>
     </div>
     ${legacyBlock(c.legacy)}
   </div>`;
@@ -171,13 +174,13 @@ function componentPage(c) {
     const sizes = mods.filter(m => SIZE_MODS.includes(m));
     const variants = mods.filter(m => !SIZE_MODS.includes(m));
     if (variants.length > 1) body += S('variants', 'گونه‌ها',
-      `<div class="prose"><p>هر گونه‌ای که استایل‌شیت تعریف می‌کند، رندرشده از همان مارک‌آپ. این فهرست از خود CSS خوانده می‌شود، پس نه چیزی جا می‌ماند و نه چیزی ادعا می‌شود که وجود ندارد.</p></div>`
+      explain('این فهرست از کجا می‌آید', `<p>هر گونه‌ای که استایل‌شیت تعریف می‌کند، رندرشده از همان مارک‌آپ. فهرست از خود CSS خوانده می‌شود، پس نه چیزی جا می‌ماند و نه چیزی ادعا می‌شود که وجود ندارد.</p>`)
       + modifierMatrix(sample, c.root, variants, {}, map.alias ?? {}));
     if (sizes.length > 1) body += S('sizes', 'اندازه‌ها',
       `<div class="prose"><p>یک مقیاس، در همهٔ کامپوننت‌ها یکی.</p></div>` + modifierMatrix(sample, c.root, sizes, {}, map.alias ?? {}));
     const states = statesFor(c.root, sample);
     if (states.length > 2) body += S('states', 'حالت‌ها',
-      `<div class="prose"><p>هر حالت با <code>data-state</code> هم قابل اعمال است، نه فقط با اشاره‌گر؛ برای همین می‌شود آن را در مستندات، در تست تصویری و در دیف پیکسلی دید.</p></div>`
+      explain('چرا حالت‌ها اینجا بدون اشاره‌گر هم دیده می‌شوند', `<p>هر حالت با <code>data-state</code> هم قابل اعمال است، نه فقط با اشاره‌گر. برای همین می‌شود آن را در مستندات، در تست تصویری و در دیف پیکسلی دید.</p>`)
       + stateMatrix(sample, states));
 
     /* Playground. The controls are built from the same stylesheet reading the
@@ -186,12 +189,12 @@ function componentPage(c) {
        the thing a developer came for. */
     if (variants.length + sizes.length + states.length > 3) {
       const cfg = { root: c.root, variants, sizes, states, sample };
-      body += S('playground', 'آزمایشگاه', `<div class="prose"><p>ترکیب را انتخاب کنید؛ مارک‌آپ همان پایین ساخته می‌شود. گزینه‌ها از خود استایل‌شیت می‌آیند، پس هر چه اینجا هست واقعاً وجود دارد.</p></div>
+      body += S('playground', 'آزمایشگاه', `<div class="prose"><p>ترکیب را انتخاب کنید؛ مارک‌آپ همان پایین ساخته می‌شود.</p></div>
         <div class="play" data-play='${esc(JSON.stringify(cfg))}'>
           <div class="play__controls"></div>
           <div class="play__stage" dir="rtl" lang="fa"></div>
           <div class="play__code">
-            <div class="play__bar"><span>HTML</span><button class="site-tool copy-btn" data-copy="play-${c.slug}">${UI_FA.copy}</button></div>
+            <div class="play__bar"><span>HTML</span><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="play-${c.slug}">${UI_FA.copy}</button></div>
             <pre class="code" id="play-${c.slug}"><code></code></pre>
           </div>
         </div>`);
@@ -240,12 +243,12 @@ function componentPage(c) {
      deciding to use the component, not things they read on the way there —
      so they share a tab set and the page gets a visible bottom. */
   const refs = [
-    ['مشخصات', specsBlock && `<div class="prose"><p>مقادیر زیر مستقیماً از استایل‌شیت خوانده می‌شوند، نه از یادداشتی کنار آن. هر جا توکنی هست، نام توکن آمده و مقدارش در پوستهٔ روشن.</p></div>${specsBlock}`],
+    ['مشخصات', specsBlock && explain('این مقادیر از کجا می‌آیند', `<p>مستقیماً از استایل‌شیت خوانده می‌شوند، نه از یادداشتی کنار آن. هر جا توکنی هست، نام توکن آمده و مقدارش در پوستهٔ روشن.</p>`) + specsBlock],
     [UI_FA.props, c.props?.length && table(['پراپ', 'نوع', 'پیش‌فرض', 'توضیح'],
       c.props.map(([n, t, d, desc]) => [`<code>${esc(n)}</code>`, `<code style="color:var(--t-fg-link)">${esc(t)}</code>`, `<code>${esc(d)}</code>`, desc]))],
     ['React', c.react && `<div class="spec" data-spec>
       <div class="spec__bar"><span class="spec__label">${esc(c.name)}.tsx</span>
-        <div class="spec__tools"><button class="site-tool copy-btn" data-copy="react-${c.slug}">${UI_FA.copy}</button></div>
+        <div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="react-${c.slug}">${UI_FA.copy}</button></div>
       </div>
       <pre class="code" id="react-${c.slug}"><code>${c.react.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
     </div>`],
@@ -258,9 +261,11 @@ function componentPage(c) {
      problem, which is the question a reader has at the end of a page. */
   const siblings = components.filter(o => o.group === c.group && o.name !== c.name).slice(0, 6);
   if (siblings.length) body += S('related', 'کامپوننت‌های مرتبط',
-    `<div class="related">${siblings.map(o => `<a href="${o.slug}.html" class="related__card">
-      <div class="related__name">${esc(o.name)}</div>
-      <div class="related__sum">${esc(o.summary)}</div>
+    `<div class="related">${siblings.map(o => `<a href="${o.slug}.html" class="t-list-item">
+      <span class="t-list-item__body">
+        <span class="t-list-item__title">${esc(o.name)}</span>
+        <span class="t-list-item__sub">${esc(o.summary)}</span>
+      </span>
     </a>`).join('')}</div>`);
 
   const { prev, next } = around(`components/${c.slug}`);

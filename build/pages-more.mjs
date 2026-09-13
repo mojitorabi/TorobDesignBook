@@ -73,7 +73,7 @@ export function motionPage(m) {
   ]));
 
   body += S('reduced', 'کاهش حرکت', `<div class="prose"><p>یک مدیا کوئری کل سیستم را جمع می‌کند. هر انیمیشنی در ترب از همین‌جا در دسترس است و این فقط به این دلیل درست است که مدت‌ها از توکن می‌آیند، نه از عددهای پراکنده در CSS کامپوننت‌ها.</p></div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">layout.css</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="rm-src">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">layout.css</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="rm-src">کپی</button></div></div>
     <pre class="code" id="rm-src"><code>@media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 1ms !important;
@@ -82,7 +82,7 @@ export function motionPage(m) {
     scroll-behavior: auto !important;
   }
 }</code></pre></div>
-    <div class="note"><strong>یک استثنا:</strong> اسپینر کند می‌شود، نه اینکه بایستد. اسپینر یخ‌زده مثل یک صفحهٔ کرش‌کرده خوانده می‌شود.</div>`);
+    <div class="t-alert site-note"><strong>یک استثنا:</strong> اسپینر کند می‌شود، نه اینکه بایستد. اسپینر یخ‌زده مثل یک صفحهٔ کرش‌کرده خوانده می‌شود.</div>`);
 
   return { body, toc, title: 'حرکت', description: 'چهار مدت، چهار منحنی. حرکت تأیید می‌کند؛ هرگز اجرا نمی‌کند.', eyebrow: 'مبانی' };
 }
@@ -92,7 +92,7 @@ export function rtlPage() {
   const toc = [], S = (id, t, i) => { toc.push({ id, label: t }); return section(id, t, i); };
   let body = `<div class="prose">
     <p>هر استایل متنی در منبع اسکچ <code>align: right</code> است. ترب یک محصول فارسی است و راست‌چین حالتی نیست که پشتیبانی شود؛ جهتی است که سیستم در آن ساخته شده. چپ‌چین حالت ثانویه است.</p>
-    <div class="note"><strong>تنها قاعده‌ای که اهمیت دارد:</strong> هرگز یک جهت فیزیکی ننویسید. نه <code>margin-left</code>، نه <code>padding-right</code>، نه <code>left: 0</code>، نه <code>text-align: right</code>. ویژگی‌های منطقی هر دو جهت را با یک اعلان مدیریت می‌کنند و همه‌جایی که ترب منتشر می‌شود پشتیبانی می‌شوند.</div>
+    <div class="t-alert site-note"><strong>تنها قاعده‌ای که اهمیت دارد:</strong> هرگز یک جهت فیزیکی ننویسید. نه <code>margin-left</code>، نه <code>padding-right</code>، نه <code>left: 0</code>، نه <code>text-align: right</code>. ویژگی‌های منطقی هر دو جهت را با یک اعلان مدیریت می‌کنند و همه‌جایی که ترب منتشر می‌شود پشتیبانی می‌شوند.</div>
   </div>`;
 
   body += S('properties', 'ویژگی‌های منطقی', table(['به‌جای', 'بنویسید'], [
@@ -133,7 +133,7 @@ export function rtlPage() {
   body += S('motion', 'حرکت هم جهت دارد', `<div class="prose">
       <p>یک پنل کناری از انتهای محور وارد می‌شود. در راست‌چین یعنی از چپ و در چپ‌چین یعنی از راست. <code>translateX</code> به‌تنهایی نمی‌تواند این را بگوید، پس سیستم یک ضریب جهت در اختیار می‌گذارد:</p>
     </div>
-    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">base.css</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="dir-src">کپی</button></div></div>
+    <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">base.css</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="dir-src">کپی</button></div></div>
     <pre class="code" id="dir-src"><code>:root                        { --t-dir: -1; }
 :root[dir="rtl"], [dir="rtl"] { --t-dir:  1; }
 :root[dir="ltr"], [dir="ltr"] { --t-dir: -1; }
@@ -164,8 +164,8 @@ export function responsivePage(m) {
   const bp = Object.entries(m.base).filter(([p]) => p.startsWith('breakpoint.'));
   let body = `<div class="prose">
     <p>هر بیست‌ونه صفحهٔ نمونه در منبع اسکچ ۳۷۵ پیکسل عرض دارد. این سیستم هرگز بالاتر از یک گوشی طراحی نشده بود، پس این صفحه مستندسازی یک رفتار موجود نیست؛ تصمیم دربارهٔ این است که آن رفتار چه باید باشد.</p>
-    <div class="note note--new"><strong>هر شش نقطهٔ شکست تازه‌اند.</strong> از اعداد خود منبع استخراج شده‌اند: ۳۷۵ مبدأ طراحی است، ۳۴۳ عرض باکس خرید (۳۷۵ منهای حاشیه‌ها) و شبکهٔ محصول دوتایی است چون نمونه‌ها همین را نشان می‌دهند.</div>
-    <div class="note"><strong>پنل فروشنده جدا حساب می‌شود.</strong> پنل B2B روی دسکتاپ زندگی می‌کند و متراکم است؛ رفتار واکنش‌گرایش از پایین به بالا نیست، از بالا به پایین است. <a href="../patterns/seller-panel.html">الگوی پنل فروشنده</a> را ببینید.</div>
+    <div class="t-alert t-alert--info site-note"><strong>هر شش نقطهٔ شکست تازه‌اند.</strong> از اعداد خود منبع استخراج شده‌اند: ۳۷۵ مبدأ طراحی است، ۳۴۳ عرض باکس خرید (۳۷۵ منهای حاشیه‌ها) و شبکهٔ محصول دوتایی است چون نمونه‌ها همین را نشان می‌دهند.</div>
+    <div class="t-alert site-note"><strong>پنل فروشنده جدا حساب می‌شود.</strong> پنل B2B روی دسکتاپ زندگی می‌کند و متراکم است؛ رفتار واکنش‌گرایش از پایین به بالا نیست، از بالا به پایین است. <a href="../patterns/seller-panel.html">الگوی پنل فروشنده</a> را ببینید.</div>
   </div>
   ${table(['توکن', 'مقدار', 'چه چیزی تغییر می‌کند'], bp.map(([p, t]) => [`<code>--t-breakpoint-${p.split('.')[1]}</code>`, t.value, t.description ?? '']))}`;
 

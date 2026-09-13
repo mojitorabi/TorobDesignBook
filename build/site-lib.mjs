@@ -1,7 +1,14 @@
-import { readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { SITE_NAME, SITE_TAGLINE, UI_FA, GROUP_FA } from '../source/site.nav.mjs';
 import { join } from 'node:path';
 import { ROOT } from './tokens-lib.mjs';
+
+/* The mark is the real one, extracted from the Sketch file by
+   build/sketch-extract.mjs — not a letter in a red square. */
+export const BRAND_LOGO = readFileSync(join(ROOT, 'packages/brand/torob-logo.svg'), 'utf8')
+  .replace('<svg ', '<svg class="site-brand__logo" focusable="false" ')
+  .replace(' role="img"', '')
+  .replace(/ width="32" height="32"/, '');
 
 export const esc = s => String(s ?? '')
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -67,12 +74,12 @@ export function layout({ slug, title, description, nav, components, body, toc = 
 
   const navHtml = nav.map(group => navGroup(
       group.title,
-      group.items.map(i => `<a href="${R(slugToPath(i.slug))}"${i.slug === slug ? ' aria-current="page"' : ''}>${esc(i.title)}</a>`),
+      group.items.map(i => `<a class="t-navitem" href="${R(slugToPath(i.slug))}"${i.slug === slug ? ' aria-current="page"' : ''}>${esc(i.title)}</a>`),
       group.items.some(i => i.slug === slug))).join('') +
     `\n      <div class="site-nav__section">${esc(UI_FA.components)}</div>` +
     Object.entries(groups).map(([g, list]) => navGroup(
       GROUP_FA[g] ?? g,
-      list.map(c => `<a href="${R('components/' + c.slug + '.html')}"${'components/' + c.slug === slug ? ' aria-current="page"' : ''}>${esc(c.name)}</a>`),
+      list.map(c => `<a class="t-navitem" href="${R('components/' + c.slug + '.html')}"${'components/' + c.slug === slug ? ' aria-current="page"' : ''}>${esc(c.name)}</a>`),
       list.some(c => 'components/' + c.slug === slug))).join('');
 
   const tocHtml = toc.length ? `
@@ -105,7 +112,8 @@ export function layout({ slug, title, description, nav, components, body, toc = 
 <meta property="og:url" content="${SITE_URL}/${slugToPath(slug)}">
 <meta property="og:locale" content="fa_IR">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23D73948'/><path d='M9 11h14v3h-5.2v10h-3.6V14H9z' fill='white'/></svg>">
+<link rel="icon" type="image/svg+xml" href="${R('assets/favicon.svg')}">
+<link rel="mask-icon" href="${R('assets/favicon.svg')}" color="#E91E33">
 <link rel="stylesheet" href="${R('assets/fonts.css')}">
 <link rel="preload" href="${R('assets/fonts/IRANYekanX-Medium.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${R('assets/fonts/IRANYekanX-Bold.woff2')}" as="font" type="font/woff2" crossorigin>
@@ -125,20 +133,22 @@ export function layout({ slug, title, description, nav, components, body, toc = 
 <a class="site-skip" href="#main">${esc(UI_FA.skip)}</a>
 
 <header class="site-bar">
-  <button class="site-tool site-nav-toggle" id="navToggle" aria-label="${esc(UI_FA.toggleNav)}" aria-expanded="false">
-    <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2 4h12v1.4H2zm0 3.3h12v1.4H2zm0 3.3h12V12H2z"/></svg>
+  <button class="t-icon-btn t-icon-btn--sm site-nav-toggle" id="navToggle" aria-label="${esc(UI_FA.toggleNav)}" aria-expanded="false">
+    <svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2 4h12v1.4H2zm0 3.3h12v1.4H2zm0 3.3h12V12H2z"/></svg>
   </button>
   <a class="site-brand" href="${R('index.html')}">
-    <span class="site-brand__mark" aria-hidden="true">ت</span>
+    <span class="site-brand__mark" aria-hidden="true">${BRAND_LOGO}</span>
     <span class="site-brand__name">${esc(SITE_NAME)}</span>
     <span class="site-brand__sub">${esc(SITE_TAGLINE)}</span>
   </a>
 
-  <div class="site-search" role="search">
-    <svg class="site-search__icon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M7 2a5 5 0 1 0 3.1 8.9l3.2 3.3 1.1-1.1-3.3-3.2A5 5 0 0 0 7 2zm0 1.4a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2z"/></svg>
-    <input id="siteSearch" type="search" placeholder="${esc(UI_FA.search)}" autocomplete="off" aria-label="${esc(UI_FA.searchLabel)}" role="combobox" aria-autocomplete="list" aria-controls="siteResults" aria-expanded="false">
-    <span class="site-search__kbd" aria-hidden="true"><kbd>/</kbd></span>
-    <div class="site-results" id="siteResultsBox" hidden>
+  <div class="t-search site-search" role="search">
+    <div class="t-input">
+      <svg class="t-icon t-icon--sm t-input__icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M7 2a5 5 0 1 0 3.1 8.9l3.2 3.3 1.1-1.1-3.3-3.2A5 5 0 0 0 7 2zm0 1.4a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2z"/></svg>
+      <input class="t-input__el" id="siteSearch" type="search" placeholder="${esc(UI_FA.search)}" autocomplete="off" aria-label="${esc(UI_FA.searchLabel)}" role="combobox" aria-autocomplete="list" aria-controls="siteResults" aria-expanded="false">
+      <span class="site-search__kbd" aria-hidden="true"><kbd>/</kbd></span>
+    </div>
+    <div class="t-popover site-results" id="siteResultsBox" hidden>
       <div id="siteResults" role="listbox" aria-label="${esc(UI_FA.searchLabel)}"></div>
       <p class="site-results__empty" id="siteResultsEmpty" hidden></p>
     </div>
@@ -146,12 +156,12 @@ export function layout({ slug, title, description, nav, components, body, toc = 
   </div>
 
   <div class="site-bar__tools">
-    <button class="site-tool" id="localeToggle" data-locale="fa" aria-label="زبان و جهت نمونه‌ها: فارسی — برای تغییر کلیک کنید" title="زبان و جهت همهٔ نمونه‌های این صفحه">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm4.9 4.5h-2a11 11 0 0 0-.9-2.7 5.6 5.6 0 0 1 2.9 2.7zM8 2.5c.5.7.9 1.7 1.2 3H6.8c.3-1.3.7-2.3 1.2-3zM2.6 9.5a5.5 5.5 0 0 1 0-3h2.3a13 13 0 0 0 0 3zm.5 1.5h2a11 11 0 0 0 .9 2.7 5.6 5.6 0 0 1-2.9-2.7zm2-5.5h-2a5.6 5.6 0 0 1 2.9-2.7c-.4.8-.7 1.7-.9 2.7zM8 13.5c-.5-.7-.9-1.7-1.2-3h2.4c-.3 1.3-.7 2.3-1.2 3zm1.5-4.5h-3a11.6 11.6 0 0 1 0-3h3a11.6 11.6 0 0 1 0 3zm.5 4.7c.4-.8.7-1.7.9-2.7h2a5.6 5.6 0 0 1-2.9 2.7zm1.1-4.2a13 13 0 0 0 0-3h2.3a5.5 5.5 0 0 1 0 3z"/></svg>
+    <button class="t-btn t-btn--outline t-btn--sm" id="localeToggle" data-locale="fa" aria-label="زبان و جهت نمونه‌ها: فارسی — برای تغییر کلیک کنید" title="زبان و جهت همهٔ نمونه‌های این صفحه">
+      <svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm4.9 4.5h-2a11 11 0 0 0-.9-2.7 5.6 5.6 0 0 1 2.9 2.7zM8 2.5c.5.7.9 1.7 1.2 3H6.8c.3-1.3.7-2.3 1.2-3zM2.6 9.5a5.5 5.5 0 0 1 0-3h2.3a13 13 0 0 0 0 3zm.5 1.5h2a11 11 0 0 0 .9 2.7 5.6 5.6 0 0 1-2.9-2.7zm2-5.5h-2a5.6 5.6 0 0 1 2.9-2.7c-.4.8-.7 1.7-.9 2.7zM8 13.5c-.5-.7-.9-1.7-1.2-3h2.4c-.3 1.3-.7 2.3-1.2 3zm1.5-4.5h-3a11.6 11.6 0 0 1 0-3h3a11.6 11.6 0 0 1 0 3zm.5 4.7c.4-.8.7-1.7.9-2.7h2a5.6 5.6 0 0 1-2.9 2.7zm1.1-4.2a13 13 0 0 0 0-3h2.3a5.5 5.5 0 0 1 0 3z"/></svg>
       <span id="localeLabel">فارسی</span>
     </button>
-    <button class="site-tool" id="themeToggle" aria-label="تغییر پوسته">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path id="themeIcon" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 0h.01V3H8zm0 13h.01V16H8zM0 7.99h3V8H0zm13 0h3V8h-3zM2.3 3.3l2.1 2.1-1 1-2.1-2.1zm8.3 8.3 2.1 2.1-1 1-2.1-2.1zm3.1-9.3 1 1-2.1 2.1-1-1zM4.4 10.6l1 1-2.1 2.1-1-1z"/></svg>
+    <button class="t-btn t-btn--outline t-btn--sm" id="themeToggle" aria-label="تغییر پوسته">
+      <svg class="t-icon t-icon--sm" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path id="themeIcon" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 0h.01V3H8zm0 13h.01V16H8zM0 7.99h3V8H0zm13 0h3V8h-3zM2.3 3.3l2.1 2.1-1 1-2.1-2.1zm8.3 8.3 2.1 2.1-1 1-2.1-2.1zm3.1-9.3 1 1-2.1 2.1-1-1zM4.4 10.6l1 1-2.1 2.1-1-1z"/></svg>
       <span id="themeLabel">روشن</span>
     </button>
   </div>
@@ -202,8 +212,8 @@ export function specimen({ label, html, react, note, canvas, dir = 'rtl', stageC
   <div class="spec__bar">
     <span class="spec__label">${esc(label)}</span>
     <div class="spec__tools">
-      <button class="site-tool" data-spec-code aria-expanded="false">${UI_FA.code}</button>
-      <button class="site-tool copy-btn" data-copy="${id}-html" title="کپی کد HTML">${UI_FA.copy}</button>
+      <button class="t-btn t-btn--outline t-btn--sm" data-spec-code aria-expanded="false">${UI_FA.code}</button>
+      <button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="${id}-html" title="کپی کد HTML">${UI_FA.copy}</button>
     </div>
   </div>
   <div class="spec__stage ${stageClass}"${canvas ? ` data-canvas="${canvas}"` : ''} dir="${dir}" lang="fa">${html}</div>
@@ -228,11 +238,30 @@ export function tabset(items, label) {
   if (list.length === 1) return list[0][1];
   const id = `rt${++refId}`;
   return `<div class="tabset">
-  <div class="tabset__list" role="tablist" aria-label="${esc(label)}">
-    ${list.map(([t], i) => `<button class="tabset__tab" role="tab" id="${id}-t${i}" aria-controls="${id}-p${i}" aria-selected="${i === 0}" tabindex="${i ? -1 : 0}">${esc(t)}</button>`).join("")}
+  <div class="t-segmented tabset__list" role="tablist" aria-label="${esc(label)}">
+    ${list.map(([t], i) => `<button class="t-segmented__item" role="tab" id="${id}-t${i}" aria-controls="${id}-p${i}" aria-selected="${i === 0}" tabindex="${i ? -1 : 0}">${esc(t)}</button>`).join("")}
   </div>
   ${list.map(([, inner], i) => `<div class="tabset__panel" role="tabpanel" id="${id}-p${i}" aria-labelledby="${id}-t${i}"${i ? " hidden" : ""}${i ? "" : " tabindex=\"0\""}>${inner}</div>`).join("")}
 </div>`;
+}
+
+/* Explanation on request.
+   A design book has two readers in the same body: one who wants the thing and
+   one who wants to know why it is that way. Printing both at once gives the
+   first reader a wall of text to scroll past. So the why folds: `.t-accordion`,
+   the component, closed by default, one line of trigger. Find-in-page still
+   reaches inside a closed disclosure, and it works with no JavaScript. */
+let explainId = 0;
+export function explain(summary, inner, { open = false } = {}) {
+  if (!inner) return '';
+  const id = `ex${++explainId}`;
+  return `<details class="t-accordion explain"${open ? ' open' : ''}>
+  <summary class="t-accordion__trigger" id="${id}">
+    <span class="t-accordion__label">${esc(summary)}</span>
+    <svg class="t-icon t-icon--sm t-accordion__chevron" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 22 6 12l1.4-1.4L16 19.2l8.6-8.6L26 12z"/></svg>
+  </summary>
+  <div class="t-accordion__panel">${inner}</div>
+</details>`;
 }
 
 export const section = (id, title, inner) =>

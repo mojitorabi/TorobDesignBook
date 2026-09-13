@@ -18,7 +18,7 @@ const phone = (inner, note) => `<div class="spec" data-spec>
   <div class="spec__bar">
     <span class="spec__label">${esc(note ?? '۳۷۵ × ۶۴۰')}</span>
     <div class="spec__tools">
-      <button class="site-tool" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه" title="زبان و جهت">فارسی</button>
+      <button class="t-btn t-btn--outline t-btn--sm" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه" title="زبان و جهت">فارسی</button>
     </div>
   </div>
   <div class="spec__stage spec__stage--phone" dir="rtl" lang="fa">
@@ -370,13 +370,13 @@ export function sellerPanelPage() {
   let body = `<div class="prose">
     <p>پنل فروشنده معکوس اپلیکیشن خریدار است و همین آن را ارزش یک الگوی جداگانه می‌کند. خریدار یک‌دستی روی گوشی است و دنبال یک تصمیم می‌گردد. فروشنده پشت میز، روی صفحهٔ بزرگ، در حال مرور صدها ردیف است و دنبال یک <em>استثنا</em> می‌گردد.</p>
     <p>پس اولویت‌ها جابه‌جا می‌شوند: <strong>تراکم بر آسودگی</strong>، <strong>صفحه‌کلید بر لمس</strong>، <strong>مقایسه‌پذیری بر زیبایی</strong>. اما متریال، توکن‌ها و قواعد راست‌چین همان‌هایی هستند که در سمت خریدار هستند. این یک سیستم دوم نیست؛ همان سیستم است با تنظیمات دیگر.</p>
-    <div class="note"><strong>چه چیزی از سمت خریدار عوض می‌شود:</strong> شیشه تقریباً ناپدید می‌شود (پس‌زمینه‌ای برای دیده‌شدن از پشت وجود ندارد)، تراکم بالا می‌رود، اعداد جدولی اجباری‌اند و تاریخ‌ها شمسی‌اند.</div>
+    <div class="t-alert site-note"><strong>چه چیزی از سمت خریدار عوض می‌شود:</strong> شیشه تقریباً ناپدید می‌شود (پس‌زمینه‌ای برای دیده‌شدن از پشت وجود ندارد)، تراکم بالا می‌رود، اعداد جدولی اجباری‌اند و تاریخ‌ها شمسی‌اند.</div>
   </div>`;
 
   body += S('shell', 'اسکلت', `<div class="prose"><p>نوار کناری، نوار بالا، یک ناحیهٔ اسکرول. نوار کناری روی عرض کم جمع می‌شود اما ناپدید نمی‌شود؛ فروشنده‌ای که در درخت ناوبری است نباید جایش را گم کند.</p></div>
   <div class="spec" data-spec>
     <div class="spec__bar"><span class="spec__label">پنل فروشنده — داشبورد</span>
-      <div class="spec__tools"><button class="site-tool" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه">فارسی</button></div></div>
+      <div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm" data-spec-locale data-locale="fa" aria-label="تغییر زبان و جهت این نمونه">فارسی</button></div></div>
     <div class="spec__stage" data-canvas="plain" dir="rtl" lang="fa" style="padding:16px;overflow-x:auto">
       <div class="t-shell-frame" style="inline-size:1100px;flex:none;border:1px solid var(--t-border-default);border-radius:14px;overflow:hidden"><div class="t-shell" style="block-size:520px">
         <div class="t-shell__brand"><span style="inline-size:24px;block-size:24px;border-radius:7px;background:var(--t-action-red-bg-gradient);border:1px solid var(--t-action-red-border);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px">ت</span><strong style="font-size:14px">پنل فروشنده</strong></div>
@@ -443,7 +443,7 @@ export function sellerPanelPage() {
       ['<span class="t-kbd">Esc</span>', 'لغو انتخاب یا بستن لایه'],
       ['<span class="t-kbd">?</span>', 'فهرست میان‌برها'],
     ])}
-    <div class="note note--warn"><strong>میان‌برها باید کشف‌پذیر باشند.</strong> میان‌بری که مستند نیست وجود ندارد. دکمهٔ <span class="t-kbd">?</span> بخشی از کامپوننت است، نه یک صفحهٔ راهنمای جدا (معیار ۳.۲.۶ نسخهٔ ۲.۲ — کمک یکنواخت).</div>`);
+    <div class="t-alert t-alert--caution site-note"><strong>میان‌برها باید کشف‌پذیر باشند.</strong> میان‌بری که مستند نیست وجود ندارد. دکمهٔ <span class="t-kbd">?</span> بخشی از کامپوننت است، نه یک صفحهٔ راهنمای جدا (معیار ۳.۲.۶ نسخهٔ ۲.۲ — کمک یکنواخت).</div>`);
 
   body += S('sizes', 'همهٔ اندازه‌ها', `<div class="prose">
       <p>پنل دسکتاپ‌محور است، اما فروشنده هم گوشی دارد. رفتار در هر اندازه تعریف‌شده است، نه اینکه به حال خودش رها شود.</p>

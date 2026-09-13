@@ -18,19 +18,19 @@ export function simplePages(m) {
     [null, null, `<div class="prose">
       <p>لایهٔ مرجع، <strong>متغیرهای CSS و کلاس‌های مستقل از فریم‌ورک</strong> است. ری‌اکت یک پوشش نازک روی همان است، نه یک انشعاب از آن. همین چیزی است که به یک پشتهٔ ناهمگون اجازه می‌دهد سیستم را بدون بازنویسی بپذیرد.</p>
     </div>`],
-    ['install', 'نصب', `<div class="spec" data-spec><div class="spec__bar"><span class="spec__label">هر پروژه‌ای — لایهٔ CSS</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="i1">کپی</button></div></div>
+    ['install', 'نصب', `<div class="spec" data-spec><div class="spec__bar"><span class="spec__label">هر پروژه‌ای — لایهٔ CSS</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="i1">کپی</button></div></div>
       <pre class="code" id="i1"><code>&lt;!-- tokens.css همهٔ متغیرها را تعریف می‌کند؛ torob.css آن را ایمپورت می‌کند --&gt;
 &lt;link rel="stylesheet" href="/design-system/packages/css/dist/torob.css"&gt;
 &lt;link rel="stylesheet" href="/design-system/packages/css/dist/fonts.css"&gt;
 
 &lt;html lang="fa" dir="rtl"&gt;   &lt;!-- جهت اینجا زندگی می‌کند، هیچ‌جای دیگر --&gt;</code></pre></div>
-      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">تیلویند ۴</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="i2">کپی</button></div></div>
+      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">تیلویند ۴</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="i2">کپی</button></div></div>
       <pre class="code" id="i2"><code>/* app.css — هر توکن را به یوتیلیتی‌های تیلویند نگاشت می‌کند */
 @import "tailwindcss";
 @import "/design-system/packages/css/dist/tokens.tailwind.css";
 
 /* bg-fg-default، text-commerce-price، rounded-md، gap-4 … همه به توکن حل می‌شوند */</code></pre></div>
-      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">جاوااسکریپت و تایپ‌اسکریپت</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="i3">کپی</button></div></div>
+      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">جاوااسکریپت و تایپ‌اسکریپت</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="i3">کپی</button></div></div>
       <pre class="code" id="i3"><code>import tokens from '@torob/tokens';
 
 tokens.light.fg.default          // '#1E293B'
@@ -95,7 +95,7 @@ tokens.radius.md                 // '12px'</code></pre></div>`],
         <li><strong>مستندات، پراپ‌ها و نمونه‌های یک کامپوننت</strong> ← <code>source/components/*.mjs</code>. همین یک فایل، وب‌سایت، سرور MCP و <code>llms.txt</code> را تغذیه می‌کند.</li>
         <li><strong>متن فارسی مستندات</strong> ← همان رکورد کامپوننت در <code>source/components/*.mjs</code>. جدول ترجمهٔ جدا وجود ندارد؛ رجیستری خودش فارسی است.</li>
       </ul>
-      <div class="note"><strong>محلی و گیت‌هاب همیشه یکی‌اند.</strong> ورک‌فلوی گیت‌هاب همان <code>build/all.mjs</code> را روی همان فایل‌های منبع اجرا می‌کند. سایت منتشرشده تولید می‌شود، نه آپلود؛ پس این دو به‌خاطر یک ژنراتور مشترک یکی می‌مانند، نه به‌خاطر اینکه کسی یادش مانده همگام‌سازی کند.</div>
+      <div class="t-alert site-note"><strong>محلی و گیت‌هاب همیشه یکی‌اند.</strong> ورک‌فلوی گیت‌هاب همان <code>build/all.mjs</code> را روی همان فایل‌های منبع اجرا می‌کند. سایت منتشرشده تولید می‌شود، نه آپلود؛ پس این دو به‌خاطر یک ژنراتور مشترک یکی می‌مانند، نه به‌خاطر اینکه کسی یادش مانده همگام‌سازی کند.</div>
     </div>`],
   ]);
 
@@ -132,14 +132,14 @@ tokens.radius.md                 // '12px'</code></pre></div>`],
   page('foundations/radius', 'گردی گوشه', '۱۲ پیکسل پیش‌فرض است — ۲۶۳ مورد از ۴۴۳ گردی واقعی در منبع.', 'مبانی', [
     [null, null, `<div class="prose">
       <p>شش پله. <strong>۱۲ پیکسل پیش‌فرض است</strong> و این یک ترجیح نیست: از ۴۴۳ گردی واقعی در منبع، ۲۶۳ مورد دوازده‌اند. بقیهٔ پله‌ها برای چیزهایی هستند که <em>درون</em> یک ظرف ۱۲ پیکسلی می‌نشینند، و برای سطوحی بزرگ‌تر از یک کارت — تصویر محصول ۱۶ است و کارت فروشگاهِ صفحهٔ محصول ۸.</p><p>یک دام در خود فایل هست که ارزش نوشتن دارد. گردی گوشه در سه فیلد ذخیره می‌شود و <code>fixedRadius</code> اغلب کهنه است؛ روی <code>Button / Red / Default</code> عدد ۸ را نگه داشته در حالی که اسکچ ۱۲ می‌کشد. اگر از آن فیلد بخوانید، به این نتیجه می‌رسید که کل کیت روی ۸ بنا شده. <a href="../symbols.html">فهرست سیمبل‌ها</a> اندازه‌گیری‌ها را کنار هم می‌گذارد.</p>
-      <div class="note"><strong>قاعدهٔ تودرتویی:</strong> گردی داخلی باید برابر گردی بیرونی منهای فاصلهٔ بینشان باشد. یک کارت ۱۲ پیکسلی با فاصلهٔ داخلی ۸، عنصر داخلی ۸ پیکسلی می‌خواهد؛ نه یک ۱۲ دیگر که مثل حباب توی حباب خوانده می‌شود.</div>
+      <div class="t-alert site-note"><strong>قاعدهٔ تودرتویی:</strong> گردی داخلی باید برابر گردی بیرونی منهای فاصلهٔ بینشان باشد. یک کارت ۱۲ پیکسلی با فاصلهٔ داخلی ۸، عنصر داخلی ۸ پیکسلی می‌خواهد؛ نه یک ۱۲ دیگر که مثل حباب توی حباب خوانده می‌شود.</div>
     </div>
     ${specimen({ label: 'مقیاس', canvas: 'fog', dir: 'ltr', html: radii.map(([p, t]) =>
       `<div style="text-align:center"><div style="inline-size:70px;block-size:70px;background:var(--t-bg-subtle);border:1px solid var(--t-border-default);border-radius:${t.value}"></div><div style="font-size:11px;margin-block-start:8px;color:var(--t-fg-secondary)">${p.replace('radius.', '')}<br>${t.value}</div></div>`).join('') })}
     ${table(['توکن', 'مقدار', 'کاربرد'], radii.map(([p, t]) => [`<code>--t-${p.replace(/\./g, '-')}</code>`, t.value, t.description ?? '']))}`],
     ['rtl', 'گردی و جهت', `<div class="prose">
       <p>حالت کوتاه چهارگوشه فیزیکی است و قرینه نمی‌شود. برگهٔ پایینی که فقط گوشه‌های بالایش گرد است متقارن و بی‌خطر است، اما هر چیز نامتقارن به ویژگی‌های گوشهٔ منطقی نیاز دارد:</p></div>
-      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">گوشه‌های منطقی</span><div class="spec__tools"><button class="site-tool copy-btn" data-copy="rad-src">کپی</button></div></div>
+      <div class="spec" data-spec><div class="spec__bar"><span class="spec__label">گوشه‌های منطقی</span><div class="spec__tools"><button class="t-btn t-btn--outline t-btn--sm copy-btn" data-copy="rad-src">کپی</button></div></div>
       <pre class="code" id="rad-src"><code>/* ✗ فیزیکی — قرینه نمی‌شود */
 border-radius: 12px 0 0 12px;
 
@@ -190,7 +190,7 @@ border-end-start-radius: var(--t-radius-md);</code></pre></div>`],
   page('foundations/accessibility', 'دسترس‌پذیری', 'هدف WCAG 2.2 سطح AA است، با سنجش ماشینی در هر بیلد.', 'مبانی', [
     [null, null, `<div class="prose">
       <p>هدف <strong>WCAG 2.2 سطح AA</strong> است؛ تازه‌ترین نسخهٔ توصیه‌شدهٔ W3C. نیمهٔ رنگیِ آن یک آیتم بازبینی نیست: <code>build/contrast-check.mjs</code> ${toFa(getFacts().contrastPairs)} جفت پیش‌زمینه و پس‌زمینه را در <strong>هر سه پوسته</strong> می‌سنجد و با هر شکست <strong>خروجی غیرصفر</strong> می‌دهد. یک دروازهٔ بیلد است.</p>
-      <div class="note note--new">اجرای همین ابزار روی پالت، همان‌طور که از اسکچ استخراج شد، <strong>چهار شکست متنی و چهار شکست غیرمتنی</strong> داد. هر کدام در <a href="./color.html#changes">رنگ ← چه چیزی تغییر کرد</a> اصلاح شده است.</div>
+      <div class="t-alert t-alert--info site-note">اجرای همین ابزار روی پالت، همان‌طور که از اسکچ استخراج شد، <strong>چهار شکست متنی و چهار شکست غیرمتنی</strong> داد. هر کدام در <a href="./color.html#changes">رنگ ← چه چیزی تغییر کرد</a> اصلاح شده است.</div>
     </div>`],
     ['new22', 'آنچه نسخهٔ ۲.۲ اضافه کرد', `<div class="prose">
       <p>نسخهٔ ۲.۲ نُه معیار تازه آورد که شش‌تایشان در سطح A یا AA هستند. این سیستم هر شش مورد را پوشش می‌دهد و برای هر کدام مشخص است کجا اعمال می‌شود.</p></div>
@@ -236,7 +236,7 @@ border-end-start-radius: var(--t-radius-md);</code></pre></div>`],
     ['audit', 'ممیزی ماشینی', `<div class="prose">
       <p>هر صفحهٔ این کتاب — همهٔ ۶۸ صفحه، در هر سه پوستهٔ روشن، دیم و تیره — با <a href="https://github.com/dequelabs/axe-core" target="_blank" rel="noopener">axe-core</a> و مجموعه‌قاعده‌های <code>wcag2a</code>، <code>wcag2aa</code>، <code>wcag21a</code>، <code>wcag21aa</code> و <code>wcag22aa</code> سنجیده می‌شود. نتیجهٔ فعلی <strong>صفر تخلف</strong> در ۲۰۴ بار اجراست.</p>
       <p>این را با «دسترس‌پذیر است» اشتباه نگیرید. ابزار خودکار در بهترین حالت حدود یک‌سوم معیارها را می‌گیرد: کنتراست، نقش‌های نادرست، نام‌های جاافتاده، اندازهٔ هدف. آنچه نمی‌گیرد و آدم باید ببیند: ترتیب منطقی فوکوس، متن جایگزین <em>درست</em> (نه فقط موجود)، اینکه صفحه‌خوان قیمت را یک عدد بخواند، و اینکه یک جریان با صفحه‌کلید واقعاً تمام‌شدنی باشد.</p>
-      <div class="note">آنچه ممیزی این نسخه اصلاح کرد: نوار جست‌وجوی سایت حالا الگوی <code>combobox</code> استاندارد ARIA 1.2 است؛ هر ناحیهٔ اسکرول‌شوندهٔ کد و جدول با صفحه‌کلید قابل پیمایش شده؛ تقویم شمسی ردیف و سرستون گرفت؛ منو همهٔ فرزندانش <code>menuitem</code> شدند؛ <code>aria-sort</code> از دکمه به سرستون رفت؛ قرص قابل‌حذف از «دکمه داخل دکمه» به دو دکمهٔ کنار هم تبدیل شد؛ و سه جفت رنگ که AA را رد می‌کردند اصلاح و در <a href="./color.html#changes">رنگ ← چه چیزی تغییر کرد</a> ثبت شدند.</div>
+      <div class="t-alert site-note">آنچه ممیزی این نسخه اصلاح کرد: نوار جست‌وجوی سایت حالا الگوی <code>combobox</code> استاندارد ARIA 1.2 است؛ هر ناحیهٔ اسکرول‌شوندهٔ کد و جدول با صفحه‌کلید قابل پیمایش شده؛ تقویم شمسی ردیف و سرستون گرفت؛ منو همهٔ فرزندانش <code>menuitem</code> شدند؛ <code>aria-sort</code> از دکمه به سرستون رفت؛ قرص قابل‌حذف از «دکمه داخل دکمه» به دو دکمهٔ کنار هم تبدیل شد؛ و سه جفت رنگ که AA را رد می‌کردند اصلاح و در <a href="./color.html#changes">رنگ ← چه چیزی تغییر کرد</a> ثبت شدند.</div>
     </div>`],
   ]);
 
