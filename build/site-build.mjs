@@ -344,9 +344,14 @@ const SITE_URL = 'https://mojitorabi.github.io/TorobDesignBook';
 /* A sitemap and a robots file, so the book is findable rather than merely
    published. */
 const urls = [...flatNav.map(p => slugToPath(p.slug)), ...components.map(c => `components/${c.slug}.html`)];
+/* Both languages, each declaring the other, which is what tells a search
+   engine they are the same page rather than two thin ones. */
 writeFileSync(join(OUT, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  urls.map(u => `  <url><loc>${SITE_URL}/${u}</loc></url>`).join('\n') +
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
+  urls.flatMap(u => [
+    `  <url><loc>${SITE_URL}/${u}</loc>\n    <xhtml:link rel="alternate" hreflang="fa" href="${SITE_URL}/${u}"/>\n    <xhtml:link rel="alternate" hreflang="en" href="${SITE_URL}/en/${u}"/></url>`,
+    `  <url><loc>${SITE_URL}/en/${u}</loc>\n    <xhtml:link rel="alternate" hreflang="fa" href="${SITE_URL}/${u}"/>\n    <xhtml:link rel="alternate" hreflang="en" href="${SITE_URL}/en/${u}"/></url>`,
+  ]).join('\n') +
   `\n</urlset>\n`);
 writeFileSync(join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 

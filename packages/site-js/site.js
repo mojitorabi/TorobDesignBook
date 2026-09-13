@@ -14,7 +14,12 @@
      The system preference maps to `dim`, which is the gentler default. */
   const root = document.documentElement;
   const THEMES = ['light', 'dim', 'dark'];
-  const THEME_FA = { light: 'روشن', dim: 'ملایم', dark: 'تیره' };
+  /* The English book is a different page, not a different script, so the two
+     label sets live together and the page's own lang picks one. */
+  const EN = document.documentElement.lang === 'en';
+  const THEME_FA = EN
+    ? { light: 'Light', dim: 'Dim', dark: 'Dark' }
+    : { light: 'روشن', dim: 'ملایم', dark: 'تیره' };
   const THEME_ICON = {
     light: 'M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 0h.01V3H8zm0 13h.01V16H8zM0 7.99h3V8H0zm13 0h3V8h-3zM2.3 3.3l2.1 2.1-1 1-2.1-2.1zm8.3 8.3 2.1 2.1-1 1-2.1-2.1zm3.1-9.3 1 1-2.1 2.1-1-1zM4.4 10.6l1 1-2.1 2.1-1-1z',
     dim:   'M8 1.5A6.5 6.5 0 1 0 14.5 8 5 5 0 0 1 8 1.5z',
@@ -32,7 +37,9 @@
     const t = currentTheme();
     if (themeLabel) themeLabel.textContent = THEME_FA[t];
     if (themeIcon) themeIcon.setAttribute('d', THEME_ICON[t]);
-    if (themeBtn) themeBtn.setAttribute('aria-label', `پوسته: ${THEME_FA[t]} — برای تغییر کلیک کنید`);
+    if (themeBtn) themeBtn.setAttribute('aria-label', EN
+      ? `Theme: ${THEME_FA[t]} — click to change`
+      : `پوسته: ${THEME_FA[t]} — برای تغییر کلیک کنید`);
   }
   paintTheme();
   themeBtn && themeBtn.addEventListener('click', () => {
@@ -107,10 +114,13 @@
   }
 
   const localeBtn = $('#localeToggle'), localeLabel = $('#localeLabel');
+  /* The English book declares its locale on <body>; the specimens should come
+     up in that language rather than in Persian waiting to be switched. */
+  if (document.body.dataset.locale === 'en') addEventListener('load', () => setLocale(document, 'en'));
   localeBtn && localeBtn.addEventListener('click', async () => {
     const next = localeBtn.dataset.locale === 'fa' ? 'en' : 'fa';
     localeBtn.dataset.locale = next;
-    localeLabel.textContent = next === 'fa' ? 'فارسی' : 'English';
+    localeLabel.textContent = next === 'fa' ? (EN ? 'Persian' : 'فارسی') : 'English';
     await setLocale(document, next);
   });
 
@@ -457,9 +467,13 @@
        </a>`).join('');
     if (resultsEmpty) {
       resultsEmpty.hidden = items.length > 0;
-      if (!items.length) resultsEmpty.textContent = `نتیجه‌ای برای «${q}» پیدا نشد.`;
+      if (!items.length) resultsEmpty.textContent = EN
+        ? `Nothing found for “${q}”.`
+        : `نتیجه‌ای برای «${q}» پیدا نشد.`;
     }
-    if (resultsStatus) resultsStatus.textContent = items.length ? `${items.length} نتیجه` : 'نتیجه‌ای پیدا نشد';
+    if (resultsStatus) resultsStatus.textContent = items.length
+      ? (EN ? `${items.length} results` : `${items.length} نتیجه`)
+      : (EN ? 'Nothing found' : 'نتیجه‌ای پیدا نشد');
     setActive(0);
   }
   async function run(q) {

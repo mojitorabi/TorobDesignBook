@@ -27,6 +27,7 @@ const steps = [
   ['react-build.mjs',    'React package'],
   ['site-build.mjs',     'Website'],
   ['llms-build.mjs',     'llms.txt + Markdown twins + agent rules'],
+  ['en-build.mjs',       'The English book → site/en/'],
   ['facts-check.mjs',    'GATE: every number the book states about itself is true'],
 ];
 
