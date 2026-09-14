@@ -171,13 +171,23 @@ for (const rel of pages) {
   writeFileSync(target, out);
 }
 
-/* The Persian pages carry the switch to here. */
+/* The Persian pages carry the switch to here — and the other half of the
+   pairing. An hreflang annotation only counts when it is reciprocal: a page
+   that names its twin without being named back is discarded, so writing the
+   links on the English side alone would have been the same as not writing
+   them. Each side also declares its own canonical, or the pair reads as one
+   page duplicated. */
 for (const rel of pages) {
   const p = join(SITE, rel);
   const slug = rel.replace(/\.html$/, '');
   const depth = slug.split('/').length - 1;
-  const html = readFileSync(p, 'utf8').replace(/<a class="site-lang[^>]*>[^<]*<\/a>/,
-    `<a class="site-lang t-button t-button--outline t-button--sm" href="${'../'.repeat(depth)}en/${rel}" hreflang="en" lang="en">English</a>`);
+  const html = readFileSync(p, 'utf8')
+    .replace(/<a class="site-lang[^>]*>[^<]*<\/a>/,
+      `<a class="site-lang t-button t-button--outline t-button--sm" href="${'../'.repeat(depth)}en/${rel}" hreflang="en" lang="en">English</a>`)
+    .replace('</head>', `<link rel="canonical" href="${SITE_URL}/${slug}.html">
+<link rel="alternate" hreflang="fa" href="${SITE_URL}/${slug}.html">
+<link rel="alternate" hreflang="en" href="${SITE_URL}/en/${slug}.html">
+</head>`);
   writeFileSync(p, html);
 }
 
